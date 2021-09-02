@@ -260,6 +260,7 @@
     </node>
   </node>
   <node concept="312cEu" id="y">
+    <property role="3GE5qa" value="literals" />
     <property role="TrG5h" value="EBCharLiteral_Constraints" />
     <uo k="s:originTrace" v="n:8244488409083587140" />
     <node concept="3Tm1VV" id="z" role="1B3o_S">

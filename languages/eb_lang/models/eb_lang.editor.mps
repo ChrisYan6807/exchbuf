@@ -107,12 +107,14 @@
     </node>
   </node>
   <node concept="24kQdi" id="79EjCryfTue">
+    <property role="3GE5qa" value="literals" />
     <ref role="1XX52x" to="wt0b:79EjCryfNOn" resolve="EBNumberLiteral" />
     <node concept="3F0A7n" id="79EjCryfTug" role="2wV5jI">
       <ref role="1NtTu8" to="wt0b:79EjCryfNOr" resolve="value" />
     </node>
   </node>
   <node concept="24kQdi" id="79EjCryfTuq">
+    <property role="3GE5qa" value="literals" />
     <ref role="1XX52x" to="wt0b:79EjCryfNOo" resolve="EBCharLiteral" />
     <node concept="3EZMnI" id="79EjCryfTus" role="2wV5jI">
       <node concept="3F0ifn" id="79EjCryfTuz" role="3EZMnx">
@@ -232,6 +234,105 @@
     <ref role="1XX52x" to="wt0b:79EjCryfNOg" resolve="EBPrimitiveType" />
     <node concept="PMmxH" id="79EjCrygfhZ" role="2wV5jI">
       <ref role="PMmxG" to="tpco:2wZex4PafBj" resolve="alias" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="79EjCrygij2">
+    <property role="3GE5qa" value="primitive_types" />
+    <ref role="1XX52x" to="wt0b:79EjCrygiiP" resolve="EBFixedLenghString" />
+    <node concept="3EZMnI" id="79EjCrygij4" role="2wV5jI">
+      <node concept="3F0ifn" id="79EjCrygijb" role="3EZMnx">
+        <property role="3F0ifm" value="string" />
+      </node>
+      <node concept="3F0ifn" id="79EjCrygijh" role="3EZMnx">
+        <property role="3F0ifm" value="&lt;" />
+      </node>
+      <node concept="3F0A7n" id="79EjCrygijp" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:79EjCrygiiQ" resolve="length" />
+      </node>
+      <node concept="3F0ifn" id="79EjCrygijz" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+        <node concept="11L4FC" id="79EjCrygik5" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
+      <node concept="3F0A7n" id="79EjCrygijJ" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:79EjCrygiiS" resolve="filler" />
+      </node>
+      <node concept="3F0ifn" id="79EjCrygijX" role="3EZMnx">
+        <property role="3F0ifm" value="&gt;" />
+      </node>
+      <node concept="2iRfu4" id="79EjCrygij7" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="79EjCrygmAL">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:79EjCrygmA_" resolve="EBComment" />
+    <node concept="3EZMnI" id="79EjCrygmAN" role="2wV5jI">
+      <node concept="3F0ifn" id="79EjCrygmAU" role="3EZMnx">
+        <property role="3F0ifm" value="//" />
+      </node>
+      <node concept="3F0A7n" id="79EjCrygmB0" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:79EjCrygmAC" resolve="value" />
+      </node>
+      <node concept="2iRfu4" id="79EjCrygmAQ" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="79EjCrygmBm">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:79EjCrygmB4" resolve="EBCPP" />
+    <node concept="3EZMnI" id="79EjCrygmBo" role="2wV5jI">
+      <node concept="3F0ifn" id="79EjCrygmBv" role="3EZMnx">
+        <property role="3F0ifm" value="#cpp" />
+      </node>
+      <node concept="3F0A7n" id="79EjCrygmB_" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:79EjCrygmB5" resolve="value" />
+      </node>
+      <node concept="2iRfu4" id="79EjCrygmBr" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="79EjCrygmBN">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:79EjCrygmBD" resolve="EBExtern" />
+    <node concept="3EZMnI" id="79EjCrygmBP" role="2wV5jI">
+      <node concept="3F0ifn" id="79EjCrygmBW" role="3EZMnx">
+        <property role="3F0ifm" value="extern" />
+      </node>
+      <node concept="3F0A7n" id="79EjCrygmC2" role="3EZMnx">
+        <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+      </node>
+      <node concept="2iRfu4" id="79EjCrygmBS" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="79EjCrygmCh">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:79EjCrygmC9" resolve="EBPython" />
+    <node concept="3EZMnI" id="79EjCrygmCj" role="2wV5jI">
+      <node concept="3F0ifn" id="79EjCrygmCq" role="3EZMnx">
+        <property role="3F0ifm" value="#python" />
+      </node>
+      <node concept="3F0A7n" id="79EjCrygmCy" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:79EjCrygmCw" resolve="value" />
+      </node>
+      <node concept="2iRfu4" id="79EjCrygmCm" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="79EjCrygxoE">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:79EjCrygmC6" resolve="EBImportPrimitive" />
+    <node concept="3EZMnI" id="79EjCrygxoG" role="2wV5jI">
+      <node concept="3F0ifn" id="79EjCrygxoN" role="3EZMnx">
+        <property role="3F0ifm" value="import primitive" />
+      </node>
+      <node concept="3F1sOY" id="79EjCrygxoT" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:79EjCrygmC7" resolve="type" />
+      </node>
+      <node concept="3F0ifn" id="79EjCrygxp1" role="3EZMnx">
+        <property role="3F0ifm" value="as" />
+      </node>
+      <node concept="3F0A7n" id="79EjCrygxpb" role="3EZMnx">
+        <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+      </node>
+      <node concept="2iRfu4" id="79EjCrygxoJ" role="2iSdaV" />
     </node>
   </node>
 </model>
