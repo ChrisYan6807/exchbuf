@@ -15,8 +15,8 @@ public final class LanguageConceptSwitch {
   public static final int EBEnum = 3;
   public static final int EBIIdentifierConcept = 4;
   public static final int EBInt8 = 5;
-  public static final int EBIntLiteral = 6;
-  public static final int EBIntPair = 7;
+  public static final int EBIntKVPair = 6;
+  public static final int EBIntLiteral = 7;
   public static final int EBIntType = 8;
   public static final int EBNumberLiteral = 9;
   public static final int EBPrimitiveType = 10;
@@ -33,8 +33,8 @@ public final class LanguageConceptSwitch {
     builder.put(0x726a4e86e23f3d0dL, EBEnum);
     builder.put(0x726a4e86e23e7834L, EBIIdentifierConcept);
     builder.put(0x726a4e86e23f3d14L, EBInt8);
+    builder.put(0x726a4e86e23f3d1dL, EBIntKVPair);
     builder.put(0x726a4e86e23f3d16L, EBIntLiteral);
-    builder.put(0x726a4e86e23f3d1dL, EBIntPair);
     builder.put(0x726a4e86e23f3d13L, EBIntType);
     builder.put(0x726a4e86e23f3d17L, EBNumberLiteral);
     builder.put(0x726a4e86e23f3d10L, EBPrimitiveType);

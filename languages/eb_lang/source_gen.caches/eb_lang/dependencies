@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dependenciesRoot>
   <dependency className="eb_lang.Language">
+    <classNode dependClassName="eb_lang.constraints.ConstraintsAspectDescriptor" />
     <classNode dependClassName="eb_lang.editor.EditorAspectDescriptorImpl" />
     <classNode dependClassName="eb_lang.structure.ConceptPresentationAspectImpl" />
     <classNode dependClassName="eb_lang.structure.StructureAspectDescriptor" />
@@ -12,6 +13,7 @@
     <classNode dependClassName="jetbrains.mps.smodel.adapter.ids.SLanguageId" />
     <classNode dependClassName="jetbrains.mps.smodel.language.LanguageExtensions" />
     <classNode dependClassName="jetbrains.mps.smodel.runtime.ConceptPresentationAspect" />
+    <classNode dependClassName="jetbrains.mps.smodel.runtime.ConstraintsAspectDescriptor" />
     <classNode dependClassName="jetbrains.mps.smodel.runtime.ILanguageAspect" />
     <classNode dependClassName="jetbrains.mps.smodel.runtime.StructureAspectDescriptor" />
     <classNode dependClassName="org.jetbrains.annotations.NotNull" />

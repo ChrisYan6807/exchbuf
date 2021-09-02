@@ -15,8 +15,8 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBEnum;
   private ConceptPresentation props_EBIIdentifierConcept;
   private ConceptPresentation props_EBInt8;
+  private ConceptPresentation props_EBIntKVPair;
   private ConceptPresentation props_EBIntLiteral;
-  private ConceptPresentation props_EBIntPair;
   private ConceptPresentation props_EBIntType;
   private ConceptPresentation props_EBNumberLiteral;
   private ConceptPresentation props_EBPrimitiveType;
@@ -40,6 +40,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBCharLiteral:
         if (props_EBCharLiteral == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.shortDesc("char literal");
           cpb.rawPresentation("'");
           props_EBCharLiteral = cpb.create();
         }
@@ -71,19 +72,19 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBInt8 = cpb.create();
         }
         return props_EBInt8;
+      case LanguageConceptSwitch.EBIntKVPair:
+        if (props_EBIntKVPair == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBIntKVPair = cpb.create();
+        }
+        return props_EBIntKVPair;
       case LanguageConceptSwitch.EBIntLiteral:
         if (props_EBIntLiteral == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
           props_EBIntLiteral = cpb.create();
         }
         return props_EBIntLiteral;
-      case LanguageConceptSwitch.EBIntPair:
-        if (props_EBIntPair == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
-          props_EBIntPair = cpb.create();
-        }
-        return props_EBIntPair;
       case LanguageConceptSwitch.EBIntType:
         if (props_EBIntType == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -93,6 +94,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBNumberLiteral:
         if (props_EBNumberLiteral == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.shortDesc("number literal");
           cpb.rawPresentation("EBNumberLiteral");
           props_EBNumberLiteral = cpb.create();
         }

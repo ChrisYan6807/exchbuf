@@ -19,8 +19,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptEBEnum = createDescriptorForEBEnum();
   /*package*/ final ConceptDescriptor myConceptEBIIdentifierConcept = createDescriptorForEBIIdentifierConcept();
   /*package*/ final ConceptDescriptor myConceptEBInt8 = createDescriptorForEBInt8();
+  /*package*/ final ConceptDescriptor myConceptEBIntKVPair = createDescriptorForEBIntKVPair();
   /*package*/ final ConceptDescriptor myConceptEBIntLiteral = createDescriptorForEBIntLiteral();
-  /*package*/ final ConceptDescriptor myConceptEBIntPair = createDescriptorForEBIntPair();
   /*package*/ final ConceptDescriptor myConceptEBIntType = createDescriptorForEBIntType();
   /*package*/ final ConceptDescriptor myConceptEBNumberLiteral = createDescriptorForEBNumberLiteral();
   /*package*/ final ConceptDescriptor myConceptEBPrimitiveType = createDescriptorForEBPrimitiveType();
@@ -42,7 +42,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptEBChar, myConceptEBCharLiteral, myConceptEBEmptyStatement, myConceptEBEnum, myConceptEBIIdentifierConcept, myConceptEBInt8, myConceptEBIntLiteral, myConceptEBIntPair, myConceptEBIntType, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBTypeStatementContainer);
+    return Arrays.asList(myConceptEBChar, myConceptEBCharLiteral, myConceptEBEmptyStatement, myConceptEBEnum, myConceptEBIIdentifierConcept, myConceptEBInt8, myConceptEBIntKVPair, myConceptEBIntLiteral, myConceptEBIntType, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBTypeStatementContainer);
   }
 
   @Override
@@ -61,10 +61,10 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptEBIIdentifierConcept;
       case LanguageConceptSwitch.EBInt8:
         return myConceptEBInt8;
+      case LanguageConceptSwitch.EBIntKVPair:
+        return myConceptEBIntKVPair;
       case LanguageConceptSwitch.EBIntLiteral:
         return myConceptEBIntLiteral;
-      case LanguageConceptSwitch.EBIntPair:
-        return myConceptEBIntPair;
       case LanguageConceptSwitch.EBIntType:
         return myConceptEBIntType;
       case LanguageConceptSwitch.EBNumberLiteral:
@@ -145,20 +145,20 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.alias("int8_t");
     return b.create();
   }
-  private static ConceptDescriptor createDescriptorForEBIntLiteral() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBIntLiteral", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L);
-    b.class_(false, true, false);
-    b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493654");
-    b.version(2);
-    return b.create();
-  }
-  private static ConceptDescriptor createDescriptorForEBIntPair() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBIntPair", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL);
+  private static ConceptDescriptor createDescriptorForEBIntKVPair() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBIntKVPair", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL);
     b.class_(false, false, false);
     b.parent(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23e7834L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493661");
     b.version(2);
     b.aggregate("value", 0x726a4e86e23f3d20L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L).optional(false).ordered(true).multiple(false).origin("8244488409083493664").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForEBIntLiteral() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBIntLiteral", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L);
+    b.class_(false, true, false);
+    b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493654");
+    b.version(2);
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBIntType() {

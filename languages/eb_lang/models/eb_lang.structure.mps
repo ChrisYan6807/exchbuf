@@ -14,6 +14,7 @@
     <language id="c72da2b9-7cce-4447-8389-f407dc1158b7" name="jetbrains.mps.lang.structure">
       <concept id="1169125787135" name="jetbrains.mps.lang.structure.structure.AbstractConceptDeclaration" flags="ig" index="PkWjJ">
         <property id="6714410169261853888" name="conceptId" index="EcuMT" />
+        <property id="4628067390765907488" name="conceptShortDescription" index="R4oN_" />
         <property id="4628067390765956802" name="abstract" index="R5$K7" />
         <property id="5092175715804935370" name="conceptAlias" index="34LRSv" />
         <child id="1071489727083" name="linkDeclaration" index="1TKVEi" />
@@ -129,7 +130,7 @@
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="values" />
       <property role="20lbJX" value="fLJekj6/_1__n" />
-      <ref role="20lvS9" node="79EjCryfNOt" resolve="EBIntPair" />
+      <ref role="20lvS9" node="79EjCryfNOt" resolve="EBIntKVPair" />
     </node>
   </node>
   <node concept="1TIwiD" id="79EjCryfNOg">
@@ -172,6 +173,7 @@
   <node concept="1TIwiD" id="79EjCryfNOn">
     <property role="EcuMT" value="8244488409083493655" />
     <property role="TrG5h" value="EBNumberLiteral" />
+    <property role="R4oN_" value="number literal" />
     <ref role="1TJDcQ" node="79EjCryfNOm" resolve="EBIntLiteral" />
     <node concept="1TJgyi" id="79EjCryfNOr" role="1TKVEl">
       <property role="IQ2nx" value="8244488409083493659" />
@@ -183,6 +185,7 @@
     <property role="EcuMT" value="8244488409083493656" />
     <property role="TrG5h" value="EBCharLiteral" />
     <property role="34LRSv" value="'" />
+    <property role="R4oN_" value="char literal" />
     <ref role="1TJDcQ" node="79EjCryfNOm" resolve="EBIntLiteral" />
     <node concept="1TJgyi" id="79EjCryfNOp" role="1TKVEl">
       <property role="IQ2nx" value="8244488409083493657" />
@@ -193,7 +196,7 @@
   <node concept="1TIwiD" id="79EjCryfNOt">
     <property role="EcuMT" value="8244488409083493661" />
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBIntPair" />
+    <property role="TrG5h" value="EBIntKVPair" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="PrWs8" id="79EjCryfNOu" role="PzmwI">
       <ref role="PrY4T" node="79EjCryfBwO" resolve="EBIIdentifierConcept" />

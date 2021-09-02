@@ -9,7 +9,7 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
   <root>
     <file name="ConceptPresentationAspectImpl.java">
-      <unit at="11,0,135,0" name="eb_lang.structure.ConceptPresentationAspectImpl" />
+      <unit at="11,0,137,0" name="eb_lang.structure.ConceptPresentationAspectImpl" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <unit at="10,0,56,0" name="eb_lang.structure.LanguageConceptSwitch" />
@@ -21,14 +21,14 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083443252">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083443252" at="16,0,17,0" concept="1" trace="props_EBIIdentifierConcept" />
-      <node id="8244488409083443252" at="62,49,63,76" concept="3" />
-      <node id="8244488409083443252" at="63,76,64,52" concept="0" />
-      <node id="8244488409083443252" at="65,9,66,42" concept="4" />
-      <node id="8244488409083443252" at="61,54,65,9" concept="2" />
-      <scope id="8244488409083443252" at="62,49,64,52">
+      <node id="8244488409083443252" at="63,49,64,76" concept="3" />
+      <node id="8244488409083443252" at="64,76,65,52" concept="0" />
+      <node id="8244488409083443252" at="66,9,67,42" concept="4" />
+      <node id="8244488409083443252" at="62,54,66,9" concept="2" />
+      <scope id="8244488409083443252" at="63,49,65,52">
         <var name="cpb" id="8244488409083443252" />
       </scope>
-      <scope id="8244488409083443252" at="61,54,66,42" />
+      <scope id="8244488409083443252" at="62,54,67,42" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083443252" at="16,0,17,0" concept="5" trace="EBIIdentifierConcept" />
@@ -44,7 +44,7 @@
       <node id="8244488409083443252" at="134,71,135,94" concept="0" />
       <node id="8244488409083443252" at="135,94,136,17" concept="0" />
       <node id="8244488409083443252" at="136,17,137,22" concept="4" />
-      <node id="8244488409083443252" at="157,34,158,76" concept="0" />
+      <node id="8244488409083443252" at="150,34,151,76" concept="0" />
       <node id="8244488409083443252" at="191,33,192,76" concept="0" />
       <node id="8244488409083443252" at="209,109,210,76" concept="0" />
       <node id="8244488409083443252" at="131,0,139,0" concept="6" trace="createDescriptorForEBIIdentifierConcept#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
@@ -58,14 +58,14 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493615">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493615" at="26,0,27,0" concept="1" trace="props_EBTypeStatementContainer" />
-      <node id="8244488409083493615" at="126,53,127,76" concept="3" />
-      <node id="8244488409083493615" at="127,76,128,56" concept="0" />
-      <node id="8244488409083493615" at="129,9,130,46" concept="4" />
-      <node id="8244488409083493615" at="125,58,129,9" concept="2" />
-      <scope id="8244488409083493615" at="126,53,128,56">
+      <node id="8244488409083493615" at="128,53,129,76" concept="3" />
+      <node id="8244488409083493615" at="129,76,130,56" concept="0" />
+      <node id="8244488409083493615" at="131,9,132,46" concept="4" />
+      <node id="8244488409083493615" at="127,58,131,9" concept="2" />
+      <scope id="8244488409083493615" at="128,53,130,56">
         <var name="cpb" id="8244488409083493615" />
       </scope>
-      <scope id="8244488409083493615" at="125,58,130,46" />
+      <scope id="8244488409083493615" at="127,58,132,46" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493615" at="26,0,27,0" concept="5" trace="EBTypeStatementContainer" />
@@ -92,14 +92,14 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493618">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493618" at="24,0,25,0" concept="1" trace="props_EBStatement" />
-      <node id="8244488409083493618" at="114,40,115,76" concept="3" />
-      <node id="8244488409083493618" at="115,76,116,43" concept="0" />
-      <node id="8244488409083493618" at="117,9,118,33" concept="4" />
-      <node id="8244488409083493618" at="113,45,117,9" concept="2" />
-      <scope id="8244488409083493618" at="114,40,116,43">
+      <node id="8244488409083493618" at="116,40,117,76" concept="3" />
+      <node id="8244488409083493618" at="117,76,118,43" concept="0" />
+      <node id="8244488409083493618" at="119,9,120,33" concept="4" />
+      <node id="8244488409083493618" at="115,45,119,9" concept="2" />
+      <scope id="8244488409083493618" at="116,40,118,43">
         <var name="cpb" id="8244488409083493618" />
       </scope>
-      <scope id="8244488409083493618" at="113,45,118,33" />
+      <scope id="8244488409083493618" at="115,45,120,33" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493618" at="24,0,25,0" concept="5" trace="EBStatement" />
@@ -124,14 +124,14 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493619">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493619" at="25,0,26,0" concept="1" trace="props_EBTypeStatement" />
-      <node id="8244488409083493619" at="120,44,121,76" concept="3" />
-      <node id="8244488409083493619" at="121,76,122,47" concept="0" />
-      <node id="8244488409083493619" at="123,9,124,37" concept="4" />
-      <node id="8244488409083493619" at="119,49,123,9" concept="2" />
-      <scope id="8244488409083493619" at="120,44,122,47">
+      <node id="8244488409083493619" at="122,44,123,76" concept="3" />
+      <node id="8244488409083493619" at="123,76,124,47" concept="0" />
+      <node id="8244488409083493619" at="125,9,126,37" concept="4" />
+      <node id="8244488409083493619" at="121,49,125,9" concept="2" />
+      <scope id="8244488409083493619" at="122,44,124,47">
         <var name="cpb" id="8244488409083493619" />
       </scope>
-      <scope id="8244488409083493619" at="119,49,124,37" />
+      <scope id="8244488409083493619" at="121,49,126,37" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493619" at="25,0,26,0" concept="5" trace="EBTypeStatement" />
@@ -157,15 +157,15 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493622">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493622" at="23,0,24,0" concept="1" trace="props_EBProtocol" />
-      <node id="8244488409083493622" at="107,39,108,76" concept="3" />
-      <node id="8244488409083493622" at="108,76,109,35" concept="0" />
-      <node id="8244488409083493622" at="109,35,110,42" concept="0" />
-      <node id="8244488409083493622" at="111,9,112,32" concept="4" />
-      <node id="8244488409083493622" at="106,44,111,9" concept="2" />
-      <scope id="8244488409083493622" at="107,39,110,42">
+      <node id="8244488409083493622" at="109,39,110,76" concept="3" />
+      <node id="8244488409083493622" at="110,76,111,35" concept="0" />
+      <node id="8244488409083493622" at="111,35,112,42" concept="0" />
+      <node id="8244488409083493622" at="113,9,114,32" concept="4" />
+      <node id="8244488409083493622" at="108,44,113,9" concept="2" />
+      <scope id="8244488409083493622" at="109,39,112,42">
         <var name="cpb" id="8244488409083493622" />
       </scope>
-      <scope id="8244488409083493622" at="106,44,112,32" />
+      <scope id="8244488409083493622" at="108,44,114,32" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493622" at="23,0,24,0" concept="5" trace="EBProtocol" />
@@ -191,15 +191,15 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493630">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493630" at="14,0,15,0" concept="1" trace="props_EBEmptyStatement" />
-      <node id="8244488409083493630" at="48,45,49,76" concept="3" />
-      <node id="8244488409083493630" at="49,76,50,50" concept="0" />
-      <node id="8244488409083493630" at="50,50,51,48" concept="0" />
-      <node id="8244488409083493630" at="52,9,53,38" concept="4" />
-      <node id="8244488409083493630" at="47,50,52,9" concept="2" />
-      <scope id="8244488409083493630" at="48,45,51,48">
+      <node id="8244488409083493630" at="49,45,50,76" concept="3" />
+      <node id="8244488409083493630" at="50,76,51,50" concept="0" />
+      <node id="8244488409083493630" at="51,50,52,48" concept="0" />
+      <node id="8244488409083493630" at="53,9,54,38" concept="4" />
+      <node id="8244488409083493630" at="48,50,53,9" concept="2" />
+      <scope id="8244488409083493630" at="49,45,52,48">
         <var name="cpb" id="8244488409083493630" />
       </scope>
-      <scope id="8244488409083493630" at="47,50,53,38" />
+      <scope id="8244488409083493630" at="48,50,54,38" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493630" at="14,0,15,0" concept="5" trace="EBEmptyStatement" />
@@ -225,15 +225,15 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493645">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493645" at="15,0,16,0" concept="1" trace="props_EBEnum" />
-      <node id="8244488409083493645" at="55,35,56,76" concept="3" />
-      <node id="8244488409083493645" at="56,76,57,35" concept="0" />
-      <node id="8244488409083493645" at="57,35,58,38" concept="0" />
-      <node id="8244488409083493645" at="59,9,60,28" concept="4" />
-      <node id="8244488409083493645" at="54,40,59,9" concept="2" />
-      <scope id="8244488409083493645" at="55,35,58,38">
+      <node id="8244488409083493645" at="56,35,57,76" concept="3" />
+      <node id="8244488409083493645" at="57,76,58,35" concept="0" />
+      <node id="8244488409083493645" at="58,35,59,38" concept="0" />
+      <node id="8244488409083493645" at="60,9,61,28" concept="4" />
+      <node id="8244488409083493645" at="55,40,60,9" concept="2" />
+      <scope id="8244488409083493645" at="56,35,59,38">
         <var name="cpb" id="8244488409083493645" />
       </scope>
-      <scope id="8244488409083493645" at="54,40,60,28" />
+      <scope id="8244488409083493645" at="55,40,61,28" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493645" at="15,0,16,0" concept="5" trace="EBEnum" />
@@ -262,14 +262,14 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493648">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493648" at="22,0,23,0" concept="1" trace="props_EBPrimitiveType" />
-      <node id="8244488409083493648" at="101,44,102,76" concept="3" />
-      <node id="8244488409083493648" at="102,76,103,47" concept="0" />
-      <node id="8244488409083493648" at="104,9,105,37" concept="4" />
-      <node id="8244488409083493648" at="100,49,104,9" concept="2" />
-      <scope id="8244488409083493648" at="101,44,103,47">
+      <node id="8244488409083493648" at="103,44,104,76" concept="3" />
+      <node id="8244488409083493648" at="104,76,105,47" concept="0" />
+      <node id="8244488409083493648" at="106,9,107,37" concept="4" />
+      <node id="8244488409083493648" at="102,49,106,9" concept="2" />
+      <scope id="8244488409083493648" at="103,44,105,47">
         <var name="cpb" id="8244488409083493648" />
       </scope>
-      <scope id="8244488409083493648" at="100,49,105,37" />
+      <scope id="8244488409083493648" at="102,49,107,37" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493648" at="22,0,23,0" concept="5" trace="EBPrimitiveType" />
@@ -295,18 +295,18 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493651">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493651" at="20,0,21,0" concept="1" trace="props_EBIntType" />
-      <node id="8244488409083493651" at="88,38,89,76" concept="3" />
-      <node id="8244488409083493651" at="89,76,90,41" concept="0" />
-      <node id="8244488409083493651" at="91,9,92,31" concept="4" />
-      <node id="8244488409083493651" at="87,43,91,9" concept="2" />
-      <scope id="8244488409083493651" at="88,38,90,41">
+      <node id="8244488409083493651" at="89,38,90,76" concept="3" />
+      <node id="8244488409083493651" at="90,76,91,41" concept="0" />
+      <node id="8244488409083493651" at="92,9,93,31" concept="4" />
+      <node id="8244488409083493651" at="88,43,92,9" concept="2" />
+      <scope id="8244488409083493651" at="89,38,91,41">
         <var name="cpb" id="8244488409083493651" />
       </scope>
-      <scope id="8244488409083493651" at="87,43,92,31" />
+      <scope id="8244488409083493651" at="88,43,93,31" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493651" at="20,0,21,0" concept="5" trace="EBIntType" />
-      <node id="8244488409083493651" at="37,48,38,48" concept="0" />
+      <node id="8244488409083493651" at="37,51,38,48" concept="0" />
     </file>
     <file name="StructureAspectDescriptor.java">
       <node id="8244488409083493651" at="24,0,25,0" concept="1" trace="myConceptEBIntType" />
@@ -328,15 +328,15 @@
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493652">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493652" at="17,0,18,0" concept="1" trace="props_EBInt8" />
-      <node id="8244488409083493652" at="68,35,69,76" concept="3" />
-      <node id="8244488409083493652" at="69,76,70,40" concept="0" />
-      <node id="8244488409083493652" at="70,40,71,38" concept="0" />
-      <node id="8244488409083493652" at="72,9,73,28" concept="4" />
-      <node id="8244488409083493652" at="67,40,72,9" concept="2" />
-      <scope id="8244488409083493652" at="68,35,71,38">
+      <node id="8244488409083493652" at="69,35,70,76" concept="3" />
+      <node id="8244488409083493652" at="70,76,71,40" concept="0" />
+      <node id="8244488409083493652" at="71,40,72,38" concept="0" />
+      <node id="8244488409083493652" at="73,9,74,28" concept="4" />
+      <node id="8244488409083493652" at="68,40,73,9" concept="2" />
+      <scope id="8244488409083493652" at="69,35,72,38">
         <var name="cpb" id="8244488409083493652" />
       </scope>
-      <scope id="8244488409083493652" at="67,40,73,28" />
+      <scope id="8244488409083493652" at="68,40,74,28" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493652" at="17,0,18,0" concept="5" trace="EBInt8" />
@@ -397,48 +397,49 @@
   </root>
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493654">
     <file name="ConceptPresentationAspectImpl.java">
-      <node id="8244488409083493654" at="18,0,19,0" concept="1" trace="props_EBIntLiteral" />
-      <node id="8244488409083493654" at="75,41,76,76" concept="3" />
-      <node id="8244488409083493654" at="76,76,77,44" concept="0" />
-      <node id="8244488409083493654" at="78,9,79,34" concept="4" />
-      <node id="8244488409083493654" at="74,46,78,9" concept="2" />
-      <scope id="8244488409083493654" at="75,41,77,44">
+      <node id="8244488409083493654" at="19,0,20,0" concept="1" trace="props_EBIntLiteral" />
+      <node id="8244488409083493654" at="83,41,84,76" concept="3" />
+      <node id="8244488409083493654" at="84,76,85,44" concept="0" />
+      <node id="8244488409083493654" at="86,9,87,34" concept="4" />
+      <node id="8244488409083493654" at="82,46,86,9" concept="2" />
+      <scope id="8244488409083493654" at="83,41,85,44">
         <var name="cpb" id="8244488409083493654" />
       </scope>
-      <scope id="8244488409083493654" at="74,46,79,34" />
+      <scope id="8244488409083493654" at="82,46,87,34" />
     </file>
     <file name="LanguageConceptSwitch.java">
-      <node id="8244488409083493654" at="18,0,19,0" concept="5" trace="EBIntLiteral" />
-      <node id="8244488409083493654" at="35,45,36,51" concept="0" />
+      <node id="8244488409083493654" at="19,0,20,0" concept="5" trace="EBIntLiteral" />
+      <node id="8244488409083493654" at="36,50,37,51" concept="0" />
     </file>
     <file name="StructureAspectDescriptor.java">
-      <node id="8244488409083493654" at="22,0,23,0" concept="1" trace="myConceptEBIntLiteral" />
-      <node id="8244488409083493654" at="64,46,65,37" concept="4" />
-      <node id="8244488409083493654" at="148,70,149,154" concept="3" />
-      <node id="8244488409083493654" at="149,154,150,33" concept="0" />
-      <node id="8244488409083493654" at="150,33,151,94" concept="0" />
-      <node id="8244488409083493654" at="151,94,152,17" concept="0" />
-      <node id="8244488409083493654" at="152,17,153,22" concept="4" />
-      <node id="8244488409083493654" at="148,0,155,0" concept="6" trace="createDescriptorForEBIntLiteral#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
-      <scope id="8244488409083493654" at="64,46,65,37" />
-      <scope id="8244488409083493654" at="148,70,153,22">
+      <node id="8244488409083493654" at="23,0,24,0" concept="1" trace="myConceptEBIntLiteral" />
+      <node id="8244488409083493654" at="66,46,67,37" concept="4" />
+      <node id="8244488409083493654" at="157,70,158,154" concept="3" />
+      <node id="8244488409083493654" at="158,154,159,33" concept="0" />
+      <node id="8244488409083493654" at="159,33,160,94" concept="0" />
+      <node id="8244488409083493654" at="160,94,161,17" concept="0" />
+      <node id="8244488409083493654" at="161,17,162,22" concept="4" />
+      <node id="8244488409083493654" at="157,0,164,0" concept="6" trace="createDescriptorForEBIntLiteral#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
+      <scope id="8244488409083493654" at="66,46,67,37" />
+      <scope id="8244488409083493654" at="157,70,162,22">
         <var name="b" id="8244488409083493654" />
       </scope>
-      <scope id="8244488409083493654" at="148,0,155,0" />
+      <scope id="8244488409083493654" at="157,0,164,0" />
     </file>
   </root>
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493655">
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493655" at="21,0,22,0" concept="1" trace="props_EBNumberLiteral" />
-      <node id="8244488409083493655" at="94,44,95,76" concept="3" />
-      <node id="8244488409083493655" at="95,76,96,49" concept="0" />
-      <node id="8244488409083493655" at="96,49,97,47" concept="0" />
-      <node id="8244488409083493655" at="98,9,99,37" concept="4" />
-      <node id="8244488409083493655" at="93,49,98,9" concept="2" />
-      <scope id="8244488409083493655" at="94,44,97,47">
+      <node id="8244488409083493655" at="95,44,96,76" concept="3" />
+      <node id="8244488409083493655" at="96,76,97,42" concept="0" />
+      <node id="8244488409083493655" at="97,42,98,49" concept="0" />
+      <node id="8244488409083493655" at="98,49,99,47" concept="0" />
+      <node id="8244488409083493655" at="100,9,101,37" concept="4" />
+      <node id="8244488409083493655" at="94,49,100,9" concept="2" />
+      <scope id="8244488409083493655" at="95,44,99,47">
         <var name="cpb" id="8244488409083493655" />
       </scope>
-      <scope id="8244488409083493655" at="93,49,99,37" />
+      <scope id="8244488409083493655" at="94,49,101,37" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493655" at="21,0,22,0" concept="5" trace="EBNumberLiteral" />
@@ -466,14 +467,15 @@
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083493656" at="13,0,14,0" concept="1" trace="props_EBCharLiteral" />
       <node id="8244488409083493656" at="41,42,42,76" concept="3" />
-      <node id="8244488409083493656" at="42,76,43,35" concept="0" />
-      <node id="8244488409083493656" at="43,35,44,45" concept="0" />
-      <node id="8244488409083493656" at="45,9,46,35" concept="4" />
-      <node id="8244488409083493656" at="40,47,45,9" concept="2" />
-      <scope id="8244488409083493656" at="41,42,44,45">
+      <node id="8244488409083493656" at="42,76,43,40" concept="0" />
+      <node id="8244488409083493656" at="43,40,44,35" concept="0" />
+      <node id="8244488409083493656" at="44,35,45,45" concept="0" />
+      <node id="8244488409083493656" at="46,9,47,35" concept="4" />
+      <node id="8244488409083493656" at="40,47,46,9" concept="2" />
+      <scope id="8244488409083493656" at="41,42,45,45">
         <var name="cpb" id="8244488409083493656" />
       </scope>
-      <scope id="8244488409083493656" at="40,47,46,35" />
+      <scope id="8244488409083493656" at="40,47,47,35" />
     </file>
     <file name="LanguageConceptSwitch.java">
       <node id="8244488409083493656" at="13,0,14,0" concept="5" trace="EBCharLiteral" />
@@ -500,36 +502,36 @@
   </root>
   <root nodeRef="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493661">
     <file name="ConceptPresentationAspectImpl.java">
-      <node id="8244488409083493661" at="19,0,20,0" concept="1" trace="props_EBIntPair" />
-      <node id="8244488409083493661" at="81,38,82,76" concept="3" />
-      <node id="8244488409083493661" at="82,76,83,35" concept="0" />
-      <node id="8244488409083493661" at="83,35,84,41" concept="0" />
-      <node id="8244488409083493661" at="85,9,86,31" concept="4" />
-      <node id="8244488409083493661" at="80,43,85,9" concept="2" />
-      <scope id="8244488409083493661" at="81,38,84,41">
+      <node id="8244488409083493661" at="18,0,19,0" concept="1" trace="props_EBIntKVPair" />
+      <node id="8244488409083493661" at="76,40,77,76" concept="3" />
+      <node id="8244488409083493661" at="77,76,78,35" concept="0" />
+      <node id="8244488409083493661" at="78,35,79,43" concept="0" />
+      <node id="8244488409083493661" at="80,9,81,33" concept="4" />
+      <node id="8244488409083493661" at="75,45,80,9" concept="2" />
+      <scope id="8244488409083493661" at="76,40,79,43">
         <var name="cpb" id="8244488409083493661" />
       </scope>
-      <scope id="8244488409083493661" at="80,43,86,31" />
+      <scope id="8244488409083493661" at="75,45,81,33" />
     </file>
     <file name="LanguageConceptSwitch.java">
-      <node id="8244488409083493661" at="19,0,20,0" concept="5" trace="EBIntPair" />
-      <node id="8244488409083493661" at="36,51,37,48" concept="0" />
+      <node id="8244488409083493661" at="18,0,19,0" concept="5" trace="EBIntKVPair" />
+      <node id="8244488409083493661" at="35,45,36,50" concept="0" />
     </file>
     <file name="StructureAspectDescriptor.java">
-      <node id="8244488409083493661" at="23,0,24,0" concept="1" trace="myConceptEBIntPair" />
-      <node id="8244488409083493661" at="66,43,67,34" concept="4" />
-      <node id="8244488409083493661" at="155,67,156,151" concept="3" />
-      <node id="8244488409083493661" at="156,151,157,34" concept="0" />
-      <node id="8244488409083493661" at="158,76,159,94" concept="0" />
-      <node id="8244488409083493661" at="159,94,160,17" concept="0" />
-      <node id="8244488409083493664" at="160,17,161,199" concept="0" />
-      <node id="8244488409083493661" at="161,199,162,22" concept="4" />
-      <node id="8244488409083493661" at="155,0,164,0" concept="6" trace="createDescriptorForEBIntPair#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
-      <scope id="8244488409083493661" at="66,43,67,34" />
-      <scope id="8244488409083493661" at="155,67,162,22">
+      <node id="8244488409083493661" at="22,0,23,0" concept="1" trace="myConceptEBIntKVPair" />
+      <node id="8244488409083493661" at="64,45,65,36" concept="4" />
+      <node id="8244488409083493661" at="148,69,149,153" concept="3" />
+      <node id="8244488409083493661" at="149,153,150,34" concept="0" />
+      <node id="8244488409083493661" at="151,76,152,94" concept="0" />
+      <node id="8244488409083493661" at="152,94,153,17" concept="0" />
+      <node id="8244488409083493664" at="153,17,154,199" concept="0" />
+      <node id="8244488409083493661" at="154,199,155,22" concept="4" />
+      <node id="8244488409083493661" at="148,0,157,0" concept="6" trace="createDescriptorForEBIntKVPair#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
+      <scope id="8244488409083493661" at="64,45,65,36" />
+      <scope id="8244488409083493661" at="148,69,155,22">
         <var name="b" id="8244488409083493661" />
       </scope>
-      <scope id="8244488409083493661" at="155,0,164,0" />
+      <scope id="8244488409083493661" at="148,0,157,0" />
     </file>
   </root>
 </debug-info>
