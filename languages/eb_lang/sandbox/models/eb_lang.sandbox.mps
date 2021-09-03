@@ -10,6 +10,15 @@
       <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
+      <concept id="8244488409083636111" name="eb_lang.structure.EBBitField" flags="ng" index="2gaMs9">
+        <child id="8244488409083636116" name="values" index="2gaMsi" />
+        <child id="8244488409083636114" name="type" index="2gaMsk" />
+      </concept>
+      <concept id="8244488409083636119" name="eb_lang.structure.EBBitFieldMember" flags="ng" index="2gaMsh">
+        <property id="8244488409083636124" name="length" index="2gaMsq" />
+        <property id="8244488409083636122" name="offset" index="2gaMss" />
+        <child id="8244488409083636127" name="values" index="2gaMsp" />
+      </concept>
       <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
       <concept id="8244488409083618479" name="eb_lang.structure.EBInt32" flags="ng" index="2gaQCD" />
       <concept id="8244488409083618480" name="eb_lang.structure.EBInt64" flags="ng" index="2gaQCQ" />
@@ -44,6 +53,7 @@
       <property role="TrG5h" value="i32" />
       <node concept="2gaQCD" id="79EjCryg_Sj" role="2gaMi1" />
     </node>
+    <node concept="2gln9S" id="7Ho_HUXSqne" role="2gln9U" />
     <node concept="2glneb" id="79EjCryga_p" role="2gln9U">
       <property role="TrG5h" value="MsgType" />
       <node concept="2glner" id="79EjCrygeIT" role="2glney">
@@ -105,6 +115,34 @@
           <property role="2glnev" value="b" />
         </node>
       </node>
+      <node concept="2glner" id="7Ho_HUXSqn5" role="2glney">
+        <property role="TrG5h" value="bbb" />
+        <node concept="2glneh" id="7Ho_HUXSqnb" role="2glneA">
+          <property role="2glnet" value="123" />
+        </node>
+      </node>
+    </node>
+    <node concept="2gln9S" id="7Ho_HUXSqnK" role="2gln9U" />
+    <node concept="2gaMs9" id="7Ho_HUXSSU4" role="2gln9U">
+      <property role="TrG5h" value="Flags" />
+      <node concept="2gaMsh" id="7Ho_HUXTjfa" role="2gaMsi">
+        <property role="TrG5h" value="liqprov" />
+        <property role="2gaMss" value="1" />
+        <property role="2gaMsq" value="1" />
+        <node concept="2glner" id="7Ho_HUXTjfb" role="2gaMsp">
+          <property role="TrG5h" value="No" />
+          <node concept="2glneh" id="7Ho_HUXTs7q" role="2glneA">
+            <property role="2glnet" value="0" />
+          </node>
+        </node>
+        <node concept="2glner" id="7Ho_HUXTjfg" role="2gaMsp">
+          <property role="TrG5h" value="Yes" />
+          <node concept="2glneu" id="7Ho_HUXTs7t" role="2glneA">
+            <property role="2glnev" value="1" />
+          </node>
+        </node>
+      </node>
+      <node concept="2glnei" id="7Ho_HUXSSUP" role="2gaMsk" />
     </node>
     <node concept="2gln9S" id="79EjCrygxni" role="2gln9U" />
     <node concept="2gln9S" id="79EjCryga_k" role="2gln9U" />
