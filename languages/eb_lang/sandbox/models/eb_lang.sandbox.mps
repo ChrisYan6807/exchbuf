@@ -10,6 +10,9 @@
       <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
+      <concept id="8244488409083636233" name="eb_lang.structure.EBPython" flags="ng" index="2gaMif">
+        <property id="8244488409083636256" name="value" index="2gaMiA" />
+      </concept>
       <concept id="8244488409083636111" name="eb_lang.structure.EBBitField" flags="ng" index="2gaMs9">
         <child id="8244488409083636116" name="values" index="2gaMsi" />
         <child id="8244488409083636114" name="type" index="2gaMsk" />
@@ -19,6 +22,13 @@
         <property id="8244488409083636122" name="offset" index="2gaMss" />
         <child id="8244488409083636127" name="values" index="2gaMsp" />
       </concept>
+      <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">
+        <property id="8244488409083636136" name="value" index="2gaMsI" />
+      </concept>
+      <concept id="8244488409083636164" name="eb_lang.structure.EBCPP" flags="ng" index="2gaMt2">
+        <property id="8244488409083636165" name="value" index="2gaMt3" />
+      </concept>
+      <concept id="8244488409083636201" name="eb_lang.structure.EBExtern" flags="ng" index="2gaMtJ" />
       <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
       <concept id="8244488409083618479" name="eb_lang.structure.EBInt32" flags="ng" index="2gaQCD" />
       <concept id="8244488409083618480" name="eb_lang.structure.EBInt64" flags="ng" index="2gaQCQ" />
@@ -49,6 +59,17 @@
   </registry>
   <node concept="2gln9K" id="79EjCryfT0i">
     <property role="TrG5h" value="Aquise" />
+    <node concept="2gaMt2" id="7Ho_HUXT$ZS" role="2gln9U">
+      <property role="2gaMt3" value="include &lt;string&gt;" />
+    </node>
+    <node concept="2gaMif" id="7Ho_HUXTAce" role="2gln9U">
+      <property role="2gaMiA" value="import os, sys" />
+    </node>
+    <node concept="2gln9S" id="7Ho_HUXTBe0" role="2gln9U" />
+    <node concept="2gaMsz" id="7Ho_HUXTBfB" role="2gln9U">
+      <property role="2gaMsI" value="this is comment" />
+    </node>
+    <node concept="2gln9S" id="7Ho_HUXTAd0" role="2gln9U" />
     <node concept="2gaMi0" id="79EjCrygxo5" role="2gln9U">
       <property role="TrG5h" value="i32" />
       <node concept="2gaQCD" id="79EjCryg_Sj" role="2gaMi1" />
@@ -144,6 +165,14 @@
       </node>
       <node concept="2glnei" id="7Ho_HUXSSUP" role="2gaMsk" />
     </node>
+    <node concept="2gln9S" id="7Ho_HUXT$UR" role="2gln9U" />
+    <node concept="2gaMtJ" id="7Ho_HUXT$Yo" role="2gln9U">
+      <property role="TrG5h" value="string16" />
+    </node>
+    <node concept="2gln9S" id="7Ho_HUXTBgs" role="2gln9U" />
+    <node concept="2gln9S" id="7Ho_HUXT$We" role="2gln9U" />
+    <node concept="2gln9S" id="7Ho_HUXT$WV" role="2gln9U" />
+    <node concept="2gln9S" id="7Ho_HUXT$XD" role="2gln9U" />
     <node concept="2gln9S" id="79EjCrygxni" role="2gln9U" />
     <node concept="2gln9S" id="79EjCryga_k" role="2gln9U" />
   </node>

@@ -348,6 +348,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.parent(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23e7834L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636262");
     b.version(2);
+    b.aggregate("members", 0x7b5896debde675baL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL).optional(false).ordered(true).multiple(true).origin("8888019748028577210").done();
+    b.aggregate("size", 0x7b5896debde675bcL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L).optional(false).ordered(true).multiple(false).origin("8888019748028577212").done();
     b.alias("message");
     return b.create();
   }
@@ -357,12 +359,13 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636265");
     b.version(2);
+    b.aggregate("type", 0x7b5896debde72cd3L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d13L).optional(false).ordered(true).multiple(false).origin("8888019748028624083").done();
     b.alias("array");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBMessageMember() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
-    b.class_(false, false, false);
+    b.class_(false, true, false);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636266");
     b.version(2);
     b.property("type", 0x726a4e86e2416a2bL).type(PrimitiveTypeId.STRING).origin("8244488409083636267").done();
@@ -376,6 +379,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636276");
     b.version(2);
+    b.alias("entry");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBNumberLiteral() {
@@ -408,6 +412,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   private static ConceptDescriptor createDescriptorForEBPython() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBPython", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a09L);
     b.class_(false, false, false);
+    b.super_("eb_lang.structure.EBStatement", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf2L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636233");
     b.version(2);
     b.property("value", 0x726a4e86e2416a20L).type(PrimitiveTypeId.STRING).origin("8244488409083636256").done();

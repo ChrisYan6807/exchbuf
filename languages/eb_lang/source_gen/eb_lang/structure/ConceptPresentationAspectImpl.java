@@ -207,14 +207,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBMessageMember:
         if (props_EBMessageMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("EBMessageMember");
           props_EBMessageMember = cpb.create();
         }
         return props_EBMessageMember;
       case LanguageConceptSwitch.EBMessageNonArrayMember:
         if (props_EBMessageNonArrayMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("EBMessageNonArrayMember");
+          cpb.rawPresentation("entry");
           props_EBMessageNonArrayMember = cpb.create();
         }
         return props_EBMessageNonArrayMember;

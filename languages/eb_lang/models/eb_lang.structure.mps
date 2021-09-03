@@ -401,7 +401,7 @@
     <property role="TrG5h" value="EBPython" />
     <property role="34LRSv" value="#python" />
     <property role="R4oN_" value="python directive" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <ref role="1TJDcQ" node="79EjCryfNNM" resolve="EBStatement" />
     <node concept="1TJgyi" id="79EjCrygmCw" role="1TKVEl">
       <property role="IQ2nx" value="8244488409083636256" />
       <property role="TrG5h" value="value" />
@@ -417,6 +417,20 @@
     <node concept="PrWs8" id="79EjCrygmCB" role="PzmwI">
       <ref role="PrY4T" node="79EjCryfBwO" resolve="EBIIdentifierConcept" />
     </node>
+    <node concept="1TJgyj" id="7Ho_HUXTBmU" role="1TKVEi">
+      <property role="IQ2ns" value="8888019748028577210" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="members" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="79EjCrygmCE" resolve="EBMessageMember" />
+    </node>
+    <node concept="1TJgyj" id="7Ho_HUXTBmW" role="1TKVEi">
+      <property role="IQ2ns" value="8888019748028577212" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="size" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="79EjCryfNOn" resolve="EBNumberLiteral" />
+    </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmCD">
     <property role="EcuMT" value="8244488409083636265" />
@@ -424,11 +438,19 @@
     <property role="TrG5h" value="EBMessageArrayMember" />
     <property role="34LRSv" value="array" />
     <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
+    <node concept="1TJgyj" id="7Ho_HUXTMNj" role="1TKVEi">
+      <property role="IQ2ns" value="8888019748028624083" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="type" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="79EjCryfNOj" resolve="EBIntType" />
+    </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmCE">
     <property role="EcuMT" value="8244488409083636266" />
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBMessageMember" />
+    <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
     <node concept="1TJgyi" id="79EjCrygmCF" role="1TKVEl">
       <property role="IQ2nx" value="8244488409083636267" />
@@ -450,6 +472,7 @@
     <property role="EcuMT" value="8244488409083636276" />
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBMessageNonArrayMember" />
+    <property role="34LRSv" value="entry" />
     <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
   </node>
 </model>
