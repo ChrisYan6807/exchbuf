@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>de.itemis.mps.extensions.jackson</id>
+  <name>Stubs for Jackson Library in MPS</name>
+  <description>JARs and stubs for using Jackson Json Serialization.</description>
+  <version>2.10.2</version>
+  <vendor url="https://github.com/FasterXML/jackson">Jackson Project</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <depends>jetbrains.mps.build</depends>
+  <description>JARs and Stubs for using Jackson Json Serialization</description>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

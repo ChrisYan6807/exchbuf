@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>org.modelix.model.api</id>
+  <name>org.modelix.model.api</name>
+  <version>2020.3.1719.91ed933</version>
+  <depends>jetbrains.mps.core</depends>
+  <depends>de.q60.mps.libs</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

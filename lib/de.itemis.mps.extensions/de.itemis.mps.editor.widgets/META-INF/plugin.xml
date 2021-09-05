@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>de.itemis.mps.editor.widgets</id>
+  <name>MPS Editor Widgets</name>
+  <description>A library of widgets (checkbox, dropdown, etc.) that can be used in MPS editors</description>
+  <version>2020.3.1719.91ed933</version>
+  <vendor url="https://github.com/slisson/mps-all">itemis AG</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <depends>jetbrains.mps.build</depends>
+  <depends>de.slisson.mps.hacks</depends>
+  <depends>de.itemis.mps.tooltips</depends>
+  <description>A library of widgets (checkbox, dropdown, etc.) that can be used in MPS editors</description>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>com.dslfoundry.langvis</id>
+  <name>com.dslfoundry.langvis</name>
+  <version>2020.3.1719.91ed933</version>
+  <vendor url="https://dslfoundry.com/">DSLFoundry</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <depends>jetbrains.mps.build</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

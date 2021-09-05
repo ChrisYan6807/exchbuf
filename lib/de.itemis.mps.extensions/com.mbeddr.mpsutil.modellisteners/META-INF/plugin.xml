@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>com.mbeddr.mpsutil.modellisteners</id>
+  <name>com.mbeddr.mpsutil.modellisteners</name>
+  <version>2020.3.1719.91ed933</version>
+  <vendor url="http://mbeddr.com">mbeddr</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>
