@@ -114,5 +114,27 @@
       </node>
     </node>
   </node>
+  <node concept="1M2fIO" id="1jyFxKjt2Wr">
+    <property role="3GE5qa" value="literals" />
+    <ref role="1M2myG" to="wt0b:79EjCryfNOn" resolve="EBNumberLiteral" />
+    <node concept="EnEH3" id="1jyFxKjt2Ws" role="1MhHOB">
+      <ref role="EomxK" to="wt0b:79EjCryfNOr" resolve="value" />
+      <node concept="QB0g5" id="1jyFxKjt2Xb" role="QCWH9">
+        <node concept="3clFbS" id="1jyFxKjt2Xc" role="2VODD2">
+          <node concept="3clFbF" id="1jyFxKjt31N" role="3cqZAp">
+            <node concept="2OqwBi" id="1jyFxKjt32q" role="3clFbG">
+              <node concept="1Wqviy" id="1jyFxKjt31M" role="2Oq$k0" />
+              <node concept="liA8E" id="1jyFxKjt3lL" role="2OqNvi">
+                <ref role="37wK5l" to="wyt6:~String.matches(java.lang.String)" resolve="matches" />
+                <node concept="Xl_RD" id="1jyFxKjt3KT" role="37wK5m">
+                  <property role="Xl_RC" value="[0-9]+" />
+                </node>
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
 </model>
 

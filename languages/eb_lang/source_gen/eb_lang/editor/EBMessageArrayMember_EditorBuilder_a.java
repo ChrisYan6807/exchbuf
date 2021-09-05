@@ -53,7 +53,7 @@ import jetbrains.mps.nodeEditor.cells.EditorCell_Constant;
     return editorCell;
   }
   private EditorCell createConstant_2() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, ">");
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "h>");
     editorCell.setCellId("Constant_lz6eu9_c0");
     editorCell.setDefaultText("");
     return editorCell;
