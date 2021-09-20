@@ -451,25 +451,6 @@
       <ref role="20lvS9" node="79EjCryfNNN" resolve="EBTypeStatement" />
     </node>
   </node>
-  <node concept="1TIwiD" id="5xcBXFwLOMz">
-    <property role="EcuMT" value="6362636135990512803" />
-    <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBTypeReference" />
-    <ref role="1TJDcQ" node="5xcBXFwNiTl" resolve="EBMessageMemberType" />
-    <node concept="1TJgyj" id="5xcBXFwLOM$" role="1TKVEi">
-      <property role="IQ2ns" value="6362636135990512804" />
-      <property role="20kJfa" value="type" />
-      <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="79EjCryfNNN" resolve="EBTypeStatement" />
-    </node>
-  </node>
-  <node concept="1TIwiD" id="5xcBXFwNiTl">
-    <property role="EcuMT" value="6362636135990898261" />
-    <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessageMemberType" />
-    <property role="R5$K7" value="true" />
-    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-  </node>
   <node concept="1TIwiD" id="7zTxF1J4Zx$">
     <property role="EcuMT" value="8717146646088251492" />
     <property role="TrG5h" value="EBIntType" />

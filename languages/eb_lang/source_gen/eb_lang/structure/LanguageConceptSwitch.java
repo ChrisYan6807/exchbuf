@@ -35,19 +35,17 @@ public final class LanguageConceptSwitch {
   public static final int EBMessage = 23;
   public static final int EBMessageArrayMember = 24;
   public static final int EBMessageMember = 25;
-  public static final int EBMessageMemberType = 26;
-  public static final int EBMessageNonArrayMember = 27;
-  public static final int EBNumberLiteral = 28;
-  public static final int EBPrimitiveType = 29;
-  public static final int EBProtocol = 30;
-  public static final int EBPython = 31;
-  public static final int EBStatement = 32;
-  public static final int EBTypeReference = 33;
-  public static final int EBTypeStatement = 34;
-  public static final int EBUInt16 = 35;
-  public static final int EBUInt32 = 36;
-  public static final int EBUInt64 = 37;
-  public static final int EBUInt8 = 38;
+  public static final int EBMessageNonArrayMember = 26;
+  public static final int EBNumberLiteral = 27;
+  public static final int EBPrimitiveType = 28;
+  public static final int EBProtocol = 29;
+  public static final int EBPython = 30;
+  public static final int EBStatement = 31;
+  public static final int EBTypeStatement = 32;
+  public static final int EBUInt16 = 33;
+  public static final int EBUInt32 = 34;
+  public static final int EBUInt64 = 35;
+  public static final int EBUInt8 = 36;
 
   public LanguageConceptSwitch() {
     LanguageConceptIndexBuilder builder = new LanguageConceptIndexBuilder(0x59242254602f42f3L, 0xab3adc203eb4cc03L);
@@ -77,14 +75,12 @@ public final class LanguageConceptSwitch {
     builder.put(0x726a4e86e2416a26L, EBMessage);
     builder.put(0x726a4e86e2416a29L, EBMessageArrayMember);
     builder.put(0x726a4e86e2416a2aL, EBMessageMember);
-    builder.put(0x584c9fdae0cd2e55L, EBMessageMemberType);
     builder.put(0x726a4e86e2416a34L, EBMessageNonArrayMember);
     builder.put(0x726a4e86e23f3d17L, EBNumberLiteral);
     builder.put(0x726a4e86e23f3d10L, EBPrimitiveType);
     builder.put(0x726a4e86e23f3cf6L, EBProtocol);
     builder.put(0x726a4e86e2416a09L, EBPython);
     builder.put(0x726a4e86e23f3cf2L, EBStatement);
-    builder.put(0x584c9fdae0c74ca3L, EBTypeReference);
     builder.put(0x726a4e86e23f3cf3L, EBTypeStatement);
     builder.put(0x726a4e86e24124b2L, EBUInt16);
     builder.put(0x726a4e86e24124b1L, EBUInt32);

@@ -12,15 +12,15 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
   <root>
     <file name="TypesystemDescriptor.java">
-      <unit at="9,0,25,0" name="eb_lang.typesystem.TypesystemDescriptor" />
+      <unit at="8,0,20,0" name="eb_lang.typesystem.TypesystemDescriptor" />
     </file>
   </root>
   <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/5342936125071473277">
     <file name="TypesystemDescriptor.java">
-      <node id="5342936125071473277" at="19,5,20,93" concept="6" />
-      <node id="5342936125071473277" at="20,93,21,55" concept="2" />
-      <node id="5342936125071473277" at="18,5,22,5" concept="0" />
-      <scope id="5342936125071473277" at="19,5,21,55">
+      <node id="5342936125071473277" at="14,5,15,93" concept="6" />
+      <node id="5342936125071473277" at="15,93,16,55" concept="2" />
+      <node id="5342936125071473277" at="13,5,17,5" concept="0" />
+      <scope id="5342936125071473277" at="14,5,16,55">
         <var name="nonTypesystemRule" id="5342936125071473277" />
       </scope>
     </file>
@@ -79,10 +79,10 @@
   </root>
   <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/5342936125071603845">
     <file name="TypesystemDescriptor.java">
-      <node id="5342936125071603845" at="15,5,16,89" concept="6" />
-      <node id="5342936125071603845" at="16,89,17,55" concept="2" />
-      <node id="5342936125071603845" at="14,5,18,5" concept="0" />
-      <scope id="5342936125071603845" at="15,5,17,55">
+      <node id="5342936125071603845" at="10,5,11,89" concept="6" />
+      <node id="5342936125071603845" at="11,89,12,55" concept="2" />
+      <node id="5342936125071603845" at="9,33,13,5" concept="0" />
+      <scope id="5342936125071603845" at="10,5,12,55">
         <var name="nonTypesystemRule" id="5342936125071603845" />
       </scope>
     </file>
@@ -138,55 +138,6 @@
       <unit id="5342936125071603845" at="56,0,59,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule$LINKS" />
       <unit id="5342936125071603845" at="60,0,64,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule$CONCEPTS" />
       <unit id="5342936125071603845" at="26,0,65,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule" />
-    </file>
-  </root>
-  <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/5607806230596156714">
-    <file name="TypesystemDescriptor.java">
-      <node id="5607806230596156714" at="11,5,12,87" concept="6" />
-      <node id="5607806230596156714" at="12,87,13,47" concept="2" />
-      <node id="5607806230596156714" at="10,33,14,5" concept="0" />
-      <scope id="5607806230596156714" at="11,5,13,47">
-        <var name="inferenceRule" id="5607806230596156714" />
-      </scope>
-    </file>
-    <file name="typeof_EBTypeReference_InferenceRule.java">
-      <node id="5607806230596158345" at="21,5,22,57" concept="6" />
-      <node id="5607806230596158345" at="22,57,23,184" concept="6" />
-      <node id="5607806230596158345" at="23,184,24,403" concept="2" />
-      <node id="5607806230596156714" at="27,50,28,39" concept="7" />
-      <node id="5607806230596156714" at="30,68,31,102" concept="7" />
-      <node id="5607806230596156714" at="33,30,34,17" concept="7" />
-      <node id="5607806230596156714" at="38,0,39,0" concept="9" trace="type$thWR" />
-      <node id="5607806230596156714" at="42,0,43,0" concept="9" trace="EBTypeReference$Ym" />
-      <node id="5607806230596156714" at="18,0,20,0" concept="1" trace="typeof_EBTypeReference_InferenceRule#()V" />
-      <node id="5607806230596156714" at="27,0,30,0" concept="5" trace="getApplicableConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
-      <node id="5607806230596156714" at="30,0,33,0" concept="5" trace="isApplicableAndPattern#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;" />
-      <node id="5607806230596156714" at="33,0,36,0" concept="5" trace="overrides#()Z" />
-      <node id="5607806230596158345" at="20,128,25,5" concept="0" />
-      <node id="5607806230596156714" at="20,0,27,0" concept="5" trace="applyRule#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/typesystem/inference/TypeCheckingContext;Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;)V" />
-      <scope id="5607806230596156714" at="18,49,18,49" />
-      <scope id="5607806230596156714" at="27,50,28,39" />
-      <scope id="5607806230596156714" at="30,68,31,102" />
-      <scope id="5607806230596156714" at="33,30,34,17" />
-      <scope id="5607806230596156714" at="18,0,20,0" />
-      <scope id="5607806230596158345" at="21,5,24,403">
-        <var name="_info_12389875345" id="5607806230596158345" />
-        <var name="_nodeToCheck_1029348928467" id="5607806230596158345" />
-      </scope>
-      <scope id="5607806230596156714" at="27,0,30,0" />
-      <scope id="5607806230596156714" at="30,0,33,0">
-        <var name="argument" id="5607806230596156714" />
-      </scope>
-      <scope id="5607806230596156714" at="33,0,36,0" />
-      <scope id="5607806230596156715" at="20,128,25,5" />
-      <scope id="5607806230596156714" at="20,0,27,0">
-        <var name="ebTypeReference" id="5607806230596156714" />
-        <var name="status" id="5607806230596156714" />
-        <var name="typeCheckingContext" id="5607806230596156714" />
-      </scope>
-      <unit id="5607806230596156714" at="37,0,40,0" name="eb_lang.typesystem.typeof_EBTypeReference_InferenceRule$LINKS" />
-      <unit id="5607806230596156714" at="41,0,44,0" name="eb_lang.typesystem.typeof_EBTypeReference_InferenceRule$CONCEPTS" />
-      <unit id="5607806230596156714" at="17,0,45,0" name="eb_lang.typesystem.typeof_EBTypeReference_InferenceRule" />
     </file>
   </root>
 </debug-info>

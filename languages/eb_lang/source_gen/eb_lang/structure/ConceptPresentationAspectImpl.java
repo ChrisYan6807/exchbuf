@@ -35,14 +35,12 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBMessage;
   private ConceptPresentation props_EBMessageArrayMember;
   private ConceptPresentation props_EBMessageMember;
-  private ConceptPresentation props_EBMessageMemberType;
   private ConceptPresentation props_EBMessageNonArrayMember;
   private ConceptPresentation props_EBNumberLiteral;
   private ConceptPresentation props_EBPrimitiveType;
   private ConceptPresentation props_EBProtocol;
   private ConceptPresentation props_EBPython;
   private ConceptPresentation props_EBStatement;
-  private ConceptPresentation props_EBTypeReference;
   private ConceptPresentation props_EBTypeStatement;
   private ConceptPresentation props_EBUInt16;
   private ConceptPresentation props_EBUInt32;
@@ -234,12 +232,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageMember = cpb.create();
         }
         return props_EBMessageMember;
-      case LanguageConceptSwitch.EBMessageMemberType:
-        if (props_EBMessageMemberType == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          props_EBMessageMemberType = cpb.create();
-        }
-        return props_EBMessageMemberType;
       case LanguageConceptSwitch.EBMessageNonArrayMember:
         if (props_EBMessageNonArrayMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -282,13 +274,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBStatement = cpb.create();
         }
         return props_EBStatement;
-      case LanguageConceptSwitch.EBTypeReference:
-        if (props_EBTypeReference == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByReference(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x584c9fdae0c74ca3L, 0x584c9fdae0c74ca4L, "type", "", "");
-          props_EBTypeReference = cpb.create();
-        }
-        return props_EBTypeReference;
       case LanguageConceptSwitch.EBTypeStatement:
         if (props_EBTypeStatement == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
