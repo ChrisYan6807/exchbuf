@@ -1,3 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<product version="3" modelHash="-aaujxucgtrknncwcoorjygm1fnk5j8d" />
+<product version="3" modelHash="318q0leklb4qxk2j4w12q2d9bgdodgp">
+  <files names="protocol.hpp" />
+</product>
 

@@ -3,6 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang" version="0" />
+    <engage id="87d4987f-c831-4a03-9f51-66048c99e214" name="eb_lang_cpp" />
   </languages>
   <imports />
   <registry>
@@ -20,7 +21,7 @@
       <concept id="8244488409083636119" name="eb_lang.structure.EBBitFieldMember" flags="ng" index="2gaMsh">
         <property id="8244488409083636124" name="length" index="2gaMsq" />
         <property id="8244488409083636122" name="offset" index="2gaMss" />
-        <child id="8244488409083636127" name="values" index="2gaMsp" />
+        <reference id="6284687853303548466" name="enum" index="1rqnxW" />
       </concept>
       <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">
         <property id="8244488409083636136" name="value" index="2gaMsI" />
@@ -30,10 +31,11 @@
       </concept>
       <concept id="8244488409083636201" name="eb_lang.structure.EBExtern" flags="ng" index="2gaMtJ" />
       <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
-      <concept id="8244488409083618479" name="eb_lang.structure.EBInt32" flags="ng" index="2gaQCD" />
-      <concept id="8244488409083618480" name="eb_lang.structure.EBInt64" flags="ng" index="2gaQCQ" />
+      <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
+      <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
+      <concept id="8244488409083618481" name="eb_lang.structure.EBUInt32" flags="ng" index="2gaQCR" />
       <concept id="8244488409083493622" name="eb_lang.structure.EBProtocol" flags="ng" index="2gln9K">
-        <child id="8244488409083493628" name="content" index="2gln9U" />
+        <child id="8244488409083493628" name="statements" index="2gln9U" />
       </concept>
       <concept id="8244488409083493630" name="eb_lang.structure.EBEmptyStatement" flags="ng" index="2gln9S" />
       <concept id="8244488409083493645" name="eb_lang.structure.EBEnum" flags="ng" index="2glneb">
@@ -44,6 +46,7 @@
         <property id="8244488409083493659" name="value" index="2glnet" />
       </concept>
       <concept id="8244488409083493652" name="eb_lang.structure.EBInt8" flags="ng" index="2glnei" />
+      <concept id="8244488409083493653" name="eb_lang.structure.EBChar" flags="ng" index="2glnej" />
       <concept id="8244488409083493661" name="eb_lang.structure.EBIntKVPair" flags="ng" index="2glner">
         <child id="8244488409083493664" name="value" index="2glneA" />
       </concept>
@@ -59,20 +62,23 @@
   </registry>
   <node concept="2gln9K" id="79EjCryfT0i">
     <property role="TrG5h" value="Aquise" />
-    <node concept="2gaMt2" id="7Ho_HUXT$ZS" role="2gln9U">
-      <property role="2gaMt3" value="include &lt;string&gt;" />
+    <node concept="2gaMt2" id="6T1aHZf94ix" role="2gln9U">
+      <property role="2gaMt3" value="#include &lt;string&gt;" />
     </node>
-    <node concept="2gaMif" id="7Ho_HUXTAce" role="2gln9U">
+    <node concept="2gaMif" id="6T1aHZf94kz" role="2gln9U">
       <property role="2gaMiA" value="import os, sys" />
     </node>
-    <node concept="2gln9S" id="7Ho_HUXTBe0" role="2gln9U" />
     <node concept="2gaMsz" id="7Ho_HUXTBfB" role="2gln9U">
       <property role="2gaMsI" value="this is comment" />
     </node>
     <node concept="2gln9S" id="7Ho_HUXTAd0" role="2gln9U" />
-    <node concept="2gaMi0" id="79EjCrygxo5" role="2gln9U">
-      <property role="TrG5h" value="i32" />
-      <node concept="2gaQCD" id="79EjCryg_Sj" role="2gaMi1" />
+    <node concept="2gaMi0" id="5xcBXFwMwkv" role="2gln9U">
+      <property role="TrG5h" value="u16" />
+      <node concept="2gaQCO" id="5xcBXFwMwlP" role="2gaMi1" />
+    </node>
+    <node concept="2gaMi0" id="5xcBXFwMwnc" role="2gln9U">
+      <property role="TrG5h" value="u32" />
+      <node concept="2gaQCR" id="5xcBXFwMwo$" role="2gaMi1" />
     </node>
     <node concept="2gln9S" id="7Ho_HUXSqne" role="2gln9U" />
     <node concept="2glneb" id="79EjCryga_p" role="2gln9U">
@@ -91,6 +97,7 @@
       </node>
       <node concept="2glnei" id="79EjCryghIe" role="2glne$" />
     </node>
+    <node concept="2gln9S" id="5xcBXFwNnEt" role="2gln9U" />
     <node concept="2gln9S" id="79EjCryglRe" role="2gln9U" />
     <node concept="2glneb" id="79EjCryglR_" role="2gln9U">
       <property role="TrG5h" value="OrderType" />
@@ -113,83 +120,79 @@
           <property role="2glnet" value="3" />
         </node>
       </node>
+      <node concept="2glner" id="4C_V1$0vFxL" role="2glney">
+        <property role="TrG5h" value="Marke1" />
+        <node concept="2glneh" id="4C_V1$0vFxX" role="2glneA">
+          <property role="2glnet" value="3" />
+        </node>
+      </node>
     </node>
     <node concept="2gln9S" id="79EjCryga_d" role="2gln9U" />
-    <node concept="2gln9S" id="79EjCryga_g" role="2gln9U" />
-    <node concept="2glneb" id="79EjCrygm_F" role="2gln9U">
-      <property role="TrG5h" value="lal" />
-      <node concept="2gaQCD" id="79EjCrygmA9" role="2glne$" />
-      <node concept="2glner" id="79EjCrygm_J" role="2glney">
-        <property role="TrG5h" value="aa" />
-        <node concept="2glneu" id="79EjCrygmAc" role="2glneA">
-          <property role="2glnev" value="a" />
+    <node concept="2glneb" id="5Ba9KT$i7W" role="2gln9U">
+      <property role="TrG5h" value="STPProtectionLevel" />
+      <node concept="2gaQCM" id="5Ba9KT$i8Q" role="2glne$" />
+      <node concept="2glner" id="5Ba9KT$i80" role="2glney">
+        <property role="TrG5h" value="Disable" />
+        <node concept="2glneh" id="5Ba9KT$i8V" role="2glneA">
+          <property role="2glnet" value="0" />
+        </node>
+      </node>
+      <node concept="2glner" id="5Ba9KT$i8X" role="2glney">
+        <property role="TrG5h" value="Firm" />
+        <node concept="2glneh" id="5Ba9KT$i95" role="2glneA">
+          <property role="2glnet" value="1" />
+        </node>
+      </node>
+      <node concept="2glner" id="5Ba9KT$i97" role="2glney">
+        <property role="TrG5h" value="MPID" />
+        <node concept="2glneh" id="5Ba9KT$i9h" role="2glneA">
+          <property role="2glnet" value="2" />
         </node>
       </node>
     </node>
-    <node concept="2gln9S" id="79EjCrygxmU" role="2gln9U" />
-    <node concept="2glneb" id="79EjCryg_SM" role="2gln9U">
-      <property role="TrG5h" value="lll" />
-      <node concept="2gaQCQ" id="79EjCryg_To" role="2glne$" />
-      <node concept="2glner" id="79EjCryg_SQ" role="2glney">
-        <property role="TrG5h" value="aaa" />
-        <node concept="2glneu" id="79EjCryg_Tr" role="2glneA">
-          <property role="2glnev" value="b" />
+    <node concept="2gln9S" id="5Ba9KT$i9z" role="2gln9U" />
+    <node concept="2glneb" id="5Ba9KT$ibk" role="2gln9U">
+      <property role="TrG5h" value="STPProtectionInstruction" />
+      <node concept="2glner" id="5Ba9KT$icn" role="2glney">
+        <property role="TrG5h" value="NotApplicable" />
+        <node concept="2glneh" id="5Ba9KT$icy" role="2glneA">
+          <property role="2glnet" value="0" />
         </node>
       </node>
-      <node concept="2glner" id="7Ho_HUXSqn5" role="2glney">
-        <property role="TrG5h" value="bbb" />
-        <node concept="2glneh" id="7Ho_HUXSqnb" role="2glneA">
-          <property role="2glnet" value="123" />
+      <node concept="2gaQCM" id="5Ba9KT$ict" role="2glne$" />
+      <node concept="2glner" id="5Ba9KT$ibo" role="2glney">
+        <property role="TrG5h" value="CancelNewest" />
+        <node concept="2glneh" id="5Ba9KT$icM" role="2glneA">
+          <property role="2glnet" value="1" />
+        </node>
+      </node>
+      <node concept="2glner" id="5Ba9KT$icO" role="2glney">
+        <property role="TrG5h" value="CancelOldest" />
+        <node concept="2glneh" id="5Ba9KT$icY" role="2glneA">
+          <property role="2glnet" value="2" />
+        </node>
+      </node>
+      <node concept="2glner" id="5Ba9KT$id0" role="2glney">
+        <property role="TrG5h" value="CancelBoth" />
+        <node concept="2glneh" id="5Ba9KT$idc" role="2glneA">
+          <property role="2glnet" value="3" />
+        </node>
+      </node>
+      <node concept="2glner" id="5Ba9KT$ide" role="2glney">
+        <property role="TrG5h" value="DecrementCancel" />
+        <node concept="2glneh" id="5Ba9KT$ids" role="2glneA">
+          <property role="2glnet" value="4" />
         </node>
       </node>
     </node>
-    <node concept="2gln9S" id="7Ho_HUXSqnK" role="2gln9U" />
-    <node concept="2gaMs9" id="7Ho_HUXSSU4" role="2gln9U">
-      <property role="TrG5h" value="Flags" />
-      <node concept="2gaMsh" id="7Ho_HUXTjfa" role="2gaMsi">
-        <property role="TrG5h" value="liqprov" />
-        <property role="2gaMss" value="1" />
-        <property role="2gaMsq" value="1" />
-        <node concept="2glner" id="7Ho_HUXTjfb" role="2gaMsp">
-          <property role="TrG5h" value="No" />
-          <node concept="2glneh" id="7Ho_HUXTs7q" role="2glneA">
-            <property role="2glnet" value="0" />
-          </node>
-        </node>
-        <node concept="2glner" id="7Ho_HUXTjfg" role="2gaMsp">
-          <property role="TrG5h" value="Yes" />
-          <node concept="2glneu" id="7Ho_HUXTs7t" role="2glneA">
-            <property role="2glnev" value="1" />
-          </node>
-        </node>
-      </node>
-      <node concept="2glnei" id="7Ho_HUXSSUP" role="2gaMsk" />
-    </node>
-    <node concept="2gln9S" id="1jyFxKjswHR" role="2gln9U" />
-    <node concept="2gaMs9" id="1jyFxKjswJ$" role="2gln9U">
-      <property role="TrG5h" value="OrderStatus" />
-      <node concept="2glnei" id="1jyFxKjswKC" role="2gaMsk" />
-      <node concept="2gaMsh" id="1jyFxKjswJC" role="2gaMsi">
-        <property role="TrG5h" value="OrderStatus" />
-        <property role="2gaMss" value="5" />
-        <property role="2gaMsq" value="3" />
-        <node concept="2glner" id="1jyFxKjswJE" role="2gaMsp">
-          <property role="TrG5h" value="PendingNew" />
-          <node concept="2glneh" id="1jyFxKjswKF" role="2glneA">
-            <property role="2glnet" value="1" />
-          </node>
-        </node>
-        <node concept="2glner" id="1jyFxKjswKI" role="2gaMsp">
-          <property role="TrG5h" value="Ack" />
-          <node concept="2glneh" id="1jyFxKjswKO" role="2glneA">
-            <property role="2glnet" value="2" />
-          </node>
-        </node>
-        <node concept="2glner" id="1jyFxKjswKR" role="2gaMsp">
-          <property role="TrG5h" value="Cancelled" />
-          <node concept="2glneh" id="1jyFxKjswKZ" role="2glneA">
-            <property role="2glnet" value="3" />
-          </node>
+    <node concept="2gln9S" id="5Ba9KT$idu" role="2gln9U" />
+    <node concept="2glneb" id="5Ba9KT$ifD" role="2gln9U">
+      <property role="TrG5h" value="ReservedSTP" />
+      <node concept="2gaQCM" id="5Ba9KT$igT" role="2glne$" />
+      <node concept="2glner" id="5Ba9KT$ifH" role="2glney">
+        <property role="TrG5h" value="Empty" />
+        <node concept="2glneh" id="5Ba9KT$igY" role="2glneA">
+          <property role="2glnet" value="0" />
         </node>
       </node>
     </node>
@@ -197,30 +200,29 @@
     <node concept="2gaMtJ" id="7Ho_HUXT$Yo" role="2gln9U">
       <property role="TrG5h" value="string16" />
     </node>
-    <node concept="2gln9S" id="1jyFxKjsHLq" role="2gln9U" />
-    <node concept="2glneb" id="1jyFxKjsI34" role="2gln9U">
-      <property role="TrG5h" value="aaa" />
-      <node concept="2glner" id="1jyFxKjsI4h" role="2glney">
-        <property role="TrG5h" value="ad" />
-        <node concept="2glneh" id="1jyFxKjsI4s" role="2glneA">
-          <property role="2glnet" value="123" />
-        </node>
+    <node concept="2gln9S" id="4C_V1$0vFty" role="2gln9U" />
+    <node concept="2gaMs9" id="5sRG$Scp1G6" role="2gln9U">
+      <property role="TrG5h" value="b1" />
+      <node concept="2glnej" id="5sRG$Scp1Hi" role="2gaMsk" />
+      <node concept="2gaMsh" id="5sRG$Scp1Ga" role="2gaMsi">
+        <property role="2gaMss" value="0" />
+        <property role="2gaMsq" value="2" />
+        <ref role="1rqnxW" node="5Ba9KT$ifD" resolve="ReservedSTP" />
       </node>
-      <node concept="2glner" id="1jyFxKjt2pQ" role="2glney">
-        <property role="TrG5h" value="aaa" />
-        <node concept="2glneu" id="1jyFxKjt4Y4" role="2glneA">
-          <property role="2glnev" value="A" />
-        </node>
+      <node concept="2gaMsh" id="5sRG$ScpOJ1" role="2gaMsi">
+        <property role="2gaMss" value="2" />
+        <property role="2gaMsq" value="2" />
+        <ref role="1rqnxW" node="5Ba9KT$ibk" resolve="STPProtectionInstruction" />
       </node>
-      <node concept="2glner" id="1W0NCPTu3Al" role="2glney">
-        <property role="TrG5h" value="ccc" />
-        <node concept="2glneu" id="1W0NCPTuc9f" role="2glneA">
-          <property role="2glnev" value="a" />
-        </node>
+      <node concept="2gaMsh" id="5sRG$ScpOJ4" role="2gaMsi">
+        <property role="2gaMss" value="4" />
+        <property role="2gaMsq" value="4" />
+        <ref role="1rqnxW" node="5Ba9KT$i7W" resolve="STPProtectionLevel" />
       </node>
-      <node concept="2gaQCC" id="1jyFxKjsI4n" role="2glne$" />
     </node>
-    <node concept="2gln9S" id="1jyFxKjswL2" role="2gln9U" />
+    <node concept="2gln9S" id="5sRG$ScpJKA" role="2gln9U" />
+    <node concept="2gln9S" id="5sRG$ScpQx0" role="2gln9U" />
+    <node concept="2gln9S" id="1jyFxKjsHLq" role="2gln9U" />
     <node concept="2gln9S" id="1jyFxKjswM2" role="2gln9U" />
     <node concept="2gln9S" id="7Ho_HUXTBgs" role="2gln9U" />
     <node concept="2gln9S" id="7Ho_HUXT$We" role="2gln9U" />
@@ -228,6 +230,16 @@
     <node concept="2gln9S" id="7Ho_HUXT$XD" role="2gln9U" />
     <node concept="2gln9S" id="79EjCrygxni" role="2gln9U" />
     <node concept="2gln9S" id="79EjCryga_k" role="2gln9U" />
+  </node>
+  <node concept="2gln9K" id="4C_V1$0wAfG">
+    <property role="TrG5h" value="New" />
+    <node concept="2gln9S" id="4C_V1$0wAl6" role="2gln9U" />
+    <node concept="2gln9S" id="5Ba9KT$i57" role="2gln9U" />
+    <node concept="2gln9S" id="5Ba9KT$i5b" role="2gln9U" />
+    <node concept="2gln9S" id="5Ba9KT$i5g" role="2gln9U" />
+    <node concept="2gln9S" id="5Ba9KT$i5m" role="2gln9U" />
+    <node concept="2gln9S" id="5Ba9KT$i5t" role="2gln9U" />
+    <node concept="2gln9S" id="4C_V1$0wAl$" role="2gln9U" />
   </node>
 </model>
 

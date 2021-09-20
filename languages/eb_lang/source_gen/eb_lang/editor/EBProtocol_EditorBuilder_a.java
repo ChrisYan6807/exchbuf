@@ -118,17 +118,17 @@ import org.jetbrains.mps.openapi.language.SConcept;
     return editorCell;
   }
   private EditorCell createRefNodeList_0() {
-    AbstractCellListHandler handler = new contentListHandler_peo863_c0(myNode, getEditorContext());
+    AbstractCellListHandler handler = new statementsListHandler_peo863_c0(myNode, getEditorContext());
     EditorCell_Collection editorCell = handler.createCells(new CellLayout_Vertical(), false);
-    editorCell.setCellId("refNodeList_content");
+    editorCell.setCellId("refNodeList_statements");
     editorCell.setSRole(handler.getElementSRole());
     return editorCell;
   }
-  private static class contentListHandler_peo863_c0 extends RefNodeListHandler {
+  private static class statementsListHandler_peo863_c0 extends RefNodeListHandler {
     @NotNull
     private SNode myNode;
 
-    public contentListHandler_peo863_c0(SNode ownerNode, EditorContext context) {
+    public statementsListHandler_peo863_c0(SNode ownerNode, EditorContext context) {
       super(context, false);
       myNode = ownerNode;
     }
@@ -138,7 +138,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
       return myNode;
     }
     public SContainmentLink getSLink() {
-      return LINKS.content$_5KW;
+      return LINKS.statements$_5KW;
     }
     public SAbstractConcept getChildSConcept() {
       return CONCEPTS.EBStatement$nx;
@@ -157,7 +157,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     }
     public EditorCell createEmptyCell() {
       getCellFactory().pushCellContext();
-      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(contentListHandler_peo863_c0.this.getNode(), LINKS.content$_5KW));
+      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(statementsListHandler_peo863_c0.this.getNode(), LINKS.statements$_5KW));
       try {
         EditorCell emptyCell = null;
         emptyCell = super.createEmptyCell();
@@ -208,6 +208,6 @@ import org.jetbrains.mps.openapi.language.SConcept;
   }
 
   private static final class LINKS {
-    /*package*/ static final SContainmentLink content$_5KW = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x726a4e86e23f3cfcL, "content");
+    /*package*/ static final SContainmentLink statements$_5KW = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x726a4e86e23f3cfcL, "statements");
   }
 }

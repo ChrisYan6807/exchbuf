@@ -33,9 +33,6 @@ import jetbrains.mps.openapi.editor.menus.substitute.SubstituteMenuLookup;
 import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.lang.editor.menus.substitute.DefaultSubstituteMenuLookup;
 import jetbrains.mps.smodel.language.LanguageRegistry;
-import jetbrains.mps.lang.editor.menus.ConceptMenusPart;
-import java.util.Collection;
-import jetbrains.mps.smodel.ConceptDescendantsCache;
 import org.jetbrains.mps.openapi.language.SConcept;
 import org.jetbrains.mps.openapi.language.SProperty;
 
@@ -46,7 +43,6 @@ public class EBIntLiteral_SubstituteMenu extends SubstituteMenuBase {
     List<MenuPart<SubstituteMenuItem, SubstituteMenuContext>> result = new ArrayList<MenuPart<SubstituteMenuItem, SubstituteMenuContext>>();
     result.add(new ConstraintsFilteringSubstituteMenuPartDecorator(new SMP_Wrap_xox131_a(), CONCEPTS.EBNumberLiteral$i8));
     result.add(new ConstraintsFilteringSubstituteMenuPartDecorator(new SMP_Wrap_xox131_b(), CONCEPTS.EBIntLiteral$hD));
-    result.add(new SMP_Subconcepts_xox131_c());
     return result;
   }
 
@@ -205,27 +201,6 @@ public class EBIntLiteral_SubstituteMenu extends SubstituteMenuBase {
     }
     private SAbstractConcept getConceptToFindMenuFor(SubstituteMenuContext _context) {
       return CONCEPTS.EBCharLiteral$iB;
-    }
-  }
-  public class SMP_Subconcepts_xox131_c extends ConceptMenusPart<SubstituteMenuItem, SubstituteMenuContext> {
-    protected Collection getConcepts(final SubstituteMenuContext _context) {
-      return ConceptDescendantsCache.getInstance().getDirectDescendants(CONCEPTS.EBIntLiteral$hD);
-    }
-    @NotNull
-    @Override
-    public List<SubstituteMenuItem> createItems(SubstituteMenuContext context) {
-      context.getEditorMenuTrace().pushTraceInfo();
-      context.getEditorMenuTrace().setDescriptor(new EditorMenuDescriptorBase("include menus for all the direct subconcepts of " + "EBIntLiteral", new SNodePointer("r:3a198d66-4706-40fb-a59f-465cb2c581f7(eb_lang.editor)", "2234012522199259952")));
-      try {
-        return super.createItems(context);
-      } finally {
-        context.getEditorMenuTrace().popTraceInfo();
-      }
-    }
-
-    @Override
-    protected Collection<SubstituteMenuItem> createItemsForConcept(SubstituteMenuContext context, SAbstractConcept concept) {
-      return context.createItems(new DefaultSubstituteMenuLookup(LanguageRegistry.getInstance(context.getEditorContext().getRepository()), concept));
     }
   }
 
