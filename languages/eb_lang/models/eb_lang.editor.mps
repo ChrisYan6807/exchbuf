@@ -150,9 +150,6 @@
       <concept id="5083944728298846680" name="com.mbeddr.mpsutil.grammarcells.structure.OptionalCell" flags="ng" index="_tjkj">
         <child id="5083944728298846681" name="option" index="_tjki" />
       </concept>
-      <concept id="7363578995839435357" name="com.mbeddr.mpsutil.grammarcells.structure.WrapperCell" flags="ng" index="1kIj98">
-        <child id="7363578995839435358" name="wrapped" index="1kIj9b" />
-      </concept>
     </language>
     <language id="7866978e-a0f0-4cc7-81bc-4d213d9375e1" name="jetbrains.mps.lang.smodel">
       <concept id="1180636770613" name="jetbrains.mps.lang.smodel.structure.SNodeCreator" flags="nn" index="3zrR0B">
@@ -721,9 +718,13 @@
     <property role="3GE5qa" value="statement" />
     <ref role="1XX52x" to="wt0b:79EjCrygmCO" resolve="EBMessageNonArrayMember" />
     <node concept="3EZMnI" id="5xcBXFwLPyA" role="2wV5jI">
-      <node concept="1kIj98" id="4C_V1$0wKlH" role="3EZMnx">
-        <node concept="3F1sOY" id="6T1aHZf8nj$" role="1kIj9b">
-          <ref role="1NtTu8" to="wt0b:5xcBXFwLPyn" resolve="type" />
+      <node concept="1iCGBv" id="5sRG$ScpYfj" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:5sRG$ScpX5Q" resolve="type" />
+        <node concept="1sVBvm" id="5sRG$ScpYfl" role="1sWHZn">
+          <node concept="3F0A7n" id="5sRG$ScpYf_" role="2wV5jI">
+            <property role="1Intyy" value="true" />
+            <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+          </node>
         </node>
       </node>
       <node concept="3F0A7n" id="5xcBXFwLPz9" role="3EZMnx">

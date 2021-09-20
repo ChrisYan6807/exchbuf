@@ -1244,8 +1244,8 @@
       <node id="8244488409083636276" at="424,34,425,113" concept="0" />
       <node id="8244488409083636276" at="425,113,426,94" concept="0" />
       <node id="8244488409083636276" at="426,94,427,17" concept="0" />
-      <node id="6362636135990515863" at="427,17,428,198" concept="0" />
-      <node id="8244488409083636276" at="428,198,429,21" concept="0" />
+      <node id="6284687853304140150" at="427,17,428,168" concept="0" />
+      <node id="8244488409083636276" at="428,168,429,21" concept="0" />
       <node id="8244488409083636276" at="429,21,430,22" concept="4" />
       <node id="8244488409083636276" at="422,0,432,0" concept="6" trace="createDescriptorForEBMessageNonArrayMember#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="8244488409083636276" at="130,57,131,48" />

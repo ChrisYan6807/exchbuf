@@ -425,7 +425,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636276");
     b.version(2);
-    b.aggregate("type", 0x584c9fdae0c75897L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x584c9fdae0cd2e55L).optional(false).ordered(true).multiple(false).origin("6362636135990515863").done();
+    b.associate("type", 0x5737b24e0c67d176L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L).optional(false).origin("6284687853304140150").done();
     b.alias("entry");
     return b.create();
   }

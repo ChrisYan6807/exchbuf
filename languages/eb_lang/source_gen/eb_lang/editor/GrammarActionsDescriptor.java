@@ -11,39 +11,29 @@ import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import java.util.ArrayList;
 import jetbrains.mps.lang.editor.menus.EditorMenuDescriptorBase;
-import jetbrains.mps.internal.collections.runtime.Sequence;
-import jetbrains.mps.smodel.SNodePointer;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
-import org.jetbrains.mps.openapi.language.SConcept;
-import com.mbeddr.mpsutil.grammarcells.runtime.GrammarCellsUtil;
-import jetbrains.mps.lang.editor.menus.substitute.DefaultSubstituteMenuLookup;
-import jetbrains.mps.smodel.language.LanguageRegistry;
 import jetbrains.mps.internal.collections.runtime.IWhereFilter;
-import jetbrains.mps.openapi.editor.EditorContext;
-import org.jetbrains.mps.openapi.model.SNode;
-import jetbrains.mps.lang.editor.menus.substitute.ReferenceScopeSubstituteMenuItem;
-import jetbrains.mps.internal.collections.runtime.ISelector;
-import jetbrains.mps.lang.editor.menus.substitute.SubstituteMenuItemWrapper;
-import org.jetbrains.annotations.NotNull;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
-import jetbrains.mps.smodel.action.NodeFactoryManager;
-import com.mbeddr.mpsutil.grammarcells.runtime.menu.GrammarCellsSubstituteMenuItem;
 import jetbrains.mps.openapi.editor.menus.transformation.TransformationMenuItem;
 import jetbrains.mps.openapi.editor.menus.transformation.TransformationMenuContext;
-import jetbrains.mps.lang.editor.menus.transformation.MenuLocations;
+import jetbrains.mps.openapi.editor.EditorContext;
 import jetbrains.mps.baseLanguage.tuples.runtime.Tuples;
 import jetbrains.mps.baseLanguage.closures.runtime._FunctionTypes;
 import jetbrains.mps.baseLanguage.tuples.runtime.MultiTuple;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
+import org.jetbrains.mps.openapi.model.SNode;
+import com.mbeddr.mpsutil.grammarcells.runtime.GrammarCellsUtil;
+import jetbrains.mps.lang.editor.menus.transformation.MenuLocations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import com.mbeddr.mpsutil.grammarcells.runtime.StringOrSequenceQuery;
+import jetbrains.mps.internal.collections.runtime.Sequence;
 import com.mbeddr.mpsutil.grammarcells.runtime.MultiTextActionItem;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.language.SProperty;
 import jetbrains.mps.editor.runtime.selection.SelectionUtil;
 import jetbrains.mps.editor.runtime.cells.CellIdManager;
 import com.mbeddr.mpsutil.grammarcells.runtime.EditorHierachyCache;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.AttributeOperations;
 import com.mbeddr.mpsutil.grammarcells.runtime.Parser;
 import java.util.Objects;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.AttributeOperations;
 import jetbrains.mps.smodel.action.SNodeFactoryOperations;
 import jetbrains.mps.openapi.editor.cells.SubstituteAction;
 import jetbrains.mps.smodel.IOperationContext;
@@ -53,6 +43,7 @@ import com.mbeddr.mpsutil.grammarcells.runtime.IRule;
 import org.jetbrains.mps.openapi.model.SModel;
 import java.util.Set;
 import org.jetbrains.mps.openapi.language.SLanguage;
+import org.jetbrains.mps.openapi.language.SConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
 
@@ -67,84 +58,6 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
     _context.getEditorMenuTrace().pushTraceInfo();
     _context.getEditorMenuTrace().setDescriptor(new EditorMenuDescriptorBase("eb_lang.editor.GrammarActionsDescriptor.getActions", null));
     try {
-      ListSequence.fromList(result).addSequence(Sequence.fromIterable(new Object() {
-        public Iterable<SubstituteMenuItem> query() {
-          List<SubstituteMenuItem> result = ListSequence.fromList(new ArrayList<SubstituteMenuItem>());
-          _context.getEditorMenuTrace().pushTraceInfo();
-          _context.getEditorMenuTrace().setDescriptor(new EditorMenuDescriptorBase("grammar.wrap in " + "EBMessageNonArrayMember", new SNodePointer("r:3a198d66-4706-40fb-a59f-465cb2c581f7(eb_lang.editor)", "5342936125071885677")));
-          try {
-            if (SConceptOperations.isExactly(SNodeOperations.asSConcept(expectedOutputConceptExactly), CONCEPTS.EBMessageNonArrayMember$fS)) {
-              final SAbstractConcept wrappedConcept = CONCEPTS.EBMessageMemberType$X_;
-              for (SConcept subconcept : ListSequence.fromList(GrammarCellsUtil.getVisibleSubconceptsNonAbstract(CONCEPTS.EBMessageNonArrayMember$fS, _context.getModel(), EBMessageNonArrayMember_Editor.class, _context.getEditorContext()))) {
-                final SConcept outputConcept = ((SConcept) subconcept);
-
-                final SAbstractConcept expectedOutputConcept = GrammarCellsUtil.getExpectedOutputConcept(_context, expectedOutputConceptExactly);
-
-                boolean wrapRequired = !(SConceptOperations.isSubConceptOf(SNodeOperations.asSConcept(wrappedConcept), SNodeOperations.asSConcept(expectedOutputConcept)));
-                if (SConceptOperations.isSubConceptOf(SNodeOperations.asSConcept(outputConcept), SNodeOperations.asSConcept(expectedOutputConcept)) && wrapRequired) {
-
-                  boolean isApplicable = GrammarCellsUtil.canBeChild(subconcept, _context);
-                  if (isApplicable) {
-                    List<SubstituteMenuItem> actions = _context.withLink(LINKS.type$_OfJ).createItems(new DefaultSubstituteMenuLookup(LanguageRegistry.getInstance(_context.getEditorContext().getRepository()), wrappedConcept));
-                    List<SubstituteMenuItem> wrappedActions = ListSequence.fromList(actions).where(new IWhereFilter<SubstituteMenuItem>() {
-                      public boolean accept(SubstituteMenuItem it) {
-                        boolean isApplicable = true;
-                        final SAbstractConcept wrappedConcept = it.getOutputConcept();
-                        if (SConceptOperations.isSubConceptOf(SNodeOperations.asSConcept(wrappedConcept), SNodeOperations.asSConcept(expectedOutputConcept))) {
-                          return false;
-                        }
-                        final EditorContext editorContext = _context.getEditorContext();
-                        final SNode smartReferent = ((it instanceof ReferenceScopeSubstituteMenuItem) ? ((SNode) ReflectionUtil_copy.readField(ReferenceScopeSubstituteMenuItem.class, ((ReferenceScopeSubstituteMenuItem) it), "myReferent")) : null);
-
-                        return isApplicable;
-                      }
-                    }).select(new ISelector<SubstituteMenuItem, SubstituteMenuItem>() {
-                      public SubstituteMenuItem select(SubstituteMenuItem it) {
-                        final SNode smartReferent = ((it instanceof ReferenceScopeSubstituteMenuItem) ? ((SNode) ReflectionUtil_copy.readField(ReferenceScopeSubstituteMenuItem.class, ((ReferenceScopeSubstituteMenuItem) it), "myReferent")) : null);
-
-                        SubstituteMenuItem wrapper = new SubstituteMenuItemWrapper(it) {
-                          private SNode wrappedNode;
-                          @Override
-                          public SNode createNode(@NotNull String pattern) {
-                            SNode nodeToWrap = super.createNode(pattern);
-                            wrappedNode = nodeToWrap;
-                            // use setupNode after setting wrapped element to allow access to the wrapped element in node factories
-                            SNode wrapper = SConceptOperations.createNewNode(SNodeOperations.asInstanceConcept(outputConcept));
-                            SLinkOperations.setTarget(wrapper, LINKS.type$_OfJ, SNodeOperations.cast(nodeToWrap, CONCEPTS.EBMessageMemberType$X_));
-                            NodeFactoryManager.setupNode(outputConcept, wrapper, _context.getCurrentTargetNode(), _context.getParentNode(), _context.getModel());
-
-                            return wrapper;
-                          }
-                          @Override
-                          public SAbstractConcept getOutputConcept() {
-                            return outputConcept;
-                          }
-
-                          @Override
-                          public void select(@NotNull SNode createdNode, @NotNull String pattern) {
-                            GrammarCellsSubstituteMenuItem.select(_context.getEditorContext().getEditorComponent(), createdNode);
-                          }
-                        };
-                        return wrapper;
-                      }
-                    }).toListSequence();
-
-                    ListSequence.fromList(result).addSequence(ListSequence.fromList(wrappedActions));
-                  }
-
-                }
-              }
-            }
-          } finally {
-            _context.getEditorMenuTrace().popTraceInfo();
-          }
-          return ListSequence.fromList(result).where(new IWhereFilter<SubstituteMenuItem>() {
-            public boolean accept(SubstituteMenuItem it) {
-              return it != null;
-            }
-          }).toListSequence();
-        }
-      }.query()));
     } finally {
       _context.getEditorMenuTrace().popTraceInfo();
     }
@@ -163,29 +76,6 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
     _context.getEditorMenuTrace().pushTraceInfo();
     _context.getEditorMenuTrace().setDescriptor(new EditorMenuDescriptorBase("eb_lang.editor.GrammarActionsDescriptor.doGetSideTransformActions", null));
     try {
-      {
-        boolean sideEnabled = false;
-        sideEnabled |= _context.getMenuLocation() == MenuLocations.LEFT_SIDE_TRANSFORM;
-        sideEnabled |= _context.getMenuLocation() == MenuLocations.RIGHT_SIDE_TRANSFORM;
-        if (sideEnabled) {
-          ListSequence.fromList(result).addSequence(Sequence.fromIterable(new Object() {
-            public Iterable<TransformationMenuItem> query(final TransformationMenuContext _context) {
-              List<TransformationMenuItem> result = ListSequence.fromList(new ArrayList<TransformationMenuItem>());
-              _context.getEditorMenuTrace().pushTraceInfo();
-              _context.getEditorMenuTrace().setDescriptor(new EditorMenuDescriptorBase("grammar.wrap in " + "EBMessageNonArrayMember", new SNodePointer("r:3a198d66-4706-40fb-a59f-465cb2c581f7(eb_lang.editor)", "5342936125071885677")));
-              try {
-              } finally {
-                _context.getEditorMenuTrace().popTraceInfo();
-              }
-              return ListSequence.fromList(result).where(new IWhereFilter<TransformationMenuItem>() {
-                public boolean accept(TransformationMenuItem it) {
-                  return it != null;
-                }
-              }).toListSequence();
-            }
-          }.query(_context)));
-        }
-      }
       {
         final EditorContext editorContext = _context.getEditorContext();
         List<Tuples._2<TransformationMenuContext, _FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>> redirectedBefore = ListSequence.fromList(new ArrayList<Tuples._2<TransformationMenuContext, _FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>>());
@@ -367,26 +257,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             return true;
           }
         }));
-        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from(new Object() {
-          public TransformationMenuContext redirect() {
-            // redirect to type
-            final SNode sourceNode = _context.getNode();
-
-            // Use the grammar rules for a deep search
-            SNode parentNode = new Parser(_context.getModel()).isEndOf(sourceNode, _context.getMenuLocation() == MenuLocations.LEFT_SIDE_TRANSFORM, CONCEPTS.EBMessageNonArrayMember$fS, LINKS.type$_OfJ);
-            if (parentNode != null) {
-              return _context.withNode(parentNode);
-            }
-
-            // There might be no grammar for some concepts. Try a single level check.
-            if (SNodeOperations.isInstanceOf(sourceNode, CONCEPTS.EBMessageMemberType$X_) && SNodeOperations.isInstanceOf(SNodeOperations.getParent(sourceNode), CONCEPTS.EBMessageNonArrayMember$fS) && Objects.equals(sourceNode.getContainmentLink(), LINKS.type$_OfJ) && (_context.getMenuLocation() == MenuLocations.RIGHT_SIDE_TRANSFORM) == true) {
-              TransformationMenuContext parentContext = _context.withNode(_context.getNode().getParent());
-              return parentContext;
-            }
-
-            return null;
-          }
-        }.redirect(), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonArrayMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return true;
@@ -1121,16 +992,14 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
   }
 
   private static final class CONCEPTS {
-    /*package*/ static final SConcept EBMessageMemberType$X_ = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x584c9fdae0cd2e55L, "eb_lang.structure.EBMessageMemberType");
-    /*package*/ static final SConcept EBMessageNonArrayMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonArrayMember");
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBMessageMember$R = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, "eb_lang.structure.EBMessageMember");
+    /*package*/ static final SConcept EBMessageNonArrayMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonArrayMember");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
     /*package*/ static final SConcept EBEndian$2W = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f32711eL, "eb_lang.structure.EBEndian");
   }
 
   private static final class LINKS {
-    /*package*/ static final SContainmentLink type$_OfJ = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x584c9fdae0c75897L, "type");
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
     /*package*/ static final SContainmentLink endian$mcO_ = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f327121L, "endian");
   }
