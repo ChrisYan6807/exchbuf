@@ -468,6 +468,12 @@
           </node>
         </node>
       </node>
+      <node concept="3F0ifn" id="5sRG$ScsqQP" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+        <node concept="11L4FC" id="5sRG$Sct1iF" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
       <node concept="3F0ifn" id="7Ho_HUXTjiy" role="3EZMnx">
         <property role="3F0ifm" value="offset" />
       </node>
@@ -491,9 +497,6 @@
       </node>
       <node concept="3F0A7n" id="7Ho_HUXTjkk" role="3EZMnx">
         <ref role="1NtTu8" to="wt0b:79EjCrygmAs" resolve="length" />
-      </node>
-      <node concept="3F0ifn" id="7Ho_HUXTjim" role="3EZMnx">
-        <property role="3F0ifm" value="]" />
       </node>
     </node>
   </node>
