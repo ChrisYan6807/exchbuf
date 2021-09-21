@@ -417,10 +417,16 @@
     <property role="TrG5h" value="EBMessageArrayMember" />
     <property role="34LRSv" value="array" />
     <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
-    <node concept="1TJgyi" id="4C_V1$0wCGO" role="1TKVEl">
-      <property role="IQ2nx" value="5342936125071854388" />
-      <property role="TrG5h" value="size" />
-      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    <node concept="1TJgyj" id="3SNypnb3YGt" role="1TKVEi">
+      <property role="IQ2ns" value="4482077330613725981" />
+      <property role="20kJfa" value="type" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="79EjCryfNNN" resolve="EBTypeStatement" />
+    </node>
+    <node concept="1TJgyj" id="3SNypnb3YGv" role="1TKVEi">
+      <property role="IQ2ns" value="4482077330613725983" />
+      <property role="20kJfa" value="counter" />
+      <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageNonArrayMember" />
     </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmCE">

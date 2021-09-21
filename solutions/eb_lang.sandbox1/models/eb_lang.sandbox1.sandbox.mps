@@ -17,6 +17,10 @@
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
+      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageArrayMember" flags="ng" index="2gaMiJ">
+        <reference id="4482077330613725981" name="type" index="3Pf6a8" />
+        <reference id="4482077330613725983" name="counter" index="3Pf6aa" />
+      </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonArrayMember" flags="ng" index="2gaMiM">
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
@@ -238,6 +242,23 @@
       </node>
     </node>
     <node concept="2gln9S" id="5sRG$SctMfK" role="2gln9U" />
+    <node concept="2gaMiw" id="3SNypnb4QwO" role="2gln9U">
+      <property role="TrG5h" value="Msg0" />
+      <node concept="2gaMiM" id="3SNypnb4QwP" role="36JId$">
+        <property role="TrG5h" value="length11" />
+        <ref role="1rk6cS" node="5sRG$SctMko" resolve="u16" />
+      </node>
+      <node concept="2gaMiM" id="3SNypnb4QwQ" role="36JId$">
+        <property role="TrG5h" value="msgType22" />
+        <ref role="1rk6cS" node="5Ba9KTzrMM" resolve="MsgType" />
+      </node>
+      <node concept="2gaMiM" id="3SNypnb4QwR" role="36JId$">
+        <property role="TrG5h" value="delimitor33" />
+        <ref role="1rk6cS" node="5tBX7YzDQ3J" resolve="char" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="3SNypnb4Qv$" role="2gln9U" />
+    <node concept="2gln9S" id="3SNypnb4Qul" role="2gln9U" />
     <node concept="2gaMiw" id="5sRG$SctMhZ" role="2gln9U">
       <property role="TrG5h" value="Msg1" />
       <node concept="2gaMiM" id="5sRG$SctMjb" role="36JId$">
@@ -251,6 +272,16 @@
       <node concept="2gaMiM" id="5sRG$SctMlO" role="36JId$">
         <property role="TrG5h" value="delimitor" />
         <ref role="1rk6cS" node="5tBX7YzDQ3J" resolve="char" />
+      </node>
+      <node concept="2gaMiJ" id="3SNypnb4Quf" role="36JId$">
+        <property role="TrG5h" value="lalal" />
+        <ref role="3Pf6a8" node="5tBX7YzDQ3J" resolve="char" />
+        <ref role="3Pf6aa" node="5sRG$SctMjb" resolve="length" />
+      </node>
+      <node concept="2gaMiJ" id="3SNypnb8x8Y" role="36JId$">
+        <property role="TrG5h" value="blala" />
+        <ref role="3Pf6a8" node="5sRG$SctMko" resolve="u16" />
+        <ref role="3Pf6aa" node="5sRG$SctMlG" resolve="msgType" />
       </node>
     </node>
     <node concept="2gln9S" id="5sRG$ScrLzM" role="2gln9U" />
