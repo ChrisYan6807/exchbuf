@@ -33,19 +33,20 @@ public final class LanguageConceptSwitch {
   public static final int EBIntType = 21;
   public static final int EBLittleEndian = 22;
   public static final int EBMessage = 23;
-  public static final int EBMessageArrayMember = 24;
+  public static final int EBMessageBlockMember = 24;
   public static final int EBMessageMember = 25;
-  public static final int EBMessageNonArrayMember = 26;
+  public static final int EBMessageNonBlockMember = 26;
   public static final int EBNumberLiteral = 27;
   public static final int EBPrimitiveType = 28;
   public static final int EBProtocol = 29;
   public static final int EBPython = 30;
-  public static final int EBStatement = 31;
-  public static final int EBTypeStatement = 32;
-  public static final int EBUInt16 = 33;
-  public static final int EBUInt32 = 34;
-  public static final int EBUInt64 = 35;
-  public static final int EBUInt8 = 36;
+  public static final int EBSBEDimension = 31;
+  public static final int EBStatement = 32;
+  public static final int EBTypeStatement = 33;
+  public static final int EBUInt16 = 34;
+  public static final int EBUInt32 = 35;
+  public static final int EBUInt64 = 36;
+  public static final int EBUInt8 = 37;
 
   public LanguageConceptSwitch() {
     LanguageConceptIndexBuilder builder = new LanguageConceptIndexBuilder(0x59242254602f42f3L, 0xab3adc203eb4cc03L);
@@ -73,13 +74,14 @@ public final class LanguageConceptSwitch {
     builder.put(0x78f986b06f13f864L, EBIntType);
     builder.put(0x78f986b06f327120L, EBLittleEndian);
     builder.put(0x726a4e86e2416a26L, EBMessage);
-    builder.put(0x726a4e86e2416a29L, EBMessageArrayMember);
+    builder.put(0x726a4e86e2416a29L, EBMessageBlockMember);
     builder.put(0x726a4e86e2416a2aL, EBMessageMember);
-    builder.put(0x726a4e86e2416a34L, EBMessageNonArrayMember);
+    builder.put(0x726a4e86e2416a34L, EBMessageNonBlockMember);
     builder.put(0x726a4e86e23f3d17L, EBNumberLiteral);
     builder.put(0x726a4e86e23f3d10L, EBPrimitiveType);
     builder.put(0x726a4e86e23f3cf6L, EBProtocol);
     builder.put(0x726a4e86e2416a09L, EBPython);
+    builder.put(0x1fd2ea8cbdb15627L, EBSBEDimension);
     builder.put(0x726a4e86e23f3cf2L, EBStatement);
     builder.put(0x726a4e86e23f3cf3L, EBTypeStatement);
     builder.put(0x726a4e86e24124b2L, EBUInt16);

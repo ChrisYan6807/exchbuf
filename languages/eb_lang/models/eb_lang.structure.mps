@@ -402,7 +402,7 @@
       <property role="IQ2ns" value="8888019748028577210" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="content" />
-      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="79EjCrygmCE" resolve="EBMessageMember" />
     </node>
     <node concept="1TJgyi" id="5xcBXFwMTni" role="1TKVEl">
@@ -410,12 +410,17 @@
       <property role="TrG5h" value="size" />
       <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
+    <node concept="1TJgyj" id="1ZiUCMXF6l6" role="1TKVEi">
+      <property role="IQ2ns" value="2293153050483516742" />
+      <property role="20kJfa" value="base" />
+      <ref role="20lvS9" node="79EjCrygmCA" resolve="EBMessage" />
+    </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmCD">
     <property role="EcuMT" value="8244488409083636265" />
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessageArrayMember" />
-    <property role="34LRSv" value="array" />
+    <property role="TrG5h" value="EBMessageBlockMember" />
+    <property role="34LRSv" value="ref_block" />
     <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
     <node concept="1TJgyj" id="3SNypnb3YGt" role="1TKVEi">
       <property role="IQ2ns" value="4482077330613725981" />
@@ -426,7 +431,7 @@
     <node concept="1TJgyj" id="3SNypnb3YGv" role="1TKVEi">
       <property role="IQ2ns" value="4482077330613725983" />
       <property role="20kJfa" value="counter" />
-      <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageNonArrayMember" />
+      <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageNonBlockMember" />
     </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmCE">
@@ -447,7 +452,7 @@
   <node concept="1TIwiD" id="79EjCrygmCO">
     <property role="EcuMT" value="8244488409083636276" />
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessageNonArrayMember" />
+    <property role="TrG5h" value="EBMessageNonBlockMember" />
     <property role="34LRSv" value="entry" />
     <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
     <node concept="1TJgyj" id="5sRG$ScpX5Q" role="1TKVEi">
@@ -500,6 +505,30 @@
     <property role="TrG5h" value="EBLittleEndian" />
     <property role="34LRSv" value="little" />
     <ref role="1TJDcQ" node="7zTxF1JcB4u" resolve="EBEndian" />
+  </node>
+  <node concept="1TIwiD" id="1ZiUCMXGloB">
+    <property role="EcuMT" value="2293153050483840551" />
+    <property role="3GE5qa" value="statement" />
+    <property role="TrG5h" value="EBSBEDimension" />
+    <property role="34LRSv" value="sbe_dimension" />
+    <ref role="1TJDcQ" node="79EjCryfNNM" resolve="EBStatement" />
+    <node concept="PrWs8" id="1ZiUCMXGloC" role="PzmwI">
+      <ref role="PrY4T" node="79EjCryfBwO" resolve="EBIIdentifierConcept" />
+    </node>
+    <node concept="1TJgyj" id="1ZiUCMXGlqb" role="1TKVEi">
+      <property role="IQ2ns" value="2293153050483840651" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="blockLengthType" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="7zTxF1J4Zx$" resolve="EBIntType" />
+    </node>
+    <node concept="1TJgyj" id="1ZiUCMXGlqh" role="1TKVEi">
+      <property role="IQ2ns" value="2293153050483840657" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="numInGroupType" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="7zTxF1J4Zx$" resolve="EBIntType" />
+    </node>
   </node>
 </model>
 

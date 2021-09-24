@@ -12,7 +12,7 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070475587102:jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" />
   <root>
     <file name="ConstraintsAspectDescriptor.java">
-      <unit at="13,0,37,0" name="eb_lang.constraints.ConstraintsAspectDescriptor" />
+      <unit at="13,0,39,0" name="eb_lang.constraints.ConstraintsAspectDescriptor" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/1504956661103865627">
@@ -67,6 +67,62 @@
       <unit id="1504956661103865627" at="56,0,59,0" name="eb_lang.constraints.EBNumberLiteral_Constraints$PROPS" />
       <unit id="1504956661103865628" at="24,0,45,0" name="eb_lang.constraints.EBNumberLiteral_Constraints$Value_Property" />
       <unit id="1504956661103865627" at="19,0,60,0" name="eb_lang.constraints.EBNumberLiteral_Constraints" />
+    </file>
+  </root>
+  <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/2293153050483800750">
+    <file name="EBMessage_Constraints.java">
+      <node id="2293153050483800750" at="29,34,30,33" concept="9" />
+      <node id="2293153050483803218" at="37,44,38,20" concept="5" />
+      <node id="2293153050483803218" at="45,63,46,57" concept="5" />
+      <node id="2293153050483803221" at="49,80,50,138" concept="4" />
+      <node id="2293153050483803247" at="52,47,53,113" concept="5" />
+      <node id="2293153050483800750" at="59,6,60,131" concept="4" />
+      <node id="2293153050483803218" at="60,131,61,42" concept="1" />
+      <node id="2293153050483800750" at="61,42,62,22" concept="5" />
+      <node id="2293153050483800750" at="64,0,65,0" concept="7" trace="breakingNode_yzox6o_a0a0a0a0a1a0a0a0c" />
+      <node id="2293153050483800750" at="67,0,68,0" concept="7" trace="EBMessage$YV" />
+      <node id="2293153050483800750" at="68,0,69,0" concept="7" trace="EBProtocol$zC" />
+      <node id="2293153050483800750" at="72,0,73,0" concept="7" trace="base$LfNH" />
+      <node id="2293153050483800750" at="73,0,74,0" concept="7" trace="statements$_5KW" />
+      <node id="2293153050483800750" at="29,0,32,0" concept="0" trace="EBMessage_Constraints#()V" />
+      <node id="2293153050483803245" at="52,0,55,0" concept="3" trace="accept#(Lorg/jetbrains/mps/openapi/model/SNode;)Z" />
+      <node id="2293153050483803218" at="36,0,40,0" concept="3" trace="hasOwnScopeProvider#()Z" />
+      <node id="2293153050483803218" at="44,0,48,0" concept="3" trace="getSearchScopeValidatorNode#()Lorg/jetbrains/mps/openapi/model/SNodeReference;" />
+      <node id="2293153050483803230" at="50,138,55,16" concept="5" />
+      <node id="2293153050483803218" at="48,0,57,0" concept="3" trace="createScope#(Ljetbrains/mps/smodel/runtime/ReferenceConstraintsContext;)Ljetbrains/mps/scope/Scope;" />
+      <node id="2293153050483803218" at="42,56,57,10" concept="5" />
+      <node id="2293153050483803218" at="40,0,59,0" concept="3" trace="getScopeProvider#()Ljetbrains/mps/smodel/runtime/ReferenceScopeProvider;" />
+      <node id="2293153050483803218" at="34,90,59,6" concept="4" />
+      <node id="2293153050483800750" at="33,0,64,0" concept="3" trace="getSpecifiedReferences#()Ljava/util/Map;" />
+      <scope id="2293153050483800750" at="29,34,30,33" />
+      <scope id="2293153050483803218" at="37,44,38,20" />
+      <scope id="2293153050483803218" at="45,63,46,57" />
+      <scope id="2293153050483803246" at="52,47,53,113" />
+      <scope id="2293153050483800750" at="29,0,32,0" />
+      <scope id="2293153050483803245" at="52,0,55,0">
+        <var name="it" id="2293153050483803245" />
+      </scope>
+      <scope id="2293153050483803218" at="36,0,40,0" />
+      <scope id="2293153050483803218" at="44,0,48,0" />
+      <scope id="2293153050483803218" at="49,80,55,16">
+        <var name="statementContext" id="2293153050483803222" />
+      </scope>
+      <scope id="2293153050483803218" at="48,0,57,0">
+        <var name="_context" id="2293153050483803218" />
+      </scope>
+      <scope id="2293153050483803218" at="42,56,57,10" />
+      <scope id="2293153050483803218" at="40,0,59,0" />
+      <scope id="2293153050483800750" at="34,90,62,22">
+        <var name="d0" id="2293153050483803218" />
+        <var name="references" id="2293153050483800750" />
+      </scope>
+      <scope id="2293153050483800750" at="33,0,64,0" />
+      <unit id="2293153050483803245" at="51,277,55,13" name="eb_lang.constraints.EBMessage_Constraints$1$1$1" />
+      <unit id="2293153050483800750" at="66,0,70,0" name="eb_lang.constraints.EBMessage_Constraints$CONCEPTS" />
+      <unit id="2293153050483800750" at="71,0,75,0" name="eb_lang.constraints.EBMessage_Constraints$LINKS" />
+      <unit id="2293153050483803218" at="43,19,57,9" name="eb_lang.constraints.EBMessage_Constraints$1$1" />
+      <unit id="2293153050483803218" at="35,48,59,5" name="eb_lang.constraints.EBMessage_Constraints$1" />
+      <unit id="2293153050483800750" at="28,0,76,0" name="eb_lang.constraints.EBMessage_Constraints" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/6284687853304085779">
@@ -130,7 +186,7 @@
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/6284687853304309782">
-    <file name="EBMessageNonArrayMember_Constraints.java">
+    <file name="EBMessageNonBlockMember_Constraints.java">
       <node id="6284687853304309782" at="29,48,30,47" concept="9" />
       <node id="6284687853304310103" at="37,44,38,20" concept="5" />
       <node id="6284687853304310103" at="45,63,46,57" concept="5" />
@@ -139,13 +195,13 @@
       <node id="6284687853304309782" at="59,6,60,131" concept="4" />
       <node id="6284687853304310103" at="60,131,61,42" concept="1" />
       <node id="6284687853304309782" at="61,42,62,22" concept="5" />
-      <node id="6284687853304309782" at="64,0,65,0" concept="7" trace="breakingNode_z5i4j7_a0a0a0a0a1a0a0a0c" />
-      <node id="6284687853304309782" at="67,0,68,0" concept="7" trace="EBMessageNonArrayMember$fS" />
+      <node id="6284687853304309782" at="64,0,65,0" concept="7" trace="breakingNode_j87vgt_a0a0a0a0a1a0a0a0c" />
+      <node id="6284687853304309782" at="67,0,68,0" concept="7" trace="EBMessageNonBlockMember$fS" />
       <node id="6284687853304309782" at="68,0,69,0" concept="7" trace="EBTypeStatement$o0" />
       <node id="6284687853304309782" at="69,0,70,0" concept="7" trace="EBProtocol$zC" />
       <node id="6284687853304309782" at="73,0,74,0" concept="7" trace="type$eiFN" />
       <node id="6284687853304309782" at="74,0,75,0" concept="7" trace="statements$_5KW" />
-      <node id="6284687853304309782" at="29,0,32,0" concept="0" trace="EBMessageNonArrayMember_Constraints#()V" />
+      <node id="6284687853304309782" at="29,0,32,0" concept="0" trace="EBMessageNonBlockMember_Constraints#()V" />
       <node id="6284687853304311697" at="52,0,55,0" concept="3" trace="accept#(Lorg/jetbrains/mps/openapi/model/SNode;)Z" />
       <node id="6284687853304310103" at="36,0,40,0" concept="3" trace="hasOwnScopeProvider#()Z" />
       <node id="6284687853304310103" at="44,0,48,0" concept="3" trace="getSearchScopeValidatorNode#()Lorg/jetbrains/mps/openapi/model/SNodeReference;" />
@@ -178,12 +234,12 @@
         <var name="references" id="6284687853304309782" />
       </scope>
       <scope id="6284687853304309782" at="33,0,64,0" />
-      <unit id="6284687853304311697" at="51,283,55,13" name="eb_lang.constraints.EBMessageNonArrayMember_Constraints$1$1$1" />
-      <unit id="6284687853304309782" at="72,0,76,0" name="eb_lang.constraints.EBMessageNonArrayMember_Constraints$LINKS" />
-      <unit id="6284687853304309782" at="66,0,71,0" name="eb_lang.constraints.EBMessageNonArrayMember_Constraints$CONCEPTS" />
-      <unit id="6284687853304310103" at="43,19,57,9" name="eb_lang.constraints.EBMessageNonArrayMember_Constraints$1$1" />
-      <unit id="6284687853304310103" at="35,48,59,5" name="eb_lang.constraints.EBMessageNonArrayMember_Constraints$1" />
-      <unit id="6284687853304309782" at="28,0,77,0" name="eb_lang.constraints.EBMessageNonArrayMember_Constraints" />
+      <unit id="6284687853304311697" at="51,283,55,13" name="eb_lang.constraints.EBMessageNonBlockMember_Constraints$1$1$1" />
+      <unit id="6284687853304309782" at="72,0,76,0" name="eb_lang.constraints.EBMessageNonBlockMember_Constraints$LINKS" />
+      <unit id="6284687853304309782" at="66,0,71,0" name="eb_lang.constraints.EBMessageNonBlockMember_Constraints$CONCEPTS" />
+      <unit id="6284687853304310103" at="43,19,57,9" name="eb_lang.constraints.EBMessageNonBlockMember_Constraints$1$1" />
+      <unit id="6284687853304310103" at="35,48,59,5" name="eb_lang.constraints.EBMessageNonBlockMember_Constraints$1" />
+      <unit id="6284687853304309782" at="28,0,77,0" name="eb_lang.constraints.EBMessageNonBlockMember_Constraints" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/8244488409083523177">

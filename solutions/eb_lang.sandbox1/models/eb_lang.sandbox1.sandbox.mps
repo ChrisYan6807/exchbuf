@@ -17,11 +17,11 @@
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
-      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageArrayMember" flags="ng" index="2gaMiJ">
+      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageBlockMember" flags="ng" index="2gaMiJ">
         <reference id="4482077330613725981" name="type" index="3Pf6a8" />
         <reference id="4482077330613725983" name="counter" index="3Pf6aa" />
       </concept>
-      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonArrayMember" flags="ng" index="2gaMiM">
+      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonBlockMember" flags="ng" index="2gaMiM">
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
       <concept id="8244488409083636111" name="eb_lang.structure.EBBitField" flags="ng" index="2gaMs9">
@@ -39,6 +39,7 @@
       <concept id="8244488409083636164" name="eb_lang.structure.EBCPP" flags="ng" index="2gaMt2">
         <property id="8244488409083636165" name="value" index="2gaMt3" />
       </concept>
+      <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
       <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
       <concept id="8244488409083618480" name="eb_lang.structure.EBInt64" flags="ng" index="2gaQCQ" />
@@ -66,6 +67,10 @@
         <property id="8717146646088262292" name="max" index="nVqg$" />
         <property id="8717146646088262296" name="min" index="nVqgC" />
         <child id="8717146646090248481" name="endian" index="nMZuh" />
+      </concept>
+      <concept id="2293153050483840551" name="eb_lang.structure.EBSBEDimension" flags="ng" index="2yoVMF">
+        <child id="2293153050483840651" name="blockLengthType" index="2yoVK7" />
+        <child id="2293153050483840657" name="numInGroupType" index="2yoVKt" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -285,7 +290,51 @@
       </node>
     </node>
     <node concept="2gln9S" id="5sRG$ScrLzM" role="2gln9U" />
+    <node concept="2gln9S" id="1ZiUCMXGggB" role="2gln9U" />
+    <node concept="2gaMiw" id="1ZiUCMXGlkd" role="2gln9U">
+      <property role="TrG5h" value="Msg2" />
+      <node concept="2gaMiM" id="1ZiUCMXGlke" role="36JId$">
+        <property role="TrG5h" value="length11" />
+        <ref role="1rk6cS" node="5sRG$SctMko" resolve="u16" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXGlkf" role="36JId$">
+        <property role="TrG5h" value="msgType22" />
+        <ref role="1rk6cS" node="5Ba9KTzrMM" resolve="MsgType" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXGlkg" role="36JId$">
+        <property role="TrG5h" value="delimitor33" />
+        <ref role="1rk6cS" node="5tBX7YzDQ3J" resolve="char" />
+      </node>
+    </node>
     <node concept="2gln9S" id="7zTxF1JejiB" role="2gln9U" />
+    <node concept="2gaMiw" id="1ZiUCMXGln5" role="2gln9U">
+      <property role="TrG5h" value="Msg3" />
+      <node concept="2gaMiM" id="1ZiUCMXGln6" role="36JId$">
+        <property role="TrG5h" value="length11" />
+        <ref role="1rk6cS" node="5sRG$SctMko" resolve="u16" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXGln7" role="36JId$">
+        <property role="TrG5h" value="msgType22" />
+        <ref role="1rk6cS" node="5Ba9KTzrMM" resolve="MsgType" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXGln8" role="36JId$">
+        <property role="TrG5h" value="delimitor33" />
+        <ref role="1rk6cS" node="5tBX7YzDQ3J" resolve="char" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="1ZiUCMXGllE" role="2gln9U" />
+    <node concept="2yoVMF" id="1ZiUCMXH2xi" role="2gln9U">
+      <property role="TrG5h" value="group" />
+      <node concept="2gaQCM" id="1ZiUCMXHFTb" role="2yoVK7" />
+      <node concept="2gaQCM" id="1ZiUCMXHFTe" role="2yoVKt" />
+    </node>
+    <node concept="2gln9S" id="1ZiUCMXIlsc" role="2gln9U" />
+    <node concept="2yoVMF" id="1ZiUCMXIlvl" role="2gln9U">
+      <property role="TrG5h" value="group1" />
+      <node concept="2gaQCC" id="1ZiUCMXIZ$p" role="2yoVK7" />
+      <node concept="2glnei" id="1ZiUCMXIZ$s" role="2yoVKt" />
+    </node>
+    <node concept="2gln9S" id="1ZiUCMXH0co" role="2gln9U" />
     <node concept="2gln9S" id="7zTxF1Jf2DO" role="2gln9U" />
     <node concept="2gln9S" id="7zTxF1Jf2Dn" role="2gln9U" />
     <node concept="2gln9S" id="5tBX7YzEa1W" role="2gln9U" />

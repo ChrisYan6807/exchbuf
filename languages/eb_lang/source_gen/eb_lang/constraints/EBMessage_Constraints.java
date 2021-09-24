@@ -25,14 +25,14 @@ import org.jetbrains.mps.openapi.language.SConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
 
-public class EBMessageNonArrayMember_Constraints extends BaseConstraintsDescriptor {
-  public EBMessageNonArrayMember_Constraints() {
-    super(CONCEPTS.EBMessageNonArrayMember$fS);
+public class EBMessage_Constraints extends BaseConstraintsDescriptor {
+  public EBMessage_Constraints() {
+    super(CONCEPTS.EBMessage$YV);
   }
 
   @Override
   protected Map<SReferenceLink, ReferenceConstraintsDescriptor> getSpecifiedReferences() {
-    BaseReferenceConstraintsDescriptor d0 = new BaseReferenceConstraintsDescriptor(LINKS.type$eiFN, this) {
+    BaseReferenceConstraintsDescriptor d0 = new BaseReferenceConstraintsDescriptor(LINKS.base$LfNH, this) {
       @Override
       public boolean hasOwnScopeProvider() {
         return true;
@@ -43,12 +43,12 @@ public class EBMessageNonArrayMember_Constraints extends BaseConstraintsDescript
         return new BaseScopeProvider() {
           @Override
           public SNodeReference getSearchScopeValidatorNode() {
-            return breakingNode_z5i4j7_a0a0a0a0a1a0a0a0c;
+            return breakingNode_yzox6o_a0a0a0a0a1a0a0a0c;
           }
           @Override
           public Scope createScope(final ReferenceConstraintsContext _context) {
-            final SNode statementContext = SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBTypeStatement$o0, true, false);
-            return ListScope.forNamedElements(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+            final SNode statementContext = SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBMessage$YV, true, false);
+            return ListScope.forNamedElements(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBMessage$YV)).where(new IWhereFilter<SNode>() {
               public boolean accept(SNode it) {
                 return SNodeOperations.getIndexInParent(it) < SNodeOperations.getIndexInParent(statementContext);
               }
@@ -61,16 +61,15 @@ public class EBMessageNonArrayMember_Constraints extends BaseConstraintsDescript
     references.put(d0.getReference(), d0);
     return references;
   }
-  private static final SNodePointer breakingNode_z5i4j7_a0a0a0a0a1a0a0a0c = new SNodePointer("r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)", "6284687853304310221");
+  private static final SNodePointer breakingNode_yzox6o_a0a0a0a0a1a0a0a0c = new SNodePointer("r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)", "2293153050483803219");
 
   private static final class CONCEPTS {
-    /*package*/ static final SConcept EBMessageNonArrayMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonArrayMember");
-    /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
+    /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
   }
 
   private static final class LINKS {
-    /*package*/ static final SReferenceLink type$eiFN = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x5737b24e0c67d176L, "type");
+    /*package*/ static final SReferenceLink base$LfNH = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x1fd2ea8cbdac6546L, "base");
     /*package*/ static final SContainmentLink statements$_5KW = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x726a4e86e23f3cfcL, "statements");
   }
 }

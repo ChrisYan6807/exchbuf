@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model ref="r:6f4b1fb2-3afa-4e8b-8072-31bf67466619(eb_lang.Millennium.gen)">
+<model ref="r:6f4b1fb2-3afa-4e8b-8072-31bf67466619(eb_lang.Millennium.Millennium)">
   <persistence version="9" />
   <languages>
     <use id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang" version="0" />
@@ -13,9 +13,10 @@
       </concept>
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
         <property id="6362636135990793682" name="size" index="2SxKC8" />
+        <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
-      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonArrayMember" flags="ng" index="2gaMiM">
+      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonBlockMember" flags="ng" index="2gaMiM">
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
       <concept id="8244488409083636201" name="eb_lang.structure.EBExtern" flags="ng" index="2gaMtJ" />
@@ -342,9 +343,161 @@
       </node>
     </node>
     <node concept="2gln9S" id="3SNypnb2Bgw" role="2gln9U" />
-    <node concept="2gln9S" id="3SNypnb2Baw" role="2gln9U" />
+    <node concept="2gaMiw" id="1ZiUCMXF63e" role="2gln9U">
+      <property role="TrG5h" value="Logon" />
+      <property role="2SxKC8" value="80" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="1ZiUCMXF65k" role="36JId$">
+        <property role="TrG5h" value="userName" />
+        <ref role="1rk6cS" node="3SNypnb2AyW" resolve="String25" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXF65s" role="36JId$">
+        <property role="TrG5h" value="password" />
+        <ref role="1rk6cS" node="3SNypnb2AyW" resolve="String25" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXF65_" role="36JId$">
+        <property role="TrG5h" value="newPassword" />
+        <ref role="1rk6cS" node="3SNypnb2AyW" resolve="String25" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXF65K" role="36JId$">
+        <property role="TrG5h" value="messageVersion" />
+        <ref role="1rk6cS" node="3SNypnb2Aoo" resolve="UInt8" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="1ZiUCMXF65V" role="2gln9U" />
+    <node concept="2gaMiw" id="1ZiUCMXF6a0" role="2gln9U">
+      <property role="TrG5h" value="LogonResponse" />
+      <property role="2SxKC8" value="38" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="1ZiUCMXF6cf" role="36JId$">
+        <property role="TrG5h" value="rejectCode" />
+        <ref role="1rk6cS" node="3SNypnb2AqX" resolve="Int32" />
+      </node>
+      <node concept="2gaMiM" id="1ZiUCMXF6cn" role="36JId$">
+        <property role="TrG5h" value="passwordExpiryDayCount" />
+        <ref role="1rk6cS" node="3SNypnb2AzZ" resolve="String30" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="1ZiUCMXF6cu" role="2gln9U" />
+    <node concept="2gaMiw" id="1ZiUCMXF6iQ" role="2gln9U">
+      <property role="TrG5h" value="Logout" />
+      <property role="2SxKC8" value="24" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="2HuERJm4rpJ" role="36JId$">
+        <property role="TrG5h" value="reason" />
+        <ref role="1rk6cS" node="3SNypnb2AxX" resolve="String20" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="1ZiUCMXF6e_" role="2gln9U" />
+    <node concept="2gaMiw" id="2HuERJm4rrU" role="2gln9U">
+      <property role="TrG5h" value="Heartbeat" />
+      <property role="2SxKC8" value="4" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+    </node>
+    <node concept="2gln9S" id="2HuERJm4AYV" role="2gln9U" />
+    <node concept="2gaMiw" id="2HuERJm4B3g" role="2gln9U">
+      <property role="TrG5h" value="MissedMessageRequest" />
+      <property role="2SxKC8" value="9" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="2HuERJm4B5s" role="36JId$">
+        <property role="TrG5h" value="appID" />
+        <ref role="1rk6cS" node="3SNypnb2AoF" resolve="Int8" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm4B5x" role="36JId$">
+        <property role="TrG5h" value="lastMsgSeqNum" />
+        <ref role="1rk6cS" node="3SNypnb2AqX" resolve="Int32" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2HuERJm4B5_" role="2gln9U" />
+    <node concept="2gaMiw" id="2HuERJm5wpO" role="2gln9U">
+      <property role="TrG5h" value="MissedMessageRequestAck" />
+      <property role="2SxKC8" value="5" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="2HuERJm5ws4" role="36JId$">
+        <property role="TrG5h" value="responseType" />
+        <ref role="1rk6cS" node="3SNypnb2AP0" resolve="MissedMsgRespType" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2HuERJm5ws6" role="2gln9U" />
+    <node concept="2gaMiw" id="2HuERJm5wwD" role="2gln9U">
+      <property role="TrG5h" value="TransmissionComplete" />
+      <property role="2SxKC8" value="5" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="2HuERJm5wyW" role="36JId$">
+        <property role="TrG5h" value="responseType" />
+        <ref role="1rk6cS" node="3SNypnb2AUh" resolve="MissedMsgRptType" />
+      </node>
+    </node>
     <node concept="2gln9S" id="3SNypnb2AAS" role="2gln9U" />
-    <node concept="2gln9S" id="3SNypnb2ABw" role="2gln9U" />
+    <node concept="2gaMiw" id="2HuERJm5wyY" role="2gln9U">
+      <property role="TrG5h" value="Reject" />
+      <property role="2SxKC8" value="59" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="2HuERJm5w_i" role="36JId$">
+        <property role="TrG5h" value="rejectCode" />
+        <ref role="1rk6cS" node="3SNypnb2AqX" resolve="Int32" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5w_n" role="36JId$">
+        <property role="TrG5h" value="rejectReason" />
+        <ref role="1rk6cS" node="3SNypnb2AzZ" resolve="String30" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5w_v" role="36JId$">
+        <property role="TrG5h" value="rejectedMessageType" />
+        <ref role="1rk6cS" node="3SNypnb2AEa" resolve="MsgType" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5w_D" role="36JId$">
+        <property role="TrG5h" value="clientOrderID" />
+        <ref role="1rk6cS" node="3SNypnb2AxX" resolve="String20" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2HuERJm5w_J" role="2gln9U" />
+    <node concept="2gaMiw" id="2HuERJm5wEw" role="2gln9U">
+      <property role="TrG5h" value="SystemStatus" />
+      <property role="2SxKC8" value="6" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="2HuERJm5wGU" role="36JId$">
+        <property role="TrG5h" value="appID" />
+        <ref role="1rk6cS" node="3SNypnb2AY8" resolve="AppID" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5wGZ" role="36JId$">
+        <property role="TrG5h" value="appStatus" />
+        <ref role="1rk6cS" node="3SNypnb2B4i" resolve="AppStatus" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2HuERJm5wH9" role="2gln9U" />
+    <node concept="2gaMiw" id="2HuERJm5wM2" role="2gln9U">
+      <property role="TrG5h" value="BusinessReject" />
+      <property role="2SxKC8" value="63" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="2HuERJm5wOy" role="36JId$">
+        <property role="TrG5h" value="appID" />
+        <ref role="1rk6cS" node="3SNypnb2AY8" resolve="AppID" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5wOC" role="36JId$">
+        <property role="TrG5h" value="sequenceNo" />
+        <ref role="1rk6cS" node="3SNypnb2AqX" resolve="Int32" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5wOK" role="36JId$">
+        <property role="TrG5h" value="rejectCode" />
+        <ref role="1rk6cS" node="3SNypnb2AqX" resolve="Int32" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5wOU" role="36JId$">
+        <property role="TrG5h" value="clientOrderID" />
+        <ref role="1rk6cS" node="3SNypnb2AxX" resolve="String20" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5wP6" role="36JId$">
+        <property role="TrG5h" value="orderID" />
+        <ref role="1rk6cS" node="3SNypnb2Ax2" resolve="String12" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5wPk" role="36JId$">
+        <property role="TrG5h" value="transactTime" />
+        <ref role="1rk6cS" node="3SNypnb2ArI" resolve="Uint64" />
+      </node>
+      <node concept="2gaMiM" id="2HuERJm5wP$" role="36JId$">
+        <property role="TrG5h" value="reserved1" />
+        <ref role="1rk6cS" node="3SNypnb2Awb" resolve="String10" />
+      </node>
+    </node>
     <node concept="2gln9S" id="3SNypnb2AC9" role="2gln9U" />
     <node concept="2gln9S" id="3SNypnb2ACN" role="2gln9U" />
     <node concept="2gln9S" id="3SNypnb2ADu" role="2gln9U" />

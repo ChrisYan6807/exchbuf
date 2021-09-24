@@ -700,7 +700,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="5sRG$SctDIw" role="3acgRq">
-      <ref role="30HIoZ" to="wt0b:79EjCrygmCO" resolve="EBMessageNonArrayMember" />
+      <ref role="30HIoZ" to="wt0b:79EjCrygmCO" resolve="EBMessageNonBlockMember" />
       <node concept="gft3U" id="5sRG$SctDMp" role="1lVwrX">
         <node concept="356sEK" id="5sRG$SctDMv" role="gfFT$">
           <node concept="2xotEU" id="5sRG$SctDM_" role="356sEH">
@@ -761,7 +761,7 @@
       </node>
     </node>
     <node concept="3aamgX" id="3SNypnba0$V" role="3acgRq">
-      <ref role="30HIoZ" to="wt0b:79EjCrygmCD" resolve="EBMessageArrayMember" />
+      <ref role="30HIoZ" to="wt0b:79EjCrygmCD" resolve="EBMessageBlockMember" />
       <node concept="gft3U" id="3SNypnba0DC" role="1lVwrX">
         <node concept="356sEK" id="3SNypnba0DI" role="gfFT$">
           <node concept="356sEF" id="3SNypnbad8n" role="356sEH">
@@ -903,6 +903,10 @@
           <node concept="2xj2l3" id="5sRG$SctHPo" role="356sEH" />
         </node>
       </node>
+    </node>
+    <node concept="3aamgX" id="2HuERJm5yOY" role="3acgRq">
+      <ref role="30HIoZ" to="wt0b:79EjCrygmBD" resolve="EBExtern" />
+      <node concept="b5Tf3" id="2HuERJm5yUg" role="1lVwrX" />
     </node>
   </node>
   <node concept="356sEV" id="30hDAfb_v3Q">
