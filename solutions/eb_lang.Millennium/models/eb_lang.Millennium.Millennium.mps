@@ -510,5 +510,8 @@
     <node concept="2gln9S" id="3SNypnb2Auj" role="2gln9U" />
     <node concept="2gln9S" id="3SNypnb2AtC" role="2gln9U" />
   </node>
+  <node concept="2gln9K" id="2HuERJm7elC">
+    <property role="TrG5h" value="test" />
+  </node>
 </model>
 

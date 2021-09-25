@@ -91,6 +91,11 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="79EjCryfNNM" resolve="EBStatement" />
     </node>
+    <node concept="1TJgyj" id="2HuERJm6s3V" role="1TKVEi">
+      <property role="IQ2ns" value="3125123739803042043" />
+      <property role="20kJfa" value="import" />
+      <ref role="20lvS9" node="79EjCryfNNQ" resolve="EBProtocol" />
+    </node>
   </node>
   <node concept="1TIwiD" id="79EjCryfNNY">
     <property role="EcuMT" value="8244488409083493630" />

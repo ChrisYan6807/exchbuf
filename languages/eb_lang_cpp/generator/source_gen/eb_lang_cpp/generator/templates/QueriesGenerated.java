@@ -99,6 +99,9 @@ public class QueriesGenerated extends QueryProviderBase {
     return _context.getTemplateValue();
   }
   public static SNode sourceNodeQuery_0_0(final SourceSubstituteMacroNodeContext _context) {
+    return SLinkOperations.getTarget(_context.getNode(), LINKS.import$sgDQ);
+  }
+  public static SNode sourceNodeQuery_0_1(final SourceSubstituteMacroNodeContext _context) {
     return SLinkOperations.getTarget(_context.getNode(), LINKS.value$_yQp);
   }
   public static Iterable<SNode> sourceNodesQuery_0_0(final SourceSubstituteMacroNodesContext _context) {
@@ -119,6 +122,7 @@ public class QueriesGenerated extends QueryProviderBase {
   private final Map<String, SourceNodeQuery> snqMethods = new HashMap<String, SourceNodeQuery>();
   {
     int i = 0;
+    snqMethods.put("3125123739803227353", new SNQ(i++));
     snqMethods.put("8717146646091307986", new SNQ(i++));
   }
   @NotNull
@@ -137,6 +141,8 @@ public class QueriesGenerated extends QueryProviderBase {
       switch (methodKey) {
         case 0:
           return QueriesGenerated.sourceNodeQuery_0_0(ctx);
+        case 1:
+          return QueriesGenerated.sourceNodeQuery_0_1(ctx);
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
       }
@@ -145,7 +151,7 @@ public class QueriesGenerated extends QueryProviderBase {
   private final Map<String, SourceNodesQuery> snsqMethods = new HashMap<String, SourceNodesQuery>();
   {
     int i = 0;
-    snsqMethods.put("101094168084435195", new SNsQ(i++));
+    snsqMethods.put("3125123739803227906", new SNsQ(i++));
     snsqMethods.put("101094168084449842", new SNsQ(i++));
     snsqMethods.put("6284687853304584809", new SNsQ(i++));
     snsqMethods.put("6284687853305123989", new SNsQ(i++));
@@ -286,6 +292,7 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SReferenceLink type$eiFN = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x5737b24e0c67d176L, "type");
     /*package*/ static final SReferenceLink type$kyUc = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x3e338995cb0feb1dL, "type");
     /*package*/ static final SReferenceLink counter$kzoe = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x3e338995cb0feb1fL, "counter");
+    /*package*/ static final SReferenceLink import$sgDQ = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x2b5eab7bd619c0fbL, "import");
     /*package*/ static final SContainmentLink value$_yQp = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, 0x726a4e86e23f3d20L, "value");
     /*package*/ static final SContainmentLink statements$_5KW = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x726a4e86e23f3cfcL, "statements");
     /*package*/ static final SContainmentLink values$_zmn = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, 0x726a4e86e23f3d24L, "values");
