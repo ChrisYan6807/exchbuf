@@ -24,6 +24,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBFixedLenghString;
   private ConceptPresentation props_EBIIdentifierConcept;
   private ConceptPresentation props_EBImportPrimitive;
+  private ConceptPresentation props_EBInclude;
   private ConceptPresentation props_EBInt16;
   private ConceptPresentation props_EBInt32;
   private ConceptPresentation props_EBInt64;
@@ -159,6 +160,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBImportPrimitive = cpb.create();
         }
         return props_EBImportPrimitive;
+      case LanguageConceptSwitch.EBInclude:
+        if (props_EBInclude == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.rawPresentation("@include");
+          props_EBInclude = cpb.create();
+        }
+        return props_EBInclude;
       case LanguageConceptSwitch.EBInt16:
         if (props_EBInt16 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

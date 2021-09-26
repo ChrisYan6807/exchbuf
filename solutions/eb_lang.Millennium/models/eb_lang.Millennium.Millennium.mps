@@ -512,6 +512,19 @@
   </node>
   <node concept="2gln9K" id="2HuERJm7elC">
     <property role="TrG5h" value="test" />
+    <node concept="2gaMi0" id="5c0MfkCiE0d" role="2gln9U">
+      <property role="TrG5h" value="u8" />
+      <node concept="2gaQCM" id="5c0MfkCiE0l" role="2gaMi1" />
+    </node>
+    <node concept="2gln9S" id="5c0MfkCiEkq" role="2gln9U" />
+    <node concept="2gaMiw" id="5c0MfkCiE05" role="2gln9U">
+      <property role="TrG5h" value="test_msg" />
+      <node concept="2gaMiM" id="5c0MfkCiE07" role="36JId$">
+        <property role="TrG5h" value="nothing" />
+        <ref role="1rk6cS" node="5c0MfkCiE0d" resolve="u8" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="5c0MfkCiEkw" role="2gln9U" />
   </node>
 </model>
 

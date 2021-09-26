@@ -277,19 +277,6 @@
         </node>
         <node concept="2iRfu4" id="79EjCryg4ft" role="2iSdaV" />
       </node>
-      <node concept="3F0ifn" id="79EjCryg4fG" role="3EZMnx" />
-      <node concept="3F0ifn" id="2HuERJm5Kuc" role="3EZMnx">
-        <property role="3F0ifm" value="import Protocol" />
-      </node>
-      <node concept="1iCGBv" id="2HuERJm6s6J" role="3EZMnx">
-        <ref role="1NtTu8" to="wt0b:2HuERJm6s3V" resolve="import" />
-        <node concept="1sVBvm" id="2HuERJm6s6L" role="1sWHZn">
-          <node concept="3F0A7n" id="2HuERJm6s78" role="2wV5jI">
-            <property role="1Intyy" value="true" />
-            <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
-          </node>
-        </node>
-      </node>
       <node concept="3F0ifn" id="2HuERJm5KuH" role="3EZMnx" />
       <node concept="3F2HdR" id="79EjCryg4fV" role="3EZMnx">
         <ref role="1NtTu8" to="wt0b:79EjCryfNNW" resolve="statements" />
@@ -947,6 +934,25 @@
       <node concept="3F0ifn" id="1ZiUCMXHFT_" role="3EZMnx">
         <property role="3F0ifm" value="}" />
       </node>
+    </node>
+  </node>
+  <node concept="24kQdi" id="5c0MfkChsB2">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:5c0MfkChsAE" resolve="EBInclude" />
+    <node concept="3EZMnI" id="5c0MfkChsBc" role="2wV5jI">
+      <node concept="3F0ifn" id="5c0MfkChsBj" role="3EZMnx">
+        <property role="3F0ifm" value="@include" />
+      </node>
+      <node concept="1iCGBv" id="5c0MfkChsBp" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:5c0MfkChsAF" resolve="protocol" />
+        <node concept="1sVBvm" id="5c0MfkChsBr" role="1sWHZn">
+          <node concept="3F0A7n" id="5c0MfkChsBz" role="2wV5jI">
+            <property role="1Intyy" value="true" />
+            <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+          </node>
+        </node>
+      </node>
+      <node concept="2iRfu4" id="5c0MfkChsBf" role="2iSdaV" />
     </node>
   </node>
 </model>

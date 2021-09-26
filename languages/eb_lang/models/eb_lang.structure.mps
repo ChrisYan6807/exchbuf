@@ -91,11 +91,6 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="79EjCryfNNM" resolve="EBStatement" />
     </node>
-    <node concept="1TJgyj" id="2HuERJm6s3V" role="1TKVEi">
-      <property role="IQ2ns" value="3125123739803042043" />
-      <property role="20kJfa" value="import" />
-      <ref role="20lvS9" node="79EjCryfNNQ" resolve="EBProtocol" />
-    </node>
   </node>
   <node concept="1TIwiD" id="79EjCryfNNY">
     <property role="EcuMT" value="8244488409083493630" />
@@ -533,6 +528,19 @@
       <property role="20kJfa" value="numInGroupType" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="7zTxF1J4Zx$" resolve="EBIntType" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5c0MfkChsAE">
+    <property role="EcuMT" value="5981001260416223658" />
+    <property role="3GE5qa" value="statement" />
+    <property role="TrG5h" value="EBInclude" />
+    <property role="34LRSv" value="@include" />
+    <ref role="1TJDcQ" node="79EjCryfNNM" resolve="EBStatement" />
+    <node concept="1TJgyj" id="5c0MfkChsAF" role="1TKVEi">
+      <property role="IQ2ns" value="5981001260416223659" />
+      <property role="20kJfa" value="protocol" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="79EjCryfNNQ" resolve="EBProtocol" />
     </node>
   </node>
 </model>
