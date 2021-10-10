@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<product version="3" modelHash="-9bik79qg30ny26hz4bj0wg30yw8qa7">
-  <files names="protocol.hpp" />
+<product version="3" modelHash="b3lmohiyi2n9ob4rbmy6wqbk6zoc29h">
+  <files names="protocol.py:test" />
 </product>
 

@@ -65,7 +65,9 @@
       <concept id="1177093525992" name="jetbrains.mps.lang.generator.structure.InlineTemplate_RuleConsequence" flags="lg" index="gft3U">
         <child id="1177093586806" name="templateNode" index="gfFT$" />
       </concept>
-      <concept id="1168619357332" name="jetbrains.mps.lang.generator.structure.RootTemplateAnnotation" flags="lg" index="n94m4" />
+      <concept id="1168619357332" name="jetbrains.mps.lang.generator.structure.RootTemplateAnnotation" flags="lg" index="n94m4">
+        <reference id="1168619429071" name="applicableConcept" index="n9lRv" />
+      </concept>
       <concept id="1167087469898" name="jetbrains.mps.lang.generator.structure.CreateRootRule" flags="lg" index="2VPoh5">
         <reference id="1167087469901" name="templateNode" index="2VPoh2" />
       </concept>
@@ -939,14 +941,16 @@
   <node concept="356sEV" id="30hDAfb_v3Q">
     <property role="TrG5h" value="protocol" />
     <property role="3Le9LX" value=".hpp" />
-    <node concept="n94m4" id="30hDAfb_v3S" role="lGtFl" />
+    <node concept="n94m4" id="30hDAfb_v3S" role="lGtFl">
+      <ref role="n9lRv" to="wt0b:79EjCryfNNQ" resolve="EBProtocol" />
+    </node>
     <node concept="17Uvod" id="30hDAfb_v3U" role="lGtFl">
       <property role="2qtEX9" value="name" />
       <property role="P4ACc" value="ceab5195-25ea-4f22-9b92-103b95ca8c0c/1169194658468/1169194664001" />
       <node concept="3zFVjK" id="30hDAfb_v3V" role="3zH0cK">
         <node concept="3clFbS" id="30hDAfb_v3W" role="2VODD2">
-          <node concept="3cpWs6" id="6T1aHZf7Uyr" role="3cqZAp">
-            <node concept="3zGtF$" id="6T1aHZf81$U" role="3cqZAk" />
+          <node concept="3cpWs6" id="14P4l1LX0iU" role="3cqZAp">
+            <node concept="3zGtF$" id="14P4l1LX0jq" role="3cqZAk" />
           </node>
         </node>
       </node>
