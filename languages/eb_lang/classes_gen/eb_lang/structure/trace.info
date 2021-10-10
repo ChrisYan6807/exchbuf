@@ -906,8 +906,8 @@
     <file name="ConceptPresentationAspectImpl.java">
       <node id="8244488409083636119" at="15,0,16,0" concept="1" trace="props_EBBitFieldMember" />
       <node id="8244488409083636119" at="79,45,80,76" concept="3" />
-      <node id="8244488409083636119" at="80,76,81,138" concept="0" />
-      <node id="8244488409083636119" at="81,138,82,48" concept="0" />
+      <node id="8244488409083636119" at="80,76,81,50" concept="0" />
+      <node id="8244488409083636119" at="81,50,82,48" concept="0" />
       <node id="8244488409083636119" at="83,9,84,38" concept="4" />
       <node id="8244488409083636119" at="78,50,83,9" concept="2" />
       <scope id="8244488409083636119" at="79,45,82,48">
@@ -926,10 +926,10 @@
       <node id="8244488409083636119" at="197,158,198,34" concept="0" />
       <node id="8244488409083636119" at="198,34,199,94" concept="0" />
       <node id="8244488409083636119" at="199,94,200,17" concept="0" />
-      <node id="8244488409083636122" at="200,17,201,113" concept="0" />
-      <node id="8244488409083636124" at="201,113,202,113" concept="0" />
-      <node id="6284687853303548466" at="202,113,203,168" concept="0" />
-      <node id="8244488409083636119" at="203,168,204,22" concept="4" />
+      <node id="8244488409083636124" at="200,17,201,113" concept="0" />
+      <node id="6284687853303548466" at="201,113,202,168" concept="0" />
+      <node id="8587208086333401400" at="202,168,203,171" concept="0" />
+      <node id="8244488409083636119" at="203,171,204,22" concept="4" />
       <node id="8244488409083636119" at="196,0,206,0" concept="6" trace="createDescriptorForEBBitFieldMember#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="8244488409083636119" at="82,50,83,41" />
       <scope id="8244488409083636119" at="196,74,204,22">

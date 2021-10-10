@@ -16,8 +16,6 @@ import org.jetbrains.mps.openapi.model.SNodeReference;
 import jetbrains.mps.scope.Scope;
 import jetbrains.mps.smodel.runtime.ReferenceConstraintsContext;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
-import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
-import org.apache.log4j.Level;
 import java.util.List;
 import org.jetbrains.mps.openapi.model.SNode;
 import java.util.ArrayList;
@@ -25,6 +23,8 @@ import jetbrains.mps.internal.collections.runtime.Sequence;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.internal.collections.runtime.IWhereFilter;
 import eb_lang.behavior.EBProtocol__BehaviorDescriptor;
+import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
+import org.apache.log4j.Level;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.scope.ListScope;
 import java.util.HashMap;
@@ -57,7 +57,6 @@ public class EBMessageNonBlockMember_Constraints extends BaseConstraintsDescript
           @Override
           public Scope createScope(final ReferenceConstraintsContext _context) {
             final int statementContextIndex = SNodeOperations.getIndexInParent(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBTypeStatement$o0, true, false));
-            LoggingRuntime.logMsgView(Level.INFO, "calculated non block index " + String.valueOf(statementContextIndex), EBMessageNonBlockMember_Constraints.class, null, null);
 
             List<SNode> statements = new ArrayList<SNode>();
             Iterable<SNode> includes = Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBInclude$_h)).where(new IWhereFilter<SNode>() {
@@ -67,9 +66,7 @@ public class EBMessageNonBlockMember_Constraints extends BaseConstraintsDescript
             });
 
             for (SNode include_statement : includes) {
-              LoggingRuntime.logMsgView(Level.DEBUG, "iterate EBInclude", EBMessageNonBlockMember_Constraints.class, null, null);
               statements.addAll(EBProtocol__BehaviorDescriptor.definedTypes_id5c0MfkCiF9K.invoke(SLinkOperations.getTarget(include_statement, LINKS.protocol$v5qn)));
-              LoggingRuntime.logMsgView(Level.DEBUG, "done EBInclude", EBMessageNonBlockMember_Constraints.class, null, null);
             }
 
             LoggingRuntime.logMsgView(Level.DEBUG, "Include finished", EBMessageNonBlockMember_Constraints.class, null, null);
@@ -80,12 +77,9 @@ public class EBMessageNonBlockMember_Constraints extends BaseConstraintsDescript
               }
             });
             for (SNode n : typeStatements) {
-              LoggingRuntime.logMsgView(Level.DEBUG, "iterate EBTypeStatement", EBMessageNonBlockMember_Constraints.class, null, null);
               ListSequence.fromList(statements).addElement(n);
-              LoggingRuntime.logMsgView(Level.DEBUG, "Done EBTypeStatement", EBMessageNonBlockMember_Constraints.class, null, null);
             }
 
-            LoggingRuntime.logMsgView(Level.INFO, "calculated type statements: " + statements.toString(), EBMessageNonBlockMember_Constraints.class, null, null);
             return ListScope.forNamedElements(statements);
           }
         };

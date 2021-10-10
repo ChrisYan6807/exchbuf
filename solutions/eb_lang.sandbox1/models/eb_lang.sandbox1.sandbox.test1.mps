@@ -4,6 +4,7 @@
   <languages>
     <use id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang" version="0" />
     <engage id="195a05df-981e-4c01-a03a-6abf03243612" name="eb_lang_python" />
+    <engage id="87d4987f-c831-4a03-9f51-66048c99e214" name="eb_lang_cpp" />
   </languages>
   <imports>
     <import index="epmt" ref="r:dc1954e9-4ce0-406a-be77-2b881112eb4e(eb_lang.sandbox1.sandbox)" />
@@ -19,7 +20,7 @@
       </concept>
       <concept id="8244488409083636119" name="eb_lang.structure.EBBitFieldMember" flags="ng" index="2gaMsh">
         <property id="8244488409083636124" name="length" index="2gaMsq" />
-        <property id="8244488409083636122" name="offset" index="2gaMss" />
+        <reference id="8587208086333401400" name="default" index="2pq4PT" />
         <reference id="6284687853303548466" name="enum" index="1rqnxW" />
       </concept>
       <concept id="8244488409083636164" name="eb_lang.structure.EBCPP" flags="ng" index="2gaMt2">
@@ -183,20 +184,20 @@
     <node concept="2gaMs9" id="5sRG$Scp1G6" role="2gln9U">
       <property role="TrG5h" value="STPBitfield" />
       <node concept="2gaQCM" id="5sRG$ScrLJn" role="2gaMsk" />
-      <node concept="2gaMsh" id="5sRG$Scp1Ga" role="2gaMsi">
-        <property role="2gaMss" value="0" />
+      <node concept="2gaMsh" id="7sFT47IhTGM" role="2gaMsi">
+        <property role="2gaMsq" value="3" />
+        <ref role="1rqnxW" node="5Ba9KT$i7W" resolve="STPProtectionLevel" />
+        <ref role="2pq4PT" node="5Ba9KT$i8X" resolve="Firm" />
+      </node>
+      <node concept="2gaMsh" id="7sFT47IhTGO" role="2gaMsi">
+        <property role="2gaMsq" value="3" />
+        <ref role="1rqnxW" node="5Ba9KT$ibk" resolve="STPProtectionInstruction" />
+        <ref role="2pq4PT" node="5Ba9KT$icn" resolve="NotApplicable" />
+      </node>
+      <node concept="2gaMsh" id="7sFT47IhTGR" role="2gaMsi">
         <property role="2gaMsq" value="2" />
         <ref role="1rqnxW" node="5Ba9KT$ifD" resolve="ReservedSTP" />
-      </node>
-      <node concept="2gaMsh" id="5sRG$ScpOJ1" role="2gaMsi">
-        <property role="2gaMss" value="2" />
-        <property role="2gaMsq" value="2" />
-        <ref role="1rqnxW" node="5Ba9KT$ibk" resolve="STPProtectionInstruction" />
-      </node>
-      <node concept="2gaMsh" id="5sRG$ScpOJ4" role="2gaMsi">
-        <property role="2gaMss" value="4" />
-        <property role="2gaMsq" value="4" />
-        <ref role="1rqnxW" node="5Ba9KT$i7W" resolve="STPProtectionLevel" />
+        <ref role="2pq4PT" node="5Ba9KT$ifH" resolve="Empty" />
       </node>
     </node>
     <node concept="2gln9S" id="14P4l1LXUOv" role="2gln9U" />

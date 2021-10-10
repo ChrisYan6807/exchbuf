@@ -306,11 +306,6 @@
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBBitFieldMember" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
-    <node concept="1TJgyi" id="79EjCrygmAq" role="1TKVEl">
-      <property role="IQ2nx" value="8244488409083636122" />
-      <property role="TrG5h" value="offset" />
-      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
-    </node>
     <node concept="1TJgyi" id="79EjCrygmAs" role="1TKVEl">
       <property role="IQ2nx" value="8244488409083636124" />
       <property role="TrG5h" value="length" />
@@ -321,6 +316,12 @@
       <property role="20kJfa" value="enum" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="79EjCryfNOd" resolve="EBEnum" />
+    </node>
+    <node concept="1TJgyj" id="7sFT47IgU$S" role="1TKVEi">
+      <property role="IQ2ns" value="8587208086333401400" />
+      <property role="20kJfa" value="default" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="79EjCryfNOt" resolve="EBIntKVPair" />
     </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmA_">

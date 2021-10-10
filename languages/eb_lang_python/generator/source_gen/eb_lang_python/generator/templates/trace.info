@@ -8,13 +8,13 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
   <root>
     <file name="QueriesGenerated.java">
-      <unit at="298,0,301,0" name="eb_lang_python.generator.templates.QueriesGenerated$CONCEPTS" />
+      <unit at="299,0,302,0" name="eb_lang_python.generator.templates.QueriesGenerated$CONCEPTS" />
       <unit at="276,0,283,0" name="eb_lang_python.generator.templates.QueriesGenerated$PROPS" />
-      <unit at="284,0,297,0" name="eb_lang_python.generator.templates.QueriesGenerated$LINKS" />
+      <unit at="284,0,298,0" name="eb_lang_python.generator.templates.QueriesGenerated$LINKS" />
       <unit at="139,0,156,0" name="eb_lang_python.generator.templates.QueriesGenerated$SNQ" />
       <unit at="171,0,194,0" name="eb_lang_python.generator.templates.QueriesGenerated$SNsQ" />
       <unit at="223,0,275,0" name="eb_lang_python.generator.templates.QueriesGenerated$PVQ" />
-      <unit at="37,0,302,0" name="eb_lang_python.generator.templates.QueriesGenerated" />
+      <unit at="37,0,303,0" name="eb_lang_python.generator.templates.QueriesGenerated" />
     </file>
   </root>
   <root nodeRef="r:5bc70035-209d-4923-9fce-33bb3033460e(eb_lang_python.generator.templates@generator)/3463732535972191890">
@@ -30,7 +30,7 @@
       <node id="1239916309617424400" at="65,12,66,19" concept="3" />
       <node id="1239916309617424164" at="67,5,68,0" concept="4" />
       <node id="6284687853304542645" at="70,88,71,122" concept="3" />
-      <node id="8587208086333307350" at="73,88,74,27" concept="3" />
+      <node id="8587208086333856111" at="73,88,74,244" concept="3" />
       <node id="6284687853304578213" at="76,88,77,97" concept="3" />
       <node id="8587208086333299827" at="79,89,80,122" concept="3" />
       <node id="8587208086333205557" at="82,89,83,78" concept="3" />
@@ -129,7 +129,7 @@
       <scope id="1239916309617415579" at="63,144,64,19" />
       <scope id="1239916309617424328" at="65,12,66,19" />
       <scope id="6284687853304542352" at="70,88,71,122" />
-      <scope id="6284687853304549000" at="73,88,74,27" />
+      <scope id="6284687853304549000" at="73,88,74,244" />
       <scope id="6284687853304578189" at="76,88,77,97" />
       <scope id="8587208086333299801" at="79,89,80,122" />
       <scope id="8587208086333205264" at="82,89,83,78" />

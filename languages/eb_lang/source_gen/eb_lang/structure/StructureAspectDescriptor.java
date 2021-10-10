@@ -198,9 +198,9 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.class_(false, false, false);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636119");
     b.version(2);
-    b.property("offset", 0x726a4e86e241699aL).type(PrimitiveTypeId.INTEGER).origin("8244488409083636122").done();
     b.property("length", 0x726a4e86e241699cL).type(PrimitiveTypeId.INTEGER).origin("8244488409083636124").done();
     b.associate("enum", 0x5737b24e0c5eca32L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL).optional(false).origin("6284687853303548466").done();
+    b.associate("default", 0x772be441ee43a938L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL).optional(false).origin("8587208086333401400").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBCPP() {

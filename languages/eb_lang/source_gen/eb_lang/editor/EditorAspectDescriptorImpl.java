@@ -110,7 +110,7 @@ public class EditorAspectDescriptorImpl extends EditorAspectDescriptorBase {
       case 2:
         return Collections.<SubstituteMenu>singletonList(new GrammarCellsSubstituteMenu_EBBitField());
       case 3:
-        return Arrays.asList(new SubstituteMenu[]{new EBBitFieldMember_SubstituteMenu(), new GrammarCellsSubstituteMenu_EBBitFieldMember()});
+        return Collections.<SubstituteMenu>singletonList(new GrammarCellsSubstituteMenu_EBBitFieldMember());
       case 4:
         return Collections.<SubstituteMenu>singletonList(new GrammarCellsSubstituteMenu_EBCPP());
       case 5:
