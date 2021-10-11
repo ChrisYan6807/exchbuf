@@ -17,25 +17,25 @@ import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 
-public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
-  private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
+public final class EBInt64__BehaviorDescriptor extends BaseBHDescriptor {
+  private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b0L, "eb_lang.structure.EBInt64");
 
-  public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3aM").build();
-  public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3cB").build();
+  public static final SMethod<Boolean> signed_id7qxjCwPtAaQ = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("signed").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtAaQ").build();
+  public static final SMethod<Integer> size_id7qxjCwPtApr = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtApr").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
-  /*package*/ static String getCppType_id7sFT47Ik3aM(@NotNull SNode __thisNode__) {
-    return "";
+  /*package*/ static boolean signed_id7qxjCwPtAaQ(@NotNull SNode __thisNode__) {
+    return true;
   }
-  /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
-    return "";
+  /*package*/ static int size_id7qxjCwPtApr(@NotNull SNode __thisNode__) {
+    return 8;
   }
 
-  /*package*/ EBMessage__BehaviorDescriptor() {
+  /*package*/ EBInt64__BehaviorDescriptor() {
   }
 
   @Override
@@ -51,9 +51,9 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
+        return (T) ((Boolean) signed_id7qxjCwPtAaQ(node));
       case 1:
-        return (T) ((String) getPyType_id7sFT47Ik3cB(node));
+        return (T) ((Integer) size_id7qxjCwPtApr(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

@@ -13,7 +13,6 @@ import jetbrains.mps.smodel.runtime.impl.ConceptDescriptorBuilder2;
 import jetbrains.mps.smodel.adapter.ids.PrimitiveTypeId;
 
 public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
-  /*package*/ final ConceptDescriptor myConceptEBAlias = createDescriptorForEBAlias();
   /*package*/ final ConceptDescriptor myConceptEBBigEndian = createDescriptorForEBBigEndian();
   /*package*/ final ConceptDescriptor myConceptEBBitField = createDescriptorForEBBitField();
   /*package*/ final ConceptDescriptor myConceptEBBitFieldMember = createDescriptorForEBBitFieldMember();
@@ -66,15 +65,13 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptEBAlias, myConceptEBBigEndian, myConceptEBBitField, myConceptEBBitFieldMember, myConceptEBCPP, myConceptEBChar, myConceptEBCharLiteral, myConceptEBComment, myConceptEBEmptyStatement, myConceptEBEndian, myConceptEBEnum, myConceptEBExtern, myConceptEBFixedLenghString, myConceptEBIIdentifierConcept, myConceptEBImportPrimitive, myConceptEBInclude, myConceptEBInt16, myConceptEBInt32, myConceptEBInt64, myConceptEBInt8, myConceptEBIntKVPair, myConceptEBIntLiteral, myConceptEBIntType, myConceptEBLittleEndian, myConceptEBMessage, myConceptEBMessageBlockMember, myConceptEBMessageMember, myConceptEBMessageNonBlockMember, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBPython, myConceptEBSBEDimension, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBUInt16, myConceptEBUInt32, myConceptEBUInt64, myConceptEBUInt8);
+    return Arrays.asList(myConceptEBBigEndian, myConceptEBBitField, myConceptEBBitFieldMember, myConceptEBCPP, myConceptEBChar, myConceptEBCharLiteral, myConceptEBComment, myConceptEBEmptyStatement, myConceptEBEndian, myConceptEBEnum, myConceptEBExtern, myConceptEBFixedLenghString, myConceptEBIIdentifierConcept, myConceptEBImportPrimitive, myConceptEBInclude, myConceptEBInt16, myConceptEBInt32, myConceptEBInt64, myConceptEBInt8, myConceptEBIntKVPair, myConceptEBIntLiteral, myConceptEBIntType, myConceptEBLittleEndian, myConceptEBMessage, myConceptEBMessageBlockMember, myConceptEBMessageMember, myConceptEBMessageNonBlockMember, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBPython, myConceptEBSBEDimension, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBUInt16, myConceptEBUInt32, myConceptEBUInt64, myConceptEBUInt8);
   }
 
   @Override
   @Nullable
   public ConceptDescriptor getDescriptor(SConceptId id) {
     switch (myIndexSwitch.index(id)) {
-      case LanguageConceptSwitch.EBAlias:
-        return myConceptEBAlias;
       case LanguageConceptSwitch.EBBigEndian:
         return myConceptEBBigEndian;
       case LanguageConceptSwitch.EBBitField:
@@ -161,17 +158,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     return myIndexSwitch.index(c);
   }
 
-  private static ConceptDescriptor createDescriptorForEBAlias() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBAlias", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2415e3bL);
-    b.class_(false, false, false);
-    b.super_("eb_lang.structure.EBTypeStatement", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L);
-    b.parent(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L);
-    b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083633211");
-    b.version(2);
-    b.aggregate("target", 0x726a4e86e2415e40L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L).optional(false).ordered(true).multiple(false).origin("8244488409083633216").done();
-    b.alias("alias");
-    return b.create();
-  }
   private static ConceptDescriptor createDescriptorForEBBigEndian() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBBigEndian", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f32711fL);
     b.class_(false, false, false);

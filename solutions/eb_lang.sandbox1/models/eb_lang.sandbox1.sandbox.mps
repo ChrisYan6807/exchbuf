@@ -30,7 +30,7 @@
       </concept>
       <concept id="8244488409083636119" name="eb_lang.structure.EBBitFieldMember" flags="ng" index="2gaMsh">
         <property id="8244488409083636124" name="length" index="2gaMsq" />
-        <property id="8244488409083636122" name="offset" index="2gaMss" />
+        <reference id="8587208086333401400" name="default" index="2pq4PT" />
         <reference id="6284687853303548466" name="enum" index="1rqnxW" />
       </concept>
       <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">
@@ -39,7 +39,6 @@
       <concept id="8244488409083636164" name="eb_lang.structure.EBCPP" flags="ng" index="2gaMt2">
         <property id="8244488409083636165" name="value" index="2gaMt3" />
       </concept>
-      <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
       <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
       <concept id="8244488409083618480" name="eb_lang.structure.EBInt64" flags="ng" index="2gaQCQ" />
@@ -67,10 +66,6 @@
         <property id="8717146646088262292" name="max" index="nVqg$" />
         <property id="8717146646088262296" name="min" index="nVqgC" />
         <child id="8717146646090248481" name="endian" index="nMZuh" />
-      </concept>
-      <concept id="2293153050483840551" name="eb_lang.structure.EBSBEDimension" flags="ng" index="2yoVMF">
-        <child id="2293153050483840651" name="blockLengthType" index="2yoVK7" />
-        <child id="2293153050483840657" name="numInGroupType" index="2yoVKt" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -230,20 +225,20 @@
     <node concept="2gaMs9" id="5sRG$Scp1G6" role="2gln9U">
       <property role="TrG5h" value="STPBitfield" />
       <node concept="2gaQCM" id="5sRG$ScrLJn" role="2gaMsk" />
-      <node concept="2gaMsh" id="5sRG$Scp1Ga" role="2gaMsi">
-        <property role="2gaMss" value="0" />
+      <node concept="2gaMsh" id="7sFT47IjF60" role="2gaMsi">
         <property role="2gaMsq" value="2" />
-        <ref role="1rqnxW" node="5Ba9KT$ifD" resolve="ReservedSTP" />
-      </node>
-      <node concept="2gaMsh" id="5sRG$ScpOJ1" role="2gaMsi">
-        <property role="2gaMss" value="2" />
-        <property role="2gaMsq" value="2" />
-        <ref role="1rqnxW" node="5Ba9KT$ibk" resolve="STPProtectionInstruction" />
-      </node>
-      <node concept="2gaMsh" id="5sRG$ScpOJ4" role="2gaMsi">
-        <property role="2gaMss" value="4" />
-        <property role="2gaMsq" value="4" />
         <ref role="1rqnxW" node="5Ba9KT$i7W" resolve="STPProtectionLevel" />
+        <ref role="2pq4PT" node="5Ba9KT$i80" resolve="Disable" />
+      </node>
+      <node concept="2gaMsh" id="7sFT47IjF62" role="2gaMsi">
+        <property role="2gaMsq" value="3" />
+        <ref role="1rqnxW" node="5Ba9KT$ibk" resolve="STPProtectionInstruction" />
+        <ref role="2pq4PT" node="5Ba9KT$icn" resolve="NotApplicable" />
+      </node>
+      <node concept="2gaMsh" id="7sFT47IjF65" role="2gaMsi">
+        <property role="2gaMsq" value="3" />
+        <ref role="1rqnxW" node="5Ba9KT$ifD" resolve="ReservedSTP" />
+        <ref role="2pq4PT" node="5Ba9KT$ifH" resolve="Empty" />
       </node>
     </node>
     <node concept="2gln9S" id="5sRG$SctMfK" role="2gln9U" />
@@ -323,17 +318,6 @@
       </node>
     </node>
     <node concept="2gln9S" id="1ZiUCMXGllE" role="2gln9U" />
-    <node concept="2yoVMF" id="1ZiUCMXH2xi" role="2gln9U">
-      <property role="TrG5h" value="group" />
-      <node concept="2gaQCM" id="1ZiUCMXHFTb" role="2yoVK7" />
-      <node concept="2gaQCM" id="1ZiUCMXHFTe" role="2yoVKt" />
-    </node>
-    <node concept="2gln9S" id="1ZiUCMXIlsc" role="2gln9U" />
-    <node concept="2yoVMF" id="1ZiUCMXIlvl" role="2gln9U">
-      <property role="TrG5h" value="group1" />
-      <node concept="2gaQCC" id="1ZiUCMXIZ$p" role="2yoVK7" />
-      <node concept="2glnei" id="1ZiUCMXIZ$s" role="2yoVKt" />
-    </node>
     <node concept="2gln9S" id="1ZiUCMXH0co" role="2gln9U" />
     <node concept="2gln9S" id="7zTxF1Jf2DO" role="2gln9U" />
     <node concept="2gln9S" id="7zTxF1Jf2Dn" role="2gln9U" />

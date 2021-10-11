@@ -23,8 +23,10 @@ public final class EBTypeStatement__BehaviorDescriptor extends BaseBHDescriptor 
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
 
   public static final SMethod<String> getName_id5xcBXFwNwqN = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5xcBXFwNwqN").build();
+  public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3aM").build();
+  public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3cB").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getName_id5xcBXFwNwqN);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getName_id5xcBXFwNwqN, getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }

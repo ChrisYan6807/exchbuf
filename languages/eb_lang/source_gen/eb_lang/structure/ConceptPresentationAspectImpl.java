@@ -9,7 +9,6 @@ import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import jetbrains.mps.smodel.runtime.ConceptPresentationBuilder;
 
 public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase {
-  private ConceptPresentation props_EBAlias;
   private ConceptPresentation props_EBBigEndian;
   private ConceptPresentation props_EBBitField;
   private ConceptPresentation props_EBBitFieldMember;
@@ -54,13 +53,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   public ConceptPresentation getDescriptor(SAbstractConcept c) {
     StructureAspectDescriptor structureDescriptor = (StructureAspectDescriptor) myLanguageRuntime.getAspect(jetbrains.mps.smodel.runtime.StructureAspectDescriptor.class);
     switch (structureDescriptor.internalIndex(c)) {
-      case LanguageConceptSwitch.EBAlias:
-        if (props_EBAlias == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
-          props_EBAlias = cpb.create();
-        }
-        return props_EBAlias;
       case LanguageConceptSwitch.EBBigEndian:
         if (props_EBBigEndian == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
