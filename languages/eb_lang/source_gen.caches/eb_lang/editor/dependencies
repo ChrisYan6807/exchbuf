@@ -956,7 +956,6 @@
     <classNode dependClassName="eb_lang.editor.EBProtocol_Editor" />
     <classNode dependClassName="eb_lang.editor.EBPython_Editor" />
     <classNode dependClassName="eb_lang.editor.EBSBEDimension_Editor" />
-    <classNode dependClassName="eb_lang.editor.GrammarCellsSubstituteMenu_EBAlias" />
     <classNode dependClassName="eb_lang.editor.GrammarCellsSubstituteMenu_EBBigEndian" />
     <classNode dependClassName="eb_lang.editor.GrammarCellsSubstituteMenu_EBBitField" />
     <classNode dependClassName="eb_lang.editor.GrammarCellsSubstituteMenu_EBBitFieldMember" />
@@ -1065,24 +1064,6 @@
     <classNode dependClassName="org.jetbrains.mps.openapi.model.SNode" />
     <classNode extendsClassName="com.mbeddr.mpsutil.grammarcells.runtime.AbstractGrammarActionDescriptor" />
     <classNode extendsClassName="com.mbeddr.mpsutil.grammarcells.runtime.IGrammarActionsDescriptor" />
-  </dependency>
-  <dependency className="eb_lang.editor.GrammarCellsSubstituteMenu_EBAlias">
-    <classNode dependClassName="com.mbeddr.mpsutil.grammarcells.runtime.menu.GrammarCellsSubstituteMenuPart" />
-    <classNode dependClassName="java.lang.Override" />
-    <classNode dependClassName="java.util.ArrayList" />
-    <classNode dependClassName="java.util.List" />
-    <classNode dependClassName="jetbrains.mps.lang.editor.menus.EditorMenuDescriptorBase" />
-    <classNode dependClassName="jetbrains.mps.lang.editor.menus.MenuPart" />
-    <classNode dependClassName="jetbrains.mps.openapi.editor.menus.substitute.SubstituteMenuContext" />
-    <classNode dependClassName="jetbrains.mps.openapi.editor.menus.substitute.SubstituteMenuItem" />
-    <classNode dependClassName="jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory" />
-    <classNode dependClassName="org.jetbrains.annotations.NotNull" />
-    <classNode dependClassName="org.jetbrains.mps.openapi.language.SAbstractConcept" />
-    <classNode dependClassName="org.jetbrains.mps.openapi.language.SConcept" />
-    <classNode dependClassName="org.jetbrains.mps.openapi.module.SModule" />
-    <classNode dependClassName="org.jetbrains.mps.openapi.module.SRepository" />
-    <classNode dependClassName="org.jetbrains.mps.openapi.persistence.PersistenceFacade" />
-    <classNode extendsClassName="jetbrains.mps.nodeEditor.menus.substitute.SubstituteMenuBase" />
   </dependency>
   <dependency className="eb_lang.editor.GrammarCellsSubstituteMenu_EBBigEndian">
     <classNode dependClassName="com.mbeddr.mpsutil.grammarcells.runtime.menu.GrammarCellsSubstituteMenuPart" />

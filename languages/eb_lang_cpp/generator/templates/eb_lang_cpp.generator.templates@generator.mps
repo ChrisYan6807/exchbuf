@@ -13,8 +13,8 @@
     <import index="83ib" ref="r:a03fcfc7-e076-4dfb-a4e8-3ec4222f793b(eb_lang_cpp.structure)" />
     <import index="wt0b" ref="r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)" implicit="true" />
     <import index="tpck" ref="r:00000000-0000-4000-0000-011c89590288(jetbrains.mps.lang.core.structure)" implicit="true" />
-    <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
     <import index="hy7h" ref="r:8c19a45a-b9f1-437b-b616-f790524c88dc(eb_lang.behavior)" implicit="true" />
+    <import index="wyt6" ref="6354ebe7-c22a-4a0f-ac54-50b52ab9b065/java:java.lang(JDK/)" implicit="true" />
   </imports>
   <registry>
     <language id="f3061a53-9226-4cc5-a443-f952ceaf5816" name="jetbrains.mps.baseLanguage">
@@ -265,17 +265,11 @@
               <node concept="3zFVjK" id="5Ba9KTy7DJ" role="3zH0cK">
                 <node concept="3clFbS" id="5Ba9KTy7DK" role="2VODD2">
                   <node concept="3clFbF" id="5Ba9KTy7E8" role="3cqZAp">
-                    <node concept="2OqwBi" id="5Ba9KTy8V7" role="3clFbG">
-                      <node concept="2OqwBi" id="5Ba9KTy8re" role="2Oq$k0">
-                        <node concept="2OqwBi" id="5Ba9KTy7PQ" role="2Oq$k0">
-                          <node concept="30H73N" id="5Ba9KTy7E7" role="2Oq$k0" />
-                          <node concept="3TrEf2" id="5Ba9KTy8b1" role="2OqNvi">
-                            <ref role="3Tt5mk" to="wt0b:79EjCrygmC7" resolve="type" />
-                          </node>
-                        </node>
-                        <node concept="2yIwOk" id="5Ba9KTy8C0" role="2OqNvi" />
+                    <node concept="2OqwBi" id="7qxjCwPv2b$" role="3clFbG">
+                      <node concept="30H73N" id="5Ba9KTy7E7" role="2Oq$k0" />
+                      <node concept="2qgKlT" id="7qxjCwPv2wJ" role="2OqNvi">
+                        <ref role="37wK5l" to="hy7h:7sFT47Ik3aM" resolve="getCppType" />
                       </node>
-                      <node concept="3n3YKJ" id="5Ba9KTy9cI" role="2OqNvi" />
                     </node>
                   </node>
                 </node>

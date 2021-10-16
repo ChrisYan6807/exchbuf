@@ -199,7 +199,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
         }, targetNode, LINKS.default$Qsog);
         CellUtil.setupIDeprecatableStyles(targetNode, cell);
         setSemanticNodeToCells(cell, getNode());
-        installDeleteActions_nullable_reference(cell);
+        installDeleteActions_notnull(cell);
         return cell;
       }
     };

@@ -10,6 +10,9 @@
   </imports>
   <registry>
     <language id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang">
+      <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
+        <child id="8244488409083636231" name="type" index="2gaMi1" />
+      </concept>
       <concept id="8244488409083636233" name="eb_lang.structure.EBPython" flags="ng" index="2gaMif">
         <property id="8244488409083636256" name="value" index="2gaMiA" />
       </concept>
@@ -26,6 +29,7 @@
         <property id="8244488409083636165" name="value" index="2gaMt3" />
       </concept>
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
+      <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
       <concept id="8244488409083493622" name="eb_lang.structure.EBProtocol" flags="ng" index="2gln9K">
         <child id="8244488409083493628" name="statements" index="2gln9U" />
       </concept>
@@ -44,6 +48,10 @@
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
         <property id="8244488409083493657" name="value" index="2glnev" />
+      </concept>
+      <concept id="8717146646090248479" name="eb_lang.structure.EBBigEndian" flags="ng" index="nMZuJ" />
+      <concept id="8717146646088251492" name="eb_lang.structure.EBIntType" flags="ng" index="nUBVk">
+        <child id="8717146646090248481" name="endian" index="nMZuh" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -64,6 +72,17 @@
       <property role="2gaMiA" value="import os, sys" />
     </node>
     <node concept="2gln9S" id="14P4l1LXDOW" role="2gln9U" />
+    <node concept="2gaMi0" id="7qxjCwPvesw" role="2gln9U">
+      <property role="TrG5h" value="u16" />
+      <node concept="2gaQCO" id="7qxjCwPvety" role="2gaMi1" />
+    </node>
+    <node concept="2gaMi0" id="7qxjCwPvDdJ" role="2gln9U">
+      <property role="TrG5h" value="be_u16" />
+      <node concept="2gaQCO" id="7qxjCwPvDeN" role="2gaMi1">
+        <node concept="nMZuJ" id="7qxjCwPvDeU" role="nMZuh" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="7qxjCwPvery" role="2gln9U" />
     <node concept="2glneb" id="5Ba9KTzrMM" role="2gln9U">
       <property role="TrG5h" value="MsgType" />
       <node concept="2glnej" id="5Ba9KTzrWG" role="2glne$" />

@@ -2,6 +2,7 @@
 <dependenciesRoot>
   <dependency className="eb_lang_cpp.generator.templates.QueriesGenerated">
     <classNode dependClassName="eb_lang.behavior.EBBitFieldMember__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBTypeStatement__BehaviorDescriptor" />
     <classNode dependClassName="java.lang.Iterable" />
     <classNode dependClassName="java.lang.Object" />
     <classNode dependClassName="java.lang.Override" />

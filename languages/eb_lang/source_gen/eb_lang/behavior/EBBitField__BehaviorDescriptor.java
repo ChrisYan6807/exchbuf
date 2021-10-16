@@ -13,17 +13,23 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
+import org.jetbrains.mps.openapi.language.SProperty;
+import org.jetbrains.mps.openapi.language.SContainmentLink;
 
 public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, "eb_lang.structure.EBBitField");
 
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3aM").build();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3cB").build();
+  public static final SMethod<Integer> size_id5sDYI_$HMZg = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5sDYI_$HMZg").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, size_id5sDYI_$HMZg);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
@@ -32,7 +38,16 @@ public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
     return "";
   }
   /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
-    return "";
+    return "PacketField";
+  }
+  /*package*/ static int size_id5sDYI_$HMZg(@NotNull SNode __thisNode__) {
+    // there should be a constraint to check length is n*8
+    int bitLen = 0;
+    for (SNode member : ListSequence.fromList(SLinkOperations.getChildren(__thisNode__, LINKS.values$w4DV))) {
+      bitLen += SPropertyOperations.getInteger(member, PROPS.length$wbxg);
+    }
+
+    return bitLen / 8;
   }
 
   /*package*/ EBBitField__BehaviorDescriptor() {
@@ -54,6 +69,8 @@ public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
         return (T) ((String) getCppType_id7sFT47Ik3aM(node));
       case 1:
         return (T) ((String) getPyType_id7sFT47Ik3cB(node));
+      case 2:
+        return (T) ((Integer) size_id5sDYI_$HMZg(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }
@@ -81,5 +98,13 @@ public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
   @Override
   public SAbstractConcept getConcept() {
     return CONCEPT;
+  }
+
+  private static final class PROPS {
+    /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
+  }
+
+  private static final class LINKS {
+    /*package*/ static final SContainmentLink values$w4DV = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, 0x726a4e86e2416994L, "values");
   }
 }

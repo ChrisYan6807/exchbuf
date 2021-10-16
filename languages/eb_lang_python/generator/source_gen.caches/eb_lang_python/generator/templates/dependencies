@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dependenciesRoot>
   <dependency className="eb_lang_python.generator.templates.QueriesGenerated">
+    <classNode dependClassName="eb_lang.behavior.EBBitField__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBTypeStatement__BehaviorDescriptor" />
     <classNode dependClassName="java.lang.Iterable" />
     <classNode dependClassName="java.lang.Object" />
     <classNode dependClassName="java.lang.Override" />
