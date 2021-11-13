@@ -3,7 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang" version="0" />
-    <engage id="195a05df-981e-4c01-a03a-6abf03243612" name="eb_lang_python" />
+    <engage id="87d4987f-c831-4a03-9f51-66048c99e214" name="eb_lang_cpp" />
   </languages>
   <imports />
   <registry>
@@ -15,6 +15,7 @@
         <property id="8244488409083636256" name="value" index="2gaMiA" />
       </concept>
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
+        <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonBlockMember" flags="ng" index="2gaMiM">
@@ -85,7 +86,7 @@
     <node concept="2gln9S" id="5tBX7YzDQ3$" role="2gln9U" />
     <node concept="2gaMi0" id="5tBX7YzDQ3J" role="2gln9U">
       <property role="TrG5h" value="char" />
-      <node concept="2glnej" id="5tBX7YzDQ3T" role="2gaMi1" />
+      <node concept="2glnej" id="6MZMjOeKcmn" role="2gaMi1" />
     </node>
     <node concept="2gaMi0" id="7zTxF1Jdks4" role="2gln9U">
       <property role="TrG5h" value="i64" />
@@ -238,16 +239,50 @@
         <ref role="2pq4PT" node="5Ba9KT$ifH" resolve="Empty" />
       </node>
     </node>
+    <node concept="2gln9S" id="7ZYI7Of_mYC" role="2gln9U" />
+    <node concept="2gaMiw" id="7ZYI7Of_n1h" role="2gln9U">
+      <property role="TrG5h" value="Header" />
+      <node concept="2gaMiM" id="7ZYI7Of_n2B" role="36JId$">
+        <property role="TrG5h" value="length" />
+        <property role="3tgU5Q" value="0" />
+        <ref role="1rk6cS" node="5sRG$SctMko" resolve="u16" />
+      </node>
+      <node concept="2gaMiM" id="7ZYI7Of_n2G" role="36JId$">
+        <property role="TrG5h" value="msgType" />
+        <property role="3tgU5Q" value="New" />
+        <ref role="1rk6cS" node="5Ba9KTzrMM" resolve="MsgType" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="7ZYI7Of_ngd" role="2gln9U" />
+    <node concept="2gaMiw" id="7ZYI7Of_n48" role="2gln9U">
+      <property role="TrG5h" value="Msg" />
+      <ref role="2yvCZa" node="7ZYI7Of_n1h" resolve="Header" />
+      <node concept="2gaMiM" id="7ZYI7Of_n4b" role="36JId$">
+        <property role="TrG5h" value="ordType" />
+        <property role="3tgU5Q" value="Market" />
+        <ref role="1rk6cS" node="7zTxF1Jedoy" resolve="OrderType" />
+      </node>
+      <node concept="2gaMiM" id="7ZYI7Of_n4c" role="36JId$">
+        <property role="TrG5h" value="delimitor" />
+        <property role="3tgU5Q" value="'a'" />
+        <ref role="1rk6cS" node="5tBX7YzDQ3J" resolve="char" />
+      </node>
+      <node concept="2gaMiM" id="7ZYI7Of_n4d" role="36JId$">
+        <property role="TrG5h" value="stpField" />
+        <property role="3tgU5Q" value="0" />
+        <ref role="1rk6cS" node="5sRG$Scp1G6" resolve="STPBitfield" />
+      </node>
+    </node>
     <node concept="2gln9S" id="5sRG$SctMfK" role="2gln9U" />
     <node concept="2gaMiw" id="3SNypnb4QwO" role="2gln9U">
-      <property role="TrG5h" value="Msg0" />
+      <property role="TrG5h" value="Msg1" />
       <node concept="2gaMiM" id="3SNypnb4QwP" role="36JId$">
-        <property role="TrG5h" value="length11" />
+        <property role="TrG5h" value="length" />
         <property role="3tgU5Q" value="0" />
         <ref role="1rk6cS" node="5sRG$SctMko" resolve="u16" />
       </node>
       <node concept="2gaMiM" id="3SNypnb4QwQ" role="36JId$">
-        <property role="TrG5h" value="msgType22" />
+        <property role="TrG5h" value="msgType" />
         <property role="3tgU5Q" value="New" />
         <ref role="1rk6cS" node="5Ba9KTzrMM" resolve="MsgType" />
       </node>
@@ -257,7 +292,7 @@
         <ref role="1rk6cS" node="7zTxF1Jedoy" resolve="OrderType" />
       </node>
       <node concept="2gaMiM" id="3SNypnb4QwR" role="36JId$">
-        <property role="TrG5h" value="delimitor33" />
+        <property role="TrG5h" value="delimitor" />
         <property role="3tgU5Q" value="'a'" />
         <ref role="1rk6cS" node="5tBX7YzDQ3J" resolve="char" />
       </node>
