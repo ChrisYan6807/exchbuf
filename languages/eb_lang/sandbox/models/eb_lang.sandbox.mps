@@ -55,8 +55,14 @@
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
+      <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
+        <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
+      </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
+      </concept>
+      <concept id="779128492853369165" name="jetbrains.mps.lang.core.structure.SideTransformInfo" flags="ng" index="1KehLL">
+        <property id="779128492853934523" name="cellId" index="1K8rM7" />
       </concept>
     </language>
   </registry>
@@ -74,7 +80,11 @@
     <node concept="2gln9S" id="7Ho_HUXTAd0" role="2gln9U" />
     <node concept="2gaMi0" id="5xcBXFwMwkv" role="2gln9U">
       <property role="TrG5h" value="u16" />
-      <node concept="2gaQCO" id="5xcBXFwMwlP" role="2gaMi1" />
+      <node concept="2gaQCO" id="5xcBXFwMwlP" role="2gaMi1">
+        <node concept="1KehLL" id="5Wh9ZcFbN_Q" role="lGtFl">
+          <property role="1K8rM7" value="ALIAS_EDITOR_COMPONENT" />
+        </node>
+      </node>
     </node>
     <node concept="2gaMi0" id="5xcBXFwMwnc" role="2gln9U">
       <property role="TrG5h" value="u32" />

@@ -21,6 +21,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBEnum;
   private ConceptPresentation props_EBExtern;
   private ConceptPresentation props_EBFixedLenghString;
+  private ConceptPresentation props_EBFloatDecimal;
   private ConceptPresentation props_EBIIdentifierConcept;
   private ConceptPresentation props_EBImportPrimitive;
   private ConceptPresentation props_EBInclude;
@@ -139,6 +140,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBFixedLenghString = cpb.create();
         }
         return props_EBFixedLenghString;
+      case LanguageConceptSwitch.EBFloatDecimal:
+        if (props_EBFloatDecimal == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.rawPresentation("FloatDecimal");
+          props_EBFloatDecimal = cpb.create();
+        }
+        return props_EBFloatDecimal;
       case LanguageConceptSwitch.EBIIdentifierConcept:
         if (props_EBIIdentifierConcept == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

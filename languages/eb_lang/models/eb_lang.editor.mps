@@ -2143,5 +2143,78 @@
       <node concept="2iRfu4" id="5c0MfkChsBf" role="2iSdaV" />
     </node>
   </node>
+  <node concept="24kQdi" id="1ckN_PstSEy">
+    <property role="3GE5qa" value="primitive_types" />
+    <ref role="1XX52x" to="wt0b:1ckN_PstSE2" resolve="EBFloatDecimal" />
+    <node concept="3EZMnI" id="1ckN_PstSE$" role="2wV5jI">
+      <node concept="PMmxH" id="1ckN_PstSEI" role="3EZMnx">
+        <ref role="PMmxG" to="tpco:2wZex4PafBj" resolve="alias" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSEL" role="3EZMnx">
+        <property role="3F0ifm" value="[" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSET" role="3EZMnx">
+        <property role="3F0ifm" value="min" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSF3" role="3EZMnx">
+        <property role="3F0ifm" value="=" />
+      </node>
+      <node concept="3F0A7n" id="1ckN_PstSFf" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:1ckN_PstSE5" resolve="min" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSFt" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSFH" role="3EZMnx">
+        <property role="3F0ifm" value="max" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSFZ" role="3EZMnx">
+        <property role="3F0ifm" value="=" />
+      </node>
+      <node concept="3F0A7n" id="1ckN_PstSGj" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:1ckN_PstSE3" resolve="max" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSGD" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSH1" role="3EZMnx">
+        <property role="3F0ifm" value="noValue" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSHr" role="3EZMnx">
+        <property role="3F0ifm" value="=" />
+      </node>
+      <node concept="3F0A7n" id="1ckN_PstSHR" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:1ckN_PstSEh" resolve="noValue" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSIl" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSIP" role="3EZMnx">
+        <property role="3F0ifm" value="size" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSJn" role="3EZMnx">
+        <property role="3F0ifm" value="=" />
+      </node>
+      <node concept="3F0A7n" id="1ckN_PstSJV" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:1ckN_PstSE8" resolve="size" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSKx" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSL9" role="3EZMnx">
+        <property role="3F0ifm" value="precision" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSLN" role="3EZMnx">
+        <property role="3F0ifm" value="=" />
+      </node>
+      <node concept="3F0A7n" id="1ckN_PstSMv" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:1ckN_PstSEc" resolve="precision" />
+      </node>
+      <node concept="3F0ifn" id="1ckN_PstSNd" role="3EZMnx">
+        <property role="3F0ifm" value="]" />
+      </node>
+      <node concept="2iRfu4" id="1ckN_PstSEB" role="2iSdaV" />
+    </node>
+  </node>
 </model>
 

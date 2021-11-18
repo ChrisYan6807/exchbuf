@@ -467,6 +467,11 @@
       <property role="TrG5h" value="min" />
       <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
+    <node concept="1TJgyi" id="1ckN_PstSEn" role="1TKVEl">
+      <property role="IQ2nx" value="1374950686633462423" />
+      <property role="TrG5h" value="noValue" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
     <node concept="1TJgyj" id="7zTxF1JcB4x" role="1TKVEi">
       <property role="IQ2ns" value="8717146646090248481" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
@@ -530,6 +535,38 @@
       <property role="20kJfa" value="protocol" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="79EjCryfNNQ" resolve="EBProtocol" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="1ckN_PstSE2">
+    <property role="EcuMT" value="1374950686633462402" />
+    <property role="3GE5qa" value="primitive_types" />
+    <property role="TrG5h" value="EBFloatDecimal" />
+    <property role="34LRSv" value="FloatDecimal" />
+    <ref role="1TJDcQ" node="79EjCryfNOg" resolve="EBPrimitiveType" />
+    <node concept="1TJgyi" id="1ckN_PstSE3" role="1TKVEl">
+      <property role="IQ2nx" value="1374950686633462403" />
+      <property role="TrG5h" value="max" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+    <node concept="1TJgyi" id="1ckN_PstSE5" role="1TKVEl">
+      <property role="IQ2nx" value="1374950686633462405" />
+      <property role="TrG5h" value="min" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+    <node concept="1TJgyi" id="1ckN_PstSE8" role="1TKVEl">
+      <property role="IQ2nx" value="1374950686633462408" />
+      <property role="TrG5h" value="size" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+    <node concept="1TJgyi" id="1ckN_PstSEc" role="1TKVEl">
+      <property role="IQ2nx" value="1374950686633462412" />
+      <property role="TrG5h" value="precision" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
+    <node concept="1TJgyi" id="1ckN_PstSEh" role="1TKVEl">
+      <property role="IQ2nx" value="1374950686633462417" />
+      <property role="TrG5h" value="noValue" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
   </node>
 </model>
