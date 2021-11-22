@@ -136,7 +136,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBFixedLenghString:
         if (props_EBFixedLenghString == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("string");
+          cpb.rawPresentation("FixedLengthString");
           props_EBFixedLenghString = cpb.create();
         }
         return props_EBFixedLenghString;

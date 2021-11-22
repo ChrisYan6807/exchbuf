@@ -36,7 +36,6 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JFileChooser;
-import jetbrains.mps.smodel.ModelAccess;
 import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
 import org.apache.log4j.Level;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -44,7 +43,12 @@ import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import org.w3c.dom.Node;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
+import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import org.xml.sax.SAXException;
@@ -52,8 +56,6 @@ import jetbrains.mps.nodeEditor.cellProviders.AbstractCellListHandler;
 import jetbrains.mps.lang.editor.cellProviders.RefNodeListHandler;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
 import org.jetbrains.mps.openapi.language.SAbstractConcept;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
-import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import jetbrains.mps.openapi.editor.menus.transformation.SNodeLocation;
 import jetbrains.mps.openapi.editor.cells.DefaultSubstituteInfo;
 import jetbrains.mps.nodeEditor.cellMenu.SEmptyContainmentSubstituteInfo;
@@ -140,6 +142,8 @@ import org.jetbrains.mps.openapi.language.SConcept;
     return editorCell;
   }
   private JComponent _QueryFunction_JComponent_peo863_a1a() {
+    final SNode protocolRootASTNode = myNode;
+
     JButton button = new JButton("Import DeutscheBörse/EuroNext layout XML file");
     button.setBackground(Color.WHITE);
     button.addActionListener(new ActionListener() {
@@ -148,7 +152,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
         final JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-          ModelAccess.instance().runWriteAction(new Runnable() {
+          getEditorContext().getRepository().getModelAccess().executeCommand(new Runnable() {
             @Override
             public void run() {
               String path = chooser.getSelectedFile().getPath();
@@ -170,15 +174,177 @@ import org.jetbrains.mps.openapi.language.SConcept;
                   NodeList structuresList = doc.getElementsByTagName("Structures");
                   NodeList appMsgList = doc.getElementsByTagName("ApplicationMessages");
 
+                  // clear all child node
+                  SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW).clear();
+
                   // date types
                   for (int idx = 0; idx < dataTypesList.getLength(); ++idx) {
                     NodeList typeList = dataTypesList.item(idx).getChildNodes();
                     for (int i = 0; i < typeList.getLength(); ++i) {
-                      Node node = typeList.item(i);
-                      if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element ele = (Element) node;
+                      Node dataTypeNode = typeList.item(i);
+                      if (dataTypeNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element ele = (Element) dataTypeNode;
                         String name = ele.getAttribute("name");
+                        String type = ele.getAttribute("type");
+                        String rootType = ele.getAttribute("rootType");
                         LoggingRuntime.logMsgView(Level.DEBUG, String.format("DataType: %s", name), EBProtocol_EditorBuilder_a.class, null, null);
+                        if (rootType.equals("String")) {
+                          if (name.equals("char")) {
+                            // skip char definition
+                            continue;
+                          }
+
+                          String sizeStr = ele.getAttribute("size");
+                          if (sizeStr.length() > 0) {
+                            // for the String without size, they are abstract type, do not create AST node for them
+                            // todo there is a "string enum" type as below, very few of them.
+                            // <DataType name="MsgType" type="String" rootType="String" numericID="35"  package="eti_Cash" size="3" description="" range="\x01-\x7E" noValue="0x00">       
+                            //   <ValidValue name="Heartbeat" value="0" description="Heartbeat"/>   
+                            //   <ValidValue name="TestRequest" value="1" description="TestRequest"/>
+                            //   <ValidValue name="Reject" value="3" description="Reject"/>
+                            //   <ValidValue name="Logout" value="5" description="Logout"/>
+                            //   ...
+                            // </DataType>
+                            int size = Integer.parseInt(sizeStr);
+                            String range = ele.getAttribute("range");
+                            String noValue = ele.getAttribute("noValue");
+                            if (type.equals("char")) {
+                              // char enum type
+                              SNode enumNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum"));
+                              SLinkOperations.setTarget(enumNode, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar")));
+                              SPropertyOperations.assign(enumNode, PROPS.name$MnvL, name);
+
+                              NodeList validValueList = ele.getChildNodes();
+                              for (int v = 0; v < validValueList.getLength(); ++v) {
+                                if (validValueList.item(v).getNodeType() == Node.ELEMENT_NODE) {
+                                  Element valueEle = (Element) validValueList.item(v);
+                                  String valueName = valueEle.getAttribute("name");
+                                  String valueValue = valueEle.getAttribute("value");
+                                  SNode kvPair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
+                                  SPropertyOperations.assign(kvPair, PROPS.name$MnvL, valueName);
+
+                                  assert valueValue.length() == 1;
+                                  SNode literal = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, "eb_lang.structure.EBCharLiteral"));
+                                  SPropertyOperations.assign(literal, PROPS.value$_s5n, valueValue);
+                                  SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, literal);
+                                  ListSequence.fromList(SLinkOperations.getChildren(enumNode, LINKS.values$_zmn)).addElement(kvPair);
+
+                                  ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(enumNode);
+                                }
+                              }
+
+                            } else {
+                              SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
+                              SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
+                              SPropertyOperations.assign(fixedStr, PROPS.filler$ZJtT, noValue);
+                              SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, range);
+
+                              SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                              SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
+                              SLinkOperations.setTarget(alias, LINKS.type$zVeR, fixedStr);
+
+                              ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
+                            }
+                          }
+
+
+                        } else if (rootType.equals("int")) {
+                          String sizeStr = ele.getAttribute("size");
+                          if (sizeStr.length() > 0) {
+                            int size = Integer.parseInt(sizeStr);
+                            String minValue = ele.getAttribute("minValue");
+                            String maxValue = ele.getAttribute("maxValue");
+                            String noValue = ele.getAttribute("noValue");
+                            boolean negative = minValue.startsWith("-");
+
+                            // this node will be replaced later, but we have to provide a node instance
+                            SNode typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar"));
+
+                            switch (size) {
+                              case 1:
+                                if (negative) {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d14L, "eb_lang.structure.EBInt8"));
+                                } else {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b4L, "eb_lang.structure.EBUInt8"));
+                                }
+                                break;
+
+                              case 2:
+                                if (negative) {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124aeL, "eb_lang.structure.EBInt16"));
+                                } else {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b2L, "eb_lang.structure.EBUInt16"));
+                                }
+                                break;
+
+                              case 4:
+                                if (negative) {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124afL, "eb_lang.structure.EBInt32"));
+                                } else {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b1L, "eb_lang.structure.EBUInt32"));
+                                }
+                                break;
+
+                              case 8:
+                                if (negative) {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b0L, "eb_lang.structure.EBInt64"));
+                                } else {
+                                  typeNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b3L, "eb_lang.structure.EBUInt64"));
+                                }
+
+                                break;
+                            }
+
+                            SPropertyOperations.assign(typeNode, PROPS.min$DCVS, minValue);
+                            SPropertyOperations.assign(typeNode, PROPS.max$DBZO, maxValue);
+                            SPropertyOperations.assign(typeNode, PROPS.noValue$sULd, noValue);
+                            // endian is always little endian
+
+                            NodeList validValueList = ele.getChildNodes();
+                            if (validValueList.getLength() > 0) {
+                              // int enum
+                              SNode enumNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum"));
+                              SLinkOperations.setTarget(enumNode, LINKS.type$_ySl, typeNode);
+                              SPropertyOperations.assign(enumNode, PROPS.name$MnvL, name);
+
+                              for (int v = 0; v < validValueList.getLength(); ++v) {
+                                if (validValueList.item(v).getNodeType() == Node.ELEMENT_NODE) {
+                                  Element valueEle = (Element) validValueList.item(v);
+                                  String valueName = valueEle.getAttribute("name");
+                                  String valueValue = valueEle.getAttribute("value");
+                                  SNode kvPair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
+                                  SPropertyOperations.assign(kvPair, PROPS.name$MnvL, valueName);
+
+                                  SNode literal = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
+                                  SPropertyOperations.assign(literal, PROPS.value$_syU, valueValue);
+                                  SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, literal);
+                                  ListSequence.fromList(SLinkOperations.getChildren(enumNode, LINKS.values$_zmn)).addElement(kvPair);
+
+                                  ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(enumNode);
+                                }
+                              }
+                            } else {
+                              // int type
+                              SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                              SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
+                              SLinkOperations.setTarget(alias, LINKS.type$zVeR, typeNode);
+
+                              ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
+                            }
+
+                          }
+
+
+                        } else if (rootType.equals("floatDecimal")) {
+                        } else if (rootType.equals("data")) {
+                        } else {
+                          LoggingRuntime.logMsgView(Level.ERROR, "Unknown rootType: " + rootType, EBProtocol_EditorBuilder_a.class, null, null);
+                        }
+
+
+
+
+
                       }
 
                     }
@@ -187,11 +353,10 @@ import org.jetbrains.mps.openapi.language.SConcept;
                   for (int idx = 0; idx < structuresList.getLength(); ++idx) {
                     NodeList typeList = structuresList.item(idx).getChildNodes();
                     for (int i = 0; i < typeList.getLength(); ++i) {
-                      Node node = typeList.item(i);
-                      if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element ele = (Element) node;
+                      Node structureNode = typeList.item(i);
+                      if (structureNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element ele = (Element) structureNode;
                         String name = ele.getAttribute("name");
-                        LoggingRuntime.logMsgView(Level.DEBUG, String.format("Structure %s", name), EBProtocol_EditorBuilder_a.class, null, null);
                       }
 
                     }
@@ -200,11 +365,10 @@ import org.jetbrains.mps.openapi.language.SConcept;
                   for (int idx = 0; idx < appMsgList.getLength(); ++idx) {
                     NodeList typeList = appMsgList.item(idx).getChildNodes();
                     for (int i = 0; i < typeList.getLength(); ++i) {
-                      Node node = typeList.item(i);
-                      if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element ele = (Element) node;
+                      Node appMsgNode = typeList.item(i);
+                      if (appMsgNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element ele = (Element) appMsgNode;
                         String name = ele.getAttribute("name");
-                        LoggingRuntime.logMsgView(Level.DEBUG, String.format("ApplicationMessage %s", name), EBProtocol_EditorBuilder_a.class, null, null);
                       }
 
                     }
@@ -223,7 +387,9 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
 
             }
+
           });
+
 
         }
       }
@@ -319,6 +485,14 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
   private static final class PROPS {
     /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
+    /*package*/ static final SProperty value$_s5n = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x726a4e86e23f3d19L, "value");
+    /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
+    /*package*/ static final SProperty filler$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "filler");
+    /*package*/ static final SProperty range$t6I$ = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4fe9a5784793da6aL, "range");
+    /*package*/ static final SProperty min$DCVS = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142298L, "min");
+    /*package*/ static final SProperty max$DBZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142294L, "max");
+    /*package*/ static final SProperty noValue$sULd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x1314ce5d5c778a97L, "noValue");
+    /*package*/ static final SProperty value$_syU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x726a4e86e23f3d1bL, "value");
   }
 
   private static final class CONCEPTS {
@@ -328,5 +502,9 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
   private static final class LINKS {
     /*package*/ static final SContainmentLink statements$_5KW = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x726a4e86e23f3cfcL, "statements");
+    /*package*/ static final SContainmentLink type$_ySl = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, 0x726a4e86e23f3d22L, "type");
+    /*package*/ static final SContainmentLink value$_yQp = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, 0x726a4e86e23f3d20L, "value");
+    /*package*/ static final SContainmentLink values$_zmn = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, 0x726a4e86e23f3d24L, "values");
+    /*package*/ static final SContainmentLink type$zVeR = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, 0x726a4e86e2416a07L, "type");
   }
 }
