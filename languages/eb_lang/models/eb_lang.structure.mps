@@ -422,6 +422,11 @@
       <property role="20kJfa" value="counter" />
       <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageNonBlockMember" />
     </node>
+    <node concept="1TJgyi" id="10hFQ5FZejv" role="1TKVEl">
+      <property role="IQ2nx" value="1157899412169352415" />
+      <property role="TrG5h" value="cardinality" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmCE">
     <property role="EcuMT" value="8244488409083636266" />
