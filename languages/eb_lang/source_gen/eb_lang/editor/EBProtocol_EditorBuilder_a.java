@@ -406,6 +406,10 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                       }
                     }
 
+                    for (Element e : LinkedListSequence.fromLinkedListNew(msgList)) {
+                      LinkedListSequence.fromLinkedListNew(componentList).addElement(e);
+                    }
+
                     for (int i = 0; i < LinkedListSequence.fromLinkedListNew(componentList).count(); ++i) {
                       Element ele = LinkedListSequence.fromLinkedListNew(componentList).getElement(i);
                       SNode message = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
@@ -418,13 +422,16 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           final String counter = memberEle.getAttribute("counter");
                           String memberName = memberEle.getAttribute("name");
                           final String memberType = memberEle.getAttribute("type");
+
+                          memberName = Character.toLowerCase(memberName.charAt(0)) + memberName.substring(1);
+
                           if (counter.isEmpty()) {
                             // non block member
                             SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember"));
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
                             SLinkOperations.setTarget(member, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
-                                return SPropertyOperations.getString(it, PROPS.name$MnvL) == memberType;
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(memberType);
                               }
                             }).first());
                             ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC)).addElement(member);
@@ -437,7 +444,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
                             SLinkOperations.setTarget(member, LINKS.type$kyUc, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
-                                return SPropertyOperations.getString(it, PROPS.name$MnvL) == memberType;
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(memberType);
                               }
                             }).first());
 
@@ -456,7 +463,6 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                         }
                       }
                       ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(message);
-
                     }
 
                   }
