@@ -866,6 +866,7 @@
     <classNode dependClassName="javax.xml.parsers.DocumentBuilder" />
     <classNode dependClassName="javax.xml.parsers.DocumentBuilderFactory" />
     <classNode dependClassName="javax.xml.parsers.ParserConfigurationException" />
+    <classNode dependClassName="jetbrains.mps.baseLanguage.closures.runtime.Wrappers" />
     <classNode dependClassName="jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime" />
     <classNode dependClassName="jetbrains.mps.editor.runtime.style.StyleAttributes" />
     <classNode dependClassName="jetbrains.mps.editor.runtime.style.StyleImpl" />

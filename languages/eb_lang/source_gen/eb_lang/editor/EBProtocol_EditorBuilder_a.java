@@ -42,16 +42,17 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
-import org.w3c.dom.Node;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
 import java.util.Deque;
 import jetbrains.mps.internal.collections.runtime.LinkedListSequence;
 import java.util.LinkedList;
+import jetbrains.mps.baseLanguage.closures.runtime.Wrappers;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import org.xml.sax.SAXException;
@@ -96,6 +97,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     editorCell.addEditorCell(createCollection_1());
     editorCell.addEditorCell(createJComponent_0());
     editorCell.addEditorCell(createConstant_1());
+    editorCell.addEditorCell(createConstant_2());
     editorCell.addEditorCell(createRefNodeList_0());
     return editorCell;
   }
@@ -156,7 +158,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
         final JFileChooser chooser = new JFileChooser();
         int returnVal = chooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-          getEditorContext().getRepository().getModelAccess().executeCommand(new Runnable() {
+          Runnable runnable = new Runnable() {
             @Override
             public void run() {
               String path = chooser.getSelectedFile().getPath();
@@ -172,13 +174,17 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                   String version = rootNode.getAttribute("version");
                   String subVersion = rootNode.getAttribute("subVersion");
                   String buildNumber = rootNode.getAttribute("buildNumber");
-                  LoggingRuntime.logMsgView(Level.DEBUG, String.format("DeutscheBörse -- market: %s, version: %s, subVersion: %s, buildNumber: %s", market, version, subVersion, buildNumber), EBProtocol_EditorBuilder_a.class, null, null);
-
-                  NodeList dataTypesList = doc.getElementsByTagName("DataTypes");
-                  NodeList structuresList = doc.getElementsByTagName("Structures");
 
                   // clear all child node
                   SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW).clear();
+
+                  SNode versionComment = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, "eb_lang.structure.EBComment"));
+                  SPropertyOperations.assign(versionComment, PROPS.value$wjFT, String.format("Deutsche Börse -- market: %s, version: %s, subVersion: %s, buildNumber: %s", market, version, subVersion, buildNumber));
+                  ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(versionComment);
+                  ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cfeL, "eb_lang.structure.EBEmptyStatement")));
+
+                  NodeList dataTypesList = doc.getElementsByTagName("DataTypes");
+                  NodeList structuresList = doc.getElementsByTagName("Structures");
 
                   // date types, should be only one "<DataTypes>"
                   for (int idx = 0; idx < dataTypesList.getLength(); ++idx) {
@@ -418,10 +424,10 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                       NodeList memberList = ele.getChildNodes();
                       for (int j = 0; j < memberList.getLength(); ++j) {
                         if (memberList.item(j).getNodeType() == Node.ELEMENT_NODE) {
-                          Element memberEle = (Element) memberList.item(j);
-                          final String counter = memberEle.getAttribute("counter");
-                          String memberName = memberEle.getAttribute("name");
-                          final String memberType = memberEle.getAttribute("type");
+                          Element membeEle = (Element) memberList.item(j);
+                          final String counter = membeEle.getAttribute("counter");
+                          String memberName = membeEle.getAttribute("name");
+                          final String memberType = membeEle.getAttribute("type");
 
                           memberName = Character.toLowerCase(memberName.charAt(0)) + memberName.substring(1);
 
@@ -438,7 +444,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           } else {
                             // repeating group block member
-                            int cardinality = Integer.parseInt(memberEle.getAttribute("cardinality"));
+                            int cardinality = Integer.parseInt(membeEle.getAttribute("cardinality"));
 
                             SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember"));
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
@@ -471,18 +477,177 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                 } else if (rootNode.getNodeName() == "sbe:messageSchema") {
                   String version = rootNode.getAttribute("version");
                   String description = rootNode.getAttribute("description");
-                  LoggingRuntime.logMsgView(Level.DEBUG, String.format("EuroNext -- %s version: %s", description, version), EBProtocol_EditorBuilder_a.class, null, null);
+
+                  SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW).clear();
+
+                  SNode versionComment = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, "eb_lang.structure.EBComment"));
+                  SPropertyOperations.assign(versionComment, PROPS.value$wjFT, String.format("EuroNext -- %s version: %s", description, version));
+                  ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(versionComment);
+                  ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cfeL, "eb_lang.structure.EBEmptyStatement")));
+
+
+                  NodeList dataTypesList = doc.getElementsByTagName("types");
+                  assert dataTypesList.getLength() == 1;
+                  Node typesNode = dataTypesList.item(0);
+                  NodeList typeNodeList = typesNode.getChildNodes();
+                  for (int i = 0; i < typeNodeList.getLength(); ++i) {
+                    Node typeXMLNode = typeNodeList.item(i);
+                    if (typeXMLNode.getNodeType() == Node.ELEMENT_NODE) {
+                      Element typeEle = (Element) typeXMLNode;
+                      String name = typeEle.getAttribute("name");
+
+                      if (typeXMLNode.getNodeName().equals("type")) {
+                        String primitiveType = typeEle.getAttribute("primitiveType");
+
+                        if (primitiveType.startsWith("int") || primitiveType.startsWith("uint")) {
+                          String nullValue = typeEle.getAttribute("nullValue");
+                          String minValue = typeEle.getAttribute("minValue");
+                          String maxValue = typeEle.getAttribute("maxValue");
+
+                          SNode typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d14L, "eb_lang.structure.EBInt8"));
+                          if (primitiveType.equals("uint8")) {
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b4L, "eb_lang.structure.EBUInt8"));
+                          } else if (primitiveType.equals("uint16")) {
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b2L, "eb_lang.structure.EBUInt16"));
+                          } else if (primitiveType.equals("uint32")) {
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b1L, "eb_lang.structure.EBUInt32"));
+                          } else if (primitiveType.equals("uint64")) {
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b3L, "eb_lang.structure.EBUInt64"));
+                          } else if (primitiveType.equals("int8")) {
+                            // default value, whatever
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d14L, "eb_lang.structure.EBInt8"));
+                          } else if (primitiveType.equals("int16")) {
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124aeL, "eb_lang.structure.EBInt16"));
+                          } else if (primitiveType.equals("int32")) {
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124afL, "eb_lang.structure.EBInt32"));
+                          } else if (primitiveType.equals("int64")) {
+                            typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b0L, "eb_lang.structure.EBInt64"));
+                          } else {
+                            LoggingRuntime.logMsgView(Level.FATAL, "unknown primitive type: " + primitiveType, EBProtocol_EditorBuilder_a.class, null, null);
+                          }
+
+                          SPropertyOperations.assign(typeASTNode, PROPS.min$DCVS, minValue);
+                          SPropertyOperations.assign(typeASTNode, PROPS.max$DBZO, maxValue);
+                          SPropertyOperations.assign(typeASTNode, PROPS.noValue$sULd, nullValue);
+
+                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                          SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
+                          SLinkOperations.setTarget(alias, LINKS.type$zVeR, typeASTNode);
+
+                          ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
+
+
+                        } else if (primitiveType.equals("char")) {
+                          String length = typeEle.getAttribute("length");
+
+                          if (length.equals("1")) {
+                            // char type
+                            SNode typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar"));
+                            SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                            SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
+                            SLinkOperations.setTarget(alias, LINKS.type$zVeR, typeASTNode);
+                            ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
+
+                          } else {
+                            // string type
+                            int size = Integer.parseInt(length);
+
+                            SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
+                            SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
+                            SPropertyOperations.assign(fixedStr, PROPS.filler$ZJtT, "0x00");
+                            SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, "\\x00-\\x255");
+
+                            SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                            SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
+                            SLinkOperations.setTarget(alias, LINKS.type$zVeR, fixedStr);
+
+                            ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
+
+
+                          }
+
+
+                        } else {
+                          LoggingRuntime.logMsgView(Level.FATAL, "unknown primitive type: " + primitiveType, EBProtocol_EditorBuilder_a.class, null, null);
+                        }
+
+
+                      } else if (typeXMLNode.getNodeName().equals("composite")) {
+                        if (name.equals("messageHeader")) {
+                          // create frame 
+                          SNode frameMsg = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
+                          SPropertyOperations.assign(frameMsg, PROPS.name$MnvL, "MessageFrame");
+                          SNode frameMember = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember"));
+                          SPropertyOperations.assign(frameMember, PROPS.name$MnvL, "length");
+                          SLinkOperations.setTarget(frameMember, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+                            public boolean accept(SNode it) {
+                              return SPropertyOperations.getString(it, PROPS.name$MnvL).equals("uint16_t");
+                            }
+                          }).first());
+                          ListSequence.fromList(SLinkOperations.getChildren(frameMsg, LINKS.content$vVwC)).addElement(frameMember);
+                          ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(frameMsg);
+
+                          SNode headerMsg = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
+                          SPropertyOperations.assign(headerMsg, PROPS.name$MnvL, "MessageHeader");
+                          SLinkOperations.setTarget(headerMsg, LINKS.base$LfNH, frameMsg);
+                          NodeList memberList = typeXMLNode.getChildNodes();
+                          for (int j = 0; j < memberList.getLength(); ++j) {
+                            if (memberList.item(j).getNodeType() == Node.ELEMENT_NODE) {
+                              Element membeEle = (Element) memberList.item(j);
+                              String memberName = membeEle.getAttribute("name");
+                              final Wrappers._T<String> memberType = new Wrappers._T<String>(membeEle.getAttribute("primitiveType"));
+                              // uint16 -> uint16_t
+                              memberType.value = memberType.value + "_t";
+
+                              SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember"));
+                              SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
+                              SLinkOperations.setTarget(member, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+                                public boolean accept(SNode it) {
+                                  return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(memberType.value);
+                                }
+                              }).first());
+                              ListSequence.fromList(SLinkOperations.getChildren(headerMsg, LINKS.content$vVwC)).addElement(member);
+                              ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(headerMsg);
+
+                            }
+
+                          }
+
+
+
+
+                        }
+                      } else if (typeXMLNode.getNodeName().equals("enum")) {
+                      } else if (typeXMLNode.getNodeName().equals("set")) {
+                      }
+
+
+
+
+
+
+                    }
+
+                  }
+
+
+
+
+
+
+
+
+
+
+
+
                 }
               } catch (ParserConfigurationException | IOException | SAXException e) {
                 e.printStackTrace();
               }
-
-
             }
-
-          });
-
-
+          };
+          getEditorContext().getRepository().getModelAccess().executeCommand(runnable);
         }
       }
     });
@@ -494,18 +659,24 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     editorCell.setDefaultText("");
     return editorCell;
   }
+  private EditorCell createConstant_2() {
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "");
+    editorCell.setCellId("Constant_peo863_d0");
+    editorCell.setDefaultText("");
+    return editorCell;
+  }
   private EditorCell createRefNodeList_0() {
-    AbstractCellListHandler handler = new statementsListHandler_peo863_d0(myNode, getEditorContext());
+    AbstractCellListHandler handler = new statementsListHandler_peo863_e0(myNode, getEditorContext());
     EditorCell_Collection editorCell = handler.createCells(new CellLayout_Vertical(), false);
     editorCell.setCellId("refNodeList_statements");
     editorCell.setSRole(handler.getElementSRole());
     return editorCell;
   }
-  private static class statementsListHandler_peo863_d0 extends RefNodeListHandler {
+  private static class statementsListHandler_peo863_e0 extends RefNodeListHandler {
     @NotNull
     private SNode myNode;
 
-    public statementsListHandler_peo863_d0(SNode ownerNode, EditorContext context) {
+    public statementsListHandler_peo863_e0(SNode ownerNode, EditorContext context) {
       super(context, false);
       myNode = ownerNode;
     }
@@ -534,7 +705,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     }
     public EditorCell createEmptyCell() {
       getCellFactory().pushCellContext();
-      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(statementsListHandler_peo863_d0.this.getNode(), LINKS.statements$_5KW));
+      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(statementsListHandler_peo863_e0.this.getNode(), LINKS.statements$_5KW));
       try {
         EditorCell emptyCell = null;
         emptyCell = super.createEmptyCell();
@@ -577,6 +748,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
   private static final class PROPS {
     /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
+    /*package*/ static final SProperty value$wjFT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, 0x726a4e86e24169a8L, "value");
     /*package*/ static final SProperty value$_s5n = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x726a4e86e23f3d19L, "value");
     /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
     /*package*/ static final SProperty filler$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "filler");
@@ -609,5 +781,6 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
     /*package*/ static final SReferenceLink type$kyUc = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x3e338995cb0feb1dL, "type");
     /*package*/ static final SReferenceLink counter$kzoe = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x3e338995cb0feb1fL, "counter");
+    /*package*/ static final SReferenceLink base$LfNH = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x1fd2ea8cbdac6546L, "base");
   }
 }
