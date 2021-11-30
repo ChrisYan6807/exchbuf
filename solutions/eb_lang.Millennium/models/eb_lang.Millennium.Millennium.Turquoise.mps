@@ -25,6 +25,7 @@
       <concept id="8244488409083636119" name="eb_lang.structure.EBBitFieldMember" flags="ng" index="2gaMsh">
         <property id="8244488409083636124" name="length" index="2gaMsq" />
         <property id="8244488409083636122" name="offset" index="2gaMss" />
+        <reference id="8587208086333401400" name="default" index="2pq4PT" />
         <reference id="6284687853303548466" name="enum" index="1rqnxW" />
       </concept>
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
@@ -548,23 +549,24 @@
       </node>
     </node>
     <node concept="2gln9S" id="5YzDmauyWGD" role="2gln9U" />
-    <node concept="2gaMs9" id="5YzDmauyWDh" role="2gln9U">
-      <property role="TrG5h" value="MiFIDFlags" />
-      <node concept="2gaQCM" id="5YzDmauyXgk" role="2gaMsk" />
-      <node concept="2gaMsh" id="5YzDmauyWDl" role="2gaMsi">
-        <property role="2gaMss" value="0" />
+    <node concept="2gln9S" id="ggDwhX0v6t" role="2gln9U" />
+    <node concept="2gaMs9" id="ggDwhX0vfM" role="2gln9U">
+      <property role="TrG5h" value="MiFIDFlags1" />
+      <node concept="2gaQCM" id="ggDwhX0vk$" role="2gaMsk" />
+      <node concept="2gaMsh" id="ggDwhX0vfQ" role="2gaMsi">
         <property role="2gaMsq" value="1" />
         <ref role="1rqnxW" node="5YzDmauyWNi" resolve="DEA" />
+        <ref role="2pq4PT" node="5YzDmauyWQS" resolve="Yes" />
       </node>
-      <node concept="2gaMsh" id="5YzDmauyXgn" role="2gaMsi">
-        <property role="2gaMss" value="1" />
+      <node concept="2gaMsh" id="ggDwhX0vkB" role="2gaMsi">
         <property role="2gaMsq" value="1" />
         <ref role="1rqnxW" node="5YzDmauyX1m" resolve="LiqProv" />
+        <ref role="2pq4PT" node="5YzDmauyX54" resolve="Yes" />
       </node>
-      <node concept="2gaMsh" id="5YzDmauyXgq" role="2gaMsi">
-        <property role="2gaMss" value="2" />
+      <node concept="2gaMsh" id="ggDwhX0vkE" role="2gaMsi">
         <property role="2gaMsq" value="1" />
         <ref role="1rqnxW" node="5YzDmauyXcl" resolve="Algo" />
+        <ref role="2pq4PT" node="5YzDmauyXcp" resolve="No" />
       </node>
     </node>
     <node concept="2gln9S" id="5YzDmauyXk7" role="2gln9U" />

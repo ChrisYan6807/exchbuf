@@ -858,8 +858,10 @@
     <classNode dependClassName="java.lang.Runnable" />
     <classNode dependClassName="java.lang.String" />
     <classNode dependClassName="java.util.Deque" />
+    <classNode dependClassName="java.util.HashSet" />
     <classNode dependClassName="java.util.LinkedList" />
     <classNode dependClassName="java.util.Objects" />
+    <classNode dependClassName="java.util.Set" />
     <classNode dependClassName="javax.swing.JButton" />
     <classNode dependClassName="javax.swing.JComponent" />
     <classNode dependClassName="javax.swing.JFileChooser" />
