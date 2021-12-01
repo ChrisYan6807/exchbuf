@@ -6,6 +6,7 @@
       <modulePath path="$PROJECT_DIR$/languages/eb_lang/sandbox/eb_lang.sandbox.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/eb_lang_cpp/eb_lang_cpp.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/eb_lang_python/eb_lang_python.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/DB.T7ETI/DB.T7ETI.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/ENXT.SBE/ENXT.SBE.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/eb_lang.Lse/eb_lang.Lse.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/eb_lang.Millennium/eb_lang.Millennium.msd" folder="" />

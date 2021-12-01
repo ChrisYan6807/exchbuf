@@ -52,9 +52,9 @@ import org.w3c.dom.Node;
 import java.util.Deque;
 import jetbrains.mps.internal.collections.runtime.LinkedListSequence;
 import java.util.LinkedList;
+import jetbrains.mps.baseLanguage.closures.runtime.Wrappers;
 import java.util.Set;
 import java.util.HashSet;
-import jetbrains.mps.baseLanguage.closures.runtime.Wrappers;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import org.xml.sax.SAXException;
@@ -437,13 +437,13 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                       for (int j = 0; j < memberList.getLength(); ++j) {
                         if (memberList.item(j).getNodeType() == Node.ELEMENT_NODE) {
                           Element membeEle = (Element) memberList.item(j);
-                          final String counter = membeEle.getAttribute("counter");
+                          final Wrappers._T<String> counter = new Wrappers._T<String>(membeEle.getAttribute("counter"));
                           String memberName = membeEle.getAttribute("name");
                           final String memberType = membeEle.getAttribute("type");
 
                           memberName = Character.toLowerCase(memberName.charAt(0)) + memberName.substring(1);
 
-                          if (counter.isEmpty()) {
+                          if (counter.value.isEmpty()) {
                             // non block member
                             SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
@@ -456,9 +456,11 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           } else {
                             // repeating group block member
+                            counter.value = Character.toLowerCase(counter.value.charAt(0)) + counter.value.substring(1);
+
                             int cardinality = Integer.parseInt(membeEle.getAttribute("cardinality"));
 
-                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageRefBlockMember"));
+                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember"));
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
                             SLinkOperations.setTarget(member, LINKS.type$kyUc, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
@@ -469,11 +471,18 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             SPropertyOperations.assign(member, PROPS.cardinality$ec$j, cardinality);
 
                             // force cast counter to EBMessageNonBlockMember
-                            SLinkOperations.setTarget(member, LINKS.counter$kzoe, ((SNode) ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC)).findFirst(new IWhereFilter<SNode>() {
+                            LoggingRuntime.logMsgView(Level.DEBUG, SPropertyOperations.getString(message, PROPS.name$MnvL), EBProtocol_EditorBuilder_a.class, null, null);
+                            LoggingRuntime.logMsgView(Level.DEBUG, counter.value, EBProtocol_EditorBuilder_a.class, null, null);
+                            for (SNode m : ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC))) {
+                              LoggingRuntime.logMsgView(Level.DEBUG, "m: " + SPropertyOperations.getString(m, PROPS.name$MnvL), EBProtocol_EditorBuilder_a.class, null, null);
+                            }
+
+                            SLinkOperations.setTarget(member, LINKS.counter$kzoe, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(message, LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
-                                return SPropertyOperations.getString(it, PROPS.name$MnvL) == counter;
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(counter.value);
                               }
-                            })));
+                            }).first());
+
 
                             ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC)).addElement(member);
 
@@ -831,16 +840,59 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(groupMsg);
 
                             // create SBE group
-                            SNode groupASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1fd2ea8cbdb15627L, "eb_lang.structure.EBMessageSBEBlockMember"));
+                            // groupSizeEncoding
+                            // <composite name="groupSizeEncoding" description="Repeating group dimensions">       
+                            //   <type name="blockLength" primitiveType="uint8"/>       
+                            //   <type name="numInGroup" primitiveType="uint8" semanticType="NumInGroup"/>     
+                            // </composite>
 
-                            SPropertyOperations.assign(groupASTNode, PROPS.name$MnvL, groupName);
-                            SLinkOperations.setTarget(groupASTNode, LINKS.blockType$F1tI, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBMessage$YV)).where(new IWhereFilter<SNode>() {
+                            SNode compositeMsg = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
+                            final String compositeMsgName = groupMsgName + "_Composite";
+                            SPropertyOperations.assign(compositeMsg, PROPS.name$MnvL, compositeMsgName);
+
+                            // the value can be calculated by data
+                            SNode lengthASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
+                            SPropertyOperations.assign(lengthASTNode, PROPS.name$MnvL, "blockLength");
+                            SLinkOperations.setTarget(lengthASTNode, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+                              public boolean accept(SNode it) {
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals("int8_t");
+                              }
+                            }).first());
+
+                            ListSequence.fromList(SLinkOperations.getChildren(compositeMsg, LINKS.content$vVwC)).addElement(lengthASTNode);
+
+                            SNode numASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
+                            SPropertyOperations.assign(numASTNode, PROPS.name$MnvL, "numInGroup");
+                            SPropertyOperations.assign(numASTNode, PROPS.default$Bfn$, "0");
+                            SLinkOperations.setTarget(numASTNode, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+                              public boolean accept(SNode it) {
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals("int8_t");
+                              }
+                            }).first());
+                            ListSequence.fromList(SLinkOperations.getChildren(compositeMsg, LINKS.content$vVwC)).addElement(numASTNode);
+
+                            SNode dataASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember"));
+                            SPropertyOperations.assign(dataASTNode, PROPS.name$MnvL, "data");
+                            SLinkOperations.setTarget(dataASTNode, LINKS.type$kyUc, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBMessage$YV)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
                                 return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(groupMsgName);
                               }
                             }).first());
+                            SLinkOperations.setTarget(dataASTNode, LINKS.counter$kzoe, numASTNode);
 
-                            ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC)).addElement(groupASTNode);
+                            ListSequence.fromList(SLinkOperations.getChildren(compositeMsg, LINKS.content$vVwC)).addElement(dataASTNode);
+                            ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(compositeMsg);
+
+                            SNode compositeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
+                            SPropertyOperations.assign(compositeASTNode, PROPS.name$MnvL, groupName);
+                            SLinkOperations.setTarget(compositeASTNode, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+                              public boolean accept(SNode it) {
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(compositeMsgName);
+                              }
+                            }).first());
+
+                            ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC)).addElement(compositeASTNode);
+
                             ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(message);
                           }
 
@@ -1019,11 +1071,13 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SProperty precision$l9xP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a8cL, "precision");
     /*package*/ static final SProperty cardinality$ec$j = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x1011af616bfce4dfL, "cardinality");
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
+    /*package*/ static final SProperty default$Bfn$ = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x21d42da0fc978cd6L, "default");
   }
 
   private static final class CONCEPTS {
     /*package*/ static final SConcept PropertyAttribute$Gb = MetaAdapterFactory.getConcept(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x2eb1ad060897da56L, "jetbrains.mps.lang.core.structure.PropertyAttribute");
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
+    /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
     /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBStatement$nx = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf2L, "eb_lang.structure.EBStatement");
@@ -1044,6 +1098,5 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SReferenceLink enum$iBH6 = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x5737b24e0c5eca32L, "enum");
     /*package*/ static final SReferenceLink default$Qsog = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x772be441ee43a938L, "default");
     /*package*/ static final SContainmentLink values$w4DV = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, 0x726a4e86e2416994L, "values");
-    /*package*/ static final SReferenceLink blockType$F1tI = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1fd2ea8cbdb15627L, 0x16cf8b566d8fdc41L, "blockType");
   }
 }

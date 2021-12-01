@@ -38,10 +38,9 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptEBIntType = createDescriptorForEBIntType();
   /*package*/ final ConceptDescriptor myConceptEBLittleEndian = createDescriptorForEBLittleEndian();
   /*package*/ final ConceptDescriptor myConceptEBMessage = createDescriptorForEBMessage();
+  /*package*/ final ConceptDescriptor myConceptEBMessageBlockMember = createDescriptorForEBMessageBlockMember();
   /*package*/ final ConceptDescriptor myConceptEBMessageEntryMember = createDescriptorForEBMessageEntryMember();
   /*package*/ final ConceptDescriptor myConceptEBMessageMember = createDescriptorForEBMessageMember();
-  /*package*/ final ConceptDescriptor myConceptEBMessageRefBlockMember = createDescriptorForEBMessageRefBlockMember();
-  /*package*/ final ConceptDescriptor myConceptEBMessageSBEBlockMember = createDescriptorForEBMessageSBEBlockMember();
   /*package*/ final ConceptDescriptor myConceptEBNumberLiteral = createDescriptorForEBNumberLiteral();
   /*package*/ final ConceptDescriptor myConceptEBPrimitiveType = createDescriptorForEBPrimitiveType();
   /*package*/ final ConceptDescriptor myConceptEBProtocol = createDescriptorForEBProtocol();
@@ -66,7 +65,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptEBBigEndian, myConceptEBBitField, myConceptEBBitFieldMember, myConceptEBCPP, myConceptEBChar, myConceptEBCharLiteral, myConceptEBComment, myConceptEBEmptyStatement, myConceptEBEndian, myConceptEBEnum, myConceptEBExtern, myConceptEBFixedLenghString, myConceptEBFloatDecimal, myConceptEBIIdentifierConcept, myConceptEBImportPrimitive, myConceptEBInclude, myConceptEBInt16, myConceptEBInt32, myConceptEBInt64, myConceptEBInt8, myConceptEBIntKVPair, myConceptEBIntLiteral, myConceptEBIntType, myConceptEBLittleEndian, myConceptEBMessage, myConceptEBMessageEntryMember, myConceptEBMessageMember, myConceptEBMessageRefBlockMember, myConceptEBMessageSBEBlockMember, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBPython, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBUInt16, myConceptEBUInt32, myConceptEBUInt64, myConceptEBUInt8);
+    return Arrays.asList(myConceptEBBigEndian, myConceptEBBitField, myConceptEBBitFieldMember, myConceptEBCPP, myConceptEBChar, myConceptEBCharLiteral, myConceptEBComment, myConceptEBEmptyStatement, myConceptEBEndian, myConceptEBEnum, myConceptEBExtern, myConceptEBFixedLenghString, myConceptEBFloatDecimal, myConceptEBIIdentifierConcept, myConceptEBImportPrimitive, myConceptEBInclude, myConceptEBInt16, myConceptEBInt32, myConceptEBInt64, myConceptEBInt8, myConceptEBIntKVPair, myConceptEBIntLiteral, myConceptEBIntType, myConceptEBLittleEndian, myConceptEBMessage, myConceptEBMessageBlockMember, myConceptEBMessageEntryMember, myConceptEBMessageMember, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBPython, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBUInt16, myConceptEBUInt32, myConceptEBUInt64, myConceptEBUInt8);
   }
 
   @Override
@@ -123,14 +122,12 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptEBLittleEndian;
       case LanguageConceptSwitch.EBMessage:
         return myConceptEBMessage;
+      case LanguageConceptSwitch.EBMessageBlockMember:
+        return myConceptEBMessageBlockMember;
       case LanguageConceptSwitch.EBMessageEntryMember:
         return myConceptEBMessageEntryMember;
       case LanguageConceptSwitch.EBMessageMember:
         return myConceptEBMessageMember;
-      case LanguageConceptSwitch.EBMessageRefBlockMember:
-        return myConceptEBMessageRefBlockMember;
-      case LanguageConceptSwitch.EBMessageSBEBlockMember:
-        return myConceptEBMessageSBEBlockMember;
       case LanguageConceptSwitch.EBNumberLiteral:
         return myConceptEBNumberLiteral;
       case LanguageConceptSwitch.EBPrimitiveType:
@@ -329,7 +326,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618478");
     b.version(2);
-    b.alias("int16_t");
+    b.alias("int16");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBInt32() {
@@ -338,7 +335,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618479");
     b.version(2);
-    b.alias("int32_t");
+    b.alias("int32");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBInt64() {
@@ -347,7 +344,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618480");
     b.version(2);
-    b.alias("int64_t");
+    b.alias("int64");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBInt8() {
@@ -356,7 +353,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493652");
     b.version(2);
-    b.alias("int8_t");
+    b.alias("int8");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBIntKVPair() {
@@ -409,6 +406,18 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.alias("message");
     return b.create();
   }
+  private static ConceptDescriptor createDescriptorForEBMessageBlockMember() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBMessageBlockMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L);
+    b.class_(false, false, false);
+    b.super_("eb_lang.structure.EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
+    b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636265");
+    b.version(2);
+    b.property("cardinality", 0x1011af616bfce4dfL).type(PrimitiveTypeId.INTEGER).origin("1157899412169352415").done();
+    b.associate("type", 0x3e338995cb0feb1dL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L).optional(false).origin("4482077330613725981").done();
+    b.associate("counter", 0x3e338995cb0feb1fL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L).optional(false).origin("4482077330613725983").done();
+    b.alias("block");
+    return b.create();
+  }
   private static ConceptDescriptor createDescriptorForEBMessageEntryMember() {
     ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBMessageEntryMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L);
     b.class_(false, false, false);
@@ -427,31 +436,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636266");
     b.version(2);
     b.property("fixtag", 0x726a4e86e2416a30L).type(PrimitiveTypeId.STRING).origin("8244488409083636272").done();
-    return b.create();
-  }
-  private static ConceptDescriptor createDescriptorForEBMessageRefBlockMember() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBMessageRefBlockMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L);
-    b.class_(false, false, false);
-    b.super_("eb_lang.structure.EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
-    b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636265");
-    b.version(2);
-    b.property("cardinality", 0x1011af616bfce4dfL).type(PrimitiveTypeId.INTEGER).origin("1157899412169352415").done();
-    b.associate("type", 0x3e338995cb0feb1dL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L).optional(false).origin("4482077330613725981").done();
-    b.associate("counter", 0x3e338995cb0feb1fL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L).optional(true).origin("4482077330613725983").done();
-    b.alias("refGroup");
-    return b.create();
-  }
-  private static ConceptDescriptor createDescriptorForEBMessageSBEBlockMember() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBMessageSBEBlockMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1fd2ea8cbdb15627L);
-    b.class_(false, false, false);
-    b.super_("eb_lang.structure.EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
-    b.parent(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23e7834L);
-    b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/2293153050483840551");
-    b.version(2);
-    b.associate("blockType", 0x16cf8b566d8fdc41L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L).optional(false).origin("1643685592335113281").done();
-    b.aggregate("blockLengthType", 0x1fd2ea8cbdb1568bL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L).optional(false).ordered(true).multiple(false).origin("2293153050483840651").done();
-    b.aggregate("numInGroupType", 0x1fd2ea8cbdb15691L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L).optional(false).ordered(true).multiple(false).origin("2293153050483840657").done();
-    b.alias("SBEGroup");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBNumberLiteral() {
@@ -512,7 +496,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618482");
     b.version(2);
-    b.alias("uint16_t");
+    b.alias("uint16");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBUInt32() {
@@ -521,7 +505,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618481");
     b.version(2);
-    b.alias("uint32_t");
+    b.alias("uint32");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBUInt64() {
@@ -530,7 +514,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618483");
     b.version(2);
-    b.alias("uint64_t");
+    b.alias("uint64");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBUInt8() {
@@ -539,7 +523,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618484");
     b.version(2);
-    b.alias("uint8_t");
+    b.alias("uint8");
     return b.create();
   }
 }

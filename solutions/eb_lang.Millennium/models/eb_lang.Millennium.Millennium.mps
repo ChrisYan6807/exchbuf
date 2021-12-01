@@ -16,10 +16,10 @@
         <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
-      <concept id="8244488409083636266" name="eb_lang.structure.EBMessageMember" flags="ng" index="2gaMiG" />
-      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageRefBlockMember" flags="ng" index="2gaMiJ">
+      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageBlockMember" flags="ng" index="2gaMiJ">
         <property id="1157899412169352415" name="cardinality" index="1VVkIY" />
         <reference id="4482077330613725981" name="type" index="3Pf6a8" />
+        <reference id="4482077330613725983" name="counter" index="3Pf6aa" />
       </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
@@ -60,11 +60,6 @@
         <property id="8717146646088262292" name="max" index="nVqg$" />
         <property id="8717146646088262296" name="min" index="nVqgC" />
         <property id="1374950686633462423" name="noValue" index="1foOja" />
-      </concept>
-      <concept id="2293153050483840551" name="eb_lang.structure.EBMessageSBEBlockMember" flags="ng" index="2yoVMF">
-        <reference id="1643685592335113281" name="blockType" index="1Vg5sn" />
-        <child id="2293153050483840651" name="blockLengthType" index="2yoVK7" />
-        <child id="2293153050483840657" name="numInGroupType" index="2yoVKt" />
       </concept>
       <concept id="1374950686633462402" name="eb_lang.structure.EBFloatDecimal" flags="ng" index="1foOjv">
         <property id="1374950686633462417" name="noValue" index="1foOjc" />
@@ -9299,6 +9294,18 @@
         <ref role="1rk6cS" node="3IEej8geu5y" resolve="Pad1_1" />
       </node>
     </node>
+    <node concept="2gaMiw" id="sDoM6Hv9_P" role="2gln9U">
+      <node concept="2gaMiM" id="sDoM6HvaMB" role="36JId$">
+        <ref role="1rk6cS" node="3IEej8geuvq" resolve="SideAllocExtGrpComp" />
+      </node>
+      <node concept="2gaMiM" id="sDoM6HvhZH" role="36JId$" />
+    </node>
+    <node concept="2gln9S" id="sDoM6HvaMD" role="2gln9U" />
+    <node concept="2gln9S" id="sDoM6HvbZs" role="2gln9U" />
+    <node concept="2gln9S" id="sDoM6Hvdcg" role="2gln9U" />
+    <node concept="2gln9S" id="sDoM6Hvep5" role="2gln9U" />
+    <node concept="2gln9S" id="sDoM6Hvf_V" role="2gln9U" />
+    <node concept="2gln9S" id="sDoM6HvgMM" role="2gln9U" />
     <node concept="2gaMiw" id="3IEej8geuvT" role="2gln9U">
       <property role="TrG5h" value="SideAllocGrpComp" />
       <node concept="2gaMiM" id="3IEej8geuvU" role="36JId$">
@@ -9330,6 +9337,27 @@
         <ref role="1rk6cS" node="3IEej8geu5O" resolve="Pad4" />
       </node>
     </node>
+    <node concept="2gln9S" id="sDoM6HvhZL" role="2gln9U" />
+    <node concept="2gaMiw" id="sDoM6HvlAy" role="2gln9U">
+      <node concept="2gaMiM" id="sDoM6Hw14o" role="36JId$">
+        <property role="TrG5h" value="qty" />
+        <ref role="1rk6cS" node="3IEej8getOZ" resolve="AllocQty" />
+      </node>
+      <node concept="2gaMiM" id="sDoM6Hw14w" role="36JId$">
+        <property role="TrG5h" value="id" />
+        <ref role="1rk6cS" node="3IEej8getPc" resolve="ApplID" />
+      </node>
+      <node concept="2gaMiJ" id="sDoM6HvnE9" role="36JId$">
+        <ref role="3Pf6a8" node="3IEej8getOO" resolve="AffectedOrderID" />
+        <ref role="3Pf6aa" node="sDoM6Hw14o" resolve="qty" />
+      </node>
+      <node concept="2gaMiM" id="sDoM6HwpAs" role="36JId$">
+        <property role="TrG5h" value="seq" />
+        <ref role="1rk6cS" node="3IEej8getPS" resolve="ApplSeqNum" />
+      </node>
+      <node concept="2gaMiJ" id="sDoM6HwpAC" role="36JId$" />
+    </node>
+    <node concept="2gln9S" id="sDoM6HvkpA" role="2gln9U" />
     <node concept="2gaMiw" id="3IEej8geuw1" role="2gln9U">
       <property role="TrG5h" value="SideAllocGrpBCComp" />
       <node concept="2gaMiM" id="3IEej8geuw2" role="36JId$">
@@ -19034,18 +19062,20 @@
     <node concept="2gln9S" id="1rfyPpH_g6P" role="2gln9U" />
     <node concept="2gaMiw" id="1rfyPpH_iw8" role="2gln9U">
       <property role="TrG5h" value="test" />
-      <node concept="2yoVMF" id="1rfyPpHFPUk" role="36JId$">
-        <property role="TrG5h" value="group1" />
-        <ref role="1Vg5sn" node="3IEej8geuBj" resolve="DeleteOrderNRResponse" />
-        <node concept="2gaQCC" id="1rfyPpHFPUq" role="2yoVK7" />
-        <node concept="2glnei" id="1rfyPpHFPUt" role="2yoVKt" />
+      <node concept="2gaMiM" id="sDoM6Hv1HQ" role="36JId$">
+        <property role="TrG5h" value="account" />
+        <ref role="1rk6cS" node="3IEej8getOL" resolve="Account" />
       </node>
-      <node concept="2yoVMF" id="1rfyPpHHDNx" role="36JId$">
-        <node concept="2gaQCM" id="1rfyPpHHDNy" role="2yoVK7" />
-        <node concept="2gaQCM" id="1rfyPpHHDNz" role="2yoVKt" />
+      <node concept="2gaMiM" id="sDoM6Hv1HV" role="36JId$">
+        <property role="TrG5h" value="someid" />
+        <ref role="1rk6cS" node="3IEej8getOO" resolve="AffectedOrderID" />
       </node>
-      <node concept="2gaMiG" id="1rfyPpHHDNr" role="36JId$" />
+      <node concept="2gaMiJ" id="sDoM6Hv1I3" role="36JId$">
+        <ref role="3Pf6a8" node="3IEej8getOX" resolve="AllocID" />
+      </node>
     </node>
+    <node concept="2gln9S" id="sDoM6GHytF" role="2gln9U" />
+    <node concept="2gln9S" id="sDoM6GHzEu" role="2gln9U" />
   </node>
 </model>
 
