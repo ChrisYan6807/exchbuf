@@ -16,11 +16,12 @@
         <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
-      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageBlockMember" flags="ng" index="2gaMiJ">
+      <concept id="8244488409083636266" name="eb_lang.structure.EBMessageMember" flags="ng" index="2gaMiG" />
+      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageRefBlockMember" flags="ng" index="2gaMiJ">
         <property id="1157899412169352415" name="cardinality" index="1VVkIY" />
         <reference id="4482077330613725981" name="type" index="3Pf6a8" />
       </concept>
-      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonBlockMember" flags="ng" index="2gaMiM">
+      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
       <concept id="8244488409083636201" name="eb_lang.structure.EBExtern" flags="ng" index="2gaMtJ" />
@@ -59,6 +60,11 @@
         <property id="8717146646088262292" name="max" index="nVqg$" />
         <property id="8717146646088262296" name="min" index="nVqgC" />
         <property id="1374950686633462423" name="noValue" index="1foOja" />
+      </concept>
+      <concept id="2293153050483840551" name="eb_lang.structure.EBMessageSBEBlockMember" flags="ng" index="2yoVMF">
+        <reference id="1643685592335113281" name="blockType" index="1Vg5sn" />
+        <child id="2293153050483840651" name="blockLengthType" index="2yoVK7" />
+        <child id="2293153050483840657" name="numInGroupType" index="2yoVKt" />
       </concept>
       <concept id="1374950686633462402" name="eb_lang.structure.EBFloatDecimal" flags="ng" index="1foOjv">
         <property id="1374950686633462417" name="noValue" index="1foOjc" />
@@ -19020,6 +19026,25 @@
         <property role="TrG5h" value="responseHeader" />
         <ref role="1rk6cS" node="3IEej8geuu_" resolve="ResponseHeaderComp" />
       </node>
+      <node concept="2gaMiM" id="1rfyPpHDfOE" role="36JId$">
+        <property role="TrG5h" value="dfdfd" />
+        <ref role="1rk6cS" node="3IEej8getOL" resolve="Account" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="1rfyPpH_g6P" role="2gln9U" />
+    <node concept="2gaMiw" id="1rfyPpH_iw8" role="2gln9U">
+      <property role="TrG5h" value="test" />
+      <node concept="2yoVMF" id="1rfyPpHFPUk" role="36JId$">
+        <property role="TrG5h" value="group1" />
+        <ref role="1Vg5sn" node="3IEej8geuBj" resolve="DeleteOrderNRResponse" />
+        <node concept="2gaQCC" id="1rfyPpHFPUq" role="2yoVK7" />
+        <node concept="2glnei" id="1rfyPpHFPUt" role="2yoVKt" />
+      </node>
+      <node concept="2yoVMF" id="1rfyPpHHDNx" role="36JId$">
+        <node concept="2gaQCM" id="1rfyPpHHDNy" role="2yoVK7" />
+        <node concept="2gaQCM" id="1rfyPpHHDNz" role="2yoVKt" />
+      </node>
+      <node concept="2gaMiG" id="1rfyPpHHDNr" role="36JId$" />
     </node>
   </node>
 </model>

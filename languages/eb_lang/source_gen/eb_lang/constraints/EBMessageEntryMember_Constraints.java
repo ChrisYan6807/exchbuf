@@ -33,10 +33,10 @@ import org.jetbrains.mps.openapi.language.SConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
 
-public class EBMessageNonBlockMember_Constraints extends BaseConstraintsDescriptor {
-  private static final Logger LOG = LogManager.getLogger(EBMessageNonBlockMember_Constraints.class);
-  public EBMessageNonBlockMember_Constraints() {
-    super(CONCEPTS.EBMessageNonBlockMember$fS);
+public class EBMessageEntryMember_Constraints extends BaseConstraintsDescriptor {
+  private static final Logger LOG = LogManager.getLogger(EBMessageEntryMember_Constraints.class);
+  public EBMessageEntryMember_Constraints() {
+    super(CONCEPTS.EBMessageEntryMember$fS);
   }
 
   @Override
@@ -52,7 +52,7 @@ public class EBMessageNonBlockMember_Constraints extends BaseConstraintsDescript
         return new BaseScopeProvider() {
           @Override
           public SNodeReference getSearchScopeValidatorNode() {
-            return breakingNode_j87vgt_a0a0a0a0a1a0a0a0c;
+            return breakingNode_a6aoe4_a0a0a0a0a1a0a0a0c;
           }
           @Override
           public Scope createScope(final ReferenceConstraintsContext _context) {
@@ -69,7 +69,7 @@ public class EBMessageNonBlockMember_Constraints extends BaseConstraintsDescript
               statements.addAll(EBProtocol__BehaviorDescriptor.definedTypes_id5c0MfkCiF9K.invoke(SLinkOperations.getTarget(include_statement, LINKS.protocol$v5qn)));
             }
 
-            LoggingRuntime.logMsgView(Level.DEBUG, "Include finished", EBMessageNonBlockMember_Constraints.class, null, null);
+            LoggingRuntime.logMsgView(Level.DEBUG, "Include finished", EBMessageEntryMember_Constraints.class, null, null);
 
             Iterable<SNode> typeStatements = Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
               public boolean accept(SNode it) {
@@ -89,10 +89,10 @@ public class EBMessageNonBlockMember_Constraints extends BaseConstraintsDescript
     references.put(d0.getReference(), d0);
     return references;
   }
-  private static final SNodePointer breakingNode_j87vgt_a0a0a0a0a1a0a0a0c = new SNodePointer("r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)", "6284687853304310221");
+  private static final SNodePointer breakingNode_a6aoe4_a0a0a0a0a1a0a0a0c = new SNodePointer("r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)", "6284687853304310221");
 
   private static final class CONCEPTS {
-    /*package*/ static final SConcept EBMessageNonBlockMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember");
+    /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
     /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
     /*package*/ static final SConcept EBInclude$_h = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, "eb_lang.structure.EBInclude");

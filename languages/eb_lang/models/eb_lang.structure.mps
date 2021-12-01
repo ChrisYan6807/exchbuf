@@ -408,8 +408,8 @@
   <node concept="1TIwiD" id="79EjCrygmCD">
     <property role="EcuMT" value="8244488409083636265" />
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessageBlockMember" />
-    <property role="34LRSv" value="ref_block" />
+    <property role="TrG5h" value="EBMessageRefBlockMember" />
+    <property role="34LRSv" value="refGroup" />
     <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
     <node concept="1TJgyj" id="3SNypnb3YGt" role="1TKVEi">
       <property role="IQ2ns" value="4482077330613725981" />
@@ -420,7 +420,7 @@
     <node concept="1TJgyj" id="3SNypnb3YGv" role="1TKVEi">
       <property role="IQ2ns" value="4482077330613725983" />
       <property role="20kJfa" value="counter" />
-      <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageNonBlockMember" />
+      <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageEntryMember" />
     </node>
     <node concept="1TJgyi" id="10hFQ5FZejv" role="1TKVEl">
       <property role="IQ2nx" value="1157899412169352415" />
@@ -446,7 +446,7 @@
   <node concept="1TIwiD" id="79EjCrygmCO">
     <property role="EcuMT" value="8244488409083636276" />
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessageNonBlockMember" />
+    <property role="TrG5h" value="EBMessageEntryMember" />
     <property role="34LRSv" value="entry" />
     <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
     <node concept="1TJgyi" id="27kbq3W_SNm" role="1TKVEl">
@@ -513,9 +513,9 @@
   <node concept="1TIwiD" id="1ZiUCMXGloB">
     <property role="EcuMT" value="2293153050483840551" />
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBSBEDimension" />
-    <property role="34LRSv" value="sbe_dimension" />
-    <ref role="1TJDcQ" node="79EjCryfNNM" resolve="EBStatement" />
+    <property role="TrG5h" value="EBMessageSBEBlockMember" />
+    <property role="34LRSv" value="SBEGroup" />
+    <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
     <node concept="PrWs8" id="1ZiUCMXGloC" role="PzmwI">
       <ref role="PrY4T" node="79EjCryfBwO" resolve="EBIIdentifierConcept" />
     </node>
@@ -532,6 +532,12 @@
       <property role="20kJfa" value="numInGroupType" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="7zTxF1J4Zx$" resolve="EBIntType" />
+    </node>
+    <node concept="1TJgyj" id="1rfyPpHzXL1" role="1TKVEi">
+      <property role="IQ2ns" value="1643685592335113281" />
+      <property role="20kJfa" value="blockType" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="79EjCrygmCA" resolve="EBMessage" />
     </node>
   </node>
   <node concept="1TIwiD" id="5c0MfkChsAE">

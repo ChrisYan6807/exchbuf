@@ -368,7 +368,7 @@
             <node concept="3clFbS" id="I" role="1pnPq1">
               <node concept="3cpWs6" id="K" role="3cqZAp">
                 <node concept="1nCR9W" id="L" role="3cqZAk">
-                  <property role="1nD$Q0" value="eb_lang.constraints.EBMessageNonBlockMember_Constraints" />
+                  <property role="1nD$Q0" value="eb_lang.constraints.EBMessageEntryMember_Constraints" />
                   <node concept="3uibUv" id="M" role="2lIhxL">
                     <ref role="3uigEE" to="ze1i:~ConstraintsDescriptor" resolve="ConstraintsDescriptor" />
                   </node>
@@ -376,7 +376,7 @@
               </node>
             </node>
             <node concept="3gn64h" id="J" role="1pnPq6">
-              <ref role="3gnhBz" to="wt0b:79EjCrygmCO" resolve="EBMessageNonBlockMember" />
+              <ref role="3gnhBz" to="wt0b:79EjCrygmCO" resolve="EBMessageEntryMember" />
             </node>
           </node>
           <node concept="1pnPoh" id="n" role="1_3QMm">
@@ -2132,7 +2132,7 @@
   </node>
   <node concept="312cEu" id="8b">
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessageNonBlockMember_Constraints" />
+    <property role="TrG5h" value="EBMessageEntryMember_Constraints" />
     <uo k="s:originTrace" v="n:6284687853304309782" />
     <node concept="3Tm1VV" id="8c" role="1B3o_S">
       <uo k="s:originTrace" v="n:6284687853304309782" />
@@ -2153,7 +2153,7 @@
           <uo k="s:originTrace" v="n:6284687853304309782" />
           <node concept="1BaE9c" id="8l" role="37wK5m">
             <property role="1ouuDV" value="CONCEPTS" />
-            <property role="1BaxDp" value="EBMessageNonBlockMember$fS" />
+            <property role="1BaxDp" value="EBMessageEntryMember$fS" />
             <uo k="s:originTrace" v="n:6284687853304309782" />
             <node concept="2YIFZM" id="8m" role="1Bazha">
               <ref role="1Pybhc" to="2k9e:~MetaAdapterFactory" resolve="MetaAdapterFactory" />
@@ -2172,7 +2172,7 @@
                 <uo k="s:originTrace" v="n:6284687853304309782" />
               </node>
               <node concept="Xl_RD" id="8q" role="37wK5m">
-                <property role="Xl_RC" value="eb_lang.structure.EBMessageNonBlockMember" />
+                <property role="Xl_RC" value="eb_lang.structure.EBMessageEntryMember" />
                 <uo k="s:originTrace" v="n:6284687853304309782" />
               </node>
             </node>

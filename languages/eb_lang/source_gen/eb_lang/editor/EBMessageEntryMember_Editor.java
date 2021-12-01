@@ -7,8 +7,8 @@ import jetbrains.mps.openapi.editor.cells.EditorCell;
 import jetbrains.mps.openapi.editor.EditorContext;
 import org.jetbrains.mps.openapi.model.SNode;
 
-public class EBSBEDimension_Editor extends DefaultNodeEditor {
+public class EBMessageEntryMember_Editor extends DefaultNodeEditor {
   public EditorCell createEditorCell(EditorContext editorContext, SNode node) {
-    return new EBSBEDimension_EditorBuilder_a(editorContext, node).createCell();
+    return new EBMessageEntryMember_EditorBuilder_a(editorContext, node).createCell();
   }
 }

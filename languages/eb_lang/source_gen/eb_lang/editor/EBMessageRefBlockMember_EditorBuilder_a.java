@@ -35,11 +35,11 @@ import jetbrains.mps.lang.core.behavior.PropertyAttribute__BehaviorDescriptor;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SConcept;
 
-/*package*/ class EBMessageBlockMember_EditorBuilder_a extends AbstractEditorBuilder {
+/*package*/ class EBMessageRefBlockMember_EditorBuilder_a extends AbstractEditorBuilder {
   @NotNull
   private SNode myNode;
 
-  public EBMessageBlockMember_EditorBuilder_a(@NotNull EditorContext context, @NotNull SNode node) {
+  public EBMessageRefBlockMember_EditorBuilder_a(@NotNull EditorContext context, @NotNull SNode node) {
     super(context);
     myNode = node;
   }
@@ -56,29 +56,27 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
   private EditorCell createCollection_0() {
     EditorCell_Collection editorCell = new EditorCell_Collection(getEditorContext(), myNode, new CellLayout_Horizontal());
-    editorCell.setCellId("Collection_773mpz_a");
+    editorCell.setCellId("Collection_39osif_a");
     editorCell.setBig(true);
     setCellContext(editorCell);
+    editorCell.addEditorCell(createComponent_0());
     editorCell.addEditorCell(createConstant_0());
-    editorCell.addEditorCell(createConstant_1());
     editorCell.addEditorCell(createRefCell_0());
+    editorCell.addEditorCell(createConstant_1());
     editorCell.addEditorCell(createConstant_2());
     editorCell.addEditorCell(createConstant_3());
-    editorCell.addEditorCell(createConstant_4());
     editorCell.addEditorCell(createRefCell_1());
-    editorCell.addEditorCell(createConstant_5());
+    editorCell.addEditorCell(createConstant_4());
     editorCell.addEditorCell(createProperty_2());
     return editorCell;
   }
-  private EditorCell createConstant_0() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "ref_block");
-    editorCell.setCellId("Constant_773mpz_a0");
-    editorCell.setDefaultText("");
+  private EditorCell createComponent_0() {
+    EditorCell editorCell = getCellFactory().createEditorComponentCell(myNode, "jetbrains.mps.lang.core.editor.alias");
     return editorCell;
   }
-  private EditorCell createConstant_1() {
+  private EditorCell createConstant_0() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "<");
-    editorCell.setCellId("Constant_773mpz_b0");
+    editorCell.setCellId("Constant_39osif_b0");
     Style style = new StyleImpl();
     style.set(StyleAttributes.PUNCTUATION_LEFT, true);
     style.set(StyleAttributes.PUNCTUATION_RIGHT, true);
@@ -169,24 +167,24 @@ import org.jetbrains.mps.openapi.language.SConcept;
       }
     }
   }
-  private EditorCell createConstant_2() {
+  private EditorCell createConstant_1() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, ",");
-    editorCell.setCellId("Constant_773mpz_d0");
+    editorCell.setCellId("Constant_39osif_d0");
     Style style = new StyleImpl();
     style.set(StyleAttributes.PUNCTUATION_LEFT, true);
     editorCell.getStyle().putAll(style);
     editorCell.setDefaultText("");
     return editorCell;
   }
-  private EditorCell createConstant_3() {
+  private EditorCell createConstant_2() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "counter");
-    editorCell.setCellId("Constant_773mpz_e0");
+    editorCell.setCellId("Constant_39osif_e0");
     editorCell.setDefaultText("");
     return editorCell;
   }
-  private EditorCell createConstant_4() {
+  private EditorCell createConstant_3() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "=");
-    editorCell.setCellId("Constant_773mpz_f0");
+    editorCell.setCellId("Constant_39osif_f0");
     Style style = new StyleImpl();
     style.set(StyleAttributes.PUNCTUATION_LEFT, true);
     style.set(StyleAttributes.PUNCTUATION_RIGHT, true);
@@ -277,9 +275,9 @@ import org.jetbrains.mps.openapi.language.SConcept;
       }
     }
   }
-  private EditorCell createConstant_5() {
+  private EditorCell createConstant_4() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, ">");
-    editorCell.setCellId("Constant_773mpz_h0");
+    editorCell.setCellId("Constant_39osif_h0");
     Style style = new StyleImpl();
     style.set(StyleAttributes.PUNCTUATION_LEFT, true);
     editorCell.getStyle().putAll(style);

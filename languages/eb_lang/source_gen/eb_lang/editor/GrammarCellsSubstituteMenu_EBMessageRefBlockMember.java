@@ -18,15 +18,15 @@ import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import org.jetbrains.mps.openapi.language.SConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 
-public class GrammarCellsSubstituteMenu_EBSBEDimension extends SubstituteMenuBase {
-  public GrammarCellsSubstituteMenu_EBSBEDimension() {
+public class GrammarCellsSubstituteMenu_EBMessageRefBlockMember extends SubstituteMenuBase {
+  public GrammarCellsSubstituteMenu_EBMessageRefBlockMember() {
     super(true);
   }
   @NotNull
   @Override
   protected List<MenuPart<SubstituteMenuItem, SubstituteMenuContext>> getParts(final SubstituteMenuContext _context) {
     List<MenuPart<SubstituteMenuItem, SubstituteMenuContext>> result = new ArrayList<MenuPart<SubstituteMenuItem, SubstituteMenuContext>>();
-    result.add(new GrammarCellsSubstituteMenuPart_bt5e3o_a());
+    result.add(new GrammarCellsSubstituteMenuPart_y88au9_a());
     return result;
   }
 
@@ -34,7 +34,7 @@ public class GrammarCellsSubstituteMenu_EBSBEDimension extends SubstituteMenuBas
   @Override
   public List<SubstituteMenuItem> createMenuItems(@NotNull SubstituteMenuContext context) {
     context.getEditorMenuTrace().pushTraceInfo();
-    context.getEditorMenuTrace().setDescriptor(new EditorMenuDescriptorBase("contribution to the " + "default substitute menu for " + "EBSBEDimension", null));
+    context.getEditorMenuTrace().setDescriptor(new EditorMenuDescriptorBase("contribution to the " + "default substitute menu for " + "EBMessageRefBlockMember", null));
     try {
       return super.createMenuItems(context);
     } finally {
@@ -43,18 +43,18 @@ public class GrammarCellsSubstituteMenu_EBSBEDimension extends SubstituteMenuBas
   }
 
 
-  private class GrammarCellsSubstituteMenuPart_bt5e3o_a extends GrammarCellsSubstituteMenuPart {
+  private class GrammarCellsSubstituteMenuPart_y88au9_a extends GrammarCellsSubstituteMenuPart {
     @Override
     public SModule getModule(SRepository repository) {
       return PersistenceFacade.getInstance().createModuleReference("59242254-602f-42f3-ab3a-dc203eb4cc03(eb_lang)").resolve(repository);
     }
     @Override
     public SAbstractConcept getExpectedOutputConcept() {
-      return CONCEPTS.EBSBEDimension$m2;
+      return CONCEPTS.EBMessageRefBlockMember$o;
     }
   }
 
   private static final class CONCEPTS {
-    /*package*/ static final SConcept EBSBEDimension$m2 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1fd2ea8cbdb15627L, "eb_lang.structure.EBSBEDimension");
+    /*package*/ static final SConcept EBMessageRefBlockMember$o = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageRefBlockMember");
   }
 }

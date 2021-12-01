@@ -27,7 +27,7 @@ public class ConstraintsAspectDescriptor extends BaseConstraintsAspectDescriptor
       case 3:
         return new EBMessage_Constraints();
       case 4:
-        return new EBMessageNonBlockMember_Constraints();
+        return new EBMessageEntryMember_Constraints();
       case 5:
         return new EBNumberLiteral_Constraints();
       case 6:

@@ -379,7 +379,7 @@
   </node>
   <node concept="1M2fIO" id="5sRG$ScqAwm">
     <property role="3GE5qa" value="statement" />
-    <ref role="1M2myG" to="wt0b:79EjCrygmCO" resolve="EBMessageNonBlockMember" />
+    <ref role="1M2myG" to="wt0b:79EjCrygmCO" resolve="EBMessageEntryMember" />
     <node concept="1N5Pfh" id="5sRG$ScqA_n" role="1Mr941">
       <ref role="1N5Vy1" to="wt0b:5sRG$ScpX5Q" resolve="type" />
       <node concept="3dgokm" id="5sRG$ScqABd" role="1N6uqs">

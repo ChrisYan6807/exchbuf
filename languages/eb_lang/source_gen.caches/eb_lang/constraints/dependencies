@@ -4,7 +4,7 @@
     <classNode dependClassName="eb_lang.constraints.EBBitFieldMember_Constraints" />
     <classNode dependClassName="eb_lang.constraints.EBCharLiteral_Constraints" />
     <classNode dependClassName="eb_lang.constraints.EBIIdentifierConcept_Constraints" />
-    <classNode dependClassName="eb_lang.constraints.EBMessageNonBlockMember_Constraints" />
+    <classNode dependClassName="eb_lang.constraints.EBMessageEntryMember_Constraints" />
     <classNode dependClassName="eb_lang.constraints.EBMessage_Constraints" />
     <classNode dependClassName="eb_lang.constraints.EBNumberLiteral_Constraints" />
     <classNode dependClassName="eb_lang.constraints.EBProtocol_Constraints" />
@@ -78,7 +78,7 @@
     <classNode dependClassName="org.jetbrains.mps.openapi.model.SNode" />
     <classNode extendsClassName="jetbrains.mps.smodel.runtime.base.BaseConstraintsDescriptor" />
   </dependency>
-  <dependency className="eb_lang.constraints.EBMessageNonBlockMember_Constraints">
+  <dependency className="eb_lang.constraints.EBMessageEntryMember_Constraints">
     <classNode dependClassName="eb_lang.behavior.EBProtocol__BehaviorDescriptor" />
     <classNode dependClassName="java.lang.Iterable" />
     <classNode dependClassName="java.lang.Override" />

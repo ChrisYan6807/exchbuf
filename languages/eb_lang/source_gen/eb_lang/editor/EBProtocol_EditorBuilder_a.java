@@ -97,8 +97,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     editorCell.setBig(true);
     setCellContext(editorCell);
     editorCell.addEditorCell(createCollection_1());
-    editorCell.addEditorCell(createJComponent_0());
-    editorCell.addEditorCell(createConstant_1());
+    editorCell.addEditorCell(createCollection_2());
     editorCell.addEditorCell(createConstant_2());
     editorCell.addEditorCell(createRefNodeList_0());
     return editorCell;
@@ -144,12 +143,23 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
       getCellFactory().popCellContext();
     }
   }
-  private EditorCell createJComponent_0() {
-    EditorCell editorCell = EditorCell_Component.createComponentCell(getEditorContext(), myNode, _QueryFunction_JComponent_peo863_a1a(), "JComponent_peo863_b0");
-    editorCell.setCellId("JComponent_peo863_b0_0");
+  private EditorCell createCollection_2() {
+    EditorCell_Collection editorCell = new EditorCell_Collection(getEditorContext(), myNode, new CellLayout_Horizontal());
+    editorCell.setCellId("Collection_peo863_b0");
+    Style style = new StyleImpl();
+    style.set(StyleAttributes.SELECTABLE, false);
+    editorCell.getStyle().putAll(style);
+    editorCell.addEditorCell(createJComponent_0());
+    editorCell.addEditorCell(createConstant_1());
+    editorCell.addEditorCell(createJComponent_1());
     return editorCell;
   }
-  private JComponent _QueryFunction_JComponent_peo863_a1a() {
+  private EditorCell createJComponent_0() {
+    EditorCell editorCell = EditorCell_Component.createComponentCell(getEditorContext(), myNode, _QueryFunction_JComponent_peo863_a0b0(), "JComponent_peo863_a1a");
+    editorCell.setCellId("JComponent_peo863_a1a_0");
+    return editorCell;
+  }
+  private JComponent _QueryFunction_JComponent_peo863_a0b0() {
     final SNode protocolRootASTNode = myNode;
 
     JButton button = new JButton("Import DeutscheBörse/EuroNext layout XML file");
@@ -435,7 +445,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           if (counter.isEmpty()) {
                             // non block member
-                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember"));
+                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
                             SLinkOperations.setTarget(member, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
@@ -448,7 +458,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             // repeating group block member
                             int cardinality = Integer.parseInt(membeEle.getAttribute("cardinality"));
 
-                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember"));
+                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageRefBlockMember"));
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
                             SLinkOperations.setTarget(member, LINKS.type$kyUc, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
@@ -494,7 +504,6 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                   NodeList typeNodeList = typesNode.getChildNodes();
                   // for bitset
                   Set<String> choiceSet = new HashSet<String>();
-
 
                   for (int i = 0; i < typeNodeList.getLength(); ++i) {
                     Node typeXMLNode = typeNodeList.item(i);
@@ -584,7 +593,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           // create frame 
                           SNode frameMsg = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
                           SPropertyOperations.assign(frameMsg, PROPS.name$MnvL, "MessageFrame");
-                          SNode frameMember = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember"));
+                          SNode frameMember = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
                           SPropertyOperations.assign(frameMember, PROPS.name$MnvL, "length");
                           SLinkOperations.setTarget(frameMember, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                             public boolean accept(SNode it) {
@@ -606,7 +615,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                               // uint16 -> uint16_t
                               memberType.value = memberType.value + "_t";
 
-                              SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember"));
+                              SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
                               SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
                               SLinkOperations.setTarget(member, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                                 public boolean accept(SNode it) {
@@ -621,7 +630,8 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           }
 
                         } else {
-                          // composite for repeating groups, should be saved for later use
+                          // composite for repeating groups
+                          // groupSizeEncoding is only one, groupSizeEncoding16 defined but not used.
                         }
                       } else if (typeXMLNode.getNodeName().equals("enum")) {
 
@@ -752,7 +762,89 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                         ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(bitFieldNode);
 
+                      }
+                    }
+                  }
 
+                  NodeList msgsList = doc.getElementsByTagName("sbe:message");
+                  for (int idx = 0; idx < msgsList.getLength(); ++idx) {
+                    if (msgsList.item(idx).getNodeType() == Node.ELEMENT_NODE) {
+                      Element msgXMLElement = (Element) msgsList.item(idx);
+                      String msgName = msgXMLElement.getAttribute("name");
+
+                      SNode message = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
+                      SPropertyOperations.assign(message, PROPS.name$MnvL, msgName);
+                      SLinkOperations.setTarget(message, LINKS.base$LfNH, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBMessage$YV)).where(new IWhereFilter<SNode>() {
+                        public boolean accept(SNode it) {
+                          return SPropertyOperations.getString(it, PROPS.name$MnvL).equals("MessageHeader");
+                        }
+                      }).first());
+
+                      NodeList childNodes = msgXMLElement.getChildNodes();
+                      for (int n = 0; n < childNodes.getLength(); ++n) {
+                        Node memberXMLNode = childNodes.item(n);
+                        if (memberXMLNode.getNodeType() == Node.ELEMENT_NODE) {
+                          Element memberElement = (Element) memberXMLNode;
+                          if (memberElement.getNodeName().equals("field")) {
+                            // field member
+                            String fieldName = memberElement.getAttribute("name");
+                            final String fieldType = memberElement.getAttribute("type");
+
+                            SNode fieldASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
+                            SPropertyOperations.assign(fieldASTNode, PROPS.name$MnvL, fieldName);
+                            SLinkOperations.setTarget(fieldASTNode, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+                              public boolean accept(SNode it) {
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(fieldType);
+                              }
+                            }).first());
+                            ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC)).addElement(fieldASTNode);
+
+                          } else if (memberElement.getNodeName().equals("group")) {
+                            // repeating group member
+                            String groupName = memberElement.getAttribute("name");
+                            final String groupMsgName = msgName + "_" + groupName;
+                            String groupDimensionType = memberElement.getAttribute("dimensionType");
+                            assert groupDimensionType.equals("groupSizeEncoding");
+
+                            // create a group msg
+                            SNode groupMsg = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
+                            SPropertyOperations.assign(groupMsg, PROPS.name$MnvL, groupMsgName);
+
+                            NodeList groupChildNodes = memberElement.getChildNodes();
+                            for (int g = 0; g < groupChildNodes.getLength(); ++g) {
+                              Node groupFieldXMLNode = groupChildNodes.item(g);
+                              if (groupFieldXMLNode.getNodeType() == Node.ELEMENT_NODE) {
+                                Element groupFieldElement = (Element) groupFieldXMLNode;
+                                String groupFieldName = groupFieldElement.getAttribute("name");
+                                final String groupFieldType = groupFieldElement.getAttribute("type");
+
+                                SNode fieldASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
+                                SPropertyOperations.assign(fieldASTNode, PROPS.name$MnvL, groupFieldName);
+                                SLinkOperations.setTarget(fieldASTNode, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
+                                  public boolean accept(SNode it) {
+                                    return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(groupFieldType);
+                                  }
+                                }).first());
+                                ListSequence.fromList(SLinkOperations.getChildren(groupMsg, LINKS.content$vVwC)).addElement(fieldASTNode);
+                              }
+                            }
+                            ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(groupMsg);
+
+                            // create SBE group
+                            SNode groupASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1fd2ea8cbdb15627L, "eb_lang.structure.EBMessageSBEBlockMember"));
+
+                            SPropertyOperations.assign(groupASTNode, PROPS.name$MnvL, groupName);
+                            SLinkOperations.setTarget(groupASTNode, LINKS.blockType$F1tI, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBMessage$YV)).where(new IWhereFilter<SNode>() {
+                              public boolean accept(SNode it) {
+                                return SPropertyOperations.getString(it, PROPS.name$MnvL).equals(groupMsgName);
+                              }
+                            }).first());
+
+                            ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC)).addElement(groupASTNode);
+                            ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(message);
+                          }
+
+                        }
                       }
 
 
@@ -760,8 +852,13 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
 
 
-                    }
 
+
+
+
+
+
+                    }
                   }
 
 
@@ -788,29 +885,53 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     return button;
   }
   private EditorCell createConstant_1() {
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, " ");
+    editorCell.setCellId("Constant_peo863_b1a");
+    editorCell.setDefaultText("");
+    return editorCell;
+  }
+  private EditorCell createJComponent_1() {
+    EditorCell editorCell = EditorCell_Component.createComponentCell(getEditorContext(), myNode, _QueryFunction_JComponent_peo863_a2b0(), "JComponent_peo863_c1a");
+    editorCell.setCellId("JComponent_peo863_c1a_0");
+    return editorCell;
+  }
+  private JComponent _QueryFunction_JComponent_peo863_a2b0() {
+    JButton button = new JButton("Clear");
+    button.setBackground(Color.WHITE);
+    button.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent p1) {
+        Runnable runnable = new Runnable() {
+          @Override
+          public void run() {
+            SLinkOperations.getChildren(myNode, LINKS.statements$_5KW).clear();
+          }
+        };
+        getEditorContext().getRepository().getModelAccess().executeCommand(runnable);
+      }
+    });
+
+
+    return button;
+  }
+  private EditorCell createConstant_2() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "");
     editorCell.setCellId("Constant_peo863_c0");
     editorCell.setDefaultText("");
     return editorCell;
   }
-  private EditorCell createConstant_2() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "");
-    editorCell.setCellId("Constant_peo863_d0");
-    editorCell.setDefaultText("");
-    return editorCell;
-  }
   private EditorCell createRefNodeList_0() {
-    AbstractCellListHandler handler = new statementsListHandler_peo863_e0(myNode, getEditorContext());
+    AbstractCellListHandler handler = new statementsListHandler_peo863_d0(myNode, getEditorContext());
     EditorCell_Collection editorCell = handler.createCells(new CellLayout_Vertical(), false);
     editorCell.setCellId("refNodeList_statements");
     editorCell.setSRole(handler.getElementSRole());
     return editorCell;
   }
-  private static class statementsListHandler_peo863_e0 extends RefNodeListHandler {
+  private static class statementsListHandler_peo863_d0 extends RefNodeListHandler {
     @NotNull
     private SNode myNode;
 
-    public statementsListHandler_peo863_e0(SNode ownerNode, EditorContext context) {
+    public statementsListHandler_peo863_d0(SNode ownerNode, EditorContext context) {
       super(context, false);
       myNode = ownerNode;
     }
@@ -839,7 +960,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     }
     public EditorCell createEmptyCell() {
       getCellFactory().pushCellContext();
-      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(statementsListHandler_peo863_e0.this.getNode(), LINKS.statements$_5KW));
+      getCellFactory().setNodeLocation(new SNodeLocation.FromParentAndLink(statementsListHandler_peo863_d0.this.getNode(), LINKS.statements$_5KW));
       try {
         EditorCell emptyCell = null;
         emptyCell = super.createEmptyCell();
@@ -904,6 +1025,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SConcept PropertyAttribute$Gb = MetaAdapterFactory.getConcept(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x2eb1ad060897da56L, "jetbrains.mps.lang.core.structure.PropertyAttribute");
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
     /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
+    /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBStatement$nx = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf2L, "eb_lang.structure.EBStatement");
   }
 
@@ -922,5 +1044,6 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SReferenceLink enum$iBH6 = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x5737b24e0c5eca32L, "enum");
     /*package*/ static final SReferenceLink default$Qsog = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x772be441ee43a938L, "default");
     /*package*/ static final SContainmentLink values$w4DV = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, 0x726a4e86e2416994L, "values");
+    /*package*/ static final SReferenceLink blockType$F1tI = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1fd2ea8cbdb15627L, 0x16cf8b566d8fdc41L, "blockType");
   }
 }

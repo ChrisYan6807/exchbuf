@@ -261,25 +261,25 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
       {
         final EditorContext editorContext = _context.getEditorContext();
         List<Tuples._2<TransformationMenuContext, _FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>> redirectedBefore = ListSequence.fromList(new ArrayList<Tuples._2<TransformationMenuContext, _FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>>());
-        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return true;
           }
         }));
-        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return true;
           }
         }));
-        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return true;
           }
         }));
-        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedBefore).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return true;
@@ -287,7 +287,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
         }));
 
         List<Tuples._2<TransformationMenuContext, _FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>> redirectedAfter = ListSequence.fromList(new ArrayList<Tuples._2<TransformationMenuContext, _FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>>());
-        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
@@ -297,7 +297,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             }.renderingCondition(sourceNode);
           }
         }));
-        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
@@ -307,7 +307,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             }.renderingCondition(sourceNode);
           }
         }));
-        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
@@ -317,7 +317,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             }.renderingCondition(sourceNode);
           }
         }));
-        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
@@ -327,7 +327,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             }.renderingCondition(sourceNode);
           }
         }));
-        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageNonBlockMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
           public Boolean invoke(TransformationMenuContext parentContext) {
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
@@ -343,7 +343,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
               return;
             }
             final SNode sourceNode = _context.getNode();
-            if (SNodeOperations.isInstanceOf(sourceNode, CONCEPTS.EBMessageNonBlockMember$fS)) {
+            if (SNodeOperations.isInstanceOf(sourceNode, CONCEPTS.EBMessageEntryMember$fS)) {
               final Iterable<String> matchingTexts = new StringOrSequenceQuery() {
                 public Object queryStringOrSequence() {
                   return Sequence.<String>singleton("[");
@@ -369,7 +369,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
                   }
                   @Override
                   public SAbstractConcept getOutputConcept() {
-                    return CONCEPTS.EBMessageNonBlockMember$fS;
+                    return CONCEPTS.EBMessageEntryMember$fS;
                   }
                 });
               }
@@ -398,7 +398,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
                 continue;
               }
 
-              if (!(EditorHierachyCache.getInstance().isActiveEditor(EBMessageNonBlockMember_Editor.class, redirectedContext.getNode().getConcept(), GrammarCellsUtil.getSelectionHints(_context.getEditorContext())))) {
+              if (!(EditorHierachyCache.getInstance().isActiveEditor(EBMessageEntryMember_Editor.class, redirectedContext.getNode().getConcept(), GrammarCellsUtil.getSelectionHints(_context.getEditorContext())))) {
                 continue;
               }
 
@@ -715,7 +715,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBMessageMember$R = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, "eb_lang.structure.EBMessageMember");
-    /*package*/ static final SConcept EBMessageNonBlockMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageNonBlockMember");
+    /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
     /*package*/ static final SConcept EBEndian$2W = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f32711eL, "eb_lang.structure.EBEndian");
   }
