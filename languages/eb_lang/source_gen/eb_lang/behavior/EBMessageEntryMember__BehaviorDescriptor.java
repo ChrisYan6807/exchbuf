@@ -13,34 +13,27 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
-import jetbrains.mps.internal.collections.runtime.ListSequence;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
-import org.jetbrains.mps.openapi.language.SContainmentLink;
+import org.jetbrains.mps.openapi.language.SReferenceLink;
+import org.jetbrains.mps.openapi.language.SConcept;
 
-public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
-  private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
+public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescriptor {
+  private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
 
-  public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3aM").build();
-  public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3cB").build();
-  public static final SMethod<Boolean> isBlock_id4Xeby11878t = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4Xeby11878t").build();
+  public static final SMethod<Boolean> isBlock_id4Xeby118828 = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4Xeby118828").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, isBlock_id4Xeby11878t);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isBlock_id4Xeby118828);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
-  /*package*/ static String getCppType_id7sFT47Ik3aM(@NotNull SNode __thisNode__) {
-    return "";
-  }
-  /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
-    return "";
-  }
-  /*package*/ static boolean isBlock_id4Xeby11878t(@NotNull SNode __thisNode__) {
-    for (SNode m : ListSequence.fromList(SLinkOperations.getChildren(__thisNode__, LINKS.content$vVwC))) {
-      if ((boolean) EBMessageMember__BehaviorDescriptor.isBlock_id4Xeby118828.invoke(m)) {
+  /*package*/ static boolean isBlock_id4Xeby118828(@NotNull SNode __thisNode__) {
+    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBMessage$YV)) {
+      if ((boolean) EBMessage__BehaviorDescriptor.isBlock_id4Xeby11878t.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBMessage$YV))) {
         return true;
       }
     }
@@ -48,7 +41,7 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
     return false;
   }
 
-  /*package*/ EBMessage__BehaviorDescriptor() {
+  /*package*/ EBMessageEntryMember__BehaviorDescriptor() {
   }
 
   @Override
@@ -64,11 +57,7 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
-      case 1:
-        return (T) ((String) getPyType_id7sFT47Ik3cB(node));
-      case 2:
-        return (T) ((Boolean) isBlock_id4Xeby11878t(node));
+        return (T) ((Boolean) isBlock_id4Xeby118828(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }
@@ -99,6 +88,10 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
   }
 
   private static final class LINKS {
-    /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
+    /*package*/ static final SReferenceLink type$eiFN = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x5737b24e0c67d176L, "type");
+  }
+
+  private static final class CONCEPTS {
+    /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
   }
 }

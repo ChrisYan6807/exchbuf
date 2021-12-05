@@ -18,6 +18,7 @@ import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
 import org.apache.log4j.Level;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
@@ -25,6 +26,7 @@ import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
 import org.jetbrains.mps.openapi.language.SConcept;
+import org.jetbrains.mps.openapi.language.SProperty;
 
 public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescriptor {
   private static final Logger LOG = LogManager.getLogger(EBImportPrimitive__BehaviorDescriptor.class);
@@ -40,15 +42,18 @@ public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescripto
 
   /*package*/ static String getCppType_id7sFT47Ik3aM(@NotNull SNode __thisNode__) {
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
-      boolean isLittleEndian = (boolean) EBIntType__BehaviorDescriptor.isLittleEndian_id7qxjCwPtLrW.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej));
-      if (isLittleEndian) {
-        return SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR)));
-      } else {
-        return "big endian int type";
-      }
+      String endianType = ((boolean) EBIntType__BehaviorDescriptor.isLittleEndian_id7qxjCwPtLrW.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) ? "LittleEndian" : "BigEndian");
+      return String.format("%s<%s_t, %s, %s, %s>", endianType, SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR))), EBIntType__BehaviorDescriptor.minValue_id4s_KfQOhiQ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)), EBIntType__BehaviorDescriptor.maxValue_id4s_KfQNT9K.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)), EBIntType__BehaviorDescriptor.nullValue_id4s_KfQO$Rt.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
+    } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss)) {
+      return String.format("FixedLengthString<%s, %s>", SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss), PROPS.length$ZIZR), (SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss), PROPS.filler$ZJtT).startsWith("0x") ? SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss), PROPS.filler$ZJtT) : String.format("'%s'", SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss), PROPS.filler$ZJtT))));
+    } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr)) {
+      return String.format("FloatDecimal<%s, %s, %d, %d, %s, %b>", EBFloatDecimal__BehaviorDescriptor.minValue_id4s_KfQOOYo.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr)), EBFloatDecimal__BehaviorDescriptor.maxValue_id4s_KfQOOXD.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr)), SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.size$l3Es), SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.precision$l9xP), EBFloatDecimal__BehaviorDescriptor.nullValue_id4s_KfQOOZ4.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr)), SPropertyOperations.getBoolean(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.singed$CnQN));
     }
 
-    return "not a integer type";
+    String msg = "Unsupported primitive type: " + SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR)));
+    LoggingRuntime.logMsgView(Level.FATAL, msg, EBImportPrimitive__BehaviorDescriptor.class, null, null);
+    return msg;
+
   }
   /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
     LoggingRuntime.logMsgView(Level.DEBUG, "ImportPrimitive getPyType", EBImportPrimitive__BehaviorDescriptor.class, null, null);
@@ -168,5 +173,15 @@ public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescripto
 
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
+    /*package*/ static final SConcept EBFixedLenghString$Ss = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString");
+    /*package*/ static final SConcept EBFloatDecimal$vr = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal");
+  }
+
+  private static final class PROPS {
+    /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
+    /*package*/ static final SProperty filler$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "filler");
+    /*package*/ static final SProperty size$l3Es = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a88L, "size");
+    /*package*/ static final SProperty precision$l9xP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a8cL, "precision");
+    /*package*/ static final SProperty singed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "singed");
   }
 }

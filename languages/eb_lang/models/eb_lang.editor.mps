@@ -10494,6 +10494,15 @@
       <node concept="3F0A7n" id="1ckN_PstSMv" role="3EZMnx">
         <ref role="1NtTu8" to="wt0b:1ckN_PstSEc" resolve="precision" />
       </node>
+      <node concept="3F0ifn" id="4Xeby113OnC" role="3EZMnx">
+        <property role="3F0ifm" value="signed" />
+      </node>
+      <node concept="3F0ifn" id="4Xeby113Ooq" role="3EZMnx">
+        <property role="3F0ifm" value="=" />
+      </node>
+      <node concept="3F0A7n" id="4Xeby113Ope" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:4s_KfQOOzH" resolve="singed" />
+      </node>
       <node concept="3F0ifn" id="1ckN_PstSNd" role="3EZMnx">
         <property role="3F0ifm" value="]" />
       </node>

@@ -72,6 +72,9 @@ import org.jetbrains.mps.openapi.language.SConcept;
     editorCell.addEditorCell(createConstant_14());
     editorCell.addEditorCell(createProperty_4());
     editorCell.addEditorCell(createConstant_15());
+    editorCell.addEditorCell(createConstant_16());
+    editorCell.addEditorCell(createProperty_5());
+    editorCell.addEditorCell(createConstant_17());
     return editorCell;
   }
   private EditorCell createComponent_0() {
@@ -294,8 +297,45 @@ import org.jetbrains.mps.openapi.language.SConcept;
     }
   }
   private EditorCell createConstant_15() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "]");
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "signed");
     editorCell.setCellId("Constant_p7197x_v0");
+    editorCell.setDefaultText("");
+    return editorCell;
+  }
+  private EditorCell createConstant_16() {
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "=");
+    editorCell.setCellId("Constant_p7197x_w0");
+    editorCell.setDefaultText("");
+    return editorCell;
+  }
+  private EditorCell createProperty_5() {
+    getCellFactory().pushCellContext();
+    try {
+      final SProperty property = PROPS.singed$CnQN;
+      getCellFactory().setPropertyInfo(new SPropertyInfo(myNode, property));
+      EditorCell_Property editorCell = EditorCell_Property.create(getEditorContext(), new SPropertyAccessor(myNode, property, false, false), myNode);
+      editorCell.setDefaultText("<no singed>");
+      editorCell.setCellId("property_singed");
+      editorCell.setSubstituteInfo(new SPropertySubstituteInfo(editorCell, property));
+      setCellContext(editorCell);
+      Iterable<SNode> propertyAttributes = SNodeOperations.ofConcept(new IAttributeDescriptor.AllAttributes().list(myNode), CONCEPTS.PropertyAttribute$Gb);
+      Iterable<SNode> currentPropertyAttributes = Sequence.fromIterable(propertyAttributes).where(new IWhereFilter<SNode>() {
+        public boolean accept(SNode it) {
+          return Objects.equals(PropertyAttribute__BehaviorDescriptor.getProperty_id1avfQ4BBzOo.invoke(it), property);
+        }
+      });
+      if (Sequence.fromIterable(currentPropertyAttributes).isNotEmpty()) {
+        EditorManager manager = EditorManager.getInstanceFromContext(getEditorContext());
+        return manager.createNodeRoleAttributeCell(Sequence.fromIterable(currentPropertyAttributes).first(), AttributeKind.PROPERTY, editorCell);
+      } else
+      return editorCell;
+    } finally {
+      getCellFactory().popCellContext();
+    }
+  }
+  private EditorCell createConstant_17() {
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "]");
+    editorCell.setCellId("Constant_p7197x_y0");
     editorCell.setDefaultText("");
     return editorCell;
   }
@@ -306,6 +346,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     /*package*/ static final SProperty null$laGU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a91L, "null");
     /*package*/ static final SProperty size$l3Es = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a88L, "size");
     /*package*/ static final SProperty precision$l9xP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a8cL, "precision");
+    /*package*/ static final SProperty singed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "singed");
   }
 
   private static final class CONCEPTS {

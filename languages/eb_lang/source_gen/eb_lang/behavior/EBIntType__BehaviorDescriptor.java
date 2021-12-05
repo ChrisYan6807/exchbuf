@@ -28,9 +28,9 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
 
   public static final SMethod<Boolean> signed_id7qxjCwPtAaQ = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("signed").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtAaQ").build();
   public static final SMethod<Integer> size_id7qxjCwPtApr = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtApr").build();
-  public static final SMethod<Long> maxValue_id4s_KfQNT9K = new SMethodBuilder<Long>(new SJavaCompoundTypeImpl(Long.TYPE)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQNT9K").build();
-  public static final SMethod<Long> minValue_id4s_KfQOhiQ = new SMethodBuilder<Long>(new SJavaCompoundTypeImpl(Long.TYPE)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOhiQ").build();
-  public static final SMethod<Long> nullValue_id4s_KfQO$Rt = new SMethodBuilder<Long>(new SJavaCompoundTypeImpl(Long.TYPE)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQO$Rt").build();
+  public static final SMethod<String> maxValue_id4s_KfQNT9K = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQNT9K").build();
+  public static final SMethod<String> minValue_id4s_KfQOhiQ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOhiQ").build();
+  public static final SMethod<String> nullValue_id4s_KfQO$Rt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQO$Rt").build();
   public static final SMethod<Boolean> isLittleEndian_id7qxjCwPtLrW = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isLittleEndian").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtLrW").build();
 
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, isLittleEndian_id7qxjCwPtLrW);
@@ -38,33 +38,33 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
-  /*package*/ static long maxValue_id4s_KfQNT9K(@NotNull SNode __thisNode__) {
+  /*package*/ static String maxValue_id4s_KfQNT9K(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO))) {
-      return Long.parseLong(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO));
+      return SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO);
     }
     int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
     if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-      return (long) Math.pow(2, nBits - 1) - 1;
+      return String.valueOf(Math.pow(2, nBits - 1) - 1);
     } else {
-      return (long) Math.pow(2, nBits);
+      return String.valueOf(Math.pow(2, nBits));
     }
   }
-  /*package*/ static long minValue_id4s_KfQOhiQ(@NotNull SNode __thisNode__) {
+  /*package*/ static String minValue_id4s_KfQOhiQ(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS))) {
-      return Long.parseLong(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS));
+      return SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS);
     }
     int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
     if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-      return (long) -Math.pow(2, nBits - 1);
+      return String.valueOf(-Math.pow(2, nBits - 1));
     } else {
-      return (long) 0;
+      return "0";
     }
   }
-  /*package*/ static long nullValue_id4s_KfQO$Rt(@NotNull SNode __thisNode__) {
+  /*package*/ static String nullValue_id4s_KfQO$Rt(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd))) {
-      return Long.parseLong(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd));
+      return SPropertyOperations.getString(__thisNode__, PROPS.null$sULd);
     } else {
-      return 0;
+      return "0";
     }
   }
   /*package*/ static boolean isLittleEndian_id7qxjCwPtLrW(@NotNull SNode __thisNode__) {
@@ -95,11 +95,11 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 2:
-        return (T) ((Long) maxValue_id4s_KfQNT9K(node));
+        return (T) ((String) maxValue_id4s_KfQNT9K(node));
       case 3:
-        return (T) ((Long) minValue_id4s_KfQOhiQ(node));
+        return (T) ((String) minValue_id4s_KfQOhiQ(node));
       case 4:
-        return (T) ((Long) nullValue_id4s_KfQO$Rt(node));
+        return (T) ((String) nullValue_id4s_KfQO$Rt(node));
       case 5:
         return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
       default:

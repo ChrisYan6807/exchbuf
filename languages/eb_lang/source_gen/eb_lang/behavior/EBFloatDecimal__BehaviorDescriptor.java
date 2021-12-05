@@ -22,9 +22,9 @@ import org.jetbrains.mps.openapi.language.SProperty;
 public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal");
 
-  public static final SMethod<Double> maxValue_id4s_KfQOOXD = new SMethodBuilder<Double>(new SJavaCompoundTypeImpl(Double.TYPE)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOXD").build();
-  public static final SMethod<Double> minValue_id4s_KfQOOYo = new SMethodBuilder<Double>(new SJavaCompoundTypeImpl(Double.TYPE)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOYo").build();
-  public static final SMethod<Long> nullValue_id4s_KfQOOZ4 = new SMethodBuilder<Long>(new SJavaCompoundTypeImpl(Long.TYPE)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOZ4").build();
+  public static final SMethod<String> maxValue_id4s_KfQOOXD = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOXD").build();
+  public static final SMethod<String> minValue_id4s_KfQOOYo = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOYo").build();
+  public static final SMethod<String> nullValue_id4s_KfQOOZ4 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOZ4").build();
 
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(maxValue_id4s_KfQOOXD, minValue_id4s_KfQOOYo, nullValue_id4s_KfQOOZ4);
 
@@ -34,33 +34,33 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
     SPropertyOperations.assign(__thisNode__, PROPS.precision$l9xP, 4);
   }
 
-  /*package*/ static double maxValue_id4s_KfQOOXD(@NotNull SNode __thisNode__) {
+  /*package*/ static String maxValue_id4s_KfQOOXD(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn))) {
-      return Long.parseLong(SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn));
+      return SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn);
     }
     int nBits = SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8;
     if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
-      return ((double) Math.pow(2, nBits - 1) - 1) / Math.pow(10, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP));
+      return String.valueOf((Math.pow(2, nBits - 1) - 1) / Math.pow(10, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP)));
     } else {
-      return ((double) Math.pow(2, nBits)) / Math.pow(10, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP));
+      return String.valueOf(Math.pow(2, nBits) / Math.pow(10, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP)));
     }
   }
-  /*package*/ static double minValue_id4s_KfQOOYo(@NotNull SNode __thisNode__) {
+  /*package*/ static String minValue_id4s_KfQOOYo(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp))) {
-      return Long.parseLong(SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp));
+      return SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp);
     }
     int nBits = SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8;
     if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
-      return ((double) -Math.pow(2, nBits - 1)) / Math.pow(10, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP));
+      return String.valueOf(-Math.pow(2, nBits - 1) / Math.pow(10, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP)));
     } else {
-      return (double) 0;
+      return "0";
     }
   }
-  /*package*/ static long nullValue_id4s_KfQOOZ4(@NotNull SNode __thisNode__) {
+  /*package*/ static String nullValue_id4s_KfQOOZ4(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$laGU))) {
-      return Long.parseLong(SPropertyOperations.getString(__thisNode__, PROPS.null$laGU));
+      return SPropertyOperations.getString(__thisNode__, PROPS.null$laGU);
     } else {
-      return 0;
+      return "0";
     }
   }
 
@@ -80,11 +80,11 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((Double) maxValue_id4s_KfQOOXD(node));
+        return (T) ((String) maxValue_id4s_KfQOOXD(node));
       case 1:
-        return (T) ((Double) minValue_id4s_KfQOOYo(node));
+        return (T) ((String) minValue_id4s_KfQOOYo(node));
       case 2:
-        return (T) ((Long) nullValue_id4s_KfQOOZ4(node));
+        return (T) ((String) nullValue_id4s_KfQOOZ4(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

@@ -525,14 +525,14 @@
     <property role="TrG5h" value="EBFloatDecimal" />
     <property role="34LRSv" value="FloatDecimal" />
     <ref role="1TJDcQ" node="79EjCryfNOg" resolve="EBPrimitiveType" />
-    <node concept="1TJgyi" id="1ckN_PstSE3" role="1TKVEl">
-      <property role="IQ2nx" value="1374950686633462403" />
-      <property role="TrG5h" value="max" />
-      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
-    </node>
     <node concept="1TJgyi" id="1ckN_PstSE5" role="1TKVEl">
       <property role="IQ2nx" value="1374950686633462405" />
       <property role="TrG5h" value="min" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="1ckN_PstSE3" role="1TKVEl">
+      <property role="IQ2nx" value="1374950686633462403" />
+      <property role="TrG5h" value="max" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
     <node concept="1TJgyi" id="1ckN_PstSE8" role="1TKVEl">

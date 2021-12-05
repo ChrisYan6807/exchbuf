@@ -7623,10 +7623,10 @@
                   <node concept="liA8E" id="Gi" role="2OqNvi">
                     <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2.property(java.lang.String,long)" resolve="property" />
                     <node concept="Xl_RD" id="Gj" role="37wK5m">
-                      <property role="Xl_RC" value="max" />
+                      <property role="Xl_RC" value="min" />
                     </node>
                     <node concept="1adDum" id="Gk" role="37wK5m">
-                      <property role="1adDun" value="0x1314ce5d5c778a83L" />
+                      <property role="1adDun" value="0x1314ce5d5c778a85L" />
                     </node>
                   </node>
                 </node>
@@ -7641,7 +7641,7 @@
               <node concept="liA8E" id="Ge" role="2OqNvi">
                 <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2$PropertyBuilder.origin(java.lang.String)" resolve="origin" />
                 <node concept="Xl_RD" id="Gm" role="37wK5m">
-                  <property role="Xl_RC" value="1374950686633462403" />
+                  <property role="Xl_RC" value="1374950686633462405" />
                 </node>
               </node>
             </node>
@@ -7661,10 +7661,10 @@
                   <node concept="liA8E" id="Gv" role="2OqNvi">
                     <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2.property(java.lang.String,long)" resolve="property" />
                     <node concept="Xl_RD" id="Gw" role="37wK5m">
-                      <property role="Xl_RC" value="min" />
+                      <property role="Xl_RC" value="max" />
                     </node>
                     <node concept="1adDum" id="Gx" role="37wK5m">
-                      <property role="1adDun" value="0x1314ce5d5c778a85L" />
+                      <property role="1adDun" value="0x1314ce5d5c778a83L" />
                     </node>
                   </node>
                 </node>
@@ -7679,7 +7679,7 @@
               <node concept="liA8E" id="Gr" role="2OqNvi">
                 <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2$PropertyBuilder.origin(java.lang.String)" resolve="origin" />
                 <node concept="Xl_RD" id="Gz" role="37wK5m">
-                  <property role="Xl_RC" value="1374950686633462405" />
+                  <property role="Xl_RC" value="1374950686633462403" />
                 </node>
               </node>
             </node>
