@@ -9,13 +9,13 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1081236700938:jetbrains.mps.baseLanguage.structure.StaticMethodDeclaration" />
   <root>
     <file name="QueriesGenerated.java">
-      <unit at="335,0,341,0" name="eb_lang_python.generator.templates.QueriesGenerated$CONCEPTS" />
-      <unit at="310,0,319,0" name="eb_lang_python.generator.templates.QueriesGenerated$PROPS" />
-      <unit at="320,0,334,0" name="eb_lang_python.generator.templates.QueriesGenerated$LINKS" />
+      <unit at="334,0,340,0" name="eb_lang_python.generator.templates.QueriesGenerated$CONCEPTS" />
+      <unit at="310,0,318,0" name="eb_lang_python.generator.templates.QueriesGenerated$PROPS" />
+      <unit at="319,0,333,0" name="eb_lang_python.generator.templates.QueriesGenerated$LINKS" />
       <unit at="164,0,181,0" name="eb_lang_python.generator.templates.QueriesGenerated$SNQ" />
       <unit at="196,0,219,0" name="eb_lang_python.generator.templates.QueriesGenerated$SNsQ" />
       <unit at="251,0,309,0" name="eb_lang_python.generator.templates.QueriesGenerated$PVQ" />
-      <unit at="39,0,342,0" name="eb_lang_python.generator.templates.QueriesGenerated" />
+      <unit at="39,0,341,0" name="eb_lang_python.generator.templates.QueriesGenerated" />
     </file>
   </root>
   <root nodeRef="r:5bc70035-209d-4923-9fce-33bb3033460e(eb_lang_python.generator.templates@generator)/3463732535972191890">
@@ -41,9 +41,9 @@
       <node id="2437623467770614212" at="97,123,98,199" concept="3" />
       <node id="2437623467770636473" at="98,199,99,135" concept="3" />
       <node id="2437623467770623401" at="99,135,100,92" concept="3" />
-      <node id="2437623467770629613" at="100,92,101,115" concept="3" />
-      <node id="2437623467770643411" at="101,115,102,94" concept="4" />
-      <node id="2437623467771085509" at="103,141,104,294" concept="4" />
+      <node id="2437623467770629613" at="100,92,101,59" concept="3" />
+      <node id="2437623467770643411" at="101,59,102,94" concept="4" />
+      <node id="2437623467771085509" at="103,141,104,238" concept="4" />
       <node id="2437623467771239548" at="105,134,106,203" concept="3" />
       <node id="6280827035669002728" at="106,203,107,228" concept="3" />
       <node id="2437623467771237405" at="107,228,108,253" concept="4" />
@@ -160,7 +160,7 @@
       <scope id="6284687853304578189" at="87,89,88,97" />
       <scope id="8587208086333299801" at="90,89,91,122" />
       <scope id="8587208086333205264" at="93,89,94,78" />
-      <scope id="2437623467771035108" at="103,141,104,294" />
+      <scope id="2437623467771035108" at="103,141,104,238" />
       <scope id="4482077330615306873" at="113,89,114,122" />
       <scope id="4482077330615317192" at="116,89,117,78" />
       <scope id="4482077330615319728" at="119,89,120,125" />

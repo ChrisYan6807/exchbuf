@@ -287,7 +287,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.property("min", 0x1314ce5d5c778a85L).type(PrimitiveTypeId.STRING).origin("1374950686633462405").done();
     b.property("size", 0x1314ce5d5c778a88L).type(PrimitiveTypeId.INTEGER).origin("1374950686633462408").done();
     b.property("precision", 0x1314ce5d5c778a8cL).type(PrimitiveTypeId.INTEGER).origin("1374950686633462412").done();
-    b.property("noValue", 0x1314ce5d5c778a91L).type(PrimitiveTypeId.STRING).origin("1374950686633462417").done();
+    b.property("null", 0x1314ce5d5c778a91L).type(PrimitiveTypeId.STRING).origin("1374950686633462417").done();
+    b.property("singed", 0x11c9703f6d348edL).type(PrimitiveTypeId.BOOLEAN).origin("80104936667564269").done();
     b.alias("FloatDecimal");
     return b.create();
   }
@@ -353,7 +354,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBIntType", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493652");
     b.version(2);
-    b.alias("int8");
+    b.alias("int8 ");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBIntKVPair() {
@@ -380,7 +381,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.version(2);
     b.property("max", 0x78f986b06f142294L).type(PrimitiveTypeId.STRING).origin("8717146646088262292").done();
     b.property("min", 0x78f986b06f142298L).type(PrimitiveTypeId.STRING).origin("8717146646088262296").done();
-    b.property("noValue", 0x1314ce5d5c778a97L).type(PrimitiveTypeId.STRING).origin("1374950686633462423").done();
+    b.property("null", 0x1314ce5d5c778a97L).type(PrimitiveTypeId.STRING).origin("1374950686633462423").done();
     b.aggregate("endian", 0x78f986b06f327121L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f32711eL).optional(true).ordered(true).multiple(false).origin("8717146646090248481").done();
     return b.create();
   }
@@ -424,7 +425,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBMessageMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636276");
     b.version(2);
-    b.property("default", 0x21d42da0fc978cd6L).type(PrimitiveTypeId.STRING).origin("2437623467770088662").done();
     b.associate("type", 0x5737b24e0c67d176L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L).optional(false).origin("6284687853304140150").done();
     b.alias("entry");
     return b.create();

@@ -190,7 +190,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBInt8:
         if (props_EBInt8 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("int8");
+          cpb.rawPresentation("int8 ");
           props_EBInt8 = cpb.create();
         }
         return props_EBInt8;

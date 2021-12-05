@@ -18,7 +18,7 @@
         <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
-      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageNonBlockMember" flags="ng" index="2gaMiM">
+      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
       <concept id="8244488409083636111" name="eb_lang.structure.EBBitField" flags="ng" index="2gaMs9">
@@ -27,8 +27,11 @@
       </concept>
       <concept id="8244488409083636119" name="eb_lang.structure.EBBitFieldMember" flags="ng" index="2gaMsh">
         <property id="8244488409083636124" name="length" index="2gaMsq" />
-        <property id="8244488409083636122" name="offset" index="2gaMss" />
+        <reference id="8587208086333401400" name="default" index="2pq4PT" />
         <reference id="6284687853303548466" name="enum" index="1rqnxW" />
+      </concept>
+      <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">
+        <property id="8244488409083636136" name="value" index="2gaMsI" />
       </concept>
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
       <concept id="8244488409083493622" name="eb_lang.structure.EBProtocol" flags="ng" index="2gln9K">
@@ -66,6 +69,9 @@
       <ref role="1Vhg5u" to="2izj:3SNypnb2Ao0" resolve="Millennium" />
     </node>
     <node concept="2gln9S" id="5c0MfkCjIJa" role="2gln9U" />
+    <node concept="2gaMsz" id="6ZygemSluOZ" role="2gln9U">
+      <property role="2gaMsI" value="Lse" />
+    </node>
     <node concept="2gaMi0" id="5c0MfkCjIJA" role="2gln9U">
       <property role="TrG5h" value="byte" />
       <node concept="2glnej" id="5c0MfkCjIJM" role="2gaMi1" />
@@ -556,27 +562,27 @@
         </node>
       </node>
     </node>
-    <node concept="2gln9S" id="5YzDmauyWGD" role="2gln9U" />
-    <node concept="2gaMs9" id="5YzDmauyWDh" role="2gln9U">
+    <node concept="2gln9S" id="5YzDmauyXk7" role="2gln9U" />
+    <node concept="2gaMs9" id="6ZygemSkKwE" role="2gln9U">
       <property role="TrG5h" value="MiFIDFlags" />
-      <node concept="2gaQCM" id="5YzDmauyXgk" role="2gaMsk" />
-      <node concept="2gaMsh" id="5YzDmauyWDl" role="2gaMsi">
-        <property role="2gaMss" value="0" />
+      <node concept="2gaQCM" id="6ZygemSkK_X" role="2gaMsk" />
+      <node concept="2gaMsh" id="6ZygemSkKwI" role="2gaMsi">
         <property role="2gaMsq" value="1" />
         <ref role="1rqnxW" node="5YzDmauyWNi" resolve="DEA" />
+        <ref role="2pq4PT" node="5YzDmauyWNm" resolve="No" />
       </node>
-      <node concept="2gaMsh" id="5YzDmauyXgn" role="2gaMsi">
-        <property role="2gaMss" value="1" />
+      <node concept="2gaMsh" id="6ZygemSkKA0" role="2gaMsi">
         <property role="2gaMsq" value="1" />
         <ref role="1rqnxW" node="5YzDmauyX1m" resolve="LiqProv" />
+        <ref role="2pq4PT" node="5YzDmauyX1q" resolve="No" />
       </node>
-      <node concept="2gaMsh" id="5YzDmauyXgq" role="2gaMsi">
-        <property role="2gaMss" value="2" />
+      <node concept="2gaMsh" id="6ZygemSkKA3" role="2gaMsi">
         <property role="2gaMsq" value="1" />
         <ref role="1rqnxW" node="5YzDmauyXcl" resolve="Algo" />
+        <ref role="2pq4PT" node="5YzDmauyXcp" resolve="No" />
       </node>
     </node>
-    <node concept="2gln9S" id="5YzDmauyXk7" role="2gln9U" />
+    <node concept="2gln9S" id="6ZygemSkKru" role="2gln9U" />
     <node concept="2glneb" id="5YzDmauyXru" role="2gln9U">
       <property role="TrG5h" value="ClientIDType" />
       <node concept="2gaQCM" id="5YzDmauyXvk" role="2glne$" />
@@ -664,25 +670,26 @@
       </node>
     </node>
     <node concept="2gln9S" id="5YzDmauyXSq" role="2gln9U" />
-    <node concept="2gaMs9" id="5YzDmauyY0R" role="2gln9U">
+    <node concept="2gaMs9" id="6ZygemSkKUL" role="2gln9U">
       <property role="TrG5h" value="PartyRoleQualifiers" />
-      <node concept="2gaQCM" id="5YzDmauyY5d" role="2gaMsk" />
-      <node concept="2gaMsh" id="5YzDmauyY0V" role="2gaMsi">
-        <property role="2gaMss" value="0" />
+      <node concept="2gaQCM" id="6ZygemSkL04" role="2gaMsk" />
+      <node concept="2gaMsh" id="6ZygemSkKUP" role="2gaMsi">
         <property role="2gaMsq" value="2" />
         <ref role="1rqnxW" node="5YzDmauyXru" resolve="ClientIDType" />
+        <ref role="2pq4PT" node="5YzDmauyXry" resolve="None" />
       </node>
-      <node concept="2gaMsh" id="5YzDmauyY5g" role="2gaMsi">
-        <property role="2gaMss" value="2" />
+      <node concept="2gaMsh" id="6ZygemSkL07" role="2gaMsi">
         <property role="2gaMsq" value="2" />
         <ref role="1rqnxW" node="5YzDmauyXzP" resolve="IDMT" />
+        <ref role="2pq4PT" node="5YzDmauyXzR" resolve="None" />
       </node>
-      <node concept="2gaMsh" id="5YzDmauyY5j" role="2gaMsi">
-        <property role="2gaMss" value="2" />
+      <node concept="2gaMsh" id="6ZygemSkL0a" role="2gaMsi">
         <property role="2gaMsq" value="2" />
         <ref role="1rqnxW" node="5YzDmauyXO4" resolve="EDMT" />
+        <ref role="2pq4PT" node="5YzDmauyXO6" resolve="None" />
       </node>
     </node>
+    <node concept="2gln9S" id="6ZygemSkL0e" role="2gln9U" />
     <node concept="2gln9S" id="5YzDmauyY5n" role="2gln9U" />
     <node concept="2gaMiw" id="5YzDmauyYe0" role="2gln9U">
       <property role="TrG5h" value="NewOrder" />
@@ -710,11 +717,11 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzKDq" role="36JId$">
         <property role="TrG5h" value="mifidFlags" />
-        <ref role="1rk6cS" node="5YzDmauyWDh" resolve="MiFIDFlags" />
+        <ref role="1rk6cS" node="6ZygemSkKwE" resolve="MiFIDFlags" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzKDE" role="36JId$">
         <property role="TrG5h" value="partyRoleQualifiers" />
-        <ref role="1rk6cS" node="5YzDmauyY0R" resolve="PartyRoleQualifiers" />
+        <ref role="1rk6cS" node="6ZygemSkKUL" resolve="PartyRoleQualifiers" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzKDW" role="36JId$">
         <property role="TrG5h" value="orderType" />
@@ -772,7 +779,6 @@
     <node concept="2gln9S" id="5YzDmauzKRR" role="2gln9U" />
     <node concept="2gaMiw" id="5YzDmauzLa_" role="2gln9U">
       <property role="TrG5h" value="ExecutionReport" />
-      <property role="2SxKC8" value="155" />
       <ref role="2yvCZa" to="2izj:3SNypnb2Bef" resolve="MsgHeader" />
       <node concept="2gaMiM" id="5YzDmauzLfj" role="36JId$">
         <property role="TrG5h" value="appId" />
@@ -891,47 +897,9 @@
         <ref role="1rk6cS" to="2izj:3SNypnb2Aqe" resolve="UInt32" />
       </node>
     </node>
-    <node concept="2gln9S" id="5YzDmauzL1c" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauzL5S" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyXK1" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyXvZ" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyULS" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUNe" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUO_" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUPX" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyURm" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUSK" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUUb" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUVB" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUX4" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUYy" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyV01" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyV1x" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyV32" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyV4$" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyV67" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyV7F" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyV9g" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVaQ" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVct" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVe5" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVfI" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVho" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVj3" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVkJ" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVms" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVoa" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyVpT" role="2gln9U" />
-    <node concept="2gln9S" id="5c0MfkCiDhN" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUx4" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUy4" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUz5" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyU$7" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyU_a" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUAe" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUBj" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUCp" role="2gln9U" />
-    <node concept="2gln9S" id="5YzDmauyUDw" role="2gln9U" />
+    <node concept="2gln9S" id="6ZygemSkOlL" role="2gln9U" />
+    <node concept="2gln9S" id="6ZygemSkOqk" role="2gln9U" />
+    <node concept="2gln9S" id="6ZygemSkOuS" role="2gln9U" />
   </node>
 </model>
 

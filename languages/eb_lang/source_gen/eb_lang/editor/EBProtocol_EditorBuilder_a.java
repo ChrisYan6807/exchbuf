@@ -318,7 +318,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                             SPropertyOperations.assign(typeNode, PROPS.min$DCVS, minValue);
                             SPropertyOperations.assign(typeNode, PROPS.max$DBZO, maxValue);
-                            SPropertyOperations.assign(typeNode, PROPS.noValue$sULd, noValue);
+                            SPropertyOperations.assign(typeNode, PROPS.null$sULd, noValue);
                             // endian is always little endian
 
                             NodeList validValueList = ele.getChildNodes();
@@ -370,7 +370,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           SNode floatType = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal"));
                           SPropertyOperations.assign(floatType, PROPS.min$l2Xp, minValue);
                           SPropertyOperations.assign(floatType, PROPS.max$l2vn, maxValue);
-                          SPropertyOperations.assign(floatType, PROPS.noValue$laGU, noValue);
+                          SPropertyOperations.assign(floatType, PROPS.null$laGU, noValue);
                           SPropertyOperations.assign(floatType, PROPS.size$l3Es, size);
                           SPropertyOperations.assign(floatType, PROPS.precision$l9xP, precision);
 
@@ -553,7 +553,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           SPropertyOperations.assign(typeASTNode, PROPS.min$DCVS, minValue);
                           SPropertyOperations.assign(typeASTNode, PROPS.max$DBZO, maxValue);
-                          SPropertyOperations.assign(typeASTNode, PROPS.noValue$sULd, nullValue);
+                          SPropertyOperations.assign(typeASTNode, PROPS.null$sULd, nullValue);
 
                           SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
                           SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
@@ -863,7 +863,6 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                             SNode numASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
                             SPropertyOperations.assign(numASTNode, PROPS.name$MnvL, "numInGroup");
-                            SPropertyOperations.assign(numASTNode, PROPS.default$Bfn$, "0");
                             SLinkOperations.setTarget(numASTNode, LINKS.type$eiFN, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
                               public boolean accept(SNode it) {
                                 return SPropertyOperations.getString(it, PROPS.name$MnvL).equals("int8_t");
@@ -1062,16 +1061,15 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SProperty range$t6I$ = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4fe9a5784793da6aL, "range");
     /*package*/ static final SProperty min$DCVS = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142298L, "min");
     /*package*/ static final SProperty max$DBZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142294L, "max");
-    /*package*/ static final SProperty noValue$sULd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x1314ce5d5c778a97L, "noValue");
+    /*package*/ static final SProperty null$sULd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x1314ce5d5c778a97L, "null");
     /*package*/ static final SProperty value$_syU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x726a4e86e23f3d1bL, "value");
     /*package*/ static final SProperty min$l2Xp = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a85L, "min");
     /*package*/ static final SProperty max$l2vn = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a83L, "max");
-    /*package*/ static final SProperty noValue$laGU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a91L, "noValue");
+    /*package*/ static final SProperty null$laGU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a91L, "null");
     /*package*/ static final SProperty size$l3Es = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a88L, "size");
     /*package*/ static final SProperty precision$l9xP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a8cL, "precision");
     /*package*/ static final SProperty cardinality$ec$j = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x1011af616bfce4dfL, "cardinality");
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
-    /*package*/ static final SProperty default$Bfn$ = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x21d42da0fc978cd6L, "default");
   }
 
   private static final class CONCEPTS {

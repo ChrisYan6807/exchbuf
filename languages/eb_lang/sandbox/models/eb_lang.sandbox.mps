@@ -14,15 +14,6 @@
       <concept id="8244488409083636233" name="eb_lang.structure.EBPython" flags="ng" index="2gaMif">
         <property id="8244488409083636256" name="value" index="2gaMiA" />
       </concept>
-      <concept id="8244488409083636111" name="eb_lang.structure.EBBitField" flags="ng" index="2gaMs9">
-        <child id="8244488409083636116" name="values" index="2gaMsi" />
-        <child id="8244488409083636114" name="type" index="2gaMsk" />
-      </concept>
-      <concept id="8244488409083636119" name="eb_lang.structure.EBBitFieldMember" flags="ng" index="2gaMsh">
-        <property id="8244488409083636124" name="length" index="2gaMsq" />
-        <property id="8244488409083636122" name="offset" index="2gaMss" />
-        <reference id="6284687853303548466" name="enum" index="1rqnxW" />
-      </concept>
       <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">
         <property id="8244488409083636136" name="value" index="2gaMsI" />
       </concept>
@@ -46,7 +37,6 @@
         <property id="8244488409083493659" name="value" index="2glnet" />
       </concept>
       <concept id="8244488409083493652" name="eb_lang.structure.EBInt8" flags="ng" index="2glnei" />
-      <concept id="8244488409083493653" name="eb_lang.structure.EBChar" flags="ng" index="2glnej" />
       <concept id="8244488409083493661" name="eb_lang.structure.EBIntKVPair" flags="ng" index="2glner">
         <child id="8244488409083493664" name="value" index="2glneA" />
       </concept>
@@ -210,28 +200,6 @@
     <node concept="2gaMtJ" id="7Ho_HUXT$Yo" role="2gln9U">
       <property role="TrG5h" value="string16" />
     </node>
-    <node concept="2gln9S" id="4C_V1$0vFty" role="2gln9U" />
-    <node concept="2gaMs9" id="5sRG$Scp1G6" role="2gln9U">
-      <property role="TrG5h" value="b1" />
-      <node concept="2glnej" id="5sRG$Scp1Hi" role="2gaMsk" />
-      <node concept="2gaMsh" id="5sRG$Scp1Ga" role="2gaMsi">
-        <property role="2gaMss" value="0" />
-        <property role="2gaMsq" value="2" />
-        <ref role="1rqnxW" node="5Ba9KT$ifD" resolve="ReservedSTP" />
-      </node>
-      <node concept="2gaMsh" id="5sRG$ScpOJ1" role="2gaMsi">
-        <property role="2gaMss" value="2" />
-        <property role="2gaMsq" value="2" />
-        <ref role="1rqnxW" node="5Ba9KT$ibk" resolve="STPProtectionInstruction" />
-      </node>
-      <node concept="2gaMsh" id="5sRG$ScpOJ4" role="2gaMsi">
-        <property role="2gaMss" value="4" />
-        <property role="2gaMsq" value="4" />
-        <ref role="1rqnxW" node="5Ba9KT$i7W" resolve="STPProtectionLevel" />
-      </node>
-    </node>
-    <node concept="2gln9S" id="5sRG$Scq_JC" role="2gln9U" />
-    <node concept="2gln9S" id="5sRG$Scq_Nf" role="2gln9U" />
     <node concept="2gaMtJ" id="5sRG$ScqA$7" role="2gln9U">
       <property role="TrG5h" value="string40" />
     </node>
@@ -246,16 +214,6 @@
     <node concept="2gln9S" id="7Ho_HUXT$XD" role="2gln9U" />
     <node concept="2gln9S" id="79EjCrygxni" role="2gln9U" />
     <node concept="2gln9S" id="79EjCryga_k" role="2gln9U" />
-  </node>
-  <node concept="2gln9K" id="4C_V1$0wAfG">
-    <property role="TrG5h" value="New" />
-    <node concept="2gln9S" id="4C_V1$0wAl6" role="2gln9U" />
-    <node concept="2gln9S" id="5Ba9KT$i57" role="2gln9U" />
-    <node concept="2gln9S" id="5Ba9KT$i5b" role="2gln9U" />
-    <node concept="2gln9S" id="5Ba9KT$i5g" role="2gln9U" />
-    <node concept="2gln9S" id="5Ba9KT$i5m" role="2gln9U" />
-    <node concept="2gln9S" id="5Ba9KT$i5t" role="2gln9U" />
-    <node concept="2gln9S" id="4C_V1$0wAl$" role="2gln9U" />
   </node>
 </model>
 
