@@ -10536,7 +10536,7 @@
     <ref role="1XX52x" to="wt0b:5hSnPGN51ES" resolve="EBMessageConstructor" />
     <node concept="3EZMnI" id="5hSnPGN5irQ" role="2wV5jI">
       <node concept="3F0ifn" id="5hSnPGN5irR" role="3EZMnx">
-        <property role="3F0ifm" value="@constructor for:" />
+        <property role="3F0ifm" value="constructor for:" />
       </node>
       <node concept="1iCGBv" id="5hSnPGN5isb" role="3EZMnx">
         <ref role="1NtTu8" to="wt0b:5hSnPGN51ET" resolve="member" />
@@ -10555,7 +10555,7 @@
     <ref role="1XX52x" to="wt0b:5hSnPGN7nSq" resolve="EBMessageBaseInitializer" />
     <node concept="3EZMnI" id="5hSnPGN7nX1" role="2wV5jI">
       <node concept="3F0ifn" id="5hSnPGN7nX2" role="3EZMnx">
-        <property role="3F0ifm" value="@base initializer value:" />
+        <property role="3F0ifm" value="base initializer value:" />
       </node>
       <node concept="2iRfu4" id="5hSnPGN7nX6" role="2iSdaV" />
       <node concept="3F0A7n" id="5hSnPGN7nXj" role="3EZMnx">

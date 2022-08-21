@@ -100,8 +100,8 @@
     <file name="ConceptPresentationAspectImpl.java">
       <node id="6086719741694843576" at="39,0,40,0" concept="1" trace="props_EBMessageConstructor" />
       <node id="6086719741694843576" at="249,49,250,76" concept="3" />
-      <node id="6086719741694843576" at="250,76,251,46" concept="0" />
-      <node id="6086719741694843576" at="251,46,252,52" concept="0" />
+      <node id="6086719741694843576" at="250,76,251,45" concept="0" />
+      <node id="6086719741694843576" at="251,45,252,52" concept="0" />
       <node id="6086719741694843576" at="253,9,254,42" concept="4" />
       <node id="6086719741694843576" at="248,54,253,9" concept="2" />
       <scope id="6086719741694843576" at="249,49,252,52">
@@ -122,8 +122,8 @@
       <node id="6086719741694843576" at="448,117,449,94" concept="0" />
       <node id="6086719741694843576" at="449,94,450,17" concept="0" />
       <node id="6086719741694843577" at="450,17,451,170" concept="0" />
-      <node id="6086719741694843576" at="451,170,452,28" concept="0" />
-      <node id="6086719741694843576" at="452,28,453,22" concept="4" />
+      <node id="6086719741694843576" at="451,170,452,27" concept="0" />
+      <node id="6086719741694843576" at="452,27,453,22" concept="4" />
       <node id="6086719741694843576" at="445,0,455,0" concept="6" trace="createDescriptorForEBMessageConstructor#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="6086719741694843576" at="133,54,134,45" />
       <scope id="6086719741694843576" at="445,78,453,22">
@@ -136,8 +136,8 @@
     <file name="ConceptPresentationAspectImpl.java">
       <node id="6086719741695458842" at="37,0,38,0" concept="1" trace="props_EBMessageBaseInitializer" />
       <node id="6086719741695458842" at="235,53,236,76" concept="3" />
-      <node id="6086719741695458842" at="236,76,237,51" concept="0" />
-      <node id="6086719741695458842" at="237,51,238,56" concept="0" />
+      <node id="6086719741695458842" at="236,76,237,50" concept="0" />
+      <node id="6086719741695458842" at="237,50,238,56" concept="0" />
       <node id="6086719741695458842" at="239,9,240,46" concept="4" />
       <node id="6086719741695458842" at="234,58,239,9" concept="2" />
       <scope id="6086719741695458842" at="235,53,238,56">
@@ -158,8 +158,8 @@
       <node id="6086719741695458842" at="426,117,427,94" concept="0" />
       <node id="6086719741695458842" at="427,94,428,17" concept="0" />
       <node id="6086719741695459149" at="428,17,429,111" concept="0" />
-      <node id="6086719741695458842" at="429,111,430,33" concept="0" />
-      <node id="6086719741695458842" at="430,33,431,22" concept="4" />
+      <node id="6086719741695458842" at="429,111,430,32" concept="0" />
+      <node id="6086719741695458842" at="430,32,431,22" concept="4" />
       <node id="6086719741695458842" at="423,0,433,0" concept="6" trace="createDescriptorForEBMessageBaseInitializer#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
       <scope id="6086719741695458842" at="129,58,130,49" />
       <scope id="6086719741695458842" at="423,82,431,22">

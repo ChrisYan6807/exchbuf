@@ -427,7 +427,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/6086719741695458842");
     b.version(2);
     b.property("value", 0x54785f5b331d7f4dL).type(PrimitiveTypeId.STRING).origin("6086719741695459149").done();
-    b.alias("@base initializer");
+    b.alias("base initializer");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBMessageBlockMember() {
@@ -449,7 +449,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/6086719741694843576");
     b.version(2);
     b.associate("member", 0x54785f5b33141ab9L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L).optional(false).origin("6086719741694843577").done();
-    b.alias("@constructor");
+    b.alias("constructor");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBMessageEntryMember() {

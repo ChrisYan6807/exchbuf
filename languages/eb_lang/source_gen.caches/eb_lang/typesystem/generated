@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<product version="3" modelHash="3rmnmvb47yb05nnd15fdh5vdb9fxord">
-  <files names="TypesystemDescriptor.java:check_EBEnum_NonTypesystemRule.java:check_EBInclude_NonTypesystemRule.java:check_EBProtocol_NonTypesystemRule.java" />
+<product version="3" modelHash="9pyjrfrh1ra41aohqnh727407fz71xn">
+  <files names="TypesystemDescriptor.java:check_EBEnum_NonTypesystemRule.java:check_EBInclude_NonTypesystemRule.java:check_EBMessageBaseInitializer_NonTypesystemRule.java:check_EBMessageConstructor_NonTypesystemRule.java:check_EBProtocol_NonTypesystemRule.java" />
 </product>
 

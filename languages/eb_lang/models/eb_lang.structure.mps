@@ -570,7 +570,7 @@
     <property role="EcuMT" value="6086719741694843576" />
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBMessageConstructor" />
-    <property role="34LRSv" value="@constructor" />
+    <property role="34LRSv" value="constructor" />
     <ref role="1TJDcQ" node="5hSnPGNaC_J" resolve="EBMessageMemberFunc" />
     <node concept="1TJgyj" id="5hSnPGN51ET" role="1TKVEi">
       <property role="IQ2ns" value="6086719741694843577" />
@@ -583,7 +583,7 @@
     <property role="EcuMT" value="6086719741695458842" />
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBMessageBaseInitializer" />
-    <property role="34LRSv" value="@base initializer" />
+    <property role="34LRSv" value="base initializer" />
     <ref role="1TJDcQ" node="5hSnPGNaC_J" resolve="EBMessageMemberFunc" />
     <node concept="1TJgyi" id="5hSnPGN7nXd" role="1TKVEl">
       <property role="IQ2nx" value="6086719741695459149" />

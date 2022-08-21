@@ -2271,7 +2271,7 @@
                         <ref role="37wK5l" to="ze1i:~ConceptPresentationBuilder.rawPresentation(java.lang.String)" resolve="rawPresentation" />
                         <uo k="s:originTrace" v="n:6086719741695458842" />
                         <node concept="Xl_RD" id="cP" role="37wK5m">
-                          <property role="Xl_RC" value="@base initializer" />
+                          <property role="Xl_RC" value="base initializer" />
                           <uo k="s:originTrace" v="n:6086719741695458842" />
                         </node>
                       </node>
@@ -2399,7 +2399,7 @@
                         <ref role="37wK5l" to="ze1i:~ConceptPresentationBuilder.rawPresentation(java.lang.String)" resolve="rawPresentation" />
                         <uo k="s:originTrace" v="n:6086719741694843576" />
                         <node concept="Xl_RD" id="dA" role="37wK5m">
-                          <property role="Xl_RC" value="@constructor" />
+                          <property role="Xl_RC" value="constructor" />
                           <uo k="s:originTrace" v="n:6086719741694843576" />
                         </node>
                       </node>
@@ -10479,7 +10479,7 @@
             <node concept="liA8E" id="WX" role="2OqNvi">
               <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2.alias(java.lang.String)" resolve="alias" />
               <node concept="Xl_RD" id="WY" role="37wK5m">
-                <property role="Xl_RC" value="@base initializer" />
+                <property role="Xl_RC" value="base initializer" />
               </node>
             </node>
           </node>
@@ -10912,7 +10912,7 @@
             <node concept="liA8E" id="Zy" role="2OqNvi">
               <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2.alias(java.lang.String)" resolve="alias" />
               <node concept="Xl_RD" id="Zz" role="37wK5m">
-                <property role="Xl_RC" value="@constructor" />
+                <property role="Xl_RC" value="constructor" />
               </node>
             </node>
           </node>

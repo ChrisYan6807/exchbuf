@@ -45,6 +45,11 @@ public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescripto
       if (EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) == "char" || EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) == "int8_t" || EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) == "uint8_t") {
         return EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej));
       }
+
+      if ((boolean) EBIntType__BehaviorDescriptor.isNative_id5hSnPGNw5sK.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej))) {
+        return EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej));
+      }
+
       String endianType = ((boolean) EBIntType__BehaviorDescriptor.isLittleEndian_id7qxjCwPtLrW.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) ? "LittleEndian" : "BigEndian");
       return String.format("%s<%s, %s, %s, %s>", endianType, EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)), EBIntType__BehaviorDescriptor.minValue_id4s_KfQOhiQ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)), EBIntType__BehaviorDescriptor.maxValue_id4s_KfQNT9K.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)), EBIntType__BehaviorDescriptor.nullValue_id4s_KfQO$Rt.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
     } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss)) {

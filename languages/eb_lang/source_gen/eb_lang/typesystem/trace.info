@@ -13,15 +13,15 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
   <root>
     <file name="TypesystemDescriptor.java">
-      <unit at="8,0,24,0" name="eb_lang.typesystem.TypesystemDescriptor" />
+      <unit at="8,0,32,0" name="eb_lang.typesystem.TypesystemDescriptor" />
     </file>
   </root>
   <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/5342936125071473277">
     <file name="TypesystemDescriptor.java">
-      <node id="5342936125071473277" at="18,5,19,93" concept="6" />
-      <node id="5342936125071473277" at="19,93,20,55" concept="2" />
-      <node id="5342936125071473277" at="17,5,21,5" concept="0" />
-      <scope id="5342936125071473277" at="18,5,20,55">
+      <node id="5342936125071473277" at="26,5,27,93" concept="6" />
+      <node id="5342936125071473277" at="27,93,28,55" concept="2" />
+      <node id="5342936125071473277" at="25,5,29,5" concept="0" />
+      <scope id="5342936125071473277" at="26,5,28,55">
         <var name="nonTypesystemRule" id="5342936125071473277" />
       </scope>
     </file>
@@ -164,6 +164,185 @@
       <unit id="5342936125071603845" at="56,0,59,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule$LINKS" />
       <unit id="5342936125071603845" at="60,0,64,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule$CONCEPTS" />
       <unit id="5342936125071603845" at="26,0,65,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule" />
+    </file>
+  </root>
+  <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/6086719741701229213">
+    <file name="TypesystemDescriptor.java">
+      <node id="6086719741701229213" at="22,5,23,103" concept="6" />
+      <node id="6086719741701229213" at="23,103,24,55" concept="2" />
+      <node id="6086719741701229213" at="21,5,25,5" concept="0" />
+      <scope id="6086719741701229213" at="22,5,24,55">
+        <var name="nonTypesystemRule" id="6086719741701229213" />
+      </scope>
+    </file>
+    <file name="check_EBMessageConstructor_NonTypesystemRule.java">
+      <node id="6086719741701234825" at="24,133,25,107" concept="6" />
+      <node id="6086719741701239737" at="26,24,27,20" concept="6" />
+      <node id="6086719741701245590" at="29,84,30,21" concept="2" />
+      <node id="6086719741701253904" at="32,13,33,72" concept="6" />
+      <node id="6086719741701253904" at="33,72,34,262" concept="6" />
+      <node id="6086719741701276316" at="36,11,37,0" concept="9" />
+      <node id="6086719741701240325" at="39,7,40,0" concept="9" />
+      <node id="6086719741701229213" at="43,50,44,44" concept="7" />
+      <node id="6086719741701229213" at="46,68,47,102" concept="7" />
+      <node id="6086719741701229213" at="49,30,50,17" concept="7" />
+      <node id="6086719741701229213" at="54,0,55,0" concept="10" trace="EBMessage$YV" />
+      <node id="6086719741701229213" at="55,0,56,0" concept="10" trace="EBMessageMemberFunc$wK" />
+      <node id="6086719741701229213" at="56,0,57,0" concept="10" trace="EBMessageConstructor$VR" />
+      <node id="6086719741701229213" at="60,0,61,0" concept="10" trace="content$vVwC" />
+      <node id="6086719741701229213" at="22,0,24,0" concept="1" trace="check_EBMessageConstructor_NonTypesystemRule#()V" />
+      <node id="6086719741701229213" at="43,0,46,0" concept="5" trace="getApplicableConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
+      <node id="6086719741701229213" at="46,0,49,0" concept="5" trace="isApplicableAndPattern#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;" />
+      <node id="6086719741701229213" at="49,0,52,0" concept="5" trace="overrides#()Z" />
+      <node id="6086719741701253904" at="31,26,35,13" concept="0" />
+      <node id="6086719741701250461" at="30,21,36,11" concept="4" />
+      <node id="6086719741701243130" at="28,104,38,9" concept="4" />
+      <node id="6086719741701240915" at="27,20,39,7" concept="3" />
+      <node id="6086719741701230632" at="25,107,41,5" concept="4" />
+      <node id="6086719741701229213" at="24,0,43,0" concept="5" trace="applyRule#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/typesystem/inference/TypeCheckingContext;Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;)V" />
+      <scope id="6086719741701229213" at="22,57,22,57" />
+      <scope id="6086719741701229213" at="43,50,44,44" />
+      <scope id="6086719741701229213" at="46,68,47,102" />
+      <scope id="6086719741701229213" at="49,30,50,17" />
+      <scope id="6086719741701229213" at="22,0,24,0" />
+      <scope id="6086719741701253904" at="32,13,34,262">
+        <var name="_reporter_2309309498" id="6086719741701253904" />
+        <var name="errorTarget" id="6086719741701253904" />
+      </scope>
+      <scope id="6086719741701229213" at="43,0,46,0" />
+      <scope id="6086719741701229213" at="46,0,49,0">
+        <var name="argument" id="6086719741701229213" />
+      </scope>
+      <scope id="6086719741701229213" at="49,0,52,0" />
+      <scope id="6086719741701250463" at="31,26,35,13" />
+      <scope id="6086719741701243132" at="29,84,37,0" />
+      <scope id="6086719741701240921" at="28,104,38,9" />
+      <scope id="6086719741701240915" at="27,20,39,7">
+        <var name="member" id="6086719741701240917" />
+      </scope>
+      <scope id="6086719741701230634" at="26,24,40,0">
+        <var name="count" id="6086719741701239740" />
+      </scope>
+      <scope id="6086719741701229214" at="24,133,41,5">
+        <var name="msg" id="6086719741701234828" />
+      </scope>
+      <scope id="6086719741701229213" at="24,0,43,0">
+        <var name="ebMessageConstructor" id="6086719741701229213" />
+        <var name="status" id="6086719741701229213" />
+        <var name="typeCheckingContext" id="6086719741701229213" />
+      </scope>
+      <unit id="6086719741701229213" at="59,0,62,0" name="eb_lang.typesystem.check_EBMessageConstructor_NonTypesystemRule$LINKS" />
+      <unit id="6086719741701229213" at="53,0,58,0" name="eb_lang.typesystem.check_EBMessageConstructor_NonTypesystemRule$CONCEPTS" />
+      <unit id="6086719741701229213" at="21,0,63,0" name="eb_lang.typesystem.check_EBMessageConstructor_NonTypesystemRule" />
+    </file>
+  </root>
+  <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/6086719741701296920">
+    <file name="TypesystemDescriptor.java">
+      <node id="6086719741701296920" at="18,5,19,107" concept="6" />
+      <node id="6086719741701296920" at="19,107,20,55" concept="2" />
+      <node id="6086719741701296920" at="17,5,21,5" concept="0" />
+      <scope id="6086719741701296920" at="18,5,20,55">
+        <var name="nonTypesystemRule" id="6086719741701296920" />
+      </scope>
+    </file>
+    <file name="check_EBMessageBaseInitializer_NonTypesystemRule.java">
+      <node id="6086719741701296920" at="29,0,30,0" concept="10" trace="LOG" />
+      <node id="6086719741701296928" at="32,137,33,111" concept="6" />
+      <node id="6086719741701340698" at="36,9,37,68" concept="6" />
+      <node id="6086719741701340698" at="37,68,38,260" concept="6" />
+      <node id="6086719741701368024" at="40,14,41,39" concept="6" />
+      <node id="6086719741701370019" at="43,87,44,34" concept="2" />
+      <node id="6086719741701398701" at="46,9,47,0" concept="9" />
+      <node id="6086719741701400626" at="47,0,48,267" concept="2" />
+      <node id="6086719741701398764" at="48,267,49,0" concept="9" />
+      <node id="6086719741701398732" at="49,0,50,0" concept="9" />
+      <node id="6086719741701371288" at="52,11,53,70" concept="6" />
+      <node id="6086719741701371288" at="53,70,54,265" concept="6" />
+      <node id="6086719741701336723" at="57,7,58,0" concept="9" />
+      <node id="6086719741701301394" at="58,0,59,20" concept="6" />
+      <node id="6086719741701305540" at="61,84,62,21" concept="2" />
+      <node id="6086719741701313362" at="64,13,65,72" concept="6" />
+      <node id="6086719741701313362" at="65,72,66,261" concept="6" />
+      <node id="6086719741701296920" at="73,50,74,48" concept="7" />
+      <node id="6086719741701296920" at="76,68,77,102" concept="7" />
+      <node id="6086719741701296920" at="79,30,80,17" concept="7" />
+      <node id="6086719741701296920" at="84,0,85,0" concept="10" trace="EBMessage$YV" />
+      <node id="6086719741701296920" at="85,0,86,0" concept="10" trace="EBMessageConstructor$VR" />
+      <node id="6086719741701296920" at="86,0,87,0" concept="10" trace="EBMessageMemberFunc$wK" />
+      <node id="6086719741701296920" at="87,0,88,0" concept="10" trace="EBMessageBaseInitializer$Tk" />
+      <node id="6086719741701296920" at="91,0,92,0" concept="10" trace="base$LfNH" />
+      <node id="6086719741701296920" at="92,0,93,0" concept="10" trace="content$vVwC" />
+      <node id="6086719741701296920" at="96,0,97,0" concept="10" trace="name$MnvL" />
+      <node id="6086719741701296920" at="30,0,32,0" concept="1" trace="check_EBMessageBaseInitializer_NonTypesystemRule#()V" />
+      <node id="6086719741701368072" at="42,150,45,11" concept="4" />
+      <node id="6086719741701296920" at="73,0,76,0" concept="5" trace="getApplicableConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
+      <node id="6086719741701296920" at="76,0,79,0" concept="5" trace="isApplicableAndPattern#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;" />
+      <node id="6086719741701296920" at="79,0,82,0" concept="5" trace="overrides#()Z" />
+      <node id="6086719741701340698" at="35,70,39,9" concept="0" />
+      <node id="6086719741701371288" at="51,32,55,11" concept="0" />
+      <node id="6086719741701313362" at="63,26,67,13" concept="0" />
+      <node id="6086719741701365140" at="41,39,46,9" concept="3" />
+      <node id="6086719741701371221" at="50,0,56,9" concept="4" />
+      <node id="6086719741701309604" at="62,21,68,11" concept="4" />
+      <node id="6086719741701303679" at="60,104,69,9" concept="4" />
+      <node id="6086719741701301430" at="59,20,70,7" concept="3" />
+      <node id="6086719741701364793" at="40,12,57,7" concept="0" />
+      <node id="6086719741701336755" at="34,24,57,7" concept="4" />
+      <node id="6086719741701298689" at="33,111,71,5" concept="4" />
+      <node id="6086719741701296920" at="32,0,73,0" concept="5" trace="applyRule#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/typesystem/inference/TypeCheckingContext;Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;)V" />
+      <scope id="6086719741701296920" at="30,61,30,61" />
+      <scope id="6086719741701368074" at="43,87,44,34" />
+      <scope id="6086719741701296920" at="73,50,74,48" />
+      <scope id="6086719741701296920" at="76,68,77,102" />
+      <scope id="6086719741701296920" at="79,30,80,17" />
+      <scope id="6086719741701296920" at="30,0,32,0" />
+      <scope id="6086719741701340698" at="36,9,38,260">
+        <var name="_reporter_2309309498" id="6086719741701340698" />
+        <var name="errorTarget" id="6086719741701340698" />
+      </scope>
+      <scope id="6086719741701371288" at="52,11,54,265">
+        <var name="_reporter_2309309498" id="6086719741701371288" />
+        <var name="errorTarget" id="6086719741701371288" />
+      </scope>
+      <scope id="6086719741701313362" at="64,13,66,261">
+        <var name="_reporter_2309309498" id="6086719741701313362" />
+        <var name="errorTarget" id="6086719741701313362" />
+      </scope>
+      <scope id="6086719741701365143" at="42,150,45,11" />
+      <scope id="6086719741701296920" at="73,0,76,0" />
+      <scope id="6086719741701296920" at="76,0,79,0">
+        <var name="argument" id="6086719741701296920" />
+      </scope>
+      <scope id="6086719741701296920" at="79,0,82,0" />
+      <scope id="6086719741701336757" at="35,70,39,9" />
+      <scope id="6086719741701371223" at="51,32,55,11" />
+      <scope id="6086719741701309606" at="63,26,67,13" />
+      <scope id="6086719741701365140" at="41,39,46,9">
+        <var name="member" id="6086719741701365141" />
+      </scope>
+      <scope id="6086719741701303681" at="61,84,68,11" />
+      <scope id="6086719741701301436" at="60,104,69,9" />
+      <scope id="6086719741701301430" at="59,20,70,7">
+        <var name="member" id="6086719741701301432" />
+      </scope>
+      <scope id="6086719741701364794" at="40,14,56,9">
+        <var name="hasConstructor" id="6086719741701368027" />
+      </scope>
+      <scope id="6086719741701298691" at="34,24,70,7">
+        <var name="count" id="6086719741701301397" />
+      </scope>
+      <scope id="6086719741701296921" at="32,137,71,5">
+        <var name="msg" id="6086719741701296931" />
+      </scope>
+      <scope id="6086719741701296920" at="32,0,73,0">
+        <var name="ebMessageBaseInitializer" id="6086719741701296920" />
+        <var name="status" id="6086719741701296920" />
+        <var name="typeCheckingContext" id="6086719741701296920" />
+      </scope>
+      <unit id="6086719741701296920" at="95,0,98,0" name="eb_lang.typesystem.check_EBMessageBaseInitializer_NonTypesystemRule$PROPS" />
+      <unit id="6086719741701296920" at="90,0,94,0" name="eb_lang.typesystem.check_EBMessageBaseInitializer_NonTypesystemRule$LINKS" />
+      <unit id="6086719741701296920" at="83,0,89,0" name="eb_lang.typesystem.check_EBMessageBaseInitializer_NonTypesystemRule$CONCEPTS" />
+      <unit id="6086719741701296920" at="28,0,99,0" name="eb_lang.typesystem.check_EBMessageBaseInitializer_NonTypesystemRule" />
     </file>
   </root>
   <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/8062604215144606283">

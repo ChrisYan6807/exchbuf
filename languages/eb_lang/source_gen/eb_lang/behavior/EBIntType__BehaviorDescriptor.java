@@ -33,9 +33,10 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   public static final SMethod<String> maxValue_id4s_KfQNT9K = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQNT9K").build();
   public static final SMethod<String> minValue_id4s_KfQOhiQ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOhiQ").build();
   public static final SMethod<String> nullValue_id4s_KfQO$Rt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQO$Rt").build();
+  public static final SMethod<Boolean> isNative_id5hSnPGNw5sK = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNative").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNw5sK").build();
   public static final SMethod<Boolean> isLittleEndian_id7qxjCwPtLrW = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isLittleEndian").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtLrW").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, isLittleEndian_id7qxjCwPtLrW);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
@@ -68,6 +69,9 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     } else {
       return "0";
     }
+  }
+  /*package*/ static boolean isNative_id5hSnPGNw5sK(@NotNull SNode __thisNode__) {
+    return isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)) && isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)) && isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)) && (SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_) == null);
   }
   /*package*/ static boolean isLittleEndian_id7qxjCwPtLrW(@NotNull SNode __thisNode__) {
     if ((SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_) == null)) {
@@ -103,6 +107,8 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
       case 6:
         return (T) ((String) nullValue_id4s_KfQO$Rt(node));
       case 7:
+        return (T) ((Boolean) isNative_id5hSnPGNw5sK(node));
+      case 8:
         return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
       default:
         throw new BHMethodNotFoundException(this, method);
@@ -134,6 +140,9 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   }
   private static boolean isNotEmptyString(String str) {
     return str != null && str.length() > 0;
+  }
+  private static boolean isEmptyString(String str) {
+    return str == null || str.isEmpty();
   }
 
   private static final class PROPS {

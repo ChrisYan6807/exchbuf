@@ -234,7 +234,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBMessageBaseInitializer:
         if (props_EBMessageBaseInitializer == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("@base initializer");
+          cpb.rawPresentation("base initializer");
           props_EBMessageBaseInitializer = cpb.create();
         }
         return props_EBMessageBaseInitializer;
@@ -248,7 +248,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBMessageConstructor:
         if (props_EBMessageConstructor == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("@constructor");
+          cpb.rawPresentation("constructor");
           props_EBMessageConstructor = cpb.create();
         }
         return props_EBMessageConstructor;
