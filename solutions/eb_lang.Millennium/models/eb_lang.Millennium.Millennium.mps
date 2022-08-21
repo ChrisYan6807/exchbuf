@@ -16,7 +16,11 @@
         <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
+      <concept id="8244488409083636266" name="eb_lang.structure.EBMessageMember" flags="ng" index="2gaMiG">
+        <property id="8244488409083636272" name="fixtag" index="2gaMiQ" />
+      </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
+        <property id="6086719741693289086" name="value" index="1Ax3O_" />
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
       <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">
@@ -48,6 +52,12 @@
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
         <property id="8244488409083493657" name="value" index="2glnev" />
       </concept>
+      <concept id="6086719741695458842" name="eb_lang.structure.EBMessageBaseInitializer" flags="ng" index="1Bpi51">
+        <property id="6086719741695459149" name="value" index="1Bpi0m" />
+      </concept>
+      <concept id="6086719741694843576" name="eb_lang.structure.EBMessageConstructor" flags="ng" index="1Br4nz">
+        <reference id="6086719741694843577" name="member" index="1Br4ny" />
+      </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
@@ -61,6 +71,9 @@
       <property role="2gaMsI" value="Millennium" />
     </node>
     <node concept="2gln9S" id="6ZygemSltO7" role="2gln9U" />
+    <node concept="2gln9S" id="5hSnPGNbaM$" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
     <node concept="2gaMi0" id="3SNypnb2Ao9" role="2gln9U">
       <property role="TrG5h" value="Alpha" />
       <node concept="2glnej" id="3SNypnb2Aog" role="2gaMi1" />
@@ -348,6 +361,9 @@
         <property role="TrG5h" value="msgType" />
         <ref role="1rk6cS" node="3SNypnb2AEa" resolve="MsgType" />
       </node>
+      <node concept="1Br4nz" id="5hSnPGNaqfV" role="36JId$">
+        <ref role="1Br4ny" node="3SNypnb2Bgp" resolve="msgType" />
+      </node>
     </node>
     <node concept="2gln9S" id="3SNypnb2Bgw" role="2gln9U" />
     <node concept="2gaMiw" id="1ZiUCMXF63e" role="2gln9U">
@@ -369,6 +385,9 @@
       <node concept="2gaMiM" id="1ZiUCMXF65K" role="36JId$">
         <property role="TrG5h" value="messageVersion" />
         <ref role="1rk6cS" node="3SNypnb2Aoo" resolve="UInt8" />
+      </node>
+      <node concept="1Bpi51" id="5hSnPGNaqg7" role="36JId$">
+        <property role="1Bpi0m" value="123" />
       </node>
     </node>
     <node concept="2gln9S" id="1ZiUCMXF65V" role="2gln9U" />
@@ -503,6 +522,25 @@
       <node concept="2gaMiM" id="2HuERJm5wP$" role="36JId$">
         <property role="TrG5h" value="reserved1" />
         <ref role="1rk6cS" node="3SNypnb2Awb" resolve="String10" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="5hSnPGN0SmQ" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gaMiw" id="5hSnPGN0Ss5" role="2gln9U">
+      <property role="TrG5h" value="TestMsg" />
+      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
+      <node concept="2gaMiM" id="5hSnPGN0SuI" role="36JId$">
+        <property role="TrG5h" value="msgType" />
+        <property role="1Ax3O_" value="NewOrder" />
+        <property role="2gaMiQ" value="35" />
+        <ref role="1rk6cS" node="3SNypnb2AEa" resolve="MsgType" />
+      </node>
+      <node concept="2gaMiM" id="5hSnPGN2gLk" role="36JId$">
+        <property role="TrG5h" value="SeqNo" />
+        <property role="1Ax3O_" value="0" />
+        <property role="2gaMiQ" value="34" />
+        <ref role="1rk6cS" node="3SNypnb2AoF" resolve="Int8" />
       </node>
     </node>
     <node concept="2gln9S" id="3SNypnb2AC9" role="2gln9U" />

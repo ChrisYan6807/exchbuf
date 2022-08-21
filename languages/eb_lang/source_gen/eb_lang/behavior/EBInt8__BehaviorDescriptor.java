@@ -23,8 +23,10 @@ public final class EBInt8__BehaviorDescriptor extends BaseBHDescriptor {
   public static final SMethod<Boolean> signed_id7qxjCwPtAaQ = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("signed").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtAaQ").build();
   public static final SMethod<Integer> size_id7qxjCwPtApr = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtApr").build();
   public static final SMethod<Boolean> isLittleEndian_id7qxjCwPtLrW = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isLittleEndian").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtLrW").build();
+  public static final SMethod<String> cppName_id9WwCMYBSZJ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBSZJ").build();
+  public static final SMethod<String> pyName_id9WwCMYBWwT = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBWwT").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, isLittleEndian_id7qxjCwPtLrW);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, isLittleEndian_id7qxjCwPtLrW, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
@@ -37,6 +39,12 @@ public final class EBInt8__BehaviorDescriptor extends BaseBHDescriptor {
   }
   /*package*/ static boolean isLittleEndian_id7qxjCwPtLrW(@NotNull SNode __thisNode__) {
     return true;
+  }
+  /*package*/ static String cppName_id9WwCMYBSZJ(@NotNull SNode __thisNode__) {
+    return "int8_t";
+  }
+  /*package*/ static String pyName_id9WwCMYBWwT(@NotNull SNode __thisNode__) {
+    return "py int8 TBD";
   }
 
   /*package*/ EBInt8__BehaviorDescriptor() {
@@ -60,6 +68,10 @@ public final class EBInt8__BehaviorDescriptor extends BaseBHDescriptor {
         return (T) ((Integer) size_id7qxjCwPtApr(node));
       case 2:
         return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
+      case 3:
+        return (T) ((String) cppName_id9WwCMYBSZJ(node));
+      case 4:
+        return (T) ((String) pyName_id9WwCMYBWwT(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

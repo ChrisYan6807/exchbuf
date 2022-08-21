@@ -22,8 +22,10 @@ public final class EBUInt32__BehaviorDescriptor extends BaseBHDescriptor {
 
   public static final SMethod<Boolean> signed_id7qxjCwPtAaQ = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("signed").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtAaQ").build();
   public static final SMethod<Integer> size_id7qxjCwPtApr = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtApr").build();
+  public static final SMethod<String> cppName_id9WwCMYBSZJ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBSZJ").build();
+  public static final SMethod<String> pyName_id9WwCMYBWwT = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBWwT").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
@@ -33,6 +35,12 @@ public final class EBUInt32__BehaviorDescriptor extends BaseBHDescriptor {
   }
   /*package*/ static int size_id7qxjCwPtApr(@NotNull SNode __thisNode__) {
     return 4;
+  }
+  /*package*/ static String cppName_id9WwCMYBSZJ(@NotNull SNode __thisNode__) {
+    return "uint32_t";
+  }
+  /*package*/ static String pyName_id9WwCMYBWwT(@NotNull SNode __thisNode__) {
+    return "py uint32 TBD";
   }
 
   /*package*/ EBUInt32__BehaviorDescriptor() {
@@ -54,6 +62,10 @@ public final class EBUInt32__BehaviorDescriptor extends BaseBHDescriptor {
         return (T) ((Boolean) signed_id7qxjCwPtAaQ(node));
       case 1:
         return (T) ((Integer) size_id7qxjCwPtApr(node));
+      case 2:
+        return (T) ((String) cppName_id9WwCMYBSZJ(node));
+      case 3:
+        return (T) ((String) pyName_id9WwCMYBWwT(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

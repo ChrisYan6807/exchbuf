@@ -280,7 +280,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
               public boolean renderingCondition(SNode node) {
-                return node.getProperty(PROPS.fixtag$$pjL) != null;
+                return node.getProperty(PROPS.value$w7ZO) != null;
               }
             }.renderingCondition(sourceNode);
           }
@@ -290,7 +290,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
               public boolean renderingCondition(SNode node) {
-                return node.getProperty(PROPS.fixtag$$pjL) != null;
+                return node.getProperty(PROPS.value$w7ZO) != null;
               }
             }.renderingCondition(sourceNode);
           }
@@ -300,7 +300,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
               public boolean renderingCondition(SNode node) {
-                return node.getProperty(PROPS.fixtag$$pjL) != null;
+                return node.getProperty(PROPS.value$w7ZO) != null;
               }
             }.renderingCondition(sourceNode);
           }
@@ -310,7 +310,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
               public boolean renderingCondition(SNode node) {
-                return node.getProperty(PROPS.fixtag$$pjL) != null;
+                return node.getProperty(PROPS.value$w7ZO) != null;
               }
             }.renderingCondition(sourceNode);
           }
@@ -320,7 +320,47 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             final SNode sourceNode = parentContext.getNode();
             return new Object() {
               public boolean renderingCondition(SNode node) {
-                return node.getProperty(PROPS.fixtag$$pjL) != null;
+                return node.getProperty(PROPS.value$w7ZO) != null;
+              }
+            }.renderingCondition(sourceNode);
+          }
+        }));
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+          public Boolean invoke(TransformationMenuContext parentContext) {
+            final SNode sourceNode = parentContext.getNode();
+            return new Object() {
+              public boolean renderingCondition(SNode node) {
+                return node.getProperty(PROPS.value$w7ZO) != null;
+              }
+            }.renderingCondition(sourceNode);
+          }
+        }));
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+          public Boolean invoke(TransformationMenuContext parentContext) {
+            final SNode sourceNode = parentContext.getNode();
+            return new Object() {
+              public boolean renderingCondition(SNode node) {
+                return node.getProperty(PROPS.value$w7ZO) != null;
+              }
+            }.renderingCondition(sourceNode);
+          }
+        }));
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+          public Boolean invoke(TransformationMenuContext parentContext) {
+            final SNode sourceNode = parentContext.getNode();
+            return new Object() {
+              public boolean renderingCondition(SNode node) {
+                return node.getProperty(PROPS.value$w7ZO) != null;
+              }
+            }.renderingCondition(sourceNode);
+          }
+        }));
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), new _FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>() {
+          public Boolean invoke(TransformationMenuContext parentContext) {
+            final SNode sourceNode = parentContext.getNode();
+            return new Object() {
+              public boolean renderingCondition(SNode node) {
+                return node.getProperty(PROPS.value$w7ZO) != null;
               }
             }.renderingCondition(sourceNode);
           }
@@ -339,7 +379,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
               }.query();
               final boolean isApplicable = new Object() {
                 public boolean query() {
-                  return _context.getNode().getProperty(PROPS.fixtag$$pjL) == null;
+                  return _context.getNode().getProperty(PROPS.value$w7ZO) == null;
                 }
               }.query();
 
@@ -350,7 +390,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
                     doSubstitute(pattern);
                   }
                   public SNode doSubstitute(@NotNull String pattern) {
-                    SProperty property = PROPS.fixtag$$pjL;
+                    SProperty property = PROPS.value$w7ZO;
                     _context.getNode().setProperty(property, "");
                     SelectionUtil.selectCell(editorContext, _context.getNode(), "*" + CellIdManager.createPropertyId(property.getName()));
                     return _context.getNode();
@@ -715,7 +755,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
 
   private static final class PROPS {
     /*package*/ static final SProperty size$1BwP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x584c9fdae0cb95d2L, "size");
-    /*package*/ static final SProperty fixtag$$pjL = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, 0x726a4e86e2416a30L, "fixtag");
+    /*package*/ static final SProperty value$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "value");
     /*package*/ static final SProperty min$DCVS = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142298L, "min");
   }
 }

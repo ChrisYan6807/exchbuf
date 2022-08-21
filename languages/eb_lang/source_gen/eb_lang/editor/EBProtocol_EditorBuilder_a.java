@@ -473,7 +473,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             // force cast counter to EBMessageNonBlockMember
                             LoggingRuntime.logMsgView(Level.DEBUG, SPropertyOperations.getString(message, PROPS.name$MnvL), EBProtocol_EditorBuilder_a.class, null, null);
                             LoggingRuntime.logMsgView(Level.DEBUG, counter.value, EBProtocol_EditorBuilder_a.class, null, null);
-                            for (SNode m : ListSequence.fromList(SLinkOperations.getChildren(message, LINKS.content$vVwC))) {
+                            for (SNode m : Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(message, LINKS.content$vVwC), CONCEPTS.EBMessageMemberVar$_K))) {
                               LoggingRuntime.logMsgView(Level.DEBUG, "m: " + SPropertyOperations.getString(m, PROPS.name$MnvL), EBProtocol_EditorBuilder_a.class, null, null);
                             }
 
@@ -1075,6 +1075,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
   private static final class CONCEPTS {
     /*package*/ static final SConcept PropertyAttribute$Gb = MetaAdapterFactory.getConcept(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x2eb1ad060897da56L, "jetbrains.mps.lang.core.structure.PropertyAttribute");
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
+    /*package*/ static final SConcept EBMessageMemberVar$_K = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, "eb_lang.structure.EBMessageMemberVar");
     /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
     /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");

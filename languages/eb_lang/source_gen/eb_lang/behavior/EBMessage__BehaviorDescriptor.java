@@ -13,12 +13,14 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
-import jetbrains.mps.internal.collections.runtime.ListSequence;
+import jetbrains.mps.internal.collections.runtime.Sequence;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
+import org.jetbrains.mps.openapi.language.SConcept;
 
 public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
@@ -39,8 +41,8 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
     return "";
   }
   /*package*/ static boolean isBlock_id4Xeby11878t(@NotNull SNode __thisNode__) {
-    for (SNode m : ListSequence.fromList(SLinkOperations.getChildren(__thisNode__, LINKS.content$vVwC))) {
-      if ((boolean) EBMessageMember__BehaviorDescriptor.isBlock_id4Xeby118828.invoke(m)) {
+    for (SNode m : Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(__thisNode__, LINKS.content$vVwC), CONCEPTS.EBMessageMemberVar$_K))) {
+      if ((boolean) EBMessageMemberVar__BehaviorDescriptor.isBlock_id5hSnPGNaBkU.invoke(m)) {
         return true;
       }
     }
@@ -100,5 +102,9 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
 
   private static final class LINKS {
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
+  }
+
+  private static final class CONCEPTS {
+    /*package*/ static final SConcept EBMessageMemberVar$_K = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, "eb_lang.structure.EBMessageMemberVar");
   }
 }

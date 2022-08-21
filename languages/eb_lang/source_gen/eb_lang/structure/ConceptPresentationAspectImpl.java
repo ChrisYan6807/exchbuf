@@ -34,9 +34,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBIntType;
   private ConceptPresentation props_EBLittleEndian;
   private ConceptPresentation props_EBMessage;
+  private ConceptPresentation props_EBMessageBaseInitializer;
   private ConceptPresentation props_EBMessageBlockMember;
+  private ConceptPresentation props_EBMessageConstructor;
   private ConceptPresentation props_EBMessageEntryMember;
   private ConceptPresentation props_EBMessageMember;
+  private ConceptPresentation props_EBMessageMemberFunc;
+  private ConceptPresentation props_EBMessageMemberVar;
   private ConceptPresentation props_EBNumberLiteral;
   private ConceptPresentation props_EBPrimitiveType;
   private ConceptPresentation props_EBProtocol;
@@ -78,14 +82,14 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
         if (props_EBCPP == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
           cpb.shortDesc("cpp directive");
-          cpb.rawPresentation("@cpp");
+          cpb.presentationByName();
           props_EBCPP = cpb.create();
         }
         return props_EBCPP;
       case LanguageConceptSwitch.EBChar:
         if (props_EBChar == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("char");
+          cpb.rawPresentation("char_ebt");
           props_EBChar = cpb.create();
         }
         return props_EBChar;
@@ -101,14 +105,14 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
         if (props_EBComment == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
           cpb.shortDesc("comment");
-          cpb.rawPresentation("//");
+          cpb.presentationByName();
           props_EBComment = cpb.create();
         }
         return props_EBComment;
       case LanguageConceptSwitch.EBEmptyStatement:
         if (props_EBEmptyStatement == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("EBEmptyStatement");
+          cpb.presentationByName();
           props_EBEmptyStatement = cpb.create();
         }
         return props_EBEmptyStatement;
@@ -162,35 +166,35 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBInclude:
         if (props_EBInclude == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("@include");
+          cpb.presentationByName();
           props_EBInclude = cpb.create();
         }
         return props_EBInclude;
       case LanguageConceptSwitch.EBInt16:
         if (props_EBInt16 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("int16");
+          cpb.rawPresentation("int16_ebt");
           props_EBInt16 = cpb.create();
         }
         return props_EBInt16;
       case LanguageConceptSwitch.EBInt32:
         if (props_EBInt32 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("int32");
+          cpb.rawPresentation("int32_ebt");
           props_EBInt32 = cpb.create();
         }
         return props_EBInt32;
       case LanguageConceptSwitch.EBInt64:
         if (props_EBInt64 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("int64");
+          cpb.rawPresentation("int64_ebt");
           props_EBInt64 = cpb.create();
         }
         return props_EBInt64;
       case LanguageConceptSwitch.EBInt8:
         if (props_EBInt8 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("int8 ");
+          cpb.rawPresentation("int8_ebt");
           props_EBInt8 = cpb.create();
         }
         return props_EBInt8;
@@ -227,6 +231,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessage = cpb.create();
         }
         return props_EBMessage;
+      case LanguageConceptSwitch.EBMessageBaseInitializer:
+        if (props_EBMessageBaseInitializer == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.rawPresentation("@base initializer");
+          props_EBMessageBaseInitializer = cpb.create();
+        }
+        return props_EBMessageBaseInitializer;
       case LanguageConceptSwitch.EBMessageBlockMember:
         if (props_EBMessageBlockMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -234,6 +245,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageBlockMember = cpb.create();
         }
         return props_EBMessageBlockMember;
+      case LanguageConceptSwitch.EBMessageConstructor:
+        if (props_EBMessageConstructor == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.rawPresentation("@constructor");
+          props_EBMessageConstructor = cpb.create();
+        }
+        return props_EBMessageConstructor;
       case LanguageConceptSwitch.EBMessageEntryMember:
         if (props_EBMessageEntryMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -247,6 +265,18 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageMember = cpb.create();
         }
         return props_EBMessageMember;
+      case LanguageConceptSwitch.EBMessageMemberFunc:
+        if (props_EBMessageMemberFunc == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          props_EBMessageMemberFunc = cpb.create();
+        }
+        return props_EBMessageMemberFunc;
+      case LanguageConceptSwitch.EBMessageMemberVar:
+        if (props_EBMessageMemberVar == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          props_EBMessageMemberVar = cpb.create();
+        }
+        return props_EBMessageMemberVar;
       case LanguageConceptSwitch.EBNumberLiteral:
         if (props_EBNumberLiteral == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -272,7 +302,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
         if (props_EBPython == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
           cpb.shortDesc("python directive");
-          cpb.rawPresentation("@python");
+          cpb.presentationByName();
           props_EBPython = cpb.create();
         }
         return props_EBPython;
@@ -291,28 +321,28 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.EBUInt16:
         if (props_EBUInt16 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("uint16");
+          cpb.rawPresentation("uint16_ebt");
           props_EBUInt16 = cpb.create();
         }
         return props_EBUInt16;
       case LanguageConceptSwitch.EBUInt32:
         if (props_EBUInt32 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("uint32");
+          cpb.rawPresentation("uint32_ebt");
           props_EBUInt32 = cpb.create();
         }
         return props_EBUInt32;
       case LanguageConceptSwitch.EBUInt64:
         if (props_EBUInt64 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("uint64");
+          cpb.rawPresentation("uint64_ebt");
           props_EBUInt64 = cpb.create();
         }
         return props_EBUInt64;
       case LanguageConceptSwitch.EBUInt8:
         if (props_EBUInt8 == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("uint8");
+          cpb.rawPresentation("uint8_ebt");
           props_EBUInt8 = cpb.create();
         }
         return props_EBUInt8;

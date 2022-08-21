@@ -17,6 +17,8 @@ import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.errors.messageTargets.MessageTarget;
 import jetbrains.mps.errors.messageTargets.NodeMessageTarget;
 import jetbrains.mps.errors.IErrorReporter;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
 import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import org.jetbrains.mps.openapi.language.SProperty;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
@@ -37,6 +39,23 @@ public class check_EBProtocol_NonTypesystemRule extends AbstractNonTypesystemRul
       }
       SetSequence.fromSet(typeNames).addElement(SPropertyOperations.getString(statement, PROPS.name$MnvL));
     }
+
+    // include directive must be in the beginning of the file
+    boolean typeAlreadyDefined = false;
+    for (SNode statement : ListSequence.fromList(SLinkOperations.getChildren(ebProtocol, LINKS.statements$_5KW))) {
+      if (SConceptOperations.isSubConceptOf(SNodeOperations.asSConcept(SNodeOperations.getConcept(statement)), CONCEPTS.EBTypeStatement$o0)) {
+        typeAlreadyDefined = true;
+      }
+
+      if (SConceptOperations.isSubConceptOf(SNodeOperations.asSConcept(SNodeOperations.getConcept(statement)), CONCEPTS.EBInclude$_h) && typeAlreadyDefined == true) {
+        {
+          final MessageTarget errorTarget = new NodeMessageTarget();
+          IErrorReporter _reporter_2309309498 = typeCheckingContext.reportTypeError(statement, "type defined before include", "r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)", "553408128354269309", null, errorTarget);
+        }
+      }
+
+    }
+
   }
   public SAbstractConcept getApplicableConcept() {
     return CONCEPTS.EBProtocol$zC;
@@ -58,6 +77,7 @@ public class check_EBProtocol_NonTypesystemRule extends AbstractNonTypesystemRul
 
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
+    /*package*/ static final SConcept EBInclude$_h = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, "eb_lang.structure.EBInclude");
     /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
   }
 }

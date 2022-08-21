@@ -65,6 +65,9 @@
     <property role="R5$K7" value="true" />
     <property role="3GE5qa" value="statement" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="PrWs8" id="uI6saUn99L" role="PzmwI">
+      <ref role="PrY4T" to="tpck:h0TrEE$" resolve="INamedConcept" />
+    </node>
   </node>
   <node concept="1TIwiD" id="79EjCryfNNN">
     <property role="EcuMT" value="8244488409083493619" />
@@ -136,14 +139,14 @@
     <property role="EcuMT" value="8244488409083493652" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBInt8" />
-    <property role="34LRSv" value="int8 " />
+    <property role="34LRSv" value="int8_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCryfNOl">
     <property role="EcuMT" value="8244488409083493653" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBChar" />
-    <property role="34LRSv" value="char" />
+    <property role="34LRSv" value="char_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCryfNOm">
@@ -198,49 +201,49 @@
     <property role="EcuMT" value="8244488409083618478" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBInt16" />
-    <property role="34LRSv" value="int16" />
+    <property role="34LRSv" value="int16_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCrygiiJ">
     <property role="EcuMT" value="8244488409083618479" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBInt32" />
-    <property role="34LRSv" value="int32" />
+    <property role="34LRSv" value="int32_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCrygiiK">
     <property role="EcuMT" value="8244488409083618480" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBInt64" />
-    <property role="34LRSv" value="int64" />
+    <property role="34LRSv" value="int64_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCrygiiL">
     <property role="EcuMT" value="8244488409083618481" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBUInt32" />
-    <property role="34LRSv" value="uint32" />
+    <property role="34LRSv" value="uint32_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCrygiiM">
     <property role="EcuMT" value="8244488409083618482" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBUInt16" />
-    <property role="34LRSv" value="uint16" />
+    <property role="34LRSv" value="uint16_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCrygiiN">
     <property role="EcuMT" value="8244488409083618483" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBUInt64" />
-    <property role="34LRSv" value="uint64" />
+    <property role="34LRSv" value="uint64_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCrygiiO">
     <property role="EcuMT" value="8244488409083618484" />
     <property role="3GE5qa" value="primitive_types" />
     <property role="TrG5h" value="EBUInt8" />
-    <property role="34LRSv" value="uint8" />
+    <property role="34LRSv" value="uint8_ebt" />
     <ref role="1TJDcQ" node="7zTxF1J4Zx$" resolve="EBIntType" />
   </node>
   <node concept="1TIwiD" id="79EjCrygiiP">
@@ -410,7 +413,7 @@
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBMessageBlockMember" />
     <property role="34LRSv" value="block" />
-    <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
+    <ref role="1TJDcQ" node="5hSnPGNaBks" resolve="EBMessageMemberVar" />
     <node concept="1TJgyj" id="3SNypnb3YGt" role="1TKVEi">
       <property role="IQ2ns" value="4482077330613725981" />
       <property role="20kJfa" value="type" />
@@ -440,21 +443,23 @@
       <property role="TrG5h" value="fixtag" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
-    <node concept="PrWs8" id="5xcBXFwLPyp" role="PzmwI">
-      <ref role="PrY4T" node="79EjCryfBwO" resolve="EBIIdentifierConcept" />
-    </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmCO">
     <property role="EcuMT" value="8244488409083636276" />
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBMessageEntryMember" />
     <property role="34LRSv" value="entry" />
-    <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
+    <ref role="1TJDcQ" node="5hSnPGNaBks" resolve="EBMessageMemberVar" />
     <node concept="1TJgyj" id="5sRG$ScpX5Q" role="1TKVEi">
       <property role="IQ2ns" value="6284687853304140150" />
       <property role="20kJfa" value="type" />
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="79EjCryfNNN" resolve="EBTypeStatement" />
+    </node>
+    <node concept="1TJgyi" id="5hSnPGMZ69Y" role="1TKVEl">
+      <property role="IQ2nx" value="6086719741693289086" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
   </node>
   <node concept="1TIwiD" id="7zTxF1J4Zx$">
@@ -518,6 +523,11 @@
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="79EjCryfNNQ" resolve="EBProtocol" />
     </node>
+    <node concept="1TJgyi" id="uI6saUpJAK" role="1TKVEl">
+      <property role="IQ2nx" value="553408128354810288" />
+      <property role="TrG5h" value="target" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
   </node>
   <node concept="1TIwiD" id="1ckN_PstSE2">
     <property role="EcuMT" value="1374950686633462402" />
@@ -555,6 +565,48 @@
       <property role="TrG5h" value="singed" />
       <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
     </node>
+  </node>
+  <node concept="1TIwiD" id="5hSnPGN51ES">
+    <property role="EcuMT" value="6086719741694843576" />
+    <property role="3GE5qa" value="statement" />
+    <property role="TrG5h" value="EBMessageConstructor" />
+    <property role="34LRSv" value="@constructor" />
+    <ref role="1TJDcQ" node="5hSnPGNaC_J" resolve="EBMessageMemberFunc" />
+    <node concept="1TJgyj" id="5hSnPGN51ET" role="1TKVEi">
+      <property role="IQ2ns" value="6086719741694843577" />
+      <property role="20kJfa" value="member" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageEntryMember" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5hSnPGN7nSq">
+    <property role="EcuMT" value="6086719741695458842" />
+    <property role="3GE5qa" value="statement" />
+    <property role="TrG5h" value="EBMessageBaseInitializer" />
+    <property role="34LRSv" value="@base initializer" />
+    <ref role="1TJDcQ" node="5hSnPGNaC_J" resolve="EBMessageMemberFunc" />
+    <node concept="1TJgyi" id="5hSnPGN7nXd" role="1TKVEl">
+      <property role="IQ2nx" value="6086719741695459149" />
+      <property role="TrG5h" value="value" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5hSnPGNaBks">
+    <property role="EcuMT" value="6086719741696308508" />
+    <property role="3GE5qa" value="statement" />
+    <property role="TrG5h" value="EBMessageMemberVar" />
+    <property role="R5$K7" value="true" />
+    <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
+    <node concept="PrWs8" id="5hSnPGNaBkt" role="PzmwI">
+      <ref role="PrY4T" node="79EjCryfBwO" resolve="EBIIdentifierConcept" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="5hSnPGNaC_J">
+    <property role="EcuMT" value="6086719741696313711" />
+    <property role="3GE5qa" value="statement" />
+    <property role="TrG5h" value="EBMessageMemberFunc" />
+    <property role="R5$K7" value="true" />
+    <ref role="1TJDcQ" node="79EjCrygmCE" resolve="EBMessageMember" />
   </node>
 </model>
 

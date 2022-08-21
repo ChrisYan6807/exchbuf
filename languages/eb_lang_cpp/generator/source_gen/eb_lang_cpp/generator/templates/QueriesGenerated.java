@@ -7,16 +7,21 @@ import jetbrains.mps.generator.impl.query.QueryProviderBase;
 import jetbrains.mps.generator.template.PropertyMacroContext;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import eb_lang.behavior.EBTypeStatement__BehaviorDescriptor;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
+import eb_lang.behavior.EBIntType__BehaviorDescriptor;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import eb_lang.behavior.EBBitFieldMember__BehaviorDescriptor;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import eb_lang.behavior.EBMessage__BehaviorDescriptor;
-import eb_lang.behavior.EBMessageMember__BehaviorDescriptor;
-import org.jetbrains.mps.openapi.model.SNode;
+import eb_lang.behavior.EBMessageMemberVar__BehaviorDescriptor;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
+import org.jetbrains.mps.openapi.model.SNode;
+import eb_lang.behavior.EBInclude__BehaviorDescriptor;
 import jetbrains.mps.generator.template.SourceSubstituteMacroNodeContext;
 import jetbrains.mps.generator.template.SourceSubstituteMacroNodesContext;
+import java.util.List;
+import java.util.LinkedList;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
+import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SModelOperations;
 import java.util.Map;
 import jetbrains.mps.generator.impl.query.SourceNodeQuery;
@@ -29,7 +34,6 @@ import jetbrains.mps.generator.impl.query.SourceNodesQuery;
 import java.util.Collection;
 import jetbrains.mps.util.IterableUtil;
 import jetbrains.mps.generator.impl.query.PropertyValueQuery;
-import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SProperty;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
 import org.jetbrains.mps.openapi.language.SReferenceLink;
@@ -65,7 +69,7 @@ public class QueriesGenerated extends QueryProviderBase {
     return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
   }
   public static Object propertyMacro_GetValue_0_8(final PropertyMacroContext _context) {
-    return SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl)));
+    return (String) EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl));
   }
   public static Object propertyMacro_GetValue_0_9(final PropertyMacroContext _context) {
     return SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.enum$iBH6), PROPS.name$MnvL);
@@ -77,7 +81,7 @@ public class QueriesGenerated extends QueryProviderBase {
     return String.valueOf(SPropertyOperations.getInteger(_context.getNode(), PROPS.length$wbxg));
   }
   public static Object propertyMacro_GetValue_0_12(final PropertyMacroContext _context) {
-    return SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(_context.getNode(), LINKS.type$w4bT)));
+    return (String) EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SLinkOperations.getTarget(_context.getNode(), LINKS.type$w4bT));
   }
   public static Object propertyMacro_GetValue_0_13(final PropertyMacroContext _context) {
     return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
@@ -85,23 +89,21 @@ public class QueriesGenerated extends QueryProviderBase {
   public static Object propertyMacro_GetValue_0_14(final PropertyMacroContext _context) {
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), CONCEPTS.EBMessage$YV)) {
       if ((boolean) EBMessage__BehaviorDescriptor.isBlock_id4Xeby11878t.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), CONCEPTS.EBMessage$YV))) {
-        if ((boolean) EBMessageMember__BehaviorDescriptor.isBlock_id4Xeby118828.invoke(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMember$R))) {
-          return String.format("BlockRef<%s> %s() {return BlockRef<%s>(%s().end(), %s);}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMember$R), PROPS.name$MnvL), 1);
-
+        if (SNodeOperations.isInstanceOf(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K) && (boolean) EBMessageMemberVar__BehaviorDescriptor.isBlock_id5hSnPGNaBkU.invoke(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K))) {
+          return String.format("%s* %s() {return reinterpret_cast<%s*>(%s()->end());}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K), PROPS.name$MnvL));
         } else {
-          return String.format("BlockRef<%s> %s() {return BlockRef<%s>(begin()+size(), %s);}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), 1);
+          String.format("%s* %s() {return reinterpret_cast<%s*>(begin()+size());}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL));
         }
-
       } else {
         return String.format("%s %s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
       }
-    } else {
-      return String.format("%s %s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
     }
+
+    return String.format("%s %s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
   }
   public static Object propertyMacro_GetValue_0_15(final PropertyMacroContext _context) {
-    if ((boolean) EBMessageMember__BehaviorDescriptor.isBlock_id4Xeby118828.invoke(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMember$R))) {
-      return String.format("    BlockRef<%s> %s() {return BlockRef<%s>(%s().end(), %s);}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$kyUc), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$kyUc), PROPS.name$MnvL), SPropertyOperations.getString(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMember$R), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.counter$kzoe), PROPS.name$MnvL));
+    if (SNodeOperations.isInstanceOf(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K) && (boolean) EBMessageMemberVar__BehaviorDescriptor.isBlock_id5hSnPGNaBkU.invoke(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K))) {
+      return String.format("    BlockRef<%s> %s() {return BlockRef<%s>(%s().end(), %s);}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$kyUc), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$kyUc), PROPS.name$MnvL), SPropertyOperations.getString(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.counter$kzoe), PROPS.name$MnvL));
 
     } else {
       return String.format("    BlockRef<%s> %s() {return BlockRef<%s>(begin()+size(), %s);}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$kyUc), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$kyUc), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.counter$kzoe), PROPS.name$MnvL));
@@ -109,26 +111,47 @@ public class QueriesGenerated extends QueryProviderBase {
 
   }
   public static Object propertyMacro_GetValue_0_16(final PropertyMacroContext _context) {
-    return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
+    return "#pragma pack(1)";
   }
   public static Object propertyMacro_GetValue_0_17(final PropertyMacroContext _context) {
+    return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
+  }
+  public static Object propertyMacro_GetValue_0_18(final PropertyMacroContext _context) {
     if ((SLinkOperations.getTarget(_context.getNode(), LINKS.base$LfNH) != null)) {
-      return " : public " + SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.base$LfNH), PROPS.name$MnvL);
+      return " : " + SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.base$LfNH), PROPS.name$MnvL);
     }
 
     return "";
   }
-  public static Object propertyMacro_GetValue_0_18(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_19(final PropertyMacroContext _context) {
     String begin = "char* begin() {return reinterpret_cast<char*>(this);}";
+    String end = "char* end() {return begin()+length();}";
     String size = String.format("size_t size() {return sizeof(%s);}", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
     String length = "size_t length() {return size();}";
     if ((boolean) EBMessage__BehaviorDescriptor.isBlock_id4Xeby11878t.invoke(_context.getNode())) {
       // the last member must be a variable length member
-      SNode lastChild = ListSequence.fromList(SLinkOperations.getChildren(_context.getNode(), LINKS.content$vVwC)).last();
-      length = String.format("size_t length() {return %s().end()-begin();}", SPropertyOperations.getString(lastChild, PROPS.name$MnvL), SPropertyOperations.getString(lastChild, PROPS.name$MnvL));
+      if (SNodeOperations.isInstanceOf(ListSequence.fromList(SLinkOperations.getChildren(_context.getNode(), LINKS.content$vVwC)).last(), CONCEPTS.EBMessageMemberVar$_K)) {
+        SNode lastChild = (SNode) (ListSequence.fromList(SLinkOperations.getChildren(_context.getNode(), LINKS.content$vVwC)).last());
+        length = String.format("size_t length() {return %s().end()-begin();}", SPropertyOperations.getString(lastChild, PROPS.name$MnvL));
+
+      }
     }
 
-    return String.format("    %s\n    %s\n    %s", begin, size, length);
+    return String.format("    %s\n    %s\n    %s\n    %s", begin, end, size, length);
+  }
+  public static Object propertyMacro_GetValue_0_20(final PropertyMacroContext _context) {
+    return "#pragma pack()";
+  }
+  public static Object propertyMacro_GetValue_0_21(final PropertyMacroContext _context) {
+    String name = SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
+    String size = String.valueOf(SPropertyOperations.getInteger(_context.getNode(), PROPS.size$1BwP));
+    if (SPropertyOperations.getInteger(_context.getNode(), PROPS.size$1BwP) != 0) {
+      return "static_assert(sizeof(" + name + ") == " + size + ", \"Bad message size.\")";
+    }
+    return "";
+  }
+  public static Object propertyMacro_GetValue_0_22(final PropertyMacroContext _context) {
+    return (String) EBInclude__BehaviorDescriptor.cpp_include_iduI6saUpFhC.invoke(_context.getNode());
   }
   public static Object propertyMacro_GetValue_1_0(final PropertyMacroContext _context) {
     return _context.getTemplateValue();
@@ -136,11 +159,30 @@ public class QueriesGenerated extends QueryProviderBase {
   public static SNode sourceNodeQuery_0_0(final SourceSubstituteMacroNodeContext _context) {
     return SLinkOperations.getTarget(_context.getNode(), LINKS.value$_yQp);
   }
-  public static SNode sourceNodeQuery_0_1(final SourceSubstituteMacroNodeContext _context) {
-    return SLinkOperations.getTarget(_context.getNode(), LINKS.protocol$v5qn);
-  }
   public static Iterable<SNode> sourceNodesQuery_0_0(final SourceSubstituteMacroNodesContext _context) {
-    return SLinkOperations.getChildren(_context.getNode(), LINKS.statements$_5KW);
+    SLinkOperations.getChildren(_context.getNode(), LINKS.statements$_5KW);
+    List<SNode> slist = ListSequence.fromList(new LinkedList<SNode>());
+    boolean typedAlreadyDefined = false;
+    SNode once = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
+    SPropertyOperations.assign(once, PROPS.value$wDYR, "#pragma once");
+    ListSequence.fromList(slist).addElement(once);
+    for (SNode statement : ListSequence.fromList(SLinkOperations.getChildren(_context.getNode(), LINKS.statements$_5KW))) {
+      if (SNodeOperations.isInstanceOf(statement, CONCEPTS.EBTypeStatement$o0)) {
+        if (!(typedAlreadyDefined)) {
+          SNode ns_start = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
+          SPropertyOperations.assign(ns_start, PROPS.value$wDYR, "namespace " + SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL) + " {");
+          ListSequence.fromList(slist).addElement(ns_start);
+        }
+        typedAlreadyDefined = true;
+      }
+      ListSequence.fromList(slist).addElement(statement);
+    }
+
+    SNode ns_end = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
+    SPropertyOperations.assign(ns_end, PROPS.value$wDYR, "} // end of namespace " + SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+    ListSequence.fromList(slist).addElement(ns_end);
+
+    return slist;
   }
   public static Iterable<SNode> sourceNodesQuery_0_1(final SourceSubstituteMacroNodesContext _context) {
     return SLinkOperations.getChildren(_context.getNode(), LINKS.values$_zmn);
@@ -158,7 +200,6 @@ public class QueriesGenerated extends QueryProviderBase {
   {
     int i = 0;
     snqMethods.put("8717146646091307986", new SNQ(i++));
-    snqMethods.put("5981001260416501725", new SNQ(i++));
   }
   @NotNull
   @Override
@@ -176,8 +217,6 @@ public class QueriesGenerated extends QueryProviderBase {
       switch (methodKey) {
         case 0:
           return QueriesGenerated.sourceNodeQuery_0_0(ctx);
-        case 1:
-          return QueriesGenerated.sourceNodeQuery_0_1(ctx);
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
       }
@@ -240,9 +279,13 @@ public class QueriesGenerated extends QueryProviderBase {
     pvqMethods.put("6284687853304538715", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), " "));
     pvqMethods.put("6284687853305109675", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "expression"));
     pvqMethods.put("5178973056555875903", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
+    pvqMethods.put("6086719741692815393", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "pack_header"));
     pvqMethods.put("5714555693244321214", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "msgName"));
     pvqMethods.put("5714555693244395933", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "baseClass"));
     pvqMethods.put("5178973056556043809", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "func"));
+    pvqMethods.put("6086719741692821816", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "pack_end"));
+    pvqMethods.put("6086719741692827405", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "size_check"));
+    pvqMethods.put("553408128354811797", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp_include"));
     pvqMethods.put("3463732535972196602", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "protocol"));
   }
   @NotNull
@@ -299,6 +342,14 @@ public class QueriesGenerated extends QueryProviderBase {
         case 18:
           return QueriesGenerated.propertyMacro_GetValue_0_18(ctx);
         case 19:
+          return QueriesGenerated.propertyMacro_GetValue_0_19(ctx);
+        case 20:
+          return QueriesGenerated.propertyMacro_GetValue_0_20(ctx);
+        case 21:
+          return QueriesGenerated.propertyMacro_GetValue_0_21(ctx);
+        case 22:
+          return QueriesGenerated.propertyMacro_GetValue_0_22(ctx);
+        case 23:
           return QueriesGenerated.propertyMacro_GetValue_1_0(ctx);
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
@@ -313,6 +364,7 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SProperty value$_syU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x726a4e86e23f3d1bL, "value");
     /*package*/ static final SProperty value$_s5n = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x726a4e86e23f3d19L, "value");
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
+    /*package*/ static final SProperty size$1BwP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x584c9fdae0cb95d2L, "size");
   }
 
   private static final class LINKS {
@@ -325,15 +377,15 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SReferenceLink base$LfNH = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x1fd2ea8cbdac6546L, "base");
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
     /*package*/ static final SContainmentLink value$_yQp = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, 0x726a4e86e23f3d20L, "value");
-    /*package*/ static final SReferenceLink protocol$v5qn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, 0x5300c8f52845c9abL, "protocol");
     /*package*/ static final SContainmentLink statements$_5KW = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x726a4e86e23f3cfcL, "statements");
     /*package*/ static final SContainmentLink values$_zmn = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, 0x726a4e86e23f3d24L, "values");
     /*package*/ static final SContainmentLink values$w4DV = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, 0x726a4e86e2416994L, "values");
   }
 
   private static final class CONCEPTS {
-    /*package*/ static final SConcept EBMessageMember$R = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, "eb_lang.structure.EBMessageMember");
+    /*package*/ static final SConcept EBMessageMemberVar$_K = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, "eb_lang.structure.EBMessageMemberVar");
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
+    /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
     /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
   }
 }

@@ -2,7 +2,9 @@
 <dependenciesRoot>
   <dependency className="eb_lang_cpp.generator.templates.QueriesGenerated">
     <classNode dependClassName="eb_lang.behavior.EBBitFieldMember__BehaviorDescriptor" />
-    <classNode dependClassName="eb_lang.behavior.EBMessageMember__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBInclude__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBIntType__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBMessageMemberVar__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBMessage__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBTypeStatement__BehaviorDescriptor" />
     <classNode dependClassName="java.lang.Iterable" />
@@ -11,6 +13,8 @@
     <classNode dependClassName="java.lang.String" />
     <classNode dependClassName="java.util.Collection" />
     <classNode dependClassName="java.util.HashMap" />
+    <classNode dependClassName="java.util.LinkedList" />
+    <classNode dependClassName="java.util.List" />
     <classNode dependClassName="java.util.Map" />
     <classNode dependClassName="jetbrains.mps.generator.impl.GenerationFailureException" />
     <classNode dependClassName="jetbrains.mps.generator.impl.query.PropertyValueQuery" />

@@ -20,14 +20,14 @@ import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 public final class EBMessageBlockMember__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember");
 
-  public static final SMethod<Boolean> isBlock_id4Xeby118828 = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4Xeby118828").build();
+  public static final SMethod<Boolean> isBlock_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNaBkU").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isBlock_id4Xeby118828);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isBlock_id5hSnPGNaBkU);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
-  /*package*/ static boolean isBlock_id4Xeby118828(@NotNull SNode __thisNode__) {
+  /*package*/ static boolean isBlock_id5hSnPGNaBkU(@NotNull SNode __thisNode__) {
     return true;
   }
 
@@ -47,7 +47,7 @@ public final class EBMessageBlockMember__BehaviorDescriptor extends BaseBHDescri
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((Boolean) isBlock_id4Xeby118828(node));
+        return (T) ((Boolean) isBlock_id5hSnPGNaBkU(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

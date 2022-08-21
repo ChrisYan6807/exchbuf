@@ -4319,12 +4319,19 @@
                                                                                 <node concept="2GrKxI" id="sDoM6HlF6M" role="2Gsz3X">
                                                                                   <property role="TrG5h" value="m" />
                                                                                 </node>
-                                                                                <node concept="2OqwBi" id="sDoM6Hm9JD" role="2GsD0m">
-                                                                                  <node concept="37vLTw" id="sDoM6Hm3NJ" role="2Oq$k0">
-                                                                                    <ref role="3cqZAo" node="3IEej8gfCHE" resolve="message" />
+                                                                                <node concept="2OqwBi" id="5hSnPGNcOMe" role="2GsD0m">
+                                                                                  <node concept="2OqwBi" id="sDoM6Hm9JD" role="2Oq$k0">
+                                                                                    <node concept="37vLTw" id="sDoM6Hm3NJ" role="2Oq$k0">
+                                                                                      <ref role="3cqZAo" node="3IEej8gfCHE" resolve="message" />
+                                                                                    </node>
+                                                                                    <node concept="3Tsc0h" id="sDoM6Hmkfq" role="2OqNvi">
+                                                                                      <ref role="3TtcxE" to="wt0b:7Ho_HUXTBmU" resolve="content" />
+                                                                                    </node>
                                                                                   </node>
-                                                                                  <node concept="3Tsc0h" id="sDoM6Hmkfq" role="2OqNvi">
-                                                                                    <ref role="3TtcxE" to="wt0b:7Ho_HUXTBmU" resolve="content" />
+                                                                                  <node concept="v3k3i" id="5hSnPGNd4jK" role="2OqNvi">
+                                                                                    <node concept="chp4Y" id="5hSnPGNdi52" role="v3oSu">
+                                                                                      <ref role="cht4Q" to="wt0b:5hSnPGNaBks" resolve="EBMessageMemberVar" />
+                                                                                    </node>
                                                                                   </node>
                                                                                 </node>
                                                                                 <node concept="3clFbS" id="sDoM6HlF6Q" role="2LFqv$">
@@ -4333,12 +4340,12 @@
                                                                                       <node concept="Xl_RD" id="sDoM6Hp2XN" role="3uHU7B">
                                                                                         <property role="Xl_RC" value="m: " />
                                                                                       </node>
-                                                                                      <node concept="2OqwBi" id="sDoM6Ho4aE" role="3uHU7w">
-                                                                                        <node concept="3TrcHB" id="sDoM6Hog$G" role="2OqNvi">
-                                                                                          <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
-                                                                                        </node>
-                                                                                        <node concept="2GrUjf" id="sDoM6Hpm8$" role="2Oq$k0">
+                                                                                      <node concept="2OqwBi" id="5hSnPGNdHH4" role="3uHU7w">
+                                                                                        <node concept="2GrUjf" id="5hSnPGNdBZC" role="2Oq$k0">
                                                                                           <ref role="2Gs0qQ" node="sDoM6HlF6M" resolve="m" />
+                                                                                        </node>
+                                                                                        <node concept="3TrcHB" id="5hSnPGNdUqU" role="2OqNvi">
+                                                                                          <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
                                                                                         </node>
                                                                                       </node>
                                                                                     </node>
@@ -10284,6 +10291,21 @@
           <node concept="3F0ifn" id="5xcBXFwLPzG" role="3EZMnx">
             <property role="3F0ifm" value="[" />
           </node>
+          <node concept="3F0ifn" id="5hSnPGMZ6ao" role="3EZMnx">
+            <property role="3F0ifm" value="default" />
+          </node>
+          <node concept="3F0ifn" id="5hSnPGMZ6ay" role="3EZMnx">
+            <property role="3F0ifm" value="=" />
+          </node>
+          <node concept="3F0A7n" id="5hSnPGMZ6aG" role="3EZMnx">
+            <ref role="1NtTu8" to="wt0b:5hSnPGMZ69Y" resolve="value" />
+          </node>
+          <node concept="3F0ifn" id="5hSnPGN0SuW" role="3EZMnx">
+            <property role="3F0ifm" value="," />
+            <node concept="11L4FC" id="5hSnPGN3Cic" role="3F10Kt">
+              <property role="VOm3f" value="true" />
+            </node>
+          </node>
           <node concept="3F0ifn" id="5xcBXFwLPzM" role="3EZMnx">
             <property role="3F0ifm" value="fixtag" />
           </node>
@@ -10507,6 +10529,38 @@
         <property role="3F0ifm" value="]" />
       </node>
       <node concept="2iRfu4" id="1ckN_PstSEB" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="5hSnPGN51F2">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:5hSnPGN51ES" resolve="EBMessageConstructor" />
+    <node concept="3EZMnI" id="5hSnPGN5irQ" role="2wV5jI">
+      <node concept="3F0ifn" id="5hSnPGN5irR" role="3EZMnx">
+        <property role="3F0ifm" value="@constructor for:" />
+      </node>
+      <node concept="1iCGBv" id="5hSnPGN5isb" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:5hSnPGN51ET" resolve="member" />
+        <node concept="1sVBvm" id="5hSnPGN5isd" role="1sWHZn">
+          <node concept="3F0A7n" id="5hSnPGN5isl" role="2wV5jI">
+            <property role="1Intyy" value="true" />
+            <ref role="1NtTu8" to="tpck:h0TrG11" resolve="name" />
+          </node>
+        </node>
+      </node>
+      <node concept="2iRfu4" id="5hSnPGN5irV" role="2iSdaV" />
+    </node>
+  </node>
+  <node concept="24kQdi" id="5hSnPGN7nWZ">
+    <property role="3GE5qa" value="statement" />
+    <ref role="1XX52x" to="wt0b:5hSnPGN7nSq" resolve="EBMessageBaseInitializer" />
+    <node concept="3EZMnI" id="5hSnPGN7nX1" role="2wV5jI">
+      <node concept="3F0ifn" id="5hSnPGN7nX2" role="3EZMnx">
+        <property role="3F0ifm" value="@base initializer value:" />
+      </node>
+      <node concept="2iRfu4" id="5hSnPGN7nX6" role="2iSdaV" />
+      <node concept="3F0A7n" id="5hSnPGN7nXj" role="3EZMnx">
+        <ref role="1NtTu8" to="wt0b:5hSnPGN7nXd" resolve="value" />
+      </node>
     </node>
   </node>
 </model>

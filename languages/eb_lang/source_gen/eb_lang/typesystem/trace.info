@@ -8,73 +8,99 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123165:jetbrains.mps.baseLanguage.structure.InstanceMethodDeclaration" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242864:jetbrains.mps.baseLanguage.structure.LocalVariableDeclarationStatement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068581242878:jetbrains.mps.baseLanguage.structure.ReturnStatement" />
+  <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/6329021646629104954:jetbrains.mps.baseLanguage.structure.SingleLineComment" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1068580123157:jetbrains.mps.baseLanguage.structure.Statement" />
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070462154015:jetbrains.mps.baseLanguage.structure.StaticFieldDeclaration" />
   <root>
     <file name="TypesystemDescriptor.java">
-      <unit at="8,0,20,0" name="eb_lang.typesystem.TypesystemDescriptor" />
+      <unit at="8,0,24,0" name="eb_lang.typesystem.TypesystemDescriptor" />
     </file>
   </root>
   <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/5342936125071473277">
     <file name="TypesystemDescriptor.java">
-      <node id="5342936125071473277" at="14,5,15,93" concept="6" />
-      <node id="5342936125071473277" at="15,93,16,55" concept="2" />
-      <node id="5342936125071473277" at="13,5,17,5" concept="0" />
-      <scope id="5342936125071473277" at="14,5,16,55">
+      <node id="5342936125071473277" at="18,5,19,93" concept="6" />
+      <node id="5342936125071473277" at="19,93,20,55" concept="2" />
+      <node id="5342936125071473277" at="17,5,21,5" concept="0" />
+      <scope id="5342936125071473277" at="18,5,20,55">
         <var name="nonTypesystemRule" id="5342936125071473277" />
       </scope>
     </file>
     <file name="check_EBProtocol_NonTypesystemRule.java">
-      <node id="5342936125071513407" at="29,123,30,71" concept="6" />
-      <node id="5342936125071534418" at="33,9,34,68" concept="6" />
-      <node id="5342936125071534418" at="34,68,35,280" concept="6" />
-      <node id="5342936125071539003" at="37,7,38,107" concept="2" />
-      <node id="5342936125071473277" at="41,50,42,34" concept="7" />
-      <node id="5342936125071473277" at="44,68,45,102" concept="7" />
-      <node id="5342936125071473277" at="47,30,48,17" concept="7" />
-      <node id="5342936125071473277" at="52,0,53,0" concept="9" trace="name$MnvL" />
-      <node id="5342936125071473277" at="56,0,57,0" concept="9" trace="statements$_5KW" />
-      <node id="5342936125071473277" at="60,0,61,0" concept="9" trace="EBTypeStatement$o0" />
-      <node id="5342936125071473277" at="61,0,62,0" concept="9" trace="EBProtocol$zC" />
-      <node id="5342936125071473277" at="27,0,29,0" concept="1" trace="check_EBProtocol_NonTypesystemRule#()V" />
-      <node id="5342936125071473277" at="41,0,44,0" concept="5" trace="getApplicableConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
-      <node id="5342936125071473277" at="44,0,47,0" concept="5" trace="isApplicableAndPattern#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;" />
-      <node id="5342936125071473277" at="47,0,50,0" concept="5" trace="overrides#()Z" />
-      <node id="5342936125071534418" at="32,111,36,9" concept="0" />
-      <node id="5342936125071526644" at="31,171,37,7" concept="4" />
-      <node id="5342936125071513503" at="30,71,39,5" concept="3" />
-      <node id="5342936125071473277" at="29,0,41,0" concept="5" trace="applyRule#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/typesystem/inference/TypeCheckingContext;Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;)V" />
-      <scope id="5342936125071473277" at="27,47,27,47" />
-      <scope id="5342936125071473277" at="41,50,42,34" />
-      <scope id="5342936125071473277" at="44,68,45,102" />
-      <scope id="5342936125071473277" at="47,30,48,17" />
-      <scope id="5342936125071473277" at="27,0,29,0" />
-      <scope id="5342936125071534418" at="33,9,35,280">
+      <node id="5342936125071513407" at="31,123,32,71" concept="6" />
+      <node id="5342936125071534418" at="35,9,36,68" concept="6" />
+      <node id="5342936125071534418" at="36,68,37,280" concept="6" />
+      <node id="5342936125071539003" at="39,7,40,107" concept="2" />
+      <node id="553408128354097911" at="41,5,42,0" concept="9" />
+      <node id="553408128354100148" at="42,0,43,61" concept="8" />
+      <node id="553408128354257494" at="43,61,44,39" concept="6" />
+      <node id="553408128354257596" at="46,142,47,34" concept="2" />
+      <node id="553408128354258774" at="48,7,49,0" concept="9" />
+      <node id="553408128354269309" at="51,9,52,68" concept="6" />
+      <node id="553408128354269309" at="52,68,53,229" concept="6" />
+      <node id="553408128354258788" at="55,7,56,0" concept="9" />
+      <node id="553408128354097992" at="57,5,58,0" concept="9" />
+      <node id="5342936125071473277" at="60,50,61,34" concept="7" />
+      <node id="5342936125071473277" at="63,68,64,102" concept="7" />
+      <node id="5342936125071473277" at="66,30,67,17" concept="7" />
+      <node id="5342936125071473277" at="71,0,72,0" concept="10" trace="name$MnvL" />
+      <node id="5342936125071473277" at="75,0,76,0" concept="10" trace="statements$_5KW" />
+      <node id="5342936125071473277" at="79,0,80,0" concept="10" trace="EBTypeStatement$o0" />
+      <node id="5342936125071473277" at="80,0,81,0" concept="10" trace="EBInclude$_h" />
+      <node id="5342936125071473277" at="81,0,82,0" concept="10" trace="EBProtocol$zC" />
+      <node id="5342936125071473277" at="29,0,31,0" concept="1" trace="check_EBProtocol_NonTypesystemRule#()V" />
+      <node id="553408128354106183" at="45,115,48,7" concept="4" />
+      <node id="5342936125071473277" at="60,0,63,0" concept="5" trace="getApplicableConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
+      <node id="5342936125071473277" at="63,0,66,0" concept="5" trace="isApplicableAndPattern#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;" />
+      <node id="5342936125071473277" at="66,0,69,0" concept="5" trace="overrides#()Z" />
+      <node id="5342936125071534418" at="34,111,38,9" concept="0" />
+      <node id="553408128354269309" at="50,166,54,9" concept="0" />
+      <node id="5342936125071526644" at="33,171,39,7" concept="4" />
+      <node id="553408128354258820" at="49,0,55,7" concept="4" />
+      <node id="5342936125071513503" at="32,71,41,5" concept="3" />
+      <node id="553408128354100497" at="44,39,57,5" concept="3" />
+      <node id="5342936125071473277" at="31,0,60,0" concept="5" trace="applyRule#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/typesystem/inference/TypeCheckingContext;Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;)V" />
+      <scope id="5342936125071473277" at="29,47,29,47" />
+      <scope id="553408128354106185" at="46,142,47,34" />
+      <scope id="5342936125071473277" at="60,50,61,34" />
+      <scope id="5342936125071473277" at="63,68,64,102" />
+      <scope id="5342936125071473277" at="66,30,67,17" />
+      <scope id="5342936125071473277" at="29,0,31,0" />
+      <scope id="5342936125071534418" at="35,9,37,280">
         <var name="_reporter_2309309498" id="5342936125071534418" />
         <var name="errorTarget" id="5342936125071534418" />
       </scope>
-      <scope id="5342936125071473277" at="41,0,44,0" />
-      <scope id="5342936125071473277" at="44,0,47,0">
+      <scope id="553408128354269309" at="51,9,53,229">
+        <var name="_reporter_2309309498" id="553408128354269309" />
+        <var name="errorTarget" id="553408128354269309" />
+      </scope>
+      <scope id="5342936125071473277" at="60,0,63,0" />
+      <scope id="5342936125071473277" at="63,0,66,0">
         <var name="argument" id="5342936125071473277" />
       </scope>
-      <scope id="5342936125071473277" at="47,0,50,0" />
-      <scope id="5342936125071526646" at="32,111,36,9" />
-      <scope id="5342936125071513509" at="31,171,38,107" />
-      <scope id="5342936125071513503" at="30,71,39,5">
+      <scope id="5342936125071473277" at="66,0,69,0" />
+      <scope id="5342936125071526646" at="34,111,38,9" />
+      <scope id="553408128354258822" at="50,166,54,9" />
+      <scope id="5342936125071513509" at="33,171,40,107" />
+      <scope id="5342936125071513503" at="32,71,41,5">
         <var name="statement" id="5342936125071513505" />
       </scope>
-      <scope id="5342936125071473278" at="29,123,39,5">
+      <scope id="553408128354100503" at="45,115,56,0" />
+      <scope id="553408128354100497" at="44,39,57,5">
+        <var name="statement" id="553408128354100499" />
+      </scope>
+      <scope id="5342936125071473278" at="31,123,58,0">
+        <var name="typeAlreadyDefined" id="553408128354257497" />
         <var name="typeNames" id="5342936125071513410" />
       </scope>
-      <scope id="5342936125071473277" at="29,0,41,0">
+      <scope id="5342936125071473277" at="31,0,60,0">
         <var name="ebProtocol" id="5342936125071473277" />
         <var name="status" id="5342936125071473277" />
         <var name="typeCheckingContext" id="5342936125071473277" />
       </scope>
-      <unit id="5342936125071473277" at="51,0,54,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule$PROPS" />
-      <unit id="5342936125071473277" at="55,0,58,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule$LINKS" />
-      <unit id="5342936125071473277" at="59,0,63,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule$CONCEPTS" />
-      <unit id="5342936125071473277" at="26,0,64,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule" />
+      <unit id="5342936125071473277" at="70,0,73,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule$PROPS" />
+      <unit id="5342936125071473277" at="74,0,77,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule$LINKS" />
+      <unit id="5342936125071473277" at="78,0,83,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule$CONCEPTS" />
+      <unit id="5342936125071473277" at="28,0,84,0" name="eb_lang.typesystem.check_EBProtocol_NonTypesystemRule" />
     </file>
   </root>
   <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/5342936125071603845">
@@ -91,14 +117,14 @@
       <node id="5342936125071629509" at="33,9,34,68" concept="6" />
       <node id="5342936125071629509" at="34,68,35,273" concept="6" />
       <node id="5342936125071639519" at="37,7,38,104" concept="2" />
-      <node id="5342936125071668968" at="39,5,40,0" concept="8" />
+      <node id="5342936125071668968" at="39,5,40,0" concept="9" />
       <node id="5342936125071603845" at="42,50,43,30" concept="7" />
       <node id="5342936125071603845" at="45,68,46,102" concept="7" />
       <node id="5342936125071603845" at="48,30,49,17" concept="7" />
-      <node id="5342936125071603845" at="53,0,54,0" concept="9" trace="name$MnvL" />
-      <node id="5342936125071603845" at="57,0,58,0" concept="9" trace="values$_zmn" />
-      <node id="5342936125071603845" at="61,0,62,0" concept="9" trace="EBIntKVPair$vd" />
-      <node id="5342936125071603845" at="62,0,63,0" concept="9" trace="EBEnum$37" />
+      <node id="5342936125071603845" at="53,0,54,0" concept="10" trace="name$MnvL" />
+      <node id="5342936125071603845" at="57,0,58,0" concept="10" trace="values$_zmn" />
+      <node id="5342936125071603845" at="61,0,62,0" concept="10" trace="EBIntKVPair$vd" />
+      <node id="5342936125071603845" at="62,0,63,0" concept="10" trace="EBEnum$37" />
       <node id="5342936125071603845" at="27,0,29,0" concept="1" trace="check_EBEnum_NonTypesystemRule#()V" />
       <node id="5342936125071603845" at="42,0,45,0" concept="5" trace="getApplicableConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
       <node id="5342936125071603845" at="45,0,48,0" concept="5" trace="isApplicableAndPattern#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;" />
@@ -138,6 +164,61 @@
       <unit id="5342936125071603845" at="56,0,59,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule$LINKS" />
       <unit id="5342936125071603845" at="60,0,64,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule$CONCEPTS" />
       <unit id="5342936125071603845" at="26,0,65,0" name="eb_lang.typesystem.check_EBEnum_NonTypesystemRule" />
+    </file>
+  </root>
+  <root nodeRef="r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)/8062604215144606283">
+    <file name="TypesystemDescriptor.java">
+      <node id="8062604215144606283" at="14,5,15,92" concept="6" />
+      <node id="8062604215144606283" at="15,92,16,55" concept="2" />
+      <node id="8062604215144606283" at="13,5,17,5" concept="0" />
+      <scope id="8062604215144606283" at="14,5,16,55">
+        <var name="nonTypesystemRule" id="8062604215144606283" />
+      </scope>
+    </file>
+    <file name="check_EBInclude_NonTypesystemRule.java">
+      <node id="8062604215144622248" at="28,9,29,68" concept="6" />
+      <node id="8062604215144622248" at="29,68,30,282" concept="6" />
+      <node id="8062604215144606283" at="35,50,36,33" concept="7" />
+      <node id="8062604215144606283" at="38,68,39,102" concept="7" />
+      <node id="8062604215144606283" at="41,30,42,17" concept="7" />
+      <node id="8062604215144606283" at="46,0,47,0" concept="10" trace="EBProtocol$zC" />
+      <node id="8062604215144606283" at="47,0,48,0" concept="10" trace="EBInclude$_h" />
+      <node id="8062604215144606283" at="51,0,52,0" concept="10" trace="name$MnvL" />
+      <node id="8062604215144606283" at="55,0,56,0" concept="10" trace="protocol$v5qn" />
+      <node id="8062604215144606283" at="23,0,25,0" concept="1" trace="check_EBInclude_NonTypesystemRule#()V" />
+      <node id="8062604215144606283" at="35,0,38,0" concept="5" trace="getApplicableConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
+      <node id="8062604215144606283" at="38,0,41,0" concept="5" trace="isApplicableAndPattern#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;" />
+      <node id="8062604215144606283" at="41,0,44,0" concept="5" trace="overrides#()Z" />
+      <node id="8062604215144622248" at="27,250,31,9" concept="0" />
+      <node id="8062604215144609720" at="26,101,32,7" concept="4" />
+      <node id="8062604215144643066" at="25,122,33,5" concept="4" />
+      <node id="8062604215144606283" at="25,0,35,0" concept="5" trace="applyRule#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/typesystem/inference/TypeCheckingContext;Ljetbrains/mps/lang/typesystem/runtime/IsApplicableStatus;)V" />
+      <scope id="8062604215144606283" at="23,46,23,46" />
+      <scope id="8062604215144606283" at="35,50,36,33" />
+      <scope id="8062604215144606283" at="38,68,39,102" />
+      <scope id="8062604215144606283" at="41,30,42,17" />
+      <scope id="8062604215144606283" at="23,0,25,0" />
+      <scope id="8062604215144622248" at="28,9,30,282">
+        <var name="_reporter_2309309498" id="8062604215144622248" />
+        <var name="errorTarget" id="8062604215144622248" />
+      </scope>
+      <scope id="8062604215144606283" at="35,0,38,0" />
+      <scope id="8062604215144606283" at="38,0,41,0">
+        <var name="argument" id="8062604215144606283" />
+      </scope>
+      <scope id="8062604215144606283" at="41,0,44,0" />
+      <scope id="8062604215144609722" at="27,250,31,9" />
+      <scope id="8062604215144643068" at="26,101,32,7" />
+      <scope id="8062604215144606284" at="25,122,33,5" />
+      <scope id="8062604215144606283" at="25,0,35,0">
+        <var name="ebInclude" id="8062604215144606283" />
+        <var name="status" id="8062604215144606283" />
+        <var name="typeCheckingContext" id="8062604215144606283" />
+      </scope>
+      <unit id="8062604215144606283" at="50,0,53,0" name="eb_lang.typesystem.check_EBInclude_NonTypesystemRule$PROPS" />
+      <unit id="8062604215144606283" at="54,0,57,0" name="eb_lang.typesystem.check_EBInclude_NonTypesystemRule$LINKS" />
+      <unit id="8062604215144606283" at="45,0,49,0" name="eb_lang.typesystem.check_EBInclude_NonTypesystemRule$CONCEPTS" />
+      <unit id="8062604215144606283" at="22,0,58,0" name="eb_lang.typesystem.check_EBInclude_NonTypesystemRule" />
     </file>
   </root>
 </debug-info>

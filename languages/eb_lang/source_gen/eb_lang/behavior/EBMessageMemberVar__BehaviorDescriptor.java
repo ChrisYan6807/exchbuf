@@ -17,18 +17,18 @@ import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 
-public final class EBMessageMember__BehaviorDescriptor extends BaseBHDescriptor {
-  private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, "eb_lang.structure.EBMessageMember");
+public final class EBMessageMemberVar__BehaviorDescriptor extends BaseBHDescriptor {
+  private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, "eb_lang.structure.EBMessageMemberVar");
 
-  public static final SMethod<Boolean> isBlock_id4Xeby118828 = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4Xeby118828").build();
+  public static final SMethod<Boolean> isBlock_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNaBkU").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isBlock_id4Xeby118828);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isBlock_id5hSnPGNaBkU);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
 
-  /*package*/ EBMessageMember__BehaviorDescriptor() {
+  /*package*/ EBMessageMemberVar__BehaviorDescriptor() {
   }
 
   @Override
