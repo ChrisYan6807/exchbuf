@@ -4,8 +4,6 @@ package eb_lang.typesystem;
 
 import jetbrains.mps.lang.typesystem.runtime.AbstractNonTypesystemRule_Runtime;
 import jetbrains.mps.lang.typesystem.runtime.NonTypesystemRule_Runtime;
-import org.apache.log4j.Logger;
-import org.apache.log4j.LogManager;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.typesystem.inference.TypeCheckingContext;
 import jetbrains.mps.lang.typesystem.runtime.IsApplicableStatus;
@@ -15,8 +13,6 @@ import jetbrains.mps.errors.messageTargets.MessageTarget;
 import jetbrains.mps.errors.messageTargets.NodeMessageTarget;
 import jetbrains.mps.errors.IErrorReporter;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
-import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
-import org.apache.log4j.Level;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import org.jetbrains.mps.openapi.language.SConcept;
@@ -26,7 +22,6 @@ import org.jetbrains.mps.openapi.language.SContainmentLink;
 import org.jetbrains.mps.openapi.language.SProperty;
 
 public class check_EBMessageBaseInitializer_NonTypesystemRule extends AbstractNonTypesystemRule_Runtime implements NonTypesystemRule_Runtime {
-  private static final Logger LOG = LogManager.getLogger(check_EBMessageBaseInitializer_NonTypesystemRule.class);
   public check_EBMessageBaseInitializer_NonTypesystemRule() {
   }
   public void applyRule(final SNode ebMessageBaseInitializer, final TypeCheckingContext typeCheckingContext, IsApplicableStatus status) {
@@ -39,13 +34,41 @@ public class check_EBMessageBaseInitializer_NonTypesystemRule extends AbstractNo
         }
       } else {
         boolean hasConstructor = false;
+        int numParameters = 0;
         for (SNode member : ListSequence.fromList(SLinkOperations.getChildren(SLinkOperations.getTarget(msg, LINKS.base$LfNH), LINKS.content$vVwC))) {
           if (SNodeOperations.isInstanceOf(member, CONCEPTS.EBMessageConstructor$VR)) {
             hasConstructor = true;
+            SNode cNode = (SNode) member;
+            if ((SLinkOperations.getTarget(cNode, LINKS.member2$xz9Q) != null)) {
+              if ((SLinkOperations.getTarget(ebMessageBaseInitializer, LINKS.msgType$7W9U) == null)) {
+                {
+                  final MessageTarget errorTarget = new NodeMessageTarget();
+                  IErrorReporter _reporter_2309309498 = typeCheckingContext.reportTypeError(ebMessageBaseInitializer, "base class msgType is empty", "r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)", "7035066850816169421", null, errorTarget);
+                }
+              }
+              if (isEmptyString(SPropertyOperations.getString(ebMessageBaseInitializer, PROPS.value2$tnOI))) {
+                {
+                  final MessageTarget errorTarget = new NodeMessageTarget();
+                  IErrorReporter _reporter_2309309498 = typeCheckingContext.reportTypeError(ebMessageBaseInitializer, "value2 is empty", "r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)", "7035066850816139985", null, errorTarget);
+                }
+              }
+            } else {
+              if ((SLinkOperations.getTarget(ebMessageBaseInitializer, LINKS.msgType$7W9U) == null)) {
+                {
+                  final MessageTarget errorTarget = new NodeMessageTarget();
+                  IErrorReporter _reporter_2309309498 = typeCheckingContext.reportTypeError(ebMessageBaseInitializer, "base class msgType is empty", "r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)", "7035066850816151070", null, errorTarget);
+                }
+              }
+              if (isNotEmptyString(SPropertyOperations.getString(ebMessageBaseInitializer, PROPS.value2$tnOI))) {
+                {
+                  final MessageTarget errorTarget = new NodeMessageTarget();
+                  IErrorReporter _reporter_2309309498 = typeCheckingContext.reportTypeError(ebMessageBaseInitializer, "value2 is not empty", "r:7d49ca76-71ea-41a6-a806-2ce3da8ab5e4(eb_lang.typesystem)", "7035066850816158264", null, errorTarget);
+                }
+              }
+            }
+            break;
           }
         }
-
-        LoggingRuntime.logMsgView(Level.DEBUG, String.format("%s hasConstructor %s", SPropertyOperations.getString(SLinkOperations.getTarget(msg, LINKS.base$LfNH), PROPS.name$MnvL), hasConstructor), check_EBMessageBaseInitializer_NonTypesystemRule.class, null, null);
 
 
         if (!(hasConstructor)) {
@@ -79,6 +102,12 @@ public class check_EBMessageBaseInitializer_NonTypesystemRule extends AbstractNo
   public boolean overrides() {
     return false;
   }
+  private static boolean isEmptyString(String str) {
+    return str == null || str.isEmpty();
+  }
+  private static boolean isNotEmptyString(String str) {
+    return str != null && str.length() > 0;
+  }
 
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
@@ -89,10 +118,12 @@ public class check_EBMessageBaseInitializer_NonTypesystemRule extends AbstractNo
 
   private static final class LINKS {
     /*package*/ static final SReferenceLink base$LfNH = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x1fd2ea8cbdac6546L, "base");
+    /*package*/ static final SReferenceLink msgType$7W9U = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b331d7e1aL, 0x2d980f18576f90dfL, "msgType");
+    /*package*/ static final SReferenceLink member2$xz9Q = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b33141ab8L, 0x61a1940705f4f527L, "member2");
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
+    /*package*/ static final SProperty value2$tnOI = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b331d7e1aL, 0x61a1940705fea6d6L, "value2");
   }
 }

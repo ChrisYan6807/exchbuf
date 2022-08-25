@@ -27,9 +27,9 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
 
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3aM").build();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7sFT47Ik3cB").build();
-  public static final SMethod<Boolean> isBlock_id4Xeby11878t = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4Xeby11878t").build();
+  public static final SMethod<Boolean> isNotFixedLength_id4Xeby11878t = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4Xeby11878t").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, isBlock_id4Xeby11878t);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, isNotFixedLength_id4Xeby11878t);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
@@ -40,9 +40,9 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
   /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
     return "";
   }
-  /*package*/ static boolean isBlock_id4Xeby11878t(@NotNull SNode __thisNode__) {
+  /*package*/ static boolean isNotFixedLength_id4Xeby11878t(@NotNull SNode __thisNode__) {
     for (SNode m : Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(__thisNode__, LINKS.content$vVwC), CONCEPTS.EBMessageMemberVar$_K))) {
-      if ((boolean) EBMessageMemberVar__BehaviorDescriptor.isBlock_id5hSnPGNaBkU.invoke(m)) {
+      if ((boolean) EBMessageMemberVar__BehaviorDescriptor.isNotFixedLength_id5hSnPGNaBkU.invoke(m)) {
         return true;
       }
     }
@@ -70,7 +70,7 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
       case 1:
         return (T) ((String) getPyType_id7sFT47Ik3cB(node));
       case 2:
-        return (T) ((Boolean) isBlock_id4Xeby11878t(node));
+        return (T) ((Boolean) isNotFixedLength_id4Xeby11878t(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

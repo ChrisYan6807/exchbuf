@@ -52,11 +52,8 @@
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
         <property id="8244488409083493657" name="value" index="2glnev" />
       </concept>
-      <concept id="6086719741695458842" name="eb_lang.structure.EBMessageBaseInitializer" flags="ng" index="1Bpi51">
-        <property id="6086719741695459149" name="value" index="1Bpi0m" />
-      </concept>
       <concept id="6086719741694843576" name="eb_lang.structure.EBMessageConstructor" flags="ng" index="1Br4nz">
-        <reference id="6086719741694843577" name="member" index="1Br4ny" />
+        <reference id="6086719741694843577" name="member1" index="1Br4ny" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -432,24 +429,6 @@
       </node>
     </node>
     <node concept="2gln9S" id="2HuERJm4B5_" role="2gln9U" />
-    <node concept="2gln9S" id="5hSnPGNsMEQ" role="2gln9U">
-      <property role="TrG5h" value="empty" />
-    </node>
-    <node concept="2gaMiw" id="5hSnPGNsMN3" role="2gln9U">
-      <property role="TrG5h" value="testmsg" />
-      <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
-      <node concept="2gaMiM" id="5hSnPGNtnrU" role="36JId$">
-        <property role="TrG5h" value="m1" />
-        <ref role="1rk6cS" node="3SNypnb2Ap_" resolve="Int16" />
-      </node>
-      <node concept="2gaMiM" id="5hSnPGNtnrZ" role="36JId$">
-        <property role="TrG5h" value="a2" />
-        <ref role="1rk6cS" node="3SNypnb2Ao9" resolve="Alpha" />
-      </node>
-      <node concept="1Bpi51" id="5hSnPGNubJ6" role="36JId$">
-        <property role="1Bpi0m" value="lsls" />
-      </node>
-    </node>
     <node concept="2gln9S" id="5hSnPGNsMH$" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>

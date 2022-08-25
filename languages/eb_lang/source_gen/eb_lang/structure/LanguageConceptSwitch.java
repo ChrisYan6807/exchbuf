@@ -41,16 +41,18 @@ public final class LanguageConceptSwitch {
   public static final int EBMessageMember = 29;
   public static final int EBMessageMemberFunc = 30;
   public static final int EBMessageMemberVar = 31;
-  public static final int EBNumberLiteral = 32;
-  public static final int EBPrimitiveType = 33;
-  public static final int EBProtocol = 34;
-  public static final int EBPython = 35;
-  public static final int EBStatement = 36;
-  public static final int EBTypeStatement = 37;
-  public static final int EBUInt16 = 38;
-  public static final int EBUInt32 = 39;
-  public static final int EBUInt64 = 40;
-  public static final int EBUInt8 = 41;
+  public static final int EBMessagePresenceFieldMember = 32;
+  public static final int EBMessagePresenceTrueMember = 33;
+  public static final int EBNumberLiteral = 34;
+  public static final int EBPrimitiveType = 35;
+  public static final int EBProtocol = 36;
+  public static final int EBPython = 37;
+  public static final int EBStatement = 38;
+  public static final int EBTypeStatement = 39;
+  public static final int EBUInt16 = 40;
+  public static final int EBUInt32 = 41;
+  public static final int EBUInt64 = 42;
+  public static final int EBUInt8 = 43;
 
   public LanguageConceptSwitch() {
     LanguageConceptIndexBuilder builder = new LanguageConceptIndexBuilder(0x59242254602f42f3L, 0xab3adc203eb4cc03L);
@@ -86,6 +88,8 @@ public final class LanguageConceptSwitch {
     builder.put(0x726a4e86e2416a2aL, EBMessageMember);
     builder.put(0x54785f5b332a896fL, EBMessageMemberFunc);
     builder.put(0x54785f5b332a751cL, EBMessageMemberVar);
+    builder.put(0x61a1940705f3e4dfL, EBMessagePresenceFieldMember);
+    builder.put(0x61a1940706363cbfL, EBMessagePresenceTrueMember);
     builder.put(0x726a4e86e23f3d17L, EBNumberLiteral);
     builder.put(0x726a4e86e23f3d10L, EBPrimitiveType);
     builder.put(0x726a4e86e23f3cf6L, EBProtocol);

@@ -41,6 +41,8 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBMessageMember;
   private ConceptPresentation props_EBMessageMemberFunc;
   private ConceptPresentation props_EBMessageMemberVar;
+  private ConceptPresentation props_EBMessagePresenceFieldMember;
+  private ConceptPresentation props_EBMessagePresenceTrueMember;
   private ConceptPresentation props_EBNumberLiteral;
   private ConceptPresentation props_EBPrimitiveType;
   private ConceptPresentation props_EBProtocol;
@@ -277,6 +279,20 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageMemberVar = cpb.create();
         }
         return props_EBMessageMemberVar;
+      case LanguageConceptSwitch.EBMessagePresenceFieldMember:
+        if (props_EBMessagePresenceFieldMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessagePresenceFieldMember = cpb.create();
+        }
+        return props_EBMessagePresenceFieldMember;
+      case LanguageConceptSwitch.EBMessagePresenceTrueMember:
+        if (props_EBMessagePresenceTrueMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessagePresenceTrueMember = cpb.create();
+        }
+        return props_EBMessagePresenceTrueMember;
       case LanguageConceptSwitch.EBNumberLiteral:
         if (props_EBNumberLiteral == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

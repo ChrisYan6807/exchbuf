@@ -24,16 +24,16 @@ import org.jetbrains.mps.openapi.language.SConcept;
 public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
 
-  public static final SMethod<Boolean> isBlock_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isBlock").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNaBkU").build();
+  public static final SMethod<Boolean> isNotFixedLength_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNaBkU").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isBlock_id5hSnPGNaBkU);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isNotFixedLength_id5hSnPGNaBkU);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
-  /*package*/ static boolean isBlock_id5hSnPGNaBkU(@NotNull SNode __thisNode__) {
+  /*package*/ static boolean isNotFixedLength_id5hSnPGNaBkU(@NotNull SNode __thisNode__) {
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBMessage$YV)) {
-      if ((boolean) EBMessage__BehaviorDescriptor.isBlock_id4Xeby11878t.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBMessage$YV))) {
+      if ((boolean) EBMessage__BehaviorDescriptor.isNotFixedLength_id4Xeby11878t.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBMessage$YV))) {
         return true;
       }
     }
@@ -57,7 +57,7 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((Boolean) isBlock_id5hSnPGNaBkU(node));
+        return (T) ((Boolean) isNotFixedLength_id5hSnPGNaBkU(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

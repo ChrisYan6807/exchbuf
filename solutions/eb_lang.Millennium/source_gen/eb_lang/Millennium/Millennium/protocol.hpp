@@ -134,18 +134,6 @@ static_assert(sizeof(MissedMessageRequest) == 9, "Bad message size.")
 
 
 #pragma pack(1)
-struct testmsg : MsgHeader {
-    Int16 m1;
-    Alpha a2;
-    testmsg():MsgHeader(lsls) {};    char* begin() {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    size_t size() {return sizeof(testmsg);}
-    size_t length() {return size();}
-}
-#pragma pack()
-
-
-#pragma pack(1)
 struct MissedMessageRequestAck : MsgHeader {
     MissedMsgRespType responseType;
     char* begin() {return reinterpret_cast<char*>(this);}
