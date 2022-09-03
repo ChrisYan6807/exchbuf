@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<product version="3" modelHash="339m5zl7jb88qg6w7jujfv1bufeupgh">
-  <files names="ConstraintsAspectDescriptor.java:EBBitFieldMember_Constraints.java:EBCharLiteral_Constraints.java:EBIIdentifierConcept_Constraints.java:EBInclude_Constraints.java:EBMessageBaseInitializer_Constraints.java:EBMessageBlockMember_Constraints.java:EBMessageConstructor_Constraints.java:EBMessageEntryMember_Constraints.java:EBMessage_Constraints.java:EBNumberLiteral_Constraints.java:EBProtocol_Constraints.java" />
+<product version="3" modelHash="4tibvahlswwdhyp90udoxcsq9bdyisa">
+  <files names="ConstraintsAspectDescriptor.java:EBBitFieldMember_Constraints.java:EBCharLiteral_Constraints.java:EBIIdentifierConcept_Constraints.java:EBInclude_Constraints.java:EBMessageBaseInitializer_Constraints.java:EBMessageBlockMember_Constraints.java:EBMessageConstructor_Constraints.java:EBMessageEntryMember_Constraints.java:EBMessagePresenceFieldMember_Constraints.java:EBMessage_Constraints.java:EBNumberLiteral_Constraints.java:EBProtocol_Constraints.java" />
 </product>
 

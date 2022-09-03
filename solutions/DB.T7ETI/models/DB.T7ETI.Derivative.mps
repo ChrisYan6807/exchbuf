@@ -75,7 +75,7 @@
     </language>
   </registry>
   <node concept="2gln9K" id="sDoM6GHdKx">
-    <property role="TrG5h" value="ETIVer10" />
+    <property role="TrG5h" value="ETIDerivVer10" />
     <node concept="2gaMsz" id="66x_0s6ak0v" role="2gln9U">
       <property role="TrG5h" value="comment" />
       <property role="2gaMsI" value="Deutsche Börse -- market: eti_Derivatives, version: 10.0, subVersion: D0002, buildNumber: 100.430.0.ga-100005000-9" />

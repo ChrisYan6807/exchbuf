@@ -22,7 +22,6 @@ import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.internal.collections.runtime.IWhereFilter;
 import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
 import org.apache.log4j.Level;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.scope.ListScope;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +29,6 @@ import jetbrains.mps.smodel.SNodePointer;
 import org.jetbrains.mps.openapi.language.SConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
-import org.jetbrains.mps.openapi.language.SProperty;
 
 public class EBMessageBaseInitializer_Constraints extends BaseConstraintsDescriptor {
   private static final Logger LOG = LogManager.getLogger(EBMessageBaseInitializer_Constraints.class);
@@ -66,9 +64,6 @@ public class EBMessageBaseInitializer_Constraints extends BaseConstraintsDescrip
                 SNode msgType = (SNode) SLinkOperations.getTarget(SLinkOperations.getTarget(ctor, LINKS.msgType$sKHn), LINKS.type$eiFN);
                 if ((msgType != null)) {
                   LoggingRuntime.logMsgView(Level.DEBUG, "msgType is not null, populate values", EBMessageBaseInitializer_Constraints.class, null, null);
-                  for (SNode k : ListSequence.fromList(SLinkOperations.getChildren(msgType, LINKS.values$_zmn))) {
-                    LoggingRuntime.logMsgView(Level.DEBUG, SPropertyOperations.getString(k, PROPS.name$MnvL), EBMessageBaseInitializer_Constraints.class, null, null);
-                  }
                   return ListScope.forNamedElements(SLinkOperations.getChildren(msgType, LINKS.values$_zmn));
                 } else {
                   LoggingRuntime.logMsgView(Level.DEBUG, "msgType is null", EBMessageBaseInitializer_Constraints.class, null, null);
@@ -104,9 +99,5 @@ public class EBMessageBaseInitializer_Constraints extends BaseConstraintsDescrip
     /*package*/ static final SReferenceLink msgType$sKHn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b33141ab8L, 0x54785f5b33141ab9L, "msgType");
     /*package*/ static final SReferenceLink type$eiFN = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x5737b24e0c67d176L, "type");
     /*package*/ static final SContainmentLink values$_zmn = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, 0x726a4e86e23f3d24L, "values");
-  }
-
-  private static final class PROPS {
-    /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
   }
 }

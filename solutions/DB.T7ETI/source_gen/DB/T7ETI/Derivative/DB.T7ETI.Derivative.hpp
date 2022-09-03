@@ -1,7 +1,7 @@
 #pragma once
 // Deutsche Börse -- market: eti_Derivatives, version: 10.0, subVersion: D0002, buildNumber: 100.430.0.ga-100005000-9
 
-namespace ETIVer10 {
+namespace ETIDerivVer10 {
 using CurrencyType = FixedLengthString<3, 0x00>;
 using ISIN = FixedLengthString<12, 0x00>;
 using LocalMktDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
@@ -5580,6 +5580,6 @@ struct UserLogoutResponse {
 }
 #pragma pack()
 
-} // end of namespace ETIVer10
+} // end of namespace ETIDerivVer10
 
 
