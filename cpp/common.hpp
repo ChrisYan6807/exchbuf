@@ -6,6 +6,7 @@
 #include <string_view>
 #include <cstring>
 #include <algorithm>
+#include <utility>
 
 //platform should be Linux/x86-64, little endian machine
 
@@ -332,6 +333,219 @@ struct FixedLengthString {
 private:
     char array_[length];
 };
+
+//Type T has variable length, the length of each object has to be calculated at runtime.
+template <typename T, bool fixedLengthT>
+struct BlockRef {
+    BlockRef(const BlockRef& rhs) = default;
+    BlockRef(const void* start, size_t count)
+    :ptr_(reinterpret_cast<char*>(start)),
+     count_(count)
+    {
+    }
+
+    bool empty()    const {return count_ == 0;}
+    size_t count()  const {return count_;}
+
+    //in byte
+    size_t length() {
+        size_t pos = 0;
+        for(int i=0; i<count_; ++i) {
+            pos += reinterpret_cast<T*>(ptr_ + pos)->length();
+        }
+
+        return pos;
+    }
+
+    T& operator[](size_t n) const {
+        size_t pos = 0;
+        for(int i=0; i<n; ++i) {
+            pos += reinterpret_cast<T*>(ptr_ + pos)->length();
+        }
+
+        return *reinterpret_cast<T*>(ptr_ + pos);
+    }
+
+    char* begin() {
+        return ptr_;
+    }
+
+    char* end() {
+        return begin() + length();
+    }
+
+
+private:
+    char* ptr_{nullptr};
+    size_t count_{0};
+};
+
+//specialization for fixed length Type T
+template <typename T>
+struct BlockRef<T, true> {
+    BlockRef(const BlockRef& rhs) = default;
+    BlockRef(const void* start, size_t count)
+            :ptr_(reinterpret_cast<T*>(start)),
+             count_(count)
+    {
+    }
+
+    bool empty()    const {return count_ == 0;}
+    size_t count()  const {return count_;}
+
+    //in byte
+    size_t length() {
+        return count_ * sizeof(T);
+    }
+
+    T& operator[](size_t n) const {
+        return ptr_[n];
+    }
+
+    char* begin() {
+        return reinterpret_cast<char*>(ptr_);
+    }
+
+    char* end() {
+        return reinterpret_cast<char*>(ptr_ + count_);
+    }
+
+
+private:
+    T* ptr_{nullptr};
+    size_t count_{0};
+};
+
+//default impl, bit position starts from least significant bit.
+template <typename T, typename PMapT, bool LSB=true>
+struct OptionalRef {
+    OptionalRef(const void* start, PMapT& presence_map, size_t pos)
+    :ptr_(reinterpret_cast<T*>(start)),
+     presence_map_(presence_map),
+     pos_(pos)
+    {
+    }
+
+    bool flagIsSet() {
+        return presence_map & (((PMapT)1)<<pos);
+    }
+
+    void setFlag() {
+        presence_map |= (((PMapT)1)<<pos);
+    }
+
+    void clearFlag() {
+        presence_map &= ~(((PMapT)1)<<pos);
+    }
+
+    void set(const T& value) {
+        setFlag();
+        *ptr_ = value;
+    }
+
+    std::pair<bool, T&> get() {
+        return std::make_pair<bool, T&>(flagIsSet(), *ptr_);
+    }
+
+    void clear() {
+        clearFlag();
+    }
+
+    char* begin() {
+        return reinterpret_cast<char*>(ptr_);
+    }
+
+    char* end() {
+        return begin() + length();
+    }
+
+    size_t length() {
+        if(flagIsSet()) {
+            return ptr_->length();
+        }
+
+        return 0;
+    }
+
+private:
+    T* ptr_;
+    PMapT& presence_map_;
+    size_t pos_;
+};
+
+
+#define ENUM_FIELD_DEF(r, _, FIELD) BOOST_PP_TUPLE_ELEM(2,0,FIELD) = BOOST_PP_TUPLE_ELEM(2,1,FIELD),
+#define ENUM_CASE_FIELD(r,_, FIELD)\
+    case Enum::BOOST_PP_TUPLE_ELEM(2,1,FIELD) : return BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(2,0,FIELD))  ;
+
+#define ENUM_CASE_DEFAULT\
+    default: return "";
+
+#define EB_ENUM(NAME, TYPE, FIELDS)\
+    struct NAME {\
+        using value_type=TYPE;\
+        enum Enum : TYPE { BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_DEF, _, FIELDS) };\
+        constexpr static size_t size=BOOST_PP_SEQ_SIZE(FIELDS);\
+        constexpr static const char* name() {return BOOST_PP_STRINGIZE(NAME);};\
+        constexpr NAME() {};\
+        constexpr NAME(Enum v): value_(v) {};\
+        constexpr explicit NAME(TYPE v): value_(Enum(v)) {};\
+        constexpr const bool operator == (const NAME& rhs) const {return value_ == rhs.value_;}\
+        constexpr const bool operator != (const NAME& rhs) const {return value_ != rhs.value_;}\
+        constexpr const Enum value() const {return value_;}\
+        constexpr const TYPE rawValue() const {return static_cast<TYPE>(value_);}\
+        constexpr const TYPE rawValue(TYPE v) const {value_ = Enum(v);}\
+        constexpr void set(Enum value) {value_ = value;}\
+        std::string_view asStringView() {\
+            switch(value_) {\
+                BOOST_PP_SEQ_FOR_EACH(ENUM_CASE_FIELD, _, FIELDS)\
+                ENUM_CASE_DEFAULT\
+            }\
+        }\
+        template <typename ostreamT> friend ostreamT& operator<< (ostreamT& os, const NAME& v) {os << v.asStringView(); return os;}\
+        private: Enum value_;\
+    };
+
+template <typename T, uint8_t offset, uint8_t len>
+constexpr getMask = ((((T)1)<<len)-1)<<offset;
+
+template <typename T, uint8_t offset, uint8_t len>
+constexpr clearMask = ~getMask<T, offset, len>;
+
+//FIELD : (Type, offset, length)
+#define BITFIELD_MEMBER_SETTER_GETTER(r, TYPE, FIELD)\
+    void BOOST_PP_CAT(set, BOOST_PP_TUPLE_ELEM(3,0,FIELD))(BOOST_PP_TUPLE_ELEM(3,0,FIELD) v) {\
+        TYPE rv = v.rawValue();\
+        rv <<= BOOST_PP_TUPLE_ELEM(3, 1, FIELD);\
+        bits &=clearMask<TYPE, BOOST_PP_TUPLE_ELEM(3, 1, FIELD), BOOST_PP_TUPLE_ELEM(3, 2, FIELD)>;\
+        bits |=rv;\
+    }\
+    BOOST_PP_TUPLE_ELEM(3,0,FIELD) BOOST_PP_CAT(get, BOOST_PP_TUPLE_ELEM(3,0,FIELD))() const {\
+        auto v = bits&getMask<TYPE, BOOST_PP_TUPLE_ELEM(3, 1, FIELD), BOOST_PP_TUPLE_ELEM(3, 2, FIELD)>;\
+        v >>= BOOST_PP_TUPLE_ELEM(3, 1, FIELD);\
+        return BOOST_PP_TUPLE_ELEM(3,0,FIELD)();\
+    }\
+
+
+#define BITFIRLD_PRINT(r, _, FIELD)\
+   {\
+        const auto fv = v.BOOST_PP_CAT(get, BOOST_PP_TUPLE_ELEM(3, 0, FIELD))();\
+        const auto fn = v.BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(3, 0, FIELD));\
+        os << fn << "=" << fv.asStringView << ";"\
+   }\
+
+
+#define EB_BITFIELD(NAME, TYPE, FIELDS)\
+    struct NAME {\
+        BOOST_PP_SEQ_FOR_EACH(BITFIELD_MEMBER_SETTER_GETTER, TYPE, FIELDS)\
+        void clear() {value_ = 0;}\
+        template <typename ostreamT> friend ostreamT& operator<< (ostreamT& os, const NAME& v) {\
+            BOOST_PP_SEQ_FOR_EACH(BITFIRLD_PRINT, _, FIELDS)\
+            return os;\
+        }\
+        private:  TYPE value_;\
+    }\
+
 
 
 
