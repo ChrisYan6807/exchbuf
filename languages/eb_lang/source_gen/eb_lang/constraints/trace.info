@@ -15,7 +15,7 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070475587102:jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" />
   <root>
     <file name="ConstraintsAspectDescriptor.java">
-      <unit at="13,0,51,0" name="eb_lang.constraints.ConstraintsAspectDescriptor" />
+      <unit at="13,0,53,0" name="eb_lang.constraints.ConstraintsAspectDescriptor" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/1504956661103865627">
@@ -292,6 +292,60 @@
       <unit id="3285392525387344478" at="49,19,80,9" name="eb_lang.constraints.EBMessageBaseInitializer_Constraints$1$1" />
       <unit id="3285392525387344478" at="41,48,82,5" name="eb_lang.constraints.EBMessageBaseInitializer_Constraints$1" />
       <unit id="3285392525387344477" at="33,0,104,0" name="eb_lang.constraints.EBMessageBaseInitializer_Constraints" />
+    </file>
+  </root>
+  <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/4485535437959843886">
+    <file name="EBFixedLenghString_Constraints.java">
+      <node id="4485535437959843886" at="20,43,21,42" concept="12" />
+      <node id="4485535437959843887" at="25,62,26,43" concept="12" />
+      <node id="4485535437959843887" at="29,38,30,18" concept="8" />
+      <node id="4485535437959843887" at="32,0,33,0" concept="10" trace="validatePropertyBreakingPoint" />
+      <node id="4485535437959843887" at="34,109,35,99" concept="7" />
+      <node id="4485535437959843887" at="36,53,37,75" concept="3" />
+      <node id="4485535437959843887" at="38,7,39,20" concept="8" />
+      <node id="4485535437959844347" at="41,85,42,41" concept="8" />
+      <node id="4485535437959843886" at="46,84,47,119" concept="7" />
+      <node id="4485535437959843887" at="47,119,48,67" concept="3" />
+      <node id="4485535437959843886" at="48,67,49,22" concept="8" />
+      <node id="4485535437959843886" at="53,0,54,0" concept="10" trace="EBFixedLenghString$Ss" />
+      <node id="4485535437959843886" at="57,0,58,0" concept="10" trace="padding$ZJtT" />
+      <node id="4485535437959843886" at="20,0,23,0" concept="1" trace="EBFixedLenghString_Constraints#()V" />
+      <node id="4485535437959843887" at="25,0,28,0" concept="1" trace="Padding_Property#(Ljetbrains/mps/smodel/runtime/ConstraintsDescriptor;)V" />
+      <node id="4485535437959843887" at="35,99,38,7" concept="5" />
+      <node id="4485535437959843887" at="41,0,44,0" concept="11" trace="staticValidateProperty#(Lorg/jetbrains/mps/openapi/model/SNode;Ljava/lang/String;)Z" />
+      <node id="4485535437959843887" at="28,0,32,0" concept="6" trace="hasOwnValidator#()Z" />
+      <node id="4485535437959843886" at="45,0,51,0" concept="6" trace="getSpecifiedProperties#()Ljava/util/Map;" />
+      <node id="4485535437959843887" at="33,0,41,0" concept="6" trace="validateValue#(Lorg/jetbrains/mps/openapi/model/SNode;Ljava/lang/Object;Ljetbrains/mps/smodel/runtime/CheckingNodeContext;)Z" />
+      <scope id="4485535437959843886" at="20,43,21,42" />
+      <scope id="4485535437959843887" at="25,62,26,43" />
+      <scope id="4485535437959843887" at="29,38,30,18" />
+      <scope id="4485535437959843887" at="36,53,37,75" />
+      <scope id="4485535437959844028" at="41,85,42,41" />
+      <scope id="4485535437959843886" at="20,0,23,0" />
+      <scope id="4485535437959843887" at="25,0,28,0">
+        <var name="container" id="4485535437959843887" />
+      </scope>
+      <scope id="4485535437959843887" at="41,0,44,0">
+        <var name="node" id="4485535437959843887" />
+        <var name="propertyValue" id="4485535437959843887" />
+      </scope>
+      <scope id="4485535437959843886" at="46,84,49,22">
+        <var name="properties" id="4485535437959843886" />
+      </scope>
+      <scope id="4485535437959843887" at="28,0,32,0" />
+      <scope id="4485535437959843887" at="34,109,39,20">
+        <var name="result" id="4485535437959843887" />
+      </scope>
+      <scope id="4485535437959843886" at="45,0,51,0" />
+      <scope id="4485535437959843887" at="33,0,41,0">
+        <var name="checkingNodeContext" id="4485535437959843887" />
+        <var name="node" id="4485535437959843887" />
+        <var name="propertyValue" id="4485535437959843887" />
+      </scope>
+      <unit id="4485535437959843886" at="52,0,55,0" name="eb_lang.constraints.EBFixedLenghString_Constraints$CONCEPTS" />
+      <unit id="4485535437959843886" at="56,0,59,0" name="eb_lang.constraints.EBFixedLenghString_Constraints$PROPS" />
+      <unit id="4485535437959843887" at="24,0,45,0" name="eb_lang.constraints.EBFixedLenghString_Constraints$Padding_Property" />
+      <unit id="4485535437959843886" at="19,0,60,0" name="eb_lang.constraints.EBFixedLenghString_Constraints" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/516052628606307894">

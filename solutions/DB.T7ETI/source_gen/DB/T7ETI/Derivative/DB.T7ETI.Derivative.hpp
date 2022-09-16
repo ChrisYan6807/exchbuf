@@ -1,82 +1,82 @@
 #pragma once
-// Deutsche Börse -- market: eti_Derivatives, version: 10.0, subVersion: D0002, buildNumber: 100.430.0.ga-100005000-9
+// Deutsche Börse -- market: eti_Derivatives, version: 11.0, subVersion: D0002, buildNumber: 110.380.2.ga-110003080-84
 
-namespace ETIDerivVer10 {
-using CurrencyType = FixedLengthString<3, 0x00>;
-using ISIN = FixedLengthString<12, 0x00>;
+namespace ETIDerivVer11 {
+using CurrencyType = FixedLengthString<3, 0>;
+using ISIN = FixedLengthString<12, 0>;
 using LocalMktDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using LocalMonthYearCod = LittleEndian<uint32_t, 0, 999912, 0xFFFFFFFF>;
 using PriceType = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using Qty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using SeqNum = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using UTCTimestamp = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
-using Account = FixedLengthString<2, 0x00>;
+using Account = FixedLengthString<2, 0>;
 using AffectedOrderID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using AffectedOrderRequestID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using AffectedOrigClOrdID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using AllocID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using AllocQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
-using ApplBegMsgID = FixedLengthString<16, 0x00>;
+using ApplBegMsgID = FixedLengthString<16, 0>;
 using ApplBegSeqNum = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
-using ApplEndMsgID = FixedLengthString<16, 0x00>;
+using ApplEndMsgID = FixedLengthString<16, 0>;
 using ApplEndSeqNum = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(ApplID, uint8_t, 
-  (Trade, 1),
-  (News, 2),
-  (Service_availability, 3),
-  (Session_data, 4),
-  (Listener_data, 5),
-  (RiskControl, 6),
-  (TES_Maintenance, 7),
-  (TES_Trade, 8),
-  (SRQS_Maintenance, 9),
-  (Service_Availability_Market, 10),
+  ((Trade, 1))
+  ((News, 2))
+  ((Service_availability, 3))
+  ((Session_data, 4))
+  ((Listener_data, 5))
+  ((RiskControl, 6))
+  ((TES_Maintenance, 7))
+  ((TES_Trade, 8))
+  ((SRQS_Maintenance, 9))
+  ((Service_Availability_Market, 10))
 );
 EB_ENUM(ApplIDStatus, uint32_t, 
-  (Outbound_conversion_error, 105),
+  ((Outbound_conversion_error, 105))
 );
-using ApplMsgID = FixedLengthString<16, 0x00>;
+using ApplMsgID = FixedLengthString<16, 0>;
 EB_ENUM(ApplResendFlag, uint8_t, 
-  (False, 0),
-  (True, 1),
+  ((False, 0))
+  ((True, 1))
 );
 EB_ENUM(ApplSeqIndicator, uint8_t, 
-  (No_Recovery_Required, 0),
-  (Recovery_Required, 1),
+  ((No_Recovery_Required, 0))
+  ((Recovery_Required, 1))
 );
 using ApplSeqNum = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(ApplSeqStatus, uint8_t, 
-  (Unavailable, 0),
-  (Available, 1),
+  ((Unavailable, 0))
+  ((Available, 1))
 );
 using ApplSeqTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using ApplSubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using ApplTotalMessageCount = LittleEndian<uint16_t, 0, 65534, 0xFFFF>;
 EB_ENUM(ApplUsageOrders, char, 
-  (Automated, 'A'),
-  (Manual, 'M'),
-  (AutoSelect, 'B'),
-  (None, 'N'),
+  ((Automated, 'A'))
+  ((Manual, 'M'))
+  ((AutoSelect, 'B'))
+  ((None, 'N'))
 );
 EB_ENUM(ApplUsageQuotes, char, 
-  (Automated, 'A'),
-  (Manual, 'M'),
-  (AutoSelect, 'B'),
-  (None, 'N'),
+  ((Automated, 'A'))
+  ((Manual, 'M'))
+  ((AutoSelect, 'B'))
+  ((None, 'N'))
 );
-using ApplicationSystemName = FixedLengthString<30, 0x00>;
-using ApplicationSystemVendor = FixedLengthString<30, 0x00>;
-using ApplicationSystemVersion = FixedLengthString<30, 0x00>;
+using ApplicationSystemName = FixedLengthString<30, 0>;
+using ApplicationSystemVendor = FixedLengthString<30, 0>;
+using ApplicationSystemVersion = FixedLengthString<30, 0>;
 using AutoApprovalRuleID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using BasketExecID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using BasketPartyContraFirm = FixedLengthString<5, 0x00>;
+using BasketPartyContraFirm = FixedLengthString<5, 0>;
 using BasketProfileID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using BasketSideTradeReportID = FixedLengthString<20, 0x00>;
-using BasketTradeReportText = FixedLengthString<20, 0x00>;
+using BasketSideTradeReportID = FixedLengthString<20, 0>;
+using BasketTradeReportText = FixedLengthString<20, 0>;
 EB_ENUM(BasketTradeReportType, uint8_t, 
-  (Submit, 0),
-  (Addendum, 4),
-  (No_Was_Substitue, 5),
+  ((Submit, 0))
+  ((Addendum, 4))
+  ((No_Was_Substitue, 5))
 );
 using BasketTrdMatchID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using BestBidPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
@@ -86,343 +86,361 @@ using BestOfferSize = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 
 using BidCxlSize = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using BidPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 EB_ENUM(BidPxIsLocked, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using BidSize = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using BodyLen = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
+using ChargeID = FixedLengthString<132, 0>;
+EB_ENUM(ChargeIDDisclosureInstruction, uint8_t, 
+  ((No, 0))
+  ((Yes, 1))
+);
 using ClOrdID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using ClearingTradePrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using ClearingTradeQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
-using ComplianceText = FixedLengthString<20, 0x00>;
+using ComplianceText = FixedLengthString<20, 0>;
 EB_ENUM(CompressionAction, uint8_t, 
-  (Start_Compression, 1),
-  (Commit_Compression, 2),
-  (Cancel_Compression, 3),
+  ((Start_Compression, 1))
+  ((Commit_Compression, 2))
+  ((Cancel_Compression, 3))
 );
 using CompressionID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(CompressionStatus, uint8_t, 
-  (Open, 1),
-  (Executed, 2),
-  (Cancelled_By_User, 3),
-  (Cancelled_By_System, 4),
+  ((Open, 1))
+  ((Executed, 2))
+  ((Cancelled_By_User, 3))
+  ((Cancelled_By_System, 4))
 );
 using ContractDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using CrossID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 using CrossRequestID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(CrossedIndicator, uint8_t, 
-  (No_crossing, 0),
-  (Cross_rejected, 1),
+  ((No_crossing, 0))
+  ((Cross_rejected, 1))
 );
 using CumQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
-using CustOrderHandlingInst = FixedLengthString<1, 0x00>;
+using CustOrderHandlingInst = FixedLengthString<1, 0>;
 using CxlQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using CxlSize = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
-using DefaultCstmApplVerID = FixedLengthString<30, 0x00>;
-using DefaultCstmApplVerSubID = FixedLengthString<5, 0x00>;
+using DefaultCstmApplVerID = FixedLengthString<30, 0>;
+using DefaultCstmApplVerSubID = FixedLengthString<5, 0>;
 EB_ENUM(DeleteReason, uint8_t, 
-  (No_special_reason, 100),
-  (TAS_Change, 101),
-  (Intraday_Expiration, 102),
-  (Risk_Event, 103),
-  (Stop_Trading, 104),
-  (Instrument_Deletion, 105),
-  (Instrument_Suspension, 106),
-  (PreTrade_Risk_Event, 107),
-  (Amendment_Reset, 108),
-  (Amendment_User_Cancelled, 109),
-  (Compression_Cancelled_By_User, 110),
-  (Compression_Cancelled_By_System, 111),
+  ((No_special_reason, 100))
+  ((TAS_Change, 101))
+  ((Intraday_Expiration, 102))
+  ((Risk_Event, 103))
+  ((Stop_Trading, 104))
+  ((Instrument_Deletion, 105))
+  ((Instrument_Suspension, 106))
+  ((PreTrade_Risk_Event, 107))
+  ((Amendment_Reset, 108))
+  ((Amendment_User_Cancelled, 109))
+  ((Compression_Cancelled_By_User, 110))
+  ((Compression_Cancelled_By_System, 111))
 );
 using Delta = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(EffectOnBasket, uint8_t, 
-  (Add_Volume, 1),
-  (Remove_Volume, 2),
+  ((Add_Volume, 1))
+  ((Remove_Volume, 2))
 );
 using EffectiveTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(EnlightRFQAvgRespRateRanking, uint8_t, 
-  (Low, 1),
-  (Medium, 2),
-  (High, 3),
+  ((Low, 1))
+  ((Medium, 2))
+  ((High, 3))
 );
 EB_ENUM(EnlightRFQAvgRespTimeRanking, uint8_t, 
-  (Low, 1),
-  (Medium, 2),
-  (High, 3),
+  ((Low, 1))
+  ((Medium, 2))
+  ((High, 3))
 );
 using EnrichmentRuleID = LittleEndian<uint16_t, 1, 10000, 0xFFFF>;
 EB_ENUM(EurexVolumeRanking, uint8_t, 
-  (Low, 1),
-  (Medium, 2),
-  (High, 3),
+  ((Low, 1))
+  ((Medium, 2))
+  ((High, 3))
 );
 using EventDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 EB_ENUM(EventType, uint8_t, 
-  (Swap_Start_Date, 8),
-  (Swap_End_Date, 9),
+  ((Swap_Start_Date, 8))
+  ((Swap_End_Date, 9))
 );
 using ExecID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(ExecInst, uint8_t, 
-  (H, 1),
-  (Q, 2),
-  (H_Q, 3),
-  (H_6, 5),
-  (Q_6, 6),
+  ((H, 1))
+  ((Q, 2))
+  ((H_Q, 3))
+  ((H_6, 5))
+  ((Q_6, 6))
 );
 EB_ENUM(ExecRestatementReason, uint16_t, 
-  (Order_Book_Restatement, 1),
-  (Order_Added, 101),
-  (Order_Modified, 102),
-  (Order_Cancelled, 103),
-  (IOC_Order_Cancelled, 105),
-  (Book_Order_Executed, 108),
-  (Changed_to_IOC, 114),
-  (Instrument_State_Change, 122),
-  (Market_Order_Triggered, 135),
-  (CAO_Order_Activated, 149),
-  (CAO_Order_Inactivated, 150),
-  (OCO_Order_Triggered, 164),
-  (Stop_Order_Triggered, 172),
-  (Ownership_Changed, 181),
-  (Order_Cancellation_Pending, 197),
-  (Pending_Cancellation_Executed, 199),
-  (BOC_Order_Cancelled, 212),
-  (Panic_Cancel, 261),
-  (Market_Order_Uncrossing, 302),
-  (CLIP_Execution, 340),
-  (CLIP_Arrangement_time_out, 343),
-  (CLIP_Arrangement_Validation, 344),
+  ((Order_Book_Restatement, 1))
+  ((Order_Added, 101))
+  ((Order_Modified, 102))
+  ((Order_Cancelled, 103))
+  ((IOC_Order_Cancelled, 105))
+  ((Book_Order_Executed, 108))
+  ((Changed_to_IOC, 114))
+  ((Instrument_State_Change, 122))
+  ((Market_Order_Triggered, 135))
+  ((CAO_Order_Activated, 149))
+  ((CAO_Order_Inactivated, 150))
+  ((OAO_Order_Activated, 151))
+  ((OAO_Order_Inactivated, 152))
+  ((AAO_Order_Activated, 153))
+  ((AAO_Order_Inactivated, 154))
+  ((OCO_Order_Triggered, 164))
+  ((Stop_Order_Triggered, 172))
+  ((Ownership_Changed, 181))
+  ((Order_Cancellation_Pending, 197))
+  ((Pending_Cancellation_Executed, 199))
+  ((BOC_Order_Cancelled, 212))
+  ((Panic_Cancel, 261))
+  ((Market_Order_Uncrossing, 302))
+  ((CLIP_Execution, 340))
+  ((CLIP_Arrangement_time_out, 343))
+  ((CLIP_Arrangement_Validation, 344))
 );
 EB_ENUM(ExecType, char, 
-  (New, '0'),
-  (Canceled, '4'),
-  (Replaced, '5'),
-  (Pending_Cancel_e, '6'),
-  (Suspended, '9'),
-  (Restated, 'D'),
-  (Triggered, 'L'),
-  (Trade, 'F'),
+  ((New, '0'))
+  ((Canceled, '4'))
+  ((Replaced, '5'))
+  ((Pending_Cancel_e, '6'))
+  ((Suspended, '9'))
+  ((Restated, 'D'))
+  ((Triggered, 'L'))
+  ((Trade, 'F'))
 );
 using ExecutingTrader = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(ExecutingTraderQualifier, uint8_t, 
-  (Algo, 22),
-  (Human, 24),
+  ((Algo, 22))
+  ((Human, 24))
 );
 EB_ENUM(ExerciseStyle, uint8_t, 
-  (European, 0),
-  (American, 1),
+  ((European, 0))
+  ((American, 1))
 );
 using ExpireDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using ExpireTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using ExposureDuration = LittleEndian<int64_t, -9223372036854775807, 9223372036854775807, 0x8000000000000000>;
-using FIXClOrdID = FixedLengthString<20, 0x00>;
-using FIXEngineName = FixedLengthString<30, 0x00>;
-using FIXEngineVendor = FixedLengthString<30, 0x00>;
-using FIXEngineVersion = FixedLengthString<30, 0x00>;
+using FIXClOrdID = FixedLengthString<20, 0>;
+using FIXEngineName = FixedLengthString<30, 0>;
+using FIXEngineVendor = FixedLengthString<30, 0>;
+using FIXEngineVersion = FixedLengthString<30, 0>;
 using FillExecID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(FillLiquidityInd, uint8_t, 
-  (Added_Liquidity, 1),
-  (Removed_Liquidity, 2),
-  (Auction, 4),
-  (Triggered_Stop_Order, 5),
-  (Triggered_OCO_Order, 6),
-  (Triggered_Market_Order, 7),
+  ((Added_Liquidity, 1))
+  ((Removed_Liquidity, 2))
+  ((Auction, 4))
+  ((Triggered_Stop_Order, 5))
+  ((Triggered_OCO_Order, 6))
+  ((Triggered_Market_Order, 7))
 );
 using FillMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using FillPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using FillQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using FillRefID = uint8_t;
-using FirmNegotiationID = FixedLengthString<20, 0x00>;
-using FirmTradeID = FixedLengthString<20, 0x00>;
-using FreeText1 = FixedLengthString<12, 0x00>;
-using FreeText2 = FixedLengthString<12, 0x00>;
-using FreeText3 = FixedLengthString<12, 0x00>;
-using FreeText5 = FixedLengthString<132, 0x00>;
+using FirmNegotiationID = FixedLengthString<20, 0>;
+using FirmTradeID = FixedLengthString<20, 0>;
+using FreeText1 = FixedLengthString<12, 0>;
+using FreeText2 = FixedLengthString<12, 0>;
+using FreeText3 = FixedLengthString<12, 0>;
+using FreeText5 = FixedLengthString<132, 0>;
 EB_ENUM(FreeText5DisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using GatewayID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(GatewayStatus, uint8_t, 
-  (Standby, 0),
-  (Active, 1),
+  ((Standby, 0))
+  ((Active, 1))
 );
 using GatewaySubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using Headline = FixedLengthString<256, 0x00>;
+using Headline = FixedLengthString<256, 0>;
 using HeartBtInt = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(HedgeType, uint8_t, 
-  (Duration_Hedge, 0),
-  (Nominal_Hedge, 1),
-  (Price_Factor_Hedge, 2),
+  ((Duration_Hedge, 0))
+  ((Nominal_Hedge, 1))
+  ((Price_Factor_Hedge, 2))
 );
 EB_ENUM(HedgingInstruction, uint8_t, 
-  (On_Close, 1),
+  ((On_Close, 1))
 );
 using HighLimitPrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 EB_ENUM(ImpliedMarketIndicator, uint8_t, 
-  (Not_implied, 0),
-  (Implied_in_out, 3),
+  ((Not_implied, 0))
+  ((Implied_in_out, 3))
 );
 using IndividualAllocID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(InputSource, uint8_t, 
-  (Client_Broker, 1),
-  (Proprietary_Broker, 2),
+  ((Client_Broker, 1))
+  ((Proprietary_Broker, 2))
 );
 EB_ENUM(InstrAttribType, uint8_t, 
-  (Variable_Rate, 5),
-  (Coupon_Rate, 100),
-  (Offset_to_the_variable_coupon_rate, 101),
-  (Swap_Customer_1, 102),
-  (Swap_Customer_2, 103),
-  (Cash_Basket_Reference, 104),
+  ((Variable_Rate, 5))
+  ((Coupon_Rate, 100))
+  ((Offset_to_the_variable_coupon_rate, 101))
+  ((Swap_Customer_1, 102))
+  ((Swap_Customer_2, 103))
+  ((Cash_Basket_Reference, 104))
 );
-using InstrAttribValue = FixedLengthString<32, 0x00>;
+using InstrAttribValue = FixedLengthString<32, 0>;
 using InstrmtMatchSideID = uint8_t;
-using LastEntityProcessed = FixedLengthString<16, 0x00>;
+EB_ENUM(InventoryCheckType, uint8_t, 
+  ((Do_not_check, 0))
+  ((Check, 1))
+);
+using LastEntityProcessed = FixedLengthString<16, 0>;
 EB_ENUM(LastFragment, uint8_t, 
-  (Not_Last_Message, 0),
-  (Last_Message, 1),
+  ((Not_Last_Message, 0))
+  ((Last_Message, 1))
 );
 EB_ENUM(LastMkt, uint16_t, 
-  (XEUR, 1),
-  (XEEE, 2),
-  (NODX, 12),
+  ((XEUR, 1))
+  ((XEEE, 2))
+  ((NODX, 12))
 );
 using LastPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 EB_ENUM(LastPxDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using LastQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(LastQtyDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using LastUpdateTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using LeavesQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(LeavesQtyDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
-using LegAccount = FixedLengthString<2, 0x00>;
+using LegAccount = FixedLengthString<2, 0>;
+using LegClearingTradePrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using LegExecID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(LegInputSource, uint8_t, 
-  (Client_Broker, 1),
-  (Proprietary_Broker, 2),
+  ((Client_Broker, 1))
+  ((Proprietary_Broker, 2))
 );
 using LegLastPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using LegLastQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(LegPositionEffect, char, 
-  (Close, 'C'),
-  (Open, 'O'),
+  ((Close, 'C'))
+  ((Open, 'O'))
 );
 using LegPrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using LegQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using LegRatioQty = LittleEndian<uint32_t, 1, 2147483647, 0xFFFFFFFF>;
 using LegSecurityID = LittleEndian<int64_t, -9223372036854775807, 9223372036854775807, 0x8000000000000000>;
 EB_ENUM(LegSecurityType, uint8_t, 
-  (Multileg_Instrument, 1),
-  (Underlying_Leg, 2),
+  ((Multileg_Instrument, 1))
+  ((Underlying_Leg, 2))
 );
 EB_ENUM(LegSide, uint8_t, 
-  (Buy, 1),
-  (Sell, 2),
+  ((Buy, 1))
+  ((Sell, 2))
 );
 using LegSymbol = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(ListUpdateAction, char, 
-  (Add, 'A'),
-  (Delete, 'D'),
+  ((Add, 'A'))
+  ((Delete, 'D'))
 );
 using LowLimitPrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 EB_ENUM(MDBookType, uint8_t, 
-  (TopOfBook, 1),
-  (PriceDepth, 2),
+  ((TopOfBook, 1))
+  ((PriceDepth, 2))
 );
 EB_ENUM(MDSubBookType, uint8_t, 
-  (Implied, 1),
-  (VolumeWeightedAverage, 2),
+  ((Implied, 1))
+  ((VolumeWeightedAverage, 2))
 );
 using MMParameterReportID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(MarketID, uint16_t, 
-  (XEUR, 1),
-  (XEEE, 2),
-  (NODX, 12),
+  ((XEUR, 1))
+  ((XEEE, 2))
+  ((NODX, 12))
 );
 using MarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(MassActionReason, uint8_t, 
-  (No_Special_Reason, 0),
-  (Stop_Trading, 1),
-  (Emergency, 2),
-  (Market_Maker_Protection, 3),
-  (Session_Loss, 6),
-  (Duplicate_Session_Login, 7),
-  (Clearing_Risk_Control, 8),
-  (Internal_Connection_Loss, 100),
-  (Product_State_Halt, 105),
-  (Product_State_Holiday, 106),
-  (Instrument_Suspended, 107),
-  (Complex_Instrument_Deletion, 109),
-  (Volatility_Interruption, 110),
-  (Product_temporarily_not_tradeable, 111),
-  (Member_disable, 117),
+  ((No_Special_Reason, 0))
+  ((Stop_Trading, 1))
+  ((Emergency, 2))
+  ((Market_Maker_Protection, 3))
+  ((Session_Loss, 6))
+  ((Duplicate_Session_Login, 7))
+  ((Clearing_Risk_Control, 8))
+  ((Internal_Connection_Loss, 100))
+  ((Product_State_Halt, 105))
+  ((Product_State_Holiday, 106))
+  ((Instrument_Suspended, 107))
+  ((Complex_Instrument_Deletion, 109))
+  ((Volatility_Interruption, 110))
+  ((Product_temporarily_not_tradeable, 111))
+  ((Member_disable, 117))
 );
 using MassActionReportID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(MassActionSubType, uint8_t, 
-  (Book_or_Cancel, 1),
+  ((Book_or_Cancel, 1))
 );
 EB_ENUM(MassActionType, uint8_t, 
-  (Suspend_quotes, 1),
-  (Release_quotes, 2),
+  ((Suspend_quotes, 1))
+  ((Release_quotes, 2))
 );
 using MatchDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using MatchInstCrossID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(MatchSubType, uint8_t, 
-  (Opening_Auction, 1),
-  (Closing_Auction, 2),
-  (Intraday_Auction, 3),
-  (Circuit_Breaker_Auction, 4),
-  (Outside_BBO, 6),
+  ((Opening_Auction, 1))
+  ((Closing_Auction, 2))
+  ((Intraday_Auction, 3))
+  ((Circuit_Breaker_Auction, 4))
+  ((Outside_BBO, 6))
 );
 EB_ENUM(MatchType, uint8_t, 
-  (Confirmed_Trade_Report, 3),
-  (Auto_match_incoming, 4),
-  (Cross_Auction, 5),
-  (Call_Auction, 7),
-  (Auto_match_resting, 11),
-  (Liquidity_Improvement_Cross, 13),
+  ((Confirmed_Trade_Report, 3))
+  ((Auto_match_incoming, 4))
+  ((Cross_Auction, 5))
+  ((Call_Auction, 7))
+  ((Auto_match_resting, 11))
+  ((Liquidity_Improvement_Cross, 13))
 );
 EB_ENUM(MatchingEngineStatus, uint8_t, 
-  (Unavailable, 0),
-  (Available, 1),
+  ((Unavailable, 0))
+  ((Available, 1))
 );
 using MatchingEngineTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using MaturityDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using MaturityMonthYear = LittleEndian<uint32_t, 0, 999912, 0xFFFFFFFF>;
 using MaximumPrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 EB_ENUM(MessageEventSource, char, 
-  (Broadcast_to_Initiator, 'I'),
-  (Broadcast_to_Approver, 'A'),
-  (Broadcast_to_Requester, 'R'),
-  (Broadcast_to_Quote_Submitter, 'Q'),
+  ((Broadcast_to_Initiator, 'I'))
+  ((Broadcast_to_Approver, 'A'))
+  ((Broadcast_to_Requester, 'R'))
+  ((Broadcast_to_Quote_Submitter, 'Q'))
 );
 using MsgSeqNum = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using MsgType = FixedLengthString<3, 0x00>;
+using MsgType = FixedLengthString<3, 0>;
 EB_ENUM(MultiLegReportingType, uint8_t, 
-  (Single_security, 1),
-  (Individual_leg_of_a_multileg_security, 2),
+  ((Single_security, 1))
+  ((Individual_leg_of_a_multileg_security, 2))
 );
 EB_ENUM(MultilegModel, uint8_t, 
-  (Predefined_Multileg_Security, 0),
-  (User_defined_Multleg, 1),
+  ((Predefined_Multileg_Security, 0))
+  ((User_defined_Multleg, 1))
 );
 EB_ENUM(MultilegPriceModel, uint8_t, 
-  (Standard, 0),
-  (UserDefined, 1),
+  ((Standard, 0))
+  ((UserDefined, 1))
 );
 using NegotiationID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using NegotiationStartTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using NettingCoefficient = FloatDecimal<0.0000, 1.0000, 8, 4, 0x8000000000000000, true>;
-using NetworkMsgID = FixedLengthString<8, 0x00>;
+using NetworkMsgID = FixedLengthString<8, 0>;
+EB_ENUM(NewsRtmServiceStatus, uint8_t, 
+  ((Unavailable, 0))
+  ((Available, 1))
+);
 using NoAffectedOrderRequests = LittleEndian<uint16_t, 0, 500, 0xFFFF>;
 using NoBasketRootPartyGrps = uint8_t;
 using NoBasketRootPartyGrpsBC = uint8_t;
@@ -433,7 +451,9 @@ using NoEvents = uint8_t;
 using NoFills = uint8_t;
 using NoInstrAttrib = uint8_t;
 using NoInstrmtMatchSides = uint8_t;
+using NoLegClearingPrices = uint8_t;
 using NoLegExecs = LittleEndian<uint16_t, 0, 600, 0xFFFF>;
+using NoLegOnbooks = uint8_t;
 using NoLegs = uint8_t;
 using NoMDEntryTypes = uint8_t;
 using NoMMParameters = uint8_t;
@@ -449,7 +469,6 @@ using NoQuoteSideEntries = uint8_t;
 using NoRiskLimits = uint8_t;
 using NoRiskLimitsQty = uint8_t;
 using NoSRQSQuoteGrps = uint8_t;
-using NoSRQSRelatedTradeIDs = uint8_t;
 using NoSRQSTargetPartyTrdGrps = uint8_t;
 using NoSessions = LittleEndian<uint16_t, 1, 1000, 0xFFFF>;
 using NoSideAllocs = uint8_t;
@@ -461,437 +480,438 @@ using NotAffectedOrderID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFF
 using NotAffectedSecurityID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using NotificationIn = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(NumberOfRespDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using NumberOfRespondents = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using NumberOfSecurities = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 using OfferCxlSize = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using OfferPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 EB_ENUM(OfferPxIsLocked, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using OfferSize = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using OptAttribute = uint8_t;
 EB_ENUM(OrdStatus, char, 
-  (New, '0'),
-  (Partially_filled, '1'),
-  (Filled, '2'),
-  (Canceled, '4'),
-  (Pending_Cancel, '6'),
-  (Suspended, '9'),
+  ((New, '0'))
+  ((Partially_filled, '1'))
+  ((Filled, '2'))
+  ((Canceled, '4'))
+  ((Pending_Cancel, '6'))
+  ((Suspended, '9'))
 );
 EB_ENUM(OrdType, uint8_t, 
-  (Market, 1),
-  (Limit, 2),
-  (Stop, 3),
-  (Stop_Limit, 4),
+  ((Market, 1))
+  ((Limit, 2))
+  ((Stop, 3))
+  ((Stop_Limit, 4))
 );
 EB_ENUM(OrderAttributeLiquidityProvision, uint8_t, 
-  (Y, 1),
-  (N, 0),
+  ((Y, 1))
+  ((N, 0))
 );
 EB_ENUM(OrderAttributeRiskReduction, uint8_t, 
-  (Y, 1),
-  (N, 0),
+  ((Y, 1))
+  ((N, 0))
 );
 EB_ENUM(OrderCategory, char, 
-  (Order, '1'),
-  (Quote, '2'),
+  ((Order, '1'))
+  ((Quote, '2'))
 );
 using OrderEventMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using OrderEventPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using OrderEventQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(OrderEventReason, uint8_t, 
-  (SMP, 100),
+  ((SMP, 100))
 );
 using OrderID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(OrderOrigination, uint8_t, 
-  (Direct_access_or_sponsored_access_customer, 5),
+  ((Direct_access_or_sponsored_access_customer, 5))
 );
 using OrderQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(OrderQtyDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 EB_ENUM(OrderQtyIsLocked, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 EB_ENUM(OrderRoutingIndicator, char, 
-  (Yes, 'Y'),
-  (No, 'N'),
+  ((Yes, 'Y'))
+  ((No, 'N'))
 );
 EB_ENUM(OrderSide, uint8_t, 
-  (Buy, 1),
-  (Sell, 2),
+  ((Buy, 1))
+  ((Sell, 2))
 );
 using OrigClOrdID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using OrigTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using OrigTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(OwnershipIndicator, uint8_t, 
-  (No_Change_of_Ownership, 0),
-  (Change_to_Executing_Trader, 1),
+  ((No_Change_of_Ownership, 0))
+  ((Change_to_Executing_Trader, 1))
 );
 using PackageID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using Pad1 = FixedLengthString<1, 0x00>;
-using Pad1_1 = FixedLengthString<1, 0x00>;
-using Pad1_2 = FixedLengthString<1, 0x00>;
-using Pad1_3 = FixedLengthString<1, 0x00>;
-using Pad2 = FixedLengthString<2, 0x00>;
-using Pad2_1 = FixedLengthString<2, 0x00>;
-using Pad2_2 = FixedLengthString<2, 0x00>;
-using Pad3 = FixedLengthString<3, 0x00>;
-using Pad3_1 = FixedLengthString<3, 0x00>;
-using Pad3_3 = FixedLengthString<3, 0x00>;
-using Pad4 = FixedLengthString<4, 0x00>;
-using Pad4_2 = FixedLengthString<4, 0x00>;
-using Pad5 = FixedLengthString<5, 0x00>;
-using Pad5_1 = FixedLengthString<5, 0x00>;
-using Pad6 = FixedLengthString<6, 0x00>;
-using Pad6_1 = FixedLengthString<6, 0x00>;
-using Pad6_2 = FixedLengthString<6, 0x00>;
-using Pad7 = FixedLengthString<7, 0x00>;
-using Pad7_1 = FixedLengthString<7, 0x00>;
+using Pad1 = FixedLengthString<1, 0>;
+using Pad1_1 = FixedLengthString<1, 0>;
+using Pad1_2 = FixedLengthString<1, 0>;
+using Pad1_3 = FixedLengthString<1, 0>;
+using Pad2 = FixedLengthString<2, 0>;
+using Pad2_1 = FixedLengthString<2, 0>;
+using Pad2_2 = FixedLengthString<2, 0>;
+using Pad3 = FixedLengthString<3, 0>;
+using Pad3_2 = FixedLengthString<3, 0>;
+using Pad3_3 = FixedLengthString<3, 0>;
+using Pad4 = FixedLengthString<4, 0>;
+using Pad4_2 = FixedLengthString<4, 0>;
+using Pad5 = FixedLengthString<5, 0>;
+using Pad5_1 = FixedLengthString<5, 0>;
+using Pad6 = FixedLengthString<6, 0>;
+using Pad6_1 = FixedLengthString<6, 0>;
+using Pad6_2 = FixedLengthString<6, 0>;
+using Pad7 = FixedLengthString<7, 0>;
+using Pad7_1 = FixedLengthString<7, 0>;
 using PartitionID = LittleEndian<uint16_t, 0, 65534, 0xFFFF>;
 EB_ENUM(PartyActionType, uint8_t, 
-  (Halt_Trading, 1),
-  (Reinstate, 2),
+  ((Halt_Trading, 1))
+  ((Reinstate, 2))
 );
-using PartyDetailDeskID = FixedLengthString<3, 0x00>;
-using PartyDetailExecutingTrader = FixedLengthString<6, 0x00>;
-using PartyDetailExecutingUnit = FixedLengthString<5, 0x00>;
+using PartyDetailDeskID = FixedLengthString<3, 0>;
+using PartyDetailExecutingTrader = FixedLengthString<6, 0>;
+using PartyDetailExecutingUnit = FixedLengthString<5, 0>;
 using PartyDetailIDExecutingTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using PartyDetailIDExecutingUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(PartyDetailRoleQualifier, uint8_t, 
-  (Trader, 10),
-  (Head_Trader, 11),
-  (Supervisor, 12),
+  ((Trader, 10))
+  ((Head_Trader, 11))
+  ((Supervisor, 12))
 );
 EB_ENUM(PartyDetailStatus, uint8_t, 
-  (Active, 0),
-  (Suspend, 1),
-  (Rejected, 2),
+  ((Active, 0))
+  ((Suspend, 1))
+  ((Rejected, 2))
 );
 EB_ENUM(PartyDetailStatusInformation, uint8_t, 
-  (TRR_THRESHOLD_TOO_BIG, 1),
-  (BLOCK_ALL_ANONYMOUS, 2),
+  ((TRR_THRESHOLD_TOO_BIG, 1))
+  ((BLOCK_ALL_ANONYMOUS, 2))
 );
-using PartyEnteringTrader = FixedLengthString<6, 0x00>;
-using PartyExecutingFirm = FixedLengthString<5, 0x00>;
-using PartyExecutingTrader = FixedLengthString<6, 0x00>;
-using PartyExecutingUnit = FixedLengthString<5, 0x00>;
-using PartyIDBeneficiary = FixedLengthString<9, 0x00>;
+using PartyEnteringTrader = FixedLengthString<6, 0>;
+using PartyExecutingFirm = FixedLengthString<5, 0>;
+using PartyExecutingTrader = FixedLengthString<6, 0>;
+using PartyExecutingUnit = FixedLengthString<5, 0>;
+using PartyIDBeneficiary = FixedLengthString<9, 0>;
 using PartyIDClientID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(PartyIDEnteringFirm, uint8_t, 
-  (Participant, 1),
-  (MarketSupervision, 2),
+  ((Participant, 1))
+  ((MarketSupervision, 2))
 );
 using PartyIDEnteringTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using PartyIDExecutingTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using PartyIDExecutingUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using PartyIDLocationID = FixedLengthString<2, 0x00>;
-using PartyIDOrderOriginationFirm = FixedLengthString<7, 0x00>;
+using PartyIDLocationID = FixedLengthString<2, 0>;
+using PartyIDOrderOriginationFirm = FixedLengthString<7, 0>;
 EB_ENUM(PartyIDOriginationMarket, uint8_t, 
-  (XKFE, 1),
+  ((XKFE, 1))
 );
-using PartyIDPositionAccount = FixedLengthString<32, 0x00>;
+using PartyIDPositionAccount = FixedLengthString<32, 0>;
 using PartyIDSessionID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(PartyIDSettlementLocation, uint8_t, 
-  (Clearstrem_Banking_Frankfurt, 1),
-  (Clearstrem_Banking_Luxemburg, 2),
-  (CLS_Group, 3),
-  (Euroclear, 4),
+  ((Clearstrem_Banking_Frankfurt, 1))
+  ((Clearstrem_Banking_Luxemburg, 2))
+  ((CLS_Group, 3))
+  ((Euroclear, 4))
 );
-using PartyIDTakeUpTradingFirm = FixedLengthString<5, 0x00>;
+using PartyIDTakeUpTradingFirm = FixedLengthString<5, 0>;
 using PartyIdInvestmentDecisionMaker = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(PartyIdInvestmentDecisionMakerQualifier, uint8_t, 
-  (Algo, 22),
-  (Human, 24),
+  ((Algo, 22))
+  ((Human, 24))
 );
 EB_ENUM(PartyOrderOriginationDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
-using PartyOrderOriginationTrader = FixedLengthString<132, 0x00>;
+using PartyOrderOriginationTrader = FixedLengthString<132, 0>;
 EB_ENUM(PartySubIDType, uint16_t, 
-  (Buyer, 14001),
-  (Seller, 14002),
+  ((Buyer, 14001))
+  ((Seller, 14002))
 );
-using Password = FixedLengthString<32, 0x00>;
+using Password = FixedLengthString<32, 0>;
 using PctCount = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(PositionEffect, char, 
-  (Close, 'C'),
-  (Open, 'O'),
+  ((Close, 'C'))
+  ((Open, 'O'))
 );
 using Price = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 EB_ENUM(PriceDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 EB_ENUM(PriceValidityCheckType, uint8_t, 
-  (None, 0),
-  (Optional, 1),
-  (Mandatory, 2),
+  ((None, 0))
+  ((Optional, 1))
+  ((Mandatory, 2))
 );
 EB_ENUM(ProductComplex, uint8_t, 
-  (simple_instrument, 1),
-  (standard_option_strategy, 2),
-  (non_standard_option_strategy, 3),
-  (volatility_strategy, 4),
-  (futures_Spread, 5),
-  (inter_product_spread, 6),
-  (standard_future_strategy, 7),
-  (pack_and_bundle, 8),
-  (strip, 9),
-  (flexible_simple_instrument, 10),
+  ((simple_instrument, 1))
+  ((standard_option_strategy, 2))
+  ((non_standard_option_strategy, 3))
+  ((volatility_strategy, 4))
+  ((futures_Spread, 5))
+  ((inter_product_spread, 6))
+  ((standard_future_strategy, 7))
+  ((pack_and_bundle, 8))
+  ((strip, 9))
+  ((flexible_simple_instrument, 10))
+  ((commodity_strip, 11))
 );
 EB_ENUM(PutOrCall, uint8_t, 
-  (Put, 0),
-  (Call, 1),
+  ((Put, 0))
+  ((Call, 1))
 );
 EB_ENUM(QuoteCancelReason, uint8_t, 
-  (Expired, 5),
-);
-EB_ENUM(QuoteCancelType, uint8_t, 
-  (Cancel_All_Quotes, 4),
+  ((Expired, 5))
 );
 EB_ENUM(QuoteCondition, char, 
-  (Active, 'A'),
-  (Closed, 'B'),
-  (Suspended, 'z'),
-  (Expired, '8'),
+  ((Active, 'A'))
+  ((Closed, 'B'))
+  ((Suspended, 'z'))
+  ((Expired, '8'))
 );
 EB_ENUM(QuoteEntryRejectReason, uint32_t, 
-  (Unknown_Security, 1),
-  (Duplicate_Quote, 6),
-  (Invalid_Price, 8),
-  (No_Reference_Price_Available, 16),
-  (No_Single_Sided_Quotes, 100),
-  (Invalid_Quoting_Model, 103),
-  (Invalid_Size, 106),
-  (Invalid_Underlying_Price, 107),
-  (Bid_Price_Not_Reasonable, 108),
-  (Ask_Price_Not_Reasonable, 109),
-  (Bid_Price_Exceeds_Range, 110),
-  (Ask_Price_Exceeds_Range, 111),
-  (Instrument_State_Freeze, 115),
-  (Deletion_Already_Pending, 116),
-  (Entitlement_Not_Assigned_For_Underlying, 119),
-  (Currently_Not_Tradeable_On_Book, 124),
-  (Quantity_Limit_Exceeded, 125),
-  (Value_Limit_Exceeded, 126),
-  (Invalid_Quote_Spread, 127),
-  (Book_or_Cancel, 128),
-  (Cant_Proc_In_Curr_Instr_State, 131),
-  (Invalid_Quote_Type, 134),
-  (Trading_indication_running_for_trader, 143),
-  (On_Book_Trading_disabled_for_Instrument_Type, 144),
-  (Liquidity_provider_protection_bid_side_cancelled, 147),
-  (Liquidity_provider_protection_ask_side_cancelled, 148),
-  (Outside_Quoting_Period, 155),
-  (Match_Price_Not_On_Price_Step, 156),
-  (Quantity_Limit_Exceeds_TSL, 161),
-  (Too_Many_Orders_and_Quotes_in_Order_Book, 163),
-  (Contract_cannot_be_traded_due_to_insufficient_eligibility, 166),
+  ((Unknown_Security, 1))
+  ((Duplicate_Quote, 6))
+  ((Invalid_Price, 8))
+  ((No_Reference_Price_Available, 16))
+  ((No_Single_Sided_Quotes, 100))
+  ((Invalid_Quoting_Model, 103))
+  ((Invalid_Size, 106))
+  ((Invalid_Underlying_Price, 107))
+  ((Bid_Price_Not_Reasonable, 108))
+  ((Ask_Price_Not_Reasonable, 109))
+  ((Bid_Price_Exceeds_Range, 110))
+  ((Ask_Price_Exceeds_Range, 111))
+  ((Instrument_State_Freeze, 115))
+  ((Deletion_Already_Pending, 116))
+  ((Entitlement_Not_Assigned_For_Underlying, 119))
+  ((Currently_Not_Tradeable_On_Book, 124))
+  ((Quantity_Limit_Exceeded, 125))
+  ((Value_Limit_Exceeded, 126))
+  ((Invalid_Quote_Spread, 127))
+  ((Book_or_Cancel, 128))
+  ((Cant_Proc_In_Curr_Instr_State, 131))
+  ((Invalid_Quote_Type, 134))
+  ((Trading_indication_running_for_trader, 143))
+  ((On_Book_Trading_disabled_for_Instrument_Type, 144))
+  ((Liquidity_provider_protection_bid_side_cancelled, 147))
+  ((Liquidity_provider_protection_ask_side_cancelled, 148))
+  ((Outside_Quoting_Period, 155))
+  ((Match_Price_Not_On_Price_Step, 156))
+  ((Quantity_Limit_Exceeds_TSL, 161))
+  ((Too_Many_Orders_and_Quotes_in_Order_Book, 163))
+  ((Contract_cannot_be_traded_due_to_insufficient_eligibility, 166))
+  ((Underlying_Price_Timeout, 167))
+  ((BU_Suspend_ARP_Level_3_Soft_Breach, 168))
 );
 EB_ENUM(QuoteEntryStatus, uint8_t, 
-  (Accepted, 0),
-  (Rejected, 5),
-  (Removed_and_Rejected, 6),
-  (Pending, 10),
+  ((Accepted, 0))
+  ((Rejected, 5))
+  ((Removed_and_Rejected, 6))
+  ((Pending, 10))
 );
 using QuoteEventExecID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(QuoteEventLiquidityInd, uint8_t, 
-  (Added_Liquidity, 1),
-  (Removed_Liquidity, 2),
-  (Auction, 4),
+  ((Added_Liquidity, 1))
+  ((Removed_Liquidity, 2))
+  ((Auction, 4))
 );
 using QuoteEventMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using QuoteEventPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using QuoteEventQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(QuoteEventReason, uint8_t, 
-  (Pending_cancellation_executed, 14),
-  (Invalid_price, 15),
-  (Cross_rejected, 16),
-  (Book_or_Cancel, 17),
-  (PLP, 18),
+  ((Pending_cancellation_executed, 14))
+  ((Invalid_price, 15))
+  ((Cross_rejected, 16))
+  ((Book_or_Cancel, 17))
+  ((PLP, 18))
 );
 EB_ENUM(QuoteEventSide, uint8_t, 
-  (Buy, 1),
-  (Sell, 2),
+  ((Buy, 1))
+  ((Sell, 2))
 );
 EB_ENUM(QuoteEventType, uint8_t, 
-  (Modified_quote_side, 2),
-  (Removed_quote_side, 3),
-  (Partially_filled, 4),
-  (Filled, 5),
-  (Removed_Quantity, 6),
+  ((Modified_quote_side, 2))
+  ((Removed_quote_side, 3))
+  ((Partially_filled, 4))
+  ((Filled, 5))
+  ((Removed_Quantity, 6))
 );
 using QuoteID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(QuoteInstruction, uint8_t, 
-  (Do_Not_Quote, 0),
-  (Quote, 1),
+  ((Do_Not_Quote, 0))
+  ((Quote, 1))
 );
 using QuoteMsgID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using QuoteRefPrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
-using QuoteReqID = FixedLengthString<20, 0x00>;
+using QuoteReqID = FixedLengthString<20, 0>;
 using QuoteResponseID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(QuoteSizeType, uint8_t, 
-  (TotalSize, 1),
-  (OpenSize, 2),
-);
-EB_ENUM(QuoteStatus, uint8_t, 
-  (Removed, 6),
-  (Expired, 7),
-  (Active, 16),
+  ((TotalSize, 1))
+  ((OpenSize, 2))
 );
 EB_ENUM(QuoteSubType, uint8_t, 
-  (WorkingDelta, 1),
-  (BasisTrade, 2),
-  (Regular, 3),
-  (NegotiateUnderlyingOutsideExchange, 4),
-  (VolaStrategyFix, 5),
-  (VolaStrategyNegotiateUnderlying, 6),
+  ((WorkingDelta, 1))
+  ((BasisTrade, 2))
+  ((Regular, 3))
+  ((NegotiateUnderlyingOutsideExchange, 4))
+  ((VolaStrategyFix, 5))
+  ((VolaStrategyNegotiateUnderlying, 6))
 );
 EB_ENUM(QuoteType, uint8_t, 
-  (Indicative, 0),
-  (Tradeable, 1),
-  (Tradeable_BOC, 100),
+  ((Indicative, 0))
+  ((Tradeable, 1))
+  ((Tradeable_BOC, 100))
 );
+using QuoteWeightingCoefficient = FloatDecimal<0.0000, 1.0000, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(QuotingStatus, uint8_t, 
-  (Open_Active, 1),
-  (Open_Idle, 2),
-  (Closed_Inactive, 3),
+  ((Open_Active, 1))
+  ((Open_Idle, 2))
+  ((Closed_Inactive, 3))
 );
 EB_ENUM(RefApplID, uint8_t, 
-  (Trade, 1),
-  (News, 2),
-  (Service_availability, 3),
-  (Session_data, 4),
-  (Listener_data, 5),
-  (RiskControl, 6),
-  (TES_Maintenance, 7),
-  (TES_Trade, 8),
-  (SRQS_Maintenance, 9),
-  (Service_Availability_Market, 10),
+  ((Trade, 1))
+  ((News, 2))
+  ((Service_availability, 3))
+  ((Session_data, 4))
+  ((Listener_data, 5))
+  ((RiskControl, 6))
+  ((TES_Maintenance, 7))
+  ((TES_Trade, 8))
+  ((SRQS_Maintenance, 9))
+  ((Service_Availability_Market, 10))
 );
-using RefApplLastMsgID = FixedLengthString<16, 0x00>;
+using RefApplLastMsgID = FixedLengthString<16, 0>;
 using RefApplLastSeqNum = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using RefApplSubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RegulatoryTradeID = FixedLengthString<52, 0x00>;
+using RegulatoryTradeID = FixedLengthString<52, 0>;
 using RelatedClosePrice = FloatDecimal<-9223372036854.775807, 9223372036854.775807, 8, 6, 0x8000000000000000, true>;
 using RelatedMarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(RelatedProductComplex, uint8_t, 
-  (standard_option_strategy, 2),
-  (non_standard_option_strategy, 3),
-  (volatility_strategy, 4),
-  (futures_Spread, 5),
-  (inter_product_spread, 6),
-  (standard_future_strategy, 7),
-  (pack_and_bundle, 8),
-  (strip, 9),
+  ((standard_option_strategy, 2))
+  ((non_standard_option_strategy, 3))
+  ((volatility_strategy, 4))
+  ((futures_Spread, 5))
+  ((inter_product_spread, 6))
+  ((standard_future_strategy, 7))
+  ((pack_and_bundle, 8))
+  ((strip, 9))
+  ((commodity_strip, 11))
 );
 using RelatedSecurityID = LittleEndian<int64_t, -9223372036854775807, 9223372036854775807, 0x8000000000000000>;
 using RelatedSymbol = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 using RelatedTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RelatedTradeQuantity = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using RequestTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
-using RequestingPartyClearingFirm = FixedLengthString<9, 0x00>;
-using RequestingPartyEnteringFirm = FixedLengthString<9, 0x00>;
+using RequestingPartyClearingFirm = FixedLengthString<9, 0>;
+using RequestingPartyEnteringFirm = FixedLengthString<9, 0>;
 EB_ENUM(RequestingPartyIDEnteringFirm, uint8_t, 
-  (Participant, 1),
-  (MarketSupervision, 2),
+  ((Participant, 1))
+  ((MarketSupervision, 2))
 );
 EB_ENUM(RequestingPartyIDExecutingSystem, uint32_t, 
-  (EurexClearing, 1),
-  (T7, 2),
+  ((EurexClearing, 1))
+  ((T7, 2))
 );
 using RequestingPartyIDExecutingTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(RequestingPartySubIDType, uint16_t, 
-  (Requester, 5000),
-  (Responder, 5001),
-  (Both, 5002),
-  (System, 5003),
+  ((Requester, 5000))
+  ((Responder, 5001))
+  ((Both, 5002))
+  ((System, 5003))
 );
 EB_ENUM(RespondentType, uint8_t, 
-  (AllMarketParticipants, 1),
-  (Anonymous, 102),
+  ((AllMarketParticipants, 1))
+  ((Anonymous, 102))
 );
 using ResponseIn = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using ReversalApprovalTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(ReversalCancellationReason, uint8_t, 
-  (TAS_Change, 1),
-  (Intraday_Expiration, 2),
-  (Instrument_Deletion, 3),
-  (Instrument_Suspension, 4),
+  ((TAS_Change, 1))
+  ((Intraday_Expiration, 2))
+  ((Instrument_Deletion, 3))
+  ((Instrument_Suspension, 4))
 );
 EB_ENUM(ReversalIndicator, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using ReversalInitiationTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
-using ReversalReasonText = FixedLengthString<132, 0x00>;
-EB_ENUM(RiskLimitAction, uint8_t, 
-  (QueueInbound, 0),
-  (Reject, 2),
-  (Warning, 4),
+using ReversalReasonText = FixedLengthString<132, 0>;
+EB_ENUM(RiskControlRtmServiceStatus, uint8_t, 
+  ((Unavailable, 0))
+  ((Available, 1))
 );
-using RiskLimitGroup = FixedLengthString<3, 0x00>;
+EB_ENUM(RiskLimitAction, uint8_t, 
+  ((QueueInbound, 0))
+  ((Reject, 2))
+  ((Warning, 4))
+);
+using RiskLimitGroup = FixedLengthString<3, 0>;
 using RiskLimitNetPositionQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using RiskLimitOpenQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(RiskLimitPlatform, uint8_t, 
-  (On_Book, 0),
-  (Off_Book, 1),
+  ((On_Book, 0))
+  ((Off_Book, 1))
 );
 using RiskLimitQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using RiskLimitReportID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(RiskLimitRequestingPartyRole, uint8_t, 
-  (Clearing_firm, 4),
-  (Exchange, 22),
-  (Executing_unit, 59),
+  ((Clearing_firm, 4))
+  ((Exchange, 22))
+  ((Executing_unit, 59))
 );
 EB_ENUM(RiskLimitType, uint8_t, 
-  (Long_limit, 4),
-  (Short_limit, 5),
+  ((Long_limit, 4))
+  ((Short_limit, 5))
 );
 EB_ENUM(RiskLimitViolationIndicator, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
-using RootPartyClearingFirm = FixedLengthString<5, 0x00>;
-using RootPartyClearingOrganization = FixedLengthString<4, 0x00>;
-using RootPartyContraFirm = FixedLengthString<5, 0x00>;
-using RootPartyContraTrader = FixedLengthString<6, 0x00>;
-using RootPartyEnteringTrader = FixedLengthString<6, 0x00>;
-using RootPartyExecutingFirm = FixedLengthString<5, 0x00>;
-using RootPartyExecutingTrader = FixedLengthString<6, 0x00>;
-using RootPartyIDBeneficiary = FixedLengthString<9, 0x00>;
+using RootPartyClearingFirm = FixedLengthString<5, 0>;
+using RootPartyClearingOrganization = FixedLengthString<4, 0>;
+using RootPartyContraFirm = FixedLengthString<5, 0>;
+using RootPartyContraTrader = FixedLengthString<6, 0>;
+using RootPartyEnteringTrader = FixedLengthString<6, 0>;
+using RootPartyExecutingFirm = FixedLengthString<5, 0>;
+using RootPartyExecutingTrader = FixedLengthString<6, 0>;
+using RootPartyIDBeneficiary = FixedLengthString<9, 0>;
 using RootPartyIDClearingUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RootPartyIDClientID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using RootPartyIDExecutingTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RootPartyIDExecutingUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RootPartyIDExecutionVenue = FixedLengthString<4, 0x00>;
+using RootPartyIDExecutionVenue = FixedLengthString<4, 0>;
 using RootPartyIDInvestmentDecisionMaker = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(RootPartyIDInvestmentDecisionMakerQualifier, uint8_t, 
-  (Algo, 22),
-  (Human, 24),
+  ((Algo, 22))
+  ((Human, 24))
 );
-using RootPartyIDOrderOriginationFirm = FixedLengthString<7, 0x00>;
-using RootPartyIDPositionAccount = FixedLengthString<32, 0x00>;
+using RootPartyIDOrderOriginationFirm = FixedLengthString<7, 0>;
+using RootPartyIDPositionAccount = FixedLengthString<32, 0>;
 using RootPartyIDSessionID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RootPartyIDTakeUpTradingFirm = FixedLengthString<5, 0x00>;
+using RootPartyIDTakeUpTradingFirm = FixedLengthString<5, 0>;
 EB_ENUM(RootPartySubIDType, uint16_t, 
-  (Buyer, 4001),
-  (Seller, 4002),
-  (Broker, 4003),
+  ((Buyer, 4001))
+  ((Seller, 4002))
+  ((Broker, 4003))
 );
 using SRQSRelatedTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using SecondaryGatewayID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(SecondaryGatewayStatus, uint8_t, 
-  (Standby, 0),
-  (Active, 1),
+  ((Standby, 0))
+  ((Active, 1))
 );
 using SecondaryGatewaySubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using SecondaryQuoteID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
@@ -900,230 +920,233 @@ using SecurityID = LittleEndian<int64_t, -9223372036854775807, 92233720368547758
 using SecurityResponseID = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using SecuritySubType = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(SelectiveRequestForQuoteRtmServiceStatus, uint8_t, 
-  (Unavailable, 0),
-  (Available, 1),
+  ((Unavailable, 0))
+  ((Available, 1))
 );
 EB_ENUM(SelectiveRequestForQuoteServiceStatus, uint8_t, 
-  (Unavailable, 0),
-  (Available, 1),
+  ((Unavailable, 0))
+  ((Available, 1))
 );
 using SelectiveRequestForQuoteServiceTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using SenderSubID = LittleEndian<uint32_t, 0, 2147483647, 0xFFFFFFFF>;
 using SendingTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using SessionInstanceID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(SessionMode, uint8_t, 
-  (HF, 1),
-  (LF, 2),
-  (GUI, 3),
+  ((ETI_HF, 1))
+  ((ETI_LF, 2))
+  ((GUI, 3))
+  ((FIX_LF, 4))
 );
 EB_ENUM(SessionRejectReason, uint32_t, 
-  (Required_Tag_Missing, 1),
-  (Value_is_incorrect, 5),
-  (Decryption_problem, 7),
-  (Invalid_MsgID, 11),
-  (Incorrect_NumInGroup_count, 16),
-  (Other, 99),
-  (Throttle_Limit_Exceeded, 100),
-  (Exposure_Limit_Exceeded, 101),
-  (Service_Temporarily_Not_Available, 102),
-  (Service_Not_Available, 103),
-  (Outbound_conversion_error, 105),
-  (Heartbeat_Violation, 152),
-  (Internal_technical_error, 200),
-  (Validation_Error, 210),
-  (User_Already_Logged_In, 211),
-  (Gateway_Is_Standby, 216),
-  (Session_Login_Limit_Reached, 217),
-  (User_Entitlement_Data_Timeout, 223),
-  (PSGateway_Session_Limit_Reached, 224),
-  (User_Login_Limit_Reached, 225),
-  (Outstanding_Logins_Bu_Limit_Reached, 226),
-  (Outstanding_Logins_Session_Limit_Reached, 227),
-  (Order_Not_Found, 10000),
-  (Price_Not_Reasonable, 10001),
-  (ClientOrderID_Not_Unique, 10002),
-  (Quote_Activation_In_Progress, 10003),
-  (Stop_Bid_Price_Not_Reasonable, 10006),
-  (Stop_Ask_Price_Not_Reasonable, 10007),
-  (Order_Not_Executable_Within_Validity, 10008),
-  (Create_CI_Throttle_Exceeded, 10010),
-  (Transaction_Not_Allowed_In_Current_State, 10011),
+  ((Required_Tag_Missing, 1))
+  ((Value_is_incorrect, 5))
+  ((Decryption_problem, 7))
+  ((Invalid_MsgID, 11))
+  ((Incorrect_NumInGroup_count, 16))
+  ((Other, 99))
+  ((Throttle_Limit_Exceeded, 100))
+  ((Exposure_Limit_Exceeded, 101))
+  ((Service_Temporarily_Not_Available, 102))
+  ((Service_Not_Available, 103))
+  ((Outbound_conversion_error, 105))
+  ((Heartbeat_Violation, 152))
+  ((Internal_technical_error, 200))
+  ((Validation_Error, 210))
+  ((User_Already_Logged_In, 211))
+  ((Gateway_Is_Standby, 216))
+  ((Session_Login_Limit_Reached, 217))
+  ((User_Entitlement_Data_Timeout, 223))
+  ((PSGateway_Session_Limit_Reached, 224))
+  ((User_Login_Limit_Reached, 225))
+  ((Outstanding_Logins_Bu_Limit_Reached, 226))
+  ((Outstanding_Logins_Session_Limit_Reached, 227))
+  ((Order_Not_Found, 10000))
+  ((Price_Not_Reasonable, 10001))
+  ((ClientOrderID_Not_Unique, 10002))
+  ((Quote_Activation_In_Progress, 10003))
+  ((Stop_Bid_Price_Not_Reasonable, 10006))
+  ((Stop_Ask_Price_Not_Reasonable, 10007))
+  ((Order_Not_Executable_Within_Validity, 10008))
+  ((Create_CI_Throttle_Exceeded, 10010))
+  ((Transaction_Not_Allowed_In_Current_State, 10011))
+  ((Required_Min_Lot_Size_Not_Reached, 10013))
 );
 EB_ENUM(SessionStatus, uint8_t, 
-  (Active, 0),
-  (Logout, 4),
+  ((Active, 0))
+  ((Logout, 4))
 );
 EB_ENUM(SessionSubMode, uint8_t, 
-  (Regular_trading_session, 0),
-  (FIX_trading_session, 1),
-  (Regular_Back_Office_session, 2),
+  ((Regular_trading_session, 0))
+  ((Regular_Back_Office_session, 2))
 );
 EB_ENUM(SettlMethod, char, 
-  (Cash_Settlement, 'C'),
-  (Physical_Settlement, 'P'),
+  ((Cash_Settlement, 'C'))
+  ((Physical_Settlement, 'P'))
 );
 EB_ENUM(ShowLastDealOnClosure, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 EB_ENUM(Side, uint8_t, 
-  (Buy, 1),
-  (Sell, 2),
+  ((Buy, 1))
+  ((Sell, 2))
 );
-using SideComplianceText = FixedLengthString<20, 0x00>;
+using SideComplianceText = FixedLengthString<20, 0>;
 EB_ENUM(SideDisclosureInstruction, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 EB_ENUM(SideIsLocked, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 using SideLastPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using SideLastQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(SideLiquidityInd, uint8_t, 
-  (Added_Liquidity, 1),
-  (Removed_Liquidity, 2),
-  (Auction, 4),
+  ((Added_Liquidity, 1))
+  ((Removed_Liquidity, 2))
+  ((Auction, 4))
 );
 using SideMarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 using SideTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(SideTrdSubTyp, uint16_t, 
-  (Block_Trade, 2001),
-  (Trade_at_Market, 2004),
+  ((Block_Trade, 2001))
+  ((Trade_at_Market, 2004))
 );
 using SimpleSecurityID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(SkipValidations, uint8_t, 
-  (False, 0),
-  (True, 1),
+  ((False, 0))
+  ((True, 1))
 );
 using StopPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using StrategyLinkID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using StrikePrice = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using SubscriptionScope = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(SwapClearer, uint8_t, 
-  (ECAG, 0),
-  (NON_ECAG, 1),
+  ((ECAG, 0))
+  ((NON_ECAG, 1))
 );
 EB_ENUM(T7EntryServiceRtmStatus, uint8_t, 
-  (Unavailable, 0),
-  (Available, 1),
+  ((Unavailable, 0))
+  ((Available, 1))
 );
 using T7EntryServiceRtmTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 EB_ENUM(T7EntryServiceStatus, uint8_t, 
-  (Unavailable, 0),
-  (Available, 1),
+  ((Unavailable, 0))
+  ((Available, 1))
 );
 using T7EntryServiceTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using TESEnrichmentRuleID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using TESExecID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using TargetPartyEnteringTrader = FixedLengthString<6, 0x00>;
-using TargetPartyExecutingFirm = FixedLengthString<5, 0x00>;
-using TargetPartyExecutingTrader = FixedLengthString<6, 0x00>;
-using TargetPartyIDDeskID = FixedLengthString<3, 0x00>;
+using TargetPartyEnteringTrader = FixedLengthString<6, 0>;
+using TargetPartyExecutingFirm = FixedLengthString<5, 0>;
+using TargetPartyExecutingTrader = FixedLengthString<6, 0>;
+using TargetPartyIDDeskID = FixedLengthString<3, 0>;
 using TargetPartyIDExecutingTrader = LittleEndian<uint32_t, 0, 2147483647, 0xFFFFFFFF>;
 using TargetPartyIDSessionID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using TemplateID = LittleEndian<uint16_t, 0, 65534, 0xFFFF>;
-using Text = FixedLengthString<12, 0x00>;
+using Text = FixedLengthString<12, 0>;
 using ThrottleDisconnectLimit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using ThrottleNoMsgs = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using ThrottleTimeInterval = LittleEndian<int64_t, -9223372036854775807, 9223372036854775807, 0x8000000000000000>;
 EB_ENUM(TimeInForce, uint8_t, 
-  (Day, 0),
-  (GTC, 1),
-  (IOC, 3),
-  (GTD, 6),
+  ((Day, 0))
+  ((GTC, 1))
+  ((IOC, 3))
+  ((GTD, 6))
 );
 using TotNumTradeReports = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 EB_ENUM(TradSesEvent, uint8_t, 
-  (Start_of_Service, 101),
-  (Market_Reset, 102),
-  (End_of_Restatement, 103),
-  (End_of_Day_Service, 104),
-  (Service_Resumed, 105),
+  ((Start_of_Service, 101))
+  ((Market_Reset, 102))
+  ((End_of_Restatement, 103))
+  ((End_of_Day_Service, 104))
+  ((Service_Resumed, 105))
 );
 EB_ENUM(TradSesMode, uint8_t, 
-  (Testing, 1),
-  (Simulated, 2),
-  (Production, 3),
-  (Acceptance, 4),
-  (Disaster_Recovery, 5),
+  ((Testing, 1))
+  ((Simulated, 2))
+  ((Production, 3))
+  ((Acceptance, 4))
+  ((Disaster_Recovery, 5))
 );
 EB_ENUM(TradeAggregationTransType, uint8_t, 
-  (New, 0),
+  ((New, 0))
 );
 EB_ENUM(TradeAllocStatus, uint8_t, 
-  (Pending, 1),
-  (Approved, 2),
-  (Auto_Approved, 3),
-  (Uploaded, 4),
-  (Canceled, 5),
-  (Pending_Execution, 6),
-  (Pending_Reversal, 7),
-  (Approved_Reversal, 8),
-  (Reversed, 9),
-  (Cancelled_Reversal, 10),
+  ((Pending, 1))
+  ((Approved, 2))
+  ((Auto_Approved, 3))
+  ((Uploaded, 4))
+  ((Canceled, 5))
+  ((Pending_Execution, 6))
+  ((Pending_Reversal, 7))
+  ((Approved_Reversal, 8))
+  ((Reversed, 9))
+  ((Cancelled_Reversal, 10))
 );
 using TradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using TradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 EB_ENUM(TradeManagerStatus, uint8_t, 
-  (Unavailable, 0),
-  (Available, 1),
+  ((Unavailable, 0))
+  ((Available, 1))
 );
 using TradeManagerTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 EB_ENUM(TradePlatform, uint8_t, 
-  (Off_Book, 0),
-  (On_Book, 1),
+  ((Off_Book, 0))
+  ((On_Book, 1))
 );
 EB_ENUM(TradePublishIndicator, uint8_t, 
-  (Do_Not_Publish_Trade, 0),
-  (Publish_Trade, 1),
-  (Deferred_Publication, 2),
-  (Published, 3),
+  ((Do_Not_Publish_Trade, 0))
+  ((Publish_Trade, 1))
+  ((Deferred_Publication, 2))
+  ((Published, 3))
 );
-using TradeReportID = FixedLengthString<20, 0x00>;
-using TradeReportText = FixedLengthString<20, 0x00>;
+using TradeReportID = FixedLengthString<20, 0>;
+using TradeReportText = FixedLengthString<20, 0>;
 EB_ENUM(TradeReportType, uint8_t, 
-  (Submit, 0),
-  (Alleged, 1),
-  (Accept, 2),
-  (Decline, 3),
-  (No_Was_Replaced, 5),
-  (Trade_Report_Cancel, 6),
-  (Trade_Break, 7),
-  (Alleged_New, 11),
-  (Alleged_No_Was, 13),
+  ((Submit, 0))
+  ((Alleged, 1))
+  ((Accept, 2))
+  ((Decline, 3))
+  ((No_Was_Replaced, 5))
+  ((Trade_Report_Cancel, 6))
+  ((Trade_Break, 7))
+  ((Alleged_New, 11))
+  ((Alleged_No_Was, 13))
 );
 EB_ENUM(TradeRequestResult, uint8_t, 
-  (Cancel_pending, 100),
-  (Cancel_declined, 101),
-  (Cancel_approved, 102),
+  ((Cancel_pending, 100))
+  ((Cancel_declined, 101))
+  ((Cancel_approved, 102))
 );
 using TradeToQuoteRatio = FloatDecimal<0.0000, 100.0000, 8, 4, 0x8000000000000000, true>;
 using TradeToQuoteRatioPosition = LittleEndian<uint16_t, 1, 32767, 0xFFFF>;
 EB_ENUM(TradeToQuoteRatioRanking, uint8_t, 
-  (Low, 1),
-  (Medium, 2),
-  (High, 3),
+  ((Low, 1))
+  ((Medium, 2))
+  ((High, 3))
 );
 using TradeToRequestRatio = FloatDecimal<0.0000, 100.0000, 8, 4, 0x8000000000000000, true>;
 EB_ENUM(TradingCapacity, uint8_t, 
-  (Customer, 1),
-  (Principal, 5),
-  (Market_Maker, 6),
+  ((Customer, 1))
+  ((Principal, 5))
+  ((Market_Maker, 6))
 );
 EB_ENUM(TradingSessionSubID, uint8_t, 
-  (Closing_auction, 4),
+  ((Opening_auction, 2))
+  ((Closing_auction, 4))
+  ((Any_Auction, 8))
 );
 using TransBkdTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using TransactTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(TransactionDelayIndicator, uint8_t, 
-  (Not_delayed, 0),
-  (Delayed, 1),
+  ((Not_delayed, 0))
+  ((Delayed, 1))
 );
 EB_ENUM(TransferReason, uint8_t, 
-  (Owner, 1),
-  (Clearer, 2),
+  ((Owner, 1))
+  ((Clearer, 2))
 );
 using TrdMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using TrdRegTSEntryTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
@@ -1132,65 +1155,65 @@ using TrdRegTSTimeIn = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFF
 using TrdRegTSTimeOut = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 using TrdRegTSTimePriority = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(TrdRptStatus, uint8_t, 
-  (Accepted, 0),
-  (Rejected, 1),
-  (Cancelled, 2),
-  (Pending_New, 4),
-  (Pending_Cancel, 5),
-  (Terminated, 7),
-  (Deemed_Verified, 9),
+  ((Accepted, 0))
+  ((Rejected, 1))
+  ((Cancelled, 2))
+  ((Pending_New, 4))
+  ((Pending_Cancel, 5))
+  ((Terminated, 7))
+  ((Deemed_Verified, 9))
 );
 EB_ENUM(TrdType, uint16_t, 
-  (Block_Trade, 1),
-  (Exchange_for_Swap, 12),
-  (Compression, 50),
-  (Vola_Trade, 1000),
-  (EFP_Fin_Trade, 1001),
-  (EFP_Index_Futures_Trade, 1002),
-  (Trade_at_Market, 1004),
-  (Enlight, 1006),
-  (BLOCK_QTPIP, 1007),
-  (BTRF, 1010),
-  (EBB, 1011),
+  ((Block_Trade, 1))
+  ((Exchange_for_Swap, 12))
+  ((Compression, 50))
+  ((Vola_Trade, 1000))
+  ((EFP_Fin_Trade, 1001))
+  ((EFP_Index_Futures_Trade, 1002))
+  ((Trade_at_Market, 1004))
+  ((Enlight, 1006))
+  ((BLOCK_QTPIP, 1007))
+  ((BTRF, 1010))
+  ((EBB, 1011))
 );
 EB_ENUM(Triggered, uint8_t, 
-  (Not_triggered, 0),
-  (Triggered_Stop, 1),
-  (Triggered_OCO, 2),
+  ((Not_triggered, 0))
+  ((Triggered_Stop, 1))
+  ((Triggered_OCO, 2))
 );
-using UnderlyingCurrency = FixedLengthString<3, 0x00>;
+using UnderlyingCurrency = FixedLengthString<3, 0>;
 using UnderlyingDeltaPercentage = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 using UnderlyingEffectiveDeltaPercentage = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
-using UnderlyingIssuer = FixedLengthString<30, 0x00>;
+using UnderlyingIssuer = FixedLengthString<30, 0>;
 using UnderlyingMaturityDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using UnderlyingPriceStipValue = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using UnderlyingPx = FloatDecimal<-92233720368.54775807, 92233720368.54775807, 8, 8, 0x8000000000000000, true>;
 using UnderlyingQty = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
-using UnderlyingSecurityDesc = FixedLengthString<30, 0x00>;
-using UnderlyingSecurityID = FixedLengthString<12, 0x00>;
+using UnderlyingSecurityDesc = FixedLengthString<30, 0>;
+using UnderlyingSecurityID = FixedLengthString<12, 0>;
 using UnderlyingSettlementDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
-using UnderlyingStipType = FixedLengthString<7, 0x00>;
-using UnderlyingStipValue = FixedLengthString<32, 0x00>;
+using UnderlyingStipType = FixedLengthString<7, 0>;
+using UnderlyingStipValue = FixedLengthString<32, 0>;
 EB_ENUM(UserStatus, uint8_t, 
-  (User_forced_logout, 7),
-  (User_stopped, 10),
-  (User_released, 11),
+  ((User_forced_logout, 7))
+  ((User_stopped, 10))
+  ((User_released, 11))
 );
 using Username = LittleEndian<uint32_t, 0, 2147483647, 0xFFFFFFFF>;
 using ValidUntilTime = LittleEndian<uint64_t, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF>;
 EB_ENUM(ValueCheckTypeMinLotSize, uint8_t, 
-  (Do_not_check, 0),
-  (Check, 1),
+  ((Do_not_check, 0))
+  ((Check, 1))
 );
 EB_ENUM(ValueCheckTypeQuantity, uint8_t, 
-  (Do_not_check, 0),
-  (Check, 1),
+  ((Do_not_check, 0))
+  ((Check, 1))
 );
 EB_ENUM(ValueCheckTypeValue, uint8_t, 
-  (Do_not_check, 0),
-  (Check, 1),
+  ((Do_not_check, 0))
+  ((Check, 1))
 );
-using VarText = FixedLengthString<2000, ''>;
+using VarText = FixedLengthString<2000, 0>;
 using VarTextLen = LittleEndian<uint16_t, 0, 2000, 0xFFFF>;
 using Vega = FloatDecimal<-922337203685477.5807, 922337203685477.5807, 8, 4, 0x8000000000000000, true>;
 #pragma pack(1)
@@ -1446,6 +1469,7 @@ struct InstrmtMatchSideGrpComp {
     LastPx lastPx;
     TransBkdTime transBkdTime;
     RelatedClosePrice relatedClosePrice;
+    ClearingTradePrice clearingTradePrice;
     PackageID packageID;
     SideMarketSegmentID sideMarketSegmentID;
     SideTrdSubTyp sideTrdSubTyp;
@@ -1823,6 +1847,7 @@ struct RiskLimitsRptGrpComp {
     RiskLimitOpenQty riskLimitOpenQty;
     RiskLimitNetPositionQty riskLimitNetPositionQty;
     NettingCoefficient nettingCoefficient;
+    QuoteWeightingCoefficient quoteWeightingCoefficient;
     RiskLimitType riskLimitType;
     RiskLimitRequestingPartyRole riskLimitRequestingPartyRole;
     RiskLimitViolationIndicator riskLimitViolationIndicator;
@@ -1849,22 +1874,39 @@ struct SRQSHitQuoteGrpComp {
 #pragma pack()
 
 #pragma pack(1)
-struct SRQSQuoteGrpComp {
+struct SRQSQuoteEntryGrpComp {
+    TransactTime transactTime;
+    ExpireTime expireTime;
     QuoteID quoteID;
+    SecondaryQuoteID secondaryQuoteID;
+    BidPx bidPx;
+    BidSize bidSize;
+    OfferPx offerPx;
+    OfferSize offerSize;
+    UnderlyingPx underlyingPx;
+    UnderlyingDeltaPercentage underlyingDeltaPercentage;
+    QuoteRefPrice quoteRefPrice;
+    PartyIDExecutingTrader partyIDExecutingTrader;
+    NegotiationID negotiationID;
+    QuotingStatus quotingStatus;
+    FirmNegotiationID firmNegotiationID;
+    PartyExecutingFirm partyExecutingFirm;
+    PartyExecutingTrader partyExecutingTrader;
+    PartyEnteringTrader partyEnteringTrader;
+    Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
-    size_t size() {return sizeof(SRQSQuoteGrpComp);}
+    size_t size() {return sizeof(SRQSQuoteEntryGrpComp);}
     size_t length() {return size();}
 }
 #pragma pack()
 
 #pragma pack(1)
-struct SRQSRelatedTradeIDGrpComp {
-    SRQSRelatedTradeID sRQSRelatedTradeID;
-    Pad4 pad4;
+struct SRQSQuoteGrpComp {
+    QuoteID quoteID;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
-    size_t size() {return sizeof(SRQSRelatedTradeIDGrpComp);}
+    size_t size() {return sizeof(SRQSQuoteGrpComp);}
     size_t length() {return size();}
 }
 #pragma pack()
@@ -2007,14 +2049,26 @@ struct TargetPartiesComp {
     FreeText5DisclosureInstruction freeText5DisclosureInstruction;
     PartyOrderOriginationDisclosureInstruction partyOrderOriginationDisclosureInstruction;
     QuoteInstruction quoteInstruction;
+    ChargeIDDisclosureInstruction chargeIDDisclosureInstruction;
     TargetPartyExecutingFirm targetPartyExecutingFirm;
     TargetPartyExecutingTrader targetPartyExecutingTrader;
     PartyDetailStatus partyDetailStatus;
     PartyDetailStatusInformation partyDetailStatusInformation;
-    Pad7 pad7;
+    Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TargetPartiesComp);}
+    size_t length() {return size();}
+}
+#pragma pack()
+
+#pragma pack(1)
+struct TrdClearingPriceLegGrpComp {
+    LegSecurityID legSecurityID;
+    LegClearingTradePrice legClearingTradePrice;
+    char* begin() {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    size_t size() {return sizeof(TrdClearingPriceLegGrpComp);}
     size_t length() {return size();}
 }
 #pragma pack()
@@ -2050,10 +2104,10 @@ struct AddComplexInstrumentRequest {
     MarketSegmentID marketSegmentID;
     SecuritySubType securitySubType;
     ProductComplex productComplex;
-    NoLegs noLegs;
+    NoLegOnbooks noLegOnbooks;
     ComplianceText complianceText;
     Pad2 pad2;
-    BlockRef<InstrmtLegGrpComp> instrmtLegGrp() {return BlockRef<InstrmtLegGrpComp>(begin()+size(), noLegs);}
+    BlockRef<InstrmtLegGrpComp> instrmtLegGrp() {return BlockRef<InstrmtLegGrpComp>(begin()+size(), noLegOnbooks);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(AddComplexInstrumentRequest);}
@@ -2076,8 +2130,8 @@ struct AddComplexInstrumentResponse {
     MultilegModel multilegModel;
     ImpliedMarketIndicator impliedMarketIndicator;
     ProductComplex productComplex;
-    NoLegs noLegs;
-    BlockRef<InstrmtLegGrpComp> instrmtLegGrp() {return BlockRef<InstrmtLegGrpComp>(begin()+size(), noLegs);}
+    NoLegOnbooks noLegOnbooks;
+    BlockRef<InstrmtLegGrpComp> instrmtLegGrp() {return BlockRef<InstrmtLegGrpComp>(begin()+size(), noLegOnbooks);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(AddComplexInstrumentResponse);}
@@ -3312,9 +3366,9 @@ struct ModifyOrderComplexRequest {
     FreeText2 freeText2;
     FreeText3 freeText3;
     FIXClOrdID fIXClOrdID;
-    NoLegs noLegs;
+    NoLegOnbooks noLegOnbooks;
     Pad5 pad5;
-    BlockRef<LegOrdGrpComp> legOrdGrp() {return BlockRef<LegOrdGrpComp>(begin()+size(), noLegs);}
+    BlockRef<LegOrdGrpComp> legOrdGrp() {return BlockRef<LegOrdGrpComp>(begin()+size(), noLegOnbooks);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(ModifyOrderComplexRequest);}
@@ -3511,6 +3565,7 @@ struct ModifyTESTradeRequest {
     LastPx lastPx;
     TransBkdTime transBkdTime;
     CompressionID compressionID;
+    RelatedClosePrice relatedClosePrice;
     MarketSegmentID marketSegmentID;
     PackageID packageID;
     TESExecID tESExecID;
@@ -3572,9 +3627,9 @@ struct NewOrderComplexRequest {
     FreeText2 freeText2;
     FreeText3 freeText3;
     FIXClOrdID fIXClOrdID;
-    NoLegs noLegs;
+    NoLegOnbooks noLegOnbooks;
     Pad1 pad1;
-    BlockRef<LegOrdGrpComp> legOrdGrp() {return BlockRef<LegOrdGrpComp>(begin()+size(), noLegs);}
+    BlockRef<LegOrdGrpComp> legOrdGrp() {return BlockRef<LegOrdGrpComp>(begin()+size(), noLegOnbooks);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(NewOrderComplexRequest);}
@@ -3858,12 +3913,12 @@ struct OrderExecReportBroadcast {
     FreeText3 freeText3;
     FIXClOrdID fIXClOrdID;
     NoFills noFills;
-    NoLegs noLegs;
+    NoLegOnbooks noLegOnbooks;
     NoOrderEvents noOrderEvents;
     Triggered triggered;
     CrossedIndicator crossedIndicator;
     Pad1 pad1;
-    BlockRef<LegOrdGrpComp> legOrdGrp() {return BlockRef<LegOrdGrpComp>(begin()+size(), noLegs);}
+    BlockRef<LegOrdGrpComp> legOrdGrp() {return BlockRef<LegOrdGrpComp>(begin()+size(), noLegOnbooks);}
     BlockRef<FillsGrpComp> fillsGrp() {return BlockRef<FillsGrpComp>(legOrdGrp().end(), noFills);}
     BlockRef<InstrmntLegExecGrpComp> instrmntLegExecGrp() {return BlockRef<InstrmntLegExecGrpComp>(fillsGrp().end(), noLegExecs);}
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(instrmntLegExecGrp().end(), noOrderEvents);}
@@ -4001,6 +4056,7 @@ struct PreTradeRiskLimitsDefinitionRequest {
     MessageHeaderInComp messageHeaderIn;
     RequestHeaderComp requestHeader;
     NettingCoefficient nettingCoefficient;
+    QuoteWeightingCoefficient quoteWeightingCoefficient;
     MarketSegmentID marketSegmentID;
     RiskLimitPlatform riskLimitPlatform;
     NoRiskLimitsQty noRiskLimitsQty;
@@ -4226,11 +4282,12 @@ struct RiskNotificationBroadcast {
     PartyDetailIDExecutingUnit partyDetailIDExecutingUnit;
     RequestingPartyIDExecutingSystem requestingPartyIDExecutingSystem;
     MarketID marketID;
+    InventoryCheckType inventoryCheckType;
     ListUpdateAction listUpdateAction;
     RiskLimitAction riskLimitAction;
     RequestingPartyEnteringFirm requestingPartyEnteringFirm;
     RequestingPartyClearingFirm requestingPartyClearingFirm;
-    Pad6 pad6;
+    Pad5 pad5;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(RiskNotificationBroadcast);}
@@ -4507,6 +4564,8 @@ struct SRQSNegotiationNotification {
     FirmNegotiationID firmNegotiationID;
     FreeText5 freeText5;
     PartyOrderOriginationTrader partyOrderOriginationTrader;
+    ChargeID chargeID;
+    Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SRQSNegotiationNotification);}
@@ -4535,6 +4594,7 @@ struct SRQSNegotiationRequesterNotification {
     NumberOfRespondents numberOfRespondents;
     QuoteType quoteType;
     QuoteSubType quoteSubType;
+    RespondentType respondentType;
     NoTargetPartyIDs noTargetPartyIDs;
     NumberOfRespDisclosureInstruction numberOfRespDisclosureInstruction;
     Side side;
@@ -4547,7 +4607,8 @@ struct SRQSNegotiationRequesterNotification {
     FirmNegotiationID firmNegotiationID;
     FreeText5 freeText5;
     PartyOrderOriginationTrader partyOrderOriginationTrader;
-    Pad3 pad3;
+    ChargeID chargeID;
+    Pad6 pad6;
     BlockRef<TargetPartiesComp> targetParties() {return BlockRef<TargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
@@ -4611,7 +4672,8 @@ struct SRQSOpenNegotiationNotification {
     FirmNegotiationID firmNegotiationID;
     FreeText5 freeText5;
     PartyOrderOriginationTrader partyOrderOriginationTrader;
-    Pad6 pad6;
+    ChargeID chargeID;
+    Pad2 pad2;
     BlockRef<QuotReqLegsGrpComp> quotReqLegsGrp() {return BlockRef<QuotReqLegsGrpComp>(begin()+size(), noLegs);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
@@ -4653,7 +4715,8 @@ struct SRQSOpenNegotiationRequest {
     FreeText5 freeText5;
     QuoteReqID quoteReqID;
     PartyOrderOriginationTrader partyOrderOriginationTrader;
-    Pad2 pad2;
+    ChargeID chargeID;
+    Pad6 pad6;
     BlockRef<QuotReqLegsGrpComp> quotReqLegsGrp() {return BlockRef<QuotReqLegsGrpComp>(begin()+size(), noLegs);}
     BlockRef<TargetPartiesComp> targetParties() {return BlockRef<TargetPartiesComp>(quotReqLegsGrp().end(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
@@ -4703,7 +4766,7 @@ struct SRQSOpenNegotiationRequesterNotification {
     FirmNegotiationID firmNegotiationID;
     FreeText5 freeText5;
     PartyOrderOriginationTrader partyOrderOriginationTrader;
-    Pad4 pad4;
+    ChargeID chargeID;
     BlockRef<QuotReqLegsGrpComp> quotReqLegsGrp() {return BlockRef<QuotReqLegsGrpComp>(begin()+size(), noLegs);}
     BlockRef<TargetPartiesComp> targetParties() {return BlockRef<TargetPartiesComp>(quotReqLegsGrp().end(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
@@ -4772,6 +4835,32 @@ struct SRQSQuoteResponse {
 #pragma pack()
 
 #pragma pack(1)
+struct SRQSQuoteSnapshotNotification {
+    MessageHeaderOutComp messageHeaderOut;
+    RBCHeaderComp rBCHeader;
+    NoQuoteEntries noQuoteEntries;
+    MessageEventSource messageEventSource;
+    Pad6 pad6;
+    BlockRef<SRQSQuoteEntryGrpComp> sRQSQuoteEntryGrp() {return BlockRef<SRQSQuoteEntryGrpComp>(begin()+size(), noQuoteEntries);}
+    char* begin() {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    size_t size() {return sizeof(SRQSQuoteSnapshotNotification);}
+    size_t length() {return sRQSQuoteEntryGrp().end()-begin();}
+}
+#pragma pack()
+
+#pragma pack(1)
+struct SRQSQuoteSnapshotRequest {
+    MessageHeaderInComp messageHeaderIn;
+    RequestHeaderComp requestHeader;
+    char* begin() {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    size_t size() {return sizeof(SRQSQuoteSnapshotRequest);}
+    size_t length() {return size();}
+}
+#pragma pack()
+
+#pragma pack(1)
 struct SRQSQuotingStatusRequest {
     MessageHeaderInComp messageHeaderIn;
     RequestHeaderComp requestHeader;
@@ -4784,6 +4873,17 @@ struct SRQSQuotingStatusRequest {
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SRQSQuotingStatusRequest);}
+    size_t length() {return size();}
+}
+#pragma pack()
+
+#pragma pack(1)
+struct SRQSResponse {
+    MessageHeaderOutComp messageHeaderOut;
+    ResponseHeaderComp responseHeader;
+    char* begin() {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    size_t size() {return sizeof(SRQSResponse);}
     size_t length() {return size();}
 }
 #pragma pack()
@@ -4849,7 +4949,7 @@ struct SRQSUpdateNegotiationRequest {
     PartyExecutingTrader partyExecutingTrader;
     FreeText5 freeText5;
     PartyOrderOriginationTrader partyOrderOriginationTrader;
-    Pad4 pad4;
+    ChargeID chargeID;
     BlockRef<TargetPartiesComp> targetParties() {return BlockRef<TargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
@@ -4888,10 +4988,25 @@ struct ServiceAvailabilityMarketBroadcast {
     SelectiveRequestForQuoteServiceTradeDate selectiveRequestForQuoteServiceTradeDate;
     SelectiveRequestForQuoteServiceStatus selectiveRequestForQuoteServiceStatus;
     SelectiveRequestForQuoteRtmServiceStatus selectiveRequestForQuoteRtmServiceStatus;
-    Pad2 pad2;
+    NewsRtmServiceStatus newsRtmServiceStatus;
+    RiskControlRtmServiceStatus riskControlRtmServiceStatus;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(ServiceAvailabilityMarketBroadcast);}
+    size_t length() {return size();}
+}
+#pragma pack()
+
+#pragma pack(1)
+struct StatusBroadcast {
+    MessageHeaderOutComp messageHeaderOut;
+    RBCHeaderComp rBCHeader;
+    TradeDate tradeDate;
+    TradSesEvent tradSesEvent;
+    Pad3 pad3;
+    char* begin() {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    size_t size() {return sizeof(StatusBroadcast);}
     size_t length() {return size();}
 }
 #pragma pack()
@@ -5032,6 +5147,7 @@ struct TESBroadcast {
     NoUnderlyingStips noUnderlyingStips;
     NoSideAllocs noSideAllocs;
     NoLegs noLegs;
+    NoLegClearingPrices noLegClearingPrices;
     PartyIDSettlementLocation partyIDSettlementLocation;
     HedgeType hedgeType;
     SwapClearer swapClearer;
@@ -5044,11 +5160,11 @@ struct TESBroadcast {
     UnderlyingSecurityDesc underlyingSecurityDesc;
     UnderlyingCurrency underlyingCurrency;
     UnderlyingIssuer underlyingIssuer;
-    Pad1 pad1;
     BlockRef<SideAllocGrpBCComp> sideAllocGrpBC() {return BlockRef<SideAllocGrpBCComp>(begin()+size(), noSideAllocs);}
     BlockRef<TrdInstrmntLegGrpComp> trdInstrmntLegGrp() {return BlockRef<TrdInstrmntLegGrpComp>(sideAllocGrpBC().end(), noLegs);}
     BlockRef<InstrumentEventGrpComp> instrumentEventGrp() {return BlockRef<InstrumentEventGrpComp>(trdInstrmntLegGrp().end(), noEvents);}
-    BlockRef<InstrumentAttributeGrpComp> instrumentAttributeGrp() {return BlockRef<InstrumentAttributeGrpComp>(instrumentEventGrp().end(), noInstrAttrib);}
+    BlockRef<TrdClearingPriceLegGrpComp> trdClearingPriceLegGrp() {return BlockRef<TrdClearingPriceLegGrpComp>(instrumentEventGrp().end(), noLegClearingPrices);}
+    BlockRef<InstrumentAttributeGrpComp> instrumentAttributeGrp() {return BlockRef<InstrumentAttributeGrpComp>(trdClearingPriceLegGrp().end(), noInstrAttrib);}
     BlockRef<UnderlyingStipGrpComp> underlyingStipGrp() {return BlockRef<UnderlyingStipGrpComp>(instrumentAttributeGrp().end(), noUnderlyingStips);}
     BlockRef<VarText> varText() {return BlockRef<VarText>(underlyingStipGrp().end(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
@@ -5209,6 +5325,7 @@ struct TESTradeBroadcast {
     BasketTrdMatchID basketTrdMatchID;
     SideLastPx sideLastPx;
     SideLastQty sideLastQty;
+    RelatedClosePrice relatedClosePrice;
     PackageID packageID;
     MarketSegmentID marketSegmentID;
     TradeID tradeID;
@@ -5223,9 +5340,9 @@ struct TESTradeBroadcast {
     RelatedSymbol relatedSymbol;
     TotNumTradeReports totNumTradeReports;
     NegotiationID negotiationID;
-    NoSRQSRelatedTradeIDs noSRQSRelatedTradeIDs;
-    Pad3_1 pad3_1;
+    SRQSRelatedTradeID sRQSRelatedTradeID;
     BasketProfileID basketProfileID;
+    SecuritySubType securitySubType;
     TrdType trdType;
     ProductComplex productComplex;
     RelatedProductComplex relatedProductComplex;
@@ -5261,12 +5378,10 @@ struct TESTradeBroadcast {
     RegulatoryTradeID regulatoryTradeID;
     BasketPartyContraFirm basketPartyContraFirm;
     BasketSideTradeReportID basketSideTradeReportID;
-    Pad4 pad4;
-    BlockRef<SRQSRelatedTradeIDGrpComp> sRQSRelatedTradeIDGrp() {return BlockRef<SRQSRelatedTradeIDGrpComp>(begin()+size(), noSRQSRelatedTradeIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TESTradeBroadcast);}
-    size_t length() {return sRQSRelatedTradeIDGrp().end()-begin();}
+    size_t length() {return size();}
 }
 #pragma pack()
 
@@ -5317,6 +5432,7 @@ struct TESUploadBroadcast {
     NoUnderlyingStips noUnderlyingStips;
     HedgeType hedgeType;
     PartyIDSettlementLocation partyIDSettlementLocation;
+    SwapClearer swapClearer;
     MessageEventSource messageEventSource;
     TradeReportID tradeReportID;
     RootPartyExecutingFirm rootPartyExecutingFirm;
@@ -5325,7 +5441,7 @@ struct TESUploadBroadcast {
     UnderlyingSecurityDesc underlyingSecurityDesc;
     UnderlyingCurrency underlyingCurrency;
     UnderlyingIssuer underlyingIssuer;
-    Pad3 pad3;
+    Pad2 pad2;
     BlockRef<SideAllocExtGrpComp> sideAllocExtGrp() {return BlockRef<SideAllocExtGrpComp>(begin()+size(), noSideAllocs);}
     BlockRef<TrdInstrmntLegGrpComp> trdInstrmntLegGrp() {return BlockRef<TrdInstrmntLegGrpComp>(sideAllocExtGrp().end(), noLegs);}
     BlockRef<InstrumentEventGrpComp> instrumentEventGrp() {return BlockRef<InstrumentEventGrpComp>(trdInstrmntLegGrp().end(), noEvents);}
@@ -5386,6 +5502,7 @@ struct TradeBroadcast {
     RootPartyIDClientID rootPartyIDClientID;
     ExecutingTrader executingTrader;
     RootPartyIDInvestmentDecisionMaker rootPartyIDInvestmentDecisionMaker;
+    UnderlyingPx underlyingPx;
     TradeID tradeID;
     OrigTradeID origTradeID;
     RootPartyIDExecutingUnit rootPartyIDExecutingUnit;
@@ -5399,6 +5516,7 @@ struct TradeBroadcast {
     TrdMatchID trdMatchID;
     StrategyLinkID strategyLinkID;
     TotNumTradeReports totNumTradeReports;
+    SecuritySubType securitySubType;
     MultiLegReportingType multiLegReportingType;
     TradeReportType tradeReportType;
     TransferReason transferReason;
@@ -5432,7 +5550,7 @@ struct TradeBroadcast {
     RootPartyClearingFirm rootPartyClearingFirm;
     RegulatoryTradeID regulatoryTradeID;
     RootPartyIDExecutionVenue rootPartyIDExecutionVenue;
-    Pad2 pad2;
+    Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TradeBroadcast);}
@@ -5518,7 +5636,7 @@ struct UploadTESTradeRequest {
     UnderlyingSecurityDesc underlyingSecurityDesc;
     UnderlyingCurrency underlyingCurrency;
     UnderlyingIssuer underlyingIssuer;
-    Pad1 pad1;
+    SwapClearer swapClearer;
     BlockRef<SideAllocExtGrpComp> sideAllocExtGrp() {return BlockRef<SideAllocExtGrpComp>(begin()+size(), noSideAllocs);}
     BlockRef<TrdInstrmntLegGrpComp> trdInstrmntLegGrp() {return BlockRef<TrdInstrmntLegGrpComp>(sideAllocExtGrp().end(), noLegs);}
     BlockRef<InstrumentEventGrpComp> instrumentEventGrp() {return BlockRef<InstrumentEventGrpComp>(trdInstrmntLegGrp().end(), noEvents);}
@@ -5580,6 +5698,6 @@ struct UserLogoutResponse {
 }
 #pragma pack()
 
-} // end of namespace ETIDerivVer10
+} // end of namespace ETIDerivVer11
 
 

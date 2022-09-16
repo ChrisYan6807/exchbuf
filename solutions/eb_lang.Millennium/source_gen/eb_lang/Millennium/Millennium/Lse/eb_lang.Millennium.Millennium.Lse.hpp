@@ -6,123 +6,123 @@ using namespace Millennium;
 using byte = char;
 
 EB_ENUM(OrderType, uint8_t, 
-  (MAKKET, 1),
-  (LIMIT, 2),
-  (STOP, 3),
-  (STOP_LIMIT, 4),
+  ((MAKKET, 1))
+  ((LIMIT, 2))
+  ((STOP, 3))
+  ((STOP_LIMIT, 4))
 );
 
 EB_ENUM(TimeInForce, uint8_t, 
-  (DAY, 0),
-  (IOC, 3),
-  (FOK, 4),
-  (OPG, 5),
-  (GTD, 6),
-  (GTT, 8),
-  (ATC, 10),
-  (CPX, 12),
-  (GFA, 50),
-  (GFX, 51),
-  (GFS, 52),
+  ((DAY, 0))
+  ((IOC, 3))
+  ((FOK, 4))
+  ((OPG, 5))
+  ((GTD, 6))
+  ((GTT, 8))
+  ((ATC, 10))
+  ((CPX, 12))
+  ((GFA, 50))
+  ((GFX, 51))
+  ((GFS, 52))
 );
 
 EB_ENUM(Side, uint8_t, 
-  (BUY, 1),
-  (SELL, 2),
+  ((BUY, 1))
+  ((SELL, 2))
 );
 
 EB_ENUM(OrderCapacity, uint8_t, 
-  (MTCH, 1),
-  (DEAL, 2),
-  (AOTC, 3),
+  ((MTCH, 1))
+  ((DEAL, 2))
+  ((AOTC, 3))
 );
 
 EB_ENUM(AutoCancel, uint8_t, 
-  (DO_NOT_CANCEL, 0),
-  (CHECK_SYSTEM_CONFIGURATION, 1),
+  ((DO_NOT_CANCEL, 0))
+  ((CHECK_SYSTEM_CONFIGURATION, 1))
 );
 
 EB_ENUM(OrderSubType, uint8_t, 
-  (ORDER, 0),
-  (PEGGED_ORDER, 5),
-  (RANDOM_PEAK_SIZE, 51),
+  ((ORDER, 0))
+  ((PEGGED_ORDER, 5))
+  ((RANDOM_PEAK_SIZE, 51))
 );
 
 EB_ENUM(Anonymity, uint8_t, 
-  (ANONYMOUS, 0),
-  (NAMED, 1),
+  ((ANONYMOUS, 0))
+  ((NAMED, 1))
 );
 
 EB_ENUM(PassiveOnlyOrder, uint8_t, 
-  (NO_CONSTRAINT, 0),
+  ((NO_CONSTRAINT, 0))
 );
 
 EB_ENUM(ExecType, char, 
-  (NEW, '0'),
-  (CANCELLED, '4'),
-  (REPLACED, '5'),
-  (REJECTED, '8'),
-  (SUSPENDED, '9'),
-  (EXPIRED, 'C'),
-  (RESTATED, 'D'),
-  (TRADE, 'F'),
-  (TRADE_CANCEL, 'H'),
+  ((NEW, '0'))
+  ((CANCELLED, '4'))
+  ((REPLACED, '5'))
+  ((REJECTED, '8'))
+  ((SUSPENDED, '9'))
+  ((EXPIRED, 'C'))
+  ((RESTATED, 'D'))
+  ((TRADE, 'F'))
+  ((TRADE_CANCEL, 'H'))
 );
 
 EB_ENUM(OrdStatus, uint8_t, 
-  (NEW, 0),
-  (PARTIALLY_FILLED, 1),
-  (FILLED, 2),
-  (CANCELLED, 4),
-  (EXPIRED, 6),
-  (REJECTED, 8),
-  (SUSPENDED, 9),
+  ((NEW, 0))
+  ((PARTIALLY_FILLED, 1))
+  ((FILLED, 2))
+  ((CANCELLED, 4))
+  ((EXPIRED, 6))
+  ((REJECTED, 8))
+  ((SUSPENDED, 9))
 );
 
 EB_ENUM(RestatementReason, uint8_t, 
-  (REPRICED, 3),
-  (MARKET_OPTION, 8),
-  (ORDER_REPLENISHMENT, 100),
+  ((REPRICED, 3))
+  ((MARKET_OPTION, 8))
+  ((ORDER_REPLENISHMENT, 100))
 );
 
 EB_ENUM(LiquidityIndicator, char, 
-  (ADDED, 'A'),
-  (REMOVED, 'R'),
-  (AUCTION, 'C'),
+  ((ADDED, 'A'))
+  ((REMOVED, 'R'))
+  ((AUCTION, 'C'))
 );
 
 EB_ENUM(TypeOfTrade, uint8_t, 
-  (VISIBLE, 0),
-  (HIDDEN, 1),
-  (NOT_SPECIFIED, 2),
+  ((VISIBLE, 0))
+  ((HIDDEN, 1))
+  ((NOT_SPECIFIED, 2))
 );
 
 EB_ENUM(ExecInstruction, int8_t, 
-  (USER_LEVEL_DEFAULT, 0),
-  (UNCROSS_ONLY, 1),
-  (CONTINUOUS_ONLY, 2),
-  (CONTINUOUS_AND_UNCROSS, 5),
-  (UNCROSS_THEN_CONTINUOUS, 6),
+  ((USER_LEVEL_DEFAULT, 0))
+  ((UNCROSS_ONLY, 1))
+  ((CONTINUOUS_ONLY, 2))
+  ((CONTINUOUS_AND_UNCROSS, 5))
+  ((UNCROSS_THEN_CONTINUOUS, 6))
 );
 
 EB_ENUM(ClearingAccount, uint8_t, 
-  (CLIENT, 1),
-  (HOUSE, 3),
+  ((CLIENT, 1))
+  ((HOUSE, 3))
 );
 
 EB_ENUM(DEA, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 
 EB_ENUM(LiqProv, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 
 EB_ENUM(Algo, uint8_t, 
-  (No, 0),
-  (Yes, 1),
+  ((No, 0))
+  ((Yes, 1))
 );
 
 EB_BITFIELD(uint8_t, MiFIDFlags,
@@ -133,24 +133,24 @@ EB_BITFIELD(uint8_t, MiFIDFlags,
 
 
 EB_ENUM(ClientIDType, uint8_t, 
-  (None, 0),
-  (Firm, 1),
-  (Algo, 2),
-  (Person, 3),
+  ((None, 0))
+  ((Firm, 1))
+  ((Algo, 2))
+  ((Person, 3))
 );
 
 EB_ENUM(IDMT, uint8_t, 
-  (None, 0),
-  (Firm, 1),
-  (Algo, 2),
-  (Person, 3),
+  ((None, 0))
+  ((Firm, 1))
+  ((Algo, 2))
+  ((Person, 3))
 );
 
 EB_ENUM(EDMT, uint8_t, 
-  (None, 0),
-  (Firm, 1),
-  (Algo, 2),
-  (Person, 3),
+  ((None, 0))
+  ((Firm, 1))
+  ((Algo, 2))
+  ((Person, 3))
 );
 
 EB_BITFIELD(uint8_t, PartyRoleQualifiers,

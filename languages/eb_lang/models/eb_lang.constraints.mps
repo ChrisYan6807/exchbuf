@@ -28,6 +28,7 @@
       <concept id="1082485599095" name="jetbrains.mps.baseLanguage.structure.BlockStatement" flags="nn" index="9aQIb">
         <child id="1082485599096" name="statements" index="9aQI4" />
       </concept>
+      <concept id="1153422305557" name="jetbrains.mps.baseLanguage.structure.LessThanOrEqualsExpression" flags="nn" index="2dkUwp" />
       <concept id="4836112446988635817" name="jetbrains.mps.baseLanguage.structure.UndefinedType" flags="in" index="2jxLKc" />
       <concept id="1202948039474" name="jetbrains.mps.baseLanguage.structure.InstanceMethodCallOperation" flags="nn" index="liA8E" />
       <concept id="1154032098014" name="jetbrains.mps.baseLanguage.structure.AbstractLoopStatement" flags="nn" index="2LF5Ji">
@@ -2030,6 +2031,30 @@
               <ref role="1Pybhc" to="o8zo:4IP40Bi3e_R" resolve="ListScope" />
               <node concept="37vLTw" id="6vP9POWd3sm" role="37wK5m">
                 <ref role="3cqZAo" node="6vP9POWd38V" resolve="statements" />
+              </node>
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
+  </node>
+  <node concept="1M2fIO" id="3SZOFsB1t0I">
+    <property role="3GE5qa" value="primitive_types" />
+    <ref role="1M2myG" to="wt0b:79EjCrygiiP" resolve="EBFixedLenghString" />
+    <node concept="EnEH3" id="3SZOFsB1t0J" role="1MhHOB">
+      <ref role="EomxK" to="wt0b:79EjCrygiiS" resolve="padding" />
+      <node concept="QB0g5" id="3SZOFsB1t2V" role="QCWH9">
+        <node concept="3clFbS" id="3SZOFsB1t2W" role="2VODD2">
+          <node concept="3clFbF" id="3SZOFsB1t7V" role="3cqZAp">
+            <node concept="2dkUwp" id="3SZOFsB2bFV" role="3clFbG">
+              <node concept="2OqwBi" id="3SZOFsB1tuk" role="3uHU7B">
+                <node concept="1Wqviy" id="3SZOFsB1t7U" role="2Oq$k0" />
+                <node concept="liA8E" id="3SZOFsB1tHf" role="2OqNvi">
+                  <ref role="37wK5l" to="wyt6:~String.length()" resolve="length" />
+                </node>
+              </node>
+              <node concept="3cmrfG" id="3SZOFsB1v5x" role="3uHU7w">
+                <property role="3cmrfH" value="1" />
               </node>
             </node>
           </node>

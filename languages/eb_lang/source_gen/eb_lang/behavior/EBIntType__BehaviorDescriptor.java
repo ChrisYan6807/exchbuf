@@ -47,9 +47,9 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     }
     int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
     if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-      return String.valueOf(Math.pow(2, nBits - 1) - 1);
+      return String.format("%d", (long) Math.pow(2, nBits - 1) - 1);
     } else {
-      return String.valueOf(Math.pow(2, nBits));
+      return String.format("%d", ((long) Math.pow(2, nBits)));
     }
   }
   /*package*/ static String minValue_id4s_KfQOhiQ(@NotNull SNode __thisNode__) {
@@ -58,7 +58,7 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     }
     int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
     if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-      return String.valueOf(-Math.pow(2, nBits - 1));
+      return String.format("%d", ((long) -Math.pow(2, nBits - 1)));
     } else {
       return "0";
     }

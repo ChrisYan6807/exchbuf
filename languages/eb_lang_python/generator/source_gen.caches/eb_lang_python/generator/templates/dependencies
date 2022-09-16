@@ -2,6 +2,8 @@
 <dependenciesRoot>
   <dependency className="eb_lang_python.generator.templates.QueriesGenerated">
     <classNode dependClassName="eb_lang.behavior.EBBitField__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBInclude__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBMessageMemberVar__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBTypeStatement__BehaviorDescriptor" />
     <classNode dependClassName="java.lang.Iterable" />
     <classNode dependClassName="java.lang.Object" />

@@ -3,7 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang" version="0" />
-    <engage id="87d4987f-c831-4a03-9f51-66048c99e214" name="eb_lang_cpp" />
+    <engage id="195a05df-981e-4c01-a03a-6abf03243612" name="eb_lang_python" />
   </languages>
   <imports />
   <registry>
@@ -30,6 +30,9 @@
       <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
       <concept id="8244488409083618479" name="eb_lang.structure.EBInt32" flags="ng" index="2gaQCD" />
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
+      <concept id="8244488409083618485" name="eb_lang.structure.EBFixedLenghString" flags="ng" index="2gaQCN">
+        <property id="8244488409083618486" name="length" index="2gaQCK" />
+      </concept>
       <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
       <concept id="8244488409083618483" name="eb_lang.structure.EBUInt64" flags="ng" index="2gaQCP" />
       <concept id="8244488409083618481" name="eb_lang.structure.EBUInt32" flags="ng" index="2gaQCR" />
@@ -51,9 +54,6 @@
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
         <property id="8244488409083493657" name="value" index="2glnev" />
-      </concept>
-      <concept id="6086719741694843576" name="eb_lang.structure.EBMessageConstructor" flags="ng" index="1Br4nz">
-        <reference id="6086719741694843577" name="member1" index="1Br4ny" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -103,33 +103,60 @@
       <property role="TrG5h" value="Uint64" />
       <node concept="2gaQCP" id="3SNypnb2As3" role="2gaMi1" />
     </node>
+    <node concept="2gln9S" id="7BNXJb7gwoh" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gaMi0" id="zaARBR_ibs" role="2gln9U">
+      <property role="TrG5h" value="String1" />
+      <node concept="2gaQCN" id="zaARBR_ieg" role="2gaMi1">
+        <property role="2gaQCK" value="1" />
+      </node>
+    </node>
+    <node concept="2gaMi0" id="7BNXJb7gwtG" role="2gln9U">
+      <property role="TrG5h" value="String8" />
+      <node concept="2gaQCN" id="zaARBR_i8D" role="2gaMi1">
+        <property role="2gaQCK" value="8" />
+      </node>
+    </node>
+    <node concept="2gaMi0" id="zaARBR_ih5" role="2gln9U">
+      <property role="TrG5h" value="String10" />
+      <node concept="2gaQCN" id="zaARBR_ijV" role="2gaMi1">
+        <property role="2gaQCK" value="10" />
+      </node>
+    </node>
+    <node concept="2gaMi0" id="zaARBR_imM" role="2gln9U">
+      <property role="TrG5h" value="String11" />
+      <node concept="2gaQCN" id="zaARBR_ipE" role="2gaMi1">
+        <property role="2gaQCK" value="11" />
+      </node>
+    </node>
+    <node concept="2gaMi0" id="zaARBR_isz" role="2gln9U">
+      <property role="TrG5h" value="String12" />
+      <node concept="2gaQCN" id="zaARBR_ivt" role="2gaMi1">
+        <property role="2gaQCK" value="12" />
+      </node>
+    </node>
+    <node concept="2gaMi0" id="zaARBR_iyo" role="2gln9U">
+      <property role="TrG5h" value="String20" />
+      <node concept="2gaQCN" id="zaARBR_i_k" role="2gaMi1">
+        <property role="2gaQCK" value="20" />
+      </node>
+    </node>
+    <node concept="2gaMi0" id="zaARBR_iCh" role="2gln9U">
+      <property role="TrG5h" value="String25" />
+      <node concept="2gaQCN" id="zaARBR_iFf" role="2gaMi1">
+        <property role="2gaQCK" value="25" />
+      </node>
+    </node>
+    <node concept="2gaMi0" id="zaARBR_iIe" role="2gln9U">
+      <property role="TrG5h" value="String30" />
+      <node concept="2gaQCN" id="zaARBR_iLe" role="2gaMi1">
+        <property role="2gaQCK" value="30" />
+      </node>
+    </node>
     <node concept="2gln9S" id="3SNypnb2As6" role="2gln9U" />
     <node concept="2gaMtJ" id="3SNypnb2AsH" role="2gln9U">
       <property role="TrG5h" value="MillenniumPrice" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2AtX" role="2gln9U">
-      <property role="TrG5h" value="String1" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2AuD" role="2gln9U">
-      <property role="TrG5h" value="String8" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2Avo" role="2gln9U">
-      <property role="TrG5h" value="String11" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2Awb" role="2gln9U">
-      <property role="TrG5h" value="String10" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2Ax2" role="2gln9U">
-      <property role="TrG5h" value="String12" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2AxX" role="2gln9U">
-      <property role="TrG5h" value="String20" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2AyW" role="2gln9U">
-      <property role="TrG5h" value="String25" />
-    </node>
-    <node concept="2gaMtJ" id="3SNypnb2AzZ" role="2gln9U">
-      <property role="TrG5h" value="String30" />
     </node>
     <node concept="2gln9S" id="3SNypnb2A$y" role="2gln9U" />
     <node concept="2glneb" id="3SNypnb2AEa" role="2gln9U">
@@ -358,9 +385,6 @@
         <property role="TrG5h" value="msgType" />
         <ref role="1rk6cS" node="3SNypnb2AEa" resolve="MsgType" />
       </node>
-      <node concept="1Br4nz" id="5hSnPGNubJv" role="36JId$">
-        <ref role="1Br4ny" node="3SNypnb2Bgp" resolve="msgType" />
-      </node>
     </node>
     <node concept="2gln9S" id="3SNypnb2Bgw" role="2gln9U" />
     <node concept="2gaMiw" id="1ZiUCMXF63e" role="2gln9U">
@@ -369,15 +393,15 @@
       <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
       <node concept="2gaMiM" id="1ZiUCMXF65k" role="36JId$">
         <property role="TrG5h" value="userName" />
-        <ref role="1rk6cS" node="3SNypnb2AyW" resolve="String25" />
+        <ref role="1rk6cS" node="zaARBR_iCh" resolve="String25" />
       </node>
       <node concept="2gaMiM" id="1ZiUCMXF65s" role="36JId$">
         <property role="TrG5h" value="password" />
-        <ref role="1rk6cS" node="3SNypnb2AyW" resolve="String25" />
+        <ref role="1rk6cS" node="zaARBR_iCh" resolve="String25" />
       </node>
       <node concept="2gaMiM" id="1ZiUCMXF65_" role="36JId$">
         <property role="TrG5h" value="newPassword" />
-        <ref role="1rk6cS" node="3SNypnb2AyW" resolve="String25" />
+        <ref role="1rk6cS" node="zaARBR_iCh" resolve="String25" />
       </node>
       <node concept="2gaMiM" id="1ZiUCMXF65K" role="36JId$">
         <property role="TrG5h" value="messageVersion" />
@@ -395,7 +419,7 @@
       </node>
       <node concept="2gaMiM" id="1ZiUCMXF6cn" role="36JId$">
         <property role="TrG5h" value="passwordExpiryDayCount" />
-        <ref role="1rk6cS" node="3SNypnb2AzZ" resolve="String30" />
+        <ref role="1rk6cS" node="zaARBR_iIe" resolve="String30" />
       </node>
     </node>
     <node concept="2gln9S" id="1ZiUCMXF6cu" role="2gln9U" />
@@ -405,7 +429,7 @@
       <ref role="2yvCZa" node="3SNypnb2Bef" resolve="MsgHeader" />
       <node concept="2gaMiM" id="2HuERJm4rpJ" role="36JId$">
         <property role="TrG5h" value="reason" />
-        <ref role="1rk6cS" node="3SNypnb2AxX" resolve="String20" />
+        <ref role="1rk6cS" node="zaARBR_iyo" resolve="String20" />
       </node>
     </node>
     <node concept="2gln9S" id="1ZiUCMXF6e_" role="2gln9U" />
@@ -462,7 +486,7 @@
       </node>
       <node concept="2gaMiM" id="2HuERJm5w_n" role="36JId$">
         <property role="TrG5h" value="rejectReason" />
-        <ref role="1rk6cS" node="3SNypnb2AzZ" resolve="String30" />
+        <ref role="1rk6cS" node="zaARBR_iIe" resolve="String30" />
       </node>
       <node concept="2gaMiM" id="2HuERJm5w_v" role="36JId$">
         <property role="TrG5h" value="rejectedMessageType" />
@@ -470,7 +494,7 @@
       </node>
       <node concept="2gaMiM" id="2HuERJm5w_D" role="36JId$">
         <property role="TrG5h" value="clientOrderID" />
-        <ref role="1rk6cS" node="3SNypnb2AxX" resolve="String20" />
+        <ref role="1rk6cS" node="zaARBR_iyo" resolve="String20" />
       </node>
     </node>
     <node concept="2gln9S" id="2HuERJm5w_J" role="2gln9U" />
@@ -506,11 +530,11 @@
       </node>
       <node concept="2gaMiM" id="2HuERJm5wOU" role="36JId$">
         <property role="TrG5h" value="clientOrderID" />
-        <ref role="1rk6cS" node="3SNypnb2AxX" resolve="String20" />
+        <ref role="1rk6cS" node="zaARBR_iyo" resolve="String20" />
       </node>
       <node concept="2gaMiM" id="2HuERJm5wP6" role="36JId$">
         <property role="TrG5h" value="orderID" />
-        <ref role="1rk6cS" node="3SNypnb2Ax2" resolve="String12" />
+        <ref role="1rk6cS" node="zaARBR_isz" resolve="String12" />
       </node>
       <node concept="2gaMiM" id="2HuERJm5wPk" role="36JId$">
         <property role="TrG5h" value="transactTime" />
@@ -518,7 +542,7 @@
       </node>
       <node concept="2gaMiM" id="2HuERJm5wP$" role="36JId$">
         <property role="TrG5h" value="reserved1" />
-        <ref role="1rk6cS" node="3SNypnb2Awb" resolve="String10" />
+        <ref role="1rk6cS" node="zaARBR_ih5" resolve="String10" />
       </node>
     </node>
     <node concept="2gln9S" id="5hSnPGN0SmQ" role="2gln9U">

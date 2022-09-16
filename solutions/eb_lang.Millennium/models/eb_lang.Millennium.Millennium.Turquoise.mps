@@ -689,15 +689,15 @@
       <ref role="2yvCZa" to="2izj:3SNypnb2Bef" resolve="MsgHeader" />
       <node concept="2gaMiM" id="5YzDmauzKCt" role="36JId$">
         <property role="TrG5h" value="clientOrderId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2AxX" resolve="String20" />
+        <ref role="1rk6cS" to="2izj:zaARBR_iyo" resolve="String20" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzKCz" role="36JId$">
         <property role="TrG5h" value="traderId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Avo" resolve="String11" />
+        <ref role="1rk6cS" to="2izj:zaARBR_imM" resolve="String11" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzKCQ" role="36JId$">
         <property role="TrG5h" value="account" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Awb" resolve="String10" />
+        <ref role="1rk6cS" to="2izj:zaARBR_ih5" resolve="String10" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzKD0" role="36JId$">
         <property role="TrG5h" value="clearingAccount" />
@@ -705,7 +705,7 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzMYr" role="36JId$">
         <property role="TrG5h" value="commonSymbol" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2AuD" resolve="String8" />
+        <ref role="1rk6cS" to="2izj:7BNXJb7gwtG" resolve="String8" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzKDW" role="36JId$">
         <property role="TrG5h" value="orderType" />
@@ -785,7 +785,7 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzNpy" role="36JId$">
         <property role="TrG5h" value="clOrdLinkId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Ax2" resolve="String12" />
+        <ref role="1rk6cS" to="2izj:zaARBR_isz" resolve="String12" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzNqu" role="36JId$">
         <property role="TrG5h" value="clientId" />
@@ -823,15 +823,15 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzLfw" role="36JId$">
         <property role="TrG5h" value="executionId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Ax2" resolve="String12" />
+        <ref role="1rk6cS" to="2izj:zaARBR_isz" resolve="String12" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzLfE" role="36JId$">
         <property role="TrG5h" value="clientOrderId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2AxX" resolve="String20" />
+        <ref role="1rk6cS" to="2izj:zaARBR_iyo" resolve="String20" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzLfQ" role="36JId$">
         <property role="TrG5h" value="orderId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Ax2" resolve="String12" />
+        <ref role="1rk6cS" to="2izj:zaARBR_isz" resolve="String12" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzLg4" role="36JId$">
         <property role="TrG5h" value="execType" />
@@ -839,7 +839,7 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzLgk" role="36JId$">
         <property role="TrG5h" value="executionReportRefId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Ax2" resolve="String12" />
+        <ref role="1rk6cS" to="2izj:zaARBR_isz" resolve="String12" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzLgV" role="36JId$">
         <property role="TrG5h" value="ordStatus" />
@@ -871,7 +871,7 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzNsr" role="36JId$">
         <property role="TrG5h" value="commonSymbol" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2AuD" resolve="String8" />
+        <ref role="1rk6cS" to="2izj:7BNXJb7gwtG" resolve="String8" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzLlb" role="36JId$">
         <property role="TrG5h" value="side" />
@@ -883,7 +883,7 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzLmt" role="36JId$">
         <property role="TrG5h" value="counterparty" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Avo" resolve="String11" />
+        <ref role="1rk6cS" to="2izj:zaARBR_imM" resolve="String11" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzLn9" role="36JId$">
         <property role="TrG5h" value="tradeLiquidityIndicator" />
@@ -915,7 +915,7 @@
       </node>
       <node concept="2gaMiM" id="5YzDmauzLsP" role="36JId$">
         <property role="TrG5h" value="publicOrderId" />
-        <ref role="1rk6cS" to="2izj:3SNypnb2Ax2" resolve="String12" />
+        <ref role="1rk6cS" to="2izj:zaARBR_isz" resolve="String12" />
       </node>
       <node concept="2gaMiM" id="5YzDmauzLtL" role="36JId$">
         <property role="TrG5h" value="minimumQty" />

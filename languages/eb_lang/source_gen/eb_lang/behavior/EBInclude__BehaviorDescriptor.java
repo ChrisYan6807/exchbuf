@@ -37,7 +37,7 @@ public final class EBInclude__BehaviorDescriptor extends BaseBHDescriptor {
     return "#include \"" + SPropertyOperations.getString(SLinkOperations.getTarget(__thisNode__, LINKS.protocol$v5qn), PROPS.name$MnvL) + "\"";
   }
   /*package*/ static String python_include_iduI6saUpGaM(@NotNull SNode __thisNode__) {
-    return "python include tbd";
+    return String.format("from %s import *", SPropertyOperations.getString(SLinkOperations.getTarget(__thisNode__, LINKS.protocol$v5qn), PROPS.name$MnvL));
   }
 
   /*package*/ EBInclude__BehaviorDescriptor() {

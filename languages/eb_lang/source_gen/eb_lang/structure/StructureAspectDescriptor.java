@@ -290,7 +290,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083618485");
     b.version(2);
     b.property("length", 0x726a4e86e24124b6L).type(PrimitiveTypeId.INTEGER).origin("8244488409083618486").done();
-    b.property("filler", 0x726a4e86e24124b8L).type(PrimitiveTypeId.STRING).origin("8244488409083618488").done();
+    b.property("padding", 0x726a4e86e24124b8L).type(PrimitiveTypeId.STRING).origin("8244488409083618488").done();
     b.property("range", 0x4fe9a5784793da6aL).type(PrimitiveTypeId.STRING).origin("5758315534585420394").done();
     b.alias("FixedLengthString");
     return b.create();

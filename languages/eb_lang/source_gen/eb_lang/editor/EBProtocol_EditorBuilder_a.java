@@ -257,7 +257,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             } else {
                               SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                               SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
-                              SPropertyOperations.assign(fixedStr, PROPS.filler$ZJtT, noValue);
+                              SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, (noValue.equals("0x00") ? "0" : noValue));
                               SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, range);
 
                               SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
@@ -390,7 +390,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                           SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
-                          SPropertyOperations.assign(fixedStr, PROPS.filler$ZJtT, "0x00");
+                          SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "0");
                           SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, "\\x00-\\x255");
 
                           SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
@@ -579,7 +579,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                             SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                             SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
-                            SPropertyOperations.assign(fixedStr, PROPS.filler$ZJtT, "0x00");
+                            SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "0");
                             SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, "\\x00-\\x255");
 
                             SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
@@ -1057,7 +1057,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SProperty value$wjFT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, 0x726a4e86e24169a8L, "value");
     /*package*/ static final SProperty value$_s5n = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x726a4e86e23f3d19L, "value");
     /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
-    /*package*/ static final SProperty filler$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "filler");
+    /*package*/ static final SProperty padding$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "padding");
     /*package*/ static final SProperty range$t6I$ = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4fe9a5784793da6aL, "range");
     /*package*/ static final SProperty min$DCVS = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142298L, "min");
     /*package*/ static final SProperty max$DBZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142294L, "max");

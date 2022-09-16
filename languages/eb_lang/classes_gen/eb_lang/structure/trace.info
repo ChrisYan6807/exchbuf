@@ -1036,8 +1036,8 @@
       <node id="8244488409083618485" at="289,113,290,94" concept="0" />
       <node id="8244488409083618485" at="290,94,291,17" concept="0" />
       <node id="8244488409083618486" at="291,17,292,113" concept="0" />
-      <node id="8244488409083618488" at="292,113,293,112" concept="0" />
-      <node id="5758315534585420394" at="293,112,294,111" concept="0" />
+      <node id="8244488409083618488" at="292,113,293,113" concept="0" />
+      <node id="5758315534585420394" at="293,113,294,111" concept="0" />
       <node id="8244488409083618485" at="294,111,295,33" concept="0" />
       <node id="8244488409083618485" at="295,33,296,22" concept="4" />
       <node id="8244488409083618485" at="286,0,298,0" concept="6" trace="createDescriptorForEBFixedLenghString#()Ljetbrains/mps/smodel/runtime/ConceptDescriptor;" />
