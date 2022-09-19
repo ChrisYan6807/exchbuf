@@ -458,7 +458,12 @@
     </node>
     <node concept="1TJgyi" id="5hSnPGMZ69Y" role="1TKVEl">
       <property role="IQ2nx" value="6086719741693289086" />
-      <property role="TrG5h" value="value" />
+      <property role="TrG5h" value="default" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
+    <node concept="1TJgyi" id="3_eh5n08G6U" role="1TKVEl">
+      <property role="IQ2nx" value="4129313043431735738" />
+      <property role="TrG5h" value="counterOf" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
   </node>
@@ -563,6 +568,11 @@
     <node concept="1TJgyi" id="4s_KfQOOzH" role="1TKVEl">
       <property role="IQ2nx" value="80104936667564269" />
       <property role="TrG5h" value="singed" />
+      <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
+    </node>
+    <node concept="1TJgyi" id="A3lLdm7LMt" role="1TKVEl">
+      <property role="IQ2nx" value="685487308851322013" />
+      <property role="TrG5h" value="little_endian" />
       <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
     </node>
   </node>

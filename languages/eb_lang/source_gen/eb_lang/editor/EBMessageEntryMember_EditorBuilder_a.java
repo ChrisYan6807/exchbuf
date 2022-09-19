@@ -72,7 +72,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     return editorCell;
   }
   private boolean nodeCondition_5ninz9_a2a() {
-    return myNode.getProperty(PROPS.value$w7ZO) != null;
+    return myNode.getProperty(PROPS.default$w7ZO) != null;
   }
   private EditorCell createRefCell_0() {
     final SReferenceLink referenceLink = LINKS.type$eiFN;
@@ -186,7 +186,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
     if (!(new Object() {
       public boolean showWrapped() {
-        return myNode.getProperty(PROPS.value$w7ZO) != null;
+        return myNode.getProperty(PROPS.default$w7ZO) != null;
       }
     }.showWrapped())) {
       return EditorCell_Collection.createVertical(editorContext, node);
@@ -199,7 +199,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
           public void execute(EditorContext editorContext) {
             SavedCaretPosition caretPosition = new SavedCaretPosition(editorContext);
             caretPosition.save();
-            node.setProperty(PROPS.value$w7ZO, null);
+            node.setProperty(PROPS.default$w7ZO, null);
             editorContext.flushEvents();
             caretPosition.restore(true);
           }
@@ -208,7 +208,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
           public void execute(EditorContext editorContext) {
             SavedCaretPosition caretPosition = new SavedCaretPosition(editorContext);
             caretPosition.save();
-            node.setProperty(PROPS.value$w7ZO, null);
+            node.setProperty(PROPS.default$w7ZO, null);
             editorContext.flushEvents();
             caretPosition.restore(false);
           }
@@ -225,7 +225,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
     if (!(new Object() {
       public boolean showWrapped() {
-        return myNode.getProperty(PROPS.value$w7ZO) != null;
+        return myNode.getProperty(PROPS.default$w7ZO) != null;
       }
     }.showWrapped())) {
       return EditorCell_Collection.createVertical(editorContext, node);
@@ -290,11 +290,11 @@ import org.jetbrains.mps.openapi.language.SConcept;
   private EditorCell createProperty_2() {
     getCellFactory().pushCellContext();
     try {
-      final SProperty property = PROPS.value$w7ZO;
+      final SProperty property = PROPS.default$w7ZO;
       getCellFactory().setPropertyInfo(new SPropertyInfo(myNode, property));
       EditorCell_Property editorCell = EditorCell_Property.create(getEditorContext(), new SPropertyAccessor(myNode, property, false, false), myNode);
-      editorCell.setDefaultText("<no value>");
-      editorCell.setCellId("property_value");
+      editorCell.setDefaultText("<no default>");
+      editorCell.setCellId("property_default");
       editorCell.setSubstituteInfo(new SPropertySubstituteInfo(editorCell, property));
       setCellContext(editorCell);
       Iterable<SNode> propertyAttributes = SNodeOperations.ofConcept(new IAttributeDescriptor.AllAttributes().list(myNode), CONCEPTS.PropertyAttribute$Gb);
@@ -366,7 +366,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty value$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "value");
+    /*package*/ static final SProperty default$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "default");
     /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
     /*package*/ static final SProperty fixtag$$pjL = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, 0x726a4e86e2416a30L, "fixtag");
   }

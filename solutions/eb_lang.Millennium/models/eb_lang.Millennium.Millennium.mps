@@ -20,13 +20,12 @@
         <property id="8244488409083636272" name="fixtag" index="2gaMiQ" />
       </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
-        <property id="6086719741693289086" name="value" index="1Ax3O_" />
+        <property id="6086719741693289086" name="default" index="1Ax3O_" />
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
       <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">
         <property id="8244488409083636136" name="value" index="2gaMsI" />
       </concept>
-      <concept id="8244488409083636201" name="eb_lang.structure.EBExtern" flags="ng" index="2gaMtJ" />
       <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
       <concept id="8244488409083618479" name="eb_lang.structure.EBInt32" flags="ng" index="2gaQCD" />
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
@@ -54,6 +53,15 @@
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
         <property id="8244488409083493657" name="value" index="2glnev" />
+      </concept>
+      <concept id="8717146646088251492" name="eb_lang.structure.EBIntType" flags="ng" index="nUBVk">
+        <property id="8717146646088262296" name="min" index="nVqgC" />
+      </concept>
+      <concept id="1374950686633462402" name="eb_lang.structure.EBFloatDecimal" flags="ng" index="1foOjv">
+        <property id="1374950686633462412" name="precision" index="1foOjh" />
+        <property id="1374950686633462408" name="size" index="1foOjl" />
+        <property id="685487308851322013" name="little_endian" index="1vB4Ie" />
+        <property id="80104936667564269" name="singed" index="3RNXZI" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -101,7 +109,9 @@
     </node>
     <node concept="2gaMi0" id="3SNypnb2ArI" role="2gln9U">
       <property role="TrG5h" value="Uint64" />
-      <node concept="2gaQCP" id="3SNypnb2As3" role="2gaMi1" />
+      <node concept="2gaQCP" id="3SNypnb2As3" role="2gaMi1">
+        <property role="nVqgC" value="" />
+      </node>
     </node>
     <node concept="2gln9S" id="7BNXJb7gwoh" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -155,8 +165,14 @@
       </node>
     </node>
     <node concept="2gln9S" id="3SNypnb2As6" role="2gln9U" />
-    <node concept="2gaMtJ" id="3SNypnb2AsH" role="2gln9U">
+    <node concept="2gaMi0" id="A3lLdm4sz$" role="2gln9U">
       <property role="TrG5h" value="MillenniumPrice" />
+      <node concept="1foOjv" id="A3lLdm4sAv" role="2gaMi1">
+        <property role="3RNXZI" value="true" />
+        <property role="1foOjl" value="8" />
+        <property role="1foOjh" value="8" />
+        <property role="1vB4Ie" value="true" />
+      </node>
     </node>
     <node concept="2gln9S" id="3SNypnb2A$y" role="2gln9U" />
     <node concept="2glneb" id="3SNypnb2AEa" role="2gln9U">

@@ -30,13 +30,15 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   public static final SMethod<Integer> size_id7qxjCwPtApr = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtApr").build();
   public static final SMethod<String> cppName_id9WwCMYBSZJ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBSZJ").build();
   public static final SMethod<String> pyName_id9WwCMYBWwT = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBWwT").build();
+  public static final SMethod<String> fmt_id4GpIFxqoQnK = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("fmt").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4GpIFxqoQnK").build();
   public static final SMethod<String> maxValue_id4s_KfQNT9K = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQNT9K").build();
   public static final SMethod<String> minValue_id4s_KfQOhiQ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOhiQ").build();
   public static final SMethod<String> nullValue_id4s_KfQO$Rt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQO$Rt").build();
   public static final SMethod<Boolean> isNative_id5hSnPGNw5sK = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNative").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNw5sK").build();
   public static final SMethod<Boolean> isLittleEndian_id7qxjCwPtLrW = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isLittleEndian").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtLrW").build();
+  public static final SMethod<String> byteOrderChar_id4GpIFxqp7uZ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("byteOrderChar").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4GpIFxqp7uZ").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, fmt_id4GpIFxqoQnK, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW, byteOrderChar_id4GpIFxqp7uZ);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
@@ -84,6 +86,9 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
       }
     }
   }
+  /*package*/ static String byteOrderChar_id4GpIFxqp7uZ(@NotNull SNode __thisNode__) {
+    return (((boolean) EBIntType__BehaviorDescriptor.isLittleEndian_id7qxjCwPtLrW.invoke(__thisNode__)) ? "<" : ">");
+  }
 
   /*package*/ EBIntType__BehaviorDescriptor() {
   }
@@ -100,16 +105,18 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
       throw new BHMethodNotFoundException(this, method);
     }
     switch (methodIndex) {
-      case 4:
-        return (T) ((String) maxValue_id4s_KfQNT9K(node));
       case 5:
-        return (T) ((String) minValue_id4s_KfQOhiQ(node));
+        return (T) ((String) maxValue_id4s_KfQNT9K(node));
       case 6:
-        return (T) ((String) nullValue_id4s_KfQO$Rt(node));
+        return (T) ((String) minValue_id4s_KfQOhiQ(node));
       case 7:
-        return (T) ((Boolean) isNative_id5hSnPGNw5sK(node));
+        return (T) ((String) nullValue_id4s_KfQO$Rt(node));
       case 8:
+        return (T) ((Boolean) isNative_id5hSnPGNw5sK(node));
+      case 9:
         return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
+      case 10:
+        return (T) ((String) byteOrderChar_id4GpIFxqp7uZ(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

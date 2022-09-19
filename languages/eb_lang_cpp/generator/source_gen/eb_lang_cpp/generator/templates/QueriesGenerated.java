@@ -251,7 +251,6 @@ public class QueriesGenerated extends QueryProviderBase {
     return SLinkOperations.getTarget(_context.getNode(), LINKS.value$_yQp);
   }
   public static Iterable<SNode> sourceNodesQuery_0_0(final SourceSubstituteMacroNodesContext _context) {
-    SLinkOperations.getChildren(_context.getNode(), LINKS.statements$_5KW);
     List<SNode> slist = ListSequence.fromList(new LinkedList<SNode>());
     boolean typedAlreadyDefined = false;
     SNode once = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));

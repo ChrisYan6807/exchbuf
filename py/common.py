@@ -18,12 +18,43 @@ def integer_type(cls, min, max, null):
 
 def fixed_length_string(length, padding=b'\0'):
     class StrFixedLenPadField(StrFixedLenField):
+        def __init__(self, name, default):
+            StrFixedLenPadField.__init__(self, name, default, length, None)
+
         def i2h(self, pkt, x):
             return x.rstrip(padding)
+
+        def h2i(self, pkg, x):
+            if len(x) > length:
+                raise RuntimeError(f'length of field {self.name} value "{x}" over the limit {length}')
+            else:
+                return x.ljust(length, padding)
+
     def get(name, default):
-        return StrFixedLenPadField(name, default, length)
+        return StrFixedLenPadField(name, default)
 
     return get
+
+def float_decimal(size, precision, singed, little_endian, min, max, null):
+    assert size == 8
+    type_name = f'{"LE" if little_endian else ""}{"Signed" if singed else ""}LongField'
+    long_type = globals()[type_name]
+
+    class FloatDecimal(long_type):
+        MIN = min
+        MAX = max
+        NULL = null
+        def __init__(self, name, default):
+            long_type.__init__(self, name, default)
+
+        def i2h(self, pkg, x):
+            return super(FloatDecimal, self).i2h(pkg, int(x / 10**precision))
+
+        def h2i(self, pkg, x):
+            return super(FloatDecimal, self).i2h(pkg, int(x * 10**precision))
+
+    return FloatDecimal
+
 
 class CharField(Field):
     def __init__(self, name, default):
@@ -89,5 +120,69 @@ class XCharField(CharField):
  'XStrLenField',
  'YesNoByteField']
 '''
+
+if __name__ == '__main__':
+    class OrdType(int, Enum):
+        Market = 1
+        Limit = 2
+        Short = 6
+
+    class MsgType(str, Enum):
+        New = 'D'
+        Amend = 'G'
+        Cancel = 'F'
+
+    class DEA(int, Enum):
+        No = 0
+        Yes = 1
+
+    class LiqPro(int, Enum):
+        No = 0
+        Yes = 1
+
+    class Algo(int, Enum):
+        No = 0
+        Yes = 1
+
+    class MiFIDFlags(Packet):
+        fields_desc = [
+            BitEnumField('DEA', DEA.No, 1, DEA),
+            BitEnumField('LiqPro', LiqPro.No, 1, LiqPro),
+            BitEnumField('ALGO', Algo.No, 1, Algo),
+            BitField('Reserved', 0, 5),
+        ]
+
+    class Protocol(Packet):
+        name = 'test protocol'
+        fields_desc = [
+            LEShortField('length', 0),
+            PacketField('mifid', 0, MiFIDFlags),
+            ByteEnumField('ordType', OrdType.Market, OrdType),
+            CharEnumField('msgType', MsgType.New, MsgType),
+        ]
+
+    mifidFlags = MiFIDFlags()
+    mifidFlags.show2()
+    mifidFlags.setfieldval('DEA', DEA.Yes)
+    mifidFlags.show2()
+
+    p = Protocol()
+    p.show()
+
+    p.setfieldval('length', 10)
+    p.show()
+
+
+    print('set mifid to protocol')
+    p.show()
+    p.setfieldval('mifid', mifidFlags)
+    p.show()
+
+    p.setfieldval('ordType', OrdType.Short)
+    mifidFlags.setfieldval('ALGO', Algo.Yes)
+    p.setfieldval('msgType', MsgType.Cancel)
+    p.show()
+
+
 
 

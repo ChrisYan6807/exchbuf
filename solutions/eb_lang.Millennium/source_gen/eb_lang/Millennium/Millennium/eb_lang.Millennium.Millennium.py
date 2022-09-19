@@ -20,6 +20,7 @@ String20 = fixed_length_string(20, b'\0')
 String25 = fixed_length_string(25, b'\0')
 String30 = fixed_length_string(30, b'\0')
 
+MillenniumPrice = float_decimal(8, 8, True, True, -2**63/10**8, (2**63-1)/10**8, 0)
 
 class MsgType(int, Enum):
     Heartbeat = '0'
@@ -70,31 +71,31 @@ class AppStatus(int, Enum):
 class MsgHeader(Packet):
     name = 'MsgHeader'
     fields_desc = [
-        Int8('startOfMsg', tbd:default),
-        Int16('length', tbd:default),
-        ByteEnumField('msgType', MsgType.tbd:default, MsgType),
+        Int8("startOfMsg", 0),
+        Int16("length", 0),
+        ByteEnumField("msgType", MsgType.BusinessReject, MsgType),
     ]
 
 class Logon(Packet):
     name = 'Logon'
     fields_desc = [
-        String25('userName', tbd:default),
-        String25('password', tbd:default),
-        String25('newPassword', tbd:default),
-        UInt8('messageVersion', tbd:default),
+        String25("userName", ""),
+        String25("password", ""),
+        String25("newPassword", ""),
+        UInt8("messageVersion", 0),
     ]
 
 class LogonResponse(Packet):
     name = 'LogonResponse'
     fields_desc = [
-        Int32('rejectCode', tbd:default),
-        String30('passwordExpiryDayCount', tbd:default),
+        Int32("rejectCode", 0),
+        String30("passwordExpiryDayCount", ""),
     ]
 
 class Logout(Packet):
     name = 'Logout'
     fields_desc = [
-        String20('reason', tbd:default),
+        String20("reason", ""),
     ]
 
 class Heartbeat(Packet):
@@ -105,56 +106,56 @@ class Heartbeat(Packet):
 class MissedMessageRequest(Packet):
     name = 'MissedMessageRequest'
     fields_desc = [
-        Int8('appID', tbd:default),
-        Int32('lastMsgSeqNum', tbd:default),
+        Int8("appID", 0),
+        Int32("lastMsgSeqNum", 0),
     ]
 
 
 class MissedMessageRequestAck(Packet):
     name = 'MissedMessageRequestAck'
     fields_desc = [
-        ByteEnumField('responseType', MissedMsgRespType.tbd:default, MissedMsgRespType),
+        ByteEnumField("responseType", MissedMsgRespType.SERVICE_UNAVAILABLE, MissedMsgRespType),
     ]
 
 class TransmissionComplete(Packet):
     name = 'TransmissionComplete'
     fields_desc = [
-        ByteEnumField('responseType', MissedMsgRptType.tbd:default, MissedMsgRptType),
+        ByteEnumField("responseType", MissedMsgRptType.SERVICE_UNAVAILABLE, MissedMsgRptType),
     ]
 
 class Reject(Packet):
     name = 'Reject'
     fields_desc = [
-        Int32('rejectCode', tbd:default),
-        String30('rejectReason', tbd:default),
-        ByteEnumField('rejectedMessageType', MsgType.tbd:default, MsgType),
-        String20('clientOrderID', tbd:default),
+        Int32("rejectCode", 0),
+        String30("rejectReason", ""),
+        ByteEnumField("rejectedMessageType", MsgType.BusinessReject, MsgType),
+        String20("clientOrderID", ""),
     ]
 
 class SystemStatus(Packet):
     name = 'SystemStatus'
     fields_desc = [
-        ByteEnumField('appID', AppID.tbd:default, AppID),
-        ByteEnumField('appStatus', AppStatus.tbd:default, AppStatus),
+        ByteEnumField("appID", AppID.PARTITION4, AppID),
+        ByteEnumField("appStatus", AppStatus.RECOVERY_SERVICE_NOT_AVAILABLE, AppStatus),
     ]
 
 class BusinessReject(Packet):
     name = 'BusinessReject'
     fields_desc = [
-        ByteEnumField('appID', AppID.tbd:default, AppID),
-        Int32('sequenceNo', tbd:default),
-        Int32('rejectCode', tbd:default),
-        String20('clientOrderID', tbd:default),
-        String12('orderID', tbd:default),
-        Uint64('transactTime', tbd:default),
-        String10('reserved1', tbd:default),
+        ByteEnumField("appID", AppID.PARTITION4, AppID),
+        Int32("sequenceNo", 0),
+        Int32("rejectCode", 0),
+        String20("clientOrderID", ""),
+        String12("orderID", ""),
+        Uint64("transactTime", 0),
+        String10("reserved1", ""),
     ]
 
 class TestMsg(Packet):
     name = 'TestMsg'
     fields_desc = [
-        ByteEnumField('msgType', MsgType.tbd:default, MsgType),
-        Int8('SeqNo', tbd:default),
+        ByteEnumField("msgType", NewOrder, MsgType),
+        Int8("SeqNo", 0),
     ]
 
 

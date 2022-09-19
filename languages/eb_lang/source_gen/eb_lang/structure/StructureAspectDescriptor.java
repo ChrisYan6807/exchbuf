@@ -307,6 +307,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.property("precision", 0x1314ce5d5c778a8cL).type(PrimitiveTypeId.INTEGER).origin("1374950686633462412").done();
     b.property("null", 0x1314ce5d5c778a91L).type(PrimitiveTypeId.STRING).origin("1374950686633462417").done();
     b.property("singed", 0x11c9703f6d348edL).type(PrimitiveTypeId.BOOLEAN).origin("80104936667564269").done();
+    b.property("little_endian", 0x9835713561f1c9dL).type(PrimitiveTypeId.BOOLEAN).origin("685487308851322013").done();
     b.alias("FloatDecimal");
     return b.create();
   }
@@ -466,7 +467,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_("eb_lang.structure.EBMessageMemberVar", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083636276");
     b.version(2);
-    b.property("value", 0x54785f5b32fc627eL).type(PrimitiveTypeId.STRING).origin("6086719741693289086").done();
+    b.property("default", 0x54785f5b32fc627eL).type(PrimitiveTypeId.STRING).origin("6086719741693289086").done();
+    b.property("counterOf", 0x394e4455c022c1baL).type(PrimitiveTypeId.STRING).origin("4129313043431735738").done();
     b.associate("type", 0x5737b24e0c67d176L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L).optional(false).origin("6284687853304140150").done();
     b.alias("entry");
     return b.create();
