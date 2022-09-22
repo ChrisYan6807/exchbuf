@@ -391,6 +391,7 @@
       <property role="2SxKC8" value="4" />
       <node concept="2gaMiM" id="3SNypnb2Bgb" role="36JId$">
         <property role="TrG5h" value="startOfMsg" />
+        <property role="1Ax3O_" value="2" />
         <ref role="1rk6cS" node="3SNypnb2AoF" resolve="Int8" />
       </node>
       <node concept="2gaMiM" id="3SNypnb2Bgh" role="36JId$">

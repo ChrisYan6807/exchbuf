@@ -87,6 +87,13 @@ public class QueriesGenerated extends QueryProviderBase {
     return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
   }
   public static Object propertyMacro_GetValue_0_14(final PropertyMacroContext _context) {
+    String defaultValue = SPropertyOperations.getString(_context.getNode(), PROPS.default$w7ZO);
+    if ((defaultValue != null && defaultValue.length() > 0)) {
+      defaultValue = String.format(" = %s", defaultValue);
+    } else {
+      defaultValue = "";
+    }
+
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), CONCEPTS.EBMessage$YV)) {
       if ((boolean) EBMessage__BehaviorDescriptor.isNotFixedLength_id4Xeby11878t.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), CONCEPTS.EBMessage$YV))) {
         if (SNodeOperations.isInstanceOf(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K) && (boolean) EBMessageMemberVar__BehaviorDescriptor.isNotFixedLength_id5hSnPGNaBkU.invoke(SNodeOperations.cast(SNodeOperations.getPrevSibling(_context.getNode()), CONCEPTS.EBMessageMemberVar$_K))) {
@@ -95,11 +102,12 @@ public class QueriesGenerated extends QueryProviderBase {
           String.format("%s* %s() {return reinterpret_cast<%s*>(begin()+size());}", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL));
         }
       } else {
-        return String.format("%s %s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+
+        return String.format("%s %s%s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue);
       }
     }
 
-    return String.format("%s %s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+    return String.format("%s %s%s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue);
   }
   public static Object propertyMacro_GetValue_0_15(final PropertyMacroContext _context) {
     SNode pre_node = (SNode) SNodeOperations.getPrevSibling(_context.getNode());
@@ -482,6 +490,7 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SProperty value$_syU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x726a4e86e23f3d1bL, "value");
     /*package*/ static final SProperty value$_s5n = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x726a4e86e23f3d19L, "value");
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
+    /*package*/ static final SProperty default$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "default");
     /*package*/ static final SProperty size$1BwP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x584c9fdae0cb95d2L, "size");
     /*package*/ static final SProperty value2$tnOI = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b331d7e1aL, 0x61a1940705fea6d6L, "value2");
     /*package*/ static final SProperty pos$ZoEI = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940705f3e4dfL, 0x61a1940705f3e4e2L, "pos");

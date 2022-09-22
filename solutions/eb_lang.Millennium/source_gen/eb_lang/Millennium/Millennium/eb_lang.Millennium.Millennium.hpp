@@ -71,7 +71,7 @@ EB_ENUM(AppStatus, uint8_t,
 
 #pragma pack(1)
 struct MsgHeader {
-    Int8 startOfMsg;
+    Int8 startOfMsg = 2;
     Int16 length;
     MsgType msgType;
     char* begin() {return reinterpret_cast<char*>(this);}
@@ -209,8 +209,8 @@ static_assert(sizeof(BusinessReject) == 63, "Bad message size.")
 
 #pragma pack(1)
 struct TestMsg : MsgHeader {
-    MsgType msgType;
-    Int8 SeqNo;
+    MsgType msgType = NewOrder;
+    Int8 SeqNo = 0;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TestMsg);}
