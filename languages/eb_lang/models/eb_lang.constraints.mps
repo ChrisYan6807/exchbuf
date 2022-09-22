@@ -2174,21 +2174,6 @@
   <node concept="1M2fIO" id="A3lLdmfUzD">
     <property role="3GE5qa" value="primitive_types" />
     <ref role="1M2myG" to="wt0b:1ckN_PstSE2" resolve="EBFloatDecimal" />
-    <node concept="EnEH3" id="A3lLdmfUzE" role="1MhHOB">
-      <ref role="EomxK" to="wt0b:1ckN_PstSE8" resolve="size" />
-      <node concept="QB0g5" id="A3lLdmfU_Q" role="QCWH9">
-        <node concept="3clFbS" id="A3lLdmfU_R" role="2VODD2">
-          <node concept="3clFbF" id="A3lLdmfUEQ" role="3cqZAp">
-            <node concept="3clFbC" id="A3lLdmfVGi" role="3clFbG">
-              <node concept="3cmrfG" id="A3lLdmfWaO" role="3uHU7w">
-                <property role="3cmrfH" value="8" />
-              </node>
-              <node concept="1Wqviy" id="A3lLdmfUEP" role="3uHU7B" />
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
   </node>
 </model>
 

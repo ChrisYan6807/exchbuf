@@ -1409,8 +1409,8 @@ class XetraEnLightTargetPartiesComp(Packet):
 class ApproveTESTradeRequest(Packet):
     name = 'ApproveTESTradeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
         PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
         ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
@@ -1440,21 +1440,21 @@ class ApproveTESTradeRequest(Packet):
 class BroadcastErrorNotification(Packet):
     name = 'BroadcastErrorNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("notifHeader", "", NotifHeaderComp),
         LEIntEnumField("applIDStatus", ApplIDStatus.Outbound_conversion_error, ApplIDStatus),
         RefApplSubID("refApplSubID", 0xFFFFFFFF),
-        VarTextLen("varTextLen", 0xFFFF),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID),
         ByteEnumField("sessionStatus", SessionStatus.Logout, SessionStatus),
         Pad4("pad4", ""),
-        ((VarText, varText, varTextLen))
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class CrossRequest(Packet):
     name = 'CrossRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         OrderQty("orderQty", 0x8000000000000000),
         MarketSegmentID("marketSegmentID", 0x80000000),
@@ -1463,15 +1463,15 @@ class CrossRequest(Packet):
 class CrossRequestResponse(Packet):
     name = 'CrossRequestResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
     ]
 class DeleteAllOrderBroadcast(Packet):
     name = 'DeleteAllOrderBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
         Price("price", 0x8000000000000000),
@@ -1479,30 +1479,30 @@ class DeleteAllOrderBroadcast(Packet):
         TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
         TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF),
         PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
-        NoNotAffectedOrders("noNotAffectedOrders", 0xFFFF),
-        NoAffectedOrders("noAffectedOrders", 0xFFFF),
-        NoAffectedOrderRequests("noAffectedOrderRequests", 0xFFFF),
+        FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp"),
+        FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp"),
+        FieldLenField("noAffectedOrderRequests", 0, fmt="<H", count_of="affectedOrderRequestsGrp"),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
         ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
         ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
         ByteEnumField("side", Side.Sell, Side),
         Pad6("pad6", ""),
-        ((NotAffectedOrdersGrpComp, notAffectedOrdersGrp, noNotAffectedOrders))
-        ((AffectedOrdGrpComp, affectedOrdGrp, noAffectedOrders))
-        ((AffectedOrderRequestsGrpComp, affectedOrderRequestsGrp, noAffectedOrderRequests))
+        PacketListField("notAffectedOrdersGrp", None, NotAffectedOrdersGrpComp, count_from=lambda pkt:pkt.noNotAffectedOrders),
+        PacketListField("affectedOrdGrp", None, AffectedOrdGrpComp, count_from=lambda pkt:pkt.noAffectedOrders),
+        PacketListField("affectedOrderRequestsGrp", None, AffectedOrderRequestsGrpComp, count_from=lambda pkt:pkt.noAffectedOrderRequests),
     ]
 class DeleteAllOrderNRResponse(Packet):
     name = 'DeleteAllOrderNRResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
     ]
 class DeleteAllOrderQuoteEventBroadcast(Packet):
     name = 'DeleteAllOrderQuoteEventBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
         MarketSegmentID("marketSegmentID", 0x80000000),
@@ -1513,8 +1513,8 @@ class DeleteAllOrderQuoteEventBroadcast(Packet):
 class DeleteAllOrderRequest(Packet):
     name = 'DeleteAllOrderRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         Price("price", 0x8000000000000000),
         PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
@@ -1530,40 +1530,40 @@ class DeleteAllOrderRequest(Packet):
 class DeleteAllOrderResponse(Packet):
     name = 'DeleteAllOrderResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeaderME", "", ResponseHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
-        NoNotAffectedOrders("noNotAffectedOrders", 0xFFFF),
-        NoAffectedOrders("noAffectedOrders", 0xFFFF),
-        NoAffectedOrderRequests("noAffectedOrderRequests", 0xFFFF),
+        FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp"),
+        FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp"),
+        FieldLenField("noAffectedOrderRequests", 0, fmt="<H", count_of="affectedOrderRequestsGrp"),
         Pad2("pad2", ""),
-        ((NotAffectedOrdersGrpComp, notAffectedOrdersGrp, noNotAffectedOrders))
-        ((AffectedOrdGrpComp, affectedOrdGrp, noAffectedOrders))
-        ((AffectedOrderRequestsGrpComp, affectedOrderRequestsGrp, noAffectedOrderRequests))
+        PacketListField("notAffectedOrdersGrp", None, NotAffectedOrdersGrpComp, count_from=lambda pkt:pkt.noNotAffectedOrders),
+        PacketListField("affectedOrdGrp", None, AffectedOrdGrpComp, count_from=lambda pkt:pkt.noAffectedOrders),
+        PacketListField("affectedOrderRequestsGrp", None, AffectedOrderRequestsGrpComp, count_from=lambda pkt:pkt.noAffectedOrderRequests),
     ]
 class DeleteAllQuoteBroadcast(Packet):
     name = 'DeleteAllQuoteBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
         MarketSegmentID("marketSegmentID", 0x80000000),
         TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
         PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
         TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF),
-        NoNotAffectedSecurities("noNotAffectedSecurities", 0xFFFF),
+        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
         ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
         TargetPartyIDDeskID("targetPartyIDDeskID", ""),
         Pad1("pad1", ""),
-        ((NotAffectedSecuritiesGrpComp, notAffectedSecuritiesGrp, noNotAffectedSecurities))
+        PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities),
     ]
 class DeleteAllQuoteRequest(Packet):
     name = 'DeleteAllQuoteRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
         ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
@@ -1575,18 +1575,18 @@ class DeleteAllQuoteRequest(Packet):
 class DeleteAllQuoteResponse(Packet):
     name = 'DeleteAllQuoteResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
-        NoNotAffectedSecurities("noNotAffectedSecurities", 0xFFFF),
+        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
         Pad6("pad6", ""),
-        ((NotAffectedSecuritiesGrpComp, notAffectedSecuritiesGrp, noNotAffectedSecurities))
+        PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities),
     ]
 class DeleteOrderBroadcast(Packet):
     name = 'DeleteOrderBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -1613,8 +1613,8 @@ class DeleteOrderBroadcast(Packet):
 class DeleteOrderNRResponse(Packet):
     name = 'DeleteOrderNRResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -1632,8 +1632,8 @@ class DeleteOrderNRResponse(Packet):
 class DeleteOrderResponse(Packet):
     name = 'DeleteOrderResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeaderME", "", ResponseHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -1651,8 +1651,8 @@ class DeleteOrderResponse(Packet):
 class DeleteOrderSingleRequest(Packet):
     name = 'DeleteOrderSingleRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -1672,8 +1672,8 @@ class DeleteOrderSingleRequest(Packet):
 class DeleteTESTradeRequest(Packet):
     name = 'DeleteTESTradeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         PackageID("packageID", 0xFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
         TESExecID("tESExecID", 0xFFFFFFFF),
@@ -1685,8 +1685,8 @@ class DeleteTESTradeRequest(Packet):
 class EnterTESTradeRequest(Packet):
     name = 'EnterTESTradeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         LastPx("lastPx", 0x8000000000000000),
         TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
@@ -1695,17 +1695,17 @@ class EnterTESTradeRequest(Packet):
         SettlDate("settlDate", 0xFFFFFFFF),
         LEShortEnumField("trdType", TrdType.Enlight, TrdType),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
-        NoSideAllocs("noSideAllocs", 0xFF),
+        FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrp"),
         TradeReportText("tradeReportText", ""),
         TradeReportID("tradeReportID", ""),
         Pad4("pad4", ""),
-        ((SideAllocGrpComp, sideAllocGrp, noSideAllocs))
+        PacketListField("sideAllocGrp", None, SideAllocGrpComp, count_from=lambda pkt:pkt.noSideAllocs),
     ]
 class ExtendedDeletionReport(Packet):
     name = 'ExtendedDeletionReport'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -1757,56 +1757,56 @@ class ExtendedDeletionReport(Packet):
 class ForcedLogoutNotification(Packet):
     name = 'ForcedLogoutNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
-        VarTextLen("varTextLen", 0xFFFF),
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("notifHeader", "", NotifHeaderComp),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         Pad6("pad6", ""),
-        ((VarText, varText, varTextLen))
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class ForcedUserLogoutNotification(Packet):
     name = 'ForcedUserLogoutNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("notifHeader", "", NotifHeaderComp),
         Username("username", 0xFFFFFFFF),
-        VarTextLen("varTextLen", 0xFFFF),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         ByteEnumField("userStatus", UserStatus.User_released, UserStatus),
         Pad1("pad1", ""),
-        ((VarText, varText, varTextLen))
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class Heartbeat(Packet):
     name = 'Heartbeat'
     fields_desc = [
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
     ]
 class HeartbeatNotification(Packet):
     name = 'HeartbeatNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("notifHeader", "", NotifHeaderComp),
     ]
 class InquireEnrichmentRuleIDListRequest(Packet):
     name = 'InquireEnrichmentRuleIDListRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         LastEntityProcessed("lastEntityProcessed", ""),
     ]
 class InquireEnrichmentRuleIDListResponse(Packet):
     name = 'InquireEnrichmentRuleIDListResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         LastEntityProcessed("lastEntityProcessed", ""),
-        NoEnrichmentRules("noEnrichmentRules", 0xFFFF),
+        FieldLenField("noEnrichmentRules", 0, fmt="<H", count_of="enrichmentRulesGrp"),
         Pad6("pad6", ""),
-        ((EnrichmentRulesGrpComp, enrichmentRulesGrp, noEnrichmentRules))
+        PacketListField("enrichmentRulesGrp", None, EnrichmentRulesGrpComp, count_from=lambda pkt:pkt.noEnrichmentRules),
     ]
 class InquirePreTradeRiskLimitsRequest(Packet):
     name = 'InquirePreTradeRiskLimitsRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         MarketSegmentID("marketSegmentID", 0x80000000),
         RiskLimitGroup("riskLimitGroup", ""),
         Pad1("pad1", ""),
@@ -1814,40 +1814,40 @@ class InquirePreTradeRiskLimitsRequest(Packet):
 class InquireSessionListRequest(Packet):
     name = 'InquireSessionListRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
     ]
 class InquireSessionListResponse(Packet):
     name = 'InquireSessionListResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
-        NoSessions("noSessions", 0xFFFF),
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
+        FieldLenField("noSessions", 0, fmt="<H", count_of="sessionsGrp"),
         Pad6("pad6", ""),
-        ((SessionsGrpComp, sessionsGrp, noSessions))
+        PacketListField("sessionsGrp", None, SessionsGrpComp, count_from=lambda pkt:pkt.noSessions),
     ]
 class InquireUserRequest(Packet):
     name = 'InquireUserRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         LastEntityProcessed("lastEntityProcessed", ""),
     ]
 class InquireUserResponse(Packet):
     name = 'InquireUserResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         LastEntityProcessed("lastEntityProcessed", ""),
-        NoPartyDetails("noPartyDetails", 0xFFFF),
+        FieldLenField("noPartyDetails", 0, fmt="<H", count_of="partyDetailsGrp"),
         Pad6("pad6", ""),
-        ((PartyDetailsGrpComp, partyDetailsGrp, noPartyDetails))
+        PacketListField("partyDetailsGrp", None, PartyDetailsGrpComp, count_from=lambda pkt:pkt.noPartyDetails),
     ]
 class IssuerNotification(Packet):
     name = 'IssuerNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         SecurityID("securityID", 0x8000000000000000),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         LastPx("lastPx", 0x8000000000000000),
@@ -1862,40 +1862,40 @@ class IssuerNotification(Packet):
 class IssuerSecurityStateChangeRequest(Packet):
     name = 'IssuerSecurityStateChangeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
-        NoEvents("noEvents", 0xFF),
+        FieldLenField("noEvents", 0, fmt="<B", count_of="securityStatusEventGrp"),
         ByteEnumField("securityStatus", SecurityStatus.Knocked_out_and_suspend, SecurityStatus),
         ByteEnumField("soldOutIndicator", SoldOutIndicator.Sold_out, SoldOutIndicator),
         Pad1("pad1", ""),
-        ((SecurityStatusEventGrpComp, securityStatusEventGrp, noEvents))
+        PacketListField("securityStatusEventGrp", None, SecurityStatusEventGrpComp, count_from=lambda pkt:pkt.noEvents),
     ]
 class IssuerSecurityStateChangeResponse(Packet):
     name = 'IssuerSecurityStateChangeResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         SecurityStatusReportID("securityStatusReportID", 0xFFFFFFFFFFFFFFFF),
     ]
 class LegalNotificationBroadcast(Packet):
     name = 'LegalNotificationBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
-        VarTextLen("varTextLen", 0xFFFF),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         ByteEnumField("userStatus", UserStatus.User_released, UserStatus),
         Pad5("pad5", ""),
-        ((VarText, varText, varTextLen))
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class LogonRequest(Packet):
     name = 'LogonRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         HeartBtInt("heartBtInt", 0xFFFFFFFF),
         PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
         DefaultCstmApplVerID("defaultCstmApplVerID", ""),
@@ -1914,8 +1914,8 @@ class LogonRequest(Packet):
 class LogonResponse(Packet):
     name = 'LogonResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         ThrottleTimeInterval("throttleTimeInterval", 0x8000000000000000),
         ThrottleNoMsgs("throttleNoMsgs", 0xFFFFFFFF),
         ThrottleDisconnectLimit("throttleDisconnectLimit", 0xFFFFFFFF),
@@ -1930,20 +1930,20 @@ class LogonResponse(Packet):
 class LogoutRequest(Packet):
     name = 'LogoutRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
     ]
 class LogoutResponse(Packet):
     name = 'LogoutResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
     ]
 class MassQuoteRequest(Packet):
     name = 'MassQuoteRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
         ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
@@ -1957,29 +1957,29 @@ class MassQuoteRequest(Packet):
         ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
         ByteEnumField("tradingCapacity", TradingCapacity.Riskless_Principal, TradingCapacity),
         ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
-        NoQuoteEntries("noQuoteEntries", 0xFF),
+        FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="quoteEntryGrp"),
         ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
         ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
         Pad4("pad4", ""),
-        ((QuoteEntryGrpComp, quoteEntryGrp, noQuoteEntries))
+        PacketListField("quoteEntryGrp", None, QuoteEntryGrpComp, count_from=lambda pkt:pkt.noQuoteEntries),
     ]
 class MassQuoteResponse(Packet):
     name = 'MassQuoteResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         QuoteResponseID("quoteResponseID", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
-        NoQuoteSideEntries("noQuoteSideEntries", 0xFF),
+        FieldLenField("noQuoteSideEntries", 0, fmt="<B", count_of="quoteEntryAckGrp"),
         Pad3("pad3", ""),
-        ((QuoteEntryAckGrpComp, quoteEntryAckGrp, noQuoteSideEntries))
+        PacketListField("quoteEntryAckGrp", None, QuoteEntryAckGrpComp, count_from=lambda pkt:pkt.noQuoteSideEntries),
     ]
 class ModifyOrderNRResponse(Packet):
     name = 'ModifyOrderNRResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -1997,15 +1997,15 @@ class ModifyOrderNRResponse(Packet):
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
-        NoOrderEvents("noOrderEvents", 0xFF),
+        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         Pad4("pad4", ""),
-        ((OrderEventGrpComp, orderEventGrp, noOrderEvents))
+        PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents),
     ]
 class ModifyOrderResponse(Packet):
     name = 'ModifyOrderResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeaderME", "", ResponseHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -2024,15 +2024,15 @@ class ModifyOrderResponse(Packet):
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
-        NoOrderEvents("noOrderEvents", 0xFF),
+        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         Pad4("pad4", ""),
-        ((OrderEventGrpComp, orderEventGrp, noOrderEvents))
+        PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents),
     ]
 class ModifyOrderSingleRequest(Packet):
     name = 'ModifyOrderSingleRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -2080,8 +2080,8 @@ class ModifyOrderSingleRequest(Packet):
 class ModifyOrderSingleShortRequest(Packet):
     name = 'ModifyOrderSingleShortRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
@@ -2109,8 +2109,8 @@ class ModifyOrderSingleShortRequest(Packet):
 class ModifyTESTradeRequest(Packet):
     name = 'ModifyTESTradeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         LastPx("lastPx", 0x8000000000000000),
         TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
@@ -2119,17 +2119,17 @@ class ModifyTESTradeRequest(Packet):
         SettlDate("settlDate", 0xFFFFFFFF),
         LEShortEnumField("trdType", TrdType.Enlight, TrdType),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
-        NoSideAllocs("noSideAllocs", 0xFF),
+        FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrp"),
         TradeReportText("tradeReportText", ""),
         TradeReportID("tradeReportID", ""),
         Pad4("pad4", ""),
-        ((SideAllocGrpComp, sideAllocGrp, noSideAllocs))
+        PacketListField("sideAllocGrp", None, SideAllocGrpComp, count_from=lambda pkt:pkt.noSideAllocs),
     ]
 class NewOrderNRResponse(Packet):
     name = 'NewOrderNRResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
@@ -2143,15 +2143,15 @@ class NewOrderNRResponse(Packet):
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
-        NoOrderEvents("noOrderEvents", 0xFF),
+        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         Pad4("pad4", ""),
-        ((OrderEventGrpComp, orderEventGrp, noOrderEvents))
+        PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents),
     ]
 class NewOrderResponse(Packet):
     name = 'NewOrderResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeaderME", "", ResponseHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
@@ -2167,15 +2167,15 @@ class NewOrderResponse(Packet):
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
-        NoOrderEvents("noOrderEvents", 0xFF),
+        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         Pad4("pad4", ""),
-        ((OrderEventGrpComp, orderEventGrp, noOrderEvents))
+        PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents),
     ]
 class NewOrderSingleRequest(Packet):
     name = 'NewOrderSingleRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         Price("price", 0x8000000000000000),
         OrderQty("orderQty", 0x8000000000000000),
         DisplayQty("displayQty", 0x8000000000000000),
@@ -2221,8 +2221,8 @@ class NewOrderSingleRequest(Packet):
 class NewOrderSingleShortRequest(Packet):
     name = 'NewOrderSingleShortRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         Price("price", 0x8000000000000000),
         OrderQty("orderQty", 0x8000000000000000),
@@ -2249,19 +2249,19 @@ class NewOrderSingleShortRequest(Packet):
 class NewsBroadcast(Packet):
     name = 'NewsBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         OrigTime("origTime", 0xFFFFFFFFFFFFFFFF),
-        VarTextLen("varTextLen", 0xFFFF),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         Headline("headline", ""),
         Pad6("pad6", ""),
-        ((VarText, varText, varTextLen))
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class OrderExecNotification(Packet):
     name = 'OrderExecNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -2282,17 +2282,17 @@ class OrderExecNotification(Packet):
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         FIXClOrdID("fIXClOrdID", ""),
-        NoFills("noFills", 0xFF),
-        NoOrderEvents("noOrderEvents", 0xFF),
+        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
+        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         Pad1("pad1", ""),
-        ((FillsGrpComp, fillsGrp, noFills))
-        ((OrderEventGrpComp, orderEventGrp, noOrderEvents))
+        PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills),
+        PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents),
     ]
 class OrderExecReportBroadcast(Packet):
     name = 'OrderExecReportBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -2342,20 +2342,20 @@ class OrderExecReportBroadcast(Packet):
         FreeText2("freeText2", ""),
         FreeText4("freeText4", ""),
         FIXClOrdID("fIXClOrdID", ""),
-        NoFills("noFills", 0xFF),
-        NoOrderEvents("noOrderEvents", 0xFF),
+        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
+        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("tradeAtCloseOptIn", TradeAtCloseOptIn.Yes, TradeAtCloseOptIn),
         Pad3("pad3", ""),
-        ((FillsGrpComp, fillsGrp, noFills))
-        ((OrderEventGrpComp, orderEventGrp, noOrderEvents))
+        PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills),
+        PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents),
     ]
 class OrderExecResponse(Packet):
     name = 'OrderExecResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeaderME", "", ResponseHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -2377,17 +2377,17 @@ class OrderExecResponse(Packet):
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
-        NoFills("noFills", 0xFF),
-        NoOrderEvents("noOrderEvents", 0xFF),
+        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
+        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         Pad5("pad5", ""),
-        ((FillsGrpComp, fillsGrp, noFills))
-        ((OrderEventGrpComp, orderEventGrp, noOrderEvents))
+        PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills),
+        PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents),
     ]
 class PartyActionReport(Packet):
     name = 'PartyActionReport'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         TradeDate("tradeDate", 0xFFFFFFFF),
         RequestingPartyIDExecutingTrader("requestingPartyIDExecutingTrader", 0xFFFFFFFF),
@@ -2401,8 +2401,8 @@ class PartyActionReport(Packet):
 class PartyEntitlementsUpdateReport(Packet):
     name = 'PartyEntitlementsUpdateReport'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         TradeDate("tradeDate", 0xFFFFFFFF),
         PartyDetailIDExecutingUnit("partyDetailIDExecutingUnit", 0xFFFFFFFF),
@@ -2417,64 +2417,64 @@ class PartyEntitlementsUpdateReport(Packet):
 class PingRequest(Packet):
     name = 'PingRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         PartitionID("partitionID", 0xFFFF),
         Pad6("pad6", ""),
     ]
 class PingResponse(Packet):
     name = 'PingResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
     ]
 class PreTradeRiskLimitResponse(Packet):
     name = 'PreTradeRiskLimitResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         RiskLimitReportID("riskLimitReportID", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
-        NoRiskLimits("noRiskLimits", 0xFF),
+        FieldLenField("noRiskLimits", 0, fmt="<B", count_of="riskLimitsRptGrp"),
         ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus),
         PartyDetailExecutingUnit("partyDetailExecutingUnit", ""),
         Pad5("pad5", ""),
-        ((RiskLimitsRptGrpComp, riskLimitsRptGrp, noRiskLimits))
+        PacketListField("riskLimitsRptGrp", None, RiskLimitsRptGrpComp, count_from=lambda pkt:pkt.noRiskLimits),
     ]
 class PreTradeRiskLimitsDefinitionRequest(Packet):
     name = 'PreTradeRiskLimitsDefinitionRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         MarketSegmentID("marketSegmentID", 0x80000000),
-        NoRiskLimitAmount("noRiskLimitAmount", 0xFF),
+        FieldLenField("noRiskLimitAmount", 0, fmt="<B", count_of="riskLimitAmountGrp"),
         ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus),
         RiskLimitGroup("riskLimitGroup", ""),
         PartyDetailExecutingUnit("partyDetailExecutingUnit", ""),
         Pad2("pad2", ""),
-        ((RiskLimitAmountGrpComp, riskLimitAmountGrp, noRiskLimitAmount))
+        PacketListField("riskLimitAmountGrp", None, RiskLimitAmountGrpComp, count_from=lambda pkt:pkt.noRiskLimitAmount),
     ]
 class QuoteActivationNotification(Packet):
     name = 'QuoteActivationNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
         PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
-        NoNotAffectedSecurities("noNotAffectedSecurities", 0xFFFF),
+        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
         ByteEnumField("massActionType", MassActionType.Release_quotes, MassActionType),
         ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
         Pad3("pad3", ""),
-        ((NotAffectedSecuritiesGrpComp, notAffectedSecuritiesGrp, noNotAffectedSecurities))
+        PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities),
     ]
 class QuoteActivationRequest(Packet):
     name = 'QuoteActivationRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
         ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
@@ -2487,29 +2487,29 @@ class QuoteActivationRequest(Packet):
 class QuoteActivationResponse(Packet):
     name = 'QuoteActivationResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
-        NoNotAffectedSecurities("noNotAffectedSecurities", 0xFFFF),
+        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
         Pad6("pad6", ""),
-        ((NotAffectedSecuritiesGrpComp, notAffectedSecuritiesGrp, noNotAffectedSecurities))
+        PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities),
     ]
 class QuoteExecutionReport(Packet):
     name = 'QuoteExecutionReport'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
-        NoQuoteEvents("noQuoteEvents", 0xFF),
+        FieldLenField("noQuoteEvents", 0, fmt="<B", count_of="quoteEventGrp"),
         Pad3("pad3", ""),
-        ((QuoteEventGrpComp, quoteEventGrp, noQuoteEvents))
+        PacketListField("quoteEventGrp", None, QuoteEventGrpComp, count_from=lambda pkt:pkt.noQuoteEvents),
     ]
 class RFQBroadcast(Packet):
     name = 'RFQBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         SecurityID("securityID", 0x8000000000000000),
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
         OrderQty("orderQty", 0x8000000000000000),
@@ -2521,8 +2521,8 @@ class RFQBroadcast(Packet):
 class RFQRejectNotification(Packet):
     name = 'RFQRejectNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         SecurityID("securityID", 0x8000000000000000),
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
@@ -2534,8 +2534,8 @@ class RFQRejectNotification(Packet):
 class RFQRequest(Packet):
     name = 'RFQRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         OrderQty("orderQty", 0x8000000000000000),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
@@ -2548,15 +2548,15 @@ class RFQRequest(Packet):
 class RFQResponse(Packet):
     name = 'RFQResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
     ]
 class RFQSpecialistBroadcast(Packet):
     name = 'RFQSpecialistBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         SecurityID("securityID", 0x8000000000000000),
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
         OrderQty("orderQty", 0x8000000000000000),
@@ -2569,19 +2569,19 @@ class RFQSpecialistBroadcast(Packet):
 class Reject(Packet):
     name = 'Reject'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         LEIntEnumField("sessionRejectReason", SessionRejectReason.Order_not_accepted_in_Volatility_Freeze, SessionRejectReason),
-        VarTextLen("varTextLen", 0xFFFF),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         ByteEnumField("sessionStatus", SessionStatus.Logout, SessionStatus),
         Pad1("pad1", ""),
-        ((VarText, varText, varTextLen))
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class RetransmitMEMessageRequest(Packet):
     name = 'RetransmitMEMessageRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SubscriptionScope("subscriptionScope", 0xFFFFFFFF),
         PartitionID("partitionID", 0xFFFF),
         ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID),
@@ -2592,8 +2592,8 @@ class RetransmitMEMessageRequest(Packet):
 class RetransmitMEMessageResponse(Packet):
     name = 'RetransmitMEMessageResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         ApplTotalMessageCount("applTotalMessageCount", 0xFFFF),
         ApplEndMsgID("applEndMsgID", ""),
         RefApplLastMsgID("refApplLastMsgID", ""),
@@ -2602,8 +2602,8 @@ class RetransmitMEMessageResponse(Packet):
 class RetransmitRequest(Packet):
     name = 'RetransmitRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         ApplBegSeqNum("applBegSeqNum", 0xFFFFFFFFFFFFFFFF),
         ApplEndSeqNum("applEndSeqNum", 0xFFFFFFFFFFFFFFFF),
         PartitionID("partitionID", 0xFFFF),
@@ -2613,8 +2613,8 @@ class RetransmitRequest(Packet):
 class RetransmitResponse(Packet):
     name = 'RetransmitResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         ApplEndSeqNum("applEndSeqNum", 0xFFFFFFFFFFFFFFFF),
         RefApplLastSeqNum("refApplLastSeqNum", 0xFFFFFFFFFFFFFFFF),
         ApplTotalMessageCount("applTotalMessageCount", 0xFFFF),
@@ -2623,8 +2623,8 @@ class RetransmitResponse(Packet):
 class ServiceAvailabilityBroadcast(Packet):
     name = 'ServiceAvailabilityBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRBCHeader", "", NRBCHeaderComp),
         MatchingEngineTradeDate("matchingEngineTradeDate", 0xFFFFFFFF),
         TradeManagerTradeDate("tradeManagerTradeDate", 0xFFFFFFFF),
         ApplSeqTradeDate("applSeqTradeDate", 0xFFFFFFFF),
@@ -2641,8 +2641,8 @@ class ServiceAvailabilityBroadcast(Packet):
 class ServiceAvailabilityMarketBroadcast(Packet):
     name = 'ServiceAvailabilityMarketBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRBCHeader", "", NRBCHeaderComp),
         SelectiveRequestForQuoteServiceTradeDate("selectiveRequestForQuoteServiceTradeDate", 0xFFFFFFFF),
         ByteEnumField("selectiveRequestForQuoteServiceStatus", SelectiveRequestForQuoteServiceStatus.Available, SelectiveRequestForQuoteServiceStatus),
         ByteEnumField("selectiveRequestForQuoteRtmServiceStatus", SelectiveRequestForQuoteRtmServiceStatus.Available, SelectiveRequestForQuoteRtmServiceStatus),
@@ -2652,8 +2652,8 @@ class ServiceAvailabilityMarketBroadcast(Packet):
 class SingleQuoteRequest(Packet):
     name = 'SingleQuoteRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
         PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
@@ -2682,24 +2682,24 @@ class SingleQuoteRequest(Packet):
 class SpecialistDeleteAllOrderBroadcast(Packet):
     name = 'SpecialistDeleteAllOrderBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
         PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
-        NoAffectedOrders("noAffectedOrders", 0xFFFF),
-        NoNotAffectedOrders("noNotAffectedOrders", 0xFFFF),
+        FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp"),
+        FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp"),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
         ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
         Pad2("pad2", ""),
-        ((AffectedOrdGrpComp, affectedOrdGrp, noAffectedOrders))
-        ((NotAffectedOrdersGrpComp, notAffectedOrdersGrp, noNotAffectedOrders))
+        PacketListField("affectedOrdGrp", None, AffectedOrdGrpComp, count_from=lambda pkt:pkt.noAffectedOrders),
+        PacketListField("notAffectedOrdersGrp", None, NotAffectedOrdersGrpComp, count_from=lambda pkt:pkt.noNotAffectedOrders),
     ]
 class SpecialistInstrumentEventNotification(Packet):
     name = 'SpecialistInstrumentEventNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         SecurityID("securityID", 0x8000000000000000),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
@@ -2709,8 +2709,8 @@ class SpecialistInstrumentEventNotification(Packet):
 class SpecialistOrderBookNotification(Packet):
     name = 'SpecialistOrderBookNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -2732,7 +2732,7 @@ class SpecialistOrderBookNotification(Packet):
         PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
         PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF),
         PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
-        NoFills("noFills", 0xFF),
+        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
         Pad1("pad1", ""),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.QRS_Expiry, ExecRestatementReason),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
@@ -2754,13 +2754,13 @@ class SpecialistOrderBookNotification(Packet):
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         FIXClOrdID("fIXClOrdID", ""),
-        ((FillsGrpComp, fillsGrp, noFills))
+        PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills),
     ]
 class SpecialistRFQRejectRequest(Packet):
     name = 'SpecialistRFQRejectRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
@@ -2771,8 +2771,8 @@ class SpecialistRFQRejectRequest(Packet):
 class SpecialistRFQReplyNotification(Packet):
     name = 'SpecialistRFQReplyNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         SecurityID("securityID", 0x8000000000000000),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
@@ -2787,8 +2787,8 @@ class SpecialistRFQReplyNotification(Packet):
 class SpecialistRFQReplyRequest(Packet):
     name = 'SpecialistRFQReplyRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         BidPx("bidPx", 0x8000000000000000),
@@ -2802,15 +2802,15 @@ class SpecialistRFQReplyRequest(Packet):
 class SpecialistRFQReplyResponse(Packet):
     name = 'SpecialistRFQReplyResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
     ]
 class SpecialistSecurityStateChangeRequest(Packet):
     name = 'SpecialistSecurityStateChangeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         MarketSegmentID("marketSegmentID", 0x80000000),
         ByteEnumField("eventType", EventType.End_of_Restatement, EventType),
@@ -2819,15 +2819,15 @@ class SpecialistSecurityStateChangeRequest(Packet):
 class SpecialistSecurityStateChangeResponse(Packet):
     name = 'SpecialistSecurityStateChangeResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
         SecurityStatusReportID("securityStatusReportID", 0xFFFFFFFFFFFFFFFF),
     ]
 class StatusBroadcast(Packet):
     name = 'StatusBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TradeDate("tradeDate", 0xFFFFFFFF),
         ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
         Pad3("pad3", ""),
@@ -2835,8 +2835,8 @@ class StatusBroadcast(Packet):
 class SubscribeRequest(Packet):
     name = 'SubscribeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SubscriptionScope("subscriptionScope", 0xFFFFFFFF),
         ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID),
         Pad3("pad3", ""),
@@ -2844,16 +2844,16 @@ class SubscribeRequest(Packet):
 class SubscribeResponse(Packet):
     name = 'SubscribeResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         ApplSubID("applSubID", 0xFFFFFFFF),
         Pad4("pad4", ""),
     ]
 class TESApproveBroadcast(Packet):
     name = 'TESApproveBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         LastPx("lastPx", 0x8000000000000000),
         AllocQty("allocQty", 0x8000000000000000),
@@ -2868,7 +2868,7 @@ class TESApproveBroadcast(Packet):
         TESEnrichmentRuleID("tESEnrichmentRuleID", 0xFFFFFFFF),
         AutoApprovalRuleID("autoApprovalRuleID", 0xFFFFFFFF),
         LEShortEnumField("trdType", TrdType.Enlight, TrdType),
-        VarTextLen("varTextLen", 0xFFFF),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
         ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
@@ -2888,13 +2888,13 @@ class TESApproveBroadcast(Packet):
         FreeText2("freeText2", ""),
         FreeText4("freeText4", ""),
         Pad7("pad7", ""),
-        ((VarText, varText, varTextLen))
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class TESBroadcast(Packet):
     name = 'TESBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         LastPx("lastPx", 0x8000000000000000),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
@@ -2906,24 +2906,24 @@ class TESBroadcast(Packet):
         SettlDate("settlDate", 0xFFFFFFFF),
         AutoApprovalRuleID("autoApprovalRuleID", 0xFFFFFFFF),
         LEShortEnumField("trdType", TrdType.Enlight, TrdType),
-        VarTextLen("varTextLen", 0xFFFF),
+        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
         ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
-        NoSideAllocs("noSideAllocs", 0xFF),
+        FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrpBC"),
         ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         TradeReportText("tradeReportText", ""),
         TradeReportID("tradeReportID", ""),
         RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
         RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
         Pad1("pad1", ""),
-        ((SideAllocGrpBCComp, sideAllocGrpBC, noSideAllocs))
-        ((VarText, varText, varTextLen))
+        PacketListField("sideAllocGrpBC", None, SideAllocGrpBCComp, count_from=lambda pkt:pkt.noSideAllocs),
+        PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen),
     ]
 class TESDeleteBroadcast(Packet):
     name = 'TESDeleteBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
         PackageID("packageID", 0xFFFFFFFF),
@@ -2939,8 +2939,8 @@ class TESDeleteBroadcast(Packet):
 class TESExecutionBroadcast(Packet):
     name = 'TESExecutionBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
         PackageID("packageID", 0xFFFFFFFF),
@@ -2956,16 +2956,16 @@ class TESExecutionBroadcast(Packet):
 class TESResponse(Packet):
     name = 'TESResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         TESExecID("tESExecID", 0xFFFFFFFF),
         TradeReportID("tradeReportID", ""),
     ]
 class TESTradeBroadcast(Packet):
     name = 'TESTradeBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         LastPx("lastPx", 0x8000000000000000),
         LastQty("lastQty", 0x8000000000000000),
@@ -3034,8 +3034,8 @@ class TESTradeBroadcast(Packet):
 class TESTradingSessionStatusBroadcast(Packet):
     name = 'TESTradingSessionStatusBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TradeDate("tradeDate", 0xFFFFFFFF),
         ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
         Pad3("pad3", ""),
@@ -3043,16 +3043,16 @@ class TESTradingSessionStatusBroadcast(Packet):
 class TMTradingSessionStatusBroadcast(Packet):
     name = 'TMTradingSessionStatusBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
         Pad7("pad7", ""),
     ]
 class ThrottleUpdateNotification(Packet):
     name = 'ThrottleUpdateNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("notifHeader", "", NotifHeaderComp),
         ThrottleTimeInterval("throttleTimeInterval", 0x8000000000000000),
         ThrottleNoMsgs("throttleNoMsgs", 0xFFFFFFFF),
         ThrottleDisconnectLimit("throttleDisconnectLimit", 0xFFFFFFFF),
@@ -3060,8 +3060,8 @@ class ThrottleUpdateNotification(Packet):
 class TradeBroadcast(Packet):
     name = 'TradeBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         Price("price", 0x8000000000000000),
         LastPx("lastPx", 0x8000000000000000),
@@ -3143,8 +3143,8 @@ class TradeBroadcast(Packet):
 class TradingSessionStatusBroadcast(Packet):
     name = 'TradingSessionStatusBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         MarketSegmentID("marketSegmentID", 0x80000000),
         TradeDate("tradeDate", 0xFFFFFFFF),
         ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
@@ -3154,8 +3154,8 @@ class TradingSessionStatusBroadcast(Packet):
 class TrailingStopUpdateNotification(Packet):
     name = 'TrailingStopUpdateNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeaderME", "", RBCHeaderMEComp),
         OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
         ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
         OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
@@ -3175,22 +3175,22 @@ class TrailingStopUpdateNotification(Packet):
 class UnsubscribeRequest(Packet):
     name = 'UnsubscribeRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         RefApplSubID("refApplSubID", 0xFFFFFFFF),
         Pad4("pad4", ""),
     ]
 class UnsubscribeResponse(Packet):
     name = 'UnsubscribeResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
     ]
 class UserLoginRequest(Packet):
     name = 'UserLoginRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         Username("username", 0xFFFFFFFF),
         Password("password", ""),
         Pad4("pad4", ""),
@@ -3198,28 +3198,28 @@ class UserLoginRequest(Packet):
 class UserLoginResponse(Packet):
     name = 'UserLoginResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
     ]
 class UserLogoutRequest(Packet):
     name = 'UserLogoutRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         Username("username", 0xFFFFFFFF),
         Pad4("pad4", ""),
     ]
 class UserLogoutResponse(Packet):
     name = 'UserLogoutResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
     ]
 class XetraEnLightApproveDealNotification(Packet):
     name = 'XetraEnLightApproveDealNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
         LastPx("lastPx", 0x8000000000000000),
@@ -3242,8 +3242,8 @@ class XetraEnLightApproveDealNotification(Packet):
 class XetraEnLightApproveDealRequest(Packet):
     name = 'XetraEnLightApproveDealRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         MarketSegmentID("marketSegmentID", 0x80000000),
         NegotiationID("negotiationID", 0xFFFFFFFF),
         TradeID("tradeID", 0xFFFFFFFF),
@@ -3254,8 +3254,8 @@ class XetraEnLightApproveDealRequest(Packet):
 class XetraEnLightCreateDealNotification(Packet):
     name = 'XetraEnLightCreateDealNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         LastPx("lastPx", 0x8000000000000000),
         LastQty("lastQty", 0x8000000000000000),
@@ -3273,7 +3273,7 @@ class XetraEnLightCreateDealNotification(Packet):
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("allocMethod", AllocMethod.Manual, AllocMethod),
         ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType),
-        NoOrderBookItems("noOrderBookItems", 0xFF),
+        FieldLenField("noOrderBookItems", 0, fmt="<B", count_of="orderBookItemGrp"),
         ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
         ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
         ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
@@ -3288,13 +3288,13 @@ class XetraEnLightCreateDealNotification(Packet):
         FreeText1("freeText1", ""),
         FreeText2("freeText2", ""),
         FreeText4("freeText4", ""),
-        ((OrderBookItemGrpComp, orderBookItemGrp, noOrderBookItems))
+        PacketListField("orderBookItemGrp", None, OrderBookItemGrpComp, count_from=lambda pkt:pkt.noOrderBookItems),
     ]
 class XetraEnLightDealResponse(Packet):
     name = 'XetraEnLightDealResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         NegotiationID("negotiationID", 0xFFFFFFFF),
@@ -3307,8 +3307,8 @@ class XetraEnLightDealResponse(Packet):
 class XetraEnLightDealStatusNotification(Packet):
     name = 'XetraEnLightDealStatusNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         MarketSegmentID("marketSegmentID", 0x80000000),
         NegotiationID("negotiationID", 0xFFFFFFFF),
@@ -3320,24 +3320,24 @@ class XetraEnLightDealStatusNotification(Packet):
 class XetraEnLightDeleteAllQuoteNotification(Packet):
     name = 'XetraEnLightDeleteAllQuoteNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
         Pad4("pad4", ""),
     ]
 class XetraEnLightDeleteAllQuoteRequest(Packet):
     name = 'XetraEnLightDeleteAllQuoteRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
         Pad4("pad4", ""),
     ]
 class XetraEnLightEnterQuoteRequest(Packet):
     name = 'XetraEnLightEnterQuoteRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         BidPx("bidPx", 0x8000000000000000),
         OfferPx("offerPx", 0x8000000000000000),
         BidSize("bidSize", 0x8000000000000000),
@@ -3365,8 +3365,8 @@ class XetraEnLightEnterQuoteRequest(Packet):
 class XetraEnLightHitQuoteRequest(Packet):
     name = 'XetraEnLightHitQuoteRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         OrderQty("orderQty", 0x8000000000000000),
         Price("price", 0x8000000000000000),
@@ -3394,8 +3394,8 @@ class XetraEnLightHitQuoteRequest(Packet):
 class XetraEnLightNegotiationNotification(Packet):
     name = 'XetraEnLightNegotiationNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         BidPx("bidPx", 0x8000000000000000),
         OfferPx("offerPx", 0x8000000000000000),
@@ -3418,8 +3418,8 @@ class XetraEnLightNegotiationNotification(Packet):
 class XetraEnLightNegotiationRequesterNotification(Packet):
     name = 'XetraEnLightNegotiationRequesterNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         TrdRegTSExecutionTime("trdRegTSExecutionTime", 0xFFFFFFFFFFFFFFFF),
         BidPx("bidPx", 0x8000000000000000),
@@ -3439,7 +3439,7 @@ class XetraEnLightNegotiationRequesterNotification(Packet):
         SettlDate("settlDate", 0xFFFFFFFF),
         AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000),
         AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
-        NoTargetPartyIDs("noTargetPartyIDs", 0xFF),
+        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
         ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
@@ -3463,13 +3463,13 @@ class XetraEnLightNegotiationRequesterNotification(Packet):
         FreeText4("freeText4", ""),
         FreeText5("freeText5", ""),
         ClosureReason("closureReason", ""),
-        ((XetraEnLightTargetPartiesComp, xetraEnLightTargetParties, noTargetPartyIDs))
+        PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs),
     ]
 class XetraEnLightNegotiationStatusNotification(Packet):
     name = 'XetraEnLightNegotiationStatusNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         NegotiationID("negotiationID", 0xFFFFFFFF),
         ByteEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
@@ -3479,8 +3479,8 @@ class XetraEnLightNegotiationStatusNotification(Packet):
 class XetraEnLightOpenNegotiationNotification(Packet):
     name = 'XetraEnLightOpenNegotiationNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         NegotiationStartTime("negotiationStartTime", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
@@ -3507,8 +3507,8 @@ class XetraEnLightOpenNegotiationNotification(Packet):
 class XetraEnLightOpenNegotiationRequest(Packet):
     name = 'XetraEnLightOpenNegotiationRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         SecurityID("securityID", 0x8000000000000000),
         BidPx("bidPx", 0x8000000000000000),
         OfferPx("offerPx", 0x8000000000000000),
@@ -3523,7 +3523,7 @@ class XetraEnLightOpenNegotiationRequest(Packet):
         AutoExecExposureDuration("autoExecExposureDuration", 0xFFFFFFFF),
         AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000),
         AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
-        NoTargetPartyIDs("noTargetPartyIDs", 0xFF),
+        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
         ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
@@ -3547,13 +3547,13 @@ class XetraEnLightOpenNegotiationRequest(Packet):
         FreeText1("freeText1", ""),
         FreeText2("freeText2", ""),
         FreeText4("freeText4", ""),
-        ((XetraEnLightTargetPartiesComp, xetraEnLightTargetParties, noTargetPartyIDs))
+        PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs),
     ]
 class XetraEnLightOpenNegotiationRequesterNotification(Packet):
     name = 'XetraEnLightOpenNegotiationRequesterNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         SecurityID("securityID", 0x8000000000000000),
         BidPx("bidPx", 0x8000000000000000),
@@ -3573,7 +3573,7 @@ class XetraEnLightOpenNegotiationRequesterNotification(Packet):
         SettlDate("settlDate", 0xFFFFFFFF),
         AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000),
         AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
-        NoTargetPartyIDs("noTargetPartyIDs", 0xFF),
+        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
         ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
@@ -3600,13 +3600,13 @@ class XetraEnLightOpenNegotiationRequesterNotification(Packet):
         FreeText4("freeText4", ""),
         FreeText5("freeText5", ""),
         Pad5("pad5", ""),
-        ((XetraEnLightTargetPartiesComp, xetraEnLightTargetParties, noTargetPartyIDs))
+        PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs),
     ]
 class XetraEnLightQuoteNotification(Packet):
     name = 'XetraEnLightQuoteNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         SecondaryQuoteID("secondaryQuoteID", 0xFFFFFFFFFFFFFFFF),
@@ -3633,21 +3633,21 @@ class XetraEnLightQuoteNotification(Packet):
 class XetraEnLightQuoteRequesterNotification(Packet):
     name = 'XetraEnLightQuoteRequesterNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         NegotiationID("negotiationID", 0xFFFFFFFF),
         TradeID("tradeID", 0xFFFFFFFF),
         QuoteReqID("quoteReqID", ""),
-        NoQuoteEntries("noQuoteEntries", 0xFF),
+        FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="sRQSQuoteEntryGrp"),
         Pad3("pad3", ""),
-        ((SRQSQuoteEntryGrpComp, sRQSQuoteEntryGrp, noQuoteEntries))
+        PacketListField("sRQSQuoteEntryGrp", None, SRQSQuoteEntryGrpComp, count_from=lambda pkt:pkt.noQuoteEntries),
     ]
 class XetraEnLightQuoteResponse(Packet):
     name = 'XetraEnLightQuoteResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
         QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
         NegotiationID("negotiationID", 0xFFFFFFFF),
         QuoteReqID("quoteReqID", ""),
@@ -3655,24 +3655,24 @@ class XetraEnLightQuoteResponse(Packet):
 class XetraEnLightQuoteSnapshotNotification(Packet):
     name = 'XetraEnLightQuoteSnapshotNotification'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
-        NoQuoteEntries("noQuoteEntries", 0xFF),
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
+        FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="sRQSQuoteEntryGrp"),
         ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         Pad6("pad6", ""),
-        ((SRQSQuoteEntryGrpComp, sRQSQuoteEntryGrp, noQuoteEntries))
+        PacketListField("sRQSQuoteEntryGrp", None, SRQSQuoteEntryGrpComp, count_from=lambda pkt:pkt.noQuoteEntries),
     ]
 class XetraEnLightQuoteSnapshotRequest(Packet):
     name = 'XetraEnLightQuoteSnapshotRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
     ]
 class XetraEnLightQuotingStatusRequest(Packet):
     name = 'XetraEnLightQuotingStatusRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         MarketSegmentID("marketSegmentID", 0x80000000),
         NegotiationID("negotiationID", 0xFFFFFFFF),
         ByteEnumField("quotingStatus", QuotingStatus.PreFunding_not_sufficient, QuotingStatus),
@@ -3683,14 +3683,14 @@ class XetraEnLightQuotingStatusRequest(Packet):
 class XetraEnLightResponse(Packet):
     name = 'XetraEnLightResponse'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("responseHeader", "", ResponseHeaderComp),
     ]
 class XetraEnLightStatusBroadcast(Packet):
     name = 'XetraEnLightStatusBroadcast'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+        PacketField("rBCHeader", "", RBCHeaderComp),
         TradeDate("tradeDate", 0xFFFFFFFF),
         ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
         Pad3("pad3", ""),
@@ -3698,8 +3698,8 @@ class XetraEnLightStatusBroadcast(Packet):
 class XetraEnLightUpdateNegotiationRequest(Packet):
     name = 'XetraEnLightUpdateNegotiationRequest'
     fields_desc = [
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("messageHeaderIn", "", MessageHeaderInComp),
+        PacketField("requestHeader", "", RequestHeaderComp),
         BidPx("bidPx", 0x8000000000000000),
         OfferPx("offerPx", 0x8000000000000000),
         OrderQty("orderQty", 0x8000000000000000),
@@ -3713,7 +3713,7 @@ class XetraEnLightUpdateNegotiationRequest(Packet):
         SettlDate("settlDate", 0xFFFFFFFF),
         AutoExecExposureDuration("autoExecExposureDuration", 0xFFFFFFFF),
         AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
-        NoTargetPartyIDs("noTargetPartyIDs", 0xFF),
+        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
         ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
@@ -3734,7 +3734,8 @@ class XetraEnLightUpdateNegotiationRequest(Packet):
         FreeText4("freeText4", ""),
         FreeText5("freeText5", ""),
         Pad3("pad3", ""),
-        ((XetraEnLightTargetPartiesComp, xetraEnLightTargetParties, noTargetPartyIDs))
+        PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs),
     ]
+
 
 

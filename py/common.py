@@ -36,8 +36,15 @@ def fixed_length_string(length, padding=b'\0'):
     return get
 
 def float_decimal(size, precision, singed, little_endian, min, max, null):
-    assert size == 8
-    type_name = f'{"LE" if little_endian else ""}{"Signed" if singed else ""}LongField'
+    assert size in [1, 2, 4, 8]
+    sizeNameMap = {
+        1: 'Byte',
+        2: 'Short',
+        4: 'Int',
+        8: 'Long',
+    }
+
+    type_name = f'{"LE" if little_endian else ""}{"Signed" if singed else ""}{sizeNameMap[size]}Field'
     long_type = globals()[type_name]
 
     class FloatDecimal(long_type):

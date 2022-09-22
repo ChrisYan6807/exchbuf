@@ -39,12 +39,7 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
   }
 
   /*package*/ static String cppName_id3_eh5mZPdPt(@NotNull SNode __thisNode__) {
-    assert SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP) == 8;
-    if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
-      return "int64_t";
-    } else {
-      return "uint64_t";
-    }
+    return String.format("%sint%d_t", (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN) ? "" : "u"), SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8);
   }
   /*package*/ static String pyName_id3_eh5mZPez6(@NotNull SNode __thisNode__) {
     return "EBFloatDecimal pyName not implemented";

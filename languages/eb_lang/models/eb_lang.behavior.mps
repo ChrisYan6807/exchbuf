@@ -129,9 +129,6 @@
       <concept id="1079359253375" name="jetbrains.mps.baseLanguage.structure.ParenthesizedExpression" flags="nn" index="1eOMI4">
         <child id="1079359253376" name="expression" index="1eOMHV" />
       </concept>
-      <concept id="1160998861373" name="jetbrains.mps.baseLanguage.structure.AssertStatement" flags="nn" index="1gVbGN">
-        <child id="1160998896846" name="condition" index="1gVkn0" />
-      </concept>
       <concept id="1204053956946" name="jetbrains.mps.baseLanguage.structure.IMethodCall" flags="ng" index="1ndlxa">
         <reference id="1068499141037" name="baseMethodDeclaration" index="37wK5l" />
         <child id="1068499141038" name="actualArgument" index="37wK5m" />
@@ -3714,38 +3711,35 @@
         <ref role="3uigEE" to="wyt6:~String" resolve="String" />
       </node>
       <node concept="3clFbS" id="3_eh5mZPdPw" role="3clF47">
-        <node concept="1gVbGN" id="3_eh5mZPhzu" role="3cqZAp">
-          <node concept="3clFbC" id="3_eh5mZPjgW" role="1gVkn0">
-            <node concept="3cmrfG" id="3_eh5mZPjIl" role="3uHU7w">
-              <property role="3cmrfH" value="8" />
+        <node concept="3cpWs6" id="1jJW$lYwFfw" role="3cqZAp">
+          <node concept="2YIFZM" id="1jJW$lYwFR5" role="3cqZAk">
+            <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
+            <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
+            <node concept="Xl_RD" id="1jJW$lYwFYR" role="37wK5m">
+              <property role="Xl_RC" value="%sint%d_t" />
             </node>
-            <node concept="2OqwBi" id="3_eh5mZPhM2" role="3uHU7B">
-              <node concept="13iPFW" id="3_eh5mZPhAc" role="2Oq$k0" />
-              <node concept="3TrcHB" id="3_eh5mZPhYQ" role="2OqNvi">
-                <ref role="3TsBF5" to="wt0b:1ckN_PstSEc" resolve="precision" />
+            <node concept="3K4zz7" id="1jJW$lYwJem" role="37wK5m">
+              <node concept="Xl_RD" id="1jJW$lYwJmT" role="3K4E3e">
+                <property role="Xl_RC" value="" />
+              </node>
+              <node concept="Xl_RD" id="1jJW$lYwJvf" role="3K4GZi">
+                <property role="Xl_RC" value="u" />
+              </node>
+              <node concept="2OqwBi" id="1jJW$lYwI17" role="3K4Cdx">
+                <node concept="13iPFW" id="1jJW$lYwHFS" role="2Oq$k0" />
+                <node concept="3TrcHB" id="1jJW$lYwI_$" role="2OqNvi">
+                  <ref role="3TsBF5" to="wt0b:4s_KfQOOzH" resolve="singed" />
+                </node>
               </node>
             </node>
-          </node>
-        </node>
-        <node concept="3clFbJ" id="3_eh5mZPh80" role="3cqZAp">
-          <node concept="2OqwBi" id="3_eh5mZPhjS" role="3clFbw">
-            <node concept="13iPFW" id="3_eh5mZPh8k" role="2Oq$k0" />
-            <node concept="3TrcHB" id="3_eh5mZPhwy" role="2OqNvi">
-              <ref role="3TsBF5" to="wt0b:4s_KfQOOzH" resolve="singed" />
-            </node>
-          </node>
-          <node concept="3clFbS" id="3_eh5mZPh82" role="3clFbx">
-            <node concept="3cpWs6" id="3_eh5mZPjJ1" role="3cqZAp">
-              <node concept="Xl_RD" id="3_eh5mZPkcS" role="3cqZAk">
-                <property role="Xl_RC" value="int64_t" />
+            <node concept="17qRlL" id="1jJW$lYxx0a" role="37wK5m">
+              <node concept="3cmrfG" id="1jJW$lYxx0s" role="3uHU7w">
+                <property role="3cmrfH" value="8" />
               </node>
-            </node>
-          </node>
-          <node concept="9aQIb" id="3_eh5mZPkg8" role="9aQIa">
-            <node concept="3clFbS" id="3_eh5mZPkg9" role="9aQI4">
-              <node concept="3cpWs6" id="3_eh5mZPkgZ" role="3cqZAp">
-                <node concept="Xl_RD" id="3_eh5mZPkJ4" role="3cqZAk">
-                  <property role="Xl_RC" value="uint64_t" />
+              <node concept="2OqwBi" id="1jJW$lYxvuS" role="3uHU7B">
+                <node concept="13iPFW" id="1jJW$lYxuYB" role="2Oq$k0" />
+                <node concept="3TrcHB" id="1jJW$lYxwbr" role="2OqNvi">
+                  <ref role="3TsBF5" to="wt0b:1ckN_PstSE8" resolve="size" />
                 </node>
               </node>
             </node>

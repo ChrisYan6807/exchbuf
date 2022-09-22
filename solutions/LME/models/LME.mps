@@ -3,7 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang" version="0" />
-    <engage id="87d4987f-c831-4a03-9f51-66048c99e214" name="eb_lang_cpp" />
+    <engage id="195a05df-981e-4c01-a03a-6abf03243612" name="eb_lang_python" />
   </languages>
   <imports />
   <registry>
@@ -20,7 +20,7 @@
         <reference id="4482077330613725983" name="counter" index="3Pf6aa" />
       </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
-        <property id="6086719741693289086" name="value" index="1Ax3O_" />
+        <property id="6086719741693289086" name="default" index="1Ax3O_" />
         <reference id="6284687853304140150" name="type" index="1rk6cS" />
       </concept>
       <concept id="8244488409083636133" name="eb_lang.structure.EBComment" flags="ng" index="2gaMsz">

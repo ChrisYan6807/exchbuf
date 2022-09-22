@@ -787,56 +787,13 @@
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/685487308853455081">
     <file name="EBFloatDecimal_Constraints.java">
-      <node id="685487308853455081" at="20,39,21,38" concept="13" />
-      <node id="685487308853455082" at="25,59,26,40" concept="13" />
-      <node id="685487308853455082" at="29,38,30,18" concept="8" />
-      <node id="685487308853455082" at="32,0,33,0" concept="11" trace="validatePropertyBreakingPoint" />
-      <node id="685487308853455082" at="34,109,35,100" concept="7" />
-      <node id="685487308853455082" at="36,53,37,75" concept="3" />
-      <node id="685487308853455082" at="38,7,39,20" concept="8" />
-      <node id="685487308853455542" at="41,82,42,32" concept="8" />
-      <node id="685487308853455081" at="46,84,47,119" concept="7" />
-      <node id="685487308853455082" at="47,119,48,61" concept="3" />
-      <node id="685487308853455081" at="48,61,49,22" concept="8" />
-      <node id="685487308853455081" at="53,0,54,0" concept="11" trace="EBFloatDecimal$vr" />
-      <node id="685487308853455081" at="57,0,58,0" concept="11" trace="size$l3Es" />
-      <node id="685487308853455081" at="20,0,23,0" concept="1" trace="EBFloatDecimal_Constraints#()V" />
-      <node id="685487308853455082" at="25,0,28,0" concept="1" trace="Size_Property#(Ljetbrains/mps/smodel/runtime/ConstraintsDescriptor;)V" />
-      <node id="685487308853455082" at="35,100,38,7" concept="5" />
-      <node id="685487308853455082" at="41,0,44,0" concept="12" trace="staticValidateProperty#(Lorg/jetbrains/mps/openapi/model/SNode;I)Z" />
-      <node id="685487308853455082" at="28,0,32,0" concept="6" trace="hasOwnValidator#()Z" />
-      <node id="685487308853455081" at="45,0,51,0" concept="6" trace="getSpecifiedProperties#()Ljava/util/Map;" />
-      <node id="685487308853455082" at="33,0,41,0" concept="6" trace="validateValue#(Lorg/jetbrains/mps/openapi/model/SNode;Ljava/lang/Object;Ljetbrains/mps/smodel/runtime/CheckingNodeContext;)Z" />
-      <scope id="685487308853455081" at="20,39,21,38" />
-      <scope id="685487308853455082" at="25,59,26,40" />
-      <scope id="685487308853455082" at="29,38,30,18" />
-      <scope id="685487308853455082" at="36,53,37,75" />
-      <scope id="685487308853455223" at="41,82,42,32" />
-      <scope id="685487308853455081" at="20,0,23,0" />
-      <scope id="685487308853455082" at="25,0,28,0">
-        <var name="container" id="685487308853455082" />
-      </scope>
-      <scope id="685487308853455082" at="41,0,44,0">
-        <var name="node" id="685487308853455082" />
-        <var name="propertyValue" id="685487308853455082" />
-      </scope>
-      <scope id="685487308853455081" at="46,84,49,22">
-        <var name="properties" id="685487308853455081" />
-      </scope>
-      <scope id="685487308853455082" at="28,0,32,0" />
-      <scope id="685487308853455082" at="34,109,39,20">
-        <var name="result" id="685487308853455082" />
-      </scope>
-      <scope id="685487308853455081" at="45,0,51,0" />
-      <scope id="685487308853455082" at="33,0,41,0">
-        <var name="checkingNodeContext" id="685487308853455082" />
-        <var name="node" id="685487308853455082" />
-        <var name="propertyValue" id="685487308853455082" />
-      </scope>
-      <unit id="685487308853455081" at="52,0,55,0" name="eb_lang.constraints.EBFloatDecimal_Constraints$CONCEPTS" />
-      <unit id="685487308853455081" at="56,0,59,0" name="eb_lang.constraints.EBFloatDecimal_Constraints$PROPS" />
-      <unit id="685487308853455082" at="24,0,45,0" name="eb_lang.constraints.EBFloatDecimal_Constraints$Size_Property" />
-      <unit id="685487308853455081" at="19,0,60,0" name="eb_lang.constraints.EBFloatDecimal_Constraints" />
+      <node id="685487308853455081" at="10,39,11,38" concept="13" />
+      <node id="685487308853455081" at="15,0,16,0" concept="11" trace="EBFloatDecimal$vr" />
+      <node id="685487308853455081" at="10,0,13,0" concept="1" trace="EBFloatDecimal_Constraints#()V" />
+      <scope id="685487308853455081" at="10,39,11,38" />
+      <scope id="685487308853455081" at="10,0,13,0" />
+      <unit id="685487308853455081" at="14,0,17,0" name="eb_lang.constraints.EBFloatDecimal_Constraints$CONCEPTS" />
+      <unit id="685487308853455081" at="9,0,18,0" name="eb_lang.constraints.EBFloatDecimal_Constraints" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/7490936836596142232">
