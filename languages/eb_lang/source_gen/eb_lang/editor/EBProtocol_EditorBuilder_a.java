@@ -997,11 +997,11 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     public SAbstractConcept getChildSConcept() {
       return CONCEPTS.EBStatement$nx;
     }
-    public SNode createNodeToInsert(EditorContext editorContext) {
-      return nodeFactory();
+    public SNode createNodeToInsert(EditorContext editorContext, SNode prevNode, SNode nextNode, int index) {
+      return nodeFactory(prevNode, nextNode, index);
     }
 
-    public SNode nodeFactory() {
+    public SNode nodeFactory(SNode prevNode, SNode nextNode, int index) {
       return SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cfeL, "eb_lang.structure.EBEmptyStatement"));
     }
     public EditorCell createNodeCell(SNode elementNode) {

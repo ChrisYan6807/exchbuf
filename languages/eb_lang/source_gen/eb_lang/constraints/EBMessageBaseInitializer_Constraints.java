@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.smodel.runtime.ReferenceScopeProvider;
 import jetbrains.mps.smodel.runtime.base.BaseScopeProvider;
 import org.jetbrains.mps.openapi.model.SNodeReference;
+import jetbrains.mps.smodel.SNodePointer;
 import jetbrains.mps.scope.Scope;
 import jetbrains.mps.smodel.runtime.ReferenceConstraintsContext;
 import org.jetbrains.mps.openapi.model.SNode;
@@ -25,7 +26,6 @@ import org.apache.log4j.Level;
 import jetbrains.mps.scope.ListScope;
 import java.util.ArrayList;
 import java.util.HashMap;
-import jetbrains.mps.smodel.SNodePointer;
 import org.jetbrains.mps.openapi.language.SConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
@@ -38,18 +38,14 @@ public class EBMessageBaseInitializer_Constraints extends BaseConstraintsDescrip
 
   @Override
   protected Map<SReferenceLink, ReferenceConstraintsDescriptor> getSpecifiedReferences() {
-    BaseReferenceConstraintsDescriptor d0 = new BaseReferenceConstraintsDescriptor(LINKS.msgType$7W9U, this) {
-      @Override
-      public boolean hasOwnScopeProvider() {
-        return true;
-      }
+    BaseReferenceConstraintsDescriptor d0 = new BaseReferenceConstraintsDescriptor(LINKS.msgType$7W9U, this, true, false) {
       @Nullable
       @Override
       public ReferenceScopeProvider getScopeProvider() {
         return new BaseScopeProvider() {
           @Override
           public SNodeReference getSearchScopeValidatorNode() {
-            return breakingNode_3uj98v_a0a0a0a0a1a0a0a0c;
+            return new SNodePointer("r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)", "3285392525387344689");
           }
           @Override
           public Scope createScope(final ReferenceConstraintsContext _context) {
@@ -84,7 +80,6 @@ public class EBMessageBaseInitializer_Constraints extends BaseConstraintsDescrip
     references.put(d0.getReference(), d0);
     return references;
   }
-  private static final SNodePointer breakingNode_3uj98v_a0a0a0a0a1a0a0a0c = new SNodePointer("r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)", "3285392525387344689");
 
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBMessageBaseInitializer$Tk = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b331d7e1aL, "eb_lang.structure.EBMessageBaseInitializer");
