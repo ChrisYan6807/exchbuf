@@ -4,92 +4,109 @@
 	<Project>
 		<Option title="Router"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="msvc8"/>
+		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug"/>
+				<Option working_dir="/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 all"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Router">
-				<Option output="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug/Router.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/../../cpp"/>
-					<Add directory="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/../../solutions/LME/source_gen/LME"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 Router"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Router/fast">
-				<Option output="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug/Router.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="msvc8"/>
-				<Compiler>
-					<Add directory="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/../../cpp"/>
-					<Add directory="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/../../solutions/LME/source_gen/LME"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.29.30037\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 Router/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug"/>
+				<Option working_dir="/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Router">
+				<Option output="/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Router" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/chris/repo/exchbuf/testplan/Router/../../cpp"/>
+					<Add directory="/home/chris/repo/exchbuf/testplan/Router/../../solutions/LME/source_gen/LME"/>
+					<Add directory="/home/chris/repo/exchbuf/testplan/Router/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 Router"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Router/fast">
+				<Option output="/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Router" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/chris/repo/exchbuf/testplan/Router/../../cpp"/>
+					<Add directory="/home/chris/repo/exchbuf/testplan/Router/../../solutions/LME/source_gen/LME"/>
+					<Add directory="/home/chris/repo/exchbuf/testplan/Router/."/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 Router/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/main.cpp">
+		<Unit filename="/home/chris/repo/exchbuf/testplan/Router/Router.cpp">
 			<Option target="Router"/>
 		</Unit>
-		<Unit filename="C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/CMakeLists.txt">
+		<Unit filename="/home/chris/repo/exchbuf/testplan/Router/Router.h">
+			<Option target="Router"/>
+		</Unit>
+		<Unit filename="/home/chris/repo/exchbuf/testplan/Router/TagValueMsg.h">
+			<Option target="Router"/>
+		</Unit>
+		<Unit filename="/home/chris/repo/exchbuf/testplan/Router/main.cpp">
+			<Option target="Router"/>
+		</Unit>
+		<Unit filename="/home/chris/repo/exchbuf/testplan/Router/protocols/LME_protocol.h">
+			<Option target="Router"/>
+		</Unit>
+		<Unit filename="/home/chris/repo/exchbuf/testplan/Router/util.h">
+			<Option target="Router"/>
+		</Unit>
+		<Unit filename="/home/chris/repo/exchbuf/testplan/Router/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

@@ -1086,13 +1086,13 @@ class NewOrder(Packet):
         uint16_t("sTPID", 65535),
         uint16_t("nonExecutingClientID", 65535),
         int64_t("iOIID", -9223372036854775808),
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("FreeTextSection", "", NewOrder_FreeTextSection_Composite),
+        PacketField("MiFIDShortcodes", "", NewOrder_MiFIDShortcodes_Composite),
+        PacketField("OptionalFields", "", NewOrder_OptionalFields_Composite),
+        PacketField("ClearingFields", "", NewOrder_ClearingFields_Composite),
+        PacketField("NotUsedGroup1", "", NewOrder_NotUsedGroup1_Composite),
+        PacketField("NotUsedGroup2", "", NewOrder_NotUsedGroup2_Composite),
+        PacketField("AdditionalInfos", "", NewOrder_AdditionalInfos_Composite),
     ]
 class Ack_MiFIDFields(Packet):
     name = 'Ack_MiFIDFields'
@@ -1132,7 +1132,7 @@ class Ack(Packet):
         int64_t("orderPx", -9223372036854775808),
         uint64_t("orderQty", 18446744073709551615),
         PacketField("ackQualifiers", 0, AckQualifiers_set),
-        Unsupported type message,
+        PacketField("MiFIDFields", "", Ack_MiFIDFields_Composite),
     ]
 class Fill_OptionalFieldsFill(Packet):
     name = 'Fill_OptionalFieldsFill'
@@ -1217,10 +1217,10 @@ class Fill(Packet):
         ByteEnumField("executionPhase", ExecutionPhase_enum.IPO, ExecutionPhase_enum),
         uint32_t("lISTransactionID", 4294967295),
         unsigned_char("eSCBMembership", 255),
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("OptionalFieldsFill", "", Fill_OptionalFieldsFill_Composite),
+        PacketField("StrategyFields", "", Fill_StrategyFields_Composite),
+        PacketField("MiFIDFields", "", Fill_MiFIDFields_Composite),
+        PacketField("OptionalFieldsDerivatives", "", Fill_OptionalFieldsDerivatives_Composite),
     ]
 class Kill_MiFIDFields(Packet):
     name = 'Kill_MiFIDFields'
@@ -1255,7 +1255,7 @@ class Kill(Packet):
         ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
         LEShortEnumField("killReason", KillReason_enum.Order_Cancelled_due_to_an_incorrect_Reactor_Response, KillReason_enum),
         PacketField("ackQualifiers", 0, AckQualifiers_set),
-        Unsupported type message,
+        PacketField("MiFIDFields", "", Kill_MiFIDFields_Composite),
     ]
 class CancelReplace_FreeTextSection(Packet):
     name = 'CancelReplace_FreeTextSection'
@@ -1364,12 +1364,12 @@ class CancelReplace(Packet):
         PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set),
         PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
         uint16_t("sTPID", 65535),
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("FreeTextSection", "", CancelReplace_FreeTextSection_Composite),
+        PacketField("OptionalFields", "", CancelReplace_OptionalFields_Composite),
+        PacketField("ClearingFields", "", CancelReplace_ClearingFields_Composite),
+        PacketField("NotUsedGroup1", "", CancelReplace_NotUsedGroup1_Composite),
+        PacketField("NotUsedGroup2", "", CancelReplace_NotUsedGroup2_Composite),
+        PacketField("AdditionalInfos", "", CancelReplace_AdditionalInfos_Composite),
     ]
 class Reject_CollarFields(Packet):
     name = 'Reject_CollarFields'
@@ -1418,8 +1418,8 @@ class Reject(Packet):
         uint16_t("errorCode", 65535),
         uint16_t("rejectedMessageID", 65535),
         PacketField("ackQualifiers", 0, AckQualifiers_set),
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("CollarFields", "", Reject_CollarFields_Composite),
+        PacketField("MiFIDFields", "", Reject_MiFIDFields_Composite),
     ]
 class Quotes_MiFIDShortcodes(Packet):
     name = 'Quotes_MiFIDShortcodes'
@@ -1484,9 +1484,9 @@ class Quotes(Packet):
         PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
         unsigned_char("rFEAnswer", 255),
         PacketField("executionInstruction", 0, ExecutionInstruction_set),
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("MiFIDShortcodes", "", Quotes_MiFIDShortcodes_Composite),
+        PacketField("ClearingDataset", "", Quotes_ClearingDataset_Composite),
+        PacketField("QuotesRep", "", Quotes_QuotesRep_Composite),
     ]
 class QuoteAck_QuoteAcks(Packet):
     name = 'QuoteAck_QuoteAcks'
@@ -1524,7 +1524,7 @@ class QuoteAck(Packet):
         ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum),
         int32_t("executionWithinFirmShortCode", -2147483648),
         PacketField("ackQualifiers", 0, AckQualifiers_set),
-        Unsupported type message,
+        PacketField("QuoteAcks", "", QuoteAck_QuoteAcks_Composite),
     ]
 class CancelRequest_NotUsedGroup1(Packet):
     name = 'CancelRequest_NotUsedGroup1'
@@ -1564,8 +1564,8 @@ class CancelRequest(Packet):
         ByteEnumField("orderSide", CancelRequestOrderSide_enum.Sell, CancelRequestOrderSide_enum),
         ByteEnumField("orderType", OrderType_enum.Iceberg, OrderType_enum),
         ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("NotUsedGroup1", "", CancelRequest_NotUsedGroup1_Composite),
+        PacketField("NotUsedGroup2", "", CancelRequest_NotUsedGroup2_Composite),
     ]
 class MassCancel_NotUsedGroup1(Packet):
     name = 'MassCancel_NotUsedGroup1'
@@ -1610,8 +1610,8 @@ class MassCancel(Packet):
         ByteEnumField("optionType", OptionType_enum.Put, OptionType_enum),
         ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
         int32_t("targetExecutionWithinFirmShortCode", -2147483648),
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("NotUsedGroup1", "", MassCancel_NotUsedGroup1_Composite),
+        PacketField("NotUsedGroup2", "", MassCancel_NotUsedGroup2_Composite),
     ]
 class MassCancelAck_MiFIDFields(Packet):
     name = 'MassCancelAck_MiFIDFields'
@@ -1654,7 +1654,7 @@ class MassCancelAck(Packet):
         ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
         PacketField("ackQualifiers", 0, AckQualifiers_set),
         int32_t("targetExecutionWithinFirmShortCode", -2147483648),
-        Unsupported type message,
+        PacketField("MiFIDFields", "", MassCancelAck_MiFIDFields_Composite),
     ]
 class UserNotification_NotUsedGroup1(Packet):
     name = 'UserNotification_NotUsedGroup1'
@@ -1679,7 +1679,7 @@ class UserNotification(Packet):
         ByteEnumField("userStatus", UserStatus_enum.Order_Size_Limit_Deactivated_by_Risk_Manager, UserStatus_enum),
         uint32_t("logicalAccessID", 4294967295),
         uint64_t("orderSizeLimit", 18446744073709551615),
-        Unsupported type message,
+        PacketField("NotUsedGroup1", "", UserNotification_NotUsedGroup1_Composite),
     ]
 class InstrumentSynchronizationList_InstrumentSynchronizationSection(Packet):
     name = 'InstrumentSynchronizationList_InstrumentSynchronizationSection'
@@ -1700,7 +1700,7 @@ class InstrumentSynchronizationList(Packet):
         uint32_t("msgSeqNum", 4294967295),
         uint64_t("oEGOUTToMember", 18446744073709551615),
         uint16_t("resynchronizationID", 65535),
-        Unsupported type message,
+        PacketField("InstrumentSynchronizationSection", "", InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite),
     ]
 class SecurityDefinitionRequest_StrategyLegs(Packet):
     name = 'SecurityDefinitionRequest_StrategyLegs'
@@ -1730,7 +1730,7 @@ class SecurityDefinitionRequest(Packet):
         int64_t("securityReqID", -9223372036854775808),
         uint32_t("contractSymbolIndex", 4294967295),
         ByteEnumField("strategyCode", StrategyCode_enum.Put_Straddle_versus_Sell_a_Call_or_a_Put, StrategyCode_enum),
-        Unsupported type message,
+        PacketField("StrategyLegs", "", SecurityDefinitionRequest_StrategyLegs_Composite),
     ]
 class MMProtectionRequest_MMPSection(Packet):
     name = 'MMProtectionRequest_MMPSection'
@@ -1757,7 +1757,7 @@ class MMProtectionRequest(Packet):
         uint32_t("symbolIndex", 4294967295),
         ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
         ByteEnumField("requestType", RequestType_enum.Adjust, RequestType_enum),
-        Unsupported type message,
+        PacketField("MMPSection", "", MMProtectionRequest_MMPSection_Composite),
     ]
 class MMProtectionAck_MMPSection2(Packet):
     name = 'MMProtectionAck_MMPSection2'
@@ -1792,7 +1792,7 @@ class MMProtectionAck(Packet):
         uint32_t("symbolIndex", 4294967295),
         ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
         PacketField("mMPExecutionType", 0, MMPExecutionType_set),
-        Unsupported type message,
+        PacketField("MMPSection2", "", MMProtectionAck_MMPSection2_Composite),
     ]
 class NewWholesaleOrder_WholesaleLegsRep(Packet):
     name = 'NewWholesaleOrder_WholesaleLegsRep'
@@ -1859,8 +1859,8 @@ class NewWholesaleOrder(Packet):
         ByteEnumField("wholesaleSide", WholesaleSide_enum.Cross, WholesaleSide_enum),
         unsigned_char("eSCBMembership", 255),
         ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum),
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("WholesaleLegsRep", "", NewWholesaleOrder_WholesaleLegsRep_Composite),
+        PacketField("WholesaleClientRep", "", NewWholesaleOrder_WholesaleClientRep_Composite),
     ]
 class WholesaleOrderAck_WholesaleAckLegsRep(Packet):
     name = 'WholesaleOrderAck_WholesaleAckLegsRep'
@@ -1921,8 +1921,8 @@ class WholesaleOrderAck(Packet):
         ByteEnumField("responseType", ResponseType_enum.Reject, ResponseType_enum),
         uint16_t("errorCode", 65535),
         PacketField("ackQualifiers", 0, AckQualifiers_set),
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("WholesaleAckLegsRep", "", WholesaleOrderAck_WholesaleAckLegsRep_Composite),
+        PacketField("WholesaleAckClearingRep", "", WholesaleOrderAck_WholesaleAckClearingRep_Composite),
     ]
 class CrossOrder_FreeTextSection(Packet):
     name = 'CrossOrder_FreeTextSection'
@@ -2001,10 +2001,10 @@ class CrossOrder(Packet):
         uint16_t("nonExecutingClientID", 65535),
         ByteEnumField("orderActorType", OrderActorType_enum.Reactor, OrderActorType_enum),
         ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum),
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("FreeTextSection", "", CrossOrder_FreeTextSection_Composite),
+        PacketField("MiFIDShortcodes", "", CrossOrder_MiFIDShortcodes_Composite),
+        PacketField("ClearingFieldsX", "", CrossOrder_ClearingFieldsX_Composite),
+        PacketField("StrategyFields", "", CrossOrder_StrategyFields_Composite),
     ]
 class RFQAudit_RFQCounterparts(Packet):
     name = 'RFQAudit_RFQCounterparts'
@@ -2034,7 +2034,7 @@ class RFQAudit(Packet):
         uint64_t("quoteReqID", 18446744073709551615),
         uint32_t("symbolIndex", 4294967295),
         ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
-        Unsupported type message,
+        PacketField("RFQCounterparts", "", RFQAudit_RFQCounterparts_Composite),
     ]
 class DeclarationEntry_NotUsedGroup1(Packet):
     name = 'DeclarationEntry_NotUsedGroup1'
@@ -2086,7 +2086,7 @@ class DeclarationEntry(Packet):
         char18("freeTextCross", ""),
         int32_t("investmentDecisionWFirmShortCode", -2147483648),
         int32_t("clientIdentificationShortCodeCross", -2147483648),
-        Unsupported type message,
+        PacketField("NotUsedGroup1", "", DeclarationEntry_NotUsedGroup1_Composite),
     ]
 class DeclarationEntryAck_NotUsedGroup1(Packet):
     name = 'DeclarationEntryAck_NotUsedGroup1'
@@ -2112,7 +2112,7 @@ class DeclarationEntryAck(Packet):
         ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum),
         ByteEnumField("preMatchingType", PreMatchingType_enum.Prematched_for_the_fifth_next_fixing, PreMatchingType_enum),
         PacketField("waiverIndicator", 0, WaiverIndicator_set),
-        Unsupported type message,
+        PacketField("NotUsedGroup1", "", DeclarationEntryAck_NotUsedGroup1_Composite),
     ]
 class DeclarationNotice_NotUsedGroup1(Packet):
     name = 'DeclarationNotice_NotUsedGroup1'
@@ -2177,8 +2177,8 @@ class DeclarationNotice(Packet):
         unsigned_char("previousDayIndicator", 255),
         int64_t("miscellaneousFeeAmount", -9223372036854775808),
         ByteEnumField("cCPID", CCPID_enum.EuroCCP, CCPID_enum),
-        Unsupported type message,
-        Unsupported type message,
+        PacketField("NotUsedGroup1", "", DeclarationNotice_NotUsedGroup1_Composite),
+        PacketField("NotUsedGroup2", "", DeclarationNotice_NotUsedGroup2_Composite),
     ]
 class DeclarationEntryReject_NotUsedGroup1(Packet):
     name = 'DeclarationEntryReject_NotUsedGroup1'
@@ -2204,7 +2204,7 @@ class DeclarationEntryReject(Packet):
         uint16_t("errorCode", 65535),
         unsigned_char("rejectedMessage", 255),
         uint16_t("rejectedMessageID", 65535),
-        Unsupported type message,
+        PacketField("NotUsedGroup1", "", DeclarationEntryReject_NotUsedGroup1_Composite),
     ]
 
 

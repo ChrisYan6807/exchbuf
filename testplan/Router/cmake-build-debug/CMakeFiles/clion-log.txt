@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2021.1.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - NMake Makefiles" C:\Users\yanch\Documents\mps\exchbufv2\testplan\Router
+/home/chris/soft/clion-2021.1.2/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/chris/repo/exchbuf/testplan/Router
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug
+-- Build files have been written to: /home/chris/repo/exchbuf/testplan/Router/cmake-build-debug

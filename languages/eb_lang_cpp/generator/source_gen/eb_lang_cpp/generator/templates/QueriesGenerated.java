@@ -16,6 +16,7 @@ import eb_lang.behavior.EBMessageMemberVar__BehaviorDescriptor;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import eb_lang.behavior.EBInclude__BehaviorDescriptor;
+import jetbrains.mps.internal.collections.runtime.IWhereFilter;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SModelOperations;
 import jetbrains.mps.generator.template.SourceSubstituteMacroNodeContext;
 import jetbrains.mps.generator.template.SourceSubstituteMacroNodesContext;
@@ -184,7 +185,7 @@ public class QueriesGenerated extends QueryProviderBase {
         return String.format("    %1$s(%2$s %3$s_):%3$s(%3$s_) {};", SPropertyOperations.getString(message, PROPS.name$MnvL), SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$sKHn), LINKS.type$eiFN), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$sKHn), PROPS.name$MnvL));
 
       } else {
-        return String.format("    %1$s(%2$s %3$s_, %4$s %5$s_):%4$s(%s4$_), %5$s(%5$s_) {};", SPropertyOperations.getString(message, PROPS.name$MnvL), SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$sKHn), LINKS.type$eiFN), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$sKHn), PROPS.name$MnvL), SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.member2$xz9Q), LINKS.type$eiFN), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.member2$xz9Q), PROPS.name$MnvL));
+        return String.format("    %1$s(%2$s %3$s_, %4$s %5$s_):%3$s(%3$s_), %5$s(%5$s_) {};", SPropertyOperations.getString(message, PROPS.name$MnvL), SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$sKHn), LINKS.type$eiFN), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$sKHn), PROPS.name$MnvL), SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.member2$xz9Q), LINKS.type$eiFN), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.member2$xz9Q), PROPS.name$MnvL));
       }
 
     }
@@ -194,12 +195,20 @@ public class QueriesGenerated extends QueryProviderBase {
   public static Object propertyMacro_GetValue_0_24(final PropertyMacroContext _context) {
     SNode message = SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBMessage$YV, false, false);
     SNode base = SLinkOperations.getTarget(message, LINKS.base$LfNH);
+
     if ((message != null) && (base != null)) {
+      SNode ctor = SNodeOperations.cast(ListSequence.fromList(SLinkOperations.getChildren(base, LINKS.content$vVwC)).findFirst(new IWhereFilter<SNode>() {
+        public boolean accept(SNode it) {
+          return SNodeOperations.isInstanceOf(it, CONCEPTS.EBMessageConstructor$VR);
+        }
+      }), CONCEPTS.EBMessageConstructor$VR);
+      SNode msgType = SNodeOperations.cast(SLinkOperations.getTarget(SLinkOperations.getTarget(ctor, LINKS.msgType$sKHn), LINKS.type$eiFN), CONCEPTS.EBEnum$37);
+
       if (isNotEmptyString(SPropertyOperations.getString(_context.getNode(), PROPS.value2$tnOI))) {
-        return String.format("    %s():%s(%s, %s) {};", SPropertyOperations.getString(message, PROPS.name$MnvL), SPropertyOperations.getString(base, PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$7W9U), SPropertyOperations.getString(_context.getNode(), PROPS.value2$tnOI));
+        return String.format("    %s():%s(%s::%s, %s) {};", SPropertyOperations.getString(message, PROPS.name$MnvL), SPropertyOperations.getString(base, PROPS.name$MnvL), SPropertyOperations.getString(msgType, PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$7W9U), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.value2$tnOI));
 
       }
-      return String.format("    %s():%s(%s) {};", SPropertyOperations.getString(message, PROPS.name$MnvL), SPropertyOperations.getString(base, PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$7W9U));
+      return String.format("    %s():%s(%s::%s) {};", SPropertyOperations.getString(message, PROPS.name$MnvL), SPropertyOperations.getString(base, PROPS.name$MnvL), SPropertyOperations.getString(msgType, PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.msgType$7W9U));
 
     }
 
@@ -264,6 +273,9 @@ public class QueriesGenerated extends QueryProviderBase {
     SNode once = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
     SPropertyOperations.assign(once, PROPS.value$wDYR, "#pragma once");
     ListSequence.fromList(slist).addElement(once);
+    SNode include_common = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
+    SPropertyOperations.assign(include_common, PROPS.value$wDYR, "#include \"eb_common.hpp\"\n");
+    ListSequence.fromList(slist).addElement(include_common);
 
     List<SNode> ilist = ListSequence.fromList(new LinkedList<SNode>());
     for (SNode statement : ListSequence.fromList(SLinkOperations.getChildren(_context.getNode(), LINKS.statements$_5KW))) {
@@ -278,6 +290,11 @@ public class QueriesGenerated extends QueryProviderBase {
           SNode ns_start = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
           SPropertyOperations.assign(ns_start, PROPS.value$wDYR, "namespace " + SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL) + " {");
           ListSequence.fromList(slist).addElement(ns_start);
+
+          SNode common_namespace = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
+          SPropertyOperations.assign(common_namespace, PROPS.value$wDYR, "using namespace EB::common;\n");
+          ListSequence.fromList(slist).addElement(common_namespace);
+
           for (SNode include : ListSequence.fromList(ilist)) {
             SNode cpp_include = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
             SPropertyOperations.assign(cpp_include, PROPS.value$wDYR, "using namespace " + SPropertyOperations.getString(SLinkOperations.getTarget(include, LINKS.protocol$v5qn), PROPS.name$MnvL) + ";");
@@ -521,6 +538,8 @@ public class QueriesGenerated extends QueryProviderBase {
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBMessageMemberVar$_K = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, "eb_lang.structure.EBMessageMemberVar");
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
+    /*package*/ static final SConcept EBMessageConstructor$VR = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b33141ab8L, "eb_lang.structure.EBMessageConstructor");
+    /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
     /*package*/ static final SConcept EBInclude$_h = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, "eb_lang.structure.EBInclude");
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
     /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");

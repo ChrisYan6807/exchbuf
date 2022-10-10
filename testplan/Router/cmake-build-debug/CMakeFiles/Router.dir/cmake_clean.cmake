@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Router.dir/main.cpp.obj"
-  "Router.exe"
-  "Router.exe.manifest"
-  "Router.lib"
+  "CMakeFiles/Router.dir/Router.cpp.o"
+  "CMakeFiles/Router.dir/main.cpp.o"
+  "Router"
   "Router.pdb"
 )
 

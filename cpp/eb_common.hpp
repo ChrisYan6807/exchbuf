@@ -10,7 +10,7 @@
 
 //platform should be Linux/x86-64, little endian machine
 
-namespace EB { common {
+namespace EB { namespace common {
 
 template <int32_t N>
 constexpr int32_t pow10() {
@@ -416,8 +416,7 @@ private:
     size_t count_{0};
 };
 
-//default impl, bit position starts from least significant bit.
-template <typename T, typename PMapT, bool LSB=true>
+template <typename T, typename PMapT>
 struct OptionalRef {
     OptionalRef(const void* start, PMapT& presence_map, size_t pos)
     :ptr_(reinterpret_cast<T*>(start)),
@@ -427,15 +426,15 @@ struct OptionalRef {
     }
 
     bool flagIsSet() {
-        return presence_map & (((PMapT)1)<<pos);
+        return presence_map_ & (((PMapT)1)<<pos_);
     }
 
     void setFlag() {
-        presence_map |= (((PMapT)1)<<pos);
+        presence_map_ |= (((PMapT)1)<<pos_);
     }
 
     void clearFlag() {
-        presence_map &= ~(((PMapT)1)<<pos);
+        presence_map_ &= ~(((PMapT)1)<<pos_);
     }
 
     void set(const T& value) {

@@ -4,14 +4,16 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/main.cpp" "C:/Users/yanch/Documents/mps/exchbufv2/testplan/Router/cmake-build-debug/CMakeFiles/Router.dir/main.cpp.obj"
+  "/home/chris/repo/exchbuf/testplan/Router/Router.cpp" "/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/CMakeFiles/Router.dir/Router.cpp.o"
+  "/home/chris/repo/exchbuf/testplan/Router/main.cpp" "/home/chris/repo/exchbuf/testplan/Router/cmake-build-debug/CMakeFiles/Router.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../../../cpp"
   "../../../solutions/LME/source_gen/LME"
+  "../."
   )
 
 # Targets to which this target links.

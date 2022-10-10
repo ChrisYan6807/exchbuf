@@ -1,5 +1,9 @@
 #pragma once
+#include "eb_common.hpp"
+
 namespace LME {
+using namespace EB::common;
+
 using Char = char;
 using Uint8 = uint8_t;
 using Int8 = int8_t;
