@@ -8,6 +8,10 @@
 #include <algorithm>
 #include <utility>
 
+#include  <boost/preprocessor/cat.hpp>
+#include  <boost/preprocessor/stringize.hpp>
+#include  <boost/preprocessor/seq/for_each.hpp>
+
 //platform should be Linux/x86-64, little endian machine
 
 namespace EB { namespace common {
@@ -27,23 +31,23 @@ inline IntegerType swapEndian(IntegerType value) {
     if constexpr(sizeof(IntegerType) == 1) {
         return value;
     } else if constexpr(sizeof(IntegerType) == 2) {
-        __asm__ volatile("rorw $8, %0":"+r"(value))
+        __asm__ volatile("rorw $8, %0":"+r"(value));
     } else {
-        __asm__ volatile("bswap %0":"+r"(value))
+        __asm__ volatile("bswap %0":"+r"(value));
     }
 
     return value;
 }
 
-template <typename IntegerType, IntegerType MIN_VALUE=std::numeric_limits<IntegerType>,
-                                IntegerType MAX_VALUE=std::numeric_limits<IntegerType>,
+template <typename IntegerType, IntegerType MIN_VALUE=std::numeric_limits<IntegerType>(),
+                                IntegerType MAX_VALUE=std::numeric_limits<IntegerType>(),
                                 IntegerType NULL_VALUE=0,
                                 int32_t SCALING_FACTOR=0,
                                 typename std::enable_if_t<std::is_integral_v<IntegerType>, int> = 0
                                 >
 struct BigEndian {
     using BaseType = IntegerType;
-    static constexpr const int32_t MULT_FAC = pow10(SCALING_FACTOR);
+    static constexpr const int32_t MULT_FAC = pow10<SCALING_FACTOR>();
 
     BigEndian()
     :value_(swapEndian(NULL_VALUE))
@@ -73,7 +77,7 @@ struct BigEndian {
         value_ = swapEndian(value * MULT_FAC);
     }
 
-    void reset(double value) {
+    void resetDouble(double value) {
         value_ = swapEndian(value * MULT_FAC + 0.5);
     }
 
@@ -97,16 +101,20 @@ struct BigEndian {
         return swapEndian(value_);
     }
 
-    constexpr IntegerType min() const {
+    constexpr const IntegerType min() const {
         return MIN_VALUE;
     }
 
-    constexpr IntegerType max() const {
+    constexpr const IntegerType max() const {
         return MAX_VALUE;
     }
 
-    constexpr IntegerType null() const {
+    constexpr const IntegerType null() const {
         return NULL_VALUE;
+    }
+
+    constexpr const int length() const {
+        return sizeof(IntegerType);
     }
 
 private:
@@ -119,7 +127,7 @@ template <typename IntegerType,
         IntegerType MAX_VALUE,
         IntegerType NULL_VALUE,
         int32_t SCALING_FACTOR,
-        enable_if_t<SCALING_FACTOR==0, int>=0
+        std::enable_if_t<SCALING_FACTOR==0, int> = 0
         >
 inline std::ostream& operator<<(std::ostream& os, const BigEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
     os << value.asInteger();
@@ -132,7 +140,7 @@ template <typename IntegerType,
         IntegerType MAX_VALUE,
         IntegerType NULL_VALUE,
         int32_t SCALING_FACTOR,
-        enable_if_t<SCALING_FACTOR!=0, int>=0
+        std::enable_if_t<SCALING_FACTOR!=0, int> = 0
         >
 inline std::ostream& operator<<(std::ostream& os, const BigEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
     os << value.asDouble();
@@ -153,15 +161,15 @@ inline std::ostream& operator<<(std::ostream& os, const BigEndian<IntegerType, M
 }
 */
 
-template <typename IntegerType, IntegerType MIN_VALUE=std::numeric_limits<IntegerType>,
-        IntegerType MAX_VALUE=std::numeric_limits<IntegerType>,
+template <typename IntegerType, IntegerType MIN_VALUE=std::numeric_limits<IntegerType>(),
+        IntegerType MAX_VALUE=std::numeric_limits<IntegerType>(),
         IntegerType NULL_VALUE=0,
         int32_t SCALING_FACTOR=0,
         typename std::enable_if_t<std::is_integral_v<IntegerType>, int> = 0
 >
 struct LittleEndian {
     using BaseType = IntegerType;
-    static constexpr const int32_t MULT_FAC = pow10(SCALING_FACTOR);
+    static constexpr const int32_t MULT_FAC = pow10<SCALING_FACTOR>();
 
     LittleEndian()
     :value_(NULL_VALUE)
@@ -188,10 +196,10 @@ struct LittleEndian {
     }
 
     void reset(IntegerType value) {
-        value_ = swapEndian(value * MULT_FAC);
+        value_ = value * MULT_FAC;
     }
 
-    void reset(double value) {
+    void resetDouble(double value) {
         value_ = value * MULT_FAC + 0.5;
     }
 
@@ -215,16 +223,20 @@ struct LittleEndian {
         return value_;
     }
 
-    constexpr IntegerType min() const {
+    constexpr const IntegerType min() const {
         return MIN_VALUE;
     }
 
-    constexpr IntegerType max() const {
+    constexpr const IntegerType max() const {
         return MAX_VALUE;
     }
 
-    constexpr IntegerType null() const {
+    constexpr const IntegerType null() const {
         return NULL_VALUE;
+    }
+
+    constexpr const int length() const {
+        return sizeof(IntegerType);
     }
 
 private:
@@ -237,7 +249,7 @@ template <typename IntegerType,
         IntegerType MAX_VALUE,
         IntegerType NULL_VALUE,
         int32_t SCALING_FACTOR,
-        enable_if_t<SCALING_FACTOR==0, int>=0
+        std::enable_if_t<SCALING_FACTOR==0, int> = 0
         >
         inline std::ostream& operator<<(std::ostream& os, const LittleEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
 os << value.asInteger();
@@ -250,29 +262,27 @@ template <typename IntegerType,
         IntegerType MAX_VALUE,
         IntegerType NULL_VALUE,
         int32_t SCALING_FACTOR,
-        enable_if_t<SCALING_FACTOR!=0, int>=0
+        std::enable_if_t<SCALING_FACTOR!=0, int> = 0
         >
         inline std::ostream& operator<<(std::ostream& os, const LittleEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
 os << value.asDouble();
 return os;
 }
 
-template<size_t length, char pad=0>
+template<size_t LEN, char PAD=0>
 struct FixedLengthString {
-    static_assert(length != 0, "Invalide size");
-    static constexpr const size_t LEN = length;
-    static constexpr const char PAD = pad;
-    typedef char ArrayType[length];
+    static_assert(LEN != 0, "Invalide size");
+    typedef char ArrayType[LEN];
     using StringView = std::string_view;
 
     FixedLengthString() {};
 
     explicit FixedLengthString(char fill) {
-        std::memset(array_, fill, length);
+        std::memset(array_, fill, LEN);
     }
 
     explicit FixedLengthString(const ArrayType& array) {
-        std::memcpy(array_, array, length);
+        std::memcpy(array_, array, LEN);
     }
 
     explicit FixedLengthString(const StringView& view) {
@@ -280,7 +290,7 @@ struct FixedLengthString {
     }
 
     void clear() {
-        std::memset(array_, PAD, length);
+        std::memset(array_, PAD, LEN);
     }
 
     bool empty() {
@@ -292,12 +302,18 @@ struct FixedLengthString {
     const ArrayType& asArray() const {return array_;};
 
     StringView asStringView() const {
-        StringView view(array_, ::strnlen(array_, length))
+        //fixme non 0 filler
+        StringView view(array_, ::strnlen(array_, LEN));
         return view;
     }
 
+    std::string asString() const {
+        std::string str(asStringView());
+        return str;
+    }
+
     StringView asTrimmed() const {
-        int i = length;
+        int i = LEN;
         while(i && array_[i-1] == PAD) {
             --i;
         }
@@ -306,39 +322,47 @@ struct FixedLengthString {
     }
 
     void setString(const FixedLengthString& other) {
-       std::memcpy(array_, other.array_, length);
+       std::memcpy(array_, other.array_, LEN);
     }
 
     void setString(const char* src) {
         assert(src != nullptr);
         char* cur = array_;
-        while(cur < array_ + length && *src != 0) {
-            *(i++) = *(src++);
+        int i = 0;
+        while(cur < array_ + LEN && *src != 0) {
+            array_[i++] = *(src++);
         }
-        while(i < array_ + length) {
-            *(i++) = PAD;
+        while(i < array_ + LEN) {
+            array_[i++] = PAD;
         }
     }
 
     void setString(const StringView& view) {
-        size_t min_len = std::min(view.size(), length);
+        size_t min_len = std::min(view.size(), LEN);
         auto end_it = std::copy(view.begin(), view.begin() + min_len, std::begin(array_));
         std::fill(end_it, std::end(array_), PAD);
     }
 
+    template<typename T>
+    FixedLengthString& operator=(T&& rhs) {
+        setString(std::forward<T>(rhs));
+        return *this;
+    }
+
     char* data() {return array_;};
     const char* data() const {return array_;};
-    size_t size() {return length;};
+    constexpr const int size() {return LEN;};
+    constexpr const int length() {return LEN;};
 
 private:
-    char array_[length];
+    char array_[LEN];
 };
 
 //Type T has variable length, the length of each object has to be calculated at runtime.
-template <typename T, bool fixedLengthT>
+template <typename T, bool fixedLengthT = false>
 struct BlockRef {
     BlockRef(const BlockRef& rhs) = default;
-    BlockRef(const void* start, size_t count)
+    BlockRef(void* start, size_t count)
     :ptr_(reinterpret_cast<char*>(start)),
      count_(count)
     {
@@ -418,7 +442,7 @@ private:
 
 template <typename T, typename PMapT>
 struct OptionalRef {
-    OptionalRef(const void* start, PMapT& presence_map, size_t pos)
+    OptionalRef(char* start, PMapT& presence_map, size_t pos)
     :ptr_(reinterpret_cast<T*>(start)),
      presence_map_(presence_map),
      pos_(pos)
@@ -437,13 +461,14 @@ struct OptionalRef {
         presence_map_ &= ~(((PMapT)1)<<pos_);
     }
 
-    void set(const T& value) {
+    template<typename ValueT>
+    void set(ValueT&& value) {
         setFlag();
-        *ptr_ = value;
+        *ptr_ = std::forward<ValueT>(value);
     }
 
-    std::pair<bool, T&> get() {
-        return std::make_pair<bool, T&>(flagIsSet(), *ptr_);
+    T& get() {
+        return *ptr_;
     }
 
     void clear() {
@@ -472,10 +497,44 @@ private:
     size_t pos_;
 };
 
+template <typename T>
+struct FloatingRef {
+    FloatingRef(char* start)
+    :ptr_(reinterpret_cast<T*>(start))
+    {
+    }
+
+    template<typename ValueT>
+    void set(ValueT&& value) {
+        *ptr_ = std::forward<ValueT>(value);
+    }
+
+    T& get() {
+        return *ptr_;
+    }
+
+    char* begin() {
+        return reinterpret_cast<char*>(ptr_);
+    }
+
+    char* end() {
+        return begin() + length();
+    }
+
+    size_t length() {
+        return ptr_->length();
+    }
+
+private:
+    T* ptr_;
+};
+
+
 
 #define ENUM_FIELD_DEF(r, _, FIELD) BOOST_PP_TUPLE_ELEM(2,0,FIELD) = BOOST_PP_TUPLE_ELEM(2,1,FIELD),
+#define ENUM_FIELD_VALUE(r, _, FIELD) BOOST_PP_TUPLE_ELEM(2,1,FIELD),
 #define ENUM_CASE_FIELD(r,_, FIELD)\
-    case Enum::BOOST_PP_TUPLE_ELEM(2,1,FIELD) : return BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(2,0,FIELD))  ;
+    case Enum::BOOST_PP_TUPLE_ELEM(2,0,FIELD) : return BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(2,0,FIELD))  ;
 
 #define ENUM_CASE_DEFAULT\
     default: return "";
@@ -485,7 +544,9 @@ private:
         using value_type=TYPE;\
         enum Enum : TYPE { BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_DEF, _, FIELDS) };\
         constexpr static size_t size=BOOST_PP_SEQ_SIZE(FIELDS);\
-        constexpr static const char* name() {return BOOST_PP_STRINGIZE(NAME);};\
+        constexpr static const char* name() {return BOOST_PP_STRINGIZE(NAME);}; \
+        constexpr static value_type minValue = std::min({BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_VALUE, _, FIELDS)}); \
+        constexpr static value_type maxValue = std::max({BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_VALUE, _, FIELDS)}); \
         constexpr NAME() {};\
         constexpr NAME(Enum v): value_(v) {};\
         constexpr explicit NAME(TYPE v): value_(Enum(v)) {};\
@@ -493,7 +554,8 @@ private:
         constexpr const bool operator != (const NAME& rhs) const {return value_ != rhs.value_;}\
         constexpr const Enum value() const {return value_;}\
         constexpr const TYPE rawValue() const {return static_cast<TYPE>(value_);}\
-        constexpr const TYPE rawValue(TYPE v) const {value_ = Enum(v);}\
+        constexpr const int length() {return sizeof(value_type);}\
+        constexpr void rawValue(TYPE v) {value_ = Enum(v);}\
         constexpr void set(Enum value) {value_ = value;}\
         std::string_view asStringView() {\
             switch(value_) {\
@@ -501,15 +563,15 @@ private:
                 ENUM_CASE_DEFAULT\
             }\
         }\
-        template <typename ostreamT> friend ostreamT& operator<< (ostreamT& os, const NAME& v) {os << v.asStringView(); return os;}\
-        private: Enum value_;\
+        template <typename ostreamT> friend ostreamT& operator<< (ostreamT& os, NAME& v) {os << v.asStringView(); return os;}\
+        private: Enum value_{maxValue};\
     };
 
 template <typename T, uint8_t offset, uint8_t len>
-constexpr getMask = ((((T)1)<<len)-1)<<offset;
+constexpr T getMask = ((((T)1)<<len)-1)<<offset;
 
 template <typename T, uint8_t offset, uint8_t len>
-constexpr clearMask = ~getMask<T, offset, len>;
+constexpr T clearMask = ~getMask<T, offset, len>;
 
 //FIELD : (Type, offset, length)
 #define BITFIELD_MEMBER_SETTER_GETTER(r, TYPE, FIELD)\

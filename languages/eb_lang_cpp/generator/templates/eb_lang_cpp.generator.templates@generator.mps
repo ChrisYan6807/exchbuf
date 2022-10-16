@@ -2241,6 +2241,9 @@
           <node concept="356sEF" id="4Xeby110U2R" role="356sEH">
             <property role="TrG5h" value="}" />
           </node>
+          <node concept="356sEF" id="4hzHSW8j_K7" role="356sEH">
+            <property role="TrG5h" value=";" />
+          </node>
           <node concept="2xj2l3" id="4Xeby110U25" role="356sEH" />
           <node concept="2xotEU" id="5hSnPGMXk4R" role="356sEH">
             <property role="2xojqi" value="pack_end" />
@@ -2873,6 +2876,31 @@
                     </node>
                   </node>
                   <node concept="3clFbH" id="66x_0s69ejG" role="3cqZAp" />
+                  <node concept="3cpWs8" id="D$VmyIJeel" role="3cqZAp">
+                    <node concept="3cpWsn" id="D$VmyIJeem" role="3cpWs9">
+                      <property role="TrG5h" value="presenceMapString" />
+                      <node concept="3uibUv" id="D$VmyIJeen" role="1tU5fm">
+                        <ref role="3uigEE" to="wyt6:~String" resolve="String" />
+                      </node>
+                      <node concept="2OqwBi" id="D$VmyIJj4i" role="33vP2m">
+                        <node concept="2OqwBi" id="D$VmyIJh$I" role="2Oq$k0">
+                          <node concept="2OqwBi" id="D$VmyIJghX" role="2Oq$k0">
+                            <node concept="30H73N" id="D$VmyIJfLW" role="2Oq$k0" />
+                            <node concept="3TrEf2" id="D$VmyIJgXb" role="2OqNvi">
+                              <ref role="3Tt5mk" to="wt0b:66x_0s5WYjx" resolve="presence_map" />
+                            </node>
+                          </node>
+                          <node concept="3TrEf2" id="D$VmyIJizm" role="2OqNvi">
+                            <ref role="3Tt5mk" to="wt0b:5sRG$ScpX5Q" resolve="type" />
+                          </node>
+                        </node>
+                        <node concept="2qgKlT" id="D$VmyIJjWB" role="2OqNvi">
+                          <ref role="37wK5l" to="hy7h:7sFT47Ik3aM" resolve="getCppType" />
+                        </node>
+                      </node>
+                    </node>
+                  </node>
+                  <node concept="3clFbH" id="D$VmyIJc_f" role="3cqZAp" />
                   <node concept="3clFbJ" id="66x_0s69ejH" role="3cqZAp">
                     <node concept="3clFbS" id="66x_0s69ejI" role="3clFbx">
                       <node concept="3SKdUt" id="66x_0s69ejJ" role="3cqZAp">
@@ -2894,12 +2922,13 @@
                           </node>
                         </node>
                       </node>
+                      <node concept="3clFbH" id="D$VmyIJcsH" role="3cqZAp" />
                       <node concept="3cpWs6" id="66x_0s6flGs" role="3cqZAp">
                         <node concept="2YIFZM" id="66x_0s6flGt" role="3cqZAk">
                           <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                           <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                           <node concept="Xl_RD" id="66x_0s6flGu" role="37wK5m">
-                            <property role="Xl_RC" value="    OptionalRef&lt;%1$s&gt; %2$s() {return OptionalRef&lt;%1$s&gt;(begin()+size(), %3$s, %4$s);}" />
+                            <property role="Xl_RC" value="    OptionalRef&lt;%1$s, %5$s&gt; %2$s() {return OptionalRef&lt;%1$s, %5$s&gt;(begin()+size(), %3$s, %4$s);}" />
                           </node>
                           <node concept="2OqwBi" id="66x_0s6flGv" role="37wK5m">
                             <node concept="2OqwBi" id="66x_0s6flGw" role="2Oq$k0">
@@ -2929,6 +2958,9 @@
                             <node concept="3TrcHB" id="66x_0s6flGG" role="2OqNvi">
                               <ref role="3TsBF5" to="wt0b:66x_0s5WYjy" resolve="pos" />
                             </node>
+                          </node>
+                          <node concept="37vLTw" id="D$VmyIJldb" role="37wK5m">
+                            <ref role="3cqZAo" node="D$VmyIJeem" resolve="presenceMapString" />
                           </node>
                         </node>
                       </node>
@@ -2981,7 +3013,7 @@
                                 <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                                 <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                                 <node concept="Xl_RD" id="66x_0s6foiU" role="37wK5m">
-                                  <property role="Xl_RC" value="    OptionalRef&lt;%1$s&gt; %2$s() {return OptionalRef&lt;%1$s&gt;(%3$s().end(), %4$s, %5$s);}" />
+                                  <property role="Xl_RC" value="    OptionalRef&lt;%1$s, %6$s&gt; %2$s() {return OptionalRef&lt;%1$s, %6$s&gt;(%3$s().end(), %4$s, %5$s);}" />
                                 </node>
                                 <node concept="2OqwBi" id="66x_0s6foiV" role="37wK5m">
                                   <node concept="2OqwBi" id="66x_0s6foiW" role="2Oq$k0">
@@ -3020,6 +3052,9 @@
                                     <ref role="3TsBF5" to="wt0b:66x_0s5WYjy" resolve="pos" />
                                   </node>
                                 </node>
+                                <node concept="37vLTw" id="D$VmyIJnaf" role="37wK5m">
+                                  <ref role="3cqZAo" node="D$VmyIJeem" resolve="presenceMapString" />
+                                </node>
                               </node>
                             </node>
                             <node concept="3clFbH" id="66x_0s6axYO" role="3cqZAp" />
@@ -3039,7 +3074,7 @@
                                   <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                                   <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                                   <node concept="Xl_RD" id="66x_0s6fqJn" role="37wK5m">
-                                    <property role="Xl_RC" value="    OptionalRef&lt;%1$s&gt; %2$s() {return OptionalRef&lt;%1$s&gt;(begin()+size(), %3$s, %4$s);}" />
+                                    <property role="Xl_RC" value="    OptionalRef&lt;%1$s, %5$s&gt; %2$s() {return OptionalRef&lt;%1$s, %5$s&gt;(begin()+size(), %3$s, %4$s);}" />
                                   </node>
                                   <node concept="2OqwBi" id="66x_0s6fqJo" role="37wK5m">
                                     <node concept="2OqwBi" id="66x_0s6fqJp" role="2Oq$k0">
@@ -3069,6 +3104,9 @@
                                     <node concept="3TrcHB" id="66x_0s6fqJ_" role="2OqNvi">
                                       <ref role="3TsBF5" to="wt0b:66x_0s5WYjy" resolve="pos" />
                                     </node>
+                                  </node>
+                                  <node concept="37vLTw" id="D$VmyIJpfv" role="37wK5m">
+                                    <ref role="3cqZAo" node="D$VmyIJeem" resolve="presenceMapString" />
                                   </node>
                                 </node>
                               </node>

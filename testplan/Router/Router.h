@@ -19,7 +19,7 @@ using acceptor = boost::asio::ip::tcp::acceptor;
 using boost::system::error_code;
 
 //1M fixed length buffer size
-constexpr const int buffer_size = 1024 * 1024;
+constexpr const int BUF_SIZE = 1024 * 1024;
 
 template<typename protocol>
 class Client;
@@ -32,8 +32,8 @@ public:
             :socket_(std::move(_socket)),
              client_(client)
     {
-        input_stream_buffer_.prepare(buffer_size);
-        output_stream_buffer_.prepare(buffer_size);
+        rcv_buffer_.prepare(BUF_SIZE);
+        send_buffer_.prepare(BUF_SIZE);
     }
 
     uint16_t id() {
@@ -46,46 +46,47 @@ public:
 
     void async_read() {
         //read whole FIX4.2 msg
-        boost::asio::async_read_until(socket_, input_stream_buffer_, boost::regex("\x0110=\\d{3}\x01"),
+        boost::asio::async_read_until(socket_, rcv_buffer_, boost::regex("\x0110=\\d{3}\x01"),
                                         [this](error_code ec, size_t bytes_transferred){
                                             if(ec){
-                                                std::cout << "session " << id() << " read error " << ec.message() << std::endl;
+                                                std::cerr << "session " << id() << " read error " << ec.message() << std::endl;
                                                 if(ec == boost::asio::error::eof) {
-                                                    std::cout << "session " << id() << " read eof." << std::endl;
+                                                    std::cerr << "session " << id() << " read eof." << std::endl;
                                                 }
                                                 client_.remove_session(id());
                                             } else {
-                                                input_stream_buffer_.commit(bytes_transferred);
-                                                TagValueMsg msg(input_stream_buffer_);
+                                                rcv_buffer_.commit(bytes_transferred);
+                                                TagValueMsg msg(rcv_buffer_);
                                                 if(!client_.send_msg(msg)) {
                                                     send_reject(msg);
                                                 }
-                                                input_stream_buffer_.consume(bytes_transferred);
+                                                //rcv_buffer_.consume(bytes_transferred);
                                             }
                                         });
     }
 
     void async_write(const TagValueMsg& msg) {
-        msg.serialize(output_stream_buffer_);
-        boost::asio::async_write(socket_, output_stream_buffer_,
+        msg.serialize(send_buffer_);
+        boost::asio::async_write(socket_, send_buffer_,
                                 [this](error_code ec, size_t bytes_transferred) {
                                     if(ec) {
                                         std::cout << "session " << id() << " write error " << ec.message() << std::endl;
                                         client_.remove_session(id());
                                     }
-                                    output_stream_buffer_.consume(bytes_transferred);
-
+                                    send_buffer_.consume(bytes_transferred);
+                                    std::cout << "session " << id() << " wrote " << bytes_transferred << " bytes." << std::endl;
                                 });
     }
 
     void send_reject(const TagValueMsg& msg) {
         //todo
+        std::cout << "session " << id() << " sent reject." << std::endl;
     }
 
 private:
     socket socket_;
-    boost::asio::streambuf input_stream_buffer_;
-    boost::asio::streambuf output_stream_buffer_;
+    boost::asio::streambuf rcv_buffer_;
+    boost::asio::streambuf send_buffer_;
     Client<protocol>& client_;
 };
 

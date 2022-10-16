@@ -2,7 +2,9 @@
 #include <unordered_map>
 #include <string>
 #include <string_view>
-#include <istream>
+#include <iostream>
+#include <sstream>
+#include <cstdlib>
 
 class TagValueMsg {
 public:
@@ -17,8 +19,14 @@ public:
     }
 
     bool serialize(boost::asio::streambuf& buf) const {
+        std::ostream os(&buf);
+        os << "8=FIX4.2\x01";
+        os << "9=000\x01";
+        for(const auto& [tag, value] : tv_map) {
+            os << tag << "=" << value << '\x01';
+        }
+        os << "10=000\x01";
 
-        // commit buffer
         return true;
     }
 
@@ -26,24 +34,27 @@ public:
         clear();
         std::istream is(&buf);
         //getline parse the whole msg
+        std::string line;
+        int tag;
+        std::string value;
+        while(std::getline(is, line, '\x01')) {
+            //do not validate format for now
+            if(auto pos = line.find('='); pos != std::string::npos) {
+                tag = std::stoi(line.substr(0, pos));
+                value = line.substr(pos + 1);
+            } else {
+                break;
+            }
+        }
 
         return true;
     }
 
     template<typename Type=std::string&>
-    const Type get_tag(int tag) {
+    Type get_tag(int tag) {
         return tv_map[tag];
     }
 
-    template<>
-    const int get_tag<int>(int tag) {
-        return std::stoi(tv_map[tag]);
-    }
-
-    template<>
-    const double get_tag<double>(int tag) {
-        return std::stod(tv_map[tag]);
-    }
 
     void set_tag(int tag, const std::string& value) {
         tv_map[tag] = value;
@@ -58,6 +69,14 @@ public:
         tv_map.erase(tag);
     }
 
+    const bool has_tag(int tag) const {
+        if(tv_map.find(tag) != tv_map.end()) {
+            return true;
+        }
+
+        return false;
+    }
+
     void set_address(uint16_t id) {
         address_id = id;
     }
@@ -68,9 +87,33 @@ public:
 
 private:
     std::unordered_map<int, std::string> tv_map;
-    const char* begin_string = "FIX4.2";
     uint16_t address_id = 0;
 };
+
+template<>
+int TagValueMsg::get_tag<int32_t>(int tag) {
+    return std::stol(tv_map[tag]);
+}
+
+template<>
+uint32_t TagValueMsg::get_tag<uint32_t>(int tag) {
+    return std::stoul(tv_map[tag]);
+}
+
+template<>
+int64_t TagValueMsg::get_tag<int64_t>(int tag) {
+    return std::stoll(tv_map[tag]);
+}
+
+template<>
+uint64_t TagValueMsg::get_tag<uint64_t>(int tag) {
+    return std::stoull(tv_map[tag]);
+}
+
+template<>
+double TagValueMsg::get_tag<double>(int tag) {
+    return std::stod(tv_map[tag]);
+}
 
 
 
