@@ -13,9 +13,10 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
@@ -31,18 +32,52 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   public static final SMethod<String> cppName_id9WwCMYBSZJ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBSZJ").build();
   public static final SMethod<String> pyName_id9WwCMYBWwT = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("9WwCMYBWwT").build();
   public static final SMethod<String> fmt_id4GpIFxqoQnK = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("fmt").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4GpIFxqoQnK").build();
+  public static final SMethod<String> postFix_id7hSmxNPVYQ$ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("postFix").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7hSmxNPVYQ$").build(SMethodBuilder.createJavaParameter(String.class, ""));
+  public static final SMethod<String> fmtDefault_id7hSmxNQ2P2b = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("fmtDefault").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7hSmxNQ2P2b").build(SMethodBuilder.createJavaParameter(String.class, ""));
   public static final SMethod<String> maxValue_id4s_KfQNT9K = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQNT9K").build();
   public static final SMethod<String> minValue_id4s_KfQOhiQ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOhiQ").build();
   public static final SMethod<String> nullValue_id4s_KfQO$Rt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQO$Rt").build();
+  public static final SMethod<String> cppMaxValue_id7hSmxNPVVTN = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppMaxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7hSmxNPVVTN").build();
+  public static final SMethod<String> cppMinValue_id7hSmxNPVVUA = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppMinValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7hSmxNPVVUA").build();
+  public static final SMethod<String> cppNullValue_id7hSmxNPVVVi = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppNullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7hSmxNPVVVi").build();
   public static final SMethod<Boolean> isNative_id5hSnPGNw5sK = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNative").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNw5sK").build();
   public static final SMethod<Boolean> isLittleEndian_id7qxjCwPtLrW = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isLittleEndian").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7qxjCwPtLrW").build();
   public static final SMethod<String> byteOrderChar_id4GpIFxqp7uZ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("byteOrderChar").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4GpIFxqp7uZ").build();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, fmt_id4GpIFxqoQnK, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW, byteOrderChar_id4GpIFxqp7uZ);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, fmt_id4GpIFxqoQnK, postFix_id7hSmxNPVYQ$, fmtDefault_id7hSmxNQ2P2b, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, cppMaxValue_id7hSmxNPVVTN, cppMinValue_id7hSmxNPVVUA, cppNullValue_id7hSmxNPVVVi, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW, byteOrderChar_id4GpIFxqp7uZ);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
+  /*package*/ static String postFix_id7hSmxNPVYQ$(@NotNull SNode __thisNode__, String value) {
+    if (((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 8) {
+      if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
+        return value + "L";
+      } else {
+        return value + "UL";
+      }
+    }
+
+    return value;
+  }
+  /*package*/ static String fmtDefault_id7hSmxNQ2P2b(@NotNull SNode __thisNode__, String value) {
+    if ((value == null || value.length() == 0)) {
+      return value;
+    }
+    if (SConceptOperations.conceptAlias(SNodeOperations.getConcept(__thisNode__)) == "char_ebt") {
+      return value;
+    }
+
+    if (((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 1) {
+      if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
+        return value + "_i8";
+      } else {
+        return value + "_u8";
+      }
+    }
+
+    return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, value);
+  }
   /*package*/ static String maxValue_id4s_KfQNT9K(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO))) {
       return SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO);
@@ -70,6 +105,35 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
       return SPropertyOperations.getString(__thisNode__, PROPS.null$sULd);
     } else {
       return "0";
+    }
+  }
+  /*package*/ static String cppMaxValue_id7hSmxNPVVTN(@NotNull SNode __thisNode__) {
+    if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO))) {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO));
+    }
+    int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
+    if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, String.format("%d", (long) Math.pow(2, nBits - 1) - 1));
+    } else {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, String.format("%d", ((long) Math.pow(2, nBits))));
+    }
+  }
+  /*package*/ static String cppMinValue_id7hSmxNPVVUA(@NotNull SNode __thisNode__) {
+    if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS))) {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS));
+    }
+    int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
+    if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, String.format("%d", ((long) -Math.pow(2, nBits - 1))));
+    } else {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, "0");
+    }
+  }
+  /*package*/ static String cppNullValue_id7hSmxNPVVVi(@NotNull SNode __thisNode__) {
+    if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd))) {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.null$sULd));
+    } else {
+      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, "0");
     }
   }
   /*package*/ static boolean isNative_id5hSnPGNw5sK(@NotNull SNode __thisNode__) {
@@ -106,16 +170,26 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 5:
-        return (T) ((String) maxValue_id4s_KfQNT9K(node));
+        return (T) ((String) postFix_id7hSmxNPVYQ$(node, (String) parameters[0]));
       case 6:
-        return (T) ((String) minValue_id4s_KfQOhiQ(node));
+        return (T) ((String) fmtDefault_id7hSmxNQ2P2b(node, (String) parameters[0]));
       case 7:
-        return (T) ((String) nullValue_id4s_KfQO$Rt(node));
+        return (T) ((String) maxValue_id4s_KfQNT9K(node));
       case 8:
-        return (T) ((Boolean) isNative_id5hSnPGNw5sK(node));
+        return (T) ((String) minValue_id4s_KfQOhiQ(node));
       case 9:
-        return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
+        return (T) ((String) nullValue_id4s_KfQO$Rt(node));
       case 10:
+        return (T) ((String) cppMaxValue_id7hSmxNPVVTN(node));
+      case 11:
+        return (T) ((String) cppMinValue_id7hSmxNPVVUA(node));
+      case 12:
+        return (T) ((String) cppNullValue_id7hSmxNPVVVi(node));
+      case 13:
+        return (T) ((Boolean) isNative_id5hSnPGNw5sK(node));
+      case 14:
+        return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
+      case 15:
         return (T) ((String) byteOrderChar_id4GpIFxqp7uZ(node));
       default:
         throw new BHMethodNotFoundException(this, method);

@@ -40,7 +40,7 @@ public final class EBEnum__BehaviorDescriptor extends BaseBHDescriptor {
   }
   /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
     String alias = SConceptOperations.conceptAlias(SNodeOperations.getConcept(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$_ySl), CONCEPTS.EBIntType$ej)));
-    if (alias == "char") {
+    if (alias == "char_ebt") {
       return "CharEnumField";
     }
 

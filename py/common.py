@@ -1,6 +1,6 @@
 from scapy.fields import *
 from scapy.fields import _EnumField
-from scapy.packet import Packet
+from scapy.packet import Packet, bind_layers
 from enum import Enum
 
 EnumField__init__ = _EnumField.__init__
@@ -10,16 +10,18 @@ def EnumField__init__wrapper(self, name, default, enum, fmt='H'):
     return EnumField__init__(self, name, default, enum, fmt)
 _EnumField.__init__ = EnumField__init__wrapper
 
+
 def integer_type(cls, min, max, null):
     cls.MIN = min
     cls.MAX = max
     cls.NULL = null
     return cls
 
+
 def fixed_length_string(length, padding=b'\0'):
     class StrFixedLenPadField(StrFixedLenField):
         def __init__(self, name, default):
-            StrFixedLenPadField.__init__(self, name, default, length, None)
+            super(StrFixedLenPadField, self).__init__(name, default, length)
 
         def i2h(self, pkt, x):
             return x.rstrip(padding)
@@ -35,24 +37,26 @@ def fixed_length_string(length, padding=b'\0'):
 
     return get
 
+
 def float_decimal(size, precision, singed, little_endian, min, max, null):
     assert size in [1, 2, 4, 8]
-    sizeNameMap = {
+    size_name_map = {
         1: 'Byte',
         2: 'Short',
         4: 'Int',
         8: 'Long',
     }
 
-    type_name = f'{"LE" if little_endian else ""}{"Signed" if singed else ""}{sizeNameMap[size]}Field'
+    type_name = f'{"LE" if little_endian else ""}{"Signed" if singed else ""}{size_name_map[size]}Field'
     long_type = globals()[type_name]
 
     class FloatDecimal(long_type):
         MIN = min
         MAX = max
         NULL = null
+
         def __init__(self, name, default):
-            long_type.__init__(self, name, default)
+            super(long_type, self).__init__(name, default)
 
         def i2h(self, pkg, x):
             return super(FloatDecimal, self).i2h(pkg, int(x / 10**precision))
@@ -65,7 +69,8 @@ def float_decimal(size, precision, singed, little_endian, min, max, null):
 
 class CharField(Field):
     def __init__(self, name, default):
-        Field.__init__(self, name, default, 'c')
+        super(CharField, self).__init__(name, default, 'c')
+
 
 class XCharField(CharField):
     def i2repr(self, pkt, x):

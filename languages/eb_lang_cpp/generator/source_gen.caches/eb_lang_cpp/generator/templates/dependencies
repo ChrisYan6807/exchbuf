@@ -26,6 +26,7 @@
     <classNode dependClassName="eb_lang.behavior.EBBitFieldMember__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBInclude__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBIntType__BehaviorDescriptor" />
+    <classNode dependClassName="eb_lang.behavior.EBMessageEntryMember__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBMessageMemberVar__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBMessage__BehaviorDescriptor" />
     <classNode dependClassName="eb_lang.behavior.EBTypeStatement__BehaviorDescriptor" />

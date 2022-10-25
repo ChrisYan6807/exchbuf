@@ -16,6 +16,14 @@
 
 namespace EB { namespace common {
 
+inline constexpr uint8_t operator "" _u8( unsigned long long arg ) noexcept {
+    return static_cast<uint8_t>( arg );
+}
+
+inline constexpr int8_t operator "" _i8( unsigned long long arg ) noexcept {
+    return static_cast<int8_t>( arg );
+}
+
 template <int32_t N>
 constexpr int32_t pow10() {
     static_assert(N >= 0 && N <= 8);
@@ -115,6 +123,11 @@ struct BigEndian {
 
     constexpr const int length() const {
         return sizeof(IntegerType);
+    }
+
+    const BigEndian& operator=(IntegerType value) {
+        value_ = value * MULT_FAC;
+        return *this;
     }
 
 private:
@@ -239,6 +252,11 @@ struct LittleEndian {
         return sizeof(IntegerType);
     }
 
+    const LittleEndian& operator=(IntegerType value) {
+        value_ = value * MULT_FAC;
+        return *this;
+    }
+
 private:
     IntegerType value_;
 };
@@ -327,12 +345,12 @@ struct FixedLengthString {
 
     void setString(const char* src) {
         assert(src != nullptr);
-        char* cur = array_;
         int i = 0;
-        while(cur < array_ + LEN && *src != 0) {
+        while((i < LEN) && (*src != '\0')) {
             array_[i++] = *(src++);
         }
-        while(i < array_ + LEN) {
+
+        while(i < LEN) {
             array_[i++] = PAD;
         }
     }
@@ -367,6 +385,14 @@ struct BlockRef {
      count_(count)
     {
     }
+
+    template<typename COUNT_T>
+    BlockRef(void* start, COUNT_T count)
+            :ptr_(reinterpret_cast<char*>(start)),
+             count_(count.rawValue())
+    {
+    }
+
 
     bool empty()    const {return count_ == 0;}
     size_t count()  const {return count_;}
@@ -413,6 +439,12 @@ struct BlockRef<T, true> {
              count_(count)
     {
     }
+    template<typename COUNT_T>
+    BlockRef(void* start, COUNT_T count)
+            :ptr_(reinterpret_cast<char*>(start)),
+             count_(count.rawValue())
+    {
+    }
 
     bool empty()    const {return count_ == 0;}
     size_t count()  const {return count_;}
@@ -442,6 +474,7 @@ private:
 
 template <typename T, typename PMapT>
 struct OptionalRef {
+    using BaseType = typename PMapT::BaseType;
     OptionalRef(char* start, PMapT& presence_map, size_t pos)
     :ptr_(reinterpret_cast<T*>(start)),
      presence_map_(presence_map),
@@ -450,15 +483,15 @@ struct OptionalRef {
     }
 
     bool flagIsSet() {
-        return presence_map_ & (((PMapT)1)<<pos_);
+        return presence_map_.rawValue() & (((BaseType)1)<<pos_);
     }
 
     void setFlag() {
-        presence_map_ |= (((PMapT)1)<<pos_);
+        presence_map_.reset(presence_map_.rawValue() | (((BaseType)1)<<pos_));
     }
 
     void clearFlag() {
-        presence_map_ &= ~(((PMapT)1)<<pos_);
+        presence_map_.reset(presence_map_.rawValue() & ~(((BaseType)1)<<pos_));
     }
 
     template<typename ValueT>
@@ -545,8 +578,8 @@ private:
         enum Enum : TYPE { BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_DEF, _, FIELDS) };\
         constexpr static size_t size=BOOST_PP_SEQ_SIZE(FIELDS);\
         constexpr static const char* name() {return BOOST_PP_STRINGIZE(NAME);}; \
-        constexpr static value_type minValue = std::min({BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_VALUE, _, FIELDS)}); \
-        constexpr static value_type maxValue = std::max({BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_VALUE, _, FIELDS)}); \
+        constexpr static value_type minValue = std::min<value_type>({BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_VALUE, _, FIELDS)}); \
+        constexpr static value_type maxValue = std::max<value_type>({BOOST_PP_SEQ_FOR_EACH(ENUM_FIELD_VALUE, _, FIELDS)}); \
         constexpr NAME() {};\
         constexpr NAME(Enum v): value_(v) {};\
         constexpr explicit NAME(TYPE v): value_(Enum(v)) {};\

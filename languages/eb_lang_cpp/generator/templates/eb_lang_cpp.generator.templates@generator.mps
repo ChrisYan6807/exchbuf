@@ -123,6 +123,7 @@
       </concept>
       <concept id="1202776937179" name="jetbrains.mps.lang.generator.structure.AbandonInput_RuleConsequence" flags="lg" index="b5Tf3" />
       <concept id="1095416546421" name="jetbrains.mps.lang.generator.structure.MappingConfiguration" flags="ig" index="bUwia">
+        <property id="1184950341882" name="topPriorityGroup" index="3$yP7D" />
         <child id="1219952894531" name="dropRootRule" index="aQYdv" />
         <child id="1167088157977" name="createRootRule" index="2VS0gm" />
         <child id="1167328349397" name="reductionMappingRule" index="3acgRq" />
@@ -288,7 +289,8 @@
     </language>
   </registry>
   <node concept="bUwia" id="30hDAfb_udE">
-    <property role="TrG5h" value="main" />
+    <property role="TrG5h" value="main_cpp" />
+    <property role="3$yP7D" value="true" />
     <node concept="aNPBN" id="6T1aHZf84k5" role="aQYdv">
       <ref role="aOQi4" to="wt0b:79EjCryfNNQ" resolve="EBProtocol" />
     </node>
@@ -1300,8 +1302,8 @@
                       <node concept="17QB3L" id="1DckmxO2nxh" role="1tU5fm" />
                       <node concept="2OqwBi" id="1DckmxO2oR0" role="33vP2m">
                         <node concept="30H73N" id="1DckmxO2ooc" role="2Oq$k0" />
-                        <node concept="3TrcHB" id="1DckmxO2pe9" role="2OqNvi">
-                          <ref role="3TsBF5" to="wt0b:5hSnPGMZ69Y" resolve="default" />
+                        <node concept="2qgKlT" id="7hSmxNQ3sXE" role="2OqNvi">
+                          <ref role="37wK5l" to="hy7h:7hSmxNQ32$j" resolve="fmtCppDefault" />
                         </node>
                       </node>
                     </node>
