@@ -4,6 +4,7 @@
 #include <functional>
 #include <chrono>
 #include <ostream>
+#include <boost/log/trivial.hpp>
 
 #include "TagValueMsg.h"
 #include "LME.hpp"
@@ -99,11 +100,11 @@ bool inline LMEProtocol::on_raw_data_received() {
                 case LME::MsgType::OrderCancelRejected:
                 case LME::MsgType::MassCancelReport:
                 case LME::MsgType::News: {
-                    std::cout << "unsupported MsgType: " << header->msgType.asStringView() << std::endl;
+                    BOOST_LOG_TRIVIAL(info) << "unsupported MsgType: " << header->msgType.asStringView() ;
                     break;
                 }
                 default: {
-                    std::cout << "unknown MsgType: " << header->msgType.rawValue() << std::endl;
+                    BOOST_LOG_TRIVIAL(info) << "unknown MsgType: " << header->msgType.rawValue() ;
                     break;
                 }
             }
@@ -131,12 +132,12 @@ std::pair<bool, std::string> inline LMEProtocol::send_msg(TagValueMsg& msg) {
                 return {true, clOrdID};
             }
             default: {
-                std::cout << "unsupported msgType: " << msgType << std::endl;
+                BOOST_LOG_TRIVIAL(info) << "unsupported msgType: " << msgType ;
                 break;
             }
         }
     } else {
-        std::cout << "no tag 35" << std::endl;
+        BOOST_LOG_TRIVIAL(info) << "no tag 35" ;
         return {false, ""};
     }
 

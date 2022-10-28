@@ -103,7 +103,6 @@
       <concept id="1144230876926" name="jetbrains.mps.baseLanguage.structure.AbstractForStatement" flags="nn" index="1DupvO">
         <child id="1144230900587" name="variable" index="1Duv9x" />
       </concept>
-      <concept id="1082113931046" name="jetbrains.mps.baseLanguage.structure.ContinueStatement" flags="nn" index="3N13vt" />
       <concept id="6329021646629104954" name="jetbrains.mps.baseLanguage.structure.SingleLineComment" flags="nn" index="3SKdUt">
         <child id="8356039341262087992" name="line" index="1aUNEU" />
       </concept>
@@ -1722,107 +1721,6 @@
               <ref role="1Pybhc" to="o8zo:4IP40Bi3e_R" resolve="ListScope" />
               <node concept="37vLTw" id="5hSnPGNt7H6" role="37wK5m">
                 <ref role="3cqZAo" node="5hSnPGNsYWs" resolve="entries" />
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
-    </node>
-    <node concept="1N5Pfh" id="66x_0s5Xg75" role="1Mr941">
-      <ref role="1N5Vy1" to="wt0b:66x_0s5XfkB" resolve="member2" />
-      <node concept="3dgokm" id="66x_0s5XgaZ" role="1N6uqs">
-        <node concept="3clFbS" id="66x_0s5Xgb0" role="2VODD2">
-          <node concept="3cpWs8" id="66x_0s5Xget" role="3cqZAp">
-            <node concept="3cpWsn" id="66x_0s5Xgeu" role="3cpWs9">
-              <property role="TrG5h" value="entries" />
-              <node concept="2I9FWS" id="66x_0s5Xgev" role="1tU5fm">
-                <ref role="2I9WkF" to="wt0b:79EjCrygmCO" resolve="EBMessageEntryMember" />
-              </node>
-              <node concept="2ShNRf" id="66x_0s5Xgew" role="33vP2m">
-                <node concept="2T8Vx0" id="66x_0s5Xgex" role="2ShVmc">
-                  <node concept="2I9FWS" id="66x_0s5Xgey" role="2T96Bj">
-                    <ref role="2I9WkF" to="wt0b:79EjCrygmCO" resolve="EBMessageEntryMember" />
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="2Gpval" id="66x_0s5Xgez" role="3cqZAp">
-            <node concept="2GrKxI" id="66x_0s5Xge$" role="2Gsz3X">
-              <property role="TrG5h" value="m" />
-            </node>
-            <node concept="2OqwBi" id="66x_0s5Xge_" role="2GsD0m">
-              <node concept="2OqwBi" id="66x_0s5XgeA" role="2Oq$k0">
-                <node concept="2rP1CM" id="66x_0s5XgeB" role="2Oq$k0" />
-                <node concept="2Xjw5R" id="66x_0s5XgeC" role="2OqNvi">
-                  <node concept="1xMEDy" id="66x_0s5XgeD" role="1xVPHs">
-                    <node concept="chp4Y" id="66x_0s5XgeE" role="ri$Ld">
-                      <ref role="cht4Q" to="wt0b:79EjCrygmCA" resolve="EBMessage" />
-                    </node>
-                  </node>
-                </node>
-              </node>
-              <node concept="3Tsc0h" id="66x_0s5XgeF" role="2OqNvi">
-                <ref role="3TtcxE" to="wt0b:7Ho_HUXTBmU" resolve="content" />
-              </node>
-            </node>
-            <node concept="3clFbS" id="66x_0s5XgeG" role="2LFqv$">
-              <node concept="3clFbJ" id="66x_0s5XgeH" role="3cqZAp">
-                <node concept="2OqwBi" id="66x_0s5XgeI" role="3clFbw">
-                  <node concept="2GrUjf" id="66x_0s5XgeJ" role="2Oq$k0">
-                    <ref role="2Gs0qQ" node="66x_0s5Xge$" resolve="m" />
-                  </node>
-                  <node concept="1mIQ4w" id="66x_0s5XgeK" role="2OqNvi">
-                    <node concept="chp4Y" id="66x_0s5XgeL" role="cj9EA">
-                      <ref role="cht4Q" to="wt0b:79EjCrygmCO" resolve="EBMessageEntryMember" />
-                    </node>
-                  </node>
-                </node>
-                <node concept="3clFbS" id="66x_0s5XgeM" role="3clFbx">
-                  <node concept="3clFbJ" id="66x_0s5Xr7v" role="3cqZAp">
-                    <node concept="3clFbS" id="66x_0s5Xr7x" role="3clFbx">
-                      <node concept="3N13vt" id="66x_0s5XvZE" role="3cqZAp" />
-                    </node>
-                    <node concept="3clFbC" id="66x_0s5Xs5m" role="3clFbw">
-                      <node concept="2OqwBi" id="66x_0s5XtSO" role="3uHU7w">
-                        <node concept="3kakTB" id="66x_0s5Xt3C" role="2Oq$k0" />
-                        <node concept="3TrEf2" id="66x_0s5XuAw" role="2OqNvi">
-                          <ref role="3Tt5mk" to="wt0b:5hSnPGN51ET" resolve="msgType" />
-                        </node>
-                      </node>
-                      <node concept="2GrUjf" id="66x_0s5XvKt" role="3uHU7B">
-                        <ref role="2Gs0qQ" node="66x_0s5Xge$" resolve="m" />
-                      </node>
-                    </node>
-                  </node>
-                  <node concept="3clFbF" id="66x_0s5XgeN" role="3cqZAp">
-                    <node concept="2OqwBi" id="66x_0s5XgeO" role="3clFbG">
-                      <node concept="37vLTw" id="66x_0s5XgeP" role="2Oq$k0">
-                        <ref role="3cqZAo" node="66x_0s5Xgeu" resolve="entries" />
-                      </node>
-                      <node concept="TSZUe" id="66x_0s5XgeQ" role="2OqNvi">
-                        <node concept="10QFUN" id="66x_0s5XgeR" role="25WWJ7">
-                          <node concept="3Tqbb2" id="66x_0s5XgeS" role="10QFUM">
-                            <ref role="ehGHo" to="wt0b:79EjCrygmCO" resolve="EBMessageEntryMember" />
-                          </node>
-                          <node concept="2GrUjf" id="66x_0s5XgeT" role="10QFUP">
-                            <ref role="2Gs0qQ" node="66x_0s5Xge$" resolve="m" />
-                          </node>
-                        </node>
-                      </node>
-                    </node>
-                  </node>
-                </node>
-              </node>
-            </node>
-          </node>
-          <node concept="3clFbH" id="66x_0s5XgSQ" role="3cqZAp" />
-          <node concept="3cpWs6" id="66x_0s5XgOe" role="3cqZAp">
-            <node concept="2YIFZM" id="66x_0s5XgOf" role="3cqZAk">
-              <ref role="1Pybhc" to="o8zo:4IP40Bi3e_R" resolve="ListScope" />
-              <ref role="37wK5l" to="o8zo:4IP40Bi3eAf" resolve="forNamedElements" />
-              <node concept="37vLTw" id="66x_0s5XgOg" role="37wK5m">
-                <ref role="3cqZAo" node="66x_0s5Xgeu" resolve="entries" />
               </node>
             </node>
           </node>

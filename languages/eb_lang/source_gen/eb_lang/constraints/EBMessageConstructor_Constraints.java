@@ -56,35 +56,8 @@ public class EBMessageConstructor_Constraints extends BaseConstraintsDescriptor 
         };
       }
     };
-    BaseReferenceConstraintsDescriptor d1 = new BaseReferenceConstraintsDescriptor(LINKS.member2$xz9Q, this, true, false) {
-      @Nullable
-      @Override
-      public ReferenceScopeProvider getScopeProvider() {
-        return new BaseScopeProvider() {
-          @Override
-          public SNodeReference getSearchScopeValidatorNode() {
-            return new SNodePointer("r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)", "7035066850815050431");
-          }
-          @Override
-          public Scope createScope(final ReferenceConstraintsContext _context) {
-            List<SNode> entries = new ArrayList<SNode>();
-            for (SNode m : ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBMessage$YV, false, false), LINKS.content$vVwC))) {
-              if (SNodeOperations.isInstanceOf(m, CONCEPTS.EBMessageEntryMember$fS)) {
-                if (m == SLinkOperations.getTarget(_context.getReferenceNode(), LINKS.msgType$sKHn)) {
-                  continue;
-                }
-                ListSequence.fromList(entries).addElement((SNode) m);
-              }
-            }
-
-            return ListScope.forNamedElements(entries);
-          }
-        };
-      }
-    };
     Map<SReferenceLink, ReferenceConstraintsDescriptor> references = new HashMap<SReferenceLink, ReferenceConstraintsDescriptor>();
     references.put(d0.getReference(), d0);
-    references.put(d1.getReference(), d1);
     return references;
   }
 
@@ -97,6 +70,5 @@ public class EBMessageConstructor_Constraints extends BaseConstraintsDescriptor 
   private static final class LINKS {
     /*package*/ static final SReferenceLink msgType$sKHn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b33141ab8L, 0x54785f5b33141ab9L, "msgType");
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
-    /*package*/ static final SReferenceLink member2$xz9Q = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b33141ab8L, 0x61a1940705f4f527L, "member2");
   }
 }

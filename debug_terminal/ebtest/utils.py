@@ -7,16 +7,30 @@ from twisted.web.client import Agent, readBody
 from twisted.web.http_headers import Headers
 from datetime import datetime
 import time
+from scapy.utils import hexdump
+
+from pyfixmsg.fixmessage import FixMessage
+from pyfixmsg.codecs.stringfix import Codec
+from pyfixmsg.reference import FixSpec
 
 import traceback
 import inspect
 from collections import OrderedDict, namedtuple
 from lxml import etree
+from termcolor import cprint
 
+BLUE = lambda x: cprint(x, 'blue')
+RED = lambda x: cprint(x, 'red')
+YELLOW = lambda x: cprint(x, 'yellow')
+GREEN = lambda x: cprint(x, 'green')
 
 _logger = Logger()
 utcnow = lambda: time.time_ns()
 Exch = namedtuple('Exch', ['name', 'handler', 'port'])
+
+
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+CODEC = Codec(spec=FixSpec(os.path.join(CURRENT_DIR, 'data/FIX42.xml')))
 
 def startLogging(logOutput, levelStr='debug'):
     if isinstance(logOutput, str):
@@ -50,6 +64,7 @@ def log_debug(*kargv):
 def log_error(*kargv):
     _log_msg('error', *kargv)
 
+hex_dump = lambda data: '\n' + hexdump(data, True)
 
 def get_FIX42_data():
     data_path = os.path.join(os.path.dirname(__file__), 'data/FIX42.xml')
@@ -87,6 +102,88 @@ def get_FIX42_data():
         fix_tags[info.number] = info
 
     return fix_tags
+
+def order_summary(msg):
+    sides = {
+        '1': 'buy',
+        '2': 'sell',
+    }
+
+    exec_types = {
+        '0': 'ack',
+        '1': 'partial fill',
+        '2': 'fill',
+        '4': 'cancel',
+        '5': 'replace',
+        '8': 'rejected',
+    }
+
+    msg_type = msg.get(35)
+    side = sides.get(msg.get(54), msg.get(54))
+    price = 'market' if msg.get(40) == '1' else msg.get(44, 'n/a')
+    symbol = msg.get(48, 'n/a')
+    qty = msg.get(38, 'n/a')
+    clOrdID = msg.get(11)
+    origClOrdID = msg.get(41, '')
+
+    if msg_type == 'D':
+        BLUE(f'{side} {symbol} {qty}@{price} 11={clOrdID}')
+
+    elif msg_type == 'G':
+        BLUE(f'amend qty:{qty} price:{price} 11={clOrdID} 41={origClOrdID}')
+
+    elif msg_type == 'F':
+        BLUE(f'cancel 11={clOrdID} 41={origClOrdID}')
+
+    elif msg_type == '8':
+        exec_type = exec_types.get(msg.get(150), msg.get(150))
+        lastPx = msg.get(31)
+        lastQty = msg.get(32)
+        info = f'{exec_type} {side} {symbol} {lastQty}@{lastPx} 11={clOrdID}'
+        if exec_type == 'rejected':
+            RED(info)
+        else:
+            YELLOW(info)
+
+    elif msg_type == '9':
+        RED(f'cancel reject 11={clOrdID}')
+
+
+def fixmsg(source):
+    if isinstance(source, str):
+        msg = FixMessage()
+        msg.load_fix(source)
+
+    elif isinstance(source, dict):
+        msg = FixMessage(source)
+
+    elif isinstance(source, FixMessage):
+        return source
+
+    else:
+        raise RuntimeError('bad source of fix msg, need str/dict')
+
+    msg.codec = CODEC
+    return msg
+
+
+def apply_modify(msg, modify):
+    msg = fixmsg(msg)
+    for pair in [i.strip() for i in modify.split(';') if i.strip()]:
+        try:
+            tag, value = pair.split('=', 1)
+            tag = int(tag) if tag.isdigit() else tag
+            msg.set_or_delete(tag, value)
+        except:
+            pass
+    return msg
+
+_seq = 0
+_prefix = time.strftime('%m%dT%I%M%S')
+def unique_id():
+    global _seq
+    _seq += 1
+    return f'ord-{_prefix}-{_seq}'
 
 
 

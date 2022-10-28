@@ -5,14 +5,14 @@ namespace LME {
 using namespace EB::common;
 
 using Char = LittleEndian<char, -128, 127, 0>;
-using Uint8 = LittleEndian<uint8_t, 0, 254, 255>;
+using Uint8 = LittleEndian<uint8_t, 0_u8, 254_u8, 255_u8>;
 using Int8 = LittleEndian<int8_t, -127, 127, -128>;
 using UInt16 = LittleEndian<uint16_t, 0, 65534, 65535>;
 using Int16 = LittleEndian<int16_t, -32767, 32767, -32768>;
 using UInt32 = LittleEndian<uint32_t, 0, 4294967294, 4294967295>;
 using Int32 = LittleEndian<int32_t, -2147483647, 2147483647, -2147483648>;
 using UInt64 = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 18446744073709551615UL>;
-using Int64 = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, -9223372036854775808L>;
+using Int64 = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, -9223372036854775807L - 1L>;
 using String5 = FixedLengthString<5, 0>;
 using String11 = FixedLengthString<11, 0>;
 using String19 = FixedLengthString<19, 0>;
@@ -21,7 +21,8 @@ using String50 = FixedLengthString<50, 0>;
 using String76 = FixedLengthString<76, 0>;
 using String251 = FixedLengthString<251, 0>;
 using String450 = FixedLengthString<450, 0>;
-using PresenceMap = LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>;
+using PresenceMap = LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>;
+using BytePresenceMap = LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>;
 using Ratio = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0, 3>;
 
 EB_ENUM(MsgType, uint8_t, 
@@ -158,11 +159,7 @@ struct MsgHeader {
     String11 compID;
     UInt64 sendingTime;
     UInt64 originalSendingTime;
-    PresenceMap presenceMap;
-    PresenceMap presenceMap1;
-    PresenceMap presenceMap2;
-    PresenceMap presenceMap3;
-    MsgHeader(MsgType msgType_, PresenceMap presenceMap_):msgType(msgType_), presenceMap(presenceMap_) {};
+    MsgHeader(MsgType msgType_):msgType(msgType_) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MsgHeader);}
@@ -171,15 +168,20 @@ struct MsgHeader {
 #pragma pack()
 
 
+// nextSeqNo must be set
 #pragma pack(1)
 struct Logon : MsgHeader {
-    OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> password() {return OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
-    OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> newPassword() {return OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(password().end(), presenceMap, 63-1);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> nextSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(newPassword().end(), presenceMap, 63-2);}
-    OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> sessionStatus() {return OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(nextSeqNo().end(), presenceMap, 63-3);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> heartbeatInterval() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(sessionStatus().end(), presenceMap, 63-4);}
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
+    OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> password() {return OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
+    OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> newPassword() {return OptionalRef<String450, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(password().end(), presenceMap, 63-1);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> nextSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(newPassword().end(), presenceMap, 63-2);}
+    OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> sessionStatus() {return OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(nextSeqNo().end(), presenceMap, 63-3);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> heartbeatInterval() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(sessionStatus().end(), presenceMap, 63-4);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(heartbeatInterval().end());}
-    Logon():MsgHeader(MsgType::Logon, 0ul) {};
+    Logon():MsgHeader(MsgType::Logon) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Logon);}
@@ -190,9 +192,13 @@ struct Logon : MsgHeader {
 
 #pragma pack(1)
 struct Heartbeat : MsgHeader {
-    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refTestRequestID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
+    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refTestRequestID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(refTestRequestID().end());}
-    Heartbeat():MsgHeader(MsgType::Heartbeat, 0ul) {};
+    Heartbeat():MsgHeader(MsgType::Heartbeat) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Heartbeat);}
@@ -203,9 +209,13 @@ struct Heartbeat : MsgHeader {
 
 #pragma pack(1)
 struct TestRequest : MsgHeader {
+    PresenceMap presenceMap = 0b1UL << 63UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String21 testRequestID;
     UInt32 chksum;
-    TestRequest():MsgHeader(MsgType::TestRequest, 0b1ul << 63) {};
+    TestRequest():MsgHeader(MsgType::TestRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TestRequest);}
@@ -216,10 +226,14 @@ struct TestRequest : MsgHeader {
 
 #pragma pack(1)
 struct ResendRequest : MsgHeader {
+    PresenceMap presenceMap = 0b11UL << 62UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     UInt32 startSeq;
     UInt32 endSeq;
     UInt32 chksum;
-    ResendRequest():MsgHeader(MsgType::ResendRequest, 0b11ul << 62) {};
+    ResendRequest():MsgHeader(MsgType::ResendRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(ResendRequest);}
@@ -230,10 +244,14 @@ struct ResendRequest : MsgHeader {
 
 #pragma pack(1)
 struct SequenceReset : MsgHeader {
-    OptionalRef<GapFill, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> gapFill() {return OptionalRef<GapFill, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> newSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(gapFill().end(), presenceMap, 63-1);}
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
+    OptionalRef<GapFill, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> gapFill() {return OptionalRef<GapFill, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> newSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(gapFill().end(), presenceMap, 63-1);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(newSeqNo().end());}
-    SequenceReset():MsgHeader(MsgType::SequenceReset, 0ul) {};
+    SequenceReset():MsgHeader(MsgType::SequenceReset) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SequenceReset);}
@@ -244,10 +262,14 @@ struct SequenceReset : MsgHeader {
 
 #pragma pack(1)
 struct Logout : MsgHeader {
-    OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> status() {return OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(status().end(), presenceMap, 63-1);}
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
+    OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> status() {return OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(status().end(), presenceMap, 63-1);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    Logout():MsgHeader(MsgType::Logout, 0ul) {};
+    Logout():MsgHeader(MsgType::Logout) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Logout);}
@@ -258,13 +280,17 @@ struct Logout : MsgHeader {
 
 #pragma pack(1)
 struct Reject : MsgHeader {
+    PresenceMap presenceMap = 0b1UL << 63UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     MsgRejectCode rejectCode;
-    OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refMsgType() {return OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
-    OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refFieldName() {return OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(refMsgType().end(), presenceMap, 63-2);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(refFieldName().end(), presenceMap, 63-3);}
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(refSeqNo().end(), presenceMap, 63-4);}
+    OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refMsgType() {return OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
+    OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refFieldName() {return OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refMsgType().end(), presenceMap, 63-2);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refFieldName().end(), presenceMap, 63-3);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refSeqNo().end(), presenceMap, 63-4);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    Reject():MsgHeader(MsgType::Reject, 0b1ul << 63) {};
+    Reject():MsgHeader(MsgType::Reject) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Reject);}
@@ -275,14 +301,18 @@ struct Reject : MsgHeader {
 
 #pragma pack(1)
 struct BusinessReject : MsgHeader {
+    PresenceMap presenceMap = 0b1UL << 63UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     BusinessRejectCode rejectCode;
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
-    OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refMsgType() {return OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(text().end(), presenceMap, 63-2);}
-    OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refFieldName() {return OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(refMsgType().end(), presenceMap, 63-3);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(refFieldName().end(), presenceMap, 63-4);}
-    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> refID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(refSeqNo().end(), presenceMap, 63-5);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
+    OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refMsgType() {return OptionalRef<MsgType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(text().end(), presenceMap, 63-2);}
+    OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refFieldName() {return OptionalRef<String50, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refMsgType().end(), presenceMap, 63-3);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refFieldName().end(), presenceMap, 63-4);}
+    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refSeqNo().end(), presenceMap, 63-5);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(refID().end());}
-    BusinessReject():MsgHeader(MsgType::BusinessReject, 0b1ul << 63) {};
+    BusinessReject():MsgHeader(MsgType::BusinessReject) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(BusinessReject);}
@@ -293,12 +323,16 @@ struct BusinessReject : MsgHeader {
 
 #pragma pack(1)
 struct News : MsgHeader {
+    PresenceMap presenceMap = 0b1111UL << 60UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String21 newsID;
     Uint8 newsCategory;
     UInt64 timeStamp;
     String251 newsText;
     UInt32 chksum;
-    News():MsgHeader(MsgType::News, 0b1111ul << 60) {};
+    News():MsgHeader(MsgType::News) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(News);}
@@ -309,11 +343,11 @@ struct News : MsgHeader {
 
 #pragma pack(1)
 struct SecurityDefLegEntry {
-    PresenceMap presenceMap = 0b111ul << 61UL;
+    BytePresenceMap presenceMap = 0b11100000_u8;
     UInt64 legSecurityID;
     Side legSide;
     Ratio legRatio;
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> legPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 3);}
+    OptionalRef<Int64, LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>> legPrice() {return OptionalRef<Int64, LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>>(begin()+size(), presenceMap, 7-3);}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SecurityDefLegEntry);}
@@ -336,18 +370,22 @@ struct SecurityDefLegsGroup {
 
 #pragma pack(1)
 struct SecurityDefinitionRequest : MsgHeader {
+    PresenceMap presenceMap = 0b111111UL << 58UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 securityRequestID;
     String5 securityExchange;
     String5 productComplex;
     String21 symbol;
     SecurityType securityType;
     SecuritySubType securitySubType;
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> maturityDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-6);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> strikePrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(maturityDate().end(), presenceMap, 63-7);}
-    OptionalRef<PutOrCall, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> putOrCall() {return OptionalRef<PutOrCall, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(strikePrice().end(), presenceMap, 63-8);}
-    OptionalRef<SecurityDefLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> legsGroup() {return OptionalRef<SecurityDefLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(putOrCall().end(), presenceMap, 63-9);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> maturityDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-6);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> strikePrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(maturityDate().end(), presenceMap, 63-7);}
+    OptionalRef<PutOrCall, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> putOrCall() {return OptionalRef<PutOrCall, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(strikePrice().end(), presenceMap, 63-8);}
+    OptionalRef<SecurityDefLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> legsGroup() {return OptionalRef<SecurityDefLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(putOrCall().end(), presenceMap, 63-9);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(legsGroup().end());}
-    SecurityDefinitionRequest():MsgHeader(MsgType::SecurityDefinitionRequest, 0b111111ul << 58) {};
+    SecurityDefinitionRequest():MsgHeader(MsgType::SecurityDefinitionRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SecurityDefinitionRequest);}
@@ -374,14 +412,18 @@ EB_ENUM(SecurityRejectReason, uint8_t,
 
 #pragma pack(1)
 struct SecurityDefinition : MsgHeader {
+    PresenceMap presenceMap = 0b111UL << 63UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2b;
+    PresenceMap presenceMap3;
     String19 securityRequestID;
     String21 securityResponseID;
     SecurityResponseType securityResponseType;
-    OptionalRef<SecurityRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> securityRejectReason() {return OptionalRef<SecurityRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-3);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(securityRejectReason().end(), presenceMap, 63-4);}
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(securityID().end(), presenceMap, 63-5);}
+    OptionalRef<SecurityRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityRejectReason() {return OptionalRef<SecurityRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-3);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityRejectReason().end(), presenceMap, 63-4);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityID().end(), presenceMap, 63-5);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    SecurityDefinition():MsgHeader(MsgType::SecurityDefinition, 0b111ul << 61) {};
+    SecurityDefinition():MsgHeader(MsgType::SecurityDefinition) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SecurityDefinition);}
@@ -475,6 +517,10 @@ EB_ENUM(MarketMaker, char,
 
 #pragma pack(1)
 struct NewOrderSingle : MsgHeader {
+    PresenceMap presenceMap = 0b10001111111111UL << 50UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 clOrdID;
     UInt64 securityID;
     UInt64 transactTime;
@@ -486,37 +532,37 @@ struct NewOrderSingle : MsgHeader {
     OrderRestrictions ordRestrictions;
     OrderCapacity capacity;
     AccountType accountType;
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clientShortCode() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-15);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> LEI() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clientShortCode().end(), presenceMap, 63-16);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> proprietaryClientID() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(LEI().end(), presenceMap, 63-17);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> enteringFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(proprietaryClientID().end(), presenceMap, 63-18);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> origTrader() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(enteringFirm().end(), presenceMap, 63-19);}
-    OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> customerAccount() {return OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(origTrader().end(), presenceMap, 63-20);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> correspondentBroker() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(customerAccount().end(), presenceMap, 63-21);}
-    OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> marketMaker() {return OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(correspondentBroker().end(), presenceMap, 63-23);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> decisionMaker() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(marketMaker().end(), presenceMap, 63-24);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> IDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(decisionMaker().end(), presenceMap, 63-25);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> EDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(IDM().end(), presenceMap, 63-26);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> IDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(EDM().end(), presenceMap, 63-27);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> EDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(IDC().end(), presenceMap, 63-28);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clientBranchCountry() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(EDC().end(), presenceMap, 63-29);}
-    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clientBranchCountry().end(), presenceMap, 63-30);}
-    OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(brokerClientID().end(), presenceMap, 63-31);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> SMPID() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(text().end(), presenceMap, 63-32);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> displayQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(SMPID().end(), presenceMap, 63-33);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> expiryDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(displayQty().end(), presenceMap, 63-34);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(expiryDate().end(), presenceMap, 63-35);}
-    OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerPriceType() {return OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerPrice().end(), presenceMap, 63-36);}
-    OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerType() {return OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerPriceType().end(), presenceMap, 63-37);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerNewPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerType().end(), presenceMap, 63-38);}
-    OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cod() {return OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerNewPrice().end(), presenceMap, 63-40);}
-    OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> dea() {return OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cod().end(), presenceMap, 63-41);}
-    OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> aggrOrder() {return OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(dea().end(), presenceMap, 63-42);}
-    OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> pendingAllocationOrder() {return OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(aggrOrder().end(), presenceMap, 63-43);}
-    OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
-    OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clientShortCode() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-15);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> LEI() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clientShortCode().end(), presenceMap, 63-16);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> proprietaryClientID() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(LEI().end(), presenceMap, 63-17);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> enteringFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(proprietaryClientID().end(), presenceMap, 63-18);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> origTrader() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(enteringFirm().end(), presenceMap, 63-19);}
+    OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> customerAccount() {return OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(origTrader().end(), presenceMap, 63-20);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> correspondentBroker() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(customerAccount().end(), presenceMap, 63-21);}
+    OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> marketMaker() {return OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(correspondentBroker().end(), presenceMap, 63-23);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> decisionMaker() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(marketMaker().end(), presenceMap, 63-24);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> IDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(decisionMaker().end(), presenceMap, 63-25);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> EDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(IDM().end(), presenceMap, 63-26);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> IDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(EDM().end(), presenceMap, 63-27);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> EDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(IDC().end(), presenceMap, 63-28);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clientBranchCountry() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(EDC().end(), presenceMap, 63-29);}
+    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clientBranchCountry().end(), presenceMap, 63-30);}
+    OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(brokerClientID().end(), presenceMap, 63-31);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> SMPID() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(text().end(), presenceMap, 63-32);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> displayQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(SMPID().end(), presenceMap, 63-33);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> expiryDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(displayQty().end(), presenceMap, 63-34);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(expiryDate().end(), presenceMap, 63-35);}
+    OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerPriceType() {return OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerPrice().end(), presenceMap, 63-36);}
+    OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerType() {return OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerPriceType().end(), presenceMap, 63-37);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerNewPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerType().end(), presenceMap, 63-38);}
+    OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cod() {return OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerNewPrice().end(), presenceMap, 63-40);}
+    OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> dea() {return OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cod().end(), presenceMap, 63-41);}
+    OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> aggrOrder() {return OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(dea().end(), presenceMap, 63-42);}
+    OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> pendingAllocationOrder() {return OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(aggrOrder().end(), presenceMap, 63-43);}
+    OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
+    OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(riskReductionOrder().end());}
-    NewOrderSingle():MsgHeader(MsgType::NewOrderSingle, 0b100011111111110ul << 49) {};
+    NewOrderSingle():MsgHeader(MsgType::NewOrderSingle) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(NewOrderSingle);}
@@ -525,11 +571,14 @@ struct NewOrderSingle : MsgHeader {
 #pragma pack()
 
 
-// make orderID is set to make the first part as fixed length
+// Do not provide OrderID in amend
 #pragma pack(1)
 struct AmendOrder : MsgHeader {
+    PresenceMap presenceMap = 0b10011111111111UL << 50UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 clOrdID;
-    UInt64 orderID;
     String19 origClOrdID;
     UInt64 securityID;
     UInt64 transactTime;
@@ -541,37 +590,37 @@ struct AmendOrder : MsgHeader {
     OrderRestrictions ordRestrictions;
     OrderCapacity capacity;
     AccountType accountType;
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clientShortCode() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-15);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> LEI() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clientShortCode().end(), presenceMap, 63-16);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> proprietaryClientID() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(LEI().end(), presenceMap, 63-17);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> enteringFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(proprietaryClientID().end(), presenceMap, 63-18);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> origTrader() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(enteringFirm().end(), presenceMap, 63-19);}
-    OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> customerAccount() {return OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(origTrader().end(), presenceMap, 63-20);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> correspondentBroker() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(customerAccount().end(), presenceMap, 63-21);}
-    OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> marketMaker() {return OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(correspondentBroker().end(), presenceMap, 63-23);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> decisionMaker() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(marketMaker().end(), presenceMap, 63-24);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> IDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(decisionMaker().end(), presenceMap, 63-25);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> EDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(IDM().end(), presenceMap, 63-26);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> IDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(EDM().end(), presenceMap, 63-27);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> EDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(IDC().end(), presenceMap, 63-28);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clientBranchCountry() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(EDC().end(), presenceMap, 63-29);}
-    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clientBranchCountry().end(), presenceMap, 63-30);}
-    OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(brokerClientID().end(), presenceMap, 63-31);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> SMPID() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(text().end(), presenceMap, 63-32);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> displayQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(SMPID().end(), presenceMap, 63-33);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> expiryDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(displayQty().end(), presenceMap, 63-34);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(expiryDate().end(), presenceMap, 63-35);}
-    OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerPriceType() {return OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerPrice().end(), presenceMap, 63-36);}
-    OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerType() {return OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerPriceType().end(), presenceMap, 63-37);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerNewPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerType().end(), presenceMap, 63-38);}
-    OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cod() {return OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerNewPrice().end(), presenceMap, 63-40);}
-    OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> dea() {return OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cod().end(), presenceMap, 63-41);}
-    OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> aggrOrder() {return OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(dea().end(), presenceMap, 63-42);}
-    OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> pendingAllocationOrder() {return OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(aggrOrder().end(), presenceMap, 63-43);}
-    OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
-    OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clientShortCode() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-15);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> LEI() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clientShortCode().end(), presenceMap, 63-16);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> proprietaryClientID() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(LEI().end(), presenceMap, 63-17);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> enteringFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(proprietaryClientID().end(), presenceMap, 63-18);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> origTrader() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(enteringFirm().end(), presenceMap, 63-19);}
+    OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> customerAccount() {return OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(origTrader().end(), presenceMap, 63-20);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> correspondentBroker() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(customerAccount().end(), presenceMap, 63-21);}
+    OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> marketMaker() {return OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(correspondentBroker().end(), presenceMap, 63-23);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> decisionMaker() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(marketMaker().end(), presenceMap, 63-24);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> IDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(decisionMaker().end(), presenceMap, 63-25);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> EDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(IDM().end(), presenceMap, 63-26);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> IDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(EDM().end(), presenceMap, 63-27);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> EDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(IDC().end(), presenceMap, 63-28);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clientBranchCountry() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(EDC().end(), presenceMap, 63-29);}
+    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clientBranchCountry().end(), presenceMap, 63-30);}
+    OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(brokerClientID().end(), presenceMap, 63-31);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> SMPID() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(text().end(), presenceMap, 63-32);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> displayQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(SMPID().end(), presenceMap, 63-33);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> expiryDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(displayQty().end(), presenceMap, 63-34);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(expiryDate().end(), presenceMap, 63-35);}
+    OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerPriceType() {return OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerPrice().end(), presenceMap, 63-36);}
+    OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerType() {return OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerPriceType().end(), presenceMap, 63-37);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerNewPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerType().end(), presenceMap, 63-38);}
+    OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cod() {return OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerNewPrice().end(), presenceMap, 63-40);}
+    OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> dea() {return OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cod().end(), presenceMap, 63-41);}
+    OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> aggrOrder() {return OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(dea().end(), presenceMap, 63-42);}
+    OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> pendingAllocationOrder() {return OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(aggrOrder().end(), presenceMap, 63-43);}
+    OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
+    OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(riskReductionOrder().end());}
-    AmendOrder():MsgHeader(MsgType::AmendOrder, 0b101111111111110ul << 49) {};
+    AmendOrder():MsgHeader(MsgType::AmendOrder) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(AmendOrder);}
@@ -580,14 +629,14 @@ struct AmendOrder : MsgHeader {
 #pragma pack()
 
 
-EB_ENUM(OrderStatus, uint8_t, 
-  ((New, 0))
-  ((PartiallyFilled, 1))
-  ((Filled, 2))
-  ((DoneForDay, 3))
-  ((Cancelled, 4))
-  ((PendingCancel, 6))
-  ((Rejected, 8))
+EB_ENUM(OrderStatus, char, 
+  ((New, '0'))
+  ((PartiallyFilled, '1'))
+  ((Filled, '2'))
+  ((DoneForDay, '3'))
+  ((Cancelled, '4'))
+  ((PendingCancel, '6'))
+  ((Rejected, '8'))
   ((PendingNew, 'A'))
   ((Expired, 'C'))
   ((PendingReplace, 'E'))
@@ -610,17 +659,22 @@ EB_ENUM(CancelRejectCode, uint16_t,
   ((Other, 99))
 );
 
+// response, exchange controls the presenceMap
 #pragma pack(1)
 struct AmendRejected : MsgHeader {
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 clOrdID;
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> orderID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-2);}
-    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> origClOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(orderID().end(), presenceMap, 63-3);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(origClOrdID().end(), presenceMap, 63-4);}
-    OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> ordStatus() {return OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(transactTime().end(), presenceMap, 63-5);}
-    OptionalRef<AmendRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> rejectCode() {return OptionalRef<AmendRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(ordStatus().end(), presenceMap, 63-6);}
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(rejectCode().end(), presenceMap, 63-7);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> orderID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-2);}
+    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> origClOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(orderID().end(), presenceMap, 63-3);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(origClOrdID().end(), presenceMap, 63-4);}
+    OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> ordStatus() {return OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(transactTime().end(), presenceMap, 63-5);}
+    OptionalRef<AmendRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> rejectCode() {return OptionalRef<AmendRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(ordStatus().end(), presenceMap, 63-6);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(rejectCode().end(), presenceMap, 63-7);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    AmendRejected():MsgHeader(MsgType::OrderAmendRejected, 0ul) {};
+    AmendRejected():MsgHeader(MsgType::OrderAmendRejected) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(AmendRejected);}
@@ -629,15 +683,19 @@ struct AmendRejected : MsgHeader {
 #pragma pack()
 
 
-// skip pos 1, 2
+// do not set OrderID
 #pragma pack(1)
 struct CancelOrder : MsgHeader {
+    PresenceMap presenceMap = 0b1001111UL << 57UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 clOrdID;
     String19 origClOrdID;
     UInt64 securityID;
     UInt64 transactTime;
     Side side;
-    CancelOrder():MsgHeader(MsgType::CancelOrder, 0b1001111ul << 57) {};
+    CancelOrder():MsgHeader(MsgType::CancelOrder) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(CancelOrder);}
@@ -649,17 +707,21 @@ struct CancelOrder : MsgHeader {
 // response, no need to initialize presence map
 #pragma pack(1)
 struct CancelRejected : MsgHeader {
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 clOrdID;
-    OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> secondaryClOrdID() {return OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> orderID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(secondaryClOrdID().end(), presenceMap, 63-2);}
-    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> origClOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(orderID().end(), presenceMap, 63-3);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(origClOrdID().end(), presenceMap, 63-4);}
-    OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> ordStatus() {return OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(transactTime().end(), presenceMap, 63-5);}
-    OptionalRef<CancelRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> rejectCode() {return OptionalRef<CancelRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(ordStatus().end(), presenceMap, 63-6);}
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(rejectCode().end(), presenceMap, 63-7);}
-    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(text().end(), presenceMap, 63-8);}
+    OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> secondaryClOrdID() {return OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> orderID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(secondaryClOrdID().end(), presenceMap, 63-2);}
+    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> origClOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(orderID().end(), presenceMap, 63-3);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(origClOrdID().end(), presenceMap, 63-4);}
+    OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> ordStatus() {return OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(transactTime().end(), presenceMap, 63-5);}
+    OptionalRef<CancelRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> rejectCode() {return OptionalRef<CancelRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(ordStatus().end(), presenceMap, 63-6);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(rejectCode().end(), presenceMap, 63-7);}
+    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(text().end(), presenceMap, 63-8);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(side().end());}
-    CancelRejected():MsgHeader(MsgType::OrderCancelRejected, 0ul) {};
+    CancelRejected():MsgHeader(MsgType::OrderCancelRejected) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(CancelRejected);}
@@ -719,7 +781,7 @@ EB_ENUM(OrderRejectReason, uint16_t,
 
 #pragma pack(1)
 struct ExecReportLegEntry {
-    PresenceMap presenceMap;
+    BytePresenceMap presenceMap;
     UInt64 legSecurityID;
     Uint8 legSide;
     UInt64 legAllocID;
@@ -748,71 +810,75 @@ struct ExecReportLegsGroup {
 // response, no need to initialize presence map
 #pragma pack(1)
 struct ExecutionReport : MsgHeader {
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 clOrdID;
-    OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> secondaryClOrdID() {return OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> orderID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(secondaryClOrdID().end(), presenceMap, 63-2);}
-    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> origClOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(orderID().end(), presenceMap, 63-3);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(origClOrdID().end(), presenceMap, 63-4);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(securityID().end(), presenceMap, 63-5);}
-    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(transactTime().end(), presenceMap, 63-6);}
-    OptionalRef<Int32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> qty() {return OptionalRef<Int32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(side().end(), presenceMap, 63-7);}
-    OptionalRef<OrderType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> ordType() {return OptionalRef<OrderType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(qty().end(), presenceMap, 63-8);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> price() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(ordType().end(), presenceMap, 63-9);}
-    OptionalRef<TimeInForce, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> tif() {return OptionalRef<TimeInForce, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(price().end(), presenceMap, 63-10);}
-    OptionalRef<OrderRestrictions, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> ordRestrictions() {return OptionalRef<OrderRestrictions, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(tif().end(), presenceMap, 63-11);}
-    OptionalRef<OrderCapacity, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> capacity() {return OptionalRef<OrderCapacity, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(ordRestrictions().end(), presenceMap, 63-12);}
-    OptionalRef<AccountType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> accountType() {return OptionalRef<AccountType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(capacity().end(), presenceMap, 63-13);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> executingFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(accountType().end(), presenceMap, 63-14);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clientShortCode() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(executingFirm().end(), presenceMap, 63-15);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> LEI() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clientShortCode().end(), presenceMap, 63-16);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> proprietaryClientID() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(LEI().end(), presenceMap, 63-17);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> enteringFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(proprietaryClientID().end(), presenceMap, 63-18);}
-    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> origTrader() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(enteringFirm().end(), presenceMap, 63-19);}
-    OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> customerAccount() {return OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(origTrader().end(), presenceMap, 63-20);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> correspondentBroker() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(customerAccount().end(), presenceMap, 63-21);}
-    OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> marketMaker() {return OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(correspondentBroker().end(), presenceMap, 63-23);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> decisionMaker() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(marketMaker().end(), presenceMap, 63-24);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> IDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(decisionMaker().end(), presenceMap, 63-25);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> EDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(IDM().end(), presenceMap, 63-26);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> IDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(EDM().end(), presenceMap, 63-27);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> EDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(IDC().end(), presenceMap, 63-28);}
-    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clientBranchCountry() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(EDC().end(), presenceMap, 63-29);}
-    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clientBranchCountry().end(), presenceMap, 63-30);}
-    OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(brokerClientID().end(), presenceMap, 63-31);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> SMPID() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(text().end(), presenceMap, 63-32);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> displayQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(SMPID().end(), presenceMap, 63-33);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> expiryDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(displayQty().end(), presenceMap, 63-34);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(expiryDate().end(), presenceMap, 63-35);}
-    OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerPriceType() {return OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerPrice().end(), presenceMap, 63-36);}
-    OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerType() {return OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerPriceType().end(), presenceMap, 63-37);}
-    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> triggerNewPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerType().end(), presenceMap, 63-38);}
-    OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cod() {return OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(triggerNewPrice().end(), presenceMap, 63-40);}
-    OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> dea() {return OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cod().end(), presenceMap, 63-41);}
-    OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> aggrOrder() {return OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(dea().end(), presenceMap, 63-42);}
-    OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> pendingAllocationOrder() {return OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(aggrOrder().end(), presenceMap, 63-43);}
-    OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
-    OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
-    OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> quotePriceLevel() {return OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(riskReductionOrder().end(), presenceMap, 63-46);}
-    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> execID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(quotePriceLevel().end(), presenceMap1, 63-1);}
-    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> execRefID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(execID().end(), presenceMap1, 63-2);}
-    OptionalRef<ExecType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> execType() {return OptionalRef<ExecType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(execRefID().end(), presenceMap1, 63-3);}
-    OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> ordStatus() {return OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(execType().end(), presenceMap1, 63-4);}
-    OptionalRef<String11, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> enteringTrader() {return OptionalRef<String11, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(ordStatus().end(), presenceMap1, 63-5);}
-    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clearingFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(enteringTrader().end(), presenceMap1, 63-6);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> tradeID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clearingFirm().end(), presenceMap1, 63-7);}
-    OptionalRef<ExecRestatementReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> restatementReason() {return OptionalRef<ExecRestatementReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(tradeID().end(), presenceMap1, 63-8);}
-    OptionalRef<ExecTypeReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> execTypeReason() {return OptionalRef<ExecTypeReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(restatementReason().end(), presenceMap1, 63-9);}
-    OptionalRef<OrderCategory, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> orderCategory() {return OptionalRef<OrderCategory, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(execTypeReason().end(), presenceMap1, 63-10);}
-    OptionalRef<AggrIndicator, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> aggrIndicator() {return OptionalRef<AggrIndicator, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(orderCategory().end(), presenceMap1, 63-11);}
-    OptionalRef<OrderRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> rejectReason() {return OptionalRef<OrderRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(aggrIndicator().end(), presenceMap1, 63-12);}
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> reasonText() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(rejectReason().end(), presenceMap1, 63-13);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> lastQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(reasonText().end(), presenceMap1, 63-14);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> lastPx() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(lastQty().end(), presenceMap1, 63-15);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cumQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(lastPx().end(), presenceMap1, 63-16);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> leavesQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cumQty().end(), presenceMap1, 63-17);}
-    OptionalRef<ExecReportLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> legsGroup() {return OptionalRef<ExecReportLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(leavesQty().end(), presenceMap1, 63-18);}
+    OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> secondaryClOrdID() {return OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-1);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> orderID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(secondaryClOrdID().end(), presenceMap, 63-2);}
+    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> origClOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(orderID().end(), presenceMap, 63-3);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(origClOrdID().end(), presenceMap, 63-4);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityID().end(), presenceMap, 63-5);}
+    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(transactTime().end(), presenceMap, 63-6);}
+    OptionalRef<Int32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> qty() {return OptionalRef<Int32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(side().end(), presenceMap, 63-7);}
+    OptionalRef<OrderType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> ordType() {return OptionalRef<OrderType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(qty().end(), presenceMap, 63-8);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> price() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(ordType().end(), presenceMap, 63-9);}
+    OptionalRef<TimeInForce, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> tif() {return OptionalRef<TimeInForce, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(price().end(), presenceMap, 63-10);}
+    OptionalRef<OrderRestrictions, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> ordRestrictions() {return OptionalRef<OrderRestrictions, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(tif().end(), presenceMap, 63-11);}
+    OptionalRef<OrderCapacity, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> capacity() {return OptionalRef<OrderCapacity, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(ordRestrictions().end(), presenceMap, 63-12);}
+    OptionalRef<AccountType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> accountType() {return OptionalRef<AccountType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(capacity().end(), presenceMap, 63-13);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> executingFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(accountType().end(), presenceMap, 63-14);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clientShortCode() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(executingFirm().end(), presenceMap, 63-15);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> LEI() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clientShortCode().end(), presenceMap, 63-16);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> proprietaryClientID() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(LEI().end(), presenceMap, 63-17);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> enteringFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(proprietaryClientID().end(), presenceMap, 63-18);}
+    OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> origTrader() {return OptionalRef<String41, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(enteringFirm().end(), presenceMap, 63-19);}
+    OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> customerAccount() {return OptionalRef<String31, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(origTrader().end(), presenceMap, 63-20);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> correspondentBroker() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(customerAccount().end(), presenceMap, 63-21);}
+    OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> marketMaker() {return OptionalRef<MarketMaker, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(correspondentBroker().end(), presenceMap, 63-23);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> decisionMaker() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(marketMaker().end(), presenceMap, 63-24);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> IDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(decisionMaker().end(), presenceMap, 63-25);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> EDM() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(IDM().end(), presenceMap, 63-26);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> IDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(EDM().end(), presenceMap, 63-27);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> EDC() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(IDC().end(), presenceMap, 63-28);}
+    OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clientBranchCountry() {return OptionalRef<String3, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(EDC().end(), presenceMap, 63-29);}
+    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clientBranchCountry().end(), presenceMap, 63-30);}
+    OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String51, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(brokerClientID().end(), presenceMap, 63-31);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> SMPID() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(text().end(), presenceMap, 63-32);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> displayQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(SMPID().end(), presenceMap, 63-33);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> expiryDate() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(displayQty().end(), presenceMap, 63-34);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(expiryDate().end(), presenceMap, 63-35);}
+    OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerPriceType() {return OptionalRef<TriggerPriceType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerPrice().end(), presenceMap, 63-36);}
+    OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerType() {return OptionalRef<TriggerType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerPriceType().end(), presenceMap, 63-37);}
+    OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> triggerNewPrice() {return OptionalRef<Int64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerType().end(), presenceMap, 63-38);}
+    OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cod() {return OptionalRef<COD, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(triggerNewPrice().end(), presenceMap, 63-40);}
+    OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> dea() {return OptionalRef<DEA, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cod().end(), presenceMap, 63-41);}
+    OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> aggrOrder() {return OptionalRef<AggrOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(dea().end(), presenceMap, 63-42);}
+    OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> pendingAllocationOrder() {return OptionalRef<PendingAllocationOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(aggrOrder().end(), presenceMap, 63-43);}
+    OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
+    OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
+    OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> quotePriceLevel() {return OptionalRef<Uint8, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(riskReductionOrder().end(), presenceMap, 63-46);}
+    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> execID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(quotePriceLevel().end(), presenceMap1, 63-1);}
+    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> execRefID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(execID().end(), presenceMap1, 63-2);}
+    OptionalRef<ExecType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> execType() {return OptionalRef<ExecType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(execRefID().end(), presenceMap1, 63-3);}
+    OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> ordStatus() {return OptionalRef<OrderStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(execType().end(), presenceMap1, 63-4);}
+    OptionalRef<String11, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> enteringTrader() {return OptionalRef<String11, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(ordStatus().end(), presenceMap1, 63-5);}
+    OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clearingFirm() {return OptionalRef<String4, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(enteringTrader().end(), presenceMap1, 63-6);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> tradeID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clearingFirm().end(), presenceMap1, 63-7);}
+    OptionalRef<ExecRestatementReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> restatementReason() {return OptionalRef<ExecRestatementReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(tradeID().end(), presenceMap1, 63-8);}
+    OptionalRef<ExecTypeReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> execTypeReason() {return OptionalRef<ExecTypeReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(restatementReason().end(), presenceMap1, 63-9);}
+    OptionalRef<OrderCategory, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> orderCategory() {return OptionalRef<OrderCategory, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(execTypeReason().end(), presenceMap1, 63-10);}
+    OptionalRef<AggrIndicator, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> aggrIndicator() {return OptionalRef<AggrIndicator, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(orderCategory().end(), presenceMap1, 63-11);}
+    OptionalRef<OrderRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> rejectReason() {return OptionalRef<OrderRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(aggrIndicator().end(), presenceMap1, 63-12);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> reasonText() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(rejectReason().end(), presenceMap1, 63-13);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> lastQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(reasonText().end(), presenceMap1, 63-14);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> lastPx() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(lastQty().end(), presenceMap1, 63-15);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cumQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(lastPx().end(), presenceMap1, 63-16);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> leavesQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cumQty().end(), presenceMap1, 63-17);}
+    OptionalRef<ExecReportLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> legsGroup() {return OptionalRef<ExecReportLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(leavesQty().end(), presenceMap1, 63-18);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(legsGroup().end());}
-    ExecutionReport():MsgHeader(MsgType::ExecutionReport, 0ul) {};
+    ExecutionReport():MsgHeader(MsgType::ExecutionReport) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(ExecutionReport);}
@@ -843,19 +909,23 @@ EB_ENUM(MassCanelResponse, uint8_t,
 
 #pragma pack(1)
 struct MassCancelRequest : MsgHeader {
+    PresenceMap presenceMap = 0b101101UL << 58UL;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
     String19 clOrdID;
     MassCancelRequestType cancelRequestType;
     MassCancelScope cancelScope;
     UInt64 transactTime;
-    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> securityExchange() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-7);}
-    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> productComplex() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(securityExchange().end(), presenceMap, 63-8);}
-    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> symbol() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(productComplex().end(), presenceMap, 63-9);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(symbol().end(), presenceMap, 63-10);}
-    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> quoteID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(securityID().end(), presenceMap, 63-11);}
-    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(quoteID().end(), presenceMap, 63-12);}
-    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(brokerClientID().end(), presenceMap, 63-13);}
+    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityExchange() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-7);}
+    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> productComplex() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityExchange().end(), presenceMap, 63-8);}
+    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> symbol() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(productComplex().end(), presenceMap, 63-9);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(symbol().end(), presenceMap, 63-10);}
+    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> quoteID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityID().end(), presenceMap, 63-11);}
+    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(quoteID().end(), presenceMap, 63-12);}
+    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(brokerClientID().end(), presenceMap, 63-13);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(side().end());}
-    MassCancelRequest():MsgHeader(MsgType::MassCancelRequest, 0b1111ul << 60) {};
+    MassCancelRequest():MsgHeader(MsgType::MassCancelRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MassCancelRequest);}
@@ -873,24 +943,28 @@ EB_ENUM(MassCancelRejectReason, uint16_t,
 // response, no need to initialize presence map
 #pragma pack(1)
 struct MassCancelReport : MsgHeader {
-    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> clOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
-    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> massActionReportID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(clOrdID().end(), presenceMap, 63-1);}
-    OptionalRef<MassCancelRequestType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cancelRequestType() {return OptionalRef<MassCancelRequestType, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(massActionReportID().end(), presenceMap, 63-2);}
-    OptionalRef<MassCancelScope, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cancelScope() {return OptionalRef<MassCancelScope, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cancelRequestType().end(), presenceMap, 63-3);}
-    OptionalRef<MassCanelResponse, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cancelResponse() {return OptionalRef<MassCanelResponse, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cancelScope().end(), presenceMap, 63-4);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cancelResponse().end(), presenceMap, 63-5);}
-    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> totalAffectedOrders() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(transactTime().end(), presenceMap, 63-6);}
-    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> securityExchange() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(totalAffectedOrders().end(), presenceMap, 63-7);}
-    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> productComplex() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(securityExchange().end(), presenceMap, 63-8);}
-    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> symbol() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(productComplex().end(), presenceMap, 63-9);}
-    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(symbol().end(), presenceMap, 63-10);}
-    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> quoteID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(securityID().end(), presenceMap, 63-11);}
-    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(quoteID().end(), presenceMap, 63-12);}
-    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(brokerClientID().end(), presenceMap, 63-13);}
-    OptionalRef<MassCancelRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> cancelRejectReason() {return OptionalRef<MassCancelRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(side().end(), presenceMap, 63-14);}
-    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>>(cancelRejectReason().end(), presenceMap, 63-15);}
+    PresenceMap presenceMap;
+    PresenceMap presenceMap1;
+    PresenceMap presenceMap2;
+    PresenceMap presenceMap3;
+    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> clOrdID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
+    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> massActionReportID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(clOrdID().end(), presenceMap, 63-1);}
+    OptionalRef<MassCancelRequestType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cancelRequestType() {return OptionalRef<MassCancelRequestType, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(massActionReportID().end(), presenceMap, 63-2);}
+    OptionalRef<MassCancelScope, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cancelScope() {return OptionalRef<MassCancelScope, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cancelRequestType().end(), presenceMap, 63-3);}
+    OptionalRef<MassCanelResponse, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cancelResponse() {return OptionalRef<MassCanelResponse, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cancelScope().end(), presenceMap, 63-4);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> transactTime() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cancelResponse().end(), presenceMap, 63-5);}
+    OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> totalAffectedOrders() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(transactTime().end(), presenceMap, 63-6);}
+    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityExchange() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(totalAffectedOrders().end(), presenceMap, 63-7);}
+    OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> productComplex() {return OptionalRef<String5, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityExchange().end(), presenceMap, 63-8);}
+    OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> symbol() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(productComplex().end(), presenceMap, 63-9);}
+    OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(symbol().end(), presenceMap, 63-10);}
+    OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> quoteID() {return OptionalRef<String19, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityID().end(), presenceMap, 63-11);}
+    OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(quoteID().end(), presenceMap, 63-12);}
+    OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(brokerClientID().end(), presenceMap, 63-13);}
+    OptionalRef<MassCancelRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cancelRejectReason() {return OptionalRef<MassCancelRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(side().end(), presenceMap, 63-14);}
+    OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cancelRejectReason().end(), presenceMap, 63-15);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    MassCancelReport():MsgHeader(MsgType::MassCancelReport, 0ul) {};
+    MassCancelReport():MsgHeader(MsgType::MassCancelReport) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MassCancelReport);}

@@ -19,12 +19,20 @@ public:
     }
 
     bool serialize(boost::asio::streambuf& buf) const {
-        std::ostream os(&buf);
-        os << "8=FIX4.2\x01";
-        os << "9=000\x01";
+        std::stringstream ss;
         for(const auto& [tag, value] : tv_map) {
-            os << tag << "=" << value << '\x01';
+            if(tag == 8 || tag == 9 || tag == 10) {
+                continue;
+            }
+            ss << tag << "=" << value << '\x01';
         }
+        auto body = ss.str();
+
+        std::ostream os(&buf);
+
+        os << "8=FIX4.2\x01";
+        os << "9=" << body.size() <<"\x01";
+        os << body;
         os << "10=000\x01";
 
         return true;
@@ -42,6 +50,7 @@ public:
             if(auto pos = line.find('='); pos != std::string::npos) {
                 tag = std::stoi(line.substr(0, pos));
                 value = line.substr(pos + 1);
+                tv_map[tag] = value;
             } else {
                 break;
             }
@@ -54,7 +63,6 @@ public:
     Type get_tag(int tag) {
         return tv_map[tag];
     }
-
 
     void set_tag(int tag, const std::string& value) {
         tv_map[tag] = value;
@@ -79,6 +87,13 @@ public:
 
     void set_address(uint16_t id) {
         address_id = id;
+    }
+
+    void debug_info() {
+        std::cout << "TagValueMsg debug:" << std::endl;
+        for(const auto& [tag, value]: tv_map) {
+            std::cout << "tag: " << tag << ", value: " << value << std::endl;
+        }
     }
 
     const uint16_t get_address() const{
@@ -114,6 +129,8 @@ template<>
 inline double TagValueMsg::get_tag<double>(int tag) {
     return std::stod(tv_map[tag]);
 }
+
+
 
 
 

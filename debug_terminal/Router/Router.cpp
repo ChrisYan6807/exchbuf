@@ -1,4 +1,6 @@
+#include <boost/log/trivial.hpp>
 #include "util.h"
+#include "log.h"
 
 template<typename protocol>
 void Session<protocol>::async_read() {
@@ -6,16 +8,45 @@ void Session<protocol>::async_read() {
     boost::asio::async_read_until(socket_, rcv_buffer_, boost::regex("\x01""10=\\d{3}\x01"),
                                   [this](error_code ec, size_t bytes_transferred){
                                       if(ec){
-                                          std::cerr << "session " << id() << " read error " << ec.message() << std::endl;
+                                          LOG_ERR << "session " << id() << " read error " << ec.message();
                                           if(ec == boost::asio::error::eof) {
-                                              std::cerr << "session " << id() << " read eof." << std::endl;
+                                              LOG_ERR << "session " << id() << " read eof.";
                                           }
                                           client_.remove_session(id());
                                       } else {
+                                          LOG_INFO  << "received " << bytes_transferred << " bytes from fix client";
+                                          LOG_INFO << "An informational severity message";
+                                          hex_dump(rcv_buffer_);
                                           rcv_buffer_.commit(bytes_transferred);
                                           TagValueMsg msg(rcv_buffer_);
+                                          //msg.debug_info();
+                                          if(auto& msg_type = msg.get_tag(35); msg_type.size() == 1) {
+                                              switch(msg_type[0]) {
+                                                  case 'D':
+                                                  case 'F':
+                                                  case 'G':
+                                                      break;
+                                                  case '5':
+                                                      //todo correct logout response, but fixclient doesn't care about it anyway
+                                                      async_write(msg);
+                                                      return;
+                                                  default:
+                                                  {
+                                                      LOG_INFO  << "received fix message with unsupported msgType: " << msg_type;
+                                                      send_reject(msg);
+                                                      return;
+                                                  }
+
+                                              }
+                                          } else {
+                                              LOG_INFO  << "received fix message with unsupported msgType: " << msg_type;
+                                              send_reject(msg);
+                                              return;
+                                          }
+
                                           if(!client_.send_msg(msg)) {
                                               send_reject(msg);
+                                              return;
                                           }
                                           //rcv_buffer_.consume(bytes_transferred);
                                       }
@@ -25,15 +56,17 @@ void Session<protocol>::async_read() {
 template<typename protocol>
 void Session<protocol>::async_write(const TagValueMsg& msg) {
         msg.serialize(send_buffer_);
+        hex_dump(send_buffer_);
+
         boost::asio::async_write(socket_, send_buffer_,
-                                 [this](error_code ec, size_t bytes_transferred) {
-                                     if(ec) {
-                                         std::cout << "session " << id() << " write error " << ec.message() << std::endl;
-                                         client_.remove_session(id());
-                                     }
-                                     send_buffer_.consume(bytes_transferred);
-                                     std::cout << "session " << id() << " wrote " << bytes_transferred << " bytes." << std::endl;
-                                 });
+                                     [this](error_code ec, size_t bytes_transferred) {
+                                         if(ec) {
+                                             LOG_INFO << "session " << id() << " write error " << ec.message();
+                                             client_.remove_session(id());
+                                         }
+                                         send_buffer_.consume(bytes_transferred);
+                                         LOG_INFO << "session " << id() << " wrote " << bytes_transferred << " bytes.";
+                                     });
 }
 
 
@@ -53,15 +86,15 @@ Client<ProtocolType>::Client(boost::asio::io_context& ioc, std::string host, uin
     resolver_.async_resolve(q,
                             [this](error_code ec, tcp::resolver::results_type endpoints){
                                 if(ec) {
-                                    std::cerr << "resolve failed " << ec.message() << std::endl;
+                                    LOG_ERR << "resolve failed " << ec.message() ;
                                 } else {
                                     boost::asio::async_connect(socket_, endpoints,
                                                                [this](error_code ec, tcp::endpoint endpoint) {
                                                                    if (ec) {
-                                                                       std::cerr << "connect failed " << ec.message() << std::endl;
+                                                                       LOG_ERR << "connect failed " << ec.message() ;
                                                                        socket_.close();
                                                                    } else {
-                                                                       std::cout << "established connection with " << endpoint.address() << ":" << endpoint.port() << std::endl;
+                                                                       LOG_INFO << "established connection with " << endpoint.address() << ":" << endpoint.port();
                                                                        protocol_handler_.start();
                                                                        async_read();
                                                                    }
@@ -78,11 +111,11 @@ void Client<ProtocolType>::async_write() {
     boost::asio::async_write(socket_, boost::asio::buffer(send_buffer_),
                              [this](error_code ec, size_t bytes_transferred) {
                                  if(ec) {
-                                     std::cerr << "client async write error: " << ec.message() << std::endl;
-                                     std::cerr << "terminate application." << std::endl;
+                                     LOG_ERR << "client async write error: " << ec.message() ;
+                                     LOG_ERR << "terminate application." ;
                                      exit(1);
                                  }
-                                 std::cout << "client wrote " << bytes_transferred << " bytes to exchange." << std::endl;
+                                 LOG_INFO << "client wrote " << bytes_transferred << " bytes to exchange." ;
                              });
 
 }
@@ -91,9 +124,9 @@ void Client<ProtocolType>::async_write() {
 void Client<ProtocolType>::async_read() {
     socket_.async_read_some(boost::asio::buffer(rcv_buffer_),
                             [this](error_code ec, size_t bytes_transferred){
-                                std::cout << "Router received " << bytes_transferred << " bytes data from exchange" << std::endl;
-                                std::cout << "bytes in buffer: " << rcv_buffer_.size() << std::endl;
-                                std::cout << std::string_view(rcv_buffer_.data(), rcv_buffer_.size()) << std::endl;
+                                LOG_INFO << "Router received " << bytes_transferred << " bytes data from exchange" ;
+                                LOG_INFO << "bytes in buffer: " << rcv_buffer_.size() ;
+                                LOG_INFO << std::string_view(rcv_buffer_.data(), rcv_buffer_.size()) ;
                                 protocol_handler_.on_raw_data_received();
 
                             });
@@ -103,20 +136,20 @@ void Client<ProtocolType>::async_read() {
 template<typename ProtocolType>
 void Client<ProtocolType>::add_session(SessionPtr session_ptr) {
     if(auto id = session_ptr->id(); sessions_.find(id) == sessions_.end()) {
-        std::cout << "add session " << id << "to session pool" << std::endl;
+        LOG_INFO << "add session " << id << " to session pool" ;
         sessions_[id] = session_ptr;
     } else {
-        std::cerr << "error: session " << id << "is already in the pool" << std::endl;
+        LOG_ERR << "error: session " << id << "is already in the pool" ;
     }
 }
 
 template<typename ProtocolType>
 void Client<ProtocolType>::remove_session(uint16_t id) {
     if(auto pos = sessions_.find(id); pos != sessions_.end()) {
-        std::cout << "remove session " << id << "from session pool" << std::endl;
+        LOG_INFO << "remove session " << id << "from session pool" ;
         sessions_.erase(id);
     } else {
-        std::cerr << "error: session " << id << "is not in the pool" << std::endl;
+        LOG_ERR << "error: session " << id << "is not in the pool" ;
     }
 }
 
@@ -138,12 +171,12 @@ void Client<ProtocolType>::on_msg_received(const TagValueMsg& msg, const std::st
         if(auto sit = sessions_.find(session_id); sit != sessions_.end()) {
             auto session = sit->second;
             session->async_write(msg);
-            std::cout << "msg is sent to " << session_id << std::endl;
+            LOG_INFO << "msg is sent to " << session_id ;
         } else {
-            std::cerr << "error: could not find session " << session_id << " to send msg" << std::endl;
+            LOG_ERR << "error: could not find session " << session_id << " to send msg" ;
         }
     } else {
-        std::cerr << "error: could not find session id by exchClOrdID " << exchClOrdID << std::endl;
+        LOG_ERR << "error: could not find session id by exchClOrdID " << exchClOrdID ;
     }
 }
 

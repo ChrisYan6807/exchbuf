@@ -1,7 +1,6 @@
-from ..utils import log_debug, log_info, log_error, utcnow
+from ..utils import log_debug, log_info, log_error, utcnow, hex_dump
 from collections import namedtuple
 from struct import unpack, calcsize
-from scapy.utils import hexdump
 from ..messages.LME import *
 
 line_msg = namedtuple('line_msg', ['direction', 'msg'])
@@ -93,18 +92,19 @@ class Handler:
         msg = MsgHeader(msg_buf)
 
         seq_no = msg.getfieldval('seqNo')
+        self.session_data.next_in_seq()
         self.session_data.check_in_seq(seq_no)
 
         msg_type = msg.getfieldval('msgType')
         handler = self.handler_map.get(msg_type, None)
 
-        log_info(f'received msg {msg_type}, {len(msg_buf)} bytes.')
-        log_debug(hexdump(msg_buf))
+        log_info(f'received {MsgType(msg_type).name} msg, {len(msg_buf)} bytes.')
+        log_debug(hex_dump(msg_buf))
 
         if handler:
             handler(msg)
         else:
-            log_error(f'Unsupported msg type {msg_type}, ignore...')
+            log_error(f'Unsupported msg type {MsgType(msg_type).name}, ignore...')
 
     def id(self):
         return self.session_data.comp_id
@@ -115,7 +115,7 @@ class Handler:
             layer = msg.getlayer(count)
             if layer is None:
                 break
-            print(f'layer name is {layer.name}')
+            log_debug(f'layer name is {layer.name}')
             count +=1
 
         msg.setfieldval('msgLength', len(bytes(msg)))
@@ -124,6 +124,9 @@ class Handler:
         msg.setfieldval('compID', 'LME')
         msg.setfieldval('sendingTime', utcnow())
         msg.setfieldval('chksum', 0)
+
+        msg_type = msg.getfieldval('msgType')
+        log_info(f'send {MsgType(msg_type).name} msg to line, {len(bytes(msg))} bytes.')
 
         self.line.send(bytes(msg))
 
@@ -139,6 +142,7 @@ class Handler:
 
 
     def handleLogonRequest(self, msg):
+        log_debug('handleLogonRequest')
         resp = MsgHeader()/Logon()
         resp.setfieldval('sessionStatus', SessionStatus.Active)
         resp.setfieldval('heartbeatInterval', Handler.HEARTBEAT_INTERVAL)

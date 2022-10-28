@@ -8,15 +8,16 @@
 #include <unordered_map>
 #include <boost/asio.hpp>
 #include <boost/regex.hpp>
+#include <boost/log/trivial.hpp>
 #include <protocols/LME_protocol.h>
 
 #include "TagValueMsg.h"
 #include "util.h"
+#include "log.h"
 
-namespace router {
 
 using boost::asio::ip::tcp;
-using socket = boost::asio::ip::tcp::socket;
+//using socket = boost::asio::ip::tcp::socket;
 using resolver = boost::asio::ip::tcp::resolver;
 using acceptor = boost::asio::ip::tcp::acceptor;
 using boost::system::error_code;
@@ -31,7 +32,7 @@ template<typename protocol>
 class Session {
 public:
     using ptr = std::shared_ptr<Session>;
-    Session(socket _socket, Client<protocol>& client)
+    Session(boost::asio::ip::tcp::socket _socket, Client<protocol>& client)
             :socket_(std::move(_socket)),
              client_(client)
     {
@@ -46,11 +47,11 @@ public:
 
     void send_reject(const TagValueMsg& msg) {
         //todo
-        std::cout << "session " << id() << " sent reject." << std::endl;
+        LOG_INFO << "session " << id() << " sent reject." ;
     }
 
 private:
-    socket socket_;
+    boost::asio::ip::tcp::socket socket_;
     boost::asio::streambuf rcv_buffer_;
     boost::asio::streambuf send_buffer_;
     Client<protocol>& client_;
@@ -77,7 +78,7 @@ protected:
 
     std::string host_;
     uint16_t port_;
-    socket socket_;
+    boost::asio::ip::tcp::socket socket_;
     resolver resolver_;
 
     std::vector<char> rcv_buffer_;
@@ -124,4 +125,3 @@ private:
 
 using LMERouter = Router<protocol::lme::LMEProtocol>;
 
-}// end of namespace router

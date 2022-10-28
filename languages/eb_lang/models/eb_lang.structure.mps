@@ -588,11 +588,6 @@
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageEntryMember" />
     </node>
-    <node concept="1TJgyj" id="66x_0s5XfkB" role="1TKVEi">
-      <property role="IQ2ns" value="7035066850815046951" />
-      <property role="20kJfa" value="member2" />
-      <ref role="20lvS9" node="79EjCrygmCO" resolve="EBMessageEntryMember" />
-    </node>
   </node>
   <node concept="1TIwiD" id="5hSnPGN7nSq">
     <property role="EcuMT" value="6086719741695458842" />
@@ -600,11 +595,6 @@
     <property role="TrG5h" value="EBMessageBaseInitializer" />
     <property role="34LRSv" value="base initializer" />
     <ref role="1TJDcQ" node="5hSnPGNaC_J" resolve="EBMessageMemberFunc" />
-    <node concept="1TJgyi" id="66x_0s5ZErm" role="1TKVEl">
-      <property role="IQ2nx" value="7035066850815682262" />
-      <property role="TrG5h" value="value2" />
-      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
-    </node>
     <node concept="1TJgyj" id="2Qo3LxnrT3v" role="1TKVEi">
       <property role="IQ2ns" value="3285392525387337951" />
       <property role="20kJfa" value="msgType" />

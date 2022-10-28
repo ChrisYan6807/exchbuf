@@ -154,19 +154,19 @@ class MsgHeader(Packet):
         String11("compID", ""),
         UInt64("sendingTime", 18446744073709551615),
         UInt64("originalSendingTime", 18446744073709551615),
-        PresenceMap("presenceMap", 0),
-        PresenceMap("presenceMap1", 0),
-        PresenceMap("presenceMap2", 0),
-        PresenceMap("presenceMap3", 0),
     ]
 
 class Logon(Packet):
     name = 'Logon'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         ConditionalField(String450("password", ""), lambda pkt:pkt.presenceMap&(1<<(63-0))),
         ConditionalField(String450("newPassword", ""), lambda pkt:pkt.presenceMap&(1<<(63-1))),
         ConditionalField(UInt32("nextSeqNo", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-2))),
-        ConditionalField(ByteEnumField("sessionStatus", SessionStatus.Other), lambda pkt:pkt.presenceMap&(1<<(63-3))),
+        ConditionalField(ByteEnumField("sessionStatus", SessionStatus.Other, SessionStatus), lambda pkt:pkt.presenceMap&(1<<(63-3))),
         ConditionalField(UInt32("heartbeatInterval", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-4))),
         UInt32("chksum", 4294967295),
     ]
@@ -174,6 +174,10 @@ class Logon(Packet):
 class Heartbeat(Packet):
     name = 'Heartbeat'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         ConditionalField(String21("refTestRequestID", ""), lambda pkt:pkt.presenceMap&(1<<(63-0))),
         UInt32("chksum", 4294967295),
     ]
@@ -181,6 +185,10 @@ class Heartbeat(Packet):
 class TestRequest(Packet):
     name = 'TestRequest'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String21("testRequestID", ""),
         UInt32("chksum", 4294967295),
     ]
@@ -188,6 +196,10 @@ class TestRequest(Packet):
 class ResendRequest(Packet):
     name = 'ResendRequest'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         UInt32("startSeq", 4294967295),
         UInt32("endSeq", 4294967295),
         UInt32("chksum", 4294967295),
@@ -196,7 +208,11 @@ class ResendRequest(Packet):
 class SequenceReset(Packet):
     name = 'SequenceReset'
     fields_desc = [
-        ConditionalField(CharEnumField("gapFill", GapFill.Gapfill), lambda pkt:pkt.presenceMap&(1<<(63-0))),
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
+        ConditionalField(CharEnumField("gapFill", GapFill.Gapfill, GapFill), lambda pkt:pkt.presenceMap&(1<<(63-0))),
         ConditionalField(UInt32("newSeqNo", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-1))),
         UInt32("chksum", 4294967295),
     ]
@@ -204,7 +220,11 @@ class SequenceReset(Packet):
 class Logout(Packet):
     name = 'Logout'
     fields_desc = [
-        ConditionalField(ByteEnumField("status", SessionStatus.Other), lambda pkt:pkt.presenceMap&(1<<(63-0))),
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
+        ConditionalField(ByteEnumField("status", SessionStatus.Other, SessionStatus), lambda pkt:pkt.presenceMap&(1<<(63-0))),
         ConditionalField(String76("text", ""), lambda pkt:pkt.presenceMap&(1<<(63-1))),
         UInt32("chksum", 4294967295),
     ]
@@ -212,8 +232,12 @@ class Logout(Packet):
 class Reject(Packet):
     name = 'Reject'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         LEShortEnumField("rejectCode", MsgRejectCode.Other, MsgRejectCode),
-        ConditionalField(ByteEnumField("refMsgType", MsgType.News), lambda pkt:pkt.presenceMap&(1<<(63-1))),
+        ConditionalField(ByteEnumField("refMsgType", MsgType.News, MsgType), lambda pkt:pkt.presenceMap&(1<<(63-1))),
         ConditionalField(String50("refFieldName", ""), lambda pkt:pkt.presenceMap&(1<<(63-2))),
         ConditionalField(UInt32("refSeqNo", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-3))),
         ConditionalField(String76("text", ""), lambda pkt:pkt.presenceMap&(1<<(63-4))),
@@ -223,9 +247,13 @@ class Reject(Packet):
 class BusinessReject(Packet):
     name = 'BusinessReject'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         LEShortEnumField("rejectCode", BusinessRejectCode.ThrottleLimitExceededSessionDisconnect, BusinessRejectCode),
         ConditionalField(String76("text", ""), lambda pkt:pkt.presenceMap&(1<<(63-1))),
-        ConditionalField(ByteEnumField("refMsgType", MsgType.News), lambda pkt:pkt.presenceMap&(1<<(63-2))),
+        ConditionalField(ByteEnumField("refMsgType", MsgType.News, MsgType), lambda pkt:pkt.presenceMap&(1<<(63-2))),
         ConditionalField(String50("refFieldName", ""), lambda pkt:pkt.presenceMap&(1<<(63-3))),
         ConditionalField(UInt32("refSeqNo", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-4))),
         ConditionalField(String21("refID", ""), lambda pkt:pkt.presenceMap&(1<<(63-5))),
@@ -235,6 +263,10 @@ class BusinessReject(Packet):
 class News(Packet):
     name = 'News'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String21("newsID", ""),
         Uint8("newsCategory", 255),
         UInt64("timeStamp", 18446744073709551615),
@@ -262,6 +294,10 @@ class SecurityDefLegsGroup(Packet):
 class SecurityDefinitionRequest(Packet):
     name = 'SecurityDefinitionRequest'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("securityRequestID", ""),
         String5("securityExchange", ""),
         String5("productComplex", ""),
@@ -270,7 +306,7 @@ class SecurityDefinitionRequest(Packet):
         ByteEnumField("securitySubType", SecuritySubType.Options, SecuritySubType),
         ConditionalField(UInt32("maturityDate", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-6))),
         ConditionalField(Int64("strikePrice", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-7))),
-        ConditionalField(ByteEnumField("putOrCall", PutOrCall.Call), lambda pkt:pkt.presenceMap&(1<<(63-8))),
+        ConditionalField(ByteEnumField("putOrCall", PutOrCall.Call, PutOrCall), lambda pkt:pkt.presenceMap&(1<<(63-8))),
         ConditionalField(SecurityDefLegsGroup, lambda pkt:pkt.presenceMap&(1<<(63-9))),
         UInt32("chksum", 4294967295),
     ]
@@ -294,10 +330,14 @@ class SecurityRejectReason(int, Enum):
 class SecurityDefinition(Packet):
     name = 'SecurityDefinition'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("securityRequestID", ""),
         String21("securityResponseID", ""),
         ByteEnumField("securityResponseType", SecurityResponseType.RejectSecurityProposal, SecurityResponseType),
-        ConditionalField(ByteEnumField("securityRejectReason", SecurityRejectReason.InvalidSecuritySubType), lambda pkt:pkt.presenceMap&(1<<(63-3))),
+        ConditionalField(ByteEnumField("securityRejectReason", SecurityRejectReason.InvalidSecuritySubType, SecurityRejectReason), lambda pkt:pkt.presenceMap&(1<<(63-3))),
         ConditionalField(UInt64("securityID", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-4))),
         ConditionalField(String76("text", ""), lambda pkt:pkt.presenceMap&(1<<(63-5))),
         UInt32("chksum", 4294967295),
@@ -389,6 +429,10 @@ class MarketMaker(str, Enum):
 class NewOrderSingle(Packet):
     name = 'NewOrderSingle'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("clOrdID", ""),
         UInt64("securityID", 18446744073709551615),
         UInt64("transactTime", 18446744073709551615),
@@ -407,7 +451,7 @@ class NewOrderSingle(Packet):
         ConditionalField(String41("origTrader", ""), lambda pkt:pkt.presenceMap&(1<<(63-19))),
         ConditionalField(String31("customerAccount", ""), lambda pkt:pkt.presenceMap&(1<<(63-20))),
         ConditionalField(String4("correspondentBroker", ""), lambda pkt:pkt.presenceMap&(1<<(63-21))),
-        ConditionalField(CharEnumField("marketMaker", MarketMaker.Yes), lambda pkt:pkt.presenceMap&(1<<(63-23))),
+        ConditionalField(CharEnumField("marketMaker", MarketMaker.Yes, MarketMaker), lambda pkt:pkt.presenceMap&(1<<(63-23))),
         ConditionalField(UInt64("decisionMaker", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-24))),
         ConditionalField(UInt64("IDM", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-25))),
         ConditionalField(UInt64("EDM", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-26))),
@@ -420,15 +464,15 @@ class NewOrderSingle(Packet):
         ConditionalField(UInt32("displayQty", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-33))),
         ConditionalField(UInt32("expiryDate", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-34))),
         ConditionalField(Int64("triggerPrice", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-35))),
-        ConditionalField(ByteEnumField("triggerPriceType", TriggerPriceType.BestOfferorLastTrade), lambda pkt:pkt.presenceMap&(1<<(63-36))),
-        ConditionalField(ByteEnumField("triggerType", TriggerType.PriceMoement), lambda pkt:pkt.presenceMap&(1<<(63-37))),
+        ConditionalField(ByteEnumField("triggerPriceType", TriggerPriceType.BestOfferorLastTrade, TriggerPriceType), lambda pkt:pkt.presenceMap&(1<<(63-36))),
+        ConditionalField(ByteEnumField("triggerType", TriggerType.PriceMoement, TriggerType), lambda pkt:pkt.presenceMap&(1<<(63-37))),
         ConditionalField(Int64("triggerNewPrice", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-38))),
-        ConditionalField(CharEnumField("cod", COD.No), lambda pkt:pkt.presenceMap&(1<<(63-40))),
-        ConditionalField(CharEnumField("dea", DEA.Yes), lambda pkt:pkt.presenceMap&(1<<(63-41))),
-        ConditionalField(CharEnumField("aggrOrder", AggrOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-42))),
-        ConditionalField(CharEnumField("pendingAllocationOrder", PendingAllocationOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-43))),
-        ConditionalField(CharEnumField("liqProOrder", LiquidityProvisionOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-44))),
-        ConditionalField(CharEnumField("riskReductionOrder", RiskReductionOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-45))),
+        ConditionalField(CharEnumField("cod", COD.No, COD), lambda pkt:pkt.presenceMap&(1<<(63-40))),
+        ConditionalField(CharEnumField("dea", DEA.Yes, DEA), lambda pkt:pkt.presenceMap&(1<<(63-41))),
+        ConditionalField(CharEnumField("aggrOrder", AggrOrder.Yes, AggrOrder), lambda pkt:pkt.presenceMap&(1<<(63-42))),
+        ConditionalField(CharEnumField("pendingAllocationOrder", PendingAllocationOrder.Yes, PendingAllocationOrder), lambda pkt:pkt.presenceMap&(1<<(63-43))),
+        ConditionalField(CharEnumField("liqProOrder", LiquidityProvisionOrder.Yes, LiquidityProvisionOrder), lambda pkt:pkt.presenceMap&(1<<(63-44))),
+        ConditionalField(CharEnumField("riskReductionOrder", RiskReductionOrder.Yes, RiskReductionOrder), lambda pkt:pkt.presenceMap&(1<<(63-45))),
         UInt32("chksum", 4294967295),
     ]
 
@@ -436,6 +480,10 @@ class NewOrderSingle(Packet):
 class AmendOrder(Packet):
     name = 'AmendOrder'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("clOrdID", ""),
         UInt64("orderID", 18446744073709551615),
         String19("origClOrdID", ""),
@@ -456,7 +504,7 @@ class AmendOrder(Packet):
         ConditionalField(String41("origTrader", ""), lambda pkt:pkt.presenceMap&(1<<(63-19))),
         ConditionalField(String31("customerAccount", ""), lambda pkt:pkt.presenceMap&(1<<(63-20))),
         ConditionalField(String4("correspondentBroker", ""), lambda pkt:pkt.presenceMap&(1<<(63-21))),
-        ConditionalField(CharEnumField("marketMaker", MarketMaker.Yes), lambda pkt:pkt.presenceMap&(1<<(63-23))),
+        ConditionalField(CharEnumField("marketMaker", MarketMaker.Yes, MarketMaker), lambda pkt:pkt.presenceMap&(1<<(63-23))),
         ConditionalField(UInt64("decisionMaker", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-24))),
         ConditionalField(UInt64("IDM", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-25))),
         ConditionalField(UInt64("EDM", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-26))),
@@ -469,26 +517,26 @@ class AmendOrder(Packet):
         ConditionalField(UInt32("displayQty", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-33))),
         ConditionalField(UInt32("expiryDate", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-34))),
         ConditionalField(Int64("triggerPrice", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-35))),
-        ConditionalField(ByteEnumField("triggerPriceType", TriggerPriceType.BestOfferorLastTrade), lambda pkt:pkt.presenceMap&(1<<(63-36))),
-        ConditionalField(ByteEnumField("triggerType", TriggerType.PriceMoement), lambda pkt:pkt.presenceMap&(1<<(63-37))),
+        ConditionalField(ByteEnumField("triggerPriceType", TriggerPriceType.BestOfferorLastTrade, TriggerPriceType), lambda pkt:pkt.presenceMap&(1<<(63-36))),
+        ConditionalField(ByteEnumField("triggerType", TriggerType.PriceMoement, TriggerType), lambda pkt:pkt.presenceMap&(1<<(63-37))),
         ConditionalField(Int64("triggerNewPrice", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-38))),
-        ConditionalField(CharEnumField("cod", COD.No), lambda pkt:pkt.presenceMap&(1<<(63-40))),
-        ConditionalField(CharEnumField("dea", DEA.Yes), lambda pkt:pkt.presenceMap&(1<<(63-41))),
-        ConditionalField(CharEnumField("aggrOrder", AggrOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-42))),
-        ConditionalField(CharEnumField("pendingAllocationOrder", PendingAllocationOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-43))),
-        ConditionalField(CharEnumField("liqProOrder", LiquidityProvisionOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-44))),
-        ConditionalField(CharEnumField("riskReductionOrder", RiskReductionOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-45))),
+        ConditionalField(CharEnumField("cod", COD.No, COD), lambda pkt:pkt.presenceMap&(1<<(63-40))),
+        ConditionalField(CharEnumField("dea", DEA.Yes, DEA), lambda pkt:pkt.presenceMap&(1<<(63-41))),
+        ConditionalField(CharEnumField("aggrOrder", AggrOrder.Yes, AggrOrder), lambda pkt:pkt.presenceMap&(1<<(63-42))),
+        ConditionalField(CharEnumField("pendingAllocationOrder", PendingAllocationOrder.Yes, PendingAllocationOrder), lambda pkt:pkt.presenceMap&(1<<(63-43))),
+        ConditionalField(CharEnumField("liqProOrder", LiquidityProvisionOrder.Yes, LiquidityProvisionOrder), lambda pkt:pkt.presenceMap&(1<<(63-44))),
+        ConditionalField(CharEnumField("riskReductionOrder", RiskReductionOrder.Yes, RiskReductionOrder), lambda pkt:pkt.presenceMap&(1<<(63-45))),
         UInt32("chksum", 4294967295),
     ]
 
-class OrderStatus(int, Enum):
-    New = 0
-    PartiallyFilled = 1
-    Filled = 2
-    DoneForDay = 3
-    Cancelled = 4
-    PendingCancel = 6
-    Rejected = 8
+class OrderStatus(str, Enum):
+    New = '0'
+    PartiallyFilled = '1'
+    Filled = '2'
+    DoneForDay = '3'
+    Cancelled = '4'
+    PendingCancel = '6'
+    Rejected = '8'
     PendingNew = 'A'
     Expired = 'C'
     PendingReplace = 'E'
@@ -514,12 +562,16 @@ class CancelRejectCode(int, Enum):
 class AmendRejected(Packet):
     name = 'AmendRejected'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("clOrdID", ""),
         ConditionalField(UInt64("orderID", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-2))),
         ConditionalField(String19("origClOrdID", ""), lambda pkt:pkt.presenceMap&(1<<(63-3))),
         ConditionalField(UInt64("transactTime", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-4))),
-        ConditionalField(ByteEnumField("ordStatus", OrderStatus.PendingReplace), lambda pkt:pkt.presenceMap&(1<<(63-5))),
-        ConditionalField(LEShortEnumField("rejectCode", AmendRejectCode.Other), lambda pkt:pkt.presenceMap&(1<<(63-6))),
+        ConditionalField(CharEnumField("ordStatus", OrderStatus.PendingReplace, OrderStatus), lambda pkt:pkt.presenceMap&(1<<(63-5))),
+        ConditionalField(LEShortEnumField("rejectCode", AmendRejectCode.Other, AmendRejectCode), lambda pkt:pkt.presenceMap&(1<<(63-6))),
         ConditionalField(String76("text", ""), lambda pkt:pkt.presenceMap&(1<<(63-7))),
         UInt32("chksum", 4294967295),
     ]
@@ -528,6 +580,10 @@ class AmendRejected(Packet):
 class CancelOrder(Packet):
     name = 'CancelOrder'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("clOrdID", ""),
         String19("origClOrdID", ""),
         UInt64("securityID", 18446744073709551615),
@@ -539,15 +595,19 @@ class CancelOrder(Packet):
 class CancelRejected(Packet):
     name = 'CancelRejected'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("clOrdID", ""),
         ConditionalField(Uint8("secondaryClOrdID", 255), lambda pkt:pkt.presenceMap&(1<<(63-1))),
         ConditionalField(UInt64("orderID", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-2))),
         ConditionalField(String19("origClOrdID", ""), lambda pkt:pkt.presenceMap&(1<<(63-3))),
         ConditionalField(UInt64("transactTime", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-4))),
-        ConditionalField(ByteEnumField("ordStatus", OrderStatus.PendingReplace), lambda pkt:pkt.presenceMap&(1<<(63-5))),
-        ConditionalField(LEShortEnumField("rejectCode", CancelRejectCode.Other), lambda pkt:pkt.presenceMap&(1<<(63-6))),
+        ConditionalField(CharEnumField("ordStatus", OrderStatus.PendingReplace, OrderStatus), lambda pkt:pkt.presenceMap&(1<<(63-5))),
+        ConditionalField(LEShortEnumField("rejectCode", CancelRejectCode.Other, CancelRejectCode), lambda pkt:pkt.presenceMap&(1<<(63-6))),
         ConditionalField(String76("text", ""), lambda pkt:pkt.presenceMap&(1<<(63-7))),
-        ConditionalField(ByteEnumField("side", Side.Sell), lambda pkt:pkt.presenceMap&(1<<(63-8))),
+        ConditionalField(ByteEnumField("side", Side.Sell, Side), lambda pkt:pkt.presenceMap&(1<<(63-8))),
         UInt32("chksum", 4294967295),
     ]
 
@@ -622,20 +682,24 @@ class ExecReportLegsGroup(Packet):
 class ExecutionReport(Packet):
     name = 'ExecutionReport'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("clOrdID", ""),
         ConditionalField(Uint8("secondaryClOrdID", 255), lambda pkt:pkt.presenceMap&(1<<(63-1))),
         ConditionalField(UInt64("orderID", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-2))),
         ConditionalField(String19("origClOrdID", ""), lambda pkt:pkt.presenceMap&(1<<(63-3))),
         ConditionalField(UInt64("securityID", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-4))),
         ConditionalField(UInt64("transactTime", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-5))),
-        ConditionalField(ByteEnumField("side", Side.Sell), lambda pkt:pkt.presenceMap&(1<<(63-6))),
+        ConditionalField(ByteEnumField("side", Side.Sell, Side), lambda pkt:pkt.presenceMap&(1<<(63-6))),
         ConditionalField(Int32("qty", -2147483648), lambda pkt:pkt.presenceMap&(1<<(63-7))),
-        ConditionalField(ByteEnumField("ordType", OrderType.OneCancelsOtherLimit), lambda pkt:pkt.presenceMap&(1<<(63-8))),
+        ConditionalField(ByteEnumField("ordType", OrderType.OneCancelsOtherLimit, OrderType), lambda pkt:pkt.presenceMap&(1<<(63-8))),
         ConditionalField(Int64("price", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-9))),
-        ConditionalField(ByteEnumField("tif", TimeInForce.GTD), lambda pkt:pkt.presenceMap&(1<<(63-10))),
-        ConditionalField(CharEnumField("ordRestrictions", OrderRestrictions.Algo), lambda pkt:pkt.presenceMap&(1<<(63-11))),
-        ConditionalField(CharEnumField("capacity", OrderCapacity.MTCH), lambda pkt:pkt.presenceMap&(1<<(63-12))),
-        ConditionalField(ByteEnumField("accountType", AccountType.ClientOSA), lambda pkt:pkt.presenceMap&(1<<(63-13))),
+        ConditionalField(ByteEnumField("tif", TimeInForce.GTD, TimeInForce), lambda pkt:pkt.presenceMap&(1<<(63-10))),
+        ConditionalField(CharEnumField("ordRestrictions", OrderRestrictions.Algo, OrderRestrictions), lambda pkt:pkt.presenceMap&(1<<(63-11))),
+        ConditionalField(CharEnumField("capacity", OrderCapacity.MTCH, OrderCapacity), lambda pkt:pkt.presenceMap&(1<<(63-12))),
+        ConditionalField(ByteEnumField("accountType", AccountType.ClientOSA, AccountType), lambda pkt:pkt.presenceMap&(1<<(63-13))),
         ConditionalField(String4("executingFirm", ""), lambda pkt:pkt.presenceMap&(1<<(63-14))),
         ConditionalField(UInt64("clientShortCode", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-15))),
         ConditionalField(String41("LEI", ""), lambda pkt:pkt.presenceMap&(1<<(63-16))),
@@ -644,7 +708,7 @@ class ExecutionReport(Packet):
         ConditionalField(String41("origTrader", ""), lambda pkt:pkt.presenceMap&(1<<(63-19))),
         ConditionalField(String31("customerAccount", ""), lambda pkt:pkt.presenceMap&(1<<(63-20))),
         ConditionalField(String4("correspondentBroker", ""), lambda pkt:pkt.presenceMap&(1<<(63-21))),
-        ConditionalField(CharEnumField("marketMaker", MarketMaker.Yes), lambda pkt:pkt.presenceMap&(1<<(63-23))),
+        ConditionalField(CharEnumField("marketMaker", MarketMaker.Yes, MarketMaker), lambda pkt:pkt.presenceMap&(1<<(63-23))),
         ConditionalField(UInt64("decisionMaker", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-24))),
         ConditionalField(UInt64("IDM", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-25))),
         ConditionalField(UInt64("EDM", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-26))),
@@ -657,28 +721,28 @@ class ExecutionReport(Packet):
         ConditionalField(UInt32("displayQty", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-33))),
         ConditionalField(UInt32("expiryDate", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-34))),
         ConditionalField(Int64("triggerPrice", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-35))),
-        ConditionalField(ByteEnumField("triggerPriceType", TriggerPriceType.BestOfferorLastTrade), lambda pkt:pkt.presenceMap&(1<<(63-36))),
-        ConditionalField(ByteEnumField("triggerType", TriggerType.PriceMoement), lambda pkt:pkt.presenceMap&(1<<(63-37))),
+        ConditionalField(ByteEnumField("triggerPriceType", TriggerPriceType.BestOfferorLastTrade, TriggerPriceType), lambda pkt:pkt.presenceMap&(1<<(63-36))),
+        ConditionalField(ByteEnumField("triggerType", TriggerType.PriceMoement, TriggerType), lambda pkt:pkt.presenceMap&(1<<(63-37))),
         ConditionalField(Int64("triggerNewPrice", -9223372036854775808), lambda pkt:pkt.presenceMap&(1<<(63-38))),
-        ConditionalField(CharEnumField("cod", COD.No), lambda pkt:pkt.presenceMap&(1<<(63-40))),
-        ConditionalField(CharEnumField("dea", DEA.Yes), lambda pkt:pkt.presenceMap&(1<<(63-41))),
-        ConditionalField(CharEnumField("aggrOrder", AggrOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-42))),
-        ConditionalField(CharEnumField("pendingAllocationOrder", PendingAllocationOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-43))),
-        ConditionalField(CharEnumField("liqProOrder", LiquidityProvisionOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-44))),
-        ConditionalField(CharEnumField("riskReductionOrder", RiskReductionOrder.Yes), lambda pkt:pkt.presenceMap&(1<<(63-45))),
+        ConditionalField(CharEnumField("cod", COD.No, COD), lambda pkt:pkt.presenceMap&(1<<(63-40))),
+        ConditionalField(CharEnumField("dea", DEA.Yes, DEA), lambda pkt:pkt.presenceMap&(1<<(63-41))),
+        ConditionalField(CharEnumField("aggrOrder", AggrOrder.Yes, AggrOrder), lambda pkt:pkt.presenceMap&(1<<(63-42))),
+        ConditionalField(CharEnumField("pendingAllocationOrder", PendingAllocationOrder.Yes, PendingAllocationOrder), lambda pkt:pkt.presenceMap&(1<<(63-43))),
+        ConditionalField(CharEnumField("liqProOrder", LiquidityProvisionOrder.Yes, LiquidityProvisionOrder), lambda pkt:pkt.presenceMap&(1<<(63-44))),
+        ConditionalField(CharEnumField("riskReductionOrder", RiskReductionOrder.Yes, RiskReductionOrder), lambda pkt:pkt.presenceMap&(1<<(63-45))),
         ConditionalField(Uint8("quotePriceLevel", 255), lambda pkt:pkt.presenceMap&(1<<(63-46))),
         ConditionalField(String21("execID", ""), lambda pkt:pkt.presenceMap1&(1<<(63-1))),
         ConditionalField(String21("execRefID", ""), lambda pkt:pkt.presenceMap1&(1<<(63-2))),
-        ConditionalField(CharEnumField("execType", ExecType.TriggeredOrActivated), lambda pkt:pkt.presenceMap1&(1<<(63-3))),
-        ConditionalField(ByteEnumField("ordStatus", OrderStatus.PendingReplace), lambda pkt:pkt.presenceMap1&(1<<(63-4))),
+        ConditionalField(CharEnumField("execType", ExecType.TriggeredOrActivated, ExecType), lambda pkt:pkt.presenceMap1&(1<<(63-3))),
+        ConditionalField(CharEnumField("ordStatus", OrderStatus.PendingReplace, OrderStatus), lambda pkt:pkt.presenceMap1&(1<<(63-4))),
         ConditionalField(String11("enteringTrader", ""), lambda pkt:pkt.presenceMap1&(1<<(63-5))),
         ConditionalField(String4("clearingFirm", ""), lambda pkt:pkt.presenceMap1&(1<<(63-6))),
         ConditionalField(UInt64("tradeID", 18446744073709551615), lambda pkt:pkt.presenceMap1&(1<<(63-7))),
-        ConditionalField(LEShortEnumField("restatementReason", ExecRestatementReason.Other), lambda pkt:pkt.presenceMap1&(1<<(63-8))),
-        ConditionalField(ByteEnumField("execTypeReason", ExecTypeReason.UnsolicitedCancelWhileInSpeedBump), lambda pkt:pkt.presenceMap1&(1<<(63-9))),
-        ConditionalField(ByteEnumField("orderCategory", OrderCategory.ImpliedOrder), lambda pkt:pkt.presenceMap1&(1<<(63-10))),
-        ConditionalField(CharEnumField("aggrIndicator", AggrIndicator.Passive), lambda pkt:pkt.presenceMap1&(1<<(63-11))),
-        ConditionalField(LEShortEnumField("rejectReason", OrderRejectReason.Other), lambda pkt:pkt.presenceMap1&(1<<(63-12))),
+        ConditionalField(LEShortEnumField("restatementReason", ExecRestatementReason.Other, ExecRestatementReason), lambda pkt:pkt.presenceMap1&(1<<(63-8))),
+        ConditionalField(ByteEnumField("execTypeReason", ExecTypeReason.UnsolicitedCancelWhileInSpeedBump, ExecTypeReason), lambda pkt:pkt.presenceMap1&(1<<(63-9))),
+        ConditionalField(ByteEnumField("orderCategory", OrderCategory.ImpliedOrder, OrderCategory), lambda pkt:pkt.presenceMap1&(1<<(63-10))),
+        ConditionalField(CharEnumField("aggrIndicator", AggrIndicator.Passive, AggrIndicator), lambda pkt:pkt.presenceMap1&(1<<(63-11))),
+        ConditionalField(LEShortEnumField("rejectReason", OrderRejectReason.Other, OrderRejectReason), lambda pkt:pkt.presenceMap1&(1<<(63-12))),
         ConditionalField(String76("reasonText", ""), lambda pkt:pkt.presenceMap1&(1<<(63-13))),
         ConditionalField(UInt32("lastQty", 4294967295), lambda pkt:pkt.presenceMap1&(1<<(63-14))),
         ConditionalField(UInt64("lastPx", 18446744073709551615), lambda pkt:pkt.presenceMap1&(1<<(63-15))),
@@ -711,6 +775,10 @@ class MassCanelResponse(int, Enum):
 class MassCancelRequest(Packet):
     name = 'MassCancelRequest'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         String19("clOrdID", ""),
         ByteEnumField("cancelRequestType", MassCancelRequestType.CancelAll, MassCancelRequestType),
         ByteEnumField("cancelScope", MassCancelScope.CancelOrdersAndQuotes, MassCancelScope),
@@ -721,7 +789,7 @@ class MassCancelRequest(Packet):
         ConditionalField(UInt64("securityID", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-10))),
         ConditionalField(String19("quoteID", ""), lambda pkt:pkt.presenceMap&(1<<(63-11))),
         ConditionalField(String17("brokerClientID", ""), lambda pkt:pkt.presenceMap&(1<<(63-12))),
-        ConditionalField(ByteEnumField("side", Side.Sell), lambda pkt:pkt.presenceMap&(1<<(63-13))),
+        ConditionalField(ByteEnumField("side", Side.Sell, Side), lambda pkt:pkt.presenceMap&(1<<(63-13))),
         UInt32("chksum", 4294967295),
     ]
 
@@ -735,11 +803,15 @@ class MassCancelRejectReason(int, Enum):
 class MassCancelReport(Packet):
     name = 'MassCancelReport'
     fields_desc = [
+        PresenceMap("presenceMap", 0),
+        PresenceMap("presenceMap1", 0),
+        PresenceMap("presenceMap2", 0),
+        PresenceMap("presenceMap3", 0),
         ConditionalField(String19("clOrdID", ""), lambda pkt:pkt.presenceMap&(1<<(63-0))),
         ConditionalField(String21("massActionReportID", ""), lambda pkt:pkt.presenceMap&(1<<(63-1))),
-        ConditionalField(ByteEnumField("cancelRequestType", MassCancelRequestType.CancelAll), lambda pkt:pkt.presenceMap&(1<<(63-2))),
-        ConditionalField(ByteEnumField("cancelScope", MassCancelScope.CancelOrdersAndQuotes), lambda pkt:pkt.presenceMap&(1<<(63-3))),
-        ConditionalField(ByteEnumField("cancelResponse", MassCanelResponse.CancelQuotesSpecifiedInQuoteID), lambda pkt:pkt.presenceMap&(1<<(63-4))),
+        ConditionalField(ByteEnumField("cancelRequestType", MassCancelRequestType.CancelAll, MassCancelRequestType), lambda pkt:pkt.presenceMap&(1<<(63-2))),
+        ConditionalField(ByteEnumField("cancelScope", MassCancelScope.CancelOrdersAndQuotes, MassCancelScope), lambda pkt:pkt.presenceMap&(1<<(63-3))),
+        ConditionalField(ByteEnumField("cancelResponse", MassCanelResponse.CancelQuotesSpecifiedInQuoteID, MassCanelResponse), lambda pkt:pkt.presenceMap&(1<<(63-4))),
         ConditionalField(UInt64("transactTime", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-5))),
         ConditionalField(UInt32("totalAffectedOrders", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-6))),
         ConditionalField(String5("securityExchange", ""), lambda pkt:pkt.presenceMap&(1<<(63-7))),
@@ -748,8 +820,8 @@ class MassCancelReport(Packet):
         ConditionalField(UInt64("securityID", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-10))),
         ConditionalField(String19("quoteID", ""), lambda pkt:pkt.presenceMap&(1<<(63-11))),
         ConditionalField(String17("brokerClientID", ""), lambda pkt:pkt.presenceMap&(1<<(63-12))),
-        ConditionalField(ByteEnumField("side", Side.Sell), lambda pkt:pkt.presenceMap&(1<<(63-13))),
-        ConditionalField(LEShortEnumField("cancelRejectReason", MassCancelRejectReason.Other), lambda pkt:pkt.presenceMap&(1<<(63-14))),
+        ConditionalField(ByteEnumField("side", Side.Sell, Side), lambda pkt:pkt.presenceMap&(1<<(63-13))),
+        ConditionalField(LEShortEnumField("cancelRejectReason", MassCancelRejectReason.Other, MassCancelRejectReason), lambda pkt:pkt.presenceMap&(1<<(63-14))),
         ConditionalField(String76("text", ""), lambda pkt:pkt.presenceMap&(1<<(63-15))),
         UInt32("chksum", 4294967295),
     ]

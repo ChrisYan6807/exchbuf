@@ -2,7 +2,6 @@ import sys, os
 import getpass
 import time
 import threading
-from scapy.utils import hexdump
 from queue import Queue
 from importlib import import_module
 
@@ -10,7 +9,7 @@ from twisted.internet.protocol import Protocol, ServerFactory
 from twisted.internet import reactor, defer, endpoints, task
 from twisted.internet.error import ReactorAlreadyRunning, ReactorNotRunning
 
-from .utils import log_debug, log_info, log_error, startLogging, Exch
+from .utils import log_debug, log_info, log_error, startLogging, Exch, hex_dump
 from .msg_viewer import get_viewer
 
 from testplan.testing.multitest.driver.base import Driver, DriverConfig
@@ -35,12 +34,12 @@ class SimProtocol(Protocol):
 
     def dataReceived(self, data=b''):
         log_debug(f'dataReceived {len(data)} bytes from {self.peer}:{self.peer_port}')
-        log_debug(hexdump(data))
+        log_debug(hex_dump(data))
         self.protocolHandler.dataReceived(data)
 
     def send(self, msg):
-        log_debug(f'send msg to line {self.peer}:{self.peer_port}')
-        log_debug(hexdump(msg))
+        log_debug(f'send {len(msg)} bytes to line {self.peer}:{self.peer_port}')
+        log_debug(hex_dump(msg))
         self.transport.write(msg)
 
     def setProtocolHandler(self):
@@ -159,7 +158,8 @@ class SimFactory(ServerFactory):
         return f'name: {self.server_name}\nhandler: {self.handler_cls.name}\nsessions:\n{self.session_mgr.info()}'
 
 
-logfile_path = os.path.join(f'/var/tmp/{getpass.getuser()}/simulator_{str(int(time.time()))}.log')
+#logfile_path = os.path.join(f'/var/tmp/{getpass.getuser()}/simulator_{str(int(time.time()))}.log')
+logfile_path = os.path.join(f'/var/tmp/{getpass.getuser()}/simulator_debug_terminal.log')
 
 
 class SimServerConfig(DriverConfig):
@@ -186,7 +186,7 @@ class SimServer(Driver):
         def cb(result):
             for (success, value) in result:
                 if success:
-                    log_debug(f'Success: {value}')
+                    log_debug(f'Successfully created listening endpoint for port: {value.getHost().port}')
                 else:
                     msg = f'Failure: {value.getErrorMessage()}'
                     log_error(msg)

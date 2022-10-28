@@ -421,6 +421,7 @@
   </dependency>
   <dependency className="eb_lang.behavior.EBIntType__BehaviorDescriptor">
     <classNode dependClassName="java.lang.Boolean" />
+    <classNode dependClassName="java.lang.Character" />
     <classNode dependClassName="java.lang.Integer" />
     <classNode dependClassName="java.lang.Math" />
     <classNode dependClassName="java.lang.Object" />
