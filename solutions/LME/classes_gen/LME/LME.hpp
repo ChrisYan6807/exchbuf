@@ -733,12 +733,12 @@ struct CancelRejected : MsgHeader {
 
 
 EB_ENUM(ExecType, char, 
-  ((New, '0'))
-  ((Done, '3'))
-  ((Cancelled, '4'))
-  ((Replaced, '5'))
-  ((PendingCancel, '6'))
-  ((Rejected, '8'))
+  ((New, 0))
+  ((Done, 3))
+  ((Cancelled, 4))
+  ((Replaced, 5))
+  ((PendingCancel, 6))
+  ((Rejected, 8))
   ((Expired, 'C'))
   ((Restated, 'D'))
   ((PendingReplace, 'E'))

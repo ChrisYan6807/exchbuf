@@ -4,7 +4,7 @@
 namespace test {
 using namespace EB::common;
 
-using U8 = uint8_t;
+using U8 = LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>;
 
 EB_ENUM(enum1, int8_t, 
   ((E1, 1))

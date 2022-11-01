@@ -9,8 +9,8 @@
 class TagValueMsg {
 public:
     TagValueMsg() = default;
-    TagValueMsg(boost::asio::streambuf& buf) {
-        build(buf);
+    TagValueMsg(boost::asio::streambuf& buf, uint16_t sid) {
+        build(buf, sid);
     }
 
     void clear() {
@@ -30,7 +30,7 @@ public:
 
         std::ostream os(&buf);
 
-        os << "8=FIX4.2\x01";
+        os << "8=FIX.4.2\x01";
         os << "9=" << body.size() <<"\x01";
         os << body;
         os << "10=000\x01";
@@ -38,7 +38,7 @@ public:
         return true;
     }
 
-    bool build(boost::asio::streambuf& buf) {
+    bool build(boost::asio::streambuf& buf, uint16_t sid) {
         clear();
         std::istream is(&buf);
         //getline parse the whole msg
@@ -56,6 +56,8 @@ public:
             }
         }
 
+        set_address(sid);
+
         return true;
     }
 
@@ -66,6 +68,14 @@ public:
 
     void set_tag(int tag, const std::string& value) {
         tv_map[tag] = value;
+    }
+
+    void set_tag(int tag, const char* value) {
+        tv_map[tag] = value;
+    }
+
+    void set_tag(int tag, char value) {
+        tv_map[tag] = std::string(1, value);
     }
 
     template<typename Type>

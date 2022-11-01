@@ -40,7 +40,7 @@ public:
         send_buffer_.prepare(BUF_SIZE);
     }
 
-    uint16_t id() {return socket_.local_endpoint().port(); }
+    uint16_t id() {return socket_.remote_endpoint().port(); }
     void start() {async_read(); }
     void async_read();
     void async_write(const TagValueMsg& msg);
@@ -66,6 +66,7 @@ public:
     using SessionPool = std::unordered_map<uint16_t, SessionPtr>;
     using ClOrdIDSessionMappingT = std::unordered_map<std::string, uint16_t>;
 
+
     Client(boost::asio::io_context& ioc, std::string host, uint16_t port);
     void add_session(SessionPtr session_ptr);
     void remove_session(uint16_t id);
@@ -83,7 +84,6 @@ protected:
 
     std::vector<char> rcv_buffer_;
     std::vector<char> send_buffer_;
-    int rcvd_size = 0;
     SessionPool sessions_;
     ClOrdIDSessionMappingT clOrdID_session_mapping_;
     ProtocolType protocol_handler_;

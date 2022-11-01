@@ -6,8 +6,10 @@ from twisted.logger import globalLogPublisher, FileLogObserver, FilteringLogObse
 from twisted.web.client import Agent, readBody
 from twisted.web.http_headers import Headers
 from datetime import datetime
+import threading
 import time
 from scapy.utils import hexdump
+import math
 
 from pyfixmsg.fixmessage import FixMessage
 from pyfixmsg.codecs.stringfix import Codec
@@ -15,7 +17,7 @@ from pyfixmsg.reference import FixSpec
 
 import traceback
 import inspect
-from collections import OrderedDict, namedtuple
+from collections import OrderedDict, namedtuple, deque
 from lxml import etree
 from termcolor import cprint
 
@@ -40,10 +42,11 @@ def startLogging(logOutput, levelStr='debug'):
         logOutput = open(logOutput, 'a+')
 
     def formatter(event):
-        log_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(event['log_time']))
+        x, y = math.modf(event['log_time'])
+        log_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(y)) + f'{x:.6f}'[1:]
         log_level = event['log_level'].name
         log_format = event['log_format']
-        return f'{log_time} {log_level} {log_format}\n'
+        return f'{log_time} {log_level: <5} {log_format}\n'
 
     level = LogLevel.levelWithName(levelStr)
     predicate = LogLevelFilterPredicate(defaultLogLevel=level)
@@ -53,7 +56,7 @@ def startLogging(logOutput, levelStr='debug'):
 def _log_msg(level, *kargv):
     (filename, line_number, function_name, lines, index) = inspect.getframeinfo(inspect.currentframe().f_back.f_back)
     filename = os.path.basename(filename).replace('.py', '')
-    getattr(_logger, level)(f'[{filename}@#{line_number}]' + ' - ' + ''.join([str(msg) for msg in kargv]).replace('{','{{').replace('}','}}'))
+    getattr(_logger, level)(f'[#{line_number}@{filename}]' + ':  ' + ''.join([str(msg) for msg in kargv]))
 
 def log_info(*kargv):
     _log_msg('info', *kargv)
@@ -74,7 +77,7 @@ def get_FIX42_data():
 
     class FixTagInfo:
         def __init__(self, v):
-            self.number = int(v['number'])
+            self.number = v['number']
             self.name = v['name']
             self.type = v['type']
             self.enums = None
@@ -137,8 +140,8 @@ def order_summary(msg):
 
     elif msg_type == '8':
         exec_type = exec_types.get(msg.get(150), msg.get(150))
-        lastPx = msg.get(31)
-        lastQty = msg.get(32)
+        lastPx = msg.get(31, 'n/a')
+        lastQty = msg.get(32, 'n/a')
         info = f'{exec_type} {side} {symbol} {lastQty}@{lastPx} 11={clOrdID}'
         if exec_type == 'rejected':
             RED(info)
@@ -184,6 +187,30 @@ def unique_id():
     global _seq
     _seq += 1
     return f'ord-{_prefix}-{_seq}'
+
+LineMsg = namedtuple('LineMsg', ['direction', 'msg'])
+
+class HistoryQueue:
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.queue = deque()
+
+    def put(self, msg):
+        with self.lock:
+            self.queue.appendleft(msg)
+
+    def pop(self):
+        with self.lock:
+            return self.queue.pop()
+
+    def clear(self):
+        with self.lock:
+            self.queue.clear()
+
+    def msgs(self):
+        with self.lock:
+            return list(reversed(self.queue))
+
 
 
 

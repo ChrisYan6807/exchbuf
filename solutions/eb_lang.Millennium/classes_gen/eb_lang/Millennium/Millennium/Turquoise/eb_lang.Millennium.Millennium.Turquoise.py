@@ -1,4 +1,4 @@
-from common import *
+from .common import *
 from Millennium import *
 # Turquoise
 
@@ -48,7 +48,7 @@ class PassiveOnlyOrder(int, Enum):
     NO_CONSTRAINT = 0
 
 
-class ExecType(int, Enum):
+class ExecType(str, Enum):
     NEW = '0'
     CANCELLED = '4'
     REPLACED = '5'
@@ -75,7 +75,7 @@ class RestatementReason(int, Enum):
     ORDER_REPLENISHMENT = 100
 
 
-class LiquidityIndicator(int, Enum):
+class LiquidityIndicator(str, Enum):
     ADDED = 'A'
     REMOVED = 'R'
     AUCTION = 'C'
@@ -203,7 +203,7 @@ class ExecutionReport(Packet):
         String12("executionId", ""),
         String20("clientOrderId", ""),
         String12("orderId", ""),
-        ByteEnumField("execType", ExecType.TRIGGERED, ExecType),
+        CharEnumField("execType", ExecType.TRIGGERED, ExecType),
         String12("executionReportRefId", ""),
         ByteEnumField("ordStatus", OrdStatus.REJECTED, OrdStatus),
         Int32("orderRejectCode", 0),
@@ -216,7 +216,7 @@ class ExecutionReport(Packet):
         ByteEnumField("side", Side.SELL, Side),
         Uint64("secondaryOrderId", 0),
         String11("counterparty", ""),
-        ByteEnumField("tradeLiquidityIndicator", LiquidityIndicator.EXECUTION_CONTINUOUS, LiquidityIndicator),
+        CharEnumField("tradeLiquidityIndicator", LiquidityIndicator.EXECUTION_CONTINUOUS, LiquidityIndicator),
         Uint64("tradeMatchId", 0),
         Uint64("transactTime", 0),
         ByteEnumField("targetBook", TargetBook.TRQA, TargetBook),

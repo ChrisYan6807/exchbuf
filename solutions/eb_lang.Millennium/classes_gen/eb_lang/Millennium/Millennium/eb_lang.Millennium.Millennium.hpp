@@ -8,13 +8,13 @@ namespace Millennium {
 using namespace EB::common;
 
 using Alpha = LittleEndian<char, -128, 127, 0>;
-using UInt8 = LittleEndian<uint8_t, 0, 256, 0>;
+using UInt8 = LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>;
 using Int8 = LittleEndian<int8_t, -128, 127, 0>;
-using UInt16 = LittleEndian<uint16_t, 0, 65536, 0>;
+using UInt16 = LittleEndian<uint16_t, 0, 65535, 0>;
 using Int16 = LittleEndian<int16_t, -32768, 32767, 0>;
-using UInt32 = LittleEndian<uint32_t, 0, 4294967296, 0>;
+using UInt32 = LittleEndian<uint32_t, 0, 4294967295, 0>;
 using Int32 = LittleEndian<int32_t, -2147483648, 2147483647, 0>;
-using Uint64 = LittleEndian<uint64_t, 0UL, 9223372036854775807UL, 0UL>;
+using Uint64 = LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>;
 
 using String1 = FixedLengthString<1, 0>;
 using String8 = FixedLengthString<8, 0>;
@@ -75,7 +75,7 @@ EB_ENUM(AppStatus, uint8_t,
 
 #pragma pack(1)
 struct MsgHeader {
-    Int8 startOfMsg = 2_i8;
+    Int8 startOfMsg = 2;
     Int16 length;
     MsgType msgType;
     char* begin() {return reinterpret_cast<char*>(this);}
@@ -214,7 +214,7 @@ static_assert(sizeof(BusinessReject) == 63, "Bad message size.")
 #pragma pack(1)
 struct TestMsg : MsgHeader {
     MsgType msgType = NewOrder;
-    Int8 SeqNo = 0_i8;
+    Int8 SeqNo = 0;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TestMsg);}

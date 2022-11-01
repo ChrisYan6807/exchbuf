@@ -11,8 +11,7 @@ int main() {
 
     init_log();
 
-    LOG_INFO << "test format";
-    LOG_INFO << "Start router, target " << target_host << ":" << target_port << ", listening " << listening_port ;
+    LOG_INFO << "Start router, target: " << target_host << ":" << target_port << ", listening port:" << listening_port ;
     LMERouter router(target_host, target_port, listening_port);
     router.run();
 

@@ -1,15 +1,19 @@
 #pragma once
+#include "eb_common.hpp"
+
 // test
 
 namespace test {
-using Alpha = char;
-using UInt8 = uint8_t;
-using Int8 = int8_t;
-using UInt16 = uint16_t;
-using Int16 = int16_t;
-using UInt32 = uint32_t;
-using Int32 = int32_t;
-using Uint64 = uint64_t;
+using namespace EB::common;
+
+using Alpha = LittleEndian<char, -128, 127, 0>;
+using UInt8 = LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>;
+using Int8 = LittleEndian<int8_t, -128, 127, 0>;
+using UInt16 = LittleEndian<uint16_t, 0, 65535, 0>;
+using Int16 = LittleEndian<int16_t, -32768, 32767, 0>;
+using UInt32 = LittleEndian<uint32_t, 0, 4294967295, 0>;
+using Int32 = LittleEndian<int32_t, -2147483648, 2147483647, 0>;
+using Uint64 = LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>;
 
 
 
@@ -68,7 +72,7 @@ struct MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MsgHeader);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(MsgHeader) == 4, "Bad message size.")
 
@@ -82,7 +86,7 @@ struct Logon : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Logon);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(Logon) == 80, "Bad message size.")
 
@@ -94,7 +98,7 @@ struct LogonResponse : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(LogonResponse);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(LogonResponse) == 38, "Bad message size.")
 
@@ -105,7 +109,7 @@ struct Logout : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Logout);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(Logout) == 24, "Bad message size.")
 
@@ -115,7 +119,7 @@ struct Heartbeat : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Heartbeat);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(Heartbeat) == 4, "Bad message size.")
 
@@ -127,7 +131,7 @@ struct MissedMessageRequest : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MissedMessageRequest);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(MissedMessageRequest) == 9, "Bad message size.")
 
@@ -138,7 +142,7 @@ struct MissedMessageRequestAck : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MissedMessageRequestAck);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(MissedMessageRequestAck) == 5, "Bad message size.")
 
@@ -149,7 +153,7 @@ struct TransmissionComplete : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TransmissionComplete);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(TransmissionComplete) == 5, "Bad message size.")
 
@@ -163,7 +167,7 @@ struct Reject : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Reject);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(Reject) == 59, "Bad message size.")
 
@@ -175,7 +179,7 @@ struct SystemStatus : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SystemStatus);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(SystemStatus) == 6, "Bad message size.")
 
@@ -192,7 +196,7 @@ struct BusinessReject : MsgHeader {
     char* end() {return begin()+length();}
     size_t size() {return sizeof(BusinessReject);}
     size_t length() {return size();}
-}
+};
 #pragma pack()
 static_assert(sizeof(BusinessReject) == 63, "Bad message size.")
 

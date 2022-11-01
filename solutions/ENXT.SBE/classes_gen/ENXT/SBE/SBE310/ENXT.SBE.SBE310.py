@@ -1,15 +1,15 @@
-from common import *
+from .common import *
 # EuroNext -- OEG Binary version: 310
 
-unsigned_char = integer_type(LEByteField, 0, 254, 255)
-int8_t = integer_type(LESingnedByteField, -127, 127, -128)
+unsigned_char = integer_type(ByteField, 0, 254, 255)
+int8_t = integer_type(SignedByteField, -127, 127, -128)
 uint16_t = integer_type(LEShortField, 0, 65534, 65535)
 uint32_t = integer_type(LEIntField, 0, 4294967294, 4294967295)
 uint64_t = integer_type(LELongField, 0, 18446744073709551614, 18446744073709551615)
-int32_t = integer_type(LESingnedIntField, -2147483647, 2147483647, -2147483648)
-int64_t = integer_type(LESingnedLongField, -9223372036854775807, 9223372036854775807, -9223372036854775808)
-time_t = integer_type(LELongField, 0, 9223372036854775807, 0)
-char1 = LESingnedByteField
+int32_t = integer_type(LESignedIntField, -2147483647, 2147483647, -2147483648)
+int64_t = integer_type(LESignedLongField, -9223372036854775807, 9223372036854775807, -9223372036854775808)
+time_t = integer_type(LELongField, 0, 9223372036854775806, 0)
+char1 = integer_type(SignedByteField, -128, 127, 0)
 char2 = fixed_length_string(2, b'\0')
 char3 = fixed_length_string(3, b'\0')
 char4 = fixed_length_string(4, b'\0')
@@ -142,7 +142,7 @@ class MessagePriceNotation_enum(int, Enum):
     Spread_in_basis_points = 2
     Spread = 3
 
-class StrategyCode_enum(int, Enum):
+class StrategyCode_enum(str, Enum):
     Jelly_Roll = 'A'
     Butterfly = 'B'
     Call_or_Put_Cabinet = 'C'
@@ -1729,7 +1729,7 @@ class SecurityDefinitionRequest(Packet):
         uint64_t("sendingTime", 18446744073709551615),
         int64_t("securityReqID", -9223372036854775808),
         uint32_t("contractSymbolIndex", 4294967295),
-        ByteEnumField("strategyCode", StrategyCode_enum.Put_Straddle_versus_Sell_a_Call_or_a_Put, StrategyCode_enum),
+        CharEnumField("strategyCode", StrategyCode_enum.Put_Straddle_versus_Sell_a_Call_or_a_Put, StrategyCode_enum),
         PacketField("StrategyLegs", "", SecurityDefinitionRequest_StrategyLegs_Composite),
     ]
 class MMProtectionRequest_MMPSection(Packet):
@@ -1851,7 +1851,7 @@ class NewWholesaleOrder(Packet):
         uint32_t("contractSymbolIndex", 4294967295),
         ByteEnumField("wholesaleTradeType", WholesaleTradeType_enum.Exchange_For_Swaps, WholesaleTradeType_enum),
         uint32_t("lISTransactionID", 4294967295),
-        ByteEnumField("strategyCode", StrategyCode_enum.Put_Straddle_versus_Sell_a_Call_or_a_Put, StrategyCode_enum),
+        CharEnumField("strategyCode", StrategyCode_enum.Put_Straddle_versus_Sell_a_Call_or_a_Put, StrategyCode_enum),
         int64_t("price", -9223372036854775808),
         uint64_t("quantity", 18446744073709551615),
         int32_t("executionWithinFirmShortCode", -2147483648),
@@ -1911,7 +1911,7 @@ class WholesaleOrderAck(Packet):
         uint32_t("contractSymbolIndex", 4294967295),
         ByteEnumField("wholesaleTradeType", WholesaleTradeType_enum.Exchange_For_Swaps, WholesaleTradeType_enum),
         uint32_t("lISTransactionID", 4294967295),
-        ByteEnumField("strategyCode", StrategyCode_enum.Put_Straddle_versus_Sell_a_Call_or_a_Put, StrategyCode_enum),
+        CharEnumField("strategyCode", StrategyCode_enum.Put_Straddle_versus_Sell_a_Call_or_a_Put, StrategyCode_enum),
         int64_t("price", -9223372036854775808),
         uint64_t("quantity", 18446744073709551615),
         int32_t("executionWithinFirmShortCode", -2147483648),

@@ -75,7 +75,6 @@ class Session:
     def __init__(self, line):
         self.line = line
         self.handler = line.protocolHandler
-        self.handler.sessionData.enableOutBuffer(line.factory.server.out_queue_enabled)
         self.id = self.handler.id()
         self.queue = Queue()
         self.handler.setRcvQueue(self.queue)
@@ -87,11 +86,9 @@ class Session:
     def restore_session_data(self, previousSession):
         self.handler.sessionData.restore(previousSession.handler.sessionData)
 
-    def receive(self, timeout=5, refMsg=None):
+    def receive(self, timeout=5):
         log_debug('Session receive')
         rcvdMsg = self.queue.get(timeout=timeout)
-        if self.handler and refMsg:
-            self.handler.addIDMap(rcvdMsg, refMsg)
 
         return rcvdMsg
 
@@ -100,7 +97,7 @@ class Session:
         self.handler.send(msg)
 
     def onMsgEnqueue(self):
-        pass
+        log_info(f'Session {self.id} enqueued one msg')
 
 
 class SessionMgr:
@@ -110,17 +107,17 @@ class SessionMgr:
         self.inactiveSessions = {}
 
     def create_session(self, line):
-        sessionID = line.protocolHandler.id()
-        if sessionID in self.sessions:
-            log_error(f'sessionID {sessionID} is already in session pool, disconnect incoming line.')
+        session_id = line.protocolHandler.id()
+        if session_id in self.sessions:
+            log_error(f'session_id {session_id} is already in session pool, disconnect incoming line.')
             line.disconnect()
             return
         else:
-            self.sessions[sessionID] = Session(line)
-            if sessionID in self.inactiveSessions:
-                self.sessions[sessionID].restore_session_data(self.inactiveSessions[sessionID])
-                del self.inactiveSessions[sessionID]
-        log_info(f'created session {sessionID}')
+            self.sessions[session_id] = Session(line)
+            if session_id in self.inactiveSessions:
+                self.sessions[session_id].restore_session_data(self.inactiveSessions[session_id])
+                del self.inactiveSessions[session_id]
+        log_info(f'created session {session_id}')
         self.factory.session_added()
 
     def remove_session(self, sessionID):
@@ -138,7 +135,7 @@ class SessionMgr:
         return self.sessions
 
     def info(self):
-        return '\n'.join([f'  {id}' for id in self.sessions])
+        return '\n'.join([f'                 {id}' for id in self.sessions])
 
 
 class SimFactory(ServerFactory):
@@ -154,11 +151,15 @@ class SimFactory(ServerFactory):
         return p
 
     def session_added(self):
-        self.server.check_ready()
         return f'name: {self.server_name}\nhandler: {self.handler_cls.name}\nsessions:\n{self.session_mgr.info()}'
 
+    def info(self):
+        return f'name:            {self.server_name}\n' \
+               f'handler:         {self.handler_cls.name}\n' \
+               f'sessions:\n' \
+               f'{self.session_mgr.info()}\n'
 
-#logfile_path = os.path.join(f'/var/tmp/{getpass.getuser()}/simulator_{str(int(time.time()))}.log')
+
 logfile_path = os.path.join(f'/var/tmp/{getpass.getuser()}/simulator_debug_terminal.log')
 
 
@@ -176,7 +177,6 @@ class SimServer(Driver):
         self.context = context
         self.factories = {}
         self.viewer = None
-        self.out_queue_enabled = True
 
         print(f'Simulator log path: {logfile_path}')
         startLogging(logfile_path)
@@ -210,33 +210,31 @@ class SimServer(Driver):
         defer.DeferredList(dl).addCallback(cb)
 
     def set_viewer(self, queue, port):
-        import socket
-        host = socket.gethostname()
+        #import socket
+        #host = socket.gethostname()
+        host = '127.0.0.1'
         site = get_viewer(queue)
-        reactor.listenTCP(port, site)
-        self.viewer = f'viewer URL: http://{host}:{port}'
+        reactor.listenTCP(port, site, interface=host)
+        self.viewer = f'viewer URL:      http://{host}:{port}'
 
     def get_sessions(self):
         return {name: f.session_mgr.get_sessions() for name, f in self.factories.items()}
+
+    def get_session(self, protocol_name, session_id):
+        return self.get_sessions()[protocol_name][session_id]
 
     def set_history_queue(self, q):
         for f in self.factories.values():
             for s in f.session_mgr.get_sessions().values():
                 s.set_history_queue(q)
 
-    def enable_session_out_queue(self):
-        self.out_queue_enabled = True
-        for f in self.factories.values():
-            for s in f.session_mgr.get_sessions().values():
-                s.handler.sessionData.enableOutBuffer(True)
-
     def info(self):
         rtv = []
-        rtv.append(f'simulator log: {logfile_path}')
+        rtv.append(f'simulator log:   {logfile_path}')
         if self.viewer:
             rtv.append(self.viewer)
 
-        rtv.append('Simulator sessions:')
+        rtv.append('\nprotocol:')
         for f in self.factories.values():
             rtv.append(f.info())
         return '\n'.join(rtv)

@@ -309,7 +309,7 @@ class SecurityDefinitionRequest(Packet):
         ConditionalField(UInt32("maturityDate", 4294967295), lambda pkt:pkt.presenceMap&(1<<(63-6))),
         ConditionalField(Int64("strikePrice", -9223372036854775807 - 1), lambda pkt:pkt.presenceMap&(1<<(63-7))),
         ConditionalField(ByteEnumField("putOrCall", PutOrCall.Call, PutOrCall), lambda pkt:pkt.presenceMap&(1<<(63-8))),
-        ConditionalField(SecurityDefLegsGroup, lambda pkt:pkt.presenceMap&(1<<(63-9))),
+        ConditionalField(PacketField("legsGroup", None, SecurityDefLegsGroup), lambda pkt:pkt.presenceMap&(1<<(63-9))),
         UInt32("chksum", 4294967295),
     ]
 
@@ -446,6 +446,7 @@ class NewOrderSingle(Packet):
         CharEnumField("ordRestrictions", OrderRestrictions.Algo, OrderRestrictions),
         CharEnumField("capacity", OrderCapacity.MTCH, OrderCapacity),
         ByteEnumField("accountType", AccountType.ClientOSA, AccountType),
+        String4("executingFirm", ""),
         ConditionalField(UInt64("clientShortCode", 18446744073709551615), lambda pkt:pkt.presenceMap&(1<<(63-15))),
         ConditionalField(String41("LEI", ""), lambda pkt:pkt.presenceMap&(1<<(63-16))),
         ConditionalField(String41("proprietaryClientID", ""), lambda pkt:pkt.presenceMap&(1<<(63-17))),
@@ -591,6 +592,7 @@ class CancelOrder(Packet):
         UInt64("securityID", 18446744073709551615),
         UInt64("transactTime", 18446744073709551615),
         ByteEnumField("side", Side.Sell, Side),
+        UInt32("chksum", 4294967295),
     ]
 
 # response, no need to initialize presence map
@@ -614,12 +616,12 @@ class CancelRejected(Packet):
     ]
 
 class ExecType(str, Enum):
-    New = 0
-    Done = 3
-    Cancelled = 4
-    Replaced = 5
-    PendingCancel = 6
-    Rejected = 8
+    New = '0'
+    Done = '3'
+    Cancelled = '4'
+    Replaced = '5'
+    PendingCancel = '6'
+    Rejected = '8'
     Expired = 'C'
     Restated = 'D'
     PendingReplace = 'E'
@@ -750,7 +752,7 @@ class ExecutionReport(Packet):
         ConditionalField(UInt64("lastPx", 18446744073709551615), lambda pkt:pkt.presenceMap1&(1<<(63-15))),
         ConditionalField(UInt32("cumQty", 4294967295), lambda pkt:pkt.presenceMap1&(1<<(63-16))),
         ConditionalField(UInt32("leavesQty", 4294967295), lambda pkt:pkt.presenceMap1&(1<<(63-17))),
-        ConditionalField(ExecReportLegsGroup, lambda pkt:pkt.presenceMap1&(1<<(63-18))),
+        ConditionalField(PacketField("legsGroup", None, ExecReportLegsGroup), lambda pkt:pkt.presenceMap1&(1<<(63-18))),
         UInt32("chksum", 4294967295),
     ]
 

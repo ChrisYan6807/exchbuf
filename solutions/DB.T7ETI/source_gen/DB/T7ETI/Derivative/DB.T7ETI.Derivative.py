@@ -1,4 +1,4 @@
-from common import *
+from .common import *
 # Deutsche Börse -- market: eti_Derivatives, version: 11.0, subVersion: D0002, buildNumber: 110.380.2.ga-110003080-84
 
 CurrencyType = fixed_length_string(3, b'\0')
@@ -51,13 +51,13 @@ class ApplSeqStatus(int, Enum):
 ApplSeqTradeDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 ApplSubID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 ApplTotalMessageCount = integer_type(LEShortField, 0, 65534, 0xFFFF)
-class ApplUsageOrders(int, Enum):
+class ApplUsageOrders(str, Enum):
     Automated = 'A'
     Manual = 'M'
     AutoSelect = 'B'
     None = 'N'
 
-class ApplUsageQuotes(int, Enum):
+class ApplUsageQuotes(str, Enum):
     Automated = 'A'
     Manual = 'M'
     AutoSelect = 'B'
@@ -112,8 +112,8 @@ class CompressionStatus(int, Enum):
     Cancelled_By_System = 4
 
 ContractDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
-CrossID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
-CrossRequestID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+CrossID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
+CrossRequestID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class CrossedIndicator(int, Enum):
     No_crossing = 0
     Cross_rejected = 1
@@ -201,7 +201,7 @@ class ExecRestatementReason(int, Enum):
     CLIP_Arrangement_time_out = 343
     CLIP_Arrangement_Validation = 344
 
-class ExecType(int, Enum):
+class ExecType(str, Enum):
     New = '0'
     Canceled = '4'
     Replaced = '5'
@@ -222,12 +222,12 @@ class ExerciseStyle(int, Enum):
 
 ExpireDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 ExpireTime = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-ExposureDuration = integer_type(LESingnedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
+ExposureDuration = integer_type(LESignedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
 FIXClOrdID = fixed_length_string(20, b'\0')
 FIXEngineName = fixed_length_string(30, b'\0')
 FIXEngineVendor = fixed_length_string(30, b'\0')
 FIXEngineVersion = fixed_length_string(30, b'\0')
-FillExecID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+FillExecID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class FillLiquidityInd(int, Enum):
     Added_Liquidity = 1
     Removed_Liquidity = 2
@@ -239,7 +239,7 @@ class FillLiquidityInd(int, Enum):
 FillMatchID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 FillPx = float_decimal(8, 8, True, False, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000)
 FillQty = float_decimal(8, 4, True, False, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000)
-FillRefID = integer_type(LEByteField, 1, 100, 0xFF)
+FillRefID = integer_type(ByteField, 1, 100, 0xFF)
 FirmNegotiationID = fixed_length_string(20, b'\0')
 FirmTradeID = fixed_length_string(20, b'\0')
 FreeText1 = fixed_length_string(12, b'\0')
@@ -285,7 +285,7 @@ class InstrAttribType(int, Enum):
     Cash_Basket_Reference = 104
 
 InstrAttribValue = fixed_length_string(32, b'\0')
-InstrmtMatchSideID = integer_type(LEByteField, 0, 199, 0xFF)
+InstrmtMatchSideID = integer_type(ByteField, 0, 199, 0xFF)
 class InventoryCheckType(int, Enum):
     Do_not_check = 0
     Check = 1
@@ -318,21 +318,21 @@ class LeavesQtyDisclosureInstruction(int, Enum):
 
 LegAccount = fixed_length_string(2, b'\0')
 LegClearingTradePrice = float_decimal(8, 8, True, False, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000)
-LegExecID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+LegExecID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class LegInputSource(int, Enum):
     Client_Broker = 1
     Proprietary_Broker = 2
 
 LegLastPx = float_decimal(8, 8, True, False, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000)
 LegLastQty = float_decimal(8, 4, True, False, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000)
-class LegPositionEffect(int, Enum):
+class LegPositionEffect(str, Enum):
     Close = 'C'
     Open = 'O'
 
 LegPrice = float_decimal(8, 8, True, False, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000)
 LegQty = float_decimal(8, 4, True, False, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000)
 LegRatioQty = integer_type(LEIntField, 1, 2147483647, 0xFFFFFFFF)
-LegSecurityID = integer_type(LESingnedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
+LegSecurityID = integer_type(LESignedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
 class LegSecurityType(int, Enum):
     Multileg_Instrument = 1
     Underlying_Leg = 2
@@ -341,8 +341,8 @@ class LegSide(int, Enum):
     Buy = 1
     Sell = 2
 
-LegSymbol = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
-class ListUpdateAction(int, Enum):
+LegSymbol = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
+class ListUpdateAction(str, Enum):
     Add = 'A'
     Delete = 'D'
 
@@ -361,7 +361,7 @@ class MarketID(int, Enum):
     XEEE = 2
     NODX = 12
 
-MarketSegmentID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+MarketSegmentID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class MassActionReason(int, Enum):
     No_Special_Reason = 0
     Stop_Trading = 1
@@ -412,7 +412,7 @@ MatchingEngineTradeDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 MaturityDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 MaturityMonthYear = integer_type(LEIntField, 0, 999912, 0xFFFFFFFF)
 MaximumPrice = float_decimal(8, 8, True, False, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000)
-class MessageEventSource(int, Enum):
+class MessageEventSource(str, Enum):
     Broadcast_to_Initiator = 'I'
     Broadcast_to_Approver = 'A'
     Broadcast_to_Requester = 'R'
@@ -441,39 +441,39 @@ class NewsRtmServiceStatus(int, Enum):
     Available = 1
 
 NoAffectedOrderRequests = integer_type(LEShortField, 0, 500, 0xFFFF)
-NoBasketRootPartyGrps = integer_type(LEByteField, 2, 2, 0xFF)
-NoBasketRootPartyGrpsBC = integer_type(LEByteField, 3, 3, 0xFF)
+NoBasketRootPartyGrps = integer_type(ByteField, 2, 2, 0xFF)
+NoBasketRootPartyGrpsBC = integer_type(ByteField, 3, 3, 0xFF)
 NoBasketSideAlloc = integer_type(LEShortField, 1, 398, 0xFFFF)
-NoCrossLegs = integer_type(LEByteField, 0, 40, 0xFF)
+NoCrossLegs = integer_type(ByteField, 0, 40, 0xFF)
 NoEnrichmentRules = integer_type(LEShortField, 0, 400, 0xFFFF)
-NoEvents = integer_type(LEByteField, 0, 2, 0xFF)
-NoFills = integer_type(LEByteField, 0, 100, 0xFF)
-NoInstrAttrib = integer_type(LEByteField, 0, 6, 0xFF)
-NoInstrmtMatchSides = integer_type(LEByteField, 1, 199, 0xFF)
-NoLegClearingPrices = integer_type(LEByteField, 0, 20, 0xFF)
+NoEvents = integer_type(ByteField, 0, 2, 0xFF)
+NoFills = integer_type(ByteField, 0, 100, 0xFF)
+NoInstrAttrib = integer_type(ByteField, 0, 6, 0xFF)
+NoInstrmtMatchSides = integer_type(ByteField, 1, 199, 0xFF)
+NoLegClearingPrices = integer_type(ByteField, 0, 20, 0xFF)
 NoLegExecs = integer_type(LEShortField, 0, 600, 0xFFFF)
-NoLegOnbooks = integer_type(LEByteField, 0, 144, 0xFF)
-NoLegs = integer_type(LEByteField, 0, 20, 0xFF)
-NoMDEntryTypes = integer_type(LEByteField, 0, 2, 0xFF)
-NoMMParameters = integer_type(LEByteField, 0, 9, 0xFF)
+NoLegOnbooks = integer_type(ByteField, 0, 144, 0xFF)
+NoLegs = integer_type(ByteField, 0, 20, 0xFF)
+NoMDEntryTypes = integer_type(ByteField, 0, 2, 0xFF)
+NoMMParameters = integer_type(ByteField, 0, 9, 0xFF)
 NoNotAffectedOrders = integer_type(LEShortField, 0, 500, 0xFFFF)
 NoNotAffectedSecurities = integer_type(LEShortField, 0, 500, 0xFFFF)
-NoOrderBookItems = integer_type(LEByteField, 0, 26, 0xFF)
-NoOrderEvents = integer_type(LEByteField, 0, 100, 0xFF)
+NoOrderBookItems = integer_type(ByteField, 0, 26, 0xFF)
+NoOrderEvents = integer_type(ByteField, 0, 100, 0xFF)
 NoPartyDetails = integer_type(LEShortField, 0, 1000, 0xFFFF)
-NoQuoteEntries = integer_type(LEByteField, 0, 100, 0xFF)
-NoQuoteEvents = integer_type(LEByteField, 1, 100, 0xFF)
-NoQuoteEventsIndex = integer_type(LEByteField, 1, 100, 0xFF)
-NoQuoteSideEntries = integer_type(LEByteField, 0, 200, 0xFF)
-NoRiskLimits = integer_type(LEByteField, 0, 64, 0xFF)
-NoRiskLimitsQty = integer_type(LEByteField, 0, 2, 0xFF)
-NoSRQSQuoteGrps = integer_type(LEByteField, 0, 30, 0xFF)
-NoSRQSTargetPartyTrdGrps = integer_type(LEByteField, 1, 30, 0xFF)
+NoQuoteEntries = integer_type(ByteField, 0, 100, 0xFF)
+NoQuoteEvents = integer_type(ByteField, 1, 100, 0xFF)
+NoQuoteEventsIndex = integer_type(ByteField, 1, 100, 0xFF)
+NoQuoteSideEntries = integer_type(ByteField, 0, 200, 0xFF)
+NoRiskLimits = integer_type(ByteField, 0, 64, 0xFF)
+NoRiskLimitsQty = integer_type(ByteField, 0, 2, 0xFF)
+NoSRQSQuoteGrps = integer_type(ByteField, 0, 30, 0xFF)
+NoSRQSTargetPartyTrdGrps = integer_type(ByteField, 1, 30, 0xFF)
 NoSessions = integer_type(LEShortField, 1, 1000, 0xFFFF)
-NoSideAllocs = integer_type(LEByteField, 1, 99, 0xFF)
-NoSides = integer_type(LEByteField, 1, 2, 0xFF)
-NoTargetPartyIDs = integer_type(LEByteField, 0, 50, 0xFF)
-NoUnderlyingStips = integer_type(LEByteField, 0, 1, 0xFF)
+NoSideAllocs = integer_type(ByteField, 1, 99, 0xFF)
+NoSides = integer_type(ByteField, 1, 2, 0xFF)
+NoTargetPartyIDs = integer_type(ByteField, 0, 50, 0xFF)
+NoUnderlyingStips = integer_type(ByteField, 0, 1, 0xFF)
 NotAffOrigClOrdID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 NotAffectedOrderID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 NotAffectedSecurityID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
@@ -483,7 +483,7 @@ class NumberOfRespDisclosureInstruction(int, Enum):
     Yes = 1
 
 NumberOfRespondents = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-NumberOfSecurities = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+NumberOfSecurities = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 OfferCxlSize = float_decimal(8, 4, True, False, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000)
 OfferPx = float_decimal(8, 8, True, False, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000)
 class OfferPxIsLocked(int, Enum):
@@ -491,8 +491,8 @@ class OfferPxIsLocked(int, Enum):
     Yes = 1
 
 OfferSize = float_decimal(8, 4, True, False, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000)
-OptAttribute = integer_type(LEByteField, 0, 9, 0xFF)
-class OrdStatus(int, Enum):
+OptAttribute = integer_type(ByteField, 0, 9, 0xFF)
+class OrdStatus(str, Enum):
     New = '0'
     Partially_filled = '1'
     Filled = '2'
@@ -514,7 +514,7 @@ class OrderAttributeRiskReduction(int, Enum):
     Y = 1
     N = 0
 
-class OrderCategory(int, Enum):
+class OrderCategory(str, Enum):
     Order = '1'
     Quote = '2'
 
@@ -537,7 +537,7 @@ class OrderQtyIsLocked(int, Enum):
     No = 0
     Yes = 1
 
-class OrderRoutingIndicator(int, Enum):
+class OrderRoutingIndicator(str, Enum):
     Yes = 'Y'
     No = 'N'
 
@@ -638,8 +638,8 @@ class PartySubIDType(int, Enum):
     Seller = 14002
 
 Password = fixed_length_string(32, b'\0')
-PctCount = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
-class PositionEffect(int, Enum):
+PctCount = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
+class PositionEffect(str, Enum):
     Close = 'C'
     Open = 'O'
 
@@ -673,7 +673,7 @@ class PutOrCall(int, Enum):
 class QuoteCancelReason(int, Enum):
     Expired = 5
 
-class QuoteCondition(int, Enum):
+class QuoteCondition(str, Enum):
     Active = 'A'
     Closed = 'B'
     Suspended = 'z'
@@ -720,7 +720,7 @@ class QuoteEntryStatus(int, Enum):
     Removed_and_Rejected = 6
     Pending = 10
 
-QuoteEventExecID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+QuoteEventExecID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class QuoteEventLiquidityInd(int, Enum):
     Added_Liquidity = 1
     Removed_Liquidity = 2
@@ -796,7 +796,7 @@ RefApplLastSeqNum = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFF
 RefApplSubID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 RegulatoryTradeID = fixed_length_string(52, b'\0')
 RelatedClosePrice = float_decimal(8, 6, True, False, -9223372036854.775807, 9223372036854.775807, 0x8000000000000000)
-RelatedMarketSegmentID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+RelatedMarketSegmentID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class RelatedProductComplex(int, Enum):
     standard_option_strategy = 2
     non_standard_option_strategy = 3
@@ -808,8 +808,8 @@ class RelatedProductComplex(int, Enum):
     strip = 9
     commodity_strip = 11
 
-RelatedSecurityID = integer_type(LESingnedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
-RelatedSymbol = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+RelatedSecurityID = integer_type(LESignedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
+RelatedSymbol = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 RelatedTradeID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 RelatedTradeQuantity = float_decimal(8, 4, True, False, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000)
 RequestTime = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
@@ -915,9 +915,9 @@ class SecondaryGatewayStatus(int, Enum):
 SecondaryGatewaySubID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 SecondaryQuoteID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 SecondaryTradeID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-SecurityID = integer_type(LESingnedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
+SecurityID = integer_type(LESignedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
 SecurityResponseID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-SecuritySubType = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+SecuritySubType = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class SelectiveRequestForQuoteRtmServiceStatus(int, Enum):
     Unavailable = 0
     Available = 1
@@ -978,7 +978,7 @@ class SessionSubMode(int, Enum):
     Regular_trading_session = 0
     Regular_Back_Office_session = 2
 
-class SettlMethod(int, Enum):
+class SettlMethod(str, Enum):
     Cash_Settlement = 'C'
     Physical_Settlement = 'P'
 
@@ -1006,7 +1006,7 @@ class SideLiquidityInd(int, Enum):
     Removed_Liquidity = 2
     Auction = 4
 
-SideMarketSegmentID = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+SideMarketSegmentID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 SideTradeID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 class SideTrdSubTyp(int, Enum):
     Block_Trade = 2001
@@ -1047,14 +1047,14 @@ TemplateID = integer_type(LEShortField, 0, 65534, 0xFFFF)
 Text = fixed_length_string(12, b'\0')
 ThrottleDisconnectLimit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 ThrottleNoMsgs = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-ThrottleTimeInterval = integer_type(LESingnedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
+ThrottleTimeInterval = integer_type(LESignedLongField, -9223372036854775807, 9223372036854775807, 0x8000000000000000)
 class TimeInForce(int, Enum):
     Day = 0
     GTC = 1
     IOC = 3
     GTD = 6
 
-TotNumTradeReports = integer_type(LESingnedIntField, -2147483647, 2147483647, 0x80000000)
+TotNumTradeReports = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class TradSesEvent(int, Enum):
     Start_of_Service = 101
     Market_Reset = 102
@@ -1253,7 +1253,7 @@ class BasketSideAllocExtBCGrpComp(Packet):
         LEShortEnumField("sideTrdSubTyp", SideTrdSubTyp.Trade_at_Market, SideTrdSubTyp),
         LEShortEnumField("partySubIDType", PartySubIDType.Seller, PartySubIDType),
         ByteEnumField("side", Side.Sell, Side),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         ByteEnumField("effectOnBasket", EffectOnBasket.Remove_Volume, EffectOnBasket),
         ByteEnumField("tradingCapacity", TradingCapacity.Market_Maker, TradingCapacity),
         ByteEnumField("tradeAllocStatus", TradeAllocStatus.Cancelled_Reversal, TradeAllocStatus),
@@ -1285,7 +1285,7 @@ class BasketSideAllocExtGrpComp(Packet):
         SideMarketSegmentID("sideMarketSegmentID", 0x80000000),
         AllocID("allocID", 0xFFFFFFFF),
         ByteEnumField("side", Side.Sell, Side),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         ByteEnumField("tradingCapacity", TradingCapacity.Market_Maker, TradingCapacity),
         ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
         ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
@@ -1341,7 +1341,7 @@ class CrossRequestSideGrpComp(Packet):
         ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
         ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
         ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
         Account("account", ""),
         PartyIDPositionAccount("partyIDPositionAccount", ""),
@@ -1361,7 +1361,7 @@ class EnrichmentRulesGrpComp(Packet):
         EnrichmentRuleID("enrichmentRuleID", 0xFFFF),
         ByteEnumField("partyIDOriginationMarket", PartyIDOriginationMarket.XKFE, PartyIDOriginationMarket),
         Account("account", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         PartyIDTakeUpTradingFirm("partyIDTakeUpTradingFirm", ""),
         PartyIDOrderOriginationFirm("partyIDOrderOriginationFirm", ""),
         PartyIDBeneficiary("partyIDBeneficiary", ""),
@@ -1438,7 +1438,7 @@ class LegOrdGrpComp(Packet):
     name = 'LegOrdGrpComp'
     fields_desc = [
         LegAccount("legAccount", ""),
-        ByteEnumField("legPositionEffect", LegPositionEffect.Open, LegPositionEffect),
+        CharEnumField("legPositionEffect", LegPositionEffect.Open, LegPositionEffect),
         Pad5("pad5", ""),
     ]
 class MMParameterGrpComp(Packet):
@@ -1734,7 +1734,7 @@ class SideAllocExtGrpComp(Packet):
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("tradeAllocStatus", TradeAllocStatus.Cancelled_Reversal, TradeAllocStatus),
         ByteEnumField("tradingCapacity", TradingCapacity.Market_Maker, TradingCapacity),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
         ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
         ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
@@ -1781,7 +1781,7 @@ class SideCrossLegGrpComp(Packet):
     name = 'SideCrossLegGrpComp'
     fields_desc = [
         ByteEnumField("legInputSource", LegInputSource.Proprietary_Broker, LegInputSource),
-        ByteEnumField("legPositionEffect", LegPositionEffect.Open, LegPositionEffect),
+        CharEnumField("legPositionEffect", LegPositionEffect.Open, LegPositionEffect),
         LegAccount("legAccount", ""),
         Pad4("pad4", ""),
     ]
@@ -1872,7 +1872,7 @@ class AddFlexibleInstrumentRequest(Packet):
         MarketSegmentID("marketSegmentID", 0x80000000),
         MaturityDate("maturityDate", 0xFFFFFFFF),
         ContractDate("contractDate", 0xFFFFFFFF),
-        ByteEnumField("settlMethod", SettlMethod.Physical_Settlement, SettlMethod),
+        CharEnumField("settlMethod", SettlMethod.Physical_Settlement, SettlMethod),
         OptAttribute("optAttribute", 0xFF),
         ByteEnumField("putOrCall", PutOrCall.Call, PutOrCall),
         ByteEnumField("exerciseStyle", ExerciseStyle.American, ExerciseStyle),
@@ -1891,7 +1891,7 @@ class AddFlexibleInstrumentResponse(Packet):
         MaturityDate("maturityDate", 0xFFFFFFFF),
         ContractDate("contractDate", 0xFFFFFFFF),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
-        ByteEnumField("settlMethod", SettlMethod.Physical_Settlement, SettlMethod),
+        CharEnumField("settlMethod", SettlMethod.Physical_Settlement, SettlMethod),
         OptAttribute("optAttribute", 0xFF),
         ByteEnumField("putOrCall", PutOrCall.Call, PutOrCall),
         ByteEnumField("exerciseStyle", ExerciseStyle.American, ExerciseStyle),
@@ -1976,7 +1976,7 @@ class ApproveTESTradeRequest(Packet):
         ByteEnumField("orderAttributeRiskReduction", OrderAttributeRiskReduction.N, OrderAttributeRiskReduction),
         ByteEnumField("orderOrigination", OrderOrigination.Direct_access_or_sponsored_access_customer, OrderOrigination),
         TradeReportID("tradeReportID", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         Account("account", ""),
@@ -2005,7 +2005,7 @@ class BasketApproveBroadcast(Packet):
         FieldLenField("noBasketSideAlloc", 0, fmt="<H", count_of="basketSideAllocExtBCGrp"),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
         ByteEnumField("basketTradeReportType", BasketTradeReportType.No_Was_Substitue, BasketTradeReportType),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         FieldLenField("noBasketRootPartyGrps", 0, fmt="<B", count_of="basketRootPartyGrp"),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
         PartyEnteringTrader("partyEnteringTrader", ""),
@@ -2030,7 +2030,7 @@ class BasketBroadcast(Packet):
         LEShortEnumField("trdType", TrdType.EBB, TrdType),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
         ByteEnumField("basketTradeReportType", BasketTradeReportType.No_Was_Substitue, BasketTradeReportType),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         FieldLenField("noBasketRootPartyGrpsBC", 0, fmt="<B", count_of="basketRootPartyGrp"),
         FieldLenField("noInstrmtMatchSides", 0, fmt="<B", count_of="instrmtMatchSideGrp"),
         BasketTradeReportText("basketTradeReportText", ""),
@@ -2052,7 +2052,7 @@ class BasketDeleteBroadcast(Packet):
         BasketProfileID("basketProfileID", 0xFFFFFFFF),
         LEShortEnumField("trdType", TrdType.EBB, TrdType),
         ByteEnumField("deleteReason", DeleteReason.Compression_Cancelled_By_System, DeleteReason),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         TradeReportID("tradeReportID", ""),
         Pad4("pad4", ""),
     ]
@@ -2069,7 +2069,7 @@ class BasketExecutionBroadcast(Packet):
         LEShortEnumField("trdType", TrdType.EBB, TrdType),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
         FieldLenField("noInstrmtMatchSides", 0, fmt="<B", count_of="basketExecGrp"),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         BasketSideTradeReportID("basketSideTradeReportID", ""),
         Pad3("pad3", ""),
         PacketListField("basketExecGrp", None, BasketExecGrpComp, count_from=lambda pkt:pkt.noInstrmtMatchSides),
@@ -2108,8 +2108,8 @@ class CLIPDeletionNotification(Packet):
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
         ByteEnumField("side", Side.Sell, Side),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         Pad6("pad6", ""),
     ]
 class CLIPExecutionNotification(Packet):
@@ -2128,8 +2128,8 @@ class CLIPExecutionNotification(Packet):
         FieldLenField("noLegExecs", 0, fmt="<H", count_of="instrmntLegExecGrp"),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
         ByteEnumField("side", Side.Sell, Side),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         ByteEnumField("matchType", MatchType.Liquidity_Improvement_Cross, MatchType),
         FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
         Pad2("pad2", ""),
@@ -2321,8 +2321,8 @@ class DeleteOrderBroadcast(Packet):
         PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
         ByteEnumField("side", Side.Sell, Side),
         FIXClOrdID("fIXClOrdID", ""),
@@ -2360,8 +2360,8 @@ class DeleteOrderNRResponse(Packet):
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
         CumQty("cumQty", 0x8000000000000000),
         CxlQty("cxlQty", 0x8000000000000000),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
@@ -2379,8 +2379,8 @@ class DeleteOrderResponse(Packet):
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
         CumQty("cumQty", 0x8000000000000000),
         CxlQty("cxlQty", 0x8000000000000000),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
@@ -2637,9 +2637,9 @@ class LogonRequest(Packet):
         PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
         DefaultCstmApplVerID("defaultCstmApplVerID", ""),
         Password("password", ""),
-        ByteEnumField("applUsageOrders", ApplUsageOrders.None, ApplUsageOrders),
-        ByteEnumField("applUsageQuotes", ApplUsageQuotes.None, ApplUsageQuotes),
-        ByteEnumField("orderRoutingIndicator", OrderRoutingIndicator.No, OrderRoutingIndicator),
+        CharEnumField("applUsageOrders", ApplUsageOrders.None, ApplUsageOrders),
+        CharEnumField("applUsageQuotes", ApplUsageQuotes.None, ApplUsageQuotes),
+        CharEnumField("orderRoutingIndicator", OrderRoutingIndicator.No, OrderRoutingIndicator),
         FIXEngineName("fIXEngineName", ""),
         FIXEngineVersion("fIXEngineVersion", ""),
         FIXEngineVendor("fIXEngineVendor", ""),
@@ -2844,8 +2844,8 @@ class ModifyOrderNRResponse(Packet):
         LeavesQty("leavesQty", 0x8000000000000000),
         CumQty("cumQty", 0x8000000000000000),
         CxlQty("cxlQty", 0x8000000000000000),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
@@ -2869,8 +2869,8 @@ class ModifyOrderResponse(Packet):
         CumQty("cumQty", 0x8000000000000000),
         CxlQty("cxlQty", 0x8000000000000000),
         TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
@@ -2917,7 +2917,7 @@ class ModifyOrderSingleRequest(Packet):
         ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
         Account("account", ""),
         PartyIDPositionAccount("partyIDPositionAccount", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         ByteEnumField("ownershipIndicator", OwnershipIndicator.Change_to_Executing_Trader, OwnershipIndicator),
         PartyIDLocationID("partyIDLocationID", ""),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
@@ -3067,8 +3067,8 @@ class NewOrderNRResponse(Packet):
         ExecID("execID", 0xFFFFFFFFFFFFFFFF),
         LeavesQty("leavesQty", 0x8000000000000000),
         CxlQty("cxlQty", 0x8000000000000000),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
@@ -3091,8 +3091,8 @@ class NewOrderResponse(Packet):
         CxlQty("cxlQty", 0x8000000000000000),
         TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF),
         TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
@@ -3137,7 +3137,7 @@ class NewOrderSingleRequest(Packet):
         ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
         Account("account", ""),
         PartyIDPositionAccount("partyIDPositionAccount", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         PartyIDLocationID("partyIDLocationID", ""),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
         ComplianceText("complianceText", ""),
@@ -3204,8 +3204,8 @@ class OrderExecNotification(Packet):
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         FIXClOrdID("fIXClOrdID", ""),
@@ -3245,8 +3245,8 @@ class OrderExecReportBroadcast(Packet):
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
         ByteEnumField("tradingCapacity", TradingCapacity.Market_Maker, TradingCapacity),
@@ -3256,7 +3256,7 @@ class OrderExecReportBroadcast(Packet):
         ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
         Account("account", ""),
         PartyIDPositionAccount("partyIDPositionAccount", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         PartyIDTakeUpTradingFirm("partyIDTakeUpTradingFirm", ""),
         PartyIDOrderOriginationFirm("partyIDOrderOriginationFirm", ""),
         PartyIDBeneficiary("partyIDBeneficiary", ""),
@@ -3298,8 +3298,8 @@ class OrderExecResponse(Packet):
         LEShortEnumField("execRestatementReason", ExecRestatementReason.CLIP_Arrangement_Validation, ExecRestatementReason),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
-        ByteEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
-        ByteEnumField("execType", ExecType.Trade, ExecType),
+        CharEnumField("ordStatus", OrdStatus.Suspended, OrdStatus),
+        CharEnumField("execType", ExecType.Trade, ExecType),
         ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
         ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
         ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
@@ -3335,7 +3335,7 @@ class PartyEntitlementsUpdateReport(Packet):
         PartyDetailIDExecutingUnit("partyDetailIDExecutingUnit", 0xFFFFFFFF),
         LEIntEnumField("requestingPartyIDExecutingSystem", RequestingPartyIDExecutingSystem.T7, RequestingPartyIDExecutingSystem),
         LEShortEnumField("marketID", MarketID.NODX, MarketID),
-        ByteEnumField("listUpdateAction", ListUpdateAction.Delete, ListUpdateAction),
+        CharEnumField("listUpdateAction", ListUpdateAction.Delete, ListUpdateAction),
         RequestingPartyEnteringFirm("requestingPartyEnteringFirm", ""),
         RequestingPartyClearingFirm("requestingPartyClearingFirm", ""),
         ByteEnumField("partyDetailStatus", PartyDetailStatus.Rejected, PartyDetailStatus),
@@ -3538,7 +3538,7 @@ class RiskNotificationBroadcast(Packet):
         LEIntEnumField("requestingPartyIDExecutingSystem", RequestingPartyIDExecutingSystem.T7, RequestingPartyIDExecutingSystem),
         LEShortEnumField("marketID", MarketID.NODX, MarketID),
         ByteEnumField("inventoryCheckType", InventoryCheckType.Check, InventoryCheckType),
-        ByteEnumField("listUpdateAction", ListUpdateAction.Delete, ListUpdateAction),
+        CharEnumField("listUpdateAction", ListUpdateAction.Delete, ListUpdateAction),
         ByteEnumField("riskLimitAction", RiskLimitAction.Warning, RiskLimitAction),
         RequestingPartyEnteringFirm("requestingPartyEnteringFirm", ""),
         RequestingPartyClearingFirm("requestingPartyClearingFirm", ""),
@@ -3564,7 +3564,7 @@ class SRQSCreateDealNotification(Packet):
         OrigTradeID("origTradeID", 0xFFFFFFFF),
         ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         ByteEnumField("side", Side.Sell, Side),
         FieldLenField("noOrderBookItems", 0, fmt="<B", count_of="orderBookItemGrp"),
         ByteEnumField("tradingCapacity", TradingCapacity.Market_Maker, TradingCapacity),
@@ -3580,7 +3580,7 @@ class SRQSCreateDealNotification(Packet):
         FreeText2("freeText2", ""),
         FreeText3("freeText3", ""),
         FreeText5("freeText5", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         Account("account", ""),
         PartyIDBeneficiary("partyIDBeneficiary", ""),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
@@ -3608,7 +3608,7 @@ class SRQSDealNotification(Packet):
         LEShortEnumField("requestingPartySubIDType", RequestingPartySubIDType.System, RequestingPartySubIDType),
         ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
         ByteEnumField("tradeRequestResult", TradeRequestResult.Cancel_approved, TradeRequestResult),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         ByteEnumField("tradingCapacity", TradingCapacity.Market_Maker, TradingCapacity),
         FieldLenField("noSRQSTargetPartyTrdGrps", 0, fmt="<B", count_of="sRQSTargetPartyTrdGrp"),
         RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
@@ -3620,7 +3620,7 @@ class SRQSDealNotification(Packet):
         FreeText2("freeText2", ""),
         FreeText3("freeText3", ""),
         FreeText5("freeText5", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         Account("account", ""),
         PartyIDBeneficiary("partyIDBeneficiary", ""),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
@@ -3674,7 +3674,7 @@ class SRQSEnterQuoteRequest(Packet):
         FreeText2("freeText2", ""),
         FreeText3("freeText3", ""),
         FreeText5("freeText5", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         Account("account", ""),
         PartyIDBeneficiary("partyIDBeneficiary", ""),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
@@ -3713,7 +3713,7 @@ class SRQSHitQuoteRequest(Packet):
         FreeText2("freeText2", ""),
         FreeText3("freeText3", ""),
         FreeText5("freeText5", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         Account("account", ""),
         PartyIDBeneficiary("partyIDBeneficiary", ""),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
@@ -3770,7 +3770,7 @@ class SRQSNegotiationNotification(Packet):
         ByteEnumField("quoteInstruction", QuoteInstruction.Quote, QuoteInstruction),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("tradeAggregationTransType", TradeAggregationTransType.New, TradeAggregationTransType),
-        ByteEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
+        CharEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         PartyEnteringTrader("partyEnteringTrader", ""),
@@ -3810,7 +3810,7 @@ class SRQSNegotiationRequesterNotification(Packet):
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("showLastDealOnClosure", ShowLastDealOnClosure.Yes, ShowLastDealOnClosure),
         ByteEnumField("tradeAggregationTransType", TradeAggregationTransType.New, TradeAggregationTransType),
-        ByteEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
+        CharEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         PartyEnteringTrader("partyEnteringTrader", ""),
@@ -3829,7 +3829,7 @@ class SRQSNegotiationStatusNotification(Packet):
         TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
         EffectiveTime("effectiveTime", 0xFFFFFFFFFFFFFFFF),
         NegotiationID("negotiationID", 0xFFFFFFFF),
-        ByteEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
+        CharEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
         FirmNegotiationID("firmNegotiationID", ""),
         Pad7("pad7", ""),
     ]
@@ -3863,7 +3863,7 @@ class SRQSOpenNegotiationNotification(Packet):
         ByteEnumField("productComplex", ProductComplex.commodity_strip, ProductComplex),
         ByteEnumField("respondentType", RespondentType.Anonymous, RespondentType),
         ByteEnumField("tradeAggregationTransType", TradeAggregationTransType.New, TradeAggregationTransType),
-        ByteEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
+        CharEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         PartyEnteringTrader("partyEnteringTrader", ""),
@@ -3904,7 +3904,7 @@ class SRQSOpenNegotiationRequest(Packet):
         ByteEnumField("sideIsLocked", SideIsLocked.Yes, SideIsLocked),
         ByteEnumField("orderQtyIsLocked", OrderQtyIsLocked.Yes, OrderQtyIsLocked),
         ByteEnumField("tradeAggregationTransType", TradeAggregationTransType.New, TradeAggregationTransType),
-        ByteEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
+        CharEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         FreeText5("freeText5", ""),
@@ -3949,7 +3949,7 @@ class SRQSOpenNegotiationRequesterNotification(Packet):
         ByteEnumField("sideIsLocked", SideIsLocked.Yes, SideIsLocked),
         ByteEnumField("orderQtyIsLocked", OrderQtyIsLocked.Yes, OrderQtyIsLocked),
         ByteEnumField("tradeAggregationTransType", TradeAggregationTransType.New, TradeAggregationTransType),
-        ByteEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
+        CharEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         PartyEnteringTrader("partyEnteringTrader", ""),
@@ -3989,7 +3989,7 @@ class SRQSQuoteNotification(Packet):
         FreeText2("freeText2", ""),
         FreeText3("freeText3", ""),
         FreeText5("freeText5", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         Account("account", ""),
         PartyIDBeneficiary("partyIDBeneficiary", ""),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
@@ -4014,7 +4014,7 @@ class SRQSQuoteSnapshotNotification(Packet):
         PacketField("messageHeaderOut", "", MessageHeaderOutComp),
         PacketField("rBCHeader", "", RBCHeaderComp),
         FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="sRQSQuoteEntryGrp"),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         Pad6("pad6", ""),
         PacketListField("sRQSQuoteEntryGrp", None, SRQSQuoteEntryGrpComp, count_from=lambda pkt:pkt.noQuoteEntries),
     ]
@@ -4089,7 +4089,7 @@ class SRQSUpdateNegotiationRequest(Packet):
         ByteEnumField("quoteSubType", QuoteSubType.VolaStrategyNegotiateUnderlying, QuoteSubType),
         ByteEnumField("respondentType", RespondentType.Anonymous, RespondentType),
         ByteEnumField("tradeAggregationTransType", TradeAggregationTransType.New, TradeAggregationTransType),
-        ByteEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
+        CharEnumField("quoteCondition", QuoteCondition.Expired, QuoteCondition),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         FreeText5("freeText5", ""),
@@ -4193,13 +4193,13 @@ class TESApproveBroadcast(Packet):
         FieldLenField("noEvents", 0, fmt="<B", count_of="instrumentEventGrp"),
         FieldLenField("noInstrAttrib", 0, fmt="<B", count_of="instrumentAttributeGrp"),
         FieldLenField("noUnderlyingStips", 0, fmt="<B", count_of="underlyingStipGrp"),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         TradeReportID("tradeReportID", ""),
         PartyExecutingFirm("partyExecutingFirm", ""),
         PartyExecutingTrader("partyExecutingTrader", ""),
         ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
         PartyEnteringTrader("partyEnteringTrader", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
         RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
         FreeText1("freeText1", ""),
@@ -4261,7 +4261,7 @@ class TESBroadcast(Packet):
         ByteEnumField("partyIDSettlementLocation", PartyIDSettlementLocation.Euroclear, PartyIDSettlementLocation),
         ByteEnumField("hedgeType", HedgeType.Price_Factor_Hedge, HedgeType),
         ByteEnumField("swapClearer", SwapClearer.NON_ECAG, SwapClearer),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         TradeReportText("tradeReportText", ""),
         TradeReportID("tradeReportID", ""),
         RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
@@ -4327,7 +4327,7 @@ class TESDeleteBroadcast(Packet):
         ByteEnumField("deleteReason", DeleteReason.Compression_Cancelled_By_System, DeleteReason),
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
         ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         TradeReportID("tradeReportID", ""),
         Pad2("pad2", ""),
     ]
@@ -4346,7 +4346,7 @@ class TESExecutionBroadcast(Packet):
         ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
         ByteEnumField("side", Side.Sell, Side),
         ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         Pad2("pad2", ""),
     ]
 class TESResponse(Packet):
@@ -4422,7 +4422,7 @@ class TESTradeBroadcast(Packet):
         ByteEnumField("transferReason", TransferReason.Clearer, TransferReason),
         ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator),
         ByteEnumField("multiLegReportingType", MultiLegReportingType.Individual_leg_of_a_multileg_security, MultiLegReportingType),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         ByteEnumField("multilegPriceModel", MultilegPriceModel.UserDefined, MultilegPriceModel),
         ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
         ByteEnumField("orderAttributeRiskReduction", OrderAttributeRiskReduction.N, OrderAttributeRiskReduction),
@@ -4493,7 +4493,7 @@ class TESUploadBroadcast(Packet):
         ByteEnumField("hedgeType", HedgeType.Price_Factor_Hedge, HedgeType),
         ByteEnumField("partyIDSettlementLocation", PartyIDSettlementLocation.Euroclear, PartyIDSettlementLocation),
         ByteEnumField("swapClearer", SwapClearer.NON_ECAG, SwapClearer),
-        ByteEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
         TradeReportID("tradeReportID", ""),
         RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
         RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
@@ -4580,12 +4580,12 @@ class TradeBroadcast(Packet):
         ByteEnumField("rootPartyIDInvestmentDecisionMakerQualifier", RootPartyIDInvestmentDecisionMakerQualifier.Human, RootPartyIDInvestmentDecisionMakerQualifier),
         Account("account", ""),
         RootPartyIDPositionAccount("rootPartyIDPositionAccount", ""),
-        ByteEnumField("positionEffect", PositionEffect.Open, PositionEffect),
+        CharEnumField("positionEffect", PositionEffect.Open, PositionEffect),
         CustOrderHandlingInst("custOrderHandlingInst", ""),
         FreeText1("freeText1", ""),
         FreeText2("freeText2", ""),
         FreeText3("freeText3", ""),
-        ByteEnumField("orderCategory", OrderCategory.Quote, OrderCategory),
+        CharEnumField("orderCategory", OrderCategory.Quote, OrderCategory),
         ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
         ByteEnumField("relatedProductComplex", RelatedProductComplex.commodity_strip, RelatedProductComplex),
         ByteEnumField("orderSide", OrderSide.Sell, OrderSide),

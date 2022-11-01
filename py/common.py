@@ -2,6 +2,9 @@ from scapy.fields import *
 from scapy.fields import _EnumField
 from scapy.packet import Packet, bind_layers
 from enum import Enum
+from collections import namedtuple
+
+Pkt = namedtuple('Pkt', ['str', 'items'])
 
 EnumField__init__ = _EnumField.__init__
 def EnumField__init__wrapper(self, name, default, enum, fmt='H'):
@@ -23,8 +26,8 @@ def fixed_length_string(length, padding=b'\0'):
         def __init__(self, name, default):
             super(StrFixedLenPadField, self).__init__(name, default, length)
 
-        def i2h(self, pkt, x):
-            return x.rstrip(padding)
+        def i2repr(self, pkt, x):
+            return repr(x.rstrip(padding))
 
         def h2i(self, pkg, x):
             if len(x) > length:
@@ -77,61 +80,54 @@ class XCharField(CharField):
         return lhex(self.i2h(pkt, x))
 
 
-#test
-'''
->>> pprint([i for i in dir() if any([i.endswith(f'{v}Field') for v in ['Enum', 'Int', 'Byte', 'Short', 'Long', 'Len']]) ])
-['BitEnumField',
- 'BitFieldLenField',
- 'BitFixedLenField',
- 'BitMultiEnumField',
- 'BoundStrLenField',
- 'ByteEnumField',
- 'ByteField',
- 'CharEnumField',
- 'EBBitEnumField',
- 'EnumField',
- 'FieldLenField',
- 'IntEnumField',
- 'IntField',
- 'LEFieldLenField',
- 'LEIntEnumField',
- 'LEIntField',
- 'LELongField',
- 'LEShortEnumField',
- 'LEShortField',
- 'LESignedIntField',
- 'LESignedLongField',
- 'LESignedShortField',
- 'LenField',
- 'LongField',
- 'MultiEnumField',
- 'OByteField',
- 'PacketLenField',
- 'SecondsIntField',
- 'ShortEnumField',
- 'ShortField',
- 'SignedByteField',
- 'SignedIntEnumField',
- 'SignedIntField',
- 'SignedLongField',
- 'SignedShortField',
- 'StrFixedLenEnumField',
- 'StrFixedLenField',
- 'StrLenField',
- 'XByteEnumField',
- 'XByteField',
- 'XIntField',
- 'XLEIntField',
- 'XLELongField',
- 'XLEShortField',
- 'XLEStrLenField',
- 'XLongField',
- 'XShortEnumField',
- 'XShortField',
- 'XStrFixedLenField',
- 'XStrLenField',
- 'YesNoByteField']
-'''
+def packet2str(p):
+    rtv = []
+    items = {}
+    while p:
+        for f in p.fields_desc:
+            if isinstance(f, ConditionalField) and not f._evalcond(p):
+                continue
+            if f.name in p.fields:
+                fval = p.fields[f.name]
+                if isinstance(fval, (list, dict, set)) and len(fval) == 0:
+                    continue
+                val = f.i2repr(p, fval)
+            elif f.name in p.overloaded_fields:
+                fover = p.overloaded_fields[f.name]
+                if isinstance(fover, (list, dict, set)) and len(fover) == 0:
+                    continue
+                val = f.i2repr(p, fover)
+            else:
+                continue
+            rtv.append(f'{f.name}={val}')
+            items[f.name] = val
+        p = p.payload
+
+    return Pkt(';'.join(rtv), items)
+
+
+def get_packet_items(p):
+    items = {}
+    while p:
+        items.update(p.default_fields)
+        items.update(p.overloaded_fields)
+        items.update(p.fields)
+        p = p.payload
+
+    return items
+
+
+class OrderInfoStore:
+    def __init__(self, msg):
+        self.fields_values = get_packet_items(msg)
+
+    def update(self, msg):
+        fields_values = get_packet_items(msg)
+        self.fields_values.update(fields_values)
+
+    def get(self, field_name):
+        return self.fields_values[field_name]
+
 
 if __name__ == '__main__':
     class OrdType(int, Enum):

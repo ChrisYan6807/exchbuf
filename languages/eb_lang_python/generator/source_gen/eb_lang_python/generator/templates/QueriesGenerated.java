@@ -199,6 +199,8 @@ public class QueriesGenerated extends QueryProviderBase {
       String defaultValue = EBImportPrimitive__BehaviorDescriptor.getPyDefault_id3_eh5mZVois.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), CONCEPTS.EBImportPrimitive$gU));
 
       return String.format("        ConditionalField(%s(\"%s\", %s), lambda pkt:pkt.%s&(1<<(%s)))", SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue, SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_map$Zjwo), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.pos$ZoEI));
+    } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), CONCEPTS.EBMessage$YV)) {
+      return String.format("        ConditionalField(PacketField(\"%s\", None, %s), lambda pkt:pkt.%s&(1<<(%s)))", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_map$Zjwo), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.pos$ZoEI));
     }
 
     return String.format("        ConditionalField(%s, lambda pkt:pkt.%s&(1<<(%s)))", SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_map$Zjwo), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.pos$ZoEI));

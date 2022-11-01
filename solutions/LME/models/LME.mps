@@ -1976,6 +1976,11 @@
         <property role="2gaMiQ" value="581" />
         <ref role="1rk6cS" node="6vP9POWf1VD" resolve="AccountType" />
       </node>
+      <node concept="2gaMiM" id="3sy8viZvW3W" role="36JId$">
+        <property role="TrG5h" value="executingFirm" />
+        <property role="2gaMiQ" value="1462" />
+        <ref role="1rk6cS" node="6vP9POWf2zt" resolve="String4" />
+      </node>
       <node concept="1$kB3o" id="6vP9POWf244" role="36JId$">
         <property role="1$kB3_" value="63-15" />
         <property role="TrG5h" value="clientShortCode" />
@@ -2717,6 +2722,10 @@
         <property role="2gaMiQ" value="54" />
         <ref role="1rk6cS" node="6vP9POWcSK5" resolve="Side" />
       </node>
+      <node concept="1B_UyS" id="JOCqBF3GSJ" role="36JId$">
+        <property role="TrG5h" value="chksum" />
+        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+      </node>
       <node concept="1Bpi51" id="26UurnPA_kX" role="36JId$">
         <ref role="1UXTZ7" node="66x_0s5Xes1" resolve="CancelOrder" />
       </node>
@@ -2817,38 +2826,38 @@
       <node concept="2glnej" id="5ECqPg6XY1k" role="2glne$" />
       <node concept="2glner" id="5ECqPg6XXPu" role="2glney">
         <property role="TrG5h" value="New" />
-        <node concept="2glneh" id="5ECqPg6XY1p" role="2glneA">
-          <property role="2glnet" value="0" />
+        <node concept="2glneu" id="7s2821wR0aF" role="2glneA">
+          <property role="2glnev" value="0" />
         </node>
       </node>
       <node concept="2glner" id="5ECqPg6XY1r" role="2glney">
         <property role="TrG5h" value="Done" />
-        <node concept="2glneh" id="5ECqPg6XY1z" role="2glneA">
-          <property role="2glnet" value="3" />
+        <node concept="2glneu" id="7s2821wR0aJ" role="2glneA">
+          <property role="2glnev" value="3" />
         </node>
       </node>
       <node concept="2glner" id="5ECqPg6XY1_" role="2glney">
         <property role="TrG5h" value="Cancelled" />
-        <node concept="2glneh" id="5ECqPg6XY1J" role="2glneA">
-          <property role="2glnet" value="4" />
+        <node concept="2glneu" id="7s2821wR0bG" role="2glneA">
+          <property role="2glnev" value="4" />
         </node>
       </node>
       <node concept="2glner" id="5ECqPg6XY1L" role="2glney">
         <property role="TrG5h" value="Replaced" />
-        <node concept="2glneh" id="5ECqPg6XY1X" role="2glneA">
-          <property role="2glnet" value="5" />
+        <node concept="2glneu" id="7s2821wR0bK" role="2glneA">
+          <property role="2glnev" value="5" />
         </node>
       </node>
       <node concept="2glner" id="5ECqPg6XY1Z" role="2glney">
         <property role="TrG5h" value="PendingCancel" />
-        <node concept="2glneh" id="5ECqPg6XY2d" role="2glneA">
-          <property role="2glnet" value="6" />
+        <node concept="2glneu" id="7s2821wR0bO" role="2glneA">
+          <property role="2glnev" value="6" />
         </node>
       </node>
       <node concept="2glner" id="5ECqPg6XY2f" role="2glney">
         <property role="TrG5h" value="Rejected" />
-        <node concept="2glneh" id="5ECqPg6XY2v" role="2glneA">
-          <property role="2glnet" value="8" />
+        <node concept="2glneu" id="7s2821wR0bS" role="2glneA">
+          <property role="2glnev" value="8" />
         </node>
       </node>
       <node concept="2glner" id="5ECqPg6XY2x" role="2glney">

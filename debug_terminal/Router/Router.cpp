@@ -15,10 +15,9 @@ void Session<protocol>::async_read() {
                                           client_.remove_session(id());
                                       } else {
                                           LOG_INFO  << "received " << bytes_transferred << " bytes from fix client";
-                                          LOG_INFO << "An informational severity message";
                                           hex_dump(rcv_buffer_);
                                           rcv_buffer_.commit(bytes_transferred);
-                                          TagValueMsg msg(rcv_buffer_);
+                                          TagValueMsg msg(rcv_buffer_, id());
                                           //msg.debug_info();
                                           if(auto& msg_type = msg.get_tag(35); msg_type.size() == 1) {
                                               switch(msg_type[0]) {
@@ -28,6 +27,7 @@ void Session<protocol>::async_read() {
                                                       break;
                                                   case '5':
                                                       //todo correct logout response, but fixclient doesn't care about it anyway
+                                                      LOG_INFO << "received logout request from fixclient, send back logout";
                                                       async_write(msg);
                                                       return;
                                                   default:
@@ -48,16 +48,16 @@ void Session<protocol>::async_read() {
                                               send_reject(msg);
                                               return;
                                           }
-                                          //rcv_buffer_.consume(bytes_transferred);
+                                          async_read();
                                       }
                                   });
 }
 
 template<typename protocol>
 void Session<protocol>::async_write(const TagValueMsg& msg) {
+        LOG_INFO << "write data to fixclient";
         msg.serialize(send_buffer_);
         hex_dump(send_buffer_);
-
         boost::asio::async_write(socket_, send_buffer_,
                                      [this](error_code ec, size_t bytes_transferred) {
                                          if(ec) {
@@ -78,8 +78,8 @@ Client<ProtocolType>::Client(boost::asio::io_context& ioc, std::string host, uin
  resolver_(ioc),
  protocol_handler_(rcv_buffer_, send_buffer_, std::bind(&Client::async_write, this), std::bind(&Client::on_msg_received, this, std::placeholders::_1, std::placeholders::_2))
 {
-    rcv_buffer_.reserve(BUF_SIZE);
-    send_buffer_.reserve(BUF_SIZE);
+    rcv_buffer_.resize(BUF_SIZE);
+    send_buffer_.resize(BUF_SIZE);
 
     boost::asio::ip::tcp::resolver::query q(host_, std::to_string(port_));
 
@@ -122,13 +122,16 @@ void Client<ProtocolType>::async_write() {
 
     template<typename ProtocolType>
 void Client<ProtocolType>::async_read() {
-    socket_.async_read_some(boost::asio::buffer(rcv_buffer_),
+    boost::asio::async_read(socket_, boost::asio::buffer(rcv_buffer_), boost::asio::transfer_at_least(1),
                             [this](error_code ec, size_t bytes_transferred){
-                                LOG_INFO << "Router received " << bytes_transferred << " bytes data from exchange" ;
-                                LOG_INFO << "bytes in buffer: " << rcv_buffer_.size() ;
-                                LOG_INFO << std::string_view(rcv_buffer_.data(), rcv_buffer_.size()) ;
-                                protocol_handler_.on_raw_data_received();
+                                if(ec) {
+                                    LOG_ERR << "client async read error: " << ec.message() ;
+                                }
 
+                                LOG_INFO << "Router received " << bytes_transferred << " bytes data from exchange" ;
+                                hex_dump(rcv_buffer_, bytes_transferred) ;
+                                protocol_handler_.on_raw_data_received(bytes_transferred);
+                                async_read();
                             });
 
 }
@@ -171,7 +174,7 @@ void Client<ProtocolType>::on_msg_received(const TagValueMsg& msg, const std::st
         if(auto sit = sessions_.find(session_id); sit != sessions_.end()) {
             auto session = sit->second;
             session->async_write(msg);
-            LOG_INFO << "msg is sent to " << session_id ;
+            LOG_INFO << "msg is sent to session " << session_id ;
         } else {
             LOG_ERR << "error: could not find session " << session_id << " to send msg" ;
         }
