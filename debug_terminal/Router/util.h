@@ -39,6 +39,7 @@ std::ostream& _hexdump(const T& dump, std::ostream& out=std::cout)
         }
         out << std::endl;
     }
+    out.fill('\0');
     return out;
 }
 

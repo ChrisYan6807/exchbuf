@@ -7,10 +7,13 @@
 #include <cstring>
 #include <algorithm>
 #include <utility>
+#include <cctype>
+#include <iomanip>
 
-#include  <boost/preprocessor/cat.hpp>
-#include  <boost/preprocessor/stringize.hpp>
-#include  <boost/preprocessor/seq/for_each.hpp>
+#include <boost/preprocessor/cat.hpp>
+#include <boost/preprocessor/stringize.hpp>
+#include <boost/preprocessor/seq/for_each.hpp>
+#include <boost/preprocessor/seq/for_each_i.hpp>
 
 //platform should be Linux/x86-64, little endian machine
 
@@ -143,7 +146,15 @@ template <typename IntegerType,
         std::enable_if_t<SCALING_FACTOR==0, int> = 0
         >
 inline std::ostream& operator<<(std::ostream& os, const BigEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
-    os << value.asInteger();
+    auto int_value = value.asInteger();
+    if (sizeof(IntegerType) == 1 && !std::isprint(int_value)) {
+        os.fill('0');
+        os << "0x" << std::hex << std::setw(2) << (0xFF & int_value) << std::dec;
+        os.fill('\0');
+    } else {
+        os << int_value;
+    }
+
     return os;
 }
 
@@ -269,9 +280,17 @@ template <typename IntegerType,
         int32_t SCALING_FACTOR,
         std::enable_if_t<SCALING_FACTOR==0, int> = 0
         >
-        inline std::ostream& operator<<(std::ostream& os, const LittleEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
-os << value.asInteger();
-return os;
+inline std::ostream& operator<<(std::ostream& os, const LittleEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
+    auto int_value = value.asInteger();
+    if (sizeof(IntegerType) == 1 && !std::isprint(int_value)) {
+        os.fill('0');
+        os << "0x" << std::hex << std::setw(2) << (0xFF & int_value) << std::dec;
+        os.fill('\0');
+    } else {
+        os << int_value;
+    }
+
+    return os;
 }
 
 //if SCALING_FACTOR IS NOT 0, output value as double
@@ -282,12 +301,12 @@ template <typename IntegerType,
         int32_t SCALING_FACTOR,
         std::enable_if_t<SCALING_FACTOR!=0, int> = 0
         >
-        inline std::ostream& operator<<(std::ostream& os, const LittleEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
-os << value.asDouble();
-return os;
+inline std::ostream& operator<<(std::ostream& os, const LittleEndian<IntegerType, MIN_VALUE, MAX_VALUE, NULL_VALUE, SCALING_FACTOR>& value) {
+    os << value.asDouble();
+    return os;
 }
 
-template<size_t LEN, char PAD=0>
+template<size_t LEN, char PAD='\0'>
 struct FixedLengthString {
     static_assert(LEN != 0, "Invalide size");
     typedef char ArrayType[LEN];
@@ -376,6 +395,13 @@ private:
     char array_[LEN];
 };
 
+template<size_t LEN, char PAD='\0'>
+inline std::ostream& operator<<(std::ostream& os, const FixedLengthString<LEN, PAD>& value) {
+    os << value.asTrimmed();
+    return os;
+}
+
+
 //Type T has variable length, the length of each object has to be calculated at runtime.
 template <typename T, bool fixedLengthT = false>
 struct BlockRef {
@@ -392,7 +418,6 @@ struct BlockRef {
              count_(count.rawValue())
     {
     }
-
 
     bool empty()    const {return count_ == 0;}
     size_t count()  const {return count_;}
@@ -424,53 +449,60 @@ struct BlockRef {
         return begin() + length();
     }
 
-
 private:
     char* ptr_{nullptr};
     size_t count_{0};
 };
 
 //specialization for fixed length Type T
-template <typename T>
-struct BlockRef<T, true> {
-    BlockRef(const BlockRef& rhs) = default;
-    BlockRef(const void* start, size_t count)
-            :ptr_(reinterpret_cast<T*>(start)),
-             count_(count)
-    {
+//template <typename T>
+//struct BlockRef<T, true> {
+//    BlockRef(const BlockRef& rhs) = default;
+//    BlockRef(const void* start, size_t count)
+//            :ptr_(reinterpret_cast<T*>(start)),
+//             count_(count)
+//    {
+//    }
+//    template<typename COUNT_T>
+//    BlockRef(void* start, COUNT_T count)
+//            :ptr_(reinterpret_cast<char*>(start)),
+//             count_(count.rawValue())
+//    {
+//    }
+//
+//    bool empty()    const {return count_ == 0;}
+//    size_t count()  const {return count_;}
+//
+//    //in byte
+//    size_t length() {
+//        return count_ * sizeof(T);
+//    }
+//
+//    T& operator[](size_t n) const {
+//        return ptr_[n];
+//    }
+//
+//    char* begin() {
+//        return reinterpret_cast<char*>(ptr_);
+//    }
+//
+//    char* end() {
+//        return reinterpret_cast<char*>(ptr_ + length());
+//    }
+//
+//private:
+//    T* ptr_{nullptr};
+//    size_t count_{0};
+//};
+
+template <typename T, bool fixedLengthT>
+inline std::ostream& operator<<(std::ostream& os, const BlockRef<T, fixedLengthT>& value) {
+    for(int i=0; i<value.count(); ++i) {
+        os << value[i];
     }
-    template<typename COUNT_T>
-    BlockRef(void* start, COUNT_T count)
-            :ptr_(reinterpret_cast<char*>(start)),
-             count_(count.rawValue())
-    {
-    }
+    return os;
+}
 
-    bool empty()    const {return count_ == 0;}
-    size_t count()  const {return count_;}
-
-    //in byte
-    size_t length() {
-        return count_ * sizeof(T);
-    }
-
-    T& operator[](size_t n) const {
-        return ptr_[n];
-    }
-
-    char* begin() {
-        return reinterpret_cast<char*>(ptr_);
-    }
-
-    char* end() {
-        return reinterpret_cast<char*>(ptr_ + count_);
-    }
-
-
-private:
-    T* ptr_{nullptr};
-    size_t count_{0};
-};
 
 template <typename T, typename PMapT>
 struct OptionalRef {
@@ -482,7 +514,7 @@ struct OptionalRef {
     {
     }
 
-    bool flagIsSet() {
+    const bool flagIsSet() const {
         return presence_map_.rawValue() & (((BaseType)1)<<pos_);
     }
 
@@ -500,8 +532,12 @@ struct OptionalRef {
         *ptr_ = std::forward<ValueT>(value);
     }
 
-    T& get() {
+    const T& get() const{
         return *ptr_;
+    }
+
+    T& get() {
+        return const_cast<T&>(const_cast<const OptionalRef*>(this)->get());
     }
 
     void clear() {
@@ -530,6 +566,14 @@ private:
     size_t pos_;
 };
 
+template <typename T, typename PMapT>
+inline std::ostream& operator<<(std::ostream& os, const OptionalRef<T, PMapT>& value) {
+    if(value.flagIsSet()) {
+        os << value.get();
+    }
+    return os;
+}
+
 template <typename T>
 struct FloatingRef {
     FloatingRef(char* start)
@@ -542,8 +586,12 @@ struct FloatingRef {
         *ptr_ = std::forward<ValueT>(value);
     }
 
-    T& get() {
+    const T& get() const {
         return *ptr_;
+    }
+
+    T& get() {
+        return const_cast<T&>(const_cast<const FloatingRef*>(this)->get());
     }
 
     char* begin() {
@@ -562,12 +610,17 @@ private:
     T* ptr_;
 };
 
+template <typename T>
+inline std::ostream& operator<<(std::ostream& os, const FloatingRef<T>& value) {
+    os << value.get();
+    return os;
+}
 
 
 #define ENUM_FIELD_DEF(r, _, FIELD) BOOST_PP_TUPLE_ELEM(2,0,FIELD) = BOOST_PP_TUPLE_ELEM(2,1,FIELD),
 #define ENUM_FIELD_VALUE(r, _, FIELD) BOOST_PP_TUPLE_ELEM(2,1,FIELD),
 #define ENUM_CASE_FIELD(r,_, FIELD)\
-    case Enum::BOOST_PP_TUPLE_ELEM(2,0,FIELD) : return BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(2,0,FIELD))  ;
+    case Enum::BOOST_PP_TUPLE_ELEM(2,0,FIELD) : return BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(2,0,FIELD));
 
 #define ENUM_CASE_DEFAULT\
     default: return "";
@@ -590,15 +643,20 @@ private:
         constexpr const int length() {return sizeof(value_type);}\
         constexpr void rawValue(TYPE v) {value_ = Enum(v);}\
         constexpr void set(Enum value) {value_ = value;}\
-        std::string_view asStringView() {\
+        constexpr const std::string_view asStringView() const {\
             switch(value_) {\
                 BOOST_PP_SEQ_FOR_EACH(ENUM_CASE_FIELD, _, FIELDS)\
                 ENUM_CASE_DEFAULT\
             }\
         }\
-        template <typename ostreamT> friend ostreamT& operator<< (ostreamT& os, NAME& v) {os << v.asStringView(); return os;}\
-        private: Enum value_{maxValue};\
-    };
+        Enum value_{maxValue};\
+    };\
+    template <typename ostreamT>\
+    inline ostreamT& operator<< (ostreamT& os, const NAME& v) {\
+        os << v.asStringView();\
+        return os;\
+    }
+
 
 template <typename T, uint8_t offset, uint8_t len>
 constexpr T getMask = ((((T)1)<<len)-1)<<offset;
@@ -617,29 +675,23 @@ constexpr T clearMask = ~getMask<T, offset, len>;
     BOOST_PP_TUPLE_ELEM(3,0,FIELD) BOOST_PP_CAT(get, BOOST_PP_TUPLE_ELEM(3,0,FIELD))() const {\
         auto v = bits&getMask<TYPE, BOOST_PP_TUPLE_ELEM(3, 1, FIELD), BOOST_PP_TUPLE_ELEM(3, 2, FIELD)>;\
         v >>= BOOST_PP_TUPLE_ELEM(3, 1, FIELD);\
-        return BOOST_PP_TUPLE_ELEM(3,0,FIELD)();\
-    }\
+        return BOOST_PP_TUPLE_ELEM(3,0,FIELD)(v);\
+    }
 
-
-#define BITFIRLD_PRINT(r, _, FIELD)\
-   {\
-        const auto fv = v.BOOST_PP_CAT(get, BOOST_PP_TUPLE_ELEM(3, 0, FIELD))();\
-        const auto fn = v.BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(3, 0, FIELD));\
-        os << fn << "=" << fv.asStringView << ";"\
-   }\
-
+#define BITFIRLD_PRINT(r, _, idx, FIELD)\
+        os << BOOST_PP_IF(idx, "|", "") << BOOST_PP_STRINGIZE(BOOST_PP_TUPLE_ELEM(3, 0, FIELD)) << "=" << v.BOOST_PP_CAT(get, BOOST_PP_TUPLE_ELEM(3, 0, FIELD))(); \
 
 #define EB_BITFIELD(NAME, TYPE, FIELDS)\
     struct NAME {\
         BOOST_PP_SEQ_FOR_EACH(BITFIELD_MEMBER_SETTER_GETTER, TYPE, FIELDS)\
-        void clear() {value_ = 0;}\
-        template <typename ostreamT> friend ostreamT& operator<< (ostreamT& os, const NAME& v) {\
-            BOOST_PP_SEQ_FOR_EACH(BITFIRLD_PRINT, _, FIELDS)\
-            return os;\
-        }\
-        private:  TYPE value_;\
-    }\
-
+        void clear() {bits = 0;}\
+        TYPE bits;\
+    };\
+    template <typename ostreamT> \
+    inline ostreamT& operator<< (ostreamT& os, const NAME& v) {\
+        BOOST_PP_SEQ_FOR_EACH_I(BITFIRLD_PRINT, _, FIELDS)\
+        return os;\
+    }
 
 
 

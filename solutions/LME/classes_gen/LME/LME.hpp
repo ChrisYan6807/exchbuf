@@ -167,6 +167,16 @@ struct MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const MsgHeader& msg) {
+    os << msg.startOfMessage << ";"
+       << msg.msgLength << ";"
+       << msg.msgType << ";"
+       << msg.seqNo << ";"
+       << msg.possDump << ";"
+       << msg.compID << ";"
+       << msg.sendingTime << ";"
+       << msg.originalSendingTime << ";"
+       ; return os; }
 
 // nextSeqNo must be set
 #pragma pack(1)
@@ -189,6 +199,18 @@ struct Logon : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const Logon& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.password << ( msg.password.flagIsSet() ? ";" : "" )
+       << msg.newPassword << ( msg.newPassword.flagIsSet() ? ";" : "" )
+       << msg.nextSeqNo << ( msg.nextSeqNo.flagIsSet() ? ";" : "" )
+       << msg.sessionStatus << ( msg.sessionStatus.flagIsSet() ? ";" : "" )
+       << msg.heartbeatInterval << ( msg.heartbeatInterval.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct Heartbeat : MsgHeader {
@@ -206,6 +228,14 @@ struct Heartbeat : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.refTestRequestID << ( msg.refTestRequestID.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct TestRequest : MsgHeader {
@@ -223,6 +253,14 @@ struct TestRequest : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const TestRequest& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.testRequestID << ";"
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct ResendRequest : MsgHeader {
@@ -241,6 +279,15 @@ struct ResendRequest : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const ResendRequest& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.startSeq << ";"
+       << msg.endSeq << ";"
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct SequenceReset : MsgHeader {
@@ -259,6 +306,15 @@ struct SequenceReset : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const SequenceReset& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.gapFill << ( msg.gapFill.flagIsSet() ? ";" : "" )
+       << msg.newSeqNo << ( msg.newSeqNo.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct Logout : MsgHeader {
@@ -277,6 +333,15 @@ struct Logout : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.status << ( msg.status.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct Reject : MsgHeader {
@@ -298,6 +363,18 @@ struct Reject : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.rejectCode << ";"
+       << msg.refMsgType << ( msg.refMsgType.flagIsSet() ? ";" : "" )
+       << msg.refFieldName << ( msg.refFieldName.flagIsSet() ? ";" : "" )
+       << msg.refSeqNo << ( msg.refSeqNo.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct BusinessReject : MsgHeader {
@@ -320,6 +397,19 @@ struct BusinessReject : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const BusinessReject& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.rejectCode << ";"
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.refMsgType << ( msg.refMsgType.flagIsSet() ? ";" : "" )
+       << msg.refFieldName << ( msg.refFieldName.flagIsSet() ? ";" : "" )
+       << msg.refSeqNo << ( msg.refSeqNo.flagIsSet() ? ";" : "" )
+       << msg.refID << ( msg.refID.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct News : MsgHeader {
@@ -340,6 +430,17 @@ struct News : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const News& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.newsID << ";"
+       << msg.newsCategory << ";"
+       << msg.timeStamp << ";"
+       << msg.newsText << ";"
+       << msg.chksum << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct SecurityDefLegEntry {
@@ -355,6 +456,13 @@ struct SecurityDefLegEntry {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const SecurityDefLegEntry& msg) {
+    os << msg.presenceMap << ";"
+       << msg.legSecurityID << ";"
+       << msg.legSide << ";"
+       << msg.legRatio << ";"
+       << msg.legPrice << ( msg.legPrice.flagIsSet() ? ";" : "" )
+       ; return os; }
 
 #pragma pack(1)
 struct SecurityDefLegsGroup {
@@ -367,6 +475,10 @@ struct SecurityDefLegsGroup {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const SecurityDefLegsGroup& msg) {
+    os << msg.noLegs << ";"
+       << msg.legs << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct SecurityDefinitionRequest : MsgHeader {
@@ -393,6 +505,23 @@ struct SecurityDefinitionRequest : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionRequest& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.securityRequestID << ";"
+       << msg.securityExchange << ";"
+       << msg.productComplex << ";"
+       << msg.symbol << ";"
+       << msg.securityType << ";"
+       << msg.securitySubType << ";"
+       << msg.maturityDate << ( msg.maturityDate.flagIsSet() ? ";" : "" )
+       << msg.strikePrice << ( msg.strikePrice.flagIsSet() ? ";" : "" )
+       << msg.putOrCall << ( msg.putOrCall.flagIsSet() ? ";" : "" )
+       << msg.legsGroup << ( msg.legsGroup.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 EB_ENUM(SecurityResponseType, uint8_t, 
   ((AcceptSecurityProposal, 1))
@@ -431,6 +560,19 @@ struct SecurityDefinition : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const SecurityDefinition& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2b << ";"
+       << msg.presenceMap3 << ";"
+       << msg.securityRequestID << ";"
+       << msg.securityResponseID << ";"
+       << msg.securityResponseType << ";"
+       << msg.securityRejectReason << ( msg.securityRejectReason.flagIsSet() ? ";" : "" )
+       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 EB_ENUM(OrderType, uint8_t, 
   ((Limit, 2))
@@ -571,6 +713,54 @@ struct NewOrderSingle : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const NewOrderSingle& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ";"
+       << msg.securityID << ";"
+       << msg.transactTime << ";"
+       << msg.side << ";"
+       << msg.qty << ";"
+       << msg.ordType << ";"
+       << msg.price << ";"
+       << msg.tif << ";"
+       << msg.ordRestrictions << ";"
+       << msg.capacity << ";"
+       << msg.accountType << ";"
+       << msg.executingFirm << ";"
+       << msg.clientShortCode << ( msg.clientShortCode.flagIsSet() ? ";" : "" )
+       << msg.LEI << ( msg.LEI.flagIsSet() ? ";" : "" )
+       << msg.proprietaryClientID << ( msg.proprietaryClientID.flagIsSet() ? ";" : "" )
+       << msg.enteringFirm << ( msg.enteringFirm.flagIsSet() ? ";" : "" )
+       << msg.origTrader << ( msg.origTrader.flagIsSet() ? ";" : "" )
+       << msg.customerAccount << ( msg.customerAccount.flagIsSet() ? ";" : "" )
+       << msg.correspondentBroker << ( msg.correspondentBroker.flagIsSet() ? ";" : "" )
+       << msg.marketMaker << ( msg.marketMaker.flagIsSet() ? ";" : "" )
+       << msg.decisionMaker << ( msg.decisionMaker.flagIsSet() ? ";" : "" )
+       << msg.IDM << ( msg.IDM.flagIsSet() ? ";" : "" )
+       << msg.EDM << ( msg.EDM.flagIsSet() ? ";" : "" )
+       << msg.IDC << ( msg.IDC.flagIsSet() ? ";" : "" )
+       << msg.EDC << ( msg.EDC.flagIsSet() ? ";" : "" )
+       << msg.clientBranchCountry << ( msg.clientBranchCountry.flagIsSet() ? ";" : "" )
+       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.SMPID << ( msg.SMPID.flagIsSet() ? ";" : "" )
+       << msg.displayQty << ( msg.displayQty.flagIsSet() ? ";" : "" )
+       << msg.expiryDate << ( msg.expiryDate.flagIsSet() ? ";" : "" )
+       << msg.triggerPrice << ( msg.triggerPrice.flagIsSet() ? ";" : "" )
+       << msg.triggerPriceType << ( msg.triggerPriceType.flagIsSet() ? ";" : "" )
+       << msg.triggerType << ( msg.triggerType.flagIsSet() ? ";" : "" )
+       << msg.triggerNewPrice << ( msg.triggerNewPrice.flagIsSet() ? ";" : "" )
+       << msg.cod << ( msg.cod.flagIsSet() ? ";" : "" )
+       << msg.dea << ( msg.dea.flagIsSet() ? ";" : "" )
+       << msg.aggrOrder << ( msg.aggrOrder.flagIsSet() ? ";" : "" )
+       << msg.pendingAllocationOrder << ( msg.pendingAllocationOrder.flagIsSet() ? ";" : "" )
+       << msg.liqProOrder << ( msg.liqProOrder.flagIsSet() ? ";" : "" )
+       << msg.riskReductionOrder << ( msg.riskReductionOrder.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 // Do not provide OrderID in amend
 #pragma pack(1)
@@ -629,6 +819,54 @@ struct AmendOrder : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const AmendOrder& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ";"
+       << msg.origClOrdID << ";"
+       << msg.securityID << ";"
+       << msg.transactTime << ";"
+       << msg.side << ";"
+       << msg.qty << ";"
+       << msg.ordType << ";"
+       << msg.price << ";"
+       << msg.tif << ";"
+       << msg.ordRestrictions << ";"
+       << msg.capacity << ";"
+       << msg.accountType << ";"
+       << msg.clientShortCode << ( msg.clientShortCode.flagIsSet() ? ";" : "" )
+       << msg.LEI << ( msg.LEI.flagIsSet() ? ";" : "" )
+       << msg.proprietaryClientID << ( msg.proprietaryClientID.flagIsSet() ? ";" : "" )
+       << msg.enteringFirm << ( msg.enteringFirm.flagIsSet() ? ";" : "" )
+       << msg.origTrader << ( msg.origTrader.flagIsSet() ? ";" : "" )
+       << msg.customerAccount << ( msg.customerAccount.flagIsSet() ? ";" : "" )
+       << msg.correspondentBroker << ( msg.correspondentBroker.flagIsSet() ? ";" : "" )
+       << msg.marketMaker << ( msg.marketMaker.flagIsSet() ? ";" : "" )
+       << msg.decisionMaker << ( msg.decisionMaker.flagIsSet() ? ";" : "" )
+       << msg.IDM << ( msg.IDM.flagIsSet() ? ";" : "" )
+       << msg.EDM << ( msg.EDM.flagIsSet() ? ";" : "" )
+       << msg.IDC << ( msg.IDC.flagIsSet() ? ";" : "" )
+       << msg.EDC << ( msg.EDC.flagIsSet() ? ";" : "" )
+       << msg.clientBranchCountry << ( msg.clientBranchCountry.flagIsSet() ? ";" : "" )
+       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.SMPID << ( msg.SMPID.flagIsSet() ? ";" : "" )
+       << msg.displayQty << ( msg.displayQty.flagIsSet() ? ";" : "" )
+       << msg.expiryDate << ( msg.expiryDate.flagIsSet() ? ";" : "" )
+       << msg.triggerPrice << ( msg.triggerPrice.flagIsSet() ? ";" : "" )
+       << msg.triggerPriceType << ( msg.triggerPriceType.flagIsSet() ? ";" : "" )
+       << msg.triggerType << ( msg.triggerType.flagIsSet() ? ";" : "" )
+       << msg.triggerNewPrice << ( msg.triggerNewPrice.flagIsSet() ? ";" : "" )
+       << msg.cod << ( msg.cod.flagIsSet() ? ";" : "" )
+       << msg.dea << ( msg.dea.flagIsSet() ? ";" : "" )
+       << msg.aggrOrder << ( msg.aggrOrder.flagIsSet() ? ";" : "" )
+       << msg.pendingAllocationOrder << ( msg.pendingAllocationOrder.flagIsSet() ? ";" : "" )
+       << msg.liqProOrder << ( msg.liqProOrder.flagIsSet() ? ";" : "" )
+       << msg.riskReductionOrder << ( msg.riskReductionOrder.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 EB_ENUM(OrderStatus, char, 
   ((New, '0'))
@@ -683,6 +921,20 @@ struct AmendRejected : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const AmendRejected& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ";"
+       << msg.orderID << ( msg.orderID.flagIsSet() ? ";" : "" )
+       << msg.origClOrdID << ( msg.origClOrdID.flagIsSet() ? ";" : "" )
+       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
+       << msg.ordStatus << ( msg.ordStatus.flagIsSet() ? ";" : "" )
+       << msg.rejectCode << ( msg.rejectCode.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 // do not set OrderID
 #pragma pack(1)
@@ -705,6 +957,18 @@ struct CancelOrder : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const CancelOrder& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ";"
+       << msg.origClOrdID << ";"
+       << msg.securityID << ";"
+       << msg.transactTime << ";"
+       << msg.side << ";"
+       << msg.chksum << ";"
+       ; return os; }
 
 // response, no need to initialize presence map
 #pragma pack(1)
@@ -731,14 +995,30 @@ struct CancelRejected : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const CancelRejected& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ";"
+       << msg.secondaryClOrdID << ( msg.secondaryClOrdID.flagIsSet() ? ";" : "" )
+       << msg.orderID << ( msg.orderID.flagIsSet() ? ";" : "" )
+       << msg.origClOrdID << ( msg.origClOrdID.flagIsSet() ? ";" : "" )
+       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
+       << msg.ordStatus << ( msg.ordStatus.flagIsSet() ? ";" : "" )
+       << msg.rejectCode << ( msg.rejectCode.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 EB_ENUM(ExecType, char, 
-  ((New, 0))
-  ((Done, 3))
-  ((Cancelled, 4))
-  ((Replaced, 5))
-  ((PendingCancel, 6))
-  ((Rejected, 8))
+  ((New, '0'))
+  ((Done, '3'))
+  ((Cancelled, '4'))
+  ((Replaced, '5'))
+  ((PendingCancel, '6'))
+  ((Rejected, '8'))
   ((Expired, 'C'))
   ((Restated, 'D'))
   ((PendingReplace, 'E'))
@@ -796,6 +1076,14 @@ struct ExecReportLegEntry {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const ExecReportLegEntry& msg) {
+    os << msg.presenceMap << ";"
+       << msg.legSecurityID << ";"
+       << msg.legSide << ";"
+       << msg.legAllocID << ";"
+       << msg.legLastPrice << ";"
+       << msg.legLastQty << ";"
+       ; return os; }
 
 #pragma pack(1)
 struct ExecReportLegsGroup {
@@ -808,6 +1096,10 @@ struct ExecReportLegsGroup {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const ExecReportLegsGroup& msg) {
+    os << msg.noLegs << ";"
+       << msg.legs << ";"
+       ; return os; }
 
 // response, no need to initialize presence map
 #pragma pack(1)
@@ -888,6 +1180,76 @@ struct ExecutionReport : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ";"
+       << msg.secondaryClOrdID << ( msg.secondaryClOrdID.flagIsSet() ? ";" : "" )
+       << msg.orderID << ( msg.orderID.flagIsSet() ? ";" : "" )
+       << msg.origClOrdID << ( msg.origClOrdID.flagIsSet() ? ";" : "" )
+       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
+       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
+       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
+       << msg.qty << ( msg.qty.flagIsSet() ? ";" : "" )
+       << msg.ordType << ( msg.ordType.flagIsSet() ? ";" : "" )
+       << msg.price << ( msg.price.flagIsSet() ? ";" : "" )
+       << msg.tif << ( msg.tif.flagIsSet() ? ";" : "" )
+       << msg.ordRestrictions << ( msg.ordRestrictions.flagIsSet() ? ";" : "" )
+       << msg.capacity << ( msg.capacity.flagIsSet() ? ";" : "" )
+       << msg.accountType << ( msg.accountType.flagIsSet() ? ";" : "" )
+       << msg.executingFirm << ( msg.executingFirm.flagIsSet() ? ";" : "" )
+       << msg.clientShortCode << ( msg.clientShortCode.flagIsSet() ? ";" : "" )
+       << msg.LEI << ( msg.LEI.flagIsSet() ? ";" : "" )
+       << msg.proprietaryClientID << ( msg.proprietaryClientID.flagIsSet() ? ";" : "" )
+       << msg.enteringFirm << ( msg.enteringFirm.flagIsSet() ? ";" : "" )
+       << msg.origTrader << ( msg.origTrader.flagIsSet() ? ";" : "" )
+       << msg.customerAccount << ( msg.customerAccount.flagIsSet() ? ";" : "" )
+       << msg.correspondentBroker << ( msg.correspondentBroker.flagIsSet() ? ";" : "" )
+       << msg.marketMaker << ( msg.marketMaker.flagIsSet() ? ";" : "" )
+       << msg.decisionMaker << ( msg.decisionMaker.flagIsSet() ? ";" : "" )
+       << msg.IDM << ( msg.IDM.flagIsSet() ? ";" : "" )
+       << msg.EDM << ( msg.EDM.flagIsSet() ? ";" : "" )
+       << msg.IDC << ( msg.IDC.flagIsSet() ? ";" : "" )
+       << msg.EDC << ( msg.EDC.flagIsSet() ? ";" : "" )
+       << msg.clientBranchCountry << ( msg.clientBranchCountry.flagIsSet() ? ";" : "" )
+       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.SMPID << ( msg.SMPID.flagIsSet() ? ";" : "" )
+       << msg.displayQty << ( msg.displayQty.flagIsSet() ? ";" : "" )
+       << msg.expiryDate << ( msg.expiryDate.flagIsSet() ? ";" : "" )
+       << msg.triggerPrice << ( msg.triggerPrice.flagIsSet() ? ";" : "" )
+       << msg.triggerPriceType << ( msg.triggerPriceType.flagIsSet() ? ";" : "" )
+       << msg.triggerType << ( msg.triggerType.flagIsSet() ? ";" : "" )
+       << msg.triggerNewPrice << ( msg.triggerNewPrice.flagIsSet() ? ";" : "" )
+       << msg.cod << ( msg.cod.flagIsSet() ? ";" : "" )
+       << msg.dea << ( msg.dea.flagIsSet() ? ";" : "" )
+       << msg.aggrOrder << ( msg.aggrOrder.flagIsSet() ? ";" : "" )
+       << msg.pendingAllocationOrder << ( msg.pendingAllocationOrder.flagIsSet() ? ";" : "" )
+       << msg.liqProOrder << ( msg.liqProOrder.flagIsSet() ? ";" : "" )
+       << msg.riskReductionOrder << ( msg.riskReductionOrder.flagIsSet() ? ";" : "" )
+       << msg.quotePriceLevel << ( msg.quotePriceLevel.flagIsSet() ? ";" : "" )
+       << msg.execID << ( msg.execID.flagIsSet() ? ";" : "" )
+       << msg.execRefID << ( msg.execRefID.flagIsSet() ? ";" : "" )
+       << msg.execType << ( msg.execType.flagIsSet() ? ";" : "" )
+       << msg.ordStatus << ( msg.ordStatus.flagIsSet() ? ";" : "" )
+       << msg.enteringTrader << ( msg.enteringTrader.flagIsSet() ? ";" : "" )
+       << msg.clearingFirm << ( msg.clearingFirm.flagIsSet() ? ";" : "" )
+       << msg.tradeID << ( msg.tradeID.flagIsSet() ? ";" : "" )
+       << msg.restatementReason << ( msg.restatementReason.flagIsSet() ? ";" : "" )
+       << msg.execTypeReason << ( msg.execTypeReason.flagIsSet() ? ";" : "" )
+       << msg.orderCategory << ( msg.orderCategory.flagIsSet() ? ";" : "" )
+       << msg.aggrIndicator << ( msg.aggrIndicator.flagIsSet() ? ";" : "" )
+       << msg.rejectReason << ( msg.rejectReason.flagIsSet() ? ";" : "" )
+       << msg.reasonText << ( msg.reasonText.flagIsSet() ? ";" : "" )
+       << msg.lastQty << ( msg.lastQty.flagIsSet() ? ";" : "" )
+       << msg.lastPx << ( msg.lastPx.flagIsSet() ? ";" : "" )
+       << msg.cumQty << ( msg.cumQty.flagIsSet() ? ";" : "" )
+       << msg.leavesQty << ( msg.leavesQty.flagIsSet() ? ";" : "" )
+       << msg.legsGroup << ( msg.legsGroup.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 EB_ENUM(MassCancelRequestType, uint8_t, 
   ((CancelForSecurityID, 1))
@@ -935,6 +1297,24 @@ struct MassCancelRequest : MsgHeader {
 };
 #pragma pack()
 
+inline std::ostream& operator<<(std::ostream& os, const MassCancelRequest& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ";"
+       << msg.cancelRequestType << ";"
+       << msg.cancelScope << ";"
+       << msg.transactTime << ";"
+       << msg.securityExchange << ( msg.securityExchange.flagIsSet() ? ";" : "" )
+       << msg.productComplex << ( msg.productComplex.flagIsSet() ? ";" : "" )
+       << msg.symbol << ( msg.symbol.flagIsSet() ? ";" : "" )
+       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
+       << msg.quoteID << ( msg.quoteID.flagIsSet() ? ";" : "" )
+       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
+       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
 
 EB_ENUM(MassCancelRejectReason, uint16_t, 
   ((InvalidSecurity, 1))
@@ -973,6 +1353,32 @@ struct MassCancelReport : MsgHeader {
     size_t length() {return chksum().end()-begin();}
 };
 #pragma pack()
+
+inline std::ostream& operator<<(std::ostream& os, const MassCancelReport& msg) {
+    os << msg.presenceMap << ";"
+       << msg.presenceMap1 << ";"
+       << msg.presenceMap2 << ";"
+       << msg.presenceMap3 << ";"
+       << msg.clOrdID << ( msg.clOrdID.flagIsSet() ? ";" : "" )
+       << msg.massActionReportID << ( msg.massActionReportID.flagIsSet() ? ";" : "" )
+       << msg.cancelRequestType << ( msg.cancelRequestType.flagIsSet() ? ";" : "" )
+       << msg.cancelScope << ( msg.cancelScope.flagIsSet() ? ";" : "" )
+       << msg.cancelResponse << ( msg.cancelResponse.flagIsSet() ? ";" : "" )
+       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
+       << msg.totalAffectedOrders << ( msg.totalAffectedOrders.flagIsSet() ? ";" : "" )
+       << msg.securityExchange << ( msg.securityExchange.flagIsSet() ? ";" : "" )
+       << msg.productComplex << ( msg.productComplex.flagIsSet() ? ";" : "" )
+       << msg.symbol << ( msg.symbol.flagIsSet() ? ";" : "" )
+       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
+       << msg.quoteID << ( msg.quoteID.flagIsSet() ? ";" : "" )
+       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
+       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
+       << msg.cancelRejectReason << ( msg.cancelRejectReason.flagIsSet() ? ";" : "" )
+       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
+       << msg.chksum << ";"
+       ; return os; }
+
+
 
 
 } // end of namespace LME

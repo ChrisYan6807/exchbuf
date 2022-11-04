@@ -196,6 +196,7 @@ void inline LMEProtocol::send_logon_request() {
 
     //msgLength must be set when msg is a particular Message pointer(not a pointer of MsgHeader), since length() is not a virtual function.
     msg->msgLength.reset(msg->length());
+    LOG_INFO << *msg;
 
     send_request(msg);
 }
@@ -210,6 +211,7 @@ void inline LMEProtocol::send_heartbeat() {
 
     //msgLength must be set when msg is a particular Message pointer(not a pointer of MsgHeader), since length() is not a virtual function.
     msg->msgLength.reset(msg->length());
+    LOG_INFO << *msg;
 
     send_request(msg);
 }
@@ -255,6 +257,7 @@ std::string inline LMEProtocol::send_new_order_single(TagValueMsg& order) {
     //msgLength must be set when msg is a particular Message pointer(not a pointer of MsgHeader), since length() is not a virtual function.
     msg->msgLength.reset(msg->length());
 
+    LOG_INFO << *msg;
     send_request(msg);
 
     return exchClOrdID;
@@ -307,6 +310,7 @@ std::string inline LMEProtocol::send_amend(TagValueMsg& order) {
     //msgLength must be set when msg is a particular Message pointer(not a pointer of MsgHeader), since length() is not a virtual function.
     msg->msgLength.reset(msg->length());
 
+    LOG_INFO << *msg;
     send_request(msg);
 
     return exchClOrdID;
@@ -346,6 +350,7 @@ std::string inline LMEProtocol::send_cancel(TagValueMsg& order) {
     //msgLength must be set when msg is a particular Message pointer(not a pointer of MsgHeader), since length() is not a virtual function.
     msg->msgLength.reset(msg->length());
 
+    LOG_INFO << *msg;
     send_request(msg);
 
     return exchClOrdID;
@@ -354,6 +359,7 @@ std::string inline LMEProtocol::send_cancel(TagValueMsg& order) {
 
 void inline LMEProtocol::handle_logon(LME::Logon& msg) {
     LOG_INFO << "handle_logon";
+    LOG_INFO << msg;
     if(msg.sessionStatus().flagIsSet() && msg.sessionStatus().get() == LME::SessionStatus::Active) {
         //logon successful
     } else {
@@ -363,16 +369,19 @@ void inline LMEProtocol::handle_logon(LME::Logon& msg) {
 
 void inline LMEProtocol::handle_logout(const LME::Logout& msg) {
     LOG_INFO << "handle_logout";
+    LOG_INFO << msg;
     //todo terminate session
 }
 
 void inline LMEProtocol::handle_heartbeat(const LME::Heartbeat& msg) {
     LOG_INFO << "handle_heartbeat";
+    LOG_INFO << msg;
     send_heartbeat();
 }
 
 void inline LMEProtocol::handle_report(LME::ExecutionReport& msg) {
     LOG_INFO << "handle execution report, " << "OrdStatus: " << msg.ordStatus().get() << " ExecType: " << msg.execType().get();
+    LOG_INFO << msg;
     TagValueMsg tv_msg;
     std::string exchClOrdID = msg.clOrdID.asString();
 
