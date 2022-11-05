@@ -5,7 +5,7 @@ Exchange Buffers(a.k.a exchbuf) is a DSL language to describe the binary protoco
 
 ## Language
 #### Type system
-+ Primitive Types(including little endian and big endian)
++ Primitive Types(including little endian and big endian for integer types)
    + char
    + int8
    + int16
@@ -30,7 +30,7 @@ Exchange Buffers(a.k.a exchbuf) is a DSL language to describe the binary protoco
 - Coment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; put a comment line
 - CPP &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; put a line of arbitrarily CPP code, ignored by Python generator
 - Python&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;put a line of arbitrarily Python code, ignored by CPP generator
-- ImportPrimitive&emsp;&emsp;&emsp;make a primitive type available in the language
+- ImportPrimitive&emsp;&emsp;&emsp; make a primitive type available in the language
 - Include&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Include a language model into current language
 - Extern &emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;declear a composite type which is not defined  in the language, not recommended
 
@@ -52,11 +52,11 @@ For SBE protocol, [simple-binary-encoding](https://github.com/real-logic/simple-
    The user should import primitive types, create composite types and create messages manually. However the types check and auto completion would help you a lot.
 + Automatically generating protocol based on exchange published layout file.
    Currently only support T7 ETI and Euronext SBE
-   [Eurex T7 Release 11.0](https://www.eurex.com/resource/blob/3210092/a6b065cbbe66fcfe5f51cedb6857477c/data/T7_R.11.0_Enhanced_Trading_Interface_-_XSD_XML_representation_and_layouts_v.1.1.zip)
+   [Eurex T7 Release 11.0](https://www.eurex.com/resource/blob/3210092/a6b065cbbe66fcfe5f51cedb6857477c/data/T7_R.11.0_Enhanced_Trading_Interface_-_XSD_XML_representation_and_layouts_v.1.1.zip), 
   [Euronext oeg input 319](https://connect2.euronext.com/sites/default/files/it-documentation/oeg_binary_sbe_input_319.xml)
 
 ## Implemented protocols
-:tw-26a0: All the protocols are not tested with real exchange UAT session.
+:warning: All the protocols are not tested with real exchange UAT session.
 + LME new trading platform [spec](https://www.lme.com/-/media/Files/Trading/New-initiatives/New-trading-platform/Timeline/Binary-Order-Entry-Specification-v1-1.pdf)
 + T7 ETI release 11.0  [Derivative](https://www.eurex.com/resource/blob/3210088/470b55382efb43ba9e23f99b4153a6a4/data/T7_Enhanced_Trading_Interface_-_Derivatives_Message_Reference_v.11.0-D0002.pdf) [Cash](https://www.eurex.com/resource/blob/3210090/7cff31abf8d5b2c3bcd0911e41911134/data/T7_Enhanced_Trading_Interface_-_Cash_Message_Reference_v.11.0-C0002.pdf)
 + Euronext SBE 310, will update to 319 soon.
