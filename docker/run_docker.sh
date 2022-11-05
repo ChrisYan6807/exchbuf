@@ -29,6 +29,8 @@ done
 	exit 0
 }
 
-docker run --rm -d -v /tmp/.x11:/tmp/.x11 -v /tmp/:/host_tmp -e DISPLAY=$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE --net=host --name exchbuf -t exchbuf_img /bin/bash
+root_dir=$(cd $(dirname ${0:-$PWD})/..;pwd)
+
+docker run --rm -d -v /tmp/.x11:/tmp/.x11 -v /tmp/:/host_tmp -v $root_dir:/exchbuf -e DISPLAY=$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE --net=host --name exchbuf -t exchbuf_img /bin/bash
 
 

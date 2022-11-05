@@ -1,4 +1,7 @@
 cmake-build-debug
+de.itemis.mps.extensions
 __pycache__
 Pipfile
 Pipfile.lock
+FIX42.xml
+.idea

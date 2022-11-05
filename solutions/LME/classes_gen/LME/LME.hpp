@@ -168,15 +168,16 @@ struct MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MsgHeader& msg) {
-    os << msg.startOfMessage << ";"
-       << msg.msgLength << ";"
-       << msg.msgType << ";"
-       << msg.seqNo << ";"
-       << msg.possDump << ";"
-       << msg.compID << ";"
-       << msg.sendingTime << ";"
-       << msg.originalSendingTime << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       ; return os; 
+}
 
 // nextSeqNo must be set
 #pragma pack(1)
@@ -200,17 +201,26 @@ struct Logon : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Logon& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.password << ( msg.password.flagIsSet() ? ";" : "" )
-       << msg.newPassword << ( msg.newPassword.flagIsSet() ? ";" : "" )
-       << msg.nextSeqNo << ( msg.nextSeqNo.flagIsSet() ? ";" : "" )
-       << msg.sessionStatus << ( msg.sessionStatus.flagIsSet() ? ";" : "" )
-       << msg.heartbeatInterval << ( msg.heartbeatInterval.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "password=" << const_cast<Logon&>(msg).password() << ";"
+       << "newPassword=" << const_cast<Logon&>(msg).newPassword() << ";"
+       << "nextSeqNo=" << const_cast<Logon&>(msg).nextSeqNo() << ";"
+       << "sessionStatus=" << const_cast<Logon&>(msg).sessionStatus() << ";"
+       << "heartbeatInterval=" << const_cast<Logon&>(msg).heartbeatInterval() << ";"
+       << "chksum=" << const_cast<Logon&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct Heartbeat : MsgHeader {
@@ -229,13 +239,22 @@ struct Heartbeat : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.refTestRequestID << ( msg.refTestRequestID.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "refTestRequestID=" << const_cast<Heartbeat&>(msg).refTestRequestID() << ";"
+       << "chksum=" << const_cast<Heartbeat&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct TestRequest : MsgHeader {
@@ -254,13 +273,22 @@ struct TestRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const TestRequest& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.testRequestID << ";"
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "testRequestID=" << msg.testRequestID << ";"
+       << "chksum=" << msg.chksum << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct ResendRequest : MsgHeader {
@@ -280,14 +308,23 @@ struct ResendRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const ResendRequest& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.startSeq << ";"
-       << msg.endSeq << ";"
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "startSeq=" << msg.startSeq << ";"
+       << "endSeq=" << msg.endSeq << ";"
+       << "chksum=" << msg.chksum << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct SequenceReset : MsgHeader {
@@ -307,14 +344,23 @@ struct SequenceReset : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SequenceReset& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.gapFill << ( msg.gapFill.flagIsSet() ? ";" : "" )
-       << msg.newSeqNo << ( msg.newSeqNo.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "gapFill=" << const_cast<SequenceReset&>(msg).gapFill() << ";"
+       << "newSeqNo=" << const_cast<SequenceReset&>(msg).newSeqNo() << ";"
+       << "chksum=" << const_cast<SequenceReset&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct Logout : MsgHeader {
@@ -334,14 +380,23 @@ struct Logout : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.status << ( msg.status.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "status=" << const_cast<Logout&>(msg).status() << ";"
+       << "text=" << const_cast<Logout&>(msg).text() << ";"
+       << "chksum=" << const_cast<Logout&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct Reject : MsgHeader {
@@ -364,17 +419,26 @@ struct Reject : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.rejectCode << ";"
-       << msg.refMsgType << ( msg.refMsgType.flagIsSet() ? ";" : "" )
-       << msg.refFieldName << ( msg.refFieldName.flagIsSet() ? ";" : "" )
-       << msg.refSeqNo << ( msg.refSeqNo.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "rejectCode=" << msg.rejectCode << ";"
+       << "refMsgType=" << const_cast<Reject&>(msg).refMsgType() << ";"
+       << "refFieldName=" << const_cast<Reject&>(msg).refFieldName() << ";"
+       << "refSeqNo=" << const_cast<Reject&>(msg).refSeqNo() << ";"
+       << "text=" << const_cast<Reject&>(msg).text() << ";"
+       << "chksum=" << const_cast<Reject&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct BusinessReject : MsgHeader {
@@ -398,18 +462,27 @@ struct BusinessReject : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const BusinessReject& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.rejectCode << ";"
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.refMsgType << ( msg.refMsgType.flagIsSet() ? ";" : "" )
-       << msg.refFieldName << ( msg.refFieldName.flagIsSet() ? ";" : "" )
-       << msg.refSeqNo << ( msg.refSeqNo.flagIsSet() ? ";" : "" )
-       << msg.refID << ( msg.refID.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "rejectCode=" << msg.rejectCode << ";"
+       << "text=" << const_cast<BusinessReject&>(msg).text() << ";"
+       << "refMsgType=" << const_cast<BusinessReject&>(msg).refMsgType() << ";"
+       << "refFieldName=" << const_cast<BusinessReject&>(msg).refFieldName() << ";"
+       << "refSeqNo=" << const_cast<BusinessReject&>(msg).refSeqNo() << ";"
+       << "refID=" << const_cast<BusinessReject&>(msg).refID() << ";"
+       << "chksum=" << const_cast<BusinessReject&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct News : MsgHeader {
@@ -431,16 +504,25 @@ struct News : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const News& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.newsID << ";"
-       << msg.newsCategory << ";"
-       << msg.timeStamp << ";"
-       << msg.newsText << ";"
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "newsID=" << msg.newsID << ";"
+       << "newsCategory=" << msg.newsCategory << ";"
+       << "timeStamp=" << msg.timeStamp << ";"
+       << "newsText=" << msg.newsText << ";"
+       << "chksum=" << msg.chksum << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct SecurityDefLegEntry {
@@ -457,12 +539,13 @@ struct SecurityDefLegEntry {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefLegEntry& msg) {
-    os << msg.presenceMap << ";"
-       << msg.legSecurityID << ";"
-       << msg.legSide << ";"
-       << msg.legRatio << ";"
-       << msg.legPrice << ( msg.legPrice.flagIsSet() ? ";" : "" )
-       ; return os; }
+    os << "presenceMap=" << msg.presenceMap << ";"
+       << "legSecurityID=" << msg.legSecurityID << ";"
+       << "legSide=" << msg.legSide << ";"
+       << "legRatio=" << msg.legRatio << ";"
+       << "legPrice=" << const_cast<SecurityDefLegEntry&>(msg).legPrice() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct SecurityDefLegsGroup {
@@ -476,9 +559,10 @@ struct SecurityDefLegsGroup {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefLegsGroup& msg) {
-    os << msg.noLegs << ";"
-       << msg.legs << ";"
-       ; return os; }
+    os << "noLegs=" << msg.noLegs << ";"
+       << "legs=" << const_cast<SecurityDefLegsGroup&>(msg).legs() << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct SecurityDefinitionRequest : MsgHeader {
@@ -506,22 +590,31 @@ struct SecurityDefinitionRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionRequest& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.securityRequestID << ";"
-       << msg.securityExchange << ";"
-       << msg.productComplex << ";"
-       << msg.symbol << ";"
-       << msg.securityType << ";"
-       << msg.securitySubType << ";"
-       << msg.maturityDate << ( msg.maturityDate.flagIsSet() ? ";" : "" )
-       << msg.strikePrice << ( msg.strikePrice.flagIsSet() ? ";" : "" )
-       << msg.putOrCall << ( msg.putOrCall.flagIsSet() ? ";" : "" )
-       << msg.legsGroup << ( msg.legsGroup.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "securityRequestID=" << msg.securityRequestID << ";"
+       << "securityExchange=" << msg.securityExchange << ";"
+       << "productComplex=" << msg.productComplex << ";"
+       << "symbol=" << msg.symbol << ";"
+       << "securityType=" << msg.securityType << ";"
+       << "securitySubType=" << msg.securitySubType << ";"
+       << "maturityDate=" << const_cast<SecurityDefinitionRequest&>(msg).maturityDate() << ";"
+       << "strikePrice=" << const_cast<SecurityDefinitionRequest&>(msg).strikePrice() << ";"
+       << "putOrCall=" << const_cast<SecurityDefinitionRequest&>(msg).putOrCall() << ";"
+       << "legsGroup=" << const_cast<SecurityDefinitionRequest&>(msg).legsGroup() << ";"
+       << "chksum=" << const_cast<SecurityDefinitionRequest&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 EB_ENUM(SecurityResponseType, uint8_t, 
   ((AcceptSecurityProposal, 1))
@@ -561,18 +654,27 @@ struct SecurityDefinition : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinition& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2b << ";"
-       << msg.presenceMap3 << ";"
-       << msg.securityRequestID << ";"
-       << msg.securityResponseID << ";"
-       << msg.securityResponseType << ";"
-       << msg.securityRejectReason << ( msg.securityRejectReason.flagIsSet() ? ";" : "" )
-       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2b=" << msg.presenceMap2b << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "securityRequestID=" << msg.securityRequestID << ";"
+       << "securityResponseID=" << msg.securityResponseID << ";"
+       << "securityResponseType=" << msg.securityResponseType << ";"
+       << "securityRejectReason=" << const_cast<SecurityDefinition&>(msg).securityRejectReason() << ";"
+       << "securityID=" << const_cast<SecurityDefinition&>(msg).securityID() << ";"
+       << "text=" << const_cast<SecurityDefinition&>(msg).text() << ";"
+       << "chksum=" << const_cast<SecurityDefinition&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 EB_ENUM(OrderType, uint8_t, 
   ((Limit, 2))
@@ -714,53 +816,62 @@ struct NewOrderSingle : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const NewOrderSingle& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ";"
-       << msg.securityID << ";"
-       << msg.transactTime << ";"
-       << msg.side << ";"
-       << msg.qty << ";"
-       << msg.ordType << ";"
-       << msg.price << ";"
-       << msg.tif << ";"
-       << msg.ordRestrictions << ";"
-       << msg.capacity << ";"
-       << msg.accountType << ";"
-       << msg.executingFirm << ";"
-       << msg.clientShortCode << ( msg.clientShortCode.flagIsSet() ? ";" : "" )
-       << msg.LEI << ( msg.LEI.flagIsSet() ? ";" : "" )
-       << msg.proprietaryClientID << ( msg.proprietaryClientID.flagIsSet() ? ";" : "" )
-       << msg.enteringFirm << ( msg.enteringFirm.flagIsSet() ? ";" : "" )
-       << msg.origTrader << ( msg.origTrader.flagIsSet() ? ";" : "" )
-       << msg.customerAccount << ( msg.customerAccount.flagIsSet() ? ";" : "" )
-       << msg.correspondentBroker << ( msg.correspondentBroker.flagIsSet() ? ";" : "" )
-       << msg.marketMaker << ( msg.marketMaker.flagIsSet() ? ";" : "" )
-       << msg.decisionMaker << ( msg.decisionMaker.flagIsSet() ? ";" : "" )
-       << msg.IDM << ( msg.IDM.flagIsSet() ? ";" : "" )
-       << msg.EDM << ( msg.EDM.flagIsSet() ? ";" : "" )
-       << msg.IDC << ( msg.IDC.flagIsSet() ? ";" : "" )
-       << msg.EDC << ( msg.EDC.flagIsSet() ? ";" : "" )
-       << msg.clientBranchCountry << ( msg.clientBranchCountry.flagIsSet() ? ";" : "" )
-       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.SMPID << ( msg.SMPID.flagIsSet() ? ";" : "" )
-       << msg.displayQty << ( msg.displayQty.flagIsSet() ? ";" : "" )
-       << msg.expiryDate << ( msg.expiryDate.flagIsSet() ? ";" : "" )
-       << msg.triggerPrice << ( msg.triggerPrice.flagIsSet() ? ";" : "" )
-       << msg.triggerPriceType << ( msg.triggerPriceType.flagIsSet() ? ";" : "" )
-       << msg.triggerType << ( msg.triggerType.flagIsSet() ? ";" : "" )
-       << msg.triggerNewPrice << ( msg.triggerNewPrice.flagIsSet() ? ";" : "" )
-       << msg.cod << ( msg.cod.flagIsSet() ? ";" : "" )
-       << msg.dea << ( msg.dea.flagIsSet() ? ";" : "" )
-       << msg.aggrOrder << ( msg.aggrOrder.flagIsSet() ? ";" : "" )
-       << msg.pendingAllocationOrder << ( msg.pendingAllocationOrder.flagIsSet() ? ";" : "" )
-       << msg.liqProOrder << ( msg.liqProOrder.flagIsSet() ? ";" : "" )
-       << msg.riskReductionOrder << ( msg.riskReductionOrder.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << msg.clOrdID << ";"
+       << "securityID=" << msg.securityID << ";"
+       << "transactTime=" << msg.transactTime << ";"
+       << "side=" << msg.side << ";"
+       << "qty=" << msg.qty << ";"
+       << "ordType=" << msg.ordType << ";"
+       << "price=" << msg.price << ";"
+       << "tif=" << msg.tif << ";"
+       << "ordRestrictions=" << msg.ordRestrictions << ";"
+       << "capacity=" << msg.capacity << ";"
+       << "accountType=" << msg.accountType << ";"
+       << "executingFirm=" << msg.executingFirm << ";"
+       << "clientShortCode=" << const_cast<NewOrderSingle&>(msg).clientShortCode() << ";"
+       << "LEI=" << const_cast<NewOrderSingle&>(msg).LEI() << ";"
+       << "proprietaryClientID=" << const_cast<NewOrderSingle&>(msg).proprietaryClientID() << ";"
+       << "enteringFirm=" << const_cast<NewOrderSingle&>(msg).enteringFirm() << ";"
+       << "origTrader=" << const_cast<NewOrderSingle&>(msg).origTrader() << ";"
+       << "customerAccount=" << const_cast<NewOrderSingle&>(msg).customerAccount() << ";"
+       << "correspondentBroker=" << const_cast<NewOrderSingle&>(msg).correspondentBroker() << ";"
+       << "marketMaker=" << const_cast<NewOrderSingle&>(msg).marketMaker() << ";"
+       << "decisionMaker=" << const_cast<NewOrderSingle&>(msg).decisionMaker() << ";"
+       << "IDM=" << const_cast<NewOrderSingle&>(msg).IDM() << ";"
+       << "EDM=" << const_cast<NewOrderSingle&>(msg).EDM() << ";"
+       << "IDC=" << const_cast<NewOrderSingle&>(msg).IDC() << ";"
+       << "EDC=" << const_cast<NewOrderSingle&>(msg).EDC() << ";"
+       << "clientBranchCountry=" << const_cast<NewOrderSingle&>(msg).clientBranchCountry() << ";"
+       << "brokerClientID=" << const_cast<NewOrderSingle&>(msg).brokerClientID() << ";"
+       << "text=" << const_cast<NewOrderSingle&>(msg).text() << ";"
+       << "SMPID=" << const_cast<NewOrderSingle&>(msg).SMPID() << ";"
+       << "displayQty=" << const_cast<NewOrderSingle&>(msg).displayQty() << ";"
+       << "expiryDate=" << const_cast<NewOrderSingle&>(msg).expiryDate() << ";"
+       << "triggerPrice=" << const_cast<NewOrderSingle&>(msg).triggerPrice() << ";"
+       << "triggerPriceType=" << const_cast<NewOrderSingle&>(msg).triggerPriceType() << ";"
+       << "triggerType=" << const_cast<NewOrderSingle&>(msg).triggerType() << ";"
+       << "triggerNewPrice=" << const_cast<NewOrderSingle&>(msg).triggerNewPrice() << ";"
+       << "cod=" << const_cast<NewOrderSingle&>(msg).cod() << ";"
+       << "dea=" << const_cast<NewOrderSingle&>(msg).dea() << ";"
+       << "aggrOrder=" << const_cast<NewOrderSingle&>(msg).aggrOrder() << ";"
+       << "pendingAllocationOrder=" << const_cast<NewOrderSingle&>(msg).pendingAllocationOrder() << ";"
+       << "liqProOrder=" << const_cast<NewOrderSingle&>(msg).liqProOrder() << ";"
+       << "riskReductionOrder=" << const_cast<NewOrderSingle&>(msg).riskReductionOrder() << ";"
+       << "chksum=" << const_cast<NewOrderSingle&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 // Do not provide OrderID in amend
 #pragma pack(1)
@@ -820,53 +931,62 @@ struct AmendOrder : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const AmendOrder& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ";"
-       << msg.origClOrdID << ";"
-       << msg.securityID << ";"
-       << msg.transactTime << ";"
-       << msg.side << ";"
-       << msg.qty << ";"
-       << msg.ordType << ";"
-       << msg.price << ";"
-       << msg.tif << ";"
-       << msg.ordRestrictions << ";"
-       << msg.capacity << ";"
-       << msg.accountType << ";"
-       << msg.clientShortCode << ( msg.clientShortCode.flagIsSet() ? ";" : "" )
-       << msg.LEI << ( msg.LEI.flagIsSet() ? ";" : "" )
-       << msg.proprietaryClientID << ( msg.proprietaryClientID.flagIsSet() ? ";" : "" )
-       << msg.enteringFirm << ( msg.enteringFirm.flagIsSet() ? ";" : "" )
-       << msg.origTrader << ( msg.origTrader.flagIsSet() ? ";" : "" )
-       << msg.customerAccount << ( msg.customerAccount.flagIsSet() ? ";" : "" )
-       << msg.correspondentBroker << ( msg.correspondentBroker.flagIsSet() ? ";" : "" )
-       << msg.marketMaker << ( msg.marketMaker.flagIsSet() ? ";" : "" )
-       << msg.decisionMaker << ( msg.decisionMaker.flagIsSet() ? ";" : "" )
-       << msg.IDM << ( msg.IDM.flagIsSet() ? ";" : "" )
-       << msg.EDM << ( msg.EDM.flagIsSet() ? ";" : "" )
-       << msg.IDC << ( msg.IDC.flagIsSet() ? ";" : "" )
-       << msg.EDC << ( msg.EDC.flagIsSet() ? ";" : "" )
-       << msg.clientBranchCountry << ( msg.clientBranchCountry.flagIsSet() ? ";" : "" )
-       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.SMPID << ( msg.SMPID.flagIsSet() ? ";" : "" )
-       << msg.displayQty << ( msg.displayQty.flagIsSet() ? ";" : "" )
-       << msg.expiryDate << ( msg.expiryDate.flagIsSet() ? ";" : "" )
-       << msg.triggerPrice << ( msg.triggerPrice.flagIsSet() ? ";" : "" )
-       << msg.triggerPriceType << ( msg.triggerPriceType.flagIsSet() ? ";" : "" )
-       << msg.triggerType << ( msg.triggerType.flagIsSet() ? ";" : "" )
-       << msg.triggerNewPrice << ( msg.triggerNewPrice.flagIsSet() ? ";" : "" )
-       << msg.cod << ( msg.cod.flagIsSet() ? ";" : "" )
-       << msg.dea << ( msg.dea.flagIsSet() ? ";" : "" )
-       << msg.aggrOrder << ( msg.aggrOrder.flagIsSet() ? ";" : "" )
-       << msg.pendingAllocationOrder << ( msg.pendingAllocationOrder.flagIsSet() ? ";" : "" )
-       << msg.liqProOrder << ( msg.liqProOrder.flagIsSet() ? ";" : "" )
-       << msg.riskReductionOrder << ( msg.riskReductionOrder.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << msg.clOrdID << ";"
+       << "origClOrdID=" << msg.origClOrdID << ";"
+       << "securityID=" << msg.securityID << ";"
+       << "transactTime=" << msg.transactTime << ";"
+       << "side=" << msg.side << ";"
+       << "qty=" << msg.qty << ";"
+       << "ordType=" << msg.ordType << ";"
+       << "price=" << msg.price << ";"
+       << "tif=" << msg.tif << ";"
+       << "ordRestrictions=" << msg.ordRestrictions << ";"
+       << "capacity=" << msg.capacity << ";"
+       << "accountType=" << msg.accountType << ";"
+       << "clientShortCode=" << const_cast<AmendOrder&>(msg).clientShortCode() << ";"
+       << "LEI=" << const_cast<AmendOrder&>(msg).LEI() << ";"
+       << "proprietaryClientID=" << const_cast<AmendOrder&>(msg).proprietaryClientID() << ";"
+       << "enteringFirm=" << const_cast<AmendOrder&>(msg).enteringFirm() << ";"
+       << "origTrader=" << const_cast<AmendOrder&>(msg).origTrader() << ";"
+       << "customerAccount=" << const_cast<AmendOrder&>(msg).customerAccount() << ";"
+       << "correspondentBroker=" << const_cast<AmendOrder&>(msg).correspondentBroker() << ";"
+       << "marketMaker=" << const_cast<AmendOrder&>(msg).marketMaker() << ";"
+       << "decisionMaker=" << const_cast<AmendOrder&>(msg).decisionMaker() << ";"
+       << "IDM=" << const_cast<AmendOrder&>(msg).IDM() << ";"
+       << "EDM=" << const_cast<AmendOrder&>(msg).EDM() << ";"
+       << "IDC=" << const_cast<AmendOrder&>(msg).IDC() << ";"
+       << "EDC=" << const_cast<AmendOrder&>(msg).EDC() << ";"
+       << "clientBranchCountry=" << const_cast<AmendOrder&>(msg).clientBranchCountry() << ";"
+       << "brokerClientID=" << const_cast<AmendOrder&>(msg).brokerClientID() << ";"
+       << "text=" << const_cast<AmendOrder&>(msg).text() << ";"
+       << "SMPID=" << const_cast<AmendOrder&>(msg).SMPID() << ";"
+       << "displayQty=" << const_cast<AmendOrder&>(msg).displayQty() << ";"
+       << "expiryDate=" << const_cast<AmendOrder&>(msg).expiryDate() << ";"
+       << "triggerPrice=" << const_cast<AmendOrder&>(msg).triggerPrice() << ";"
+       << "triggerPriceType=" << const_cast<AmendOrder&>(msg).triggerPriceType() << ";"
+       << "triggerType=" << const_cast<AmendOrder&>(msg).triggerType() << ";"
+       << "triggerNewPrice=" << const_cast<AmendOrder&>(msg).triggerNewPrice() << ";"
+       << "cod=" << const_cast<AmendOrder&>(msg).cod() << ";"
+       << "dea=" << const_cast<AmendOrder&>(msg).dea() << ";"
+       << "aggrOrder=" << const_cast<AmendOrder&>(msg).aggrOrder() << ";"
+       << "pendingAllocationOrder=" << const_cast<AmendOrder&>(msg).pendingAllocationOrder() << ";"
+       << "liqProOrder=" << const_cast<AmendOrder&>(msg).liqProOrder() << ";"
+       << "riskReductionOrder=" << const_cast<AmendOrder&>(msg).riskReductionOrder() << ";"
+       << "chksum=" << const_cast<AmendOrder&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 EB_ENUM(OrderStatus, char, 
   ((New, '0'))
@@ -922,19 +1042,28 @@ struct AmendRejected : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const AmendRejected& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ";"
-       << msg.orderID << ( msg.orderID.flagIsSet() ? ";" : "" )
-       << msg.origClOrdID << ( msg.origClOrdID.flagIsSet() ? ";" : "" )
-       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
-       << msg.ordStatus << ( msg.ordStatus.flagIsSet() ? ";" : "" )
-       << msg.rejectCode << ( msg.rejectCode.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << msg.clOrdID << ";"
+       << "orderID=" << const_cast<AmendRejected&>(msg).orderID() << ";"
+       << "origClOrdID=" << const_cast<AmendRejected&>(msg).origClOrdID() << ";"
+       << "transactTime=" << const_cast<AmendRejected&>(msg).transactTime() << ";"
+       << "ordStatus=" << const_cast<AmendRejected&>(msg).ordStatus() << ";"
+       << "rejectCode=" << const_cast<AmendRejected&>(msg).rejectCode() << ";"
+       << "text=" << const_cast<AmendRejected&>(msg).text() << ";"
+       << "chksum=" << const_cast<AmendRejected&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 // do not set OrderID
 #pragma pack(1)
@@ -958,17 +1087,26 @@ struct CancelOrder : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelOrder& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ";"
-       << msg.origClOrdID << ";"
-       << msg.securityID << ";"
-       << msg.transactTime << ";"
-       << msg.side << ";"
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << msg.clOrdID << ";"
+       << "origClOrdID=" << msg.origClOrdID << ";"
+       << "securityID=" << msg.securityID << ";"
+       << "transactTime=" << msg.transactTime << ";"
+       << "side=" << msg.side << ";"
+       << "chksum=" << const_cast<CancelOrder&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 // response, no need to initialize presence map
 #pragma pack(1)
@@ -996,21 +1134,30 @@ struct CancelRejected : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelRejected& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ";"
-       << msg.secondaryClOrdID << ( msg.secondaryClOrdID.flagIsSet() ? ";" : "" )
-       << msg.orderID << ( msg.orderID.flagIsSet() ? ";" : "" )
-       << msg.origClOrdID << ( msg.origClOrdID.flagIsSet() ? ";" : "" )
-       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
-       << msg.ordStatus << ( msg.ordStatus.flagIsSet() ? ";" : "" )
-       << msg.rejectCode << ( msg.rejectCode.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << msg.clOrdID << ";"
+       << "secondaryClOrdID=" << const_cast<CancelRejected&>(msg).secondaryClOrdID() << ";"
+       << "orderID=" << const_cast<CancelRejected&>(msg).orderID() << ";"
+       << "origClOrdID=" << const_cast<CancelRejected&>(msg).origClOrdID() << ";"
+       << "transactTime=" << const_cast<CancelRejected&>(msg).transactTime() << ";"
+       << "ordStatus=" << const_cast<CancelRejected&>(msg).ordStatus() << ";"
+       << "rejectCode=" << const_cast<CancelRejected&>(msg).rejectCode() << ";"
+       << "text=" << const_cast<CancelRejected&>(msg).text() << ";"
+       << "side=" << const_cast<CancelRejected&>(msg).side() << ";"
+       << "chksum=" << const_cast<CancelRejected&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 EB_ENUM(ExecType, char, 
   ((New, '0'))
@@ -1077,13 +1224,14 @@ struct ExecReportLegEntry {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const ExecReportLegEntry& msg) {
-    os << msg.presenceMap << ";"
-       << msg.legSecurityID << ";"
-       << msg.legSide << ";"
-       << msg.legAllocID << ";"
-       << msg.legLastPrice << ";"
-       << msg.legLastQty << ";"
-       ; return os; }
+    os << "presenceMap=" << msg.presenceMap << ";"
+       << "legSecurityID=" << msg.legSecurityID << ";"
+       << "legSide=" << msg.legSide << ";"
+       << "legAllocID=" << msg.legAllocID << ";"
+       << "legLastPrice=" << msg.legLastPrice << ";"
+       << "legLastQty=" << msg.legLastQty << ";"
+       ; return os; 
+}
 
 #pragma pack(1)
 struct ExecReportLegsGroup {
@@ -1097,9 +1245,10 @@ struct ExecReportLegsGroup {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const ExecReportLegsGroup& msg) {
-    os << msg.noLegs << ";"
-       << msg.legs << ";"
-       ; return os; }
+    os << "noLegs=" << msg.noLegs << ";"
+       << "legs=" << const_cast<ExecReportLegsGroup&>(msg).legs() << ";"
+       ; return os; 
+}
 
 // response, no need to initialize presence map
 #pragma pack(1)
@@ -1181,75 +1330,84 @@ struct ExecutionReport : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ";"
-       << msg.secondaryClOrdID << ( msg.secondaryClOrdID.flagIsSet() ? ";" : "" )
-       << msg.orderID << ( msg.orderID.flagIsSet() ? ";" : "" )
-       << msg.origClOrdID << ( msg.origClOrdID.flagIsSet() ? ";" : "" )
-       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
-       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
-       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
-       << msg.qty << ( msg.qty.flagIsSet() ? ";" : "" )
-       << msg.ordType << ( msg.ordType.flagIsSet() ? ";" : "" )
-       << msg.price << ( msg.price.flagIsSet() ? ";" : "" )
-       << msg.tif << ( msg.tif.flagIsSet() ? ";" : "" )
-       << msg.ordRestrictions << ( msg.ordRestrictions.flagIsSet() ? ";" : "" )
-       << msg.capacity << ( msg.capacity.flagIsSet() ? ";" : "" )
-       << msg.accountType << ( msg.accountType.flagIsSet() ? ";" : "" )
-       << msg.executingFirm << ( msg.executingFirm.flagIsSet() ? ";" : "" )
-       << msg.clientShortCode << ( msg.clientShortCode.flagIsSet() ? ";" : "" )
-       << msg.LEI << ( msg.LEI.flagIsSet() ? ";" : "" )
-       << msg.proprietaryClientID << ( msg.proprietaryClientID.flagIsSet() ? ";" : "" )
-       << msg.enteringFirm << ( msg.enteringFirm.flagIsSet() ? ";" : "" )
-       << msg.origTrader << ( msg.origTrader.flagIsSet() ? ";" : "" )
-       << msg.customerAccount << ( msg.customerAccount.flagIsSet() ? ";" : "" )
-       << msg.correspondentBroker << ( msg.correspondentBroker.flagIsSet() ? ";" : "" )
-       << msg.marketMaker << ( msg.marketMaker.flagIsSet() ? ";" : "" )
-       << msg.decisionMaker << ( msg.decisionMaker.flagIsSet() ? ";" : "" )
-       << msg.IDM << ( msg.IDM.flagIsSet() ? ";" : "" )
-       << msg.EDM << ( msg.EDM.flagIsSet() ? ";" : "" )
-       << msg.IDC << ( msg.IDC.flagIsSet() ? ";" : "" )
-       << msg.EDC << ( msg.EDC.flagIsSet() ? ";" : "" )
-       << msg.clientBranchCountry << ( msg.clientBranchCountry.flagIsSet() ? ";" : "" )
-       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.SMPID << ( msg.SMPID.flagIsSet() ? ";" : "" )
-       << msg.displayQty << ( msg.displayQty.flagIsSet() ? ";" : "" )
-       << msg.expiryDate << ( msg.expiryDate.flagIsSet() ? ";" : "" )
-       << msg.triggerPrice << ( msg.triggerPrice.flagIsSet() ? ";" : "" )
-       << msg.triggerPriceType << ( msg.triggerPriceType.flagIsSet() ? ";" : "" )
-       << msg.triggerType << ( msg.triggerType.flagIsSet() ? ";" : "" )
-       << msg.triggerNewPrice << ( msg.triggerNewPrice.flagIsSet() ? ";" : "" )
-       << msg.cod << ( msg.cod.flagIsSet() ? ";" : "" )
-       << msg.dea << ( msg.dea.flagIsSet() ? ";" : "" )
-       << msg.aggrOrder << ( msg.aggrOrder.flagIsSet() ? ";" : "" )
-       << msg.pendingAllocationOrder << ( msg.pendingAllocationOrder.flagIsSet() ? ";" : "" )
-       << msg.liqProOrder << ( msg.liqProOrder.flagIsSet() ? ";" : "" )
-       << msg.riskReductionOrder << ( msg.riskReductionOrder.flagIsSet() ? ";" : "" )
-       << msg.quotePriceLevel << ( msg.quotePriceLevel.flagIsSet() ? ";" : "" )
-       << msg.execID << ( msg.execID.flagIsSet() ? ";" : "" )
-       << msg.execRefID << ( msg.execRefID.flagIsSet() ? ";" : "" )
-       << msg.execType << ( msg.execType.flagIsSet() ? ";" : "" )
-       << msg.ordStatus << ( msg.ordStatus.flagIsSet() ? ";" : "" )
-       << msg.enteringTrader << ( msg.enteringTrader.flagIsSet() ? ";" : "" )
-       << msg.clearingFirm << ( msg.clearingFirm.flagIsSet() ? ";" : "" )
-       << msg.tradeID << ( msg.tradeID.flagIsSet() ? ";" : "" )
-       << msg.restatementReason << ( msg.restatementReason.flagIsSet() ? ";" : "" )
-       << msg.execTypeReason << ( msg.execTypeReason.flagIsSet() ? ";" : "" )
-       << msg.orderCategory << ( msg.orderCategory.flagIsSet() ? ";" : "" )
-       << msg.aggrIndicator << ( msg.aggrIndicator.flagIsSet() ? ";" : "" )
-       << msg.rejectReason << ( msg.rejectReason.flagIsSet() ? ";" : "" )
-       << msg.reasonText << ( msg.reasonText.flagIsSet() ? ";" : "" )
-       << msg.lastQty << ( msg.lastQty.flagIsSet() ? ";" : "" )
-       << msg.lastPx << ( msg.lastPx.flagIsSet() ? ";" : "" )
-       << msg.cumQty << ( msg.cumQty.flagIsSet() ? ";" : "" )
-       << msg.leavesQty << ( msg.leavesQty.flagIsSet() ? ";" : "" )
-       << msg.legsGroup << ( msg.legsGroup.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << msg.clOrdID << ";"
+       << "secondaryClOrdID=" << const_cast<ExecutionReport&>(msg).secondaryClOrdID() << ";"
+       << "orderID=" << const_cast<ExecutionReport&>(msg).orderID() << ";"
+       << "origClOrdID=" << const_cast<ExecutionReport&>(msg).origClOrdID() << ";"
+       << "securityID=" << const_cast<ExecutionReport&>(msg).securityID() << ";"
+       << "transactTime=" << const_cast<ExecutionReport&>(msg).transactTime() << ";"
+       << "side=" << const_cast<ExecutionReport&>(msg).side() << ";"
+       << "qty=" << const_cast<ExecutionReport&>(msg).qty() << ";"
+       << "ordType=" << const_cast<ExecutionReport&>(msg).ordType() << ";"
+       << "price=" << const_cast<ExecutionReport&>(msg).price() << ";"
+       << "tif=" << const_cast<ExecutionReport&>(msg).tif() << ";"
+       << "ordRestrictions=" << const_cast<ExecutionReport&>(msg).ordRestrictions() << ";"
+       << "capacity=" << const_cast<ExecutionReport&>(msg).capacity() << ";"
+       << "accountType=" << const_cast<ExecutionReport&>(msg).accountType() << ";"
+       << "executingFirm=" << const_cast<ExecutionReport&>(msg).executingFirm() << ";"
+       << "clientShortCode=" << const_cast<ExecutionReport&>(msg).clientShortCode() << ";"
+       << "LEI=" << const_cast<ExecutionReport&>(msg).LEI() << ";"
+       << "proprietaryClientID=" << const_cast<ExecutionReport&>(msg).proprietaryClientID() << ";"
+       << "enteringFirm=" << const_cast<ExecutionReport&>(msg).enteringFirm() << ";"
+       << "origTrader=" << const_cast<ExecutionReport&>(msg).origTrader() << ";"
+       << "customerAccount=" << const_cast<ExecutionReport&>(msg).customerAccount() << ";"
+       << "correspondentBroker=" << const_cast<ExecutionReport&>(msg).correspondentBroker() << ";"
+       << "marketMaker=" << const_cast<ExecutionReport&>(msg).marketMaker() << ";"
+       << "decisionMaker=" << const_cast<ExecutionReport&>(msg).decisionMaker() << ";"
+       << "IDM=" << const_cast<ExecutionReport&>(msg).IDM() << ";"
+       << "EDM=" << const_cast<ExecutionReport&>(msg).EDM() << ";"
+       << "IDC=" << const_cast<ExecutionReport&>(msg).IDC() << ";"
+       << "EDC=" << const_cast<ExecutionReport&>(msg).EDC() << ";"
+       << "clientBranchCountry=" << const_cast<ExecutionReport&>(msg).clientBranchCountry() << ";"
+       << "brokerClientID=" << const_cast<ExecutionReport&>(msg).brokerClientID() << ";"
+       << "text=" << const_cast<ExecutionReport&>(msg).text() << ";"
+       << "SMPID=" << const_cast<ExecutionReport&>(msg).SMPID() << ";"
+       << "displayQty=" << const_cast<ExecutionReport&>(msg).displayQty() << ";"
+       << "expiryDate=" << const_cast<ExecutionReport&>(msg).expiryDate() << ";"
+       << "triggerPrice=" << const_cast<ExecutionReport&>(msg).triggerPrice() << ";"
+       << "triggerPriceType=" << const_cast<ExecutionReport&>(msg).triggerPriceType() << ";"
+       << "triggerType=" << const_cast<ExecutionReport&>(msg).triggerType() << ";"
+       << "triggerNewPrice=" << const_cast<ExecutionReport&>(msg).triggerNewPrice() << ";"
+       << "cod=" << const_cast<ExecutionReport&>(msg).cod() << ";"
+       << "dea=" << const_cast<ExecutionReport&>(msg).dea() << ";"
+       << "aggrOrder=" << const_cast<ExecutionReport&>(msg).aggrOrder() << ";"
+       << "pendingAllocationOrder=" << const_cast<ExecutionReport&>(msg).pendingAllocationOrder() << ";"
+       << "liqProOrder=" << const_cast<ExecutionReport&>(msg).liqProOrder() << ";"
+       << "riskReductionOrder=" << const_cast<ExecutionReport&>(msg).riskReductionOrder() << ";"
+       << "quotePriceLevel=" << const_cast<ExecutionReport&>(msg).quotePriceLevel() << ";"
+       << "execID=" << const_cast<ExecutionReport&>(msg).execID() << ";"
+       << "execRefID=" << const_cast<ExecutionReport&>(msg).execRefID() << ";"
+       << "execType=" << const_cast<ExecutionReport&>(msg).execType() << ";"
+       << "ordStatus=" << const_cast<ExecutionReport&>(msg).ordStatus() << ";"
+       << "enteringTrader=" << const_cast<ExecutionReport&>(msg).enteringTrader() << ";"
+       << "clearingFirm=" << const_cast<ExecutionReport&>(msg).clearingFirm() << ";"
+       << "tradeID=" << const_cast<ExecutionReport&>(msg).tradeID() << ";"
+       << "restatementReason=" << const_cast<ExecutionReport&>(msg).restatementReason() << ";"
+       << "execTypeReason=" << const_cast<ExecutionReport&>(msg).execTypeReason() << ";"
+       << "orderCategory=" << const_cast<ExecutionReport&>(msg).orderCategory() << ";"
+       << "aggrIndicator=" << const_cast<ExecutionReport&>(msg).aggrIndicator() << ";"
+       << "rejectReason=" << const_cast<ExecutionReport&>(msg).rejectReason() << ";"
+       << "reasonText=" << const_cast<ExecutionReport&>(msg).reasonText() << ";"
+       << "lastQty=" << const_cast<ExecutionReport&>(msg).lastQty() << ";"
+       << "lastPx=" << const_cast<ExecutionReport&>(msg).lastPx() << ";"
+       << "cumQty=" << const_cast<ExecutionReport&>(msg).cumQty() << ";"
+       << "leavesQty=" << const_cast<ExecutionReport&>(msg).leavesQty() << ";"
+       << "legsGroup=" << const_cast<ExecutionReport&>(msg).legsGroup() << ";"
+       << "chksum=" << const_cast<ExecutionReport&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 EB_ENUM(MassCancelRequestType, uint8_t, 
   ((CancelForSecurityID, 1))
@@ -1298,23 +1456,32 @@ struct MassCancelRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancelRequest& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ";"
-       << msg.cancelRequestType << ";"
-       << msg.cancelScope << ";"
-       << msg.transactTime << ";"
-       << msg.securityExchange << ( msg.securityExchange.flagIsSet() ? ";" : "" )
-       << msg.productComplex << ( msg.productComplex.flagIsSet() ? ";" : "" )
-       << msg.symbol << ( msg.symbol.flagIsSet() ? ";" : "" )
-       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
-       << msg.quoteID << ( msg.quoteID.flagIsSet() ? ";" : "" )
-       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
-       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << msg.clOrdID << ";"
+       << "cancelRequestType=" << msg.cancelRequestType << ";"
+       << "cancelScope=" << msg.cancelScope << ";"
+       << "transactTime=" << msg.transactTime << ";"
+       << "securityExchange=" << const_cast<MassCancelRequest&>(msg).securityExchange() << ";"
+       << "productComplex=" << const_cast<MassCancelRequest&>(msg).productComplex() << ";"
+       << "symbol=" << const_cast<MassCancelRequest&>(msg).symbol() << ";"
+       << "securityID=" << const_cast<MassCancelRequest&>(msg).securityID() << ";"
+       << "quoteID=" << const_cast<MassCancelRequest&>(msg).quoteID() << ";"
+       << "brokerClientID=" << const_cast<MassCancelRequest&>(msg).brokerClientID() << ";"
+       << "side=" << const_cast<MassCancelRequest&>(msg).side() << ";"
+       << "chksum=" << const_cast<MassCancelRequest&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 EB_ENUM(MassCancelRejectReason, uint16_t, 
   ((InvalidSecurity, 1))
@@ -1355,28 +1522,37 @@ struct MassCancelReport : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancelReport& msg) {
-    os << msg.presenceMap << ";"
-       << msg.presenceMap1 << ";"
-       << msg.presenceMap2 << ";"
-       << msg.presenceMap3 << ";"
-       << msg.clOrdID << ( msg.clOrdID.flagIsSet() ? ";" : "" )
-       << msg.massActionReportID << ( msg.massActionReportID.flagIsSet() ? ";" : "" )
-       << msg.cancelRequestType << ( msg.cancelRequestType.flagIsSet() ? ";" : "" )
-       << msg.cancelScope << ( msg.cancelScope.flagIsSet() ? ";" : "" )
-       << msg.cancelResponse << ( msg.cancelResponse.flagIsSet() ? ";" : "" )
-       << msg.transactTime << ( msg.transactTime.flagIsSet() ? ";" : "" )
-       << msg.totalAffectedOrders << ( msg.totalAffectedOrders.flagIsSet() ? ";" : "" )
-       << msg.securityExchange << ( msg.securityExchange.flagIsSet() ? ";" : "" )
-       << msg.productComplex << ( msg.productComplex.flagIsSet() ? ";" : "" )
-       << msg.symbol << ( msg.symbol.flagIsSet() ? ";" : "" )
-       << msg.securityID << ( msg.securityID.flagIsSet() ? ";" : "" )
-       << msg.quoteID << ( msg.quoteID.flagIsSet() ? ";" : "" )
-       << msg.brokerClientID << ( msg.brokerClientID.flagIsSet() ? ";" : "" )
-       << msg.side << ( msg.side.flagIsSet() ? ";" : "" )
-       << msg.cancelRejectReason << ( msg.cancelRejectReason.flagIsSet() ? ";" : "" )
-       << msg.text << ( msg.text.flagIsSet() ? ";" : "" )
-       << msg.chksum << ";"
-       ; return os; }
+    os << "startOfMessage=" << msg.startOfMessage << ";"
+       << "msgLength=" << msg.msgLength << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "seqNo=" << msg.seqNo << ";"
+       << "possDump=" << msg.possDump << ";"
+       << "compID=" << msg.compID << ";"
+       << "sendingTime=" << msg.sendingTime << ";"
+       << "originalSendingTime=" << msg.originalSendingTime << ";"
+       << "presenceMap=" << msg.presenceMap << ";"
+       << "presenceMap1=" << msg.presenceMap1 << ";"
+       << "presenceMap2=" << msg.presenceMap2 << ";"
+       << "presenceMap3=" << msg.presenceMap3 << ";"
+       << "clOrdID=" << const_cast<MassCancelReport&>(msg).clOrdID() << ";"
+       << "massActionReportID=" << const_cast<MassCancelReport&>(msg).massActionReportID() << ";"
+       << "cancelRequestType=" << const_cast<MassCancelReport&>(msg).cancelRequestType() << ";"
+       << "cancelScope=" << const_cast<MassCancelReport&>(msg).cancelScope() << ";"
+       << "cancelResponse=" << const_cast<MassCancelReport&>(msg).cancelResponse() << ";"
+       << "transactTime=" << const_cast<MassCancelReport&>(msg).transactTime() << ";"
+       << "totalAffectedOrders=" << const_cast<MassCancelReport&>(msg).totalAffectedOrders() << ";"
+       << "securityExchange=" << const_cast<MassCancelReport&>(msg).securityExchange() << ";"
+       << "productComplex=" << const_cast<MassCancelReport&>(msg).productComplex() << ";"
+       << "symbol=" << const_cast<MassCancelReport&>(msg).symbol() << ";"
+       << "securityID=" << const_cast<MassCancelReport&>(msg).securityID() << ";"
+       << "quoteID=" << const_cast<MassCancelReport&>(msg).quoteID() << ";"
+       << "brokerClientID=" << const_cast<MassCancelReport&>(msg).brokerClientID() << ";"
+       << "side=" << const_cast<MassCancelReport&>(msg).side() << ";"
+       << "cancelRejectReason=" << const_cast<MassCancelReport&>(msg).cancelRejectReason() << ";"
+       << "text=" << const_cast<MassCancelReport&>(msg).text() << ";"
+       << "chksum=" << const_cast<MassCancelReport&>(msg).chksum() << ";"
+       ; return os; 
+}
 
 
 
