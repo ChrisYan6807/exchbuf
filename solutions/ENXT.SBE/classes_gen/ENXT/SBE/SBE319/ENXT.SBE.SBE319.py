@@ -1,5 +1,5 @@
 from .common import *
-# EuroNext -- OEG Binary version: 310
+# EuroNext -- OEG Binary version: 316
 
 unsigned_char = integer_type(ByteField, 0, 254, 255)
 int8_t = integer_type(SignedByteField, -127, 127, -128)
@@ -136,6 +136,7 @@ class CCPID_enum(int, Enum):
     LCH_Limited = 3
     SIX_X_Clear = 5
     EuroCCP = 6
+    Euronext_Clearing = 9
 
 class MessagePriceNotation_enum(int, Enum):
     Price = 1
@@ -356,6 +357,7 @@ class KillReason_enum(int, Enum):
     Order_Cancelled_due_to_a_potential_trade_outside_FSP_limits = 36
     Remaining_RFC_Quantity_Cancelled = 37
     Order_Cancelled_due_to_an_incorrect_Reactor_Response = 38
+    Order_cancelled_due_to_Order_Price_Control_Collar_breach = 41
 
 class SellRevisionIndicator_enum(int, Enum):
     New = 0
@@ -619,6 +621,10 @@ class ConditionalOrder(int, Enum):
     No = 0
     Yes = 1
 
+class STPBothOrders(int, Enum):
+    No = 0
+    Yes = 1
+
 class ExecutionInstruction_set(Packet):
     fields_desc = [
         BitEnumField('STPRestingOrder', STPRestingOrder.No, 1, STPRestingOrder))
@@ -628,6 +634,7 @@ class ExecutionInstruction_set(Packet):
         BitEnumField('RFQAnswer', RFQAnswer.No, 1, RFQAnswer))
         BitEnumField('RFQConfirmation', RFQConfirmation.No, 1, RFQConfirmation))
         BitEnumField('ConditionalOrder', ConditionalOrder.No, 1, ConditionalOrder))
+        BitEnumField('STPBothOrders', STPBothOrders.No, 1, STPBothOrders))
     ]
 class DarkIndicator(int, Enum):
     No = 0
@@ -1020,6 +1027,7 @@ class NewOrder_ClearingFields(Packet):
         PacketField("openClose", 0, OpenClose_set),
         LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
         ByteEnumField("accountTypeCross", AccountTypeCross_enum.Ceres_Client, AccountTypeCross_enum),
+        ByteEnumField("tradingCapacityCross", TradingCapacityCross_enum.Any_other_capacity, TradingCapacityCross_enum),
     ]
 class NewOrder_ClearingFields_Composite(Packet):
     name = 'NewOrder_ClearingFields_Composite'
@@ -1157,6 +1165,7 @@ class Fill_StrategyFields(Packet):
         uint32_t("legInstrumentID", 4294967295),
         ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum),
         uint32_t("executionID", 4294967295),
+        char16("tradeUniqueIdentifier", ""),
     ]
 class Fill_StrategyFields_Composite(Packet):
     name = 'Fill_StrategyFields_Composite'
@@ -1217,6 +1226,7 @@ class Fill(Packet):
         ByteEnumField("executionPhase", ExecutionPhase_enum.IPO, ExecutionPhase_enum),
         uint32_t("lISTransactionID", 4294967295),
         unsigned_char("eSCBMembership", 255),
+        char16("tradeUniqueIdentifier", ""),
         PacketField("OptionalFieldsFill", "", Fill_OptionalFieldsFill_Composite),
         PacketField("StrategyFields", "", Fill_StrategyFields_Composite),
         PacketField("MiFIDFields", "", Fill_MiFIDFields_Composite),
@@ -1253,7 +1263,7 @@ class Kill(Packet):
         uint64_t("orderID", 18446744073709551615),
         uint32_t("symbolIndex", 4294967295),
         ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
-        LEShortEnumField("killReason", KillReason_enum.Order_Cancelled_due_to_an_incorrect_Reactor_Response, KillReason_enum),
+        LEShortEnumField("killReason", KillReason_enum.Order_cancelled_due_to_Order_Price_Control_Collar_breach, KillReason_enum),
         PacketField("ackQualifiers", 0, AckQualifiers_set),
         PacketField("MiFIDFields", "", Kill_MiFIDFields_Composite),
     ]
@@ -1484,6 +1494,7 @@ class Quotes(Packet):
         PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
         unsigned_char("rFEAnswer", 255),
         PacketField("executionInstruction", 0, ExecutionInstruction_set),
+        uint16_t("sTPID", 65535),
         PacketField("MiFIDShortcodes", "", Quotes_MiFIDShortcodes_Composite),
         PacketField("ClearingDataset", "", Quotes_ClearingDataset_Composite),
         PacketField("QuotesRep", "", Quotes_QuotesRep_Composite),
@@ -2176,7 +2187,8 @@ class DeclarationNotice(Packet):
         PacketField("waiverIndicator", 0, WaiverIndicator_set),
         unsigned_char("previousDayIndicator", 255),
         int64_t("miscellaneousFeeAmount", -9223372036854775808),
-        ByteEnumField("cCPID", CCPID_enum.EuroCCP, CCPID_enum),
+        ByteEnumField("cCPID", CCPID_enum.Euronext_Clearing, CCPID_enum),
+        char16("tradeUniqueIdentifier", ""),
         PacketField("NotUsedGroup1", "", DeclarationNotice_NotUsedGroup1_Composite),
         PacketField("NotUsedGroup2", "", DeclarationNotice_NotUsedGroup2_Composite),
     ]

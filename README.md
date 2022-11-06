@@ -1,7 +1,8 @@
 # Exchange Buffers - Domain Specific Language for generating exchanges' binary protocol layout files in C++ and Python
 
 ## Overview
-Exchange Buffers(a.k.a exchbuf) is a DSL language to describe the binary protocols of different exchanges. It is build with [Jet Brains MPS](https://www.jetbrains.com/mps/), so the end user has a IDE to create their own protocol and customize code generation as well.
+Exchange Buffers(a.k.a exchbuf) is a DSL language to describe the binary protocols of different exchanges. It is build with [Jet Brains MPS](https://www.jetbrains.com/mps/), so the end user has a IDE to create their own protocol and customize code generation as well. 
+Some other serializing structured data tools, forward-compatible and backward-compatible are important, interface is important, but underlying data format can be implemented freely. But exchbuf does something opposite, forward-compatible and backward-compatible are controled by exchanges, API interface as well. The data format must match exactly whatever it's described in spec, it can't be even one byte wrong.
 
 ## Language
 #### Type system
@@ -59,14 +60,18 @@ For SBE protocol, [simple-binary-encoding](https://github.com/real-logic/simple-
 :warning: All the protocols are not tested with real exchange UAT session.
 + LME new trading platform [spec](https://www.lme.com/-/media/Files/Trading/New-initiatives/New-trading-platform/Timeline/Binary-Order-Entry-Specification-v1-1.pdf)
 + T7 ETI release 11.0  [Derivative](https://www.eurex.com/resource/blob/3210088/470b55382efb43ba9e23f99b4153a6a4/data/T7_Enhanced_Trading_Interface_-_Derivatives_Message_Reference_v.11.0-D0002.pdf) [Cash](https://www.eurex.com/resource/blob/3210090/7cff31abf8d5b2c3bcd0911e41911134/data/T7_Enhanced_Trading_Interface_-_Cash_Message_Reference_v.11.0-C0002.pdf)
-+ Euronext SBE 310, will update to 319 soon.
++ Euronext SBE [SBE 319](https://connect2.euronext.com/sites/default/files/it-documentation/Euronext%20Cash%20and%20Derivatives%20Markets%20-%20Optiq%20OEG%20SBE%20Messages%20-%20Interface%20Specification%20-%20External%20-%20v5.19.0%20%2BTC.pdf)
+
+## Known issue
+Currently exchbuf could not generate CPP and Python code at the same time, workaround is using two separate folders to generate twice. I need to check with the author of [plaintextgen](https://plugins.jetbrains.com/plugin/8444-com-dslfoundry-plaintextgen) to figure out the reason.
 
 ## Tools
-debug_terminal is implemented for testing purpose. It has three component, FIX client, Router and simulator.
+debug_terminal is implemented for testing purpose. It has three components, FIX client, Router and simulator.
 FIX client sends FIX 4.2 msg to Router, Router convert FIX4.2 msg to binary protocol msg and sent to simulator. The user can control simulator to send ack/fill/reject accordingly.
+Now, only LME new trading platform protocol is implemened with minimum effort, few session/application level msgs. But it's enough to show how it works and verify the basic correctness of the created protocol.
 
-#### Diagram
-TBD
+#### debug_terminal components&data flow diagram
+![](https://github.com/ChrisYan6807/exchbuf/md_resource/debug_terminal.png)
 
 ## Tutorial
 TBD
