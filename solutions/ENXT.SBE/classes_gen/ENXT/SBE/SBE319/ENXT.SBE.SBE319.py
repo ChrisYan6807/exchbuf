@@ -1,5 +1,5 @@
 from .common import *
-# EuroNext -- OEG Binary version: 316
+# EuroNext -- OEG Binary version: 319
 
 unsigned_char = integer_type(ByteField, 0, 254, 255)
 int8_t = integer_type(SignedByteField, -127, 127, -128)
@@ -53,6 +53,7 @@ class AccountType_enum(int, Enum):
     Client = 1
     House = 2
     RO = 4
+    Assigned_Broker = 5
     Liquidity_Provider = 6
     Related_Party = 7
     Structured_Product_Market_Maker = 8
@@ -63,6 +64,7 @@ class AccountTypeCross_enum(int, Enum):
     Client = 1
     House = 2
     RO = 4
+    Assigned_Broker = 5
     Liquidity_Provider = 6
     Related_Party = 7
     Structured_Product_Market_Maker = 8
@@ -110,6 +112,10 @@ class UserStatus_enum(int, Enum):
     Logical_Access_Unblocked_by_Risk_Manager = 28
     Order_Size_Limit_Activated_by_Risk_Manager = 29
     Order_Size_Limit_Deactivated_by_Risk_Manager = 30
+    OAL_Activated_for_a_Firm_by_Risk_Manager = 31
+    OAL_Deactivated_for_a_Firm_by_Risk_Manager = 32
+    OAL_Activated_for_a_Logical_Access_by_Risk_Manager = 33
+    OAL_Deactivated_for_a_Logical_Access_by_Risk_Manager = 34
 
 class ClearingInstruction_enum(int, Enum):
     Process_normally__formerly_Systematic_posting_ = 0
@@ -435,6 +441,7 @@ class TradeType_enum(int, Enum):
     Conventional_Trade___Provisional_price = 100
     Large_in_Scale__LiS__Trade___Provisional_price = 101
     Large_in_Scale__LiS__Package_Trade___Provisional_price = 102
+    Issuing_Or_Tender_Offer_Trade = 103
 
 class ResponseType_enum(int, Enum):
     Accept = 0
@@ -1216,7 +1223,7 @@ class Fill(Packet):
         uint32_t("symbolIndex", 4294967295),
         ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
         ByteEnumField("orderSide", FillOrderSide_enum.Sell, FillOrderSide_enum),
-        ByteEnumField("tradeType", TradeType_enum.Large_in_Scale__LiS__Package_Trade___Provisional_price, TradeType_enum),
+        ByteEnumField("tradeType", TradeType_enum.Issuing_Or_Tender_Offer_Trade, TradeType_enum),
         PacketField("tradeQualifier", 0, TradeQualifier_set),
         uint64_t("orderID", 18446744073709551615),
         int64_t("lastTradedPx", -9223372036854775808),
@@ -1687,9 +1694,10 @@ class UserNotification(Packet):
         int32_t("clientIdentificationShortcode", -2147483648),
         char8("familyID", ""),
         uint32_t("symbolIndex", 4294967295),
-        ByteEnumField("userStatus", UserStatus_enum.Order_Size_Limit_Deactivated_by_Risk_Manager, UserStatus_enum),
+        ByteEnumField("userStatus", UserStatus_enum.OAL_Deactivated_for_a_Logical_Access_by_Risk_Manager, UserStatus_enum),
         uint32_t("logicalAccessID", 4294967295),
         uint64_t("orderSizeLimit", 18446744073709551615),
+        uint64_t("orderAmountLimit", 18446744073709551615),
         PacketField("NotUsedGroup1", "", UserNotification_NotUsedGroup1_Composite),
     ]
 class InstrumentSynchronizationList_InstrumentSynchronizationSection(Packet):

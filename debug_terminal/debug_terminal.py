@@ -68,7 +68,7 @@ class InteractiveTerminal:
             YELLOW(f'{"new_order_template":<45}simple OrderNew msg template')
 
             for k, v in sorted(inspect.stack()[1].frame.f_locals.items(), key=lambda x: x[0]):
-                if k in ['exit', 'quit', 'info', 'get_ipython']:
+                if k in ['exit', 'quit', 'info', 'open', 'get_ipython']:
                     continue
 
                 if callable(v):
