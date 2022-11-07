@@ -77,18 +77,20 @@ Now, only LME new trading platform protocol is implemened with minimum effort, f
 
 ## Tutorial
 
-> Introduction
+> **Introduction**
 
 [![exchbuf introduction](https://github.com/ChrisYan6807/exchbuf/blob/master/md_resource/introduction.png)](https://youtu.be/vmPxBBfTLOg)
 
-> Test with debug terminal in docker
+> **Test with debug terminal in docker**
 
 [![test in docker](https://github.com/ChrisYan6807/exchbuf/blob/master/md_resource/docker.png)](https://youtu.be/Sxk45JLn_T4)
 
-> Implement exchanges' protocols with exchbuf
+> **Implement exchanges' protocols with exchbuf**
+
 [![implement protocols](https://github.com/ChrisYan6807/exchbuf/blob/master/md_resource/mps.png)](https://youtu.be/yQzdi4piDfo)
 
-> Debug app with debug terminal
+> **Debug app with debug terminal**
+
 [![debug](https://github.com/ChrisYan6807/exchbuf/blob/master/md_resource/debug.png)](https://youtu.be/1tCxyM2PlPo)
 
 
