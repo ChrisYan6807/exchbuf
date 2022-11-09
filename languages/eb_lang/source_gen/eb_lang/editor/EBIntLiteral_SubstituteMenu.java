@@ -162,7 +162,11 @@ public class EBIntLiteral_SubstituteMenu extends SubstituteMenuBase {
           SNode nodeToWrap = super.createNode(pattern);
           myCreatedNode = nodeToWrap;
           SNode charNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, "eb_lang.structure.EBCharLiteral"));
-          SPropertyOperations.assign(charNode, PROPS.value$_s5n, pattern);
+          if (pattern.matches("'")) {
+            SPropertyOperations.assign(charNode, PROPS.value$_s5n, "");
+          } else {
+            SPropertyOperations.assign(charNode, PROPS.value$_s5n, pattern);
+          }
           return charNode;
         }
         @Override

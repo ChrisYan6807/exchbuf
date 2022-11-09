@@ -33,6 +33,9 @@
       <concept id="8244488409083493661" name="eb_lang.structure.EBIntKVPair" flags="ng" index="2glner">
         <child id="8244488409083493664" name="value" index="2glneA" />
       </concept>
+      <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
+        <property id="8244488409083493657" name="value" index="2glnev" />
+      </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ng" index="TrEIO">
@@ -56,6 +59,24 @@
         <property role="TrG5h" value="E1" />
         <node concept="2glneh" id="2eG7zKmIjOn" role="2glneA">
           <property role="2glnet" value="1" />
+        </node>
+      </node>
+      <node concept="2glner" id="1KgVyYo1ejh" role="2glney">
+        <property role="TrG5h" value="E2" />
+        <node concept="2glneu" id="1KgVyYo3vyf" role="2glneA">
+          <property role="2glnev" value="a" />
+        </node>
+      </node>
+      <node concept="2glner" id="1KgVyYo3vyh" role="2glney">
+        <property role="TrG5h" value="E3" />
+        <node concept="2glneh" id="1KgVyYo3vyr" role="2glneA">
+          <property role="2glnet" value="2" />
+        </node>
+      </node>
+      <node concept="2glner" id="1KgVyYo3vyt" role="2glney">
+        <property role="TrG5h" value="E4" />
+        <node concept="2glneu" id="1KgVyYo3vyD" role="2glneA">
+          <property role="2glnev" value="b" />
         </node>
       </node>
     </node>
