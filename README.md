@@ -2,7 +2,7 @@
 
 ## Overview
 Exchange Buffers(a.k.a exchbuf) is a DSL language to describe the binary protocols of different exchanges. It is build with [Jet Brains MPS](https://www.jetbrains.com/mps/), so the end user has a IDE to create their own protocol and customize code generation as well. 
-Some other serializing structured data tools, forward-compatible and backward-compatible are important, interface is important, but underlying data format can be implemented freely. But exchbuf does something opposite, forward-compatible and backward-compatible are controled by exchanges, API interface as well. The data format must match exactly whatever it's described in spec, it can't be even one byte wrong.
+Some other serializing structured data tools, forward-compatible and backward-compatible are important, interface is important, but underlying data format can be implemented freely. But exchbuf does something opposite. Forward-compatible and backward-compatible are controled by exchanges, exchbuf does not have control of them. To the contrary, the data format must exactly match whatever it's described in spec, it can't have even one byte wrong.
 
 ## Language
 #### Type system
@@ -28,14 +28,14 @@ Some other serializing structured data tools, forward-compatible and backward-co
 
 #### Statement
 - Empty &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Insert a empty line
-- Coment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; put a comment line
+- Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; put a comment line
 - CPP &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; put a line of arbitrarily CPP code, ignored by Python generator
 - Python&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;put a line of arbitrarily Python code, ignored by CPP generator
 - ImportPrimitive&emsp;&emsp;&emsp; make a primitive type available in the language
 - Include&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Include a language model into current language
 - Extern &emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;declear a composite type which is not defined  in the language, not recommended
 
-Due to the differences of "namespace" between C++ and Pyhthon, namespace can not be defined freely but is automatically created per language model.
+Due to the differences of "namespace" between C++ and Pyhthon, namespace can not be defined freely but is automatically created per language model. One python file(module) natrually has one "namespace", one CPP file would have one namespace to wrap all definitions. 
 
 ## Type of protocol supported
 + Fixed length protocol
@@ -50,9 +50,9 @@ For SBE protocol, [simple-binary-encoding](https://github.com/real-logic/simple-
 
 ## Ways of creating a protocol
 + Manually
-   The user should import primitive types, create composite types and create messages manually. However the types check and auto completion would help you a lot.
+    - The user should import primitive types, create composite types and create messages manually. However the types check and auto completion would help you a lot.
 + Automatically generating protocol based on exchange published layout file.
-   Currently only support T7 ETI and Euronext SBE
+    - Currently only support T7 ETI and Euronext SBE
    [Eurex T7 Release 11.0](https://www.eurex.com/resource/blob/3210092/a6b065cbbe66fcfe5f51cedb6857477c/data/T7_R.11.0_Enhanced_Trading_Interface_-_XSD_XML_representation_and_layouts_v.1.1.zip), 
   [Euronext oeg input 319](https://connect2.euronext.com/sites/default/files/it-documentation/oeg_binary_sbe_input_319.xml)
 
@@ -69,8 +69,9 @@ Currently exchbuf could not generate CPP and Python code at the same time, worka
 
 ## Tools
 debug_terminal is implemented for testing purpose. It has three components, FIX client, Router and simulator.
-FIX client sends FIX 4.2 msg to Router, Router convert FIX4.2 msg to binary protocol msg and sent to simulator. The user can control simulator to send ack/fill/reject accordingly.
-Now, only LME new trading platform protocol is implemened with minimum effort, few session/application level msgs. But it's enough to show how it works and verify the basic correctness of the created protocol.
+FIX client sends FIX 4.2 msgs to Router, Router convert FIX4.2 msgs to binary protocol msgs then sends to simulator. The user can control simulator to send ack/fill/reject accordingly.
+
+Now, only LME new trading platform protocol is implemened with minimum effort(few necessary session/application level msgs). But it's enough to show how it works and verify the basic correctness of the created protocol layout files.
 
 #### debug_terminal components&data flow diagram
 ![](https://github.com/ChrisYan6807/exchbuf/blob/master/md_resource/debug_terminal.png)
