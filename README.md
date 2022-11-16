@@ -28,7 +28,7 @@ Some other serializing structured data tools, forward-compatible and backward-co
 
 #### Statement
 - Empty &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Insert a empty line
-- Comment &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; put a comment line
+- Comment &emsp;&emsp;&emsp;&emsp;&emsp; put a comment line
 - CPP &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; put a line of arbitrarily CPP code, ignored by Python generator
 - Python&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;put a line of arbitrarily Python code, ignored by CPP generator
 - ImportPrimitive&emsp;&emsp;&emsp; make a primitive type available in the language
