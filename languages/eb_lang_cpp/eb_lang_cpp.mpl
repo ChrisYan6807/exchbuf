@@ -26,6 +26,8 @@
       <external-templates />
       <dependencies>
         <dependency reexport="false">59242254-602f-42f3-ab3a-dc203eb4cc03(eb_lang)</dependency>
+        <dependency reexport="false">22407e26-c2dc-4409-af2a-412eadffc722(eb_lang_python.generator)</dependency>
+        <dependency reexport="false">ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)</dependency>
       </dependencies>
       <languageVersions>
         <language slang="l:cf681fc9-c798-4f89-af38-ba3c0ac342d9:com.dslfoundry.plaintextflow" version="0" />
@@ -56,6 +58,7 @@
         <module reference="59242254-602f-42f3-ab3a-dc203eb4cc03(eb_lang)" version="0" />
         <module reference="87d4987f-c831-4a03-9f51-66048c99e214(eb_lang_cpp)" version="0" />
         <module reference="1591a839-fa95-44ac-9dbe-bc4db21d2394(eb_lang_cpp.generator)" version="0" />
+        <module reference="22407e26-c2dc-4409-af2a-412eadffc722(eb_lang_python.generator)" version="0" />
         <module reference="ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)" version="0" />
       </dependencyVersions>
       <mapping-priorities />
