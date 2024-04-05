@@ -18,5 +18,3 @@ git clone https://github.com/quickfix/quickfix.git && {
 popd
 /usr/bin/rm -rf $tmp_dir
 
-
-
