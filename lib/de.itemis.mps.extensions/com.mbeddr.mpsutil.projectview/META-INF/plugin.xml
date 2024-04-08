@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>com.mbeddr.mpsutil.projectview</id>
+  <name>MPS Custom Project View</name>
+  <description>Abstraction on top of MPS lower-level API to create custom views in the view tool window (like logical view, file view, etc.)</description>
+  <version>2023.2.2636.44d39ee</version>
+  <vendor url="https://www.itemis.com/en/it-services/methods-and-tools/mps">itemis AG</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <depends>de.slisson.mps.hacks</depends>
+  <depends>com.intellij.modules.mps</depends>
+  <depends>org.apache.commons</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

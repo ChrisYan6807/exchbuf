@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>de.itemis.mps.linenumbers</id>
+  <name>MPS Line Numbers Support</name>
+  <description>Line numbers for the MPS editor. They appear next to the left gutter and can be disabled in the context menu of the gutter.</description>
+  <version>2023.2.2636.44d39ee</version>
+  <vendor url="https://www.itemis.com/en/it-services/methods-and-tools/mps">itemis AG</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

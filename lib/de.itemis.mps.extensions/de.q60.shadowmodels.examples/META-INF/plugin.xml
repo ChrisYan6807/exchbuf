@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>de.q60.shadowmodels.examples</id>
+  <name>MPS Shadow Models (Examples)</name>
+  <description>A set of examples for the MPS Shadow Models plugin.</description>
+  <version>2023.2.2636.44d39ee</version>
+  <vendor url="https://www.itemis.com/en/it-services/methods-and-tools/mps">itemis AG</vendor>
+  <depends>jetbrains.mps.trove</depends>
+  <depends>jetbrains.mps.kotlin</depends>
+  <depends>de.q60.shadowmodels</depends>
+  <depends>org.modelix.model.api</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

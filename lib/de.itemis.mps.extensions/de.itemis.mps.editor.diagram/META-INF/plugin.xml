@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>de.itemis.mps.editor.diagram</id>
+  <name>MPS Diagram Support</name>
+  <description>Diagrammatic notation for MPS editors.</description>
+  <version>2023.2.2636.44d39ee</version>
+  <vendor url="https://www.itemis.com/en/it-services/methods-and-tools/mps">itemis AG</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <depends>de.slisson.mps.hacks</depends>
+  <depends>org.apache.commons</depends>
+  <depends>de.itemis.mps.editor.widgets</depends>
+  <depends>de.itemis.mps.selection</depends>
+  <depends>de.slisson.mps.conditionalEditor</depends>
+  <depends>de.itemis.mps.celllayout</depends>
+  <depends>de.q60.mps.collections.libs</depends>
+  <depends>de.slisson.mps.editor.multiline</depends>
+  <depends>jetbrains.mps.editor.tooltips</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>

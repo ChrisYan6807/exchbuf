@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idea-plugin>
+  <id>de.slisson.mps.editor.multiline</id>
+  <name>MPS Multiline Property Editor Component</name>
+  <description>An editor component for properties that supports wrapping of long lines. New lines can be created by pressing ENTER.</description>
+  <version>2023.2.2636.44d39ee</version>
+  <vendor url="https://www.itemis.com/en/it-services/methods-and-tools/mps">itemis AG</vendor>
+  <depends>jetbrains.mps.core</depends>
+  <depends>jetbrains.mps.build</depends>
+  <depends>de.itemis.mps.selection</depends>
+  <depends>de.itemis.mps.celllayout</depends>
+  <depends>jetbrains.mps.vcs</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <mps.LanguageLibrary dir="/languages" />
+  </extensions>
+</idea-plugin>
