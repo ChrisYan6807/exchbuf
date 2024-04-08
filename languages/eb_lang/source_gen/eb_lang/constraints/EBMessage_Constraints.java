@@ -20,7 +20,6 @@ import org.jetbrains.mps.openapi.model.SNode;
 import java.util.ArrayList;
 import jetbrains.mps.internal.collections.runtime.Sequence;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
-import jetbrains.mps.internal.collections.runtime.IWhereFilter;
 import eb_lang.behavior.EBProtocol__BehaviorDescriptor;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.scope.ListScope;
@@ -49,19 +48,11 @@ public class EBMessage_Constraints extends BaseConstraintsDescriptor {
           public Scope createScope(final ReferenceConstraintsContext _context) {
             final int statementContextIndex = SNodeOperations.getIndexInParent(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBMessage$YV, true, false));
             List<SNode> statements = new ArrayList<SNode>();
-            Iterable<SNode> includes = Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBInclude$_h)).where(new IWhereFilter<SNode>() {
-              public boolean accept(SNode it) {
-                return SNodeOperations.getIndexInParent(it) < statementContextIndex;
-              }
-            });
+            Iterable<SNode> includes = Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBInclude$_h)).where((it) -> SNodeOperations.getIndexInParent(it) < statementContextIndex);
             for (SNode include_statement : includes) {
               statements.addAll(EBProtocol__BehaviorDescriptor.definedTypes_id5c0MfkCiF9K.invoke(SLinkOperations.getTarget(include_statement, LINKS.protocol$v5qn)));
             }
-            Iterable<SNode> typeStatements = Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where(new IWhereFilter<SNode>() {
-              public boolean accept(SNode it) {
-                return SNodeOperations.getIndexInParent(it) < statementContextIndex;
-              }
-            });
+            Iterable<SNode> typeStatements = Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SNodeOperations.getIndexInParent(it) < statementContextIndex);
 
             for (SNode n : typeStatements) {
               ListSequence.fromList(statements).addElement(n);

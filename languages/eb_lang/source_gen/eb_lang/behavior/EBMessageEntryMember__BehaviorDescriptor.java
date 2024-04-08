@@ -27,9 +27,9 @@ import org.jetbrains.mps.openapi.language.SProperty;
 public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
 
-  public static final SMethod<Boolean> isNotFixedLength_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5hSnPGNaBkU").build();
-  public static final SMethod<String> fmtCppDefault_id7hSmxNQ32$j = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("fmtCppDefault").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7hSmxNQ32$j").build();
-  public static final SMethod<String> fmtPyDefault_id7hSmxNQ3d9n = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("fmtPyDefault").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("7hSmxNQ3d9n").build();
+  public static final SMethod<Boolean> isNotFixedLength_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(6086719741696308538L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> fmtCppDefault_id7hSmxNQ32$j = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("fmtCppDefault").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8392556986038495507L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> fmtPyDefault_id7hSmxNQ3d9n = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("fmtPyDefault").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8392556986038538839L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isNotFixedLength_id5hSnPGNaBkU, fmtCppDefault_id7hSmxNQ32$j, fmtPyDefault_id7hSmxNQ3d9n);
 

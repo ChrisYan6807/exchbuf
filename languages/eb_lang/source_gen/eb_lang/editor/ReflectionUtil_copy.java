@@ -4,6 +4,8 @@ package eb_lang.editor;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.VarHandle;
 import java.lang.reflect.Method;
 
 public class ReflectionUtil_copy {
@@ -21,10 +23,10 @@ public class ReflectionUtil_copy {
       Field field = cls.getDeclaredField(fieldName);
       field.setAccessible(true);
       if (Modifier.isFinal(field.getModifiers())) {
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        int originalModifier = field.getModifiers();
-        modifiersField.setInt(field, originalModifier & ~(Modifier.FINAL));
+        MethodHandles.Lookup lookup = MethodHandles.privateLookupIn(Field.class, MethodHandles.lookup());
+        VarHandle modifiers = lookup.findVarHandle(Field.class, "modifiers", int.class);
+        int mods = field.getModifiers();
+        modifiers.set(field, mods & ~(Modifier.FINAL));
       }
       field.set(obj, value);
     } catch (Exception ex) {

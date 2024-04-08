@@ -4,19 +4,15 @@ package eb_lang_python.generator.templates;
 
 import jetbrains.mps.generator.runtime.Generated;
 import jetbrains.mps.generator.impl.query.QueryProviderBase;
-import org.apache.log4j.Logger;
-import org.apache.log4j.LogManager;
 import jetbrains.mps.generator.template.PropertyMacroContext;
 import java.util.Iterator;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
-import jetbrains.mps.internal.collections.runtime.IWhereFilter;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import eb_lang.behavior.EBTypeStatement__BehaviorDescriptor;
-import jetbrains.mps.baseLanguage.logging.runtime.model.LoggingRuntime;
-import org.apache.log4j.Level;
+import jetbrains.mps.baseLanguage.logging.rt.LogContext;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
 import eb_lang.behavior.EBIntType__BehaviorDescriptor;
 import eb_lang.behavior.EBImportPrimitive__BehaviorDescriptor;
@@ -45,7 +41,6 @@ import org.jetbrains.mps.openapi.language.SConcept;
 
 @Generated
 public class QueriesGenerated extends QueryProviderBase {
-  private static final Logger LOG = LogManager.getLogger(QueriesGenerated.class);
   public QueriesGenerated() {
     super(1);
   }
@@ -69,11 +64,7 @@ public class QueriesGenerated extends QueryProviderBase {
                 SNode msg = SNodeOperations.cast(statement_var, CONCEPTS.EBMessage$YV);
                 SNode initializer = SNodeOperations.cast(member_var, CONCEPTS.EBMessageBaseInitializer$Tk);
                 String msgTypeStr = "";
-                SNode ctor = (SNode) ListSequence.fromList(SLinkOperations.getChildren(SLinkOperations.getTarget(msg, LINKS.base$LfNH), LINKS.content$vVwC)).findFirst(new IWhereFilter<SNode>() {
-                  public boolean accept(SNode it) {
-                    return SNodeOperations.isInstanceOf(it, CONCEPTS.EBMessageConstructor$VR);
-                  }
-                });
+                SNode ctor = (SNode) ListSequence.fromList(SLinkOperations.getChildren(SLinkOperations.getTarget(msg, LINKS.base$LfNH), LINKS.content$vVwC)).findFirst((it) -> SNodeOperations.isInstanceOf(it, CONCEPTS.EBMessageConstructor$VR));
 
                 if ((ctor != null)) {
                   SNode msgType = SNodeOperations.cast(SLinkOperations.getTarget(SLinkOperations.getTarget(ctor, LINKS.msgType$sKHn), LINKS.type$eiFN), CONCEPTS.EBEnum$37);
@@ -116,7 +107,7 @@ public class QueriesGenerated extends QueryProviderBase {
     return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
   }
   public static Object propertyMacro_GetValue_0_10(final PropertyMacroContext _context) {
-    LoggingRuntime.logMsgView(Level.DEBUG, "alias: " + SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl))), QueriesGenerated.class, null, null);
+    LogContext.with(QueriesGenerated.class, null, null, null).debug("alias: " + SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl))));
     if (SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl))) == "char_ebt") {
       return "str";
     } else {
@@ -140,7 +131,7 @@ public class QueriesGenerated extends QueryProviderBase {
     return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
   }
   public static Object propertyMacro_GetValue_0_16(final PropertyMacroContext _context) {
-    LoggingRuntime.logMsgView(Level.DEBUG, String.format("name: %s, type: %s", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL)), QueriesGenerated.class, null, null);
+    LogContext.with(QueriesGenerated.class, null, null, null).debug(String.format("name: %s, type: %s", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL)));
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), CONCEPTS.EBEnum$37)) {
       String pyTypeName = EBTypeStatement__BehaviorDescriptor.getPyType_id7sFT47Ik3cB.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), CONCEPTS.EBEnum$37));
       String enumName = SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$eiFN), PROPS.name$MnvL);

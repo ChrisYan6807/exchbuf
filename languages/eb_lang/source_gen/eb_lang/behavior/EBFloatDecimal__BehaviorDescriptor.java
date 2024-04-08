@@ -22,11 +22,11 @@ import org.jetbrains.mps.openapi.language.SProperty;
 public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal");
 
-  public static final SMethod<String> cppName_id3_eh5mZPdPt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("3_eh5mZPdPt").build();
-  public static final SMethod<String> pyName_id3_eh5mZPez6 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("3_eh5mZPez6").build();
-  public static final SMethod<String> maxValue_id4s_KfQOOXD = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOXD").build(SMethodBuilder.createJavaParameter(String.class, ""));
-  public static final SMethod<String> minValue_id4s_KfQOOYo = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOYo").build(SMethodBuilder.createJavaParameter(String.class, ""));
-  public static final SMethod<String> nullValue_id4s_KfQOOZ4 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("4s_KfQOOZ4").build();
+  public static final SMethod<String> cppName_id3_eh5mZPdPt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043426631005L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> pyName_id3_eh5mZPez6 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043426633926L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> maxValue_id4s_KfQOOXD = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667565929L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
+  public static final SMethod<String> minValue_id4s_KfQOOYo = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667565976L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
+  public static final SMethod<String> nullValue_id4s_KfQOOZ4 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667566020L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(cppName_id3_eh5mZPdPt, pyName_id3_eh5mZPez6, maxValue_id4s_KfQOOXD, minValue_id4s_KfQOOYo, nullValue_id4s_KfQOOZ4);
 

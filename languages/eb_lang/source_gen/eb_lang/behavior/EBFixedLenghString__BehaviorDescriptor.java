@@ -22,7 +22,7 @@ import org.jetbrains.mps.openapi.language.SProperty;
 public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString");
 
-  public static final SMethod<String> getPadding_idzaARBRtBbI = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPadding").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("zaARBRtBbI").build();
+  public static final SMethod<String> getPadding_idzaARBRtBbI = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPadding").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(633489645744059118L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getPadding_idzaARBRtBbI);
 

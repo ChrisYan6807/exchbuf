@@ -24,8 +24,8 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 public final class EBInclude__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, "eb_lang.structure.EBInclude");
 
-  public static final SMethod<String> cpp_include_iduI6saUpFhC = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cpp_include").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("uI6saUpFhC").build();
-  public static final SMethod<String> python_include_iduI6saUpGaM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("python_include").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("uI6saUpGaM").build();
+  public static final SMethod<String> cpp_include_iduI6saUpFhC = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cpp_include").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(553408128354792552L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> python_include_iduI6saUpGaM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("python_include").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(553408128354796210L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(cpp_include_iduI6saUpFhC, python_include_iduI6saUpGaM);
 

@@ -27,7 +27,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
 public final class EBProtocol__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
 
-  public static final SMethod<List<SNode>> definedTypes_id5c0MfkCiF9K = new SMethodBuilder<List<SNode>>(new SJavaCompoundTypeImpl((Class<List<SNode>>) ((Class) Object.class))).name("definedTypes").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).id("5c0MfkCiF9K").build();
+  public static final SMethod<List<SNode>> definedTypes_id5c0MfkCiF9K = new SMethodBuilder<List<SNode>>(new SJavaCompoundTypeImpl((Class<List<SNode>>) ((Class) Object.class))).name("definedTypes").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(5981001260416545392L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(definedTypes_id5c0MfkCiF9K);
 
