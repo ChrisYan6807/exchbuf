@@ -64,7 +64,7 @@ public class EBIntLiteral_SubstituteMenu extends SubstituteMenuBase {
           SNode nodeToWrap = super.createNode(pattern);
           myCreatedNode = nodeToWrap;
           SNode num = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
-          SPropertyOperations.assign(num, PROPS.value$_syU, pattern);
+          SPropertyOperations.assign(num, PROPS.value$fPEt, pattern);
           return num;
         }
         @Override
@@ -120,9 +120,9 @@ public class EBIntLiteral_SubstituteMenu extends SubstituteMenuBase {
           myCreatedNode = nodeToWrap;
           SNode charNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, "eb_lang.structure.EBCharLiteral"));
           if (pattern.matches("'")) {
-            SPropertyOperations.assign(charNode, PROPS.value$_s5n, "");
+            SPropertyOperations.assign(charNode, PROPS.value$fPcU, "");
           } else {
-            SPropertyOperations.assign(charNode, PROPS.value$_s5n, pattern);
+            SPropertyOperations.assign(charNode, PROPS.value$fPcU, pattern);
           }
           return charNode;
         }
@@ -163,7 +163,7 @@ public class EBIntLiteral_SubstituteMenu extends SubstituteMenuBase {
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty value$_syU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x726a4e86e23f3d1bL, "value");
-    /*package*/ static final SProperty value$_s5n = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x726a4e86e23f3d19L, "value");
+    /*package*/ static final SProperty value$fPEt = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x113e6c9588d675c6L, "value");
+    /*package*/ static final SProperty value$fPcU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x113e6c9588d675c4L, "value");
   }
 }

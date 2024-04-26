@@ -52,7 +52,7 @@ class ExecType(str, Enum):
     NEW = '0'
     CANCELLED = '4'
     REPLACED = '5'
-    REJECTED = '8'
+    REJECTED = 8
     EXPIRED = 'C'
     RESTATED = 'D'
     TRADE = 'F'

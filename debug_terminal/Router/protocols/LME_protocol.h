@@ -7,12 +7,13 @@
 #include <boost/log/trivial.hpp>
 
 #include "TagValueMsg.h"
-#include "LME.hpp"
+#include "LMESelectV10.hpp"
 #include "util.h"
 
 namespace protocol { namespace lme {
 
 constexpr const int MSG_SIZE = 4 * 1024;
+namespace LME = LMESelectV10;
 
 class LMEProtocol {
 public:
@@ -84,8 +85,8 @@ bool inline LMEProtocol::on_raw_data_received(int data_size) {
 
     while(true) {
         LME::MsgHeader* header = reinterpret_cast<LME::MsgHeader*>(local_rcv_buf_.data());
-        if(header->msgLength.rawValue() <= local_rcv_buf_.size()) {
-            LOG_INFO << "Processing msg " << header->msgType.asStringView();
+        if(header->msgLength.raw_value() <= local_rcv_buf_.size()) {
+            LOG_INFO << "Processing msg " << header->msgType.to_string_view();
             switch(header->msgType.value()) {
                 case LME::MsgType::Logon: {
                     auto logon = reinterpret_cast<LME::Logon*>(header);
@@ -114,15 +115,15 @@ bool inline LMEProtocol::on_raw_data_received(int data_size) {
                 case LME::MsgType::OrderCancelRejected:
                 case LME::MsgType::MassCancelReport:
                 case LME::MsgType::News: {
-                    LOG_INFO << "unsupported MsgType: " << header->msgType.asStringView() ;
+                    LOG_INFO << "unsupported MsgType: " << header->msgType.to_string_view() ;
                     break;
                 }
                 default: {
-                    LOG_INFO << "unknown MsgType: " << header->msgType.rawValue() ;
+                    LOG_INFO << "unknown MsgType: " << header->msgType.raw_value() ;
                     break;
                 }
             }
-            local_rcv_buf_.erase(local_rcv_buf_.begin(), local_rcv_buf_.begin() + header->msgLength.rawValue());
+            local_rcv_buf_.erase(local_rcv_buf_.begin(), local_rcv_buf_.begin() + header->msgLength.raw_value());
             if(local_rcv_buf_.size() < header_len) {
                 break;
             }
@@ -169,15 +170,15 @@ void inline LMEProtocol::send_request(LME::MsgHeader* header) {
     //enrich session level fields and use send_cb_
     header->seqNo.reset(++seq_no);
     header->possDump.set(LME::PossDump::No);
-    header->compID.setString("CompID1");
+    header->compID.set_string("CompID1");
 
     auto sending_time = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count();
     header->sendingTime.reset(sending_time);
     header->originalSendingTime.reset(sending_time);
 
     //prepare buffer
-    assert(header->msgLength.rawValue() <= MSG_SIZE);
-    client_send_buf_.assign(reinterpret_cast<char*>(header), reinterpret_cast<char*>(header) + header->msgLength.rawValue());
+    assert(header->msgLength.raw_value() <= MSG_SIZE);
+    client_send_buf_.assign(reinterpret_cast<char*>(header), reinterpret_cast<char*>(header) + header->msgLength.raw_value());
 
     //send
     send_cb_();
@@ -231,7 +232,7 @@ std::string inline LMEProtocol::send_new_order_single(TagValueMsg& order) {
     clOrdID_exchClOrdID_mapping_[clOrdID] = exchClOrdID;
     exchClOrdID_clOrdID_mapping_[exchClOrdID] = clOrdID;
 
-    msg->clOrdID.setString(exchClOrdID);
+    msg->clOrdID.set_string(exchClOrdID);
     msg->securityID.reset(order.get_tag<uint64_t>(55));
     msg->transactTime.reset(utc_now());
     msg->side.set((order.get_tag<int32_t>(54) == 1) ? LME::Side::Buy : LME::Side::Sell) ;
@@ -243,7 +244,7 @@ std::string inline LMEProtocol::send_new_order_single(TagValueMsg& order) {
     msg->ordRestrictions.set(LME::OrderRestrictions::Algo);
     msg->capacity.set(LME::OrderCapacity::DEAL);
     msg->accountType.set(LME::AccountType::House);
-    msg->executingFirm.setString("ABCD");
+    msg->executingFirm.set_string("ABCD");
 
     //optional fields must be set in sequence.
     //you can skip some of them, but the order must be correct.
@@ -284,8 +285,8 @@ std::string inline LMEProtocol::send_amend(TagValueMsg& order) {
     clOrdID_exchClOrdID_mapping_[clOrdID] = exchClOrdID;
     exchClOrdID_clOrdID_mapping_[exchClOrdID] = clOrdID;
 
-    msg->clOrdID.setString(exchClOrdID);
-    msg->origClOrdID.setString(clOrdID_exchClOrdID_mapping_[origClOrdID]);
+    msg->clOrdID.set_string(exchClOrdID);
+    msg->origClOrdID.set_string(clOrdID_exchClOrdID_mapping_[origClOrdID]);
     msg->securityID.reset(order.get_tag<uint64_t>(55));
     msg->transactTime.reset(utc_now());
     msg->side.set((order.get_tag<int32_t>(54) == 1) ? LME::Side::Buy : LME::Side::Sell) ;
@@ -339,8 +340,8 @@ std::string inline LMEProtocol::send_cancel(TagValueMsg& order) {
     exchClOrdID_clOrdID_mapping_[exchClOrdID] = clOrdID;
 
     //todo: slow function, should not allocate heap memory in critical path
-    msg->clOrdID.setString(exchClOrdID);
-    msg->origClOrdID.setString(clOrdID_exchClOrdID_mapping_[origClOrdID]);
+    msg->clOrdID.set_string(exchClOrdID);
+    msg->origClOrdID.set_string(clOrdID_exchClOrdID_mapping_[origClOrdID]);
     msg->securityID.reset(order.get_tag<uint64_t>(55));
     msg->transactTime.reset(utc_now());
     msg->side.set((order.get_tag<int32_t>(54) == 1) ? LME::Side::Buy : LME::Side::Sell) ;
@@ -383,59 +384,59 @@ void inline LMEProtocol::handle_report(LME::ExecutionReport& msg) {
     LOG_INFO << "handle execution report, " << "OrdStatus: " << msg.ordStatus().get() << " ExecType: " << msg.execType().get();
     LOG_INFO << msg;
     TagValueMsg tv_msg;
-    std::string exchClOrdID = msg.clOrdID.asString();
+    std::string exchClOrdID = msg.clOrdID.to_string();
 
     //todo, should check clOrdID and origClOrdID
     tv_msg.set_tag(11, exchClOrdID_clOrdID_mapping_[exchClOrdID]);
     if(msg.origClOrdID().flagIsSet()) {
-        tv_msg.set_tag(41, exchClOrdID_clOrdID_mapping_[msg.origClOrdID().get().asString()]);
+        tv_msg.set_tag(41, exchClOrdID_clOrdID_mapping_[msg.origClOrdID().get().to_string()]);
     }
 
     tv_msg.set_tag(35, "8");
 
     if(msg.orderID().flagIsSet()) {
-        tv_msg.set_tag(37, msg.orderID().get().rawValue());
+        tv_msg.set_tag(37, msg.orderID().get().raw_value());
     }
 
     if(msg.securityID().flagIsSet()) {
-        tv_msg.set_tag(48, msg.securityID().get().rawValue());
-        tv_msg.set_tag(55, msg.securityID().get().rawValue());
+        tv_msg.set_tag(48, msg.securityID().get().raw_value());
+        tv_msg.set_tag(55, msg.securityID().get().raw_value());
     }
 
     //transactTime
 
     if(msg.side().flagIsSet()) {
-        tv_msg.set_tag(54, msg.side().get().rawValue());
+        tv_msg.set_tag(54, msg.side().get().raw_value());
     }
 
     if(msg.qty().flagIsSet()) {
-        tv_msg.set_tag(38, msg.qty().get().rawValue());
+        tv_msg.set_tag(38, msg.qty().get().raw_value());
     }
 
     if(msg.qty().flagIsSet()) {
-        tv_msg.set_tag(44, msg.price().get().rawValue());
+        tv_msg.set_tag(44, msg.price().get().raw_value());
     }
 
     if(msg.ordType().flagIsSet()) {
-        tv_msg.set_tag(40, msg.ordType().get().rawValue());
+        tv_msg.set_tag(40, msg.ordType().get().raw_value());
     }
 
     if(msg.tif().flagIsSet()) {
-        tv_msg.set_tag(59, msg.tif().get().rawValue());
+        tv_msg.set_tag(59, msg.tif().get().raw_value());
     }
 
     if(msg.execID().flagIsSet()) {
-        tv_msg.set_tag(37, msg.execID().get().asString());
+        tv_msg.set_tag(37, msg.execID().get().to_string());
     }
 
     if(msg.ordStatus().flagIsSet()) {
-        auto value = msg.ordStatus().get().rawValue();
+        auto value = msg.ordStatus().get().raw_value();
         tv_msg.set_tag(39, value);
     }
 
     if(msg.execType().flagIsSet()) {
         //FIX 4.2 protocol 150=[12] not 150=F
-        auto value = msg.execType().get().rawValue();
+        auto value = msg.execType().get().raw_value();
         if (value == LME::ExecType::Trade) {
             tv_msg.set_tag(150, tv_msg.get_tag(39));
         } else {
@@ -444,19 +445,19 @@ void inline LMEProtocol::handle_report(LME::ExecutionReport& msg) {
     }
 
     if(msg.lastPx().flagIsSet()) {
-        tv_msg.set_tag(31, msg.lastPx().get().rawValue());
+        tv_msg.set_tag(31, msg.lastPx().get().raw_value());
     }
 
     if(msg.lastQty().flagIsSet()) {
-        tv_msg.set_tag(32, msg.lastQty().get().rawValue());
+        tv_msg.set_tag(32, msg.lastQty().get().raw_value());
     }
 
     if(msg.cumQty().flagIsSet()) {
-        tv_msg.set_tag(14, msg.cumQty().get().rawValue());
+        tv_msg.set_tag(14, msg.cumQty().get().raw_value());
     }
 
     if(msg.leavesQty().flagIsSet()) {
-        tv_msg.set_tag(151, msg.leavesQty().get().rawValue());
+        tv_msg.set_tag(151, msg.leavesQty().get().raw_value());
     }
 
     rcvd_cb_(tv_msg, exchClOrdID);

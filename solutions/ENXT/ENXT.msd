@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="ENXT" uuid="59152c9e-d865-482a-9c9d-ce82fb200e3f" moduleVersion="0" generatorOutputPath="${module}/source_gen/py">
+<solution name="ENXT" uuid="59152c9e-d865-482a-9c9d-ce82fb200e3f" moduleVersion="0" generatorOutputPath="${module}/source_gen/cpp">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot path="${module}/models" />

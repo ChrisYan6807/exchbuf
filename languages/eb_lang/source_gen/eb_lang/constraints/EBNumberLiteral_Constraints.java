@@ -23,7 +23,7 @@ public class EBNumberLiteral_Constraints extends BaseConstraintsDescriptor {
 
   public static class Value_Property extends BasePropertyConstraintsDescriptor {
     public Value_Property(ConstraintsDescriptor container) {
-      super(PROPS.value$_syU, container, false, false, true);
+      super(PROPS.value$fPEt, container, false, false, true);
     }
     @Override
     public boolean validateValue(SNode node, Object propertyValue, CheckingNodeContext checkingNodeContext) {
@@ -40,7 +40,7 @@ public class EBNumberLiteral_Constraints extends BaseConstraintsDescriptor {
   @Override
   protected Map<SProperty, PropertyConstraintsDescriptor> getSpecifiedProperties() {
     Map<SProperty, PropertyConstraintsDescriptor> properties = new HashMap<SProperty, PropertyConstraintsDescriptor>();
-    properties.put(PROPS.value$_syU, new Value_Property(this));
+    properties.put(PROPS.value$fPEt, new Value_Property(this));
     return properties;
   }
 
@@ -49,6 +49,6 @@ public class EBNumberLiteral_Constraints extends BaseConstraintsDescriptor {
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty value$_syU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x726a4e86e23f3d1bL, "value");
+    /*package*/ static final SProperty value$fPEt = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x113e6c9588d675c6L, "value");
   }
 }

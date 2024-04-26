@@ -98,10 +98,10 @@ public class QueriesGenerated extends QueryProviderBase {
     return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
   }
   public static Object propertyMacro_GetValue_0_7(final PropertyMacroContext _context) {
-    return SPropertyOperations.getString(_context.getNode(), PROPS.value$_syU);
+    return SPropertyOperations.getString(_context.getNode(), PROPS.value$fPEt);
   }
   public static Object propertyMacro_GetValue_0_8(final PropertyMacroContext _context) {
-    return "'" + SPropertyOperations.getString(_context.getNode(), PROPS.value$_s5n) + "'";
+    return "'" + SPropertyOperations.getString(_context.getNode(), PROPS.value$fPcU) + "'";
   }
   public static Object propertyMacro_GetValue_0_9(final PropertyMacroContext _context) {
     return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
@@ -470,8 +470,8 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
     /*package*/ static final SProperty value$$aYn = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a09L, 0x726a4e86e2416a20L, "value");
     /*package*/ static final SProperty value$wjFT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, 0x726a4e86e24169a8L, "value");
-    /*package*/ static final SProperty value$_syU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x726a4e86e23f3d1bL, "value");
-    /*package*/ static final SProperty value$_s5n = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x726a4e86e23f3d19L, "value");
+    /*package*/ static final SProperty value$fPEt = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x113e6c9588d675c6L, "value");
+    /*package*/ static final SProperty value$fPcU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x113e6c9588d675c4L, "value");
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
     /*package*/ static final SProperty default$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "default");
     /*package*/ static final SProperty counterOf$_QEd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x394e4455c022c1baL, "counterOf");

@@ -237,7 +237,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493656");
     b.version(3);
-    b.property("value", 0x726a4e86e23f3d19L).type(PrimitiveTypeId.STRING).origin("8244488409083493657").done();
+    b.property("value", 0x113e6c9588d675c4L).type(PrimitiveTypeId.STRING).origin("1242549936702518724").done();
     b.alias("'");
     return b.create();
   }
@@ -553,7 +553,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493655");
     b.version(3);
-    b.property("value", 0x726a4e86e23f3d1bL).type(PrimitiveTypeId.STRING).origin("8244488409083493659").done();
+    b.property("value", 0x113e6c9588d675c6L).type(PrimitiveTypeId.STRING).origin("1242549936702518726").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBPrimitiveType() {

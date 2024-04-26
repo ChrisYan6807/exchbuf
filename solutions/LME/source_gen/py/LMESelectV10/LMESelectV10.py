@@ -54,7 +54,7 @@ class PossResend(int, Enum):
 
 class SessionStatus(int, Enum):
     Active = 0
-    PasswordChange = 1
+    PasswordChange = 2
     NewPasswordNotComply = 3
     LogoutComplete = 4
     InvalidUserOrPassword = 5
@@ -532,16 +532,16 @@ class AmendOrder(Packet):
     ]
 
 class OrderStatus(str, Enum):
-    New = '0'
-    PartiallyFilled = '1'
-    Filled = '2'
-    DoneForDay = '3'
-    Cancelled = '4'
-    PendingCancel = '6'
-    Rejected = '8'
-    PendingNew = 'A'
-    Expired = 'C'
-    PendingReplace = 'E'
+    New = 0
+    PartiallyFilled = 1
+    Filled = 2
+    DoneForDay = 3
+    Cancelled = 4
+    PendingCancel = 6
+    Rejected = 8
+    PendingNew = 10
+    Expired = 12
+    PendingReplace = 14
 
 
 class AmendRejectCode(int, Enum):
@@ -621,7 +621,7 @@ class ExecType(str, Enum):
     Cancelled = '4'
     Replaced = '5'
     PendingCancel = '6'
-    Rejected = '8'
+    Rejected = 8
     Expired = 'C'
     Restated = 'D'
     PendingReplace = 'E'

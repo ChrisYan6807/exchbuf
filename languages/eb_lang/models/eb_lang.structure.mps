@@ -162,8 +162,8 @@
     <property role="R4oN_" value="number literal" />
     <property role="3GE5qa" value="literals" />
     <ref role="1TJDcQ" node="79EjCryfNOm" resolve="EBIntLiteral" />
-    <node concept="1TJgyi" id="79EjCryfNOr" role="1TKVEl">
-      <property role="IQ2nx" value="8244488409083493659" />
+    <node concept="1TJgyi" id="14Yr9m8PBn6" role="1TKVEl">
+      <property role="IQ2nx" value="1242549936702518726" />
       <property role="TrG5h" value="value" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
@@ -175,8 +175,8 @@
     <property role="R4oN_" value="char literal" />
     <property role="3GE5qa" value="literals" />
     <ref role="1TJDcQ" node="79EjCryfNOm" resolve="EBIntLiteral" />
-    <node concept="1TJgyi" id="79EjCryfNOp" role="1TKVEl">
-      <property role="IQ2nx" value="8244488409083493657" />
+    <node concept="1TJgyi" id="14Yr9m8PBn4" role="1TKVEl">
+      <property role="IQ2nx" value="1242549936702518724" />
       <property role="TrG5h" value="value" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
