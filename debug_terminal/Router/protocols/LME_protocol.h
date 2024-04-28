@@ -384,12 +384,12 @@ void inline LMEProtocol::handle_report(LME::ExecutionReport& msg) {
     LOG_INFO << "handle execution report, " << "OrdStatus: " << msg.ordStatus().get() << " ExecType: " << msg.execType().get();
     LOG_INFO << msg;
     TagValueMsg tv_msg;
-    std::string exchClOrdID = msg.clOrdID.to_string();
+    std::string exchClOrdID = msg.clOrdID.as_trimmed_string();
 
     //todo, should check clOrdID and origClOrdID
     tv_msg.set_tag(11, exchClOrdID_clOrdID_mapping_[exchClOrdID]);
     if(msg.origClOrdID().flagIsSet()) {
-        tv_msg.set_tag(41, exchClOrdID_clOrdID_mapping_[msg.origClOrdID().get().to_string()]);
+        tv_msg.set_tag(41, exchClOrdID_clOrdID_mapping_[msg.origClOrdID().get().as_trimmed_string()]);
     }
 
     tv_msg.set_tag(35, "8");

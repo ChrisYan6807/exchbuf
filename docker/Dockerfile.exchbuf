@@ -2,30 +2,24 @@ FROM ubuntu:23.10
 ENV LANG C.UTF-8
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-    g++ gcc make cmake python3 python3-dev python3-pip git less \
+    g++ gcc make cmake python3 python3-dev python3-pip python3.11-venv git less \
     libboost-log1.81-dev libboost-regex1.81-dev liblapack-dev \
- && ln -s /usr/bin/python3 /usr/bin/python
+ && python3 -m venv /tmp/python3
 
-RUN pip3 install --upgrade pip && /usr/bin/python3 -m pip install --upgrade pip && pip install --no-cache-dir cython
-
-RUN pip install "setuptools<58.0.0"
-RUN pip install twisted demjson requests pandas dash pybind11 schema colorama termcolor\
+RUN /tmp/python3/bin/pip3 install --upgrade pip
+RUN /tmp/python3/bin/pip3 install twisted cython requests pandas dash pybind11 schema colorama termcolor\
                 reportlab psutil validators lxml marshmallow terminaltables boltons flask_restx\
-                cheroot zmq IPython scapy matplotlib pythran plumbum 
-RUN pip install Werkzeug==2.2.2 
-RUN pip install --upgrade Flask==2.1.2
-RUN pip install scipy 
+                cheroot zmq IPython scapy matplotlib pythran plumbum memoization coverage dill rpyc
 
 RUN mkdir /tmp/repo && cd /tmp/repo && \
     git clone https://github.com/morganstanley/testplan.git &&\
     git clone https://github.com/morganstanley/pyfixmsg.git
 
 
-RUN cd /tmp/repo/testplan && python setup.py install 
-RUN cd /tmp/repo/pyfixmsg && cp -aR pyfixmsg /usr/local/lib/python3.10/dist-packages
+RUN cp -aR /tmp/repo/testplan/testplan /tmp/python3/lib/python3.11/site-packages/
+RUN cp -aR /tmp/repo/pyfixmsg/pyfixmsg /tmp/python3/lib/python3.11/site-packages/
 
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN /usr/bin/rm -rf /tmp/repo
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/repo /var/tmp/*
 
 #below is for running Clion in docker
 #RUN apt install openjdk-11-jdk

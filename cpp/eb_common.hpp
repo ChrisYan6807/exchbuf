@@ -203,6 +203,10 @@ struct FixedLengthString {
         return std::string_view(array_.data(), LEN);
     }
 
+    std::string as_trimmed_string() const {
+        return std::string(as_trimmed());
+    }
+
     void set_string(const FixedLengthString& other) {
         array_ = other;
     }
