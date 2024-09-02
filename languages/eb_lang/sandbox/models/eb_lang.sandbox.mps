@@ -128,17 +128,6 @@
     <node concept="2gln9S" id="14Yr9m9yxbL" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
-    <node concept="2gaMiw" id="14Yr9m9yxbM" role="2gln9U">
-      <property role="TrG5h" value="msg2" />
-      <node concept="2gaMiM" id="14Yr9m9yxbN" role="36JId$">
-        <property role="TrG5h" value="m1" />
-        <ref role="1rk6cS" node="1ReOlQqlkis" resolve="U8" />
-      </node>
-      <node concept="2gaMiM" id="14Yr9m9yxbO" role="36JId$">
-        <property role="TrG5h" value="m2" />
-        <ref role="1rk6cS" node="2eG7zKmIjNZ" resolve="enum1" />
-      </node>
-    </node>
     <node concept="2gln9S" id="14Yr9m9Dpo9" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
