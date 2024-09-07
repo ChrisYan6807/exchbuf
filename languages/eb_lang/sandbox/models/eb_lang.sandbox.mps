@@ -3,7 +3,7 @@
   <persistence version="9" />
   <languages>
     <use id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang" version="0" />
-    <engage id="195a05df-981e-4c01-a03a-6abf03243612" name="eb_lang_python" />
+    <engage id="87d4987f-c831-4a03-9f51-66048c99e214" name="eb_lang_cpp" />
   </languages>
   <imports />
   <registry>
@@ -38,12 +38,6 @@
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
         <property id="1242549936702518724" name="value" index="2pU1_h" />
-      </concept>
-      <concept id="1399011618606694719" name="eb_lang.structure.EBLink" flags="ng" index="2KQ0yo">
-        <property id="1399011618616562416" name="field" index="2R8DHn" />
-        <reference id="1399011618608964254" name="derived" index="2KJEGT" />
-        <reference id="1399011618608964252" name="base" index="2KJEGV" />
-        <reference id="1399011618616556345" name="base_member" index="2R8Jau" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -180,12 +174,6 @@
     </node>
     <node concept="2gln9S" id="1dEiquzPe8w" role="2gln9U">
       <property role="TrG5h" value="empty" />
-    </node>
-    <node concept="2KQ0yo" id="1dEiqu$pFuW" role="2gln9U">
-      <property role="2R8DHn" value="E1" />
-      <ref role="2KJEGV" node="1dEiquzG$8c" resolve="header" />
-      <ref role="2KJEGT" node="2eG7zKmIjNp" resolve="msg1" />
-      <ref role="2R8Jau" node="1dEiquzG$8Q" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="1dEiquzWiji" role="2gln9U">
       <property role="TrG5h" value="empty" />

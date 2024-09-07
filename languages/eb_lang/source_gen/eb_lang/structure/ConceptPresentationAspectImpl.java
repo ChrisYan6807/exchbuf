@@ -35,12 +35,9 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBLink;
   private ConceptPresentation props_EBLittleEndian;
   private ConceptPresentation props_EBMessage;
-  private ConceptPresentation props_EBMessageBaseInitializer;
   private ConceptPresentation props_EBMessageBlockMember;
-  private ConceptPresentation props_EBMessageConstructor;
   private ConceptPresentation props_EBMessageEntryMember;
   private ConceptPresentation props_EBMessageMember;
-  private ConceptPresentation props_EBMessageMemberFunc;
   private ConceptPresentation props_EBMessageMemberVar;
   private ConceptPresentation props_EBMessagePresenceFieldMember;
   private ConceptPresentation props_EBMessagePresenceTrueMember;
@@ -242,13 +239,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessage = cpb.create();
         }
         return props_EBMessage;
-      case LanguageConceptSwitch.EBMessageBaseInitializer:
-        if (props_EBMessageBaseInitializer == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("base initializer");
-          props_EBMessageBaseInitializer = cpb.create();
-        }
-        return props_EBMessageBaseInitializer;
       case LanguageConceptSwitch.EBMessageBlockMember:
         if (props_EBMessageBlockMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -256,13 +246,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageBlockMember = cpb.create();
         }
         return props_EBMessageBlockMember;
-      case LanguageConceptSwitch.EBMessageConstructor:
-        if (props_EBMessageConstructor == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("constructor");
-          props_EBMessageConstructor = cpb.create();
-        }
-        return props_EBMessageConstructor;
       case LanguageConceptSwitch.EBMessageEntryMember:
         if (props_EBMessageEntryMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -276,12 +259,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageMember = cpb.create();
         }
         return props_EBMessageMember;
-      case LanguageConceptSwitch.EBMessageMemberFunc:
-        if (props_EBMessageMemberFunc == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          props_EBMessageMemberFunc = cpb.create();
-        }
-        return props_EBMessageMemberFunc;
       case LanguageConceptSwitch.EBMessageMemberVar:
         if (props_EBMessageMemberVar == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
