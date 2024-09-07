@@ -32,6 +32,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBIntKVPair;
   private ConceptPresentation props_EBIntLiteral;
   private ConceptPresentation props_EBIntType;
+  private ConceptPresentation props_EBLink;
   private ConceptPresentation props_EBLittleEndian;
   private ConceptPresentation props_EBMessage;
   private ConceptPresentation props_EBMessageBaseInitializer;
@@ -219,6 +220,14 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBIntType = cpb.create();
         }
         return props_EBIntType;
+      case LanguageConceptSwitch.EBLink:
+        if (props_EBLink == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.shortDesc("link message");
+          cpb.presentationByName();
+          props_EBLink = cpb.create();
+        }
+        return props_EBLink;
       case LanguageConceptSwitch.EBLittleEndian:
         if (props_EBLittleEndian == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

@@ -16,7 +16,152 @@
   <concept fqn="c:f3061a53-9226-4cc5-a443-f952ceaf5816/1070475587102:jetbrains.mps.baseLanguage.structure.SuperConstructorInvocation" />
   <root>
     <file name="ConstraintsAspectDescriptor.java">
-      <unit at="13,0,57,0" name="eb_lang.constraints.ConstraintsAspectDescriptor" />
+      <unit at="13,0,59,0" name="eb_lang.constraints.ConstraintsAspectDescriptor" />
+    </file>
+  </root>
+  <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/1399011618608977867">
+    <file name="EBLink_Constraints.java">
+      <node id="1399011618608977867" at="34,31,35,30" concept="13" />
+      <node id="1399011618608977868" at="46,63,47,122" concept="8" />
+      <node id="1399011618609007135" at="50,80,51,154" concept="7" />
+      <node id="1399011618610495569" at="51,154,52,59" concept="7" />
+      <node id="1399011618609018870" at="52,59,53,314" concept="7" />
+      <node id="1399011618609019123" at="53,314,54,0" concept="10" />
+      <node id="1399011618610847609" at="54,0,55,75" concept="7" />
+      <node id="1399011618610909939" at="57,171,58,109" concept="3" />
+      <node id="1399011618610949562" at="58,109,59,105" concept="3" />
+      <node id="1399011618610341823" at="61,13,62,0" concept="10" />
+      <node id="1399011618609102720" at="62,0,63,57" concept="8" />
+      <node id="1399011618611308448" at="74,63,75,122" concept="8" />
+      <node id="1399011618611698107" at="78,80,79,137" concept="7" />
+      <node id="1399011618611757816" at="79,137,80,22" concept="9" />
+      <node id="1399011618611512018" at="81,33,82,72" concept="8" />
+      <node id="1399011618611481933" at="83,13,84,0" concept="10" />
+      <node id="1399011618611319371" at="84,0,85,154" concept="7" />
+      <node id="1399011618611319382" at="85,154,86,59" concept="7" />
+      <node id="1399011618611319388" at="86,59,87,314" concept="7" />
+      <node id="1399011618613866609" at="87,314,88,0" concept="10" />
+      <node id="1399011618613873979" at="88,0,89,320" concept="7" />
+      <node id="1399011618613378528" at="89,320,90,0" concept="10" />
+      <node id="1399011618615998598" at="90,0,91,79" concept="7" />
+      <node id="1399011618616060786" at="93,82,94,113" concept="3" />
+      <node id="1399011618615982954" at="96,13,97,0" concept="10" />
+      <node id="1399011618616150854" at="99,67,100,25" concept="2" />
+      <node id="1399011618613628732" at="102,76,103,65" concept="3" />
+      <node id="1399011618611319457" at="105,13,106,0" concept="10" />
+      <node id="1399011618611319458" at="106,0,107,57" concept="8" />
+      <node id="1399011618616615806" at="118,63,119,122" concept="8" />
+      <node id="1399011618616648670" at="122,80,123,208" concept="8" />
+      <node id="1399011618608977867" at="127,6,128,131" concept="7" />
+      <node id="1399011618608977868" at="128,131,129,42" concept="3" />
+      <node id="1399011618611308448" at="129,42,130,42" concept="3" />
+      <node id="1399011618616615806" at="130,42,131,42" concept="3" />
+      <node id="1399011618608977867" at="131,42,132,22" concept="8" />
+      <node id="1399011618608977867" at="136,0,137,0" concept="11" trace="EBLink$1X" />
+      <node id="1399011618608977867" at="137,0,138,0" concept="11" trace="EBProtocol$zC" />
+      <node id="1399011618608977867" at="138,0,139,0" concept="11" trace="EBMessage$YV" />
+      <node id="1399011618608977867" at="142,0,143,0" concept="11" trace="base$F2Ny" />
+      <node id="1399011618608977867" at="143,0,144,0" concept="11" trace="statements$_5KW" />
+      <node id="1399011618608977867" at="144,0,145,0" concept="11" trace="base$LfNH" />
+      <node id="1399011618608977867" at="145,0,146,0" concept="11" trace="derived$F3h$" />
+      <node id="1399011618608977867" at="146,0,147,0" concept="11" trace="base_member$uj3_" />
+      <node id="1399011618608977867" at="147,0,148,0" concept="11" trace="content$vVwC" />
+      <node id="1399011618608977867" at="34,0,37,0" concept="1" trace="EBLink_Constraints#()V" />
+      <node id="1399011618611483956" at="80,22,83,13" concept="5" />
+      <node id="1399011618616023444" at="92,46,95,15" concept="5" />
+      <node id="1399011618616113663" at="98,36,101,15" concept="5" />
+      <node id="1399011618613602647" at="101,15,104,15" concept="5" />
+      <node id="1399011618608977868" at="45,0,49,0" concept="6" trace="getSearchScopeValidatorNode#()Lorg/jetbrains/mps/openapi/model/SNodeReference;" />
+      <node id="1399011618610819708" at="56,36,60,15" concept="5" />
+      <node id="1399011618611308448" at="73,0,77,0" concept="6" trace="getSearchScopeValidatorNode#()Lorg/jetbrains/mps/openapi/model/SNodeReference;" />
+      <node id="1399011618616615806" at="117,0,121,0" concept="6" trace="getSearchScopeValidatorNode#()Lorg/jetbrains/mps/openapi/model/SNodeReference;" />
+      <node id="1399011618616615806" at="121,0,125,0" concept="6" trace="createScope#(Ljetbrains/mps/smodel/runtime/ReferenceConstraintsContext;)Ljetbrains/mps/scope/Scope;" />
+      <node id="1399011618614158325" at="91,79,96,13" concept="4" />
+      <node id="1399011618610502825" at="55,75,61,13" concept="4" />
+      <node id="1399011618611319423" at="97,0,105,13" concept="4" />
+      <node id="1399011618616615806" at="115,56,125,10" concept="8" />
+      <node id="1399011618616615806" at="113,0,127,0" concept="6" trace="getScopeProvider#()Ljetbrains/mps/smodel/runtime/ReferenceScopeProvider;" />
+      <node id="1399011618608977868" at="49,0,65,0" concept="6" trace="createScope#(Ljetbrains/mps/smodel/runtime/ReferenceConstraintsContext;)Ljetbrains/mps/scope/Scope;" />
+      <node id="1399011618616615806" at="111,6,127,6" concept="7" />
+      <node id="1399011618608977868" at="43,56,65,10" concept="8" />
+      <node id="1399011618608977868" at="41,0,67,0" concept="6" trace="getScopeProvider#()Ljetbrains/mps/smodel/runtime/ReferenceScopeProvider;" />
+      <node id="1399011618608977868" at="39,90,67,6" concept="7" />
+      <node id="1399011618611308448" at="77,0,109,0" concept="6" trace="createScope#(Ljetbrains/mps/smodel/runtime/ReferenceConstraintsContext;)Ljetbrains/mps/scope/Scope;" />
+      <node id="1399011618611308448" at="71,56,109,10" concept="8" />
+      <node id="1399011618611308448" at="69,0,111,0" concept="6" trace="getScopeProvider#()Ljetbrains/mps/smodel/runtime/ReferenceScopeProvider;" />
+      <node id="1399011618611308448" at="67,6,111,6" concept="7" />
+      <node id="1399011618608977867" at="38,0,134,0" concept="6" trace="getSpecifiedReferences#()Ljava/util/Map;" />
+      <scope id="1399011618608977867" at="34,31,35,30" />
+      <scope id="1399011618608977868" at="46,63,47,122" />
+      <scope id="1399011618611308448" at="74,63,75,122" />
+      <scope id="1399011618611483958" at="81,33,82,72" />
+      <scope id="1399011618616023446" at="93,82,94,113" />
+      <scope id="1399011618616113665" at="99,67,100,25" />
+      <scope id="1399011618613602649" at="102,76,103,65" />
+      <scope id="1399011618616615806" at="118,63,119,122" />
+      <scope id="1399011618616615806" at="122,80,123,208" />
+      <scope id="1399011618610819710" at="57,171,59,105" />
+      <scope id="1399011618608977867" at="34,0,37,0" />
+      <scope id="1399011618614158327" at="92,46,95,15" />
+      <scope id="1399011618608977868" at="45,0,49,0" />
+      <scope id="1399011618610502827" at="56,36,60,15" />
+      <scope id="1399011618611308448" at="73,0,77,0" />
+      <scope id="1399011618616615806" at="117,0,121,0" />
+      <scope id="1399011618616615806" at="121,0,125,0">
+        <var name="_context" id="1399011618616615806" />
+      </scope>
+      <scope id="1399011618614158325" at="91,79,96,13">
+        <var name="link" id="1399011618614158328" />
+      </scope>
+      <scope id="1399011618610502825" at="55,75,61,13">
+        <var name="msg" id="1399011618610502828" />
+      </scope>
+      <scope id="1399011618611319424" at="98,36,104,15" />
+      <scope id="1399011618611319423" at="97,0,105,13">
+        <var name="msg" id="1399011618611319454" />
+      </scope>
+      <scope id="1399011618616615806" at="115,56,125,10" />
+      <scope id="1399011618608977868" at="50,80,63,57">
+        <var name="idx" id="1399011618609007138" />
+        <var name="msg_set" id="1399011618610847612" />
+        <var name="msgs" id="1399011618609018873" />
+        <var name="msgs_list" id="1399011618610495572" />
+      </scope>
+      <scope id="1399011618616615806" at="113,0,127,0" />
+      <scope id="1399011618608977868" at="49,0,65,0">
+        <var name="_context" id="1399011618608977868" />
+      </scope>
+      <scope id="1399011618608977868" at="43,56,65,10" />
+      <scope id="1399011618608977868" at="41,0,67,0" />
+      <scope id="1399011618611308448" at="78,80,107,57">
+        <var name="base" id="1399011618611698110" />
+        <var name="defined_links" id="1399011618613873982" />
+        <var name="idx" id="1399011618611319372" />
+        <var name="linked_msgs" id="1399011618615998601" />
+        <var name="msgs" id="1399011618611319389" />
+        <var name="msgs_list" id="1399011618611319383" />
+      </scope>
+      <scope id="1399011618611308448" at="77,0,109,0">
+        <var name="_context" id="1399011618611308448" />
+      </scope>
+      <scope id="1399011618611308448" at="71,56,109,10" />
+      <scope id="1399011618611308448" at="69,0,111,0" />
+      <scope id="1399011618608977867" at="39,90,132,22">
+        <var name="d0" id="1399011618608977868" />
+        <var name="d1" id="1399011618611308448" />
+        <var name="d2" id="1399011618616615806" />
+        <var name="references" id="1399011618608977867" />
+      </scope>
+      <scope id="1399011618608977867" at="38,0,134,0" />
+      <unit id="1399011618608977867" at="135,0,140,0" name="eb_lang.constraints.EBLink_Constraints$CONCEPTS" />
+      <unit id="1399011618608977867" at="141,0,149,0" name="eb_lang.constraints.EBLink_Constraints$LINKS" />
+      <unit id="1399011618616615806" at="116,19,125,9" name="eb_lang.constraints.EBLink_Constraints$3$1" />
+      <unit id="1399011618616615806" at="112,48,127,5" name="eb_lang.constraints.EBLink_Constraints$3" />
+      <unit id="1399011618608977868" at="44,19,65,9" name="eb_lang.constraints.EBLink_Constraints$1$1" />
+      <unit id="1399011618608977868" at="40,48,67,5" name="eb_lang.constraints.EBLink_Constraints$1" />
+      <unit id="1399011618611308448" at="72,19,109,9" name="eb_lang.constraints.EBLink_Constraints$2$1" />
+      <unit id="1399011618611308448" at="68,48,111,5" name="eb_lang.constraints.EBLink_Constraints$2" />
+      <unit id="1399011618608977867" at="33,0,150,0" name="eb_lang.constraints.EBLink_Constraints" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/1504956661103865627">
