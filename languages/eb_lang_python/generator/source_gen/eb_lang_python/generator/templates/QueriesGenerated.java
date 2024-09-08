@@ -181,6 +181,14 @@ public class QueriesGenerated extends QueryProviderBase {
 
     return "Unsupported floating type.";
   }
+  public static Object propertyMacro_GetValue_0_22(final PropertyMacroContext _context) {
+    String field = SPropertyOperations.getString(_context.getNode(), PROPS.field$Acvf);
+    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.base_member$uj3_), LINKS.type$eiFN), CONCEPTS.EBEnum$37)) {
+      field = SPropertyOperations.getString(SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.base_member$uj3_), LINKS.type$eiFN), PROPS.name$MnvL) + "." + field;
+    }
+
+    return String.format("bind_layers(%s, %s, %s=%s)", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.base$F2Ny), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.derived$F3h$), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.base_member$uj3_), PROPS.name$MnvL), field);
+  }
   public static Object propertyMacro_GetValue_1_0(final PropertyMacroContext _context) {
     return SModelOperations.getModelName(_context.getInputModel());
   }
@@ -322,6 +330,7 @@ public class QueriesGenerated extends QueryProviderBase {
     pvqMethods.put("553408128354811797", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "python_include"));
     pvqMethods.put("7035066850818182175", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
     pvqMethods.put("7035066850819728846", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
+    pvqMethods.put("1399011618627772357", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
     pvqMethods.put("7633818473774919273", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "protocol"));
   }
   @NotNull
@@ -384,6 +393,8 @@ public class QueriesGenerated extends QueryProviderBase {
         case 21:
           return QueriesGenerated.propertyMacro_GetValue_0_21(ctx);
         case 22:
+          return QueriesGenerated.propertyMacro_GetValue_0_22(ctx);
+        case 23:
           return QueriesGenerated.propertyMacro_GetValue_1_0(ctx);
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
@@ -404,6 +415,7 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SProperty default$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "default");
     /*package*/ static final SProperty counterOf$_QEd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x394e4455c022c1baL, "counterOf");
     /*package*/ static final SProperty pos$ZoEI = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940705f3e4dfL, 0x61a1940705f3e4e2L, "pos");
+    /*package*/ static final SProperty field$Acvf = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x136a49a7a3b2413fL, 0x136a49a7a448d2f0L, "field");
   }
 
   private static final class LINKS {
@@ -418,6 +430,9 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SReferenceLink type$Zjhn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940705f3e4dfL, 0x61a1940705f3e4e0L, "type");
     /*package*/ static final SReferenceLink presence_map$Zjwo = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940705f3e4dfL, 0x61a1940705f3e4e1L, "presence_map");
     /*package*/ static final SReferenceLink type$rYQG = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940706363cbfL, 0x61a1940706363cc0L, "type");
+    /*package*/ static final SReferenceLink base_member$uj3_ = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x136a49a7a3b2413fL, 0x136a49a7a448bb39L, "base_member");
+    /*package*/ static final SReferenceLink base$F2Ny = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x136a49a7a3b2413fL, 0x136a49a7a3d4e29cL, "base");
+    /*package*/ static final SReferenceLink derived$F3h$ = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x136a49a7a3b2413fL, 0x136a49a7a3d4e29eL, "derived");
     /*package*/ static final SContainmentLink value$_yQp = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, 0x726a4e86e23f3d20L, "value");
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
     /*package*/ static final SContainmentLink statements$_5KW = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, 0x726a4e86e23f3cfcL, "statements");

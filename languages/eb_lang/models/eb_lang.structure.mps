@@ -412,7 +412,7 @@
     <property role="EcuMT" value="8244488409083636265" />
     <property role="3GE5qa" value="statement" />
     <property role="TrG5h" value="EBMessageBlockMember" />
-    <property role="34LRSv" value="block" />
+    <property role="34LRSv" value="group" />
     <ref role="1TJDcQ" node="5hSnPGNaBks" resolve="EBMessageMemberVar" />
     <node concept="1TJgyj" id="3SNypnb3YGt" role="1TKVEi">
       <property role="IQ2ns" value="4482077330613725981" />

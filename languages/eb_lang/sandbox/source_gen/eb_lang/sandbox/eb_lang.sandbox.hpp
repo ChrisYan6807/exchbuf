@@ -84,6 +84,7 @@ inline ostreamT& operator<<(ostreamT& os, const enum2& v){
 
 #pragma pack(1)
 struct header {
+    U8 magic;
     enum1 msgType;
     enum2 tif;
     U16 len;
@@ -95,7 +96,8 @@ struct header {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const header& msg) {
-    os << "msgType=" << msg.msgType << ";"
+    os << "magic=" << msg.magic << ";"
+       << "msgType=" << msg.msgType << ";"
        << "tif=" << msg.tif << ";"
        << "len=" << msg.len << ";"
        ; return os; 
@@ -130,7 +132,8 @@ struct msg1 : header {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const msg1& msg) {
-    os << "msgType=" << msg.msgType << ";"
+    os << "magic=" << msg.magic << ";"
+       << "msgType=" << msg.msgType << ";"
        << "tif=" << msg.tif << ";"
        << "len=" << msg.len << ";"
        << "m1=" << msg.m1 << ";"
@@ -150,7 +153,8 @@ struct msg2 : header {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const msg2& msg) {
-    os << "msgType=" << msg.msgType << ";"
+    os << "magic=" << msg.magic << ";"
+       << "msgType=" << msg.msgType << ";"
        << "tif=" << msg.tif << ";"
        << "len=" << msg.len << ";"
        << "e1=" << msg.e1 << ";"
@@ -173,9 +177,13 @@ inline std::ostream& operator<<(std::ostream& os, const msg3& msg) {
        ; return os; 
 }
 
+msg1 Create_msg1(){return msg1{{{},enum1::E1}};}
+msg2 Create_msg2(){return msg2{{{},enum1::E2}};}
 
 #pragma pack(1)
 struct header3 {
+    U8 len;
+    U16 magic;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(header3);}
@@ -184,11 +192,15 @@ struct header3 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const header3& msg) {
-    os ; return os; 
+    os << "len=" << msg.len << ";"
+       << "magic=" << msg.magic << ";"
+       ; return os; 
 }
 
 #pragma pack(1)
 struct msg4 : header3 {
+    U8 len;
+    enum1 msgT;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(msg4);}
@@ -197,8 +209,17 @@ struct msg4 : header3 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const msg4& msg) {
-    os ; return os; 
+    os << "len=" << msg.len << ";"
+       << "magic=" << msg.magic << ";"
+       << "len=" << msg.len << ";"
+       << "msgT=" << msg.msgT << ";"
+       ; return os; 
 }
+
+msg4 Create_msg4(){return msg4{{{},123}};}
+
+
+
 
 
 

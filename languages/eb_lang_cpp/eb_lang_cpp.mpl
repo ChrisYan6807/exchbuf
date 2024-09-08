@@ -12,7 +12,7 @@
   </facets>
   <accessoryModels />
   <generators>
-    <generator alias="main" namespace="eb_lang_cpp.generator" uuid="1591a839-fa95-44ac-9dbe-bc4db21d2394">
+    <generator alias="main_cpp" namespace="eb_lang_cpp.generator" uuid="1591a839-fa95-44ac-9dbe-bc4db21d2394">
       <models>
         <modelRoot contentPath="${module}/generator" type="default">
           <sourceRoot location="templates" />

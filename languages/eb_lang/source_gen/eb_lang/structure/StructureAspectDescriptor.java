@@ -465,7 +465,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.property("cardinality", 0x1011af616bfce4dfL).type(PrimitiveTypeId.INTEGER).origin("1157899412169352415").done();
     b.associate("type", 0x3e338995cb0feb1dL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L).optional(false).origin("4482077330613725981").done();
     b.associate("counter", 0x3e338995cb0feb1fL).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L).optional(false).origin("4482077330613725983").done();
-    b.alias("block");
+    b.alias("group");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBMessageEntryMember() {
