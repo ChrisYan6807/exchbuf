@@ -1011,10 +1011,8 @@ struct NewOrder : MsgHeader {
 #pragma pack()
 static_assert(sizeof(NewOrder) == 125, "Bad message size.")
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
-    os << "startOfMsg=" << msg.startOfMsg << ";"
-       << "length=" << msg.length << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "clientOrderId=" << msg.clientOrderId << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "clientOrderId=" << msg.clientOrderId << ";"
        << "traderId=" << msg.traderId << ";"
        << "account=" << msg.account << ";"
        << "clearingAccount=" << msg.clearingAccount << ";"
@@ -1044,7 +1042,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
        << "executingWithinFirm=" << msg.executingWithinFirm << ";"
        << "mifidFlags=" << msg.mifidFlags << ";"
        << "partyRoleQualifiers=" << msg.partyRoleQualifiers << ";"
-       ; return os; 
+       ; return os;
 }
 
 #pragma pack(1)
@@ -1085,10 +1083,8 @@ struct ExecutionReport : MsgHeader {
 #pragma pack()
 static_assert(sizeof(ExecutionReport) == 158, "Bad message size.")
 inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
-    os << "startOfMsg=" << msg.startOfMsg << ";"
-       << "length=" << msg.length << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "appId=" << msg.appId << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "appId=" << msg.appId << ";"
        << "sequenceNo=" << msg.sequenceNo << ";"
        << "executionId=" << msg.executionId << ";"
        << "clientOrderId=" << msg.clientOrderId << ";"
@@ -1116,7 +1112,7 @@ inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
        << "publicOrderId=" << msg.publicOrderId << ";"
        << "minimumQty=" << msg.minimumQty << ";"
        << "reputationalScore=" << msg.reputationalScore << ";"
-       ; return os; 
+       ; return os;
 }
 
 } // end of namespace Turquoise

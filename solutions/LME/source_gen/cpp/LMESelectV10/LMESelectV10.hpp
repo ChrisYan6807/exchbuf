@@ -665,7 +665,7 @@ inline ostreamT& operator<<(ostreamT& os, const Side& v){
 
 #pragma pack(1)
 struct MsgHeader {
-    Uint8 startOfMessage = 0x02_u8;
+    Uint8 startOfMessage{0x02_u8};
     UInt16 msgLength;
     MsgType msgType;
     UInt32 seqNo;
@@ -673,7 +673,6 @@ struct MsgHeader {
     String11 compID;
     UInt64 sendingTime;
     UInt64 originalSendingTime;
-    MsgHeader(MsgType msgType_):msgType(msgType_) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MsgHeader);}
@@ -690,7 +689,7 @@ inline std::ostream& operator<<(std::ostream& os, const MsgHeader& msg) {
        << "compID=" << msg.compID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "originalSendingTime=" << msg.originalSendingTime << ";"
-       ; return os; 
+       ; return os;
 }
 
 // nextSeqNo must be set
@@ -706,7 +705,6 @@ struct Logon : MsgHeader {
     OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> sessionStatus() {return OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(nextSeqNo().end(), presenceMap, 63-3);}
     OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> heartbeatInterval() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(sessionStatus().end(), presenceMap, 63-4);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(heartbeatInterval().end());}
-    Logon():MsgHeader(MsgType::Logon) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Logon);}
@@ -715,15 +713,8 @@ struct Logon : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Logon& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -732,9 +723,10 @@ inline std::ostream& operator<<(std::ostream& os, const Logon& msg) {
        << "nextSeqNo=" << const_cast<Logon&>(msg).nextSeqNo() << ";"
        << "sessionStatus=" << const_cast<Logon&>(msg).sessionStatus() << ";"
        << "heartbeatInterval=" << const_cast<Logon&>(msg).heartbeatInterval() << ";"
-       << "chksum=" << const_cast<Logon&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+Logon Create_Logon(){return Logon{{{},{},MsgType::Logon}};}
 
 #pragma pack(1)
 struct Heartbeat : MsgHeader {
@@ -744,7 +736,6 @@ struct Heartbeat : MsgHeader {
     PresenceMap presenceMap3;
     OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refTestRequestID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(refTestRequestID().end());}
-    Heartbeat():MsgHeader(MsgType::Heartbeat) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Heartbeat);}
@@ -753,32 +744,25 @@ struct Heartbeat : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
        << "refTestRequestID=" << const_cast<Heartbeat&>(msg).refTestRequestID() << ";"
-       << "chksum=" << const_cast<Heartbeat&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+Heartbeat Create_Heartbeat(){return Heartbeat{{{},{},MsgType::Heartbeat}};}
 
 #pragma pack(1)
 struct TestRequest : MsgHeader {
-    PresenceMap presenceMap = 0b1UL << 63UL;
+    PresenceMap presenceMap{0b1UL << 63UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
     String21 testRequestID;
     UInt32 chksum;
-    TestRequest():MsgHeader(MsgType::TestRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(TestRequest);}
@@ -787,33 +771,26 @@ struct TestRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const TestRequest& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
        << "testRequestID=" << msg.testRequestID << ";"
        << "chksum=" << msg.chksum << ";"
-       ; return os; 
+       ; return os;
 }
+TestRequest Create_TestRequest(){return TestRequest{{{},{},MsgType::TestRequest}};}
 
 #pragma pack(1)
 struct ResendRequest : MsgHeader {
-    PresenceMap presenceMap = 0b11UL << 62UL;
+    PresenceMap presenceMap{0b11UL << 62UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
     UInt32 startSeq;
     UInt32 endSeq;
     UInt32 chksum;
-    ResendRequest():MsgHeader(MsgType::ResendRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(ResendRequest);}
@@ -822,23 +799,17 @@ struct ResendRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const ResendRequest& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
        << "startSeq=" << msg.startSeq << ";"
        << "endSeq=" << msg.endSeq << ";"
        << "chksum=" << msg.chksum << ";"
-       ; return os; 
+       ; return os;
 }
+ResendRequest Create_ResendRequest(){return ResendRequest{{{},{},MsgType::ResendRequest}};}
 
 #pragma pack(1)
 struct SequenceReset : MsgHeader {
@@ -849,7 +820,6 @@ struct SequenceReset : MsgHeader {
     OptionalRef<GapFill, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> gapFill() {return OptionalRef<GapFill, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
     OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> newSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(gapFill().end(), presenceMap, 63-1);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(newSeqNo().end());}
-    SequenceReset():MsgHeader(MsgType::SequenceReset) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SequenceReset);}
@@ -858,23 +828,17 @@ struct SequenceReset : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SequenceReset& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
        << "gapFill=" << const_cast<SequenceReset&>(msg).gapFill() << ";"
        << "newSeqNo=" << const_cast<SequenceReset&>(msg).newSeqNo() << ";"
-       << "chksum=" << const_cast<SequenceReset&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+SequenceReset Create_SequenceReset(){return SequenceReset{{{},{},MsgType::SequenceReset}};}
 
 #pragma pack(1)
 struct Logout : MsgHeader {
@@ -885,7 +849,6 @@ struct Logout : MsgHeader {
     OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> status() {return OptionalRef<SessionStatus, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(begin()+size(), presenceMap, 63-0);}
     OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(status().end(), presenceMap, 63-1);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    Logout():MsgHeader(MsgType::Logout) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Logout);}
@@ -894,27 +857,21 @@ struct Logout : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
        << "status=" << const_cast<Logout&>(msg).status() << ";"
        << "text=" << const_cast<Logout&>(msg).text() << ";"
-       << "chksum=" << const_cast<Logout&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+Logout Create_Logout(){return Logout{{{},{},MsgType::Logout}};}
 
 #pragma pack(1)
 struct Reject : MsgHeader {
-    PresenceMap presenceMap = 0b1UL << 63UL;
+    PresenceMap presenceMap{0b1UL << 63UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -924,7 +881,6 @@ struct Reject : MsgHeader {
     OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refFieldName().end(), presenceMap, 63-3);}
     OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refSeqNo().end(), presenceMap, 63-4);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    Reject():MsgHeader(MsgType::Reject) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Reject);}
@@ -933,15 +889,8 @@ struct Reject : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -950,13 +899,14 @@ inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
        << "refFieldName=" << const_cast<Reject&>(msg).refFieldName() << ";"
        << "refSeqNo=" << const_cast<Reject&>(msg).refSeqNo() << ";"
        << "text=" << const_cast<Reject&>(msg).text() << ";"
-       << "chksum=" << const_cast<Reject&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+Reject Create_Reject(){return Reject{{{},{},MsgType::Reject}};}
 
 #pragma pack(1)
 struct BusinessReject : MsgHeader {
-    PresenceMap presenceMap = 0b1UL << 63UL;
+    PresenceMap presenceMap{0b1UL << 63UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -967,7 +917,6 @@ struct BusinessReject : MsgHeader {
     OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refSeqNo() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refFieldName().end(), presenceMap, 63-4);}
     OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> refID() {return OptionalRef<String21, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(refSeqNo().end(), presenceMap, 63-5);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(refID().end());}
-    BusinessReject():MsgHeader(MsgType::BusinessReject) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(BusinessReject);}
@@ -976,15 +925,8 @@ struct BusinessReject : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const BusinessReject& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -994,13 +936,14 @@ inline std::ostream& operator<<(std::ostream& os, const BusinessReject& msg) {
        << "refFieldName=" << const_cast<BusinessReject&>(msg).refFieldName() << ";"
        << "refSeqNo=" << const_cast<BusinessReject&>(msg).refSeqNo() << ";"
        << "refID=" << const_cast<BusinessReject&>(msg).refID() << ";"
-       << "chksum=" << const_cast<BusinessReject&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+BusinessReject Create_BusinessReject(){return BusinessReject{{{},{},MsgType::BusinessReject}};}
 
 #pragma pack(1)
 struct News : MsgHeader {
-    PresenceMap presenceMap = 0b1111UL << 60UL;
+    PresenceMap presenceMap{0b1111UL << 60UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -1009,7 +952,6 @@ struct News : MsgHeader {
     UInt64 timeStamp;
     String251 newsText;
     UInt32 chksum;
-    News():MsgHeader(MsgType::News) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(News);}
@@ -1018,15 +960,8 @@ struct News : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const News& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -1035,12 +970,13 @@ inline std::ostream& operator<<(std::ostream& os, const News& msg) {
        << "timeStamp=" << msg.timeStamp << ";"
        << "newsText=" << msg.newsText << ";"
        << "chksum=" << msg.chksum << ";"
-       ; return os; 
+       ; return os;
 }
+News Create_News(){return News{{{},{},MsgType::News}};}
 
 #pragma pack(1)
 struct SecurityDefLegEntry {
-    BytePresenceMap presenceMap = 0b11100000_u8;
+    BytePresenceMap presenceMap{0b11100000_u8};
     UInt64 legSecurityID;
     Side legSide;
     Ratio legRatio;
@@ -1058,7 +994,7 @@ inline std::ostream& operator<<(std::ostream& os, const SecurityDefLegEntry& msg
        << "legSide=" << msg.legSide << ";"
        << "legRatio=" << msg.legRatio << ";"
        << "legPrice=" << const_cast<SecurityDefLegEntry&>(msg).legPrice() << ";"
-       ; return os; 
+       ; return os;
 }
 
 #pragma pack(1)
@@ -1075,12 +1011,12 @@ struct SecurityDefLegsGroup {
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefLegsGroup& msg) {
     os << "noLegs=" << msg.noLegs << ";"
        << "legs=" << const_cast<SecurityDefLegsGroup&>(msg).legs() << ";"
-       ; return os; 
+       ; return os;
 }
 
 #pragma pack(1)
 struct SecurityDefinitionRequest : MsgHeader {
-    PresenceMap presenceMap = 0b111111UL << 58UL;
+    PresenceMap presenceMap{0b111111UL << 58UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -1095,7 +1031,6 @@ struct SecurityDefinitionRequest : MsgHeader {
     OptionalRef<PutOrCall, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> putOrCall() {return OptionalRef<PutOrCall, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(strikePrice().end(), presenceMap, 63-8);}
     OptionalRef<SecurityDefLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> legsGroup() {return OptionalRef<SecurityDefLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(putOrCall().end(), presenceMap, 63-9);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(legsGroup().end());}
-    SecurityDefinitionRequest():MsgHeader(MsgType::SecurityDefinitionRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SecurityDefinitionRequest);}
@@ -1104,15 +1039,8 @@ struct SecurityDefinitionRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionRequest& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -1126,9 +1054,10 @@ inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionReques
        << "strikePrice=" << const_cast<SecurityDefinitionRequest&>(msg).strikePrice() << ";"
        << "putOrCall=" << const_cast<SecurityDefinitionRequest&>(msg).putOrCall() << ";"
        << "legsGroup=" << const_cast<SecurityDefinitionRequest&>(msg).legsGroup() << ";"
-       << "chksum=" << const_cast<SecurityDefinitionRequest&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+SecurityDefinitionRequest Create_SecurityDefinitionRequest(){return SecurityDefinitionRequest{{{},{},MsgType::SecurityDefinitionRequest}};}
 
 struct SecurityResponseType {
     using value_type = uint8_t;
@@ -1216,7 +1145,7 @@ inline ostreamT& operator<<(ostreamT& os, const SecurityRejectReason& v){
 
 #pragma pack(1)
 struct SecurityDefinition : MsgHeader {
-    PresenceMap presenceMap = 0b111UL << 63UL;
+    PresenceMap presenceMap{0b111UL << 63UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2b;
     PresenceMap presenceMap3;
@@ -1227,7 +1156,6 @@ struct SecurityDefinition : MsgHeader {
     OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> securityID() {return OptionalRef<UInt64, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityRejectReason().end(), presenceMap, 63-4);}
     OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(securityID().end(), presenceMap, 63-5);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    SecurityDefinition():MsgHeader(MsgType::SecurityDefinition) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(SecurityDefinition);}
@@ -1236,15 +1164,8 @@ struct SecurityDefinition : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinition& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2b=" << msg.presenceMap2b << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -1254,9 +1175,10 @@ inline std::ostream& operator<<(std::ostream& os, const SecurityDefinition& msg)
        << "securityRejectReason=" << const_cast<SecurityDefinition&>(msg).securityRejectReason() << ";"
        << "securityID=" << const_cast<SecurityDefinition&>(msg).securityID() << ";"
        << "text=" << const_cast<SecurityDefinition&>(msg).text() << ";"
-       << "chksum=" << const_cast<SecurityDefinition&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+SecurityDefinition Create_SecurityDefinition(){return SecurityDefinition{{{},{},MsgType::SecurityDefinition}};}
 
 struct OrderType {
     using value_type = uint8_t;
@@ -1783,7 +1705,7 @@ inline ostreamT& operator<<(ostreamT& os, const MarketMaker& v){
 
 #pragma pack(1)
 struct NewOrderSingle : MsgHeader {
-    PresenceMap presenceMap = 0b10001111111111UL << 50UL;
+    PresenceMap presenceMap{0b10001111111111UL << 50UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -1829,7 +1751,6 @@ struct NewOrderSingle : MsgHeader {
     OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
     OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(riskReductionOrder().end());}
-    NewOrderSingle():MsgHeader(MsgType::NewOrderSingle) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(NewOrderSingle);}
@@ -1838,15 +1759,8 @@ struct NewOrderSingle : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const NewOrderSingle& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -1891,14 +1805,15 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderSingle& msg) {
        << "pendingAllocationOrder=" << const_cast<NewOrderSingle&>(msg).pendingAllocationOrder() << ";"
        << "liqProOrder=" << const_cast<NewOrderSingle&>(msg).liqProOrder() << ";"
        << "riskReductionOrder=" << const_cast<NewOrderSingle&>(msg).riskReductionOrder() << ";"
-       << "chksum=" << const_cast<NewOrderSingle&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+NewOrderSingle Create_NewOrderSingle(){return NewOrderSingle{{{},{},MsgType::NewOrderSingle}};}
 
 // Do not provide OrderID in amend
 #pragma pack(1)
 struct AmendOrder : MsgHeader {
-    PresenceMap presenceMap = 0b10011111111111UL << 50UL;
+    PresenceMap presenceMap{0b10011111111111UL << 50UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -1944,7 +1859,6 @@ struct AmendOrder : MsgHeader {
     OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> liqProOrder() {return OptionalRef<LiquidityProvisionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(pendingAllocationOrder().end(), presenceMap, 63-44);}
     OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> riskReductionOrder() {return OptionalRef<RiskReductionOrder, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(liqProOrder().end(), presenceMap, 63-45);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(riskReductionOrder().end());}
-    AmendOrder():MsgHeader(MsgType::AmendOrder) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(AmendOrder);}
@@ -1953,15 +1867,8 @@ struct AmendOrder : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const AmendOrder& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -2006,9 +1913,10 @@ inline std::ostream& operator<<(std::ostream& os, const AmendOrder& msg) {
        << "pendingAllocationOrder=" << const_cast<AmendOrder&>(msg).pendingAllocationOrder() << ";"
        << "liqProOrder=" << const_cast<AmendOrder&>(msg).liqProOrder() << ";"
        << "riskReductionOrder=" << const_cast<AmendOrder&>(msg).riskReductionOrder() << ";"
-       << "chksum=" << const_cast<AmendOrder&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+AmendOrder Create_AmendOrder(){return AmendOrder{{{},{},MsgType::AmendOrder}};}
 
 struct OrderStatus {
     using value_type = char;
@@ -2163,7 +2071,6 @@ struct AmendRejected : MsgHeader {
     OptionalRef<AmendRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> rejectCode() {return OptionalRef<AmendRejectCode, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(ordStatus().end(), presenceMap, 63-6);}
     OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(rejectCode().end(), presenceMap, 63-7);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    AmendRejected():MsgHeader(MsgType::OrderAmendRejected) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(AmendRejected);}
@@ -2172,15 +2079,8 @@ struct AmendRejected : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const AmendRejected& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -2191,14 +2091,15 @@ inline std::ostream& operator<<(std::ostream& os, const AmendRejected& msg) {
        << "ordStatus=" << const_cast<AmendRejected&>(msg).ordStatus() << ";"
        << "rejectCode=" << const_cast<AmendRejected&>(msg).rejectCode() << ";"
        << "text=" << const_cast<AmendRejected&>(msg).text() << ";"
-       << "chksum=" << const_cast<AmendRejected&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+AmendRejected Create_AmendRejected(){return AmendRejected{{{},{},MsgType::OrderAmendRejected}};}
 
 // do not set OrderID
 #pragma pack(1)
 struct CancelOrder : MsgHeader {
-    PresenceMap presenceMap = 0b1001111UL << 57UL;
+    PresenceMap presenceMap{0b1001111UL << 57UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -2207,25 +2108,17 @@ struct CancelOrder : MsgHeader {
     UInt64 securityID;
     UInt64 transactTime;
     Side side;
-    FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(begin()+size());}
-    CancelOrder():MsgHeader(MsgType::CancelOrder) {};
+    UInt32 chksum;
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(CancelOrder);}
-    size_t length() {return chksum().end()-begin();}
+    size_t length() {return size();}
 };
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelOrder& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -2234,9 +2127,10 @@ inline std::ostream& operator<<(std::ostream& os, const CancelOrder& msg) {
        << "securityID=" << msg.securityID << ";"
        << "transactTime=" << msg.transactTime << ";"
        << "side=" << msg.side << ";"
-       << "chksum=" << const_cast<CancelOrder&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+CancelOrder Create_CancelOrder(){return CancelOrder{{{},{},MsgType::CancelOrder}};}
 
 // response, no need to initialize presence map
 #pragma pack(1)
@@ -2255,7 +2149,6 @@ struct CancelRejected : MsgHeader {
     OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(rejectCode().end(), presenceMap, 63-7);}
     OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(text().end(), presenceMap, 63-8);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(side().end());}
-    CancelRejected():MsgHeader(MsgType::OrderCancelRejected) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(CancelRejected);}
@@ -2264,15 +2157,8 @@ struct CancelRejected : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelRejected& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -2285,9 +2171,10 @@ inline std::ostream& operator<<(std::ostream& os, const CancelRejected& msg) {
        << "rejectCode=" << const_cast<CancelRejected&>(msg).rejectCode() << ";"
        << "text=" << const_cast<CancelRejected&>(msg).text() << ";"
        << "side=" << const_cast<CancelRejected&>(msg).side() << ";"
-       << "chksum=" << const_cast<CancelRejected&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+CancelRejected Create_CancelRejected(){return CancelRejected{{{},{},MsgType::OrderCancelRejected}};}
 
 struct ExecType {
     using value_type = char;
@@ -2565,7 +2452,7 @@ inline std::ostream& operator<<(std::ostream& os, const ExecReportLegEntry& msg)
        << "legAllocID=" << msg.legAllocID << ";"
        << "legLastPrice=" << msg.legLastPrice << ";"
        << "legLastQty=" << msg.legLastQty << ";"
-       ; return os; 
+       ; return os;
 }
 
 #pragma pack(1)
@@ -2582,7 +2469,7 @@ struct ExecReportLegsGroup {
 inline std::ostream& operator<<(std::ostream& os, const ExecReportLegsGroup& msg) {
     os << "noLegs=" << msg.noLegs << ";"
        << "legs=" << const_cast<ExecReportLegsGroup&>(msg).legs() << ";"
-       ; return os; 
+       ; return os;
 }
 
 // response, no need to initialize presence map
@@ -2656,7 +2543,6 @@ struct ExecutionReport : MsgHeader {
     OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> leavesQty() {return OptionalRef<UInt32, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cumQty().end(), presenceMap1, 63-17);}
     OptionalRef<ExecReportLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> legsGroup() {return OptionalRef<ExecReportLegsGroup, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(leavesQty().end(), presenceMap1, 63-18);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(legsGroup().end());}
-    ExecutionReport():MsgHeader(MsgType::ExecutionReport) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(ExecutionReport);}
@@ -2665,15 +2551,8 @@ struct ExecutionReport : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -2740,9 +2619,10 @@ inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
        << "cumQty=" << const_cast<ExecutionReport&>(msg).cumQty() << ";"
        << "leavesQty=" << const_cast<ExecutionReport&>(msg).leavesQty() << ";"
        << "legsGroup=" << const_cast<ExecutionReport&>(msg).legsGroup() << ";"
-       << "chksum=" << const_cast<ExecutionReport&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+ExecutionReport Create_ExecutionReport(){return ExecutionReport{{{},{},MsgType::ExecutionReport}};}
 
 struct MassCancelRequestType {
     using value_type = uint8_t;
@@ -2864,7 +2744,7 @@ inline ostreamT& operator<<(ostreamT& os, const MassCanelResponse& v){
 
 #pragma pack(1)
 struct MassCancelRequest : MsgHeader {
-    PresenceMap presenceMap = 0b101101UL << 58UL;
+    PresenceMap presenceMap{0b101101UL << 58UL};
     PresenceMap presenceMap1;
     PresenceMap presenceMap2;
     PresenceMap presenceMap3;
@@ -2880,7 +2760,6 @@ struct MassCancelRequest : MsgHeader {
     OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> brokerClientID() {return OptionalRef<String17, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(quoteID().end(), presenceMap, 63-12);}
     OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> side() {return OptionalRef<Side, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(brokerClientID().end(), presenceMap, 63-13);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(side().end());}
-    MassCancelRequest():MsgHeader(MsgType::MassCancelRequest) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MassCancelRequest);}
@@ -2889,15 +2768,8 @@ struct MassCancelRequest : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancelRequest& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -2912,9 +2784,11 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancelRequest& msg) 
        << "quoteID=" << const_cast<MassCancelRequest&>(msg).quoteID() << ";"
        << "brokerClientID=" << const_cast<MassCancelRequest&>(msg).brokerClientID() << ";"
        << "side=" << const_cast<MassCancelRequest&>(msg).side() << ";"
-       << "chksum=" << const_cast<MassCancelRequest&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
+MassCancelRequest Create_MassCancelRequest(){return MassCancelRequest{{{},{},MsgType::MassCancelRequest}};}
+
 
 struct MassCancelRejectReason {
     using value_type = uint16_t;
@@ -2978,7 +2852,6 @@ struct MassCancelReport : MsgHeader {
     OptionalRef<MassCancelRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> cancelRejectReason() {return OptionalRef<MassCancelRejectReason, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(side().end(), presenceMap, 63-14);}
     OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>> text() {return OptionalRef<String76, LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>>(cancelRejectReason().end(), presenceMap, 63-15);}
     FloatingRef<UInt32> chksum() {return FloatingRef<UInt32>(text().end());}
-    MassCancelReport():MsgHeader(MsgType::MassCancelReport) {};
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MassCancelReport);}
@@ -2987,15 +2860,8 @@ struct MassCancelReport : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancelReport& msg) {
-    os << "startOfMessage=" << msg.startOfMessage << ";"
-       << "msgLength=" << msg.msgLength << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqNo=" << msg.seqNo << ";"
-       << "possDump=" << msg.possDump << ";"
-       << "compID=" << msg.compID << ";"
-       << "sendingTime=" << msg.sendingTime << ";"
-       << "originalSendingTime=" << msg.originalSendingTime << ";"
-       << "presenceMap=" << msg.presenceMap << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "presenceMap=" << msg.presenceMap << ";"
        << "presenceMap1=" << msg.presenceMap1 << ";"
        << "presenceMap2=" << msg.presenceMap2 << ";"
        << "presenceMap3=" << msg.presenceMap3 << ";"
@@ -3015,10 +2881,10 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancelReport& msg) {
        << "side=" << const_cast<MassCancelReport&>(msg).side() << ";"
        << "cancelRejectReason=" << const_cast<MassCancelReport&>(msg).cancelRejectReason() << ";"
        << "text=" << const_cast<MassCancelReport&>(msg).text() << ";"
-       << "chksum=" << const_cast<MassCancelReport&>(msg).chksum() << ";"
-       ; return os; 
+       << "chksum=" << msg.chksum << ";"
+       ; return os;
 }
-
+MassCancelReport Create_MassCancelReport(){return MassCancelReport{{{},{},MsgType::MassCancelReport}};}
 
 
 

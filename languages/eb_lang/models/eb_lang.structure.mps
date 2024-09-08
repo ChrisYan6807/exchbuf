@@ -610,19 +610,6 @@
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
   </node>
-  <node concept="1TIwiD" id="66x_0s6dzMZ">
-    <property role="EcuMT" value="7035066850819325119" />
-    <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessagePresenceTrueMember" />
-    <property role="34LRSv" value="floating" />
-    <ref role="1TJDcQ" node="5hSnPGNaBks" resolve="EBMessageMemberVar" />
-    <node concept="1TJgyj" id="66x_0s6dzN0" role="1TKVEi">
-      <property role="IQ2ns" value="7035066850819325120" />
-      <property role="20kJfa" value="type" />
-      <property role="20lbJX" value="fLJekj4/_1" />
-      <ref role="20lvS9" node="79EjCryfNNN" resolve="EBTypeStatement" />
-    </node>
-  </node>
   <node concept="1TIwiD" id="1dEiquzG$4Z">
     <property role="EcuMT" value="1399011618606694719" />
     <property role="3GE5qa" value="statement" />

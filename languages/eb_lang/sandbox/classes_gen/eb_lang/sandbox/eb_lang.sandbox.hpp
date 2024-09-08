@@ -198,35 +198,13 @@ inline std::ostream& operator<<(std::ostream& os, const header3& msg) {
 }
 
 #pragma pack(1)
-struct grp_entry {
-    U16 n1;
-    U16 n2;
-    char* begin() {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    size_t size() {return sizeof(grp_entry);}
-    size_t length() {return size();}
-};
-#pragma pack()
-
-inline std::ostream& operator<<(std::ostream& os, const grp_entry& msg) {
-    os << "n1=" << msg.n1 << ";"
-       << "n2=" << msg.n2 << ";"
-       ; return os; 
-}
-
-#pragma pack(1)
 struct msg4 : header3 {
     U8 len;
     enum1 msgT;
-    U8 num;
-    U8 num1;
-    BlockRef<grp_entry> group() {return BlockRef<grp_entry>(begin()+size(), num);}
-    BlockRef<grp_entry> group1() {return BlockRef<grp_entry>(group().end(), num1);}
-    FloatingRef<U8> chk_sum() {return FloatingRef<U8>(group1().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(msg4);}
-    size_t length() {return chk_sum().end()-begin();}
+    size_t length() {return size();}
 };
 #pragma pack()
 
@@ -235,11 +213,6 @@ inline std::ostream& operator<<(std::ostream& os, const msg4& msg) {
        << "magic=" << msg.magic << ";"
        << "len=" << msg.len << ";"
        << "msgT=" << msg.msgT << ";"
-       << "num=" << msg.num << ";"
-       << "num1=" << msg.num1 << ";"
-       << "group=" << const_cast<msg4&>(msg).group() << ";"
-       << "group1=" << const_cast<msg4&>(msg).group1() << ";"
-       << "chk_sum=" << msg.chk_sum << ";"
        ; return os; 
 }
 

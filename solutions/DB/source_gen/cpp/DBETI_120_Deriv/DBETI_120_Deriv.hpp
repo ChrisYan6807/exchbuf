@@ -6552,7 +6552,7 @@ struct AffectedOrderRequestsGrpComp {
 inline std::ostream& operator<<(std::ostream& os, const AffectedOrderRequestsGrpComp& msg) {
     os << "affectedOrderRequestID=" << msg.affectedOrderRequestID << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketExecGrpComp {
@@ -6574,7 +6574,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketExecGrpComp& msg) 
        << "allocID=" << msg.allocID << ";"
        << "sideTrdSubTyp=" << msg.sideTrdSubTyp << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketRootPartyGrpComp {
@@ -6596,7 +6596,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketRootPartyGrpComp& 
        << "rootPartyContraTrader=" << msg.rootPartyContraTrader << ";"
        << "basketSideTradeReportID=" << msg.basketSideTradeReportID << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketSideAllocExtBCGrpComp {
@@ -6670,7 +6670,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketSideAllocExtBCGrpC
        << "custOrderHandlingInst=" << msg.custOrderHandlingInst << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketSideAllocExtGrpComp {
@@ -6740,7 +6740,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketSideAllocExtGrpCom
        << "custOrderHandlingInst=" << msg.custOrderHandlingInst << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketSideAllocGrpComp {
@@ -6770,7 +6770,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketSideAllocGrpComp& 
        << "partyExecutingFirm=" << msg.partyExecutingFirm << ";"
        << "partyExecutingTrader=" << msg.partyExecutingTrader << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossRequestAckSideGrpComp {
@@ -6790,7 +6790,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossRequestAckSideGrpCo
        << "inputSource=" << msg.inputSource << ";"
        << "side=" << msg.side << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossRequestSideGrpComp {
@@ -6856,7 +6856,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossRequestSideGrpComp&
        << "partyIDLocationID=" << msg.partyIDLocationID << ";"
        << "partyEndClientIdentification=" << msg.partyEndClientIdentification << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct EnrichmentRulesGrpComp {
@@ -6890,7 +6890,7 @@ inline std::ostream& operator<<(std::ostream& os, const EnrichmentRulesGrpComp& 
        << "freeText2=" << msg.freeText2 << ";"
        << "freeText3=" << msg.freeText3 << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct FillsGrpComp {
@@ -6914,7 +6914,7 @@ inline std::ostream& operator<<(std::ostream& os, const FillsGrpComp& msg) {
        << "fillExecID=" << msg.fillExecID << ";"
        << "fillLiquidityInd=" << msg.fillLiquidityInd << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrmntLegExecGrpComp {
@@ -6940,7 +6940,7 @@ inline std::ostream& operator<<(std::ostream& os, const InstrmntLegExecGrpComp& 
        << "legSide=" << msg.legSide << ";"
        << "fillRefID=" << msg.fillRefID << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrmtLegGrpComp {
@@ -6966,7 +6966,7 @@ inline std::ostream& operator<<(std::ostream& os, const InstrmtLegGrpComp& msg) 
        << "legSide=" << msg.legSide << ";"
        << "legSecurityType=" << msg.legSecurityType << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrmtMatchSideGrpComp {
@@ -7006,7 +7006,7 @@ inline std::ostream& operator<<(std::ostream& os, const InstrmtMatchSideGrpComp&
        << "effectOnBasket=" << msg.effectOnBasket << ";"
        << "tradeReportText=" << msg.tradeReportText << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrumentAttributeGrpComp {
@@ -7024,7 +7024,7 @@ inline std::ostream& operator<<(std::ostream& os, const InstrumentAttributeGrpCo
     os << "instrAttribType=" << msg.instrAttribType << ";"
        << "instrAttribValue=" << msg.instrAttribValue << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrumentEventGrpComp {
@@ -7042,7 +7042,7 @@ inline std::ostream& operator<<(std::ostream& os, const InstrumentEventGrpComp& 
     os << "eventDate=" << msg.eventDate << ";"
        << "eventType=" << msg.eventType << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct LegOrdGrpComp {
@@ -7060,7 +7060,7 @@ inline std::ostream& operator<<(std::ostream& os, const LegOrdGrpComp& msg) {
     os << "legAccount=" << msg.legAccount << ";"
        << "legPositionEffect=" << msg.legPositionEffect << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMParameterGrpComp {
@@ -7084,7 +7084,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMParameterGrpComp& msg)
        << "vega=" << msg.vega << ";"
        << "pctCount=" << msg.pctCount << ";"
        << "targetPartyIDSessionID=" << msg.targetPartyIDSessionID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MessageHeaderInComp {
@@ -7104,7 +7104,7 @@ inline std::ostream& operator<<(std::ostream& os, const MessageHeaderInComp& msg
        << "templateID=" << msg.templateID << ";"
        << "networkMsgID=" << msg.networkMsgID << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MessageHeaderOutComp {
@@ -7122,7 +7122,7 @@ inline std::ostream& operator<<(std::ostream& os, const MessageHeaderOutComp& ms
     os << "bodyLen=" << msg.bodyLen << ";"
        << "templateID=" << msg.templateID << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NRBCHeaderComp {
@@ -7144,7 +7144,7 @@ inline std::ostream& operator<<(std::ostream& os, const NRBCHeaderComp& msg) {
        << "applID=" << msg.applID << ";"
        << "lastFragment=" << msg.lastFragment << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NRResponseHeaderMEComp {
@@ -7172,7 +7172,7 @@ inline std::ostream& operator<<(std::ostream& os, const NRResponseHeaderMEComp& 
        << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "lastFragment=" << msg.lastFragment << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NotAffectedOrdersGrpComp {
@@ -7188,7 +7188,7 @@ struct NotAffectedOrdersGrpComp {
 inline std::ostream& operator<<(std::ostream& os, const NotAffectedOrdersGrpComp& msg) {
     os << "notAffectedOrderID=" << msg.notAffectedOrderID << ";"
        << "notAffOrigClOrdID=" << msg.notAffOrigClOrdID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NotAffectedSecuritiesGrpComp {
@@ -7202,7 +7202,7 @@ struct NotAffectedSecuritiesGrpComp {
 
 inline std::ostream& operator<<(std::ostream& os, const NotAffectedSecuritiesGrpComp& msg) {
     os << "notAffectedSecurityID=" << msg.notAffectedSecurityID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NotifHeaderComp {
@@ -7216,7 +7216,7 @@ struct NotifHeaderComp {
 
 inline std::ostream& operator<<(std::ostream& os, const NotifHeaderComp& msg) {
     os << "sendingTime=" << msg.sendingTime << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct OrderBookItemGrpComp {
@@ -7244,7 +7244,7 @@ inline std::ostream& operator<<(std::ostream& os, const OrderBookItemGrpComp& ms
        << "mDBookType=" << msg.mDBookType << ";"
        << "mDSubBookType=" << msg.mDSubBookType << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct OrderEntryGrpComp {
@@ -7272,7 +7272,7 @@ inline std::ostream& operator<<(std::ostream& os, const OrderEntryGrpComp& msg) 
        << "side=" << msg.side << ";"
        << "productComplex=" << msg.productComplex << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct OrderEventGrpComp {
@@ -7294,7 +7294,7 @@ inline std::ostream& operator<<(std::ostream& os, const OrderEventGrpComp& msg) 
        << "orderEventMatchID=" << msg.orderEventMatchID << ";"
        << "orderEventReason=" << msg.orderEventReason << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct PartyDetailsGrpComp {
@@ -7318,7 +7318,7 @@ inline std::ostream& operator<<(std::ostream& os, const PartyDetailsGrpComp& msg
        << "partyDetailStatus=" << msg.partyDetailStatus << ";"
        << "partyDetailDeskID=" << msg.partyDetailDeskID << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuotReqLegsGrpComp {
@@ -7342,7 +7342,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuotReqLegsGrpComp& msg)
        << "legSecurityType=" << msg.legSecurityType << ";"
        << "legSide=" << msg.legSide << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteEntryAckGrpComp {
@@ -7366,7 +7366,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteEntryAckGrpComp& ms
        << "quoteEntryStatus=" << msg.quoteEntryStatus << ";"
        << "side=" << msg.side << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteEntryGrpComp {
@@ -7388,7 +7388,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteEntryGrpComp& msg) 
        << "bidSize=" << msg.bidSize << ";"
        << "offerPx=" << msg.offerPx << ";"
        << "offerSize=" << msg.offerSize << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteEventGrpComp {
@@ -7422,7 +7422,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteEventGrpComp& msg) 
        << "quoteEventLiquidityInd=" << msg.quoteEventLiquidityInd << ";"
        << "quoteEventReason=" << msg.quoteEventReason << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteLegExecGrpComp {
@@ -7448,7 +7448,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteLegExecGrpComp& msg
        << "legSide=" << msg.legSide << ";"
        << "noQuoteEventsIndex=" << msg.noQuoteEventsIndex << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RBCHeaderComp {
@@ -7476,7 +7476,7 @@ inline std::ostream& operator<<(std::ostream& os, const RBCHeaderComp& msg) {
        << "applID=" << msg.applID << ";"
        << "lastFragment=" << msg.lastFragment << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RBCHeaderMEComp {
@@ -7508,7 +7508,7 @@ inline std::ostream& operator<<(std::ostream& os, const RBCHeaderMEComp& msg) {
        << "applResendFlag=" << msg.applResendFlag << ";"
        << "lastFragment=" << msg.lastFragment << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RRAUpdateBasePartyAckGrpComp {
@@ -7526,7 +7526,7 @@ inline std::ostream& operator<<(std::ostream& os, const RRAUpdateBasePartyAckGrp
     os << "partyDetailExecutingUnit=" << msg.partyDetailExecutingUnit << ";"
        << "pad1=" << msg.pad1 << ";"
        << "riskLimitResult=" << msg.riskLimitResult << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RRAUpdateBasePartyGrpComp {
@@ -7548,7 +7548,7 @@ inline std::ostream& operator<<(std::ostream& os, const RRAUpdateBasePartyGrpCom
        << "riskLimitID=" << msg.riskLimitID << ";"
        << "partyDetailExecutingUnit=" << msg.partyDetailExecutingUnit << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RequestHeaderComp {
@@ -7564,7 +7564,7 @@ struct RequestHeaderComp {
 inline std::ostream& operator<<(std::ostream& os, const RequestHeaderComp& msg) {
     os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "senderSubID=" << msg.senderSubID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ResponseHeaderComp {
@@ -7584,7 +7584,7 @@ inline std::ostream& operator<<(std::ostream& os, const ResponseHeaderComp& msg)
        << "sendingTime=" << msg.sendingTime << ";"
        << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ResponseHeaderMEComp {
@@ -7616,7 +7616,7 @@ inline std::ostream& operator<<(std::ostream& os, const ResponseHeaderMEComp& ms
        << "applID=" << msg.applID << ";"
        << "applMsgID=" << msg.applMsgID << ";"
        << "lastFragment=" << msg.lastFragment << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RiskLimitQtyGrpComp {
@@ -7634,7 +7634,7 @@ inline std::ostream& operator<<(std::ostream& os, const RiskLimitQtyGrpComp& msg
     os << "riskLimitQty=" << msg.riskLimitQty << ";"
        << "riskLimitType=" << msg.riskLimitType << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RiskLimitsRptGrpComp {
@@ -7668,7 +7668,7 @@ inline std::ostream& operator<<(std::ostream& os, const RiskLimitsRptGrpComp& ms
        << "riskLimitViolationIndicator=" << msg.riskLimitViolationIndicator << ";"
        << "riskLimitGroup=" << msg.riskLimitGroup << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSHitQuoteGrpComp {
@@ -7688,7 +7688,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSHitQuoteGrpComp& msg
        << "quoteID=" << msg.quoteID << ";"
        << "side=" << msg.side << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSQuoteEntryGrpComp {
@@ -7738,7 +7738,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteEntryGrpComp& m
        << "partyExecutingTrader=" << msg.partyExecutingTrader << ";"
        << "partyEnteringTrader=" << msg.partyEnteringTrader << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSQuoteGrpComp {
@@ -7752,7 +7752,7 @@ struct SRQSQuoteGrpComp {
 
 inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteGrpComp& msg) {
     os << "quoteID=" << msg.quoteID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSTargetPartyTrdGrpComp {
@@ -7778,7 +7778,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSTargetPartyTrdGrpCom
        << "targetPartyExecutingTrader=" << msg.targetPartyExecutingTrader << ";"
        << "targetPartyEnteringTrader=" << msg.targetPartyEnteringTrader << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SessionsGrpComp {
@@ -7798,7 +7798,7 @@ inline std::ostream& operator<<(std::ostream& os, const SessionsGrpComp& msg) {
        << "sessionMode=" << msg.sessionMode << ";"
        << "sessionSubMode=" << msg.sessionSubMode << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SideAllocExtGrpComp {
@@ -7870,7 +7870,7 @@ inline std::ostream& operator<<(std::ostream& os, const SideAllocExtGrpComp& msg
        << "custOrderHandlingInst=" << msg.custOrderHandlingInst << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad1_1=" << msg.pad1_1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SideAllocGrpComp {
@@ -7896,7 +7896,7 @@ inline std::ostream& operator<<(std::ostream& os, const SideAllocGrpComp& msg) {
        << "partyExecutingFirm=" << msg.partyExecutingFirm << ";"
        << "partyExecutingTrader=" << msg.partyExecutingTrader << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SideAllocGrpBCComp {
@@ -7926,7 +7926,7 @@ inline std::ostream& operator<<(std::ostream& os, const SideAllocGrpBCComp& msg)
        << "side=" << msg.side << ";"
        << "tradeAllocStatus=" << msg.tradeAllocStatus << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SideCrossLegGrpComp {
@@ -7946,7 +7946,7 @@ inline std::ostream& operator<<(std::ostream& os, const SideCrossLegGrpComp& msg
        << "legPositionEffect=" << msg.legPositionEffect << ";"
        << "legAccount=" << msg.legAccount << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SmartPartyDetailGrpComp {
@@ -7964,7 +7964,7 @@ inline std::ostream& operator<<(std::ostream& os, const SmartPartyDetailGrpComp&
     os << "partyDetailExecutingUnit=" << msg.partyDetailExecutingUnit << ";"
        << "partyDetailExecutingTrader=" << msg.partyDetailExecutingTrader << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TargetPartiesComp {
@@ -8006,7 +8006,7 @@ inline std::ostream& operator<<(std::ostream& os, const TargetPartiesComp& msg) 
        << "partyDetailStatus=" << msg.partyDetailStatus << ";"
        << "partyDetailStatusInformation=" << msg.partyDetailStatusInformation << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TrdClearingPriceLegGrpComp {
@@ -8022,7 +8022,7 @@ struct TrdClearingPriceLegGrpComp {
 inline std::ostream& operator<<(std::ostream& os, const TrdClearingPriceLegGrpComp& msg) {
     os << "legSecurityID=" << msg.legSecurityID << ";"
        << "legClearingTradePrice=" << msg.legClearingTradePrice << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TrdInstrmntLegGrpComp {
@@ -8040,7 +8040,7 @@ inline std::ostream& operator<<(std::ostream& os, const TrdInstrmntLegGrpComp& m
     os << "legSecurityID=" << msg.legSecurityID << ";"
        << "legPrice=" << msg.legPrice << ";"
        << "legQty=" << msg.legQty << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UnderlyingStipGrpComp {
@@ -8058,7 +8058,7 @@ inline std::ostream& operator<<(std::ostream& os, const UnderlyingStipGrpComp& m
     os << "underlyingStipValue=" << msg.underlyingStipValue << ";"
        << "underlyingStipType=" << msg.underlyingStipType << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct AddComplexInstrumentRequest {
@@ -8092,7 +8092,7 @@ inline std::ostream& operator<<(std::ostream& os, const AddComplexInstrumentRequ
        << "complianceText=" << msg.complianceText << ";"
        << "pad7=" << msg.pad7 << ";"
        << "instrmtLegGrp=" << const_cast<AddComplexInstrumentRequest&>(msg).instrmtLegGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct AddComplexInstrumentResponse {
@@ -8138,7 +8138,7 @@ inline std::ostream& operator<<(std::ostream& os, const AddComplexInstrumentResp
        << "noLegOnbooks=" << msg.noLegOnbooks << ";"
        << "pad6=" << msg.pad6 << ";"
        << "instrmtLegGrp=" << const_cast<AddComplexInstrumentResponse&>(msg).instrmtLegGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct AddFlexibleInstrumentRequest {
@@ -8174,7 +8174,7 @@ inline std::ostream& operator<<(std::ostream& os, const AddFlexibleInstrumentReq
        << "exerciseStyle=" << msg.exerciseStyle << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct AddFlexibleInstrumentResponse {
@@ -8214,7 +8214,7 @@ inline std::ostream& operator<<(std::ostream& os, const AddFlexibleInstrumentRes
        << "putOrCall=" << msg.putOrCall << ";"
        << "exerciseStyle=" << msg.exerciseStyle << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct AddScaledSimpleInstrumentRequest {
@@ -8240,7 +8240,7 @@ inline std::ostream& operator<<(std::ostream& os, const AddScaledSimpleInstrumen
        << "quantityScalingFactor=" << msg.quantityScalingFactor << ";"
        << "multilegModel=" << msg.multilegModel << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct AddScaledSimpleInstrumentResponse {
@@ -8276,7 +8276,7 @@ inline std::ostream& operator<<(std::ostream& os, const AddScaledSimpleInstrumen
        << "impliedMarketIndicator=" << msg.impliedMarketIndicator << ";"
        << "productComplex=" << msg.productComplex << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct AmendBasketTradeRequest {
@@ -8324,7 +8324,7 @@ inline std::ostream& operator<<(std::ostream& os, const AmendBasketTradeRequest&
        << "basketRootPartyGrp=" << const_cast<AmendBasketTradeRequest&>(msg).basketRootPartyGrp() << ";"
        << "instrmtMatchSideGrp=" << const_cast<AmendBasketTradeRequest&>(msg).instrmtMatchSideGrp() << ";"
        << "basketSideAllocGrp=" << const_cast<AmendBasketTradeRequest&>(msg).basketSideAllocGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ApproveBasketTradeRequest {
@@ -8364,7 +8364,7 @@ inline std::ostream& operator<<(std::ostream& os, const ApproveBasketTradeReques
        << "basketSideTradeReportID=" << msg.basketSideTradeReportID << ";"
        << "pad5=" << msg.pad5 << ";"
        << "basketSideAllocExtGrp=" << const_cast<ApproveBasketTradeRequest&>(msg).basketSideAllocExtGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ApproveReverseTESTradeRequest {
@@ -8396,7 +8396,7 @@ inline std::ostream& operator<<(std::ostream& os, const ApproveReverseTESTradeRe
        << "trdType=" << msg.trdType << ";"
        << "tradeReportID=" << msg.tradeReportID << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ApproveTESTradeRequest {
@@ -8484,7 +8484,7 @@ inline std::ostream& operator<<(std::ostream& os, const ApproveTESTradeRequest& 
        << "complianceText=" << msg.complianceText << ";"
        << "partyEndClientIdentification=" << msg.partyEndClientIdentification << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketApproveBroadcast {
@@ -8536,7 +8536,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketApproveBroadcast& 
        << "pad5=" << msg.pad5 << ";"
        << "basketRootPartyGrp=" << const_cast<BasketApproveBroadcast&>(msg).basketRootPartyGrp() << ";"
        << "basketSideAllocExtBCGrp=" << const_cast<BasketApproveBroadcast&>(msg).basketSideAllocExtBCGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketBroadcast {
@@ -8592,7 +8592,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketBroadcast& msg) {
        << "basketRootPartyGrp=" << const_cast<BasketBroadcast&>(msg).basketRootPartyGrp() << ";"
        << "instrmtMatchSideGrp=" << const_cast<BasketBroadcast&>(msg).instrmtMatchSideGrp() << ";"
        << "basketSideAllocGrp=" << const_cast<BasketBroadcast&>(msg).basketSideAllocGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketDeleteBroadcast {
@@ -8628,7 +8628,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketDeleteBroadcast& m
        << "messageEventSource=" << msg.messageEventSource << ";"
        << "tradeReportID=" << msg.tradeReportID << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketExecutionBroadcast {
@@ -8668,7 +8668,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketExecutionBroadcast
        << "basketSideTradeReportID=" << msg.basketSideTradeReportID << ";"
        << "pad3=" << msg.pad3 << ";"
        << "basketExecGrp=" << const_cast<BasketExecutionBroadcast&>(msg).basketExecGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BasketResponse {
@@ -8688,7 +8688,7 @@ inline std::ostream& operator<<(std::ostream& os, const BasketResponse& msg) {
        << "responseHeader=" << msg.responseHeader << ";"
        << "basketExecID=" << msg.basketExecID << ";"
        << "tradeReportID=" << msg.tradeReportID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct BroadcastErrorNotification {
@@ -8716,7 +8716,7 @@ inline std::ostream& operator<<(std::ostream& os, const BroadcastErrorNotificati
        << "refApplID=" << msg.refApplID << ";"
        << "sessionStatus=" << msg.sessionStatus << ";"
        << "varText=" << const_cast<BroadcastErrorNotification&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CLIPDeletionNotification {
@@ -8754,7 +8754,7 @@ inline std::ostream& operator<<(std::ostream& os, const CLIPDeletionNotification
        << "ordStatus=" << msg.ordStatus << ";"
        << "execType=" << msg.execType << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CLIPExecutionNotification {
@@ -8806,7 +8806,7 @@ inline std::ostream& operator<<(std::ostream& os, const CLIPExecutionNotificatio
        << "pad2=" << msg.pad2 << ";"
        << "fillsGrp=" << const_cast<CLIPExecutionNotification&>(msg).fillsGrp() << ";"
        << "instrmntLegExecGrp=" << const_cast<CLIPExecutionNotification&>(msg).instrmntLegExecGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CLIPResponse {
@@ -8838,7 +8838,7 @@ inline std::ostream& operator<<(std::ostream& os, const CLIPResponse& msg) {
        << "impliedCheckPriceIndicator=" << msg.impliedCheckPriceIndicator << ";"
        << "pad6=" << msg.pad6 << ";"
        << "crossRequestAckSideGrp=" << const_cast<CLIPResponse&>(msg).crossRequestAckSideGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossRequest {
@@ -8862,7 +8862,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossRequest& msg) {
        << "orderQty=" << msg.orderQty << ";"
        << "marketSegmentID=" << msg.marketSegmentID << ";"
        << "complianceText=" << msg.complianceText << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossRequestResponse {
@@ -8880,7 +8880,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossRequestResponse& ms
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "nRResponseHeaderME=" << msg.nRResponseHeaderME << ";"
        << "execID=" << msg.execID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllOrderBroadcast {
@@ -8926,7 +8926,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderBroadcast&
        << "side=" << msg.side << ";"
        << "notAffectedOrdersGrp=" << const_cast<DeleteAllOrderBroadcast&>(msg).notAffectedOrdersGrp() << ";"
        << "affectedOrderRequestsGrp=" << const_cast<DeleteAllOrderBroadcast&>(msg).affectedOrderRequestsGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllOrderNRResponse {
@@ -8944,7 +8944,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderNRResponse
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "nRResponseHeaderME=" << msg.nRResponseHeaderME << ";"
        << "massActionReportID=" << msg.massActionReportID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllOrderQuoteEventBroadcast {
@@ -8972,7 +8972,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderQuoteEvent
        << "massActionReason=" << msg.massActionReason << ";"
        << "execInst=" << msg.execInst << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllOrderRequest {
@@ -9010,7 +9010,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderRequest& m
        << "orderOrigination=" << msg.orderOrigination << ";"
        << "partyIdInvestmentDecisionMakerQualifier=" << msg.partyIdInvestmentDecisionMakerQualifier << ";"
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllOrderResponse {
@@ -9038,7 +9038,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderResponse& 
        << "pad4=" << msg.pad4 << ";"
        << "notAffectedOrdersGrp=" << const_cast<DeleteAllOrderResponse&>(msg).notAffectedOrdersGrp() << ";"
        << "affectedOrderRequestsGrp=" << const_cast<DeleteAllOrderResponse&>(msg).affectedOrderRequestsGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllQuoteBroadcast {
@@ -9078,7 +9078,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteBroadcast&
        << "targetPartyIDDeskID=" << msg.targetPartyIDDeskID << ";"
        << "pad1=" << msg.pad1 << ";"
        << "notAffectedSecuritiesGrp=" << const_cast<DeleteAllQuoteBroadcast&>(msg).notAffectedSecuritiesGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllQuoteRequest {
@@ -9108,7 +9108,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteRequest& m
        << "partyIdInvestmentDecisionMakerQualifier=" << msg.partyIdInvestmentDecisionMakerQualifier << ";"
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteAllQuoteResponse {
@@ -9132,7 +9132,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteResponse& 
        << "noNotAffectedSecurities=" << msg.noNotAffectedSecurities << ";"
        << "pad6=" << msg.pad6 << ";"
        << "notAffectedSecuritiesGrp=" << const_cast<DeleteAllQuoteResponse&>(msg).notAffectedSecuritiesGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteBasketTradeRequest {
@@ -9162,7 +9162,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteBasketTradeRequest
        << "tradeReportType=" << msg.tradeReportType << ";"
        << "tradeReportID=" << msg.tradeReportID << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteCLIPRequest {
@@ -9196,7 +9196,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteCLIPRequest& msg) 
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "partyIdInvestmentDecisionMakerQualifier=" << msg.partyIdInvestmentDecisionMakerQualifier << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteOrderBroadcast {
@@ -9248,7 +9248,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteOrderBroadcast& ms
        << "side=" << msg.side << ";"
        << "fIXClOrdID=" << msg.fIXClOrdID << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteOrderComplexRequest {
@@ -9292,7 +9292,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteOrderComplexReques
        << "fIXClOrdID=" << msg.fIXClOrdID << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteOrderNRResponse {
@@ -9334,7 +9334,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteOrderNRResponse& m
        << "productComplex=" << msg.productComplex << ";"
        << "transactionDelayIndicator=" << msg.transactionDelayIndicator << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteOrderRequest {
@@ -9378,7 +9378,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteOrderRequest& msg)
        << "fIXClOrdID=" << msg.fIXClOrdID << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteOrderResponse {
@@ -9420,7 +9420,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteOrderResponse& msg
        << "productComplex=" << msg.productComplex << ";"
        << "transactionDelayIndicator=" << msg.transactionDelayIndicator << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteOrderSingleRequest {
@@ -9464,7 +9464,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteOrderSingleRequest
        << "fIXClOrdID=" << msg.fIXClOrdID << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeleteTESTradeRequest {
@@ -9498,7 +9498,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeleteTESTradeRequest& m
        << "tradeReportType=" << msg.tradeReportType << ";"
        << "tradeReportID=" << msg.tradeReportID << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct EnterBasketTradeRequest {
@@ -9546,7 +9546,7 @@ inline std::ostream& operator<<(std::ostream& os, const EnterBasketTradeRequest&
        << "basketRootPartyGrp=" << const_cast<EnterBasketTradeRequest&>(msg).basketRootPartyGrp() << ";"
        << "instrmtMatchSideGrp=" << const_cast<EnterBasketTradeRequest&>(msg).instrmtMatchSideGrp() << ";"
        << "basketSideAllocGrp=" << const_cast<EnterBasketTradeRequest&>(msg).basketSideAllocGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct EnterCLIPRequest {
@@ -9604,7 +9604,7 @@ inline std::ostream& operator<<(std::ostream& os, const EnterCLIPRequest& msg) {
        << "pad7=" << msg.pad7 << ";"
        << "crossRequestSideGrp=" << const_cast<EnterCLIPRequest&>(msg).crossRequestSideGrp() << ";"
        << "sideCrossLegGrp=" << const_cast<EnterCLIPRequest&>(msg).sideCrossLegGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct EnterTESTradeRequest {
@@ -9698,7 +9698,7 @@ inline std::ostream& operator<<(std::ostream& os, const EnterTESTradeRequest& ms
        << "instrumentEventGrp=" << const_cast<EnterTESTradeRequest&>(msg).instrumentEventGrp() << ";"
        << "instrumentAttributeGrp=" << const_cast<EnterTESTradeRequest&>(msg).instrumentAttributeGrp() << ";"
        << "underlyingStipGrp=" << const_cast<EnterTESTradeRequest&>(msg).underlyingStipGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ForcedLogoutNotification {
@@ -9718,7 +9718,7 @@ inline std::ostream& operator<<(std::ostream& os, const ForcedLogoutNotification
        << "notifHeader=" << msg.notifHeader << ";"
        << "varTextLen=" << msg.varTextLen << ";"
        << "varText=" << const_cast<ForcedLogoutNotification&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ForcedUserLogoutNotification {
@@ -9742,7 +9742,7 @@ inline std::ostream& operator<<(std::ostream& os, const ForcedUserLogoutNotifica
        << "varTextLen=" << msg.varTextLen << ";"
        << "userStatus=" << msg.userStatus << ";"
        << "varText=" << const_cast<ForcedUserLogoutNotification&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Heartbeat {
@@ -9756,7 +9756,7 @@ struct Heartbeat {
 
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
     os << "messageHeaderIn=" << msg.messageHeaderIn << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct HeartbeatNotification {
@@ -9772,7 +9772,7 @@ struct HeartbeatNotification {
 inline std::ostream& operator<<(std::ostream& os, const HeartbeatNotification& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "notifHeader=" << msg.notifHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireEnrichmentRuleIDListRequest {
@@ -9790,7 +9790,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireEnrichmentRuleIDL
     os << "messageHeaderIn=" << msg.messageHeaderIn << ";"
        << "requestHeader=" << msg.requestHeader << ";"
        << "lastEntityProcessed=" << msg.lastEntityProcessed << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireEnrichmentRuleIDListResponse {
@@ -9814,7 +9814,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireEnrichmentRuleIDL
        << "noEnrichmentRules=" << msg.noEnrichmentRules << ";"
        << "pad6=" << msg.pad6 << ";"
        << "enrichmentRulesGrp=" << const_cast<InquireEnrichmentRuleIDListResponse&>(msg).enrichmentRulesGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireMMParameterRequest {
@@ -9834,7 +9834,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireMMParameterReques
        << "requestHeader=" << msg.requestHeader << ";"
        << "marketSegmentID=" << msg.marketSegmentID << ";"
        << "targetPartyIDSessionID=" << msg.targetPartyIDSessionID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireMMParameterResponse {
@@ -9860,7 +9860,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireMMParameterRespon
        << "noMMParameters=" << msg.noMMParameters << ";"
        << "pad3=" << msg.pad3 << ";"
        << "mMParameterGrp=" << const_cast<InquireMMParameterResponse&>(msg).mMParameterGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireMarginBasedRiskLimitRequest {
@@ -9882,7 +9882,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireMarginBasedRiskLi
        << "partitionID=" << msg.partitionID << ";"
        << "partyDetailExecutingUnit=" << msg.partyDetailExecutingUnit << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireMarginBasedRiskLimitResponse {
@@ -9902,7 +9902,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireMarginBasedRiskLi
        << "nRResponseHeaderME=" << msg.nRResponseHeaderME << ";"
        << "marginBasedRiskLimitLong=" << msg.marginBasedRiskLimitLong << ";"
        << "marginBasedRiskLimitShort=" << msg.marginBasedRiskLimitShort << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquirePreTradeRiskLimitsRequest {
@@ -9928,7 +9928,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquirePreTradeRiskLimit
        << "partyExecutingUnit=" << msg.partyExecutingUnit << ";"
        << "riskLimitGroup=" << msg.riskLimitGroup << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireSessionListRequest {
@@ -9944,7 +9944,7 @@ struct InquireSessionListRequest {
 inline std::ostream& operator<<(std::ostream& os, const InquireSessionListRequest& msg) {
     os << "messageHeaderIn=" << msg.messageHeaderIn << ";"
        << "requestHeader=" << msg.requestHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireSessionListResponse {
@@ -9966,7 +9966,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireSessionListRespon
        << "noSessions=" << msg.noSessions << ";"
        << "pad6=" << msg.pad6 << ";"
        << "sessionsGrp=" << const_cast<InquireSessionListResponse&>(msg).sessionsGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireUserRequest {
@@ -9984,7 +9984,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireUserRequest& msg)
     os << "messageHeaderIn=" << msg.messageHeaderIn << ";"
        << "requestHeader=" << msg.requestHeader << ";"
        << "lastEntityProcessed=" << msg.lastEntityProcessed << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InquireUserResponse {
@@ -10008,7 +10008,7 @@ inline std::ostream& operator<<(std::ostream& os, const InquireUserResponse& msg
        << "noPartyDetails=" << msg.noPartyDetails << ";"
        << "pad6=" << msg.pad6 << ";"
        << "partyDetailsGrp=" << const_cast<InquireUserResponse&>(msg).partyDetailsGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct LegalNotificationBroadcast {
@@ -10032,7 +10032,7 @@ inline std::ostream& operator<<(std::ostream& os, const LegalNotificationBroadca
        << "varTextLen=" << msg.varTextLen << ";"
        << "userStatus=" << msg.userStatus << ";"
        << "varText=" << const_cast<LegalNotificationBroadcast&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct LogonRequest {
@@ -10076,7 +10076,7 @@ inline std::ostream& operator<<(std::ostream& os, const LogonRequest& msg) {
        << "applicationSystemVersion=" << msg.applicationSystemVersion << ";"
        << "applicationSystemVendor=" << msg.applicationSystemVendor << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct LogonRequestEncrypted {
@@ -10120,7 +10120,7 @@ inline std::ostream& operator<<(std::ostream& os, const LogonRequestEncrypted& m
        << "applicationSystemVersion=" << msg.applicationSystemVersion << ";"
        << "applicationSystemVendor=" << msg.applicationSystemVendor << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct LogonResponse {
@@ -10160,7 +10160,7 @@ inline std::ostream& operator<<(std::ostream& os, const LogonResponse& msg) {
        << "defaultCstmApplVerID=" << msg.defaultCstmApplVerID << ";"
        << "defaultCstmApplVerSubID=" << msg.defaultCstmApplVerSubID << ";"
        << "publicKey=" << const_cast<LogonResponse&>(msg).publicKey() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct LogoutRequest {
@@ -10176,7 +10176,7 @@ struct LogoutRequest {
 inline std::ostream& operator<<(std::ostream& os, const LogoutRequest& msg) {
     os << "messageHeaderIn=" << msg.messageHeaderIn << ";"
        << "requestHeader=" << msg.requestHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct LogoutResponse {
@@ -10192,7 +10192,7 @@ struct LogoutResponse {
 inline std::ostream& operator<<(std::ostream& os, const LogoutResponse& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "responseHeader=" << msg.responseHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMParameterDefinitionRequest {
@@ -10224,7 +10224,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMParameterDefinitionReq
        << "targetPartyIDSessionID=" << msg.targetPartyIDSessionID << ";"
        << "pctCount=" << msg.pctCount << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMParameterDefinitionResponse {
@@ -10242,7 +10242,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMParameterDefinitionRes
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "nRResponseHeaderME=" << msg.nRResponseHeaderME << ";"
        << "execID=" << msg.execID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassOrder {
@@ -10316,7 +10316,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassOrder& msg) {
        << "noOrderEntries=" << msg.noOrderEntries << ";"
        << "pad7=" << msg.pad7 << ";"
        << "orderEntryGrp=" << const_cast<MassOrder&>(msg).orderEntryGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassOrderAck {
@@ -10338,7 +10338,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassOrderAck& msg) {
        << "massOrderRequestID=" << msg.massOrderRequestID << ";"
        << "massOrderReportID=" << msg.massOrderReportID << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassQuoteRequest {
@@ -10386,7 +10386,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassQuoteRequest& msg) {
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "pad6=" << msg.pad6 << ";"
        << "quoteEntryGrp=" << const_cast<MassQuoteRequest&>(msg).quoteEntryGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassQuoteResponse {
@@ -10414,7 +10414,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassQuoteResponse& msg) 
        << "noQuoteSideEntries=" << msg.noQuoteSideEntries << ";"
        << "pad3=" << msg.pad3 << ";"
        << "quoteEntryAckGrp=" << const_cast<MassQuoteResponse&>(msg).quoteEntryAckGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyBasketTradeRequest {
@@ -10462,7 +10462,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyBasketTradeRequest
        << "basketRootPartyGrp=" << const_cast<ModifyBasketTradeRequest&>(msg).basketRootPartyGrp() << ";"
        << "instrmtMatchSideGrp=" << const_cast<ModifyBasketTradeRequest&>(msg).instrmtMatchSideGrp() << ";"
        << "basketSideAllocGrp=" << const_cast<ModifyBasketTradeRequest&>(msg).basketSideAllocGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderComplexRequest {
@@ -10562,7 +10562,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderComplexReques
        << "noLegOnbooks=" << msg.noLegOnbooks << ";"
        << "pad1=" << msg.pad1 << ";"
        << "legOrdGrp=" << const_cast<ModifyOrderComplexRequest&>(msg).legOrdGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderComplexShortRequest {
@@ -10628,7 +10628,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderComplexShortR
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderNRResponse {
@@ -10680,7 +10680,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderNRResponse& m
        << "noOrderEvents=" << msg.noOrderEvents << ";"
        << "pad7=" << msg.pad7 << ";"
        << "orderEventGrp=" << const_cast<ModifyOrderNRResponse&>(msg).orderEventGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderRequest {
@@ -10792,7 +10792,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderRequest& msg)
        << "checkSumCorrection=" << msg.checkSumCorrection << ";"
        << "pad2_3=" << msg.pad2_3 << ";"
        << "legOrdGrp=" << const_cast<ModifyOrderRequest&>(msg).legOrdGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderResponse {
@@ -10846,7 +10846,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderResponse& msg
        << "noOrderEvents=" << msg.noOrderEvents << ";"
        << "pad7=" << msg.pad7 << ";"
        << "orderEventGrp=" << const_cast<ModifyOrderResponse&>(msg).orderEventGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderShortRequest {
@@ -10918,7 +10918,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderShortRequest&
        << "pad1_1=" << msg.pad1_1 << ";"
        << "checkSumCorrection=" << msg.checkSumCorrection << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderSingleRequest {
@@ -11022,7 +11022,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderSingleRequest
        << "fIXClOrdID=" << msg.fIXClOrdID << ";"
        << "partyEndClientIdentification=" << msg.partyEndClientIdentification << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyOrderSingleShortRequest {
@@ -11084,7 +11084,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyOrderSingleShortRe
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ModifyTESTradeRequest {
@@ -11140,7 +11140,7 @@ inline std::ostream& operator<<(std::ostream& os, const ModifyTESTradeRequest& m
        << "pad1=" << msg.pad1 << ";"
        << "sideAllocGrp=" << const_cast<ModifyTESTradeRequest&>(msg).sideAllocGrp() << ";"
        << "trdInstrmntLegGrp=" << const_cast<ModifyTESTradeRequest&>(msg).trdInstrmntLegGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderComplexRequest {
@@ -11234,7 +11234,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderComplexRequest& 
        << "noLegOnbooks=" << msg.noLegOnbooks << ";"
        << "pad5=" << msg.pad5 << ";"
        << "legOrdGrp=" << const_cast<NewOrderComplexRequest&>(msg).legOrdGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderComplexShortRequest {
@@ -11298,7 +11298,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderComplexShortRequ
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderNRResponse {
@@ -11346,7 +11346,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderNRResponse& msg)
        << "noOrderEvents=" << msg.noOrderEvents << ";"
        << "pad7=" << msg.pad7 << ";"
        << "orderEventGrp=" << const_cast<NewOrderNRResponse&>(msg).orderEventGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderRequest {
@@ -11454,7 +11454,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderRequest& msg) {
        << "checkSumCorrection=" << msg.checkSumCorrection << ";"
        << "pad2_2=" << msg.pad2_2 << ";"
        << "legOrdGrp=" << const_cast<NewOrderRequest&>(msg).legOrdGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderResponse {
@@ -11506,7 +11506,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderResponse& msg) {
        << "noOrderEvents=" << msg.noOrderEvents << ";"
        << "pad7=" << msg.pad7 << ";"
        << "orderEventGrp=" << const_cast<NewOrderResponse&>(msg).orderEventGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderShortRequest {
@@ -11576,7 +11576,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderShortRequest& ms
        << "pad1_1=" << msg.pad1_1 << ";"
        << "checkSumCorrection=" << msg.checkSumCorrection << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderSingleRequest {
@@ -11674,7 +11674,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderSingleRequest& m
        << "fIXClOrdID=" << msg.fIXClOrdID << ";"
        << "partyEndClientIdentification=" << msg.partyEndClientIdentification << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrderSingleShortRequest {
@@ -11734,7 +11734,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrderSingleShortReque
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewsBroadcast {
@@ -11758,7 +11758,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewsBroadcast& msg) {
        << "varTextLen=" << msg.varTextLen << ";"
        << "headline=" << msg.headline << ";"
        << "varText=" << const_cast<NewsBroadcast&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct OrderExecNotification {
@@ -11822,7 +11822,7 @@ inline std::ostream& operator<<(std::ostream& os, const OrderExecNotification& m
        << "fillsGrp=" << const_cast<OrderExecNotification&>(msg).fillsGrp() << ";"
        << "instrmntLegExecGrp=" << const_cast<OrderExecNotification&>(msg).instrmntLegExecGrp() << ";"
        << "orderEventGrp=" << const_cast<OrderExecNotification&>(msg).orderEventGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct OrderExecReportBroadcast {
@@ -11952,7 +11952,7 @@ inline std::ostream& operator<<(std::ostream& os, const OrderExecReportBroadcast
        << "fillsGrp=" << const_cast<OrderExecReportBroadcast&>(msg).fillsGrp() << ";"
        << "instrmntLegExecGrp=" << const_cast<OrderExecReportBroadcast&>(msg).instrmntLegExecGrp() << ";"
        << "orderEventGrp=" << const_cast<OrderExecReportBroadcast&>(msg).orderEventGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct OrderExecResponse {
@@ -12020,7 +12020,7 @@ inline std::ostream& operator<<(std::ostream& os, const OrderExecResponse& msg) 
        << "fillsGrp=" << const_cast<OrderExecResponse&>(msg).fillsGrp() << ";"
        << "instrmntLegExecGrp=" << const_cast<OrderExecResponse&>(msg).instrmntLegExecGrp() << ";"
        << "orderEventGrp=" << const_cast<OrderExecResponse&>(msg).orderEventGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct PartyActionReport {
@@ -12054,7 +12054,7 @@ inline std::ostream& operator<<(std::ostream& os, const PartyActionReport& msg) 
        << "marketID=" << msg.marketID << ";"
        << "partyActionType=" << msg.partyActionType << ";"
        << "requestingPartyIDEnteringFirm=" << msg.requestingPartyIDEnteringFirm << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct PartyEntitlementsUpdateReport {
@@ -12090,7 +12090,7 @@ inline std::ostream& operator<<(std::ostream& os, const PartyEntitlementsUpdateR
        << "requestingPartyClearingFirm=" << msg.requestingPartyClearingFirm << ";"
        << "partyDetailStatus=" << msg.partyDetailStatus << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct PingRequest {
@@ -12110,7 +12110,7 @@ inline std::ostream& operator<<(std::ostream& os, const PingRequest& msg) {
        << "requestHeader=" << msg.requestHeader << ";"
        << "partitionID=" << msg.partitionID << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct PingResponse {
@@ -12128,7 +12128,7 @@ inline std::ostream& operator<<(std::ostream& os, const PingResponse& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "nRResponseHeaderME=" << msg.nRResponseHeaderME << ";"
        << "transactTime=" << msg.transactTime << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct PreTradeRiskLimitResponse {
@@ -12160,7 +12160,7 @@ inline std::ostream& operator<<(std::ostream& os, const PreTradeRiskLimitRespons
        << "partyDetailExecutingUnit=" << msg.partyDetailExecutingUnit << ";"
        << "pad4=" << msg.pad4 << ";"
        << "riskLimitsRptGrp=" << const_cast<PreTradeRiskLimitResponse&>(msg).riskLimitsRptGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct PreTradeRiskLimitsDefinitionRequest {
@@ -12196,7 +12196,7 @@ inline std::ostream& operator<<(std::ostream& os, const PreTradeRiskLimitsDefini
        << "partyDetailExecutingUnit=" << msg.partyDetailExecutingUnit << ";"
        << "pad1=" << msg.pad1 << ";"
        << "riskLimitQtyGrp=" << const_cast<PreTradeRiskLimitsDefinitionRequest&>(msg).riskLimitQtyGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteActivationNotification {
@@ -12232,7 +12232,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteActivationNotificat
        << "massActionReason=" << msg.massActionReason << ";"
        << "pad2=" << msg.pad2 << ";"
        << "notAffectedSecuritiesGrp=" << const_cast<QuoteActivationNotification&>(msg).notAffectedSecuritiesGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteActivationRequest {
@@ -12266,7 +12266,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteActivationRequest& 
        << "partyIdInvestmentDecisionMakerQualifier=" << msg.partyIdInvestmentDecisionMakerQualifier << ";"
        << "executingTraderQualifier=" << msg.executingTraderQualifier << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteActivationResponse {
@@ -12290,7 +12290,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteActivationResponse&
        << "noNotAffectedSecurities=" << msg.noNotAffectedSecurities << ";"
        << "pad6=" << msg.pad6 << ";"
        << "notAffectedSecuritiesGrp=" << const_cast<QuoteActivationResponse&>(msg).notAffectedSecuritiesGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteExecutionReport {
@@ -12320,7 +12320,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteExecutionReport& ms
        << "pad1=" << msg.pad1 << ";"
        << "quoteEventGrp=" << const_cast<QuoteExecutionReport&>(msg).quoteEventGrp() << ";"
        << "quoteLegExecGrp=" << const_cast<QuoteExecutionReport&>(msg).quoteLegExecGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RFQRequest {
@@ -12348,7 +12348,7 @@ inline std::ostream& operator<<(std::ostream& os, const RFQRequest& msg) {
        << "side=" << msg.side << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RFQResponse {
@@ -12366,7 +12366,7 @@ inline std::ostream& operator<<(std::ostream& os, const RFQResponse& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "nRResponseHeaderME=" << msg.nRResponseHeaderME << ";"
        << "execID=" << msg.execID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Reject {
@@ -12390,7 +12390,7 @@ inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
        << "varTextLen=" << msg.varTextLen << ";"
        << "sessionStatus=" << msg.sessionStatus << ";"
        << "varText=" << const_cast<Reject&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RetransmitMEMessageRequest {
@@ -12418,7 +12418,7 @@ inline std::ostream& operator<<(std::ostream& os, const RetransmitMEMessageReque
        << "applBegMsgID=" << msg.applBegMsgID << ";"
        << "applEndMsgID=" << msg.applEndMsgID << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RetransmitMEMessageResponse {
@@ -12442,7 +12442,7 @@ inline std::ostream& operator<<(std::ostream& os, const RetransmitMEMessageRespo
        << "applEndMsgID=" << msg.applEndMsgID << ";"
        << "refApplLastMsgID=" << msg.refApplLastMsgID << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RetransmitRequest {
@@ -12468,7 +12468,7 @@ inline std::ostream& operator<<(std::ostream& os, const RetransmitRequest& msg) 
        << "partitionID=" << msg.partitionID << ";"
        << "refApplID=" << msg.refApplID << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RetransmitResponse {
@@ -12492,7 +12492,7 @@ inline std::ostream& operator<<(std::ostream& os, const RetransmitResponse& msg)
        << "refApplLastSeqNum=" << msg.refApplLastSeqNum << ";"
        << "applTotalMessageCount=" << msg.applTotalMessageCount << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ReverseTESTradeRequest {
@@ -12524,7 +12524,7 @@ inline std::ostream& operator<<(std::ostream& os, const ReverseTESTradeRequest& 
        << "tradeReportID=" << msg.tradeReportID << ";"
        << "reversalReasonText=" << msg.reversalReasonText << ";"
        << "pad6=" << msg.pad6 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RiskNotificationBroadcast {
@@ -12562,7 +12562,7 @@ inline std::ostream& operator<<(std::ostream& os, const RiskNotificationBroadcas
        << "requestingPartyEnteringFirm=" << msg.requestingPartyEnteringFirm << ";"
        << "requestingPartyClearingFirm=" << msg.requestingPartyClearingFirm << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSCreateDealNotification {
@@ -12664,7 +12664,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSCreateDealNotificati
        << "pad3=" << msg.pad3 << ";"
        << "orderBookItemGrp=" << const_cast<SRQSCreateDealNotification&>(msg).orderBookItemGrp() << ";"
        << "sRQSTargetPartyTrdGrp=" << const_cast<SRQSCreateDealNotification&>(msg).sRQSTargetPartyTrdGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSDealNotification {
@@ -12746,7 +12746,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSDealNotification& ms
        << "partyIDTakeUpTradingFirm=" << msg.partyIDTakeUpTradingFirm << ";"
        << "pad1=" << msg.pad1 << ";"
        << "sRQSTargetPartyTrdGrp=" << const_cast<SRQSDealNotification&>(msg).sRQSTargetPartyTrdGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSDealResponse {
@@ -12780,7 +12780,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSDealResponse& msg) {
        << "firmNegotiationID=" << msg.firmNegotiationID << ";"
        << "pad3=" << msg.pad3 << ";"
        << "sRQSQuoteGrp=" << const_cast<SRQSDealResponse&>(msg).sRQSQuoteGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSEnterQuoteRequest {
@@ -12860,7 +12860,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSEnterQuoteRequest& m
        << "complianceText=" << msg.complianceText << ";"
        << "partyIDTakeUpTradingFirm=" << msg.partyIDTakeUpTradingFirm << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSHitQuoteRequest {
@@ -12946,7 +12946,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSHitQuoteRequest& msg
        << "partyEndClientIdentification=" << msg.partyEndClientIdentification << ";"
        << "pad6=" << msg.pad6 << ";"
        << "sRQSHitQuoteGrp=" << const_cast<SRQSHitQuoteRequest&>(msg).sRQSHitQuoteGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSInquireSmartRespondentRequest {
@@ -12972,7 +12972,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSInquireSmartResponde
        << "enlightRFQAvgRespTimeRanking=" << msg.enlightRFQAvgRespTimeRanking << ";"
        << "enlightRFQAvgRespRateRanking=" << msg.enlightRFQAvgRespRateRanking << ";"
        << "tradeToQuoteRatioRanking=" << msg.tradeToQuoteRatioRanking << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSInquireSmartRespondentResponse {
@@ -12996,7 +12996,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSInquireSmartResponde
        << "noPartyDetails=" << msg.noPartyDetails << ";"
        << "pad2=" << msg.pad2 << ";"
        << "smartPartyDetailGrp=" << const_cast<SRQSInquireSmartRespondentResponse&>(msg).smartPartyDetailGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSNegotiationNotification {
@@ -13072,7 +13072,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSNegotiationNotificat
        << "partyOrderOriginationTrader=" << msg.partyOrderOriginationTrader << ";"
        << "chargeID=" << msg.chargeID << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSNegotiationRequesterNotification {
@@ -13154,7 +13154,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSNegotiationRequester
        << "chargeID=" << msg.chargeID << ";"
        << "pad6=" << msg.pad6 << ";"
        << "targetParties=" << const_cast<SRQSNegotiationRequesterNotification&>(msg).targetParties() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSNegotiationStatusNotification {
@@ -13182,7 +13182,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSNegotiationStatusNot
        << "quoteCondition=" << msg.quoteCondition << ";"
        << "firmNegotiationID=" << msg.firmNegotiationID << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSOpenNegotiationNotification {
@@ -13272,7 +13272,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSOpenNegotiationNotif
        << "chargeID=" << msg.chargeID << ";"
        << "pad2=" << msg.pad2 << ";"
        << "quotReqLegsGrp=" << const_cast<SRQSOpenNegotiationNotification&>(msg).quotReqLegsGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSOpenNegotiationRequest {
@@ -13354,7 +13354,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSOpenNegotiationReque
        << "pad6=" << msg.pad6 << ";"
        << "quotReqLegsGrp=" << const_cast<SRQSOpenNegotiationRequest&>(msg).quotReqLegsGrp() << ";"
        << "targetParties=" << const_cast<SRQSOpenNegotiationRequest&>(msg).targetParties() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSOpenNegotiationRequesterNotification {
@@ -13448,7 +13448,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSOpenNegotiationReque
        << "chargeID=" << msg.chargeID << ";"
        << "quotReqLegsGrp=" << const_cast<SRQSOpenNegotiationRequesterNotification&>(msg).quotReqLegsGrp() << ";"
        << "targetParties=" << const_cast<SRQSOpenNegotiationRequesterNotification&>(msg).targetParties() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSQuoteNotification {
@@ -13530,7 +13530,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteNotification& m
        << "partyIDLocationID=" << msg.partyIDLocationID << ";"
        << "complianceText=" << msg.complianceText << ";"
        << "partyIDTakeUpTradingFirm=" << msg.partyIDTakeUpTradingFirm << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSQuoteResponse {
@@ -13552,7 +13552,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteResponse& msg) 
        << "quoteID=" << msg.quoteID << ";"
        << "negotiationID=" << msg.negotiationID << ";"
        << "quoteReqID=" << msg.quoteReqID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSQuoteSnapshotNotification {
@@ -13576,7 +13576,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteSnapshotNotific
        << "messageEventSource=" << msg.messageEventSource << ";"
        << "pad6=" << msg.pad6 << ";"
        << "sRQSQuoteEntryGrp=" << const_cast<SRQSQuoteSnapshotNotification&>(msg).sRQSQuoteEntryGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSQuoteSnapshotRequest {
@@ -13592,7 +13592,7 @@ struct SRQSQuoteSnapshotRequest {
 inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteSnapshotRequest& msg) {
     os << "messageHeaderIn=" << msg.messageHeaderIn << ";"
        << "requestHeader=" << msg.requestHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSQuotingStatusRequest {
@@ -13620,7 +13620,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSQuotingStatusRequest
        << "partyExecutingFirm=" << msg.partyExecutingFirm << ";"
        << "partyExecutingTrader=" << msg.partyExecutingTrader << ";"
        << "freeText5=" << msg.freeText5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSResponse {
@@ -13636,7 +13636,7 @@ struct SRQSResponse {
 inline std::ostream& operator<<(std::ostream& os, const SRQSResponse& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "responseHeader=" << msg.responseHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSStatusBroadcast {
@@ -13658,7 +13658,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSStatusBroadcast& msg
        << "tradeDate=" << msg.tradeDate << ";"
        << "tradSesEvent=" << msg.tradSesEvent << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSUpdateDealStatusRequest {
@@ -13698,7 +13698,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSUpdateDealStatusRequ
        << "partyExecutingTrader=" << msg.partyExecutingTrader << ";"
        << "freeText5=" << msg.freeText5 << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SRQSUpdateNegotiationRequest {
@@ -13758,7 +13758,7 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSUpdateNegotiationReq
        << "partyOrderOriginationTrader=" << msg.partyOrderOriginationTrader << ";"
        << "chargeID=" << msg.chargeID << ";"
        << "targetParties=" << const_cast<SRQSUpdateNegotiationRequest&>(msg).targetParties() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ServiceAvailabilityBroadcast {
@@ -13798,7 +13798,7 @@ inline std::ostream& operator<<(std::ostream& os, const ServiceAvailabilityBroad
        << "t7EntryServiceStatus=" << msg.t7EntryServiceStatus << ";"
        << "t7EntryServiceRtmStatus=" << msg.t7EntryServiceRtmStatus << ";"
        << "pad5=" << msg.pad5 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ServiceAvailabilityMarketBroadcast {
@@ -13824,7 +13824,7 @@ inline std::ostream& operator<<(std::ostream& os, const ServiceAvailabilityMarke
        << "selectiveRequestForQuoteRtmServiceStatus=" << msg.selectiveRequestForQuoteRtmServiceStatus << ";"
        << "newsRtmServiceStatus=" << msg.newsRtmServiceStatus << ";"
        << "riskControlRtmServiceStatus=" << msg.riskControlRtmServiceStatus << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct StatusBroadcast {
@@ -13846,7 +13846,7 @@ inline std::ostream& operator<<(std::ostream& os, const StatusBroadcast& msg) {
        << "tradeDate=" << msg.tradeDate << ";"
        << "tradSesEvent=" << msg.tradSesEvent << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SubscribeRequest {
@@ -13868,7 +13868,7 @@ inline std::ostream& operator<<(std::ostream& os, const SubscribeRequest& msg) {
        << "subscriptionScope=" << msg.subscriptionScope << ";"
        << "refApplID=" << msg.refApplID << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SubscribeResponse {
@@ -13888,7 +13888,7 @@ inline std::ostream& operator<<(std::ostream& os, const SubscribeResponse& msg) 
        << "responseHeader=" << msg.responseHeader << ";"
        << "applSubID=" << msg.applSubID << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESApproveBroadcast {
@@ -14040,7 +14040,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESApproveBroadcast& msg
        << "instrumentAttributeGrp=" << const_cast<TESApproveBroadcast&>(msg).instrumentAttributeGrp() << ";"
        << "underlyingStipGrp=" << const_cast<TESApproveBroadcast&>(msg).underlyingStipGrp() << ";"
        << "varText=" << const_cast<TESApproveBroadcast&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESBroadcast {
@@ -14156,7 +14156,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESBroadcast& msg) {
        << "instrumentAttributeGrp=" << const_cast<TESBroadcast&>(msg).instrumentAttributeGrp() << ";"
        << "underlyingStipGrp=" << const_cast<TESBroadcast&>(msg).underlyingStipGrp() << ";"
        << "varText=" << const_cast<TESBroadcast&>(msg).varText() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESCompressionRunStatusBroadcast {
@@ -14184,7 +14184,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESCompressionRunStatusB
        << "compressionStatus=" << msg.compressionStatus << ";"
        << "tradePublishIndicator=" << msg.tradePublishIndicator << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESCompressionRunStatusRequest {
@@ -14210,7 +14210,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESCompressionRunStatusR
        << "compressionAction=" << msg.compressionAction << ";"
        << "tradePublishIndicator=" << msg.tradePublishIndicator << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESCompressionRunStatusResponse {
@@ -14238,7 +14238,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESCompressionRunStatusR
        << "compressionStatus=" << msg.compressionStatus << ";"
        << "tradePublishIndicator=" << msg.tradePublishIndicator << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESDeleteBroadcast {
@@ -14278,7 +14278,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESDeleteBroadcast& msg)
        << "messageEventSource=" << msg.messageEventSource << ";"
        << "tradeReportID=" << msg.tradeReportID << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESExecutionBroadcast {
@@ -14318,7 +14318,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESExecutionBroadcast& m
        << "trdRptStatus=" << msg.trdRptStatus << ";"
        << "messageEventSource=" << msg.messageEventSource << ";"
        << "pad2=" << msg.pad2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESResponse {
@@ -14338,7 +14338,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESResponse& msg) {
        << "responseHeader=" << msg.responseHeader << ";"
        << "tESExecID=" << msg.tESExecID << ";"
        << "tradeReportID=" << msg.tradeReportID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESReversalBroadcast {
@@ -14380,7 +14380,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESReversalBroadcast& ms
        << "reversalReasonText=" << msg.reversalReasonText << ";"
        << "pad3=" << msg.pad3 << ";"
        << "sideAllocGrpBC=" << const_cast<TESReversalBroadcast&>(msg).sideAllocGrpBC() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESTradeBroadcast {
@@ -14534,7 +14534,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESTradeBroadcast& msg) 
        << "basketSideTradeReportID=" << msg.basketSideTradeReportID << ";"
        << "feeIdntCode=" << msg.feeIdntCode << ";"
        << "pad1=" << msg.pad1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESTradingSessionStatusBroadcast {
@@ -14556,7 +14556,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESTradingSessionStatusB
        << "tradeDate=" << msg.tradeDate << ";"
        << "tradSesEvent=" << msg.tradSesEvent << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TESUploadBroadcast {
@@ -14662,7 +14662,7 @@ inline std::ostream& operator<<(std::ostream& os, const TESUploadBroadcast& msg)
        << "instrumentEventGrp=" << const_cast<TESUploadBroadcast&>(msg).instrumentEventGrp() << ";"
        << "instrumentAttributeGrp=" << const_cast<TESUploadBroadcast&>(msg).instrumentAttributeGrp() << ";"
        << "underlyingStipGrp=" << const_cast<TESUploadBroadcast&>(msg).underlyingStipGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TMTradingSessionStatusBroadcast {
@@ -14682,7 +14682,7 @@ inline std::ostream& operator<<(std::ostream& os, const TMTradingSessionStatusBr
        << "rBCHeader=" << msg.rBCHeader << ";"
        << "tradSesEvent=" << msg.tradSesEvent << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct ThrottleUpdateNotification {
@@ -14704,7 +14704,7 @@ inline std::ostream& operator<<(std::ostream& os, const ThrottleUpdateNotificati
        << "throttleTimeInterval=" << msg.throttleTimeInterval << ";"
        << "throttleNoMsgs=" << msg.throttleNoMsgs << ";"
        << "throttleDisconnectLimit=" << msg.throttleDisconnectLimit << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TradeBroadcast {
@@ -14856,7 +14856,7 @@ inline std::ostream& operator<<(std::ostream& os, const TradeBroadcast& msg) {
        << "rootPartyIDExecutionVenue=" << msg.rootPartyIDExecutionVenue << ";"
        << "feeIdntCode=" << msg.feeIdntCode << ";"
        << "pad3=" << msg.pad3 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct TradingSessionStatusBroadcast {
@@ -14882,7 +14882,7 @@ inline std::ostream& operator<<(std::ostream& os, const TradingSessionStatusBroa
        << "tradSesEvent=" << msg.tradSesEvent << ";"
        << "refApplLastMsgID=" << msg.refApplLastMsgID << ";"
        << "pad7=" << msg.pad7 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UnsubscribeRequest {
@@ -14902,7 +14902,7 @@ inline std::ostream& operator<<(std::ostream& os, const UnsubscribeRequest& msg)
        << "requestHeader=" << msg.requestHeader << ";"
        << "refApplSubID=" << msg.refApplSubID << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UnsubscribeResponse {
@@ -14918,7 +14918,7 @@ struct UnsubscribeResponse {
 inline std::ostream& operator<<(std::ostream& os, const UnsubscribeResponse& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "responseHeader=" << msg.responseHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UpdateRemainingRiskAllowanceBaseRequest {
@@ -14942,7 +14942,7 @@ inline std::ostream& operator<<(std::ostream& os, const UpdateRemainingRiskAllow
        << "noPartyRiskLimits=" << msg.noPartyRiskLimits << ";"
        << "pad4=" << msg.pad4 << ";"
        << "rRAUpdateBasePartyGrp=" << const_cast<UpdateRemainingRiskAllowanceBaseRequest&>(msg).rRAUpdateBasePartyGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UpdateRemainingRiskAllowanceBaseResponse {
@@ -14964,7 +14964,7 @@ inline std::ostream& operator<<(std::ostream& os, const UpdateRemainingRiskAllow
        << "noPartyRiskLimits=" << msg.noPartyRiskLimits << ";"
        << "pad6=" << msg.pad6 << ";"
        << "rRAUpdateBasePartyAckGrp=" << const_cast<UpdateRemainingRiskAllowanceBaseResponse&>(msg).rRAUpdateBasePartyAckGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UploadTESTradeRequest {
@@ -15064,7 +15064,7 @@ inline std::ostream& operator<<(std::ostream& os, const UploadTESTradeRequest& m
        << "instrumentEventGrp=" << const_cast<UploadTESTradeRequest&>(msg).instrumentEventGrp() << ";"
        << "instrumentAttributeGrp=" << const_cast<UploadTESTradeRequest&>(msg).instrumentAttributeGrp() << ";"
        << "underlyingStipGrp=" << const_cast<UploadTESTradeRequest&>(msg).underlyingStipGrp() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UserLoginRequest {
@@ -15086,7 +15086,7 @@ inline std::ostream& operator<<(std::ostream& os, const UserLoginRequest& msg) {
        << "username=" << msg.username << ";"
        << "password=" << msg.password << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UserLoginRequestEncrypted {
@@ -15106,7 +15106,7 @@ inline std::ostream& operator<<(std::ostream& os, const UserLoginRequestEncrypte
        << "requestHeader=" << msg.requestHeader << ";"
        << "username=" << msg.username << ";"
        << "encryptedPassword=" << msg.encryptedPassword << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UserLoginResponse {
@@ -15122,7 +15122,7 @@ struct UserLoginResponse {
 inline std::ostream& operator<<(std::ostream& os, const UserLoginResponse& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "responseHeader=" << msg.responseHeader << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UserLogoutRequest {
@@ -15142,7 +15142,7 @@ inline std::ostream& operator<<(std::ostream& os, const UserLogoutRequest& msg) 
        << "requestHeader=" << msg.requestHeader << ";"
        << "username=" << msg.username << ";"
        << "pad4=" << msg.pad4 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UserLogoutResponse {
@@ -15158,7 +15158,7 @@ struct UserLogoutResponse {
 inline std::ostream& operator<<(std::ostream& os, const UserLogoutResponse& msg) {
     os << "messageHeaderOut=" << msg.messageHeaderOut << ";"
        << "responseHeader=" << msg.responseHeader << ";"
-       ; return os; 
+       ; return os;
 }
 } // end of namespace DBETI_120_Deriv
 

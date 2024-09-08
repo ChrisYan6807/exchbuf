@@ -26,6 +26,7 @@
       <external-templates />
       <dependencies>
         <dependency reexport="false">59242254-602f-42f3-ab3a-dc203eb4cc03(eb_lang)</dependency>
+        <dependency reexport="false">ceab5195-25ea-4f22-9b92-103b95ca8c0c(jetbrains.mps.lang.core)</dependency>
       </dependencies>
       <languageVersions>
         <language slang="l:cf681fc9-c798-4f89-af38-ba3c0ac342d9:com.dslfoundry.plaintextflow" version="0" />

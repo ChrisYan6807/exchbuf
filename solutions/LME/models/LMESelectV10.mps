@@ -64,6 +64,12 @@
         <property id="8717146646088262296" name="min" index="nVqgC" />
         <property id="1374950686633462423" name="null" index="1foOja" />
       </concept>
+      <concept id="1399011618606694719" name="eb_lang.structure.EBLink" flags="ng" index="2KQ0yo">
+        <property id="1399011618616562416" name="field" index="2R8DHn" />
+        <reference id="1399011618608964254" name="derived" index="2KJEGT" />
+        <reference id="1399011618608964252" name="base" index="2KJEGV" />
+        <reference id="1399011618616556345" name="base_member" index="2R8Jau" />
+      </concept>
       <concept id="1374950686633462402" name="eb_lang.structure.EBFloatDecimal" flags="ng" index="1foOjv">
         <property id="1374950686633462412" name="precision" index="1foOjh" />
         <property id="1374950686633462408" name="size" index="1foOjl" />
@@ -72,15 +78,6 @@
         <property id="7035066850814977250" name="pos" index="1$kB3_" />
         <reference id="7035066850814977249" name="presence_map" index="1$kB3A" />
         <reference id="7035066850814977248" name="type" index="1$kB3B" />
-      </concept>
-      <concept id="6086719741695458842" name="eb_lang.structure.EBMessageBaseInitializer" flags="ng" index="1Bpi51">
-        <reference id="3285392525387337951" name="msgType" index="1UXTZ7" />
-      </concept>
-      <concept id="6086719741694843576" name="eb_lang.structure.EBMessageConstructor" flags="ng" index="1Br4nz">
-        <reference id="6086719741694843577" name="msgType" index="1Br4ny" />
-      </concept>
-      <concept id="7035066850819325119" name="eb_lang.structure.EBMessagePresenceTrueMember" flags="ng" index="1B_UyS">
-        <reference id="7035066850819325120" name="type" index="1B_Uz7" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -851,9 +848,6 @@
         <property role="TrG5h" value="originalSendingTime" />
         <ref role="1rk6cS" node="66x_0s5Xedp" resolve="UInt64" />
       </node>
-      <node concept="1Br4nz" id="26UurnPA_bJ" role="36JId$">
-        <ref role="1Br4ny" node="6qL2bmlgTYb" resolve="msgType" />
-      </node>
     </node>
     <node concept="2gln9S" id="66x_0s5XeVu" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -911,15 +905,18 @@
         <ref role="1$kB3B" node="66x_0s5Xecj" resolve="UInt32" />
         <ref role="1$kB3A" node="66x_0s5ZsVp" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="66x_0s6fDqp" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqyXf" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
-      </node>
-      <node concept="1Bpi51" id="26UurnPA_cl" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xeod" resolve="Logon" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
     </node>
-    <node concept="2gln9S" id="66x_0s62qcd" role="2gln9U">
+    <node concept="2KQ0yo" id="1mGtu_Vqzde" role="2gln9U">
+      <property role="2R8DHn" value="Logon" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="66x_0s5XeYD" resolve="Logon" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
+    </node>
+    <node concept="2gln9S" id="1mGtu_VqyXC" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
     <node concept="2gaMiw" id="66x_0s62qga" role="2gln9U">
@@ -947,13 +944,16 @@
         <ref role="1$kB3B" node="66x_0s62qka" resolve="String21" />
         <ref role="1$kB3A" node="26UurnPA_r3" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="2Qo3LxnpZBc" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_Vqzt8" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_cF" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XemC" resolve="Heartbeat" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqzGZ" role="2gln9U">
+      <property role="2R8DHn" value="Heartbeat" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="66x_0s62qga" resolve="Heartbeat" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="66x_0s5XfeC" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -986,9 +986,12 @@
         <property role="TrG5h" value="chksum" />
         <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_cT" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XenD" resolve="TestRequest" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_Vq$ci" role="2gln9U">
+      <property role="2R8DHn" value="TestRequest" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="66x_0s5Xfiv" resolve="TestRequest" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="66x_0s62qqI" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1025,9 +1028,12 @@
         <property role="TrG5h" value="chksum" />
         <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_d8" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XenN" resolve="ResendRequest" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_Vq$F_" role="2gln9U">
+      <property role="2R8DHn" value="ResendRequest" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="66x_0s62quT" resolve="ResendRequest" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="66x_0s62q_F" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1063,13 +1069,16 @@
         <ref role="1$kB3B" node="66x_0s5Xecj" resolve="UInt32" />
         <ref role="1$kB3A" node="26UurnPA_rQ" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="2Qo3LxnpZBy" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_Vq$Vt" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_dp" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XenZ" resolve="SequenceReset" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_Vq_bf" role="2gln9U">
+      <property role="2R8DHn" value="SequenceReset" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="66x_0s62qE2" resolve="SequenceReset" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="66x_0s62qL0" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1105,13 +1114,16 @@
         <ref role="1$kB3B" node="66x_0s62rem" resolve="String76" />
         <ref role="1$kB3A" node="26UurnPA_s8" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="2Qo3LxnpZBN" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_Vq_rg" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_dE" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xeot" resolve="Logout" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_Vq_F2" role="2gln9U">
+      <property role="2R8DHn" value="Logout" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="66x_0s62qPz" resolve="Logout" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="6vP9POWcPo8" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1164,13 +1176,16 @@
         <ref role="1$kB3B" node="66x_0s62rem" resolve="String76" />
         <ref role="1$kB3A" node="26UurnPA_st" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="6vP9POWcQiJ" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_Vq_V6" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_dY" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xep6" resolve="Reject" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqAaV" role="2gln9U">
+      <property role="2R8DHn" value="Reject" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="6vP9POWcPuP" resolve="Reject" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="6vP9POWcPSd" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1229,13 +1244,16 @@
         <ref role="1$kB3B" node="66x_0s62qka" resolve="String21" />
         <ref role="1$kB3A" node="26UurnPA_sQ" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="6vP9POWeZvI" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqAr6" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_ep" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XeoJ" resolve="BusinessReject" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqAEW" role="2gln9U">
+      <property role="2R8DHn" value="BusinessReject" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="6vP9POWcPZY" resolve="BusinessReject" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="6vP9POWcQjw" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1280,9 +1298,12 @@
         <property role="TrG5h" value="chksum" />
         <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_eO" role="36JId$">
-        <ref role="1UXTZ7" node="6vP9POWeZNn" resolve="News" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqBax" role="2gln9U">
+      <property role="2R8DHn" value="News" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="6vP9POWcQs5" resolve="News" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="6vP9POWcS4P" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1399,13 +1420,16 @@
         <ref role="1$kB3B" node="6vP9POWcSfs" resolve="SecurityDefLegsGroup" />
         <ref role="1$kB3A" node="26UurnPA_tE" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="6vP9POWeZwh" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqBqz" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_fh" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XepB" resolve="SecurityDefinitionRequest" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqBEt" role="2gln9U">
+      <property role="2R8DHn" value="SecurityDefinitionRequest" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="6vP9POWcQVD" resolve="SecurityDefinitionRequest" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="6vP9POWeYT9" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -1534,13 +1558,16 @@
         <ref role="1$kB3B" node="66x_0s62rem" resolve="String76" />
         <ref role="1$kB3A" node="26UurnPA_u8" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="6vP9POWeZvs" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqBUM" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_fQ" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xeqd" resolve="SecurityDefinition" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqCaC" role="2gln9U">
+      <property role="2R8DHn" value="SecurityDefinition" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="6vP9POWeYNj" resolve="SecurityDefinition" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="6vP9POWcQIl" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -2155,13 +2182,16 @@
         <ref role="1$kB3B" node="302b82DZqlz" resolve="RiskReductionOrder" />
         <ref role="1$kB3A" node="26UurnPA_v4" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="302b82DZqx4" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqCro" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_gP" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XeqB" resolve="NewOrderSingle" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqCFL" role="2gln9U">
+      <property role="2R8DHn" value="NewOrderSingle" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="66x_0s62rnz" resolve="NewOrderSingle" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="66x_0s5XeMy" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -2434,13 +2464,16 @@
         <ref role="1$kB3B" node="302b82DZqlz" resolve="RiskReductionOrder" />
         <ref role="1$kB3A" node="26UurnPA_w$" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="302b82DZqF8" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqCXB" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_iU" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xer3" resolve="AmendOrder" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqDe0" role="2gln9U">
+      <property role="2R8DHn" value="AmendOrder" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="302b82DZqEv" resolve="AmendOrder" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="5ECqPg6XSsW" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -2657,13 +2690,16 @@
         <ref role="1$kB3B" node="66x_0s62rem" resolve="String76" />
         <ref role="1$kB3A" node="26UurnPA_xz" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="5ECqPg6XUzq" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqDvk" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_kw" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xerx" resolve="OrderAmendRejected" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqDJb" role="2gln9U">
+      <property role="2R8DHn" value="OrderAmendRejected" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="5ECqPg6XSK1" resolve="AmendRejected" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="5ECqPg6XUHO" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -2722,13 +2758,16 @@
         <property role="2gaMiQ" value="54" />
         <ref role="1rk6cS" node="6vP9POWcSK5" resolve="Side" />
       </node>
-      <node concept="1B_UyS" id="JOCqBF3GSJ" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqDZp" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_kX" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xes1" resolve="CancelOrder" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqEfe" role="2gln9U">
+      <property role="2R8DHn" value="CancelOrder" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="5ECqPg6XVcH" resolve="CancelOrder" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="5ECqPg6XVnV" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -2810,13 +2849,16 @@
         <ref role="1$kB3B" node="6vP9POWcSK5" resolve="Side" />
         <ref role="1$kB3A" node="26UurnPA_yn" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="5ECqPg6XWIk" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqEvs" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_lp" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xesz" resolve="OrderCancelRejected" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqEJl" role="2gln9U">
+      <property role="2R8DHn" value="OrderCancelRejected" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="5ECqPg6XVRf" resolve="CancelRejected" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="5ECqPg6XXtV" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -3495,13 +3537,16 @@
         <ref role="1$kB3B" node="5ECqPg6Y3Eh" resolve="ExecReportLegsGroup" />
         <ref role="1$kB3A" node="26UurnPA_zI" resolve="presenceMap1" />
       </node>
-      <node concept="1B_UyS" id="5ECqPg6XXlq" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqF0x" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_mP" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xet7" resolve="ExecutionReport" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqFhg" role="2gln9U">
+      <property role="2R8DHn" value="ExecutionReport" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="5ECqPg6XX4_" resolve="ExecutionReport" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="6oUiPKbISoz" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -3671,13 +3716,19 @@
         <ref role="1$kB3B" node="6vP9POWcSK5" resolve="Side" />
         <ref role="1$kB3A" node="26UurnPA__5" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="6oUiPKbIUmr" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqFzk" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
-      <node concept="1Bpi51" id="26UurnPA_p9" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5XetH" resolve="MassCancelRequest" />
-      </node>
+    </node>
+    <node concept="2KQ0yo" id="1mGtu_VqFNf" role="2gln9U">
+      <property role="2R8DHn" value="MassCancelRequest" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="6oUiPKbISNm" resolve="MassCancelRequest" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
+    </node>
+    <node concept="2gln9S" id="1mGtu_VqG2R" role="2gln9U">
+      <property role="TrG5h" value="empty" />
     </node>
     <node concept="2gln9S" id="6oUiPKbIUmD" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -3826,16 +3877,16 @@
         <ref role="1$kB3B" node="66x_0s62rem" resolve="String76" />
         <ref role="1$kB3A" node="26UurnPA__I" resolve="presenceMap" />
       </node>
-      <node concept="1B_UyS" id="6oUiPKbIWsr" role="36JId$">
+      <node concept="2gaMiM" id="1mGtu_VqGjo" role="36JId$">
         <property role="TrG5h" value="chksum" />
-        <ref role="1B_Uz7" node="66x_0s5Xecj" resolve="UInt32" />
-      </node>
-      <node concept="1Bpi51" id="26UurnPA_pU" role="36JId$">
-        <ref role="1UXTZ7" node="66x_0s5Xeuh" resolve="MassCancelReport" />
+        <ref role="1rk6cS" node="66x_0s5Xecj" resolve="UInt32" />
       </node>
     </node>
-    <node concept="2gln9S" id="1uoLizeMzBW" role="2gln9U">
-      <property role="TrG5h" value="empty" />
+    <node concept="2KQ0yo" id="1mGtu_VqGjL" role="2gln9U">
+      <property role="2R8DHn" value="MassCancelReport" />
+      <ref role="2KJEGV" node="66x_0s5Xeks" resolve="MsgHeader" />
+      <ref role="2KJEGT" node="6oUiPKbIUMs" resolve="MassCancelReport" />
+      <ref role="2R8Jau" node="6qL2bmlgTYb" resolve="msgType" />
     </node>
     <node concept="2gln9S" id="1uoLizeLzsH" role="2gln9U">
       <property role="TrG5h" value="empty" />

@@ -973,10 +973,8 @@ struct NewOrder : MsgHeader {
 #pragma pack()
 static_assert(sizeof(NewOrder) == 105, "Bad message size.")
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
-    os << "startOfMsg=" << msg.startOfMsg << ";"
-       << "length=" << msg.length << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "clientOrderId=" << msg.clientOrderId << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "clientOrderId=" << msg.clientOrderId << ";"
        << "traderId=" << msg.traderId << ";"
        << "account=" << msg.account << ";"
        << "clearingAccount=" << msg.clearingAccount << ";"
@@ -996,7 +994,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
        << "reserved1=" << msg.reserved1 << ";"
        << "minimumQuantity=" << msg.minimumQuantity << ";"
        << "executingTrader=" << msg.executingTrader << ";"
-       ; return os; 
+       ; return os;
 }
 
 #pragma pack(1)
@@ -1038,10 +1036,8 @@ struct ExecutionReport : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
-    os << "startOfMsg=" << msg.startOfMsg << ";"
-       << "length=" << msg.length << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "appId=" << msg.appId << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "appId=" << msg.appId << ";"
        << "sequenceNo=" << msg.sequenceNo << ";"
        << "executionId=" << msg.executionId << ";"
        << "clientOrderId=" << msg.clientOrderId << ";"
@@ -1070,7 +1066,7 @@ inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {
        << "reserved4=" << msg.reserved4 << ";"
        << "publicOrderId=" << msg.publicOrderId << ";"
        << "minimumQty=" << msg.minimumQty << ";"
-       ; return os; 
+       ; return os;
 }
 
 #pragma pack(1)
@@ -1087,7 +1083,7 @@ struct Leg {
 inline std::ostream& operator<<(std::ostream& os, const Leg& msg) {
     os << "name=" << msg.name << ";"
        << "size=" << msg.size << ";"
-       ; return os; 
+       ; return os;
 }
 
 #pragma pack(1)
@@ -1106,16 +1102,14 @@ struct Test : MsgHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Test& msg) {
-    os << "startOfMsg=" << msg.startOfMsg << ";"
-       << "length=" << msg.length << ";"
-       << "msgType=" << msg.msgType << ";"
-       << "seqno=" << msg.seqno << ";"
+    os << static_cast<const MsgHeader&>(msg);
+    os << "seqno=" << msg.seqno << ";"
        << "noLeg=" << msg.noLeg << ";"
        << "blabla=" << msg.blabla << ";"
        << "price=" << msg.price << ";"
        << "text=" << msg.text << ";"
        << "legs=" << const_cast<Test&>(msg).legs() << ";"
-       ; return os; 
+       ; return os;
 }
 
 

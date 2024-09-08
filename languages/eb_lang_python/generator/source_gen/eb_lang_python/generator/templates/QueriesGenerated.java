@@ -135,15 +135,6 @@ public class QueriesGenerated extends QueryProviderBase {
     return String.format("PacketListField(\"%s\", None, %s, count_from=lambda pkt:pkt.%s", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$kyUc), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.counter$kzoe), PROPS.name$MnvL));
   }
   public static Object propertyMacro_GetValue_0_17(final PropertyMacroContext _context) {
-    return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
-  }
-  public static Object propertyMacro_GetValue_0_18(final PropertyMacroContext _context) {
-    return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
-  }
-  public static Object propertyMacro_GetValue_0_19(final PropertyMacroContext _context) {
-    return (String) EBInclude__BehaviorDescriptor.python_include_iduI6saUpGaM.invoke(_context.getNode());
-  }
-  public static Object propertyMacro_GetValue_0_20(final PropertyMacroContext _context) {
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), CONCEPTS.EBEnum$37)) {
       String pyTypeName = EBTypeStatement__BehaviorDescriptor.getPyType_id7sFT47Ik3cB.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), CONCEPTS.EBEnum$37));
       String enumName = SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), PROPS.name$MnvL);
@@ -161,27 +152,16 @@ public class QueriesGenerated extends QueryProviderBase {
 
     return String.format("        ConditionalField(%s, lambda pkt:pkt.%s&(1<<(%s)))", SLinkOperations.getTarget(_context.getNode(), LINKS.type$Zjhn), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_map$Zjwo), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.pos$ZoEI));
   }
-  public static Object propertyMacro_GetValue_0_21(final PropertyMacroContext _context) {
-    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), CONCEPTS.EBEnum$37)) {
-      String pyTypeName = EBTypeStatement__BehaviorDescriptor.getPyType_id7sFT47Ik3cB.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), CONCEPTS.EBEnum$37));
-      String enumName = SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), PROPS.name$MnvL);
-      String fieldName = SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
-      String defaultValue = String.format("%s.%s", enumName, SPropertyOperations.getString(ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), CONCEPTS.EBEnum$37), LINKS.values$_zmn)).last(), PROPS.name$MnvL));
-      return String.format("        %s(\"%s\", %s, %s)", pyTypeName, fieldName, defaultValue, enumName);
-
-    } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), CONCEPTS.EBImportPrimitive$gU)) {
-      String defaultValue = EBImportPrimitive__BehaviorDescriptor.getPyDefault_id3_eh5mZVois.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), CONCEPTS.EBImportPrimitive$gU));
-      return String.format("        %s(\"%s\", %s)", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue);
-
-    } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), CONCEPTS.EBBitField$xS)) {
-      String pyTypeName = EBTypeStatement__BehaviorDescriptor.getPyType_id7sFT47Ik3cB.invoke(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), CONCEPTS.EBBitField$xS));
-      String defaultValue = "0";
-      return String.format("        %s(\"%s\", %s, %s)", pyTypeName, SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue, SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$rYQG), PROPS.name$MnvL));
-    }
-
-    return "Unsupported floating type.";
+  public static Object propertyMacro_GetValue_0_18(final PropertyMacroContext _context) {
+    return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
   }
-  public static Object propertyMacro_GetValue_0_22(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_19(final PropertyMacroContext _context) {
+    return SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL);
+  }
+  public static Object propertyMacro_GetValue_0_20(final PropertyMacroContext _context) {
+    return (String) EBInclude__BehaviorDescriptor.python_include_iduI6saUpGaM.invoke(_context.getNode());
+  }
+  public static Object propertyMacro_GetValue_0_21(final PropertyMacroContext _context) {
     String field = SPropertyOperations.getString(_context.getNode(), PROPS.field$Acvf);
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.base_member$uj3_), LINKS.type$eiFN), CONCEPTS.EBEnum$37)) {
       field = SPropertyOperations.getString(SLinkOperations.getTarget(SLinkOperations.getTarget(_context.getNode(), LINKS.base_member$uj3_), LINKS.type$eiFN), PROPS.name$MnvL) + "." + field;
@@ -325,11 +305,10 @@ public class QueriesGenerated extends QueryProviderBase {
     pvqMethods.put("8587208086333205262", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "name"));
     pvqMethods.put("2437623467770598139", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "expression"));
     pvqMethods.put("4482077330615306871", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "expression"));
+    pvqMethods.put("7035066850818182175", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
     pvqMethods.put("6284687853305120217", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "name"));
     pvqMethods.put("8587208086334161662", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "name"));
     pvqMethods.put("553408128354811797", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "python_include"));
-    pvqMethods.put("7035066850818182175", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
-    pvqMethods.put("7035066850819728846", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
     pvqMethods.put("1399011618627772357", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "experssion"));
     pvqMethods.put("7633818473774919273", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "protocol"));
   }
@@ -393,8 +372,6 @@ public class QueriesGenerated extends QueryProviderBase {
         case 21:
           return QueriesGenerated.propertyMacro_GetValue_0_21(ctx);
         case 22:
-          return QueriesGenerated.propertyMacro_GetValue_0_22(ctx);
-        case 23:
           return QueriesGenerated.propertyMacro_GetValue_1_0(ctx);
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
@@ -429,7 +406,6 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SReferenceLink counter$kzoe = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x3e338995cb0feb1fL, "counter");
     /*package*/ static final SReferenceLink type$Zjhn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940705f3e4dfL, 0x61a1940705f3e4e0L, "type");
     /*package*/ static final SReferenceLink presence_map$Zjwo = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940705f3e4dfL, 0x61a1940705f3e4e1L, "presence_map");
-    /*package*/ static final SReferenceLink type$rYQG = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x61a1940706363cbfL, 0x61a1940706363cc0L, "type");
     /*package*/ static final SReferenceLink base_member$uj3_ = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x136a49a7a3b2413fL, 0x136a49a7a448bb39L, "base_member");
     /*package*/ static final SReferenceLink base$F2Ny = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x136a49a7a3b2413fL, 0x136a49a7a3d4e29cL, "base");
     /*package*/ static final SReferenceLink derived$F3h$ = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x136a49a7a3b2413fL, 0x136a49a7a3d4e29eL, "derived");
