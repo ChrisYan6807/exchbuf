@@ -3316,11 +3316,6 @@
       <ref role="13i0hy" node="7sFT47Ik3cB" resolve="getPyType" />
       <node concept="3Tm1VV" id="7qxjCwPtTxi" role="1B3o_S" />
       <node concept="3clFbS" id="7qxjCwPtTxl" role="3clF47">
-        <node concept="2xdQw9" id="7qxjCwPvfxf" role="3cqZAp">
-          <node concept="Xl_RD" id="7qxjCwPvfxh" role="9lYJi">
-            <property role="Xl_RC" value="ImportPrimitive getPyType" />
-          </node>
-        </node>
         <node concept="3clFbJ" id="7qxjCwPuoj2" role="3cqZAp">
           <node concept="2OqwBi" id="7qxjCwPuoj3" role="3clFbw">
             <node concept="2OqwBi" id="7qxjCwPuoj4" role="2Oq$k0">

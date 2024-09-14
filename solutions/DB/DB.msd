@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="DB" uuid="c370523b-e047-4ce4-bcf0-403cc6f57938" moduleVersion="0" generatorOutputPath="${module}/source_gen/cpp">
+<solution name="DB" uuid="c370523b-e047-4ce4-bcf0-403cc6f57938" moduleVersion="0">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot path="${module}/models" />

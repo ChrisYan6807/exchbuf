@@ -53,7 +53,7 @@ struct MessageFrame {
 
 inline std::ostream& operator<<(std::ostream& os, const MessageFrame& msg) {
     os << "length=" << msg.length << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MessageHeader : MessageFrame {
@@ -69,12 +69,12 @@ struct MessageHeader : MessageFrame {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MessageHeader& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
+    os << static_cast<const MessageFrame&>(msg);
+    os << "blockLength=" << msg.blockLength << ";"
        << "templateId=" << msg.templateId << ";"
        << "schemaId=" << msg.schemaId << ";"
        << "version=" << msg.version << ";"
-       ; return os; 
+       ; return os;
 }
 struct AccountType_enum {
     using value_type = uint8_t;
@@ -6499,7 +6499,7 @@ struct NewOrder_FreeTextSection {
 
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_FreeTextSection& msg) {
     os << "freeText=" << msg.freeText << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_FreeTextSection_Composite {
@@ -6517,7 +6517,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_FreeTextSection
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewOrder_FreeTextSection_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_MiFIDShortcodes {
@@ -6535,7 +6535,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_MiFIDShortcodes
     os << "investmentDecisionWFirmShortCode=" << msg.investmentDecisionWFirmShortCode << ";"
        << "nonExecutingBrokerShortCode=" << msg.nonExecutingBrokerShortCode << ";"
        << "clientIdentificationShortcode=" << msg.clientIdentificationShortcode << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_MiFIDShortcodes_Composite {
@@ -6553,7 +6553,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_MiFIDShortcodes
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewOrder_MiFIDShortcodes_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_OptionalFields {
@@ -6587,7 +6587,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_OptionalFields&
        << "tradingSession=" << msg.tradingSession << ";"
        << "undisclosedIcebergType=" << msg.undisclosedIcebergType << ";"
        << "stopTriggeredTimeInForce=" << msg.stopTriggeredTimeInForce << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_OptionalFields_Composite {
@@ -6605,7 +6605,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_OptionalFields_
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewOrder_OptionalFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_ClearingFields {
@@ -6633,7 +6633,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_ClearingFields&
        << "clearingInstruction=" << msg.clearingInstruction << ";"
        << "accountTypeCross=" << msg.accountTypeCross << ";"
        << "tradingCapacityCross=" << msg.tradingCapacityCross << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_ClearingFields_Composite {
@@ -6651,7 +6651,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_ClearingFields_
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewOrder_ClearingFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_NotUsedGroup1 {
@@ -6663,7 +6663,7 @@ struct NewOrder_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct NewOrder_NotUsedGroup1_Composite {
@@ -6681,7 +6681,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup1_C
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewOrder_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_NotUsedGroup2 {
@@ -6693,7 +6693,7 @@ struct NewOrder_NotUsedGroup2 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup2& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct NewOrder_NotUsedGroup2_Composite {
@@ -6711,7 +6711,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup2_C
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewOrder_NotUsedGroup2_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_AdditionalInfos {
@@ -6725,7 +6725,7 @@ struct NewOrder_AdditionalInfos {
 
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_AdditionalInfos& msg) {
     os << "longClientID=" << msg.longClientID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder_AdditionalInfos_Composite {
@@ -6743,7 +6743,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_AdditionalInfos
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewOrder_AdditionalInfos_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewOrder : MessageHeader {
@@ -6769,12 +6769,12 @@ struct NewOrder : MessageHeader {
     uint16_t nonExecutingClientID;
     int64_t iOIID;
     NewOrder_FreeTextSection_Composite FreeTextSection;
-    NewOrder_MiFIDShortcodes_Composite* MiFIDShortcodes() {return reinterpret_cast<NewOrder_MiFIDShortcodes_Composite*>(FreeTextSection()->end());}
-    NewOrder_OptionalFields_Composite* OptionalFields() {return reinterpret_cast<NewOrder_OptionalFields_Composite*>(MiFIDShortcodes()->end());}
-    NewOrder_ClearingFields_Composite* ClearingFields() {return reinterpret_cast<NewOrder_ClearingFields_Composite*>(OptionalFields()->end());}
-    NewOrder_NotUsedGroup1_Composite* NotUsedGroup1() {return reinterpret_cast<NewOrder_NotUsedGroup1_Composite*>(ClearingFields()->end());}
-    NewOrder_NotUsedGroup2_Composite* NotUsedGroup2() {return reinterpret_cast<NewOrder_NotUsedGroup2_Composite*>(NotUsedGroup1()->end());}
-    NewOrder_AdditionalInfos_Composite* AdditionalInfos() {return reinterpret_cast<NewOrder_AdditionalInfos_Composite*>(NotUsedGroup2()->end());}
+    FloatingRef<NewOrder_MiFIDShortcodes_Composite> MiFIDShortcodes() {return FloatingRef<NewOrder_MiFIDShortcodes_Composite>(FreeTextSection().end());}
+    FloatingRef<NewOrder_OptionalFields_Composite> OptionalFields() {return FloatingRef<NewOrder_OptionalFields_Composite>(MiFIDShortcodes().end());}
+    FloatingRef<NewOrder_ClearingFields_Composite> ClearingFields() {return FloatingRef<NewOrder_ClearingFields_Composite>(OptionalFields().end());}
+    FloatingRef<NewOrder_NotUsedGroup1_Composite> NotUsedGroup1() {return FloatingRef<NewOrder_NotUsedGroup1_Composite>(ClearingFields().end());}
+    FloatingRef<NewOrder_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<NewOrder_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
+    FloatingRef<NewOrder_AdditionalInfos_Composite> AdditionalInfos() {return FloatingRef<NewOrder_AdditionalInfos_Composite>(NotUsedGroup2().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(NewOrder);}
@@ -6783,12 +6783,8 @@ struct NewOrder : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
@@ -6816,7 +6812,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
        << "NotUsedGroup2=" << msg.NotUsedGroup2 << ";"
        << "AdditionalInfos=" << msg.AdditionalInfos << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Ack_MiFIDFields {
@@ -6834,7 +6830,7 @@ inline std::ostream& operator<<(std::ostream& os, const Ack_MiFIDFields& msg) {
     os << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
        << "clientIdentificationShortCode=" << msg.clientIdentificationShortCode << ";"
        << "miFIDIndicators=" << msg.miFIDIndicators << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Ack_MiFIDFields_Composite {
@@ -6852,7 +6848,7 @@ inline std::ostream& operator<<(std::ostream& os, const Ack_MiFIDFields_Composit
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Ack_MiFIDFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Ack : MessageHeader {
@@ -6887,12 +6883,8 @@ struct Ack : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Ack& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "oEGINFromMember=" << msg.oEGINFromMember << ";"
@@ -6915,7 +6907,7 @@ inline std::ostream& operator<<(std::ostream& os, const Ack& msg) {
        << "ackQualifiers=" << msg.ackQualifiers << ";"
        << "orderTolerablePrice=" << msg.orderTolerablePrice << ";"
        << "MiFIDFields=" << msg.MiFIDFields << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_OptionalFieldsFill {
@@ -6935,7 +6927,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsFill&
        << "otherLegLastPx=" << msg.otherLegLastPx << ";"
        << "packageID=" << msg.packageID << ";"
        << "underlyingInstrumentID=" << msg.underlyingInstrumentID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_OptionalFieldsFill_Composite {
@@ -6953,7 +6945,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsFill_
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Fill_OptionalFieldsFill_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_StrategyFields {
@@ -6977,7 +6969,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_StrategyFields& msg
        << "legSide=" << msg.legSide << ";"
        << "executionID=" << msg.executionID << ";"
        << "tradeUniqueIdentifier=" << msg.tradeUniqueIdentifier << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_StrategyFields_Composite {
@@ -6995,7 +6987,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_StrategyFields_Comp
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Fill_StrategyFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_MiFIDFields {
@@ -7013,7 +7005,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_MiFIDFields& msg) {
     os << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
        << "clientIdentificationShortCode=" << msg.clientIdentificationShortCode << ";"
        << "miFIDIndicators=" << msg.miFIDIndicators << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_MiFIDFields_Composite {
@@ -7031,7 +7023,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_MiFIDFields_Composi
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Fill_MiFIDFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_OptionalFieldsDerivatives {
@@ -7051,7 +7043,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsDeriv
        << "messagePriceNotation=" << msg.messagePriceNotation << ";"
        << "finalSymbolIndex=" << msg.finalSymbolIndex << ";"
        << "finalExecutionID=" << msg.finalExecutionID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill_OptionalFieldsDerivatives_Composite {
@@ -7069,7 +7061,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsDeriv
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Fill_OptionalFieldsDerivatives_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Fill : MessageHeader {
@@ -7095,9 +7087,9 @@ struct Fill : MessageHeader {
     unsigned_char eSCBMembership;
     char16 tradeUniqueIdentifier;
     Fill_OptionalFieldsFill_Composite OptionalFieldsFill;
-    Fill_StrategyFields_Composite* StrategyFields() {return reinterpret_cast<Fill_StrategyFields_Composite*>(OptionalFieldsFill()->end());}
-    Fill_MiFIDFields_Composite* MiFIDFields() {return reinterpret_cast<Fill_MiFIDFields_Composite*>(StrategyFields()->end());}
-    Fill_OptionalFieldsDerivatives_Composite* OptionalFieldsDerivatives() {return reinterpret_cast<Fill_OptionalFieldsDerivatives_Composite*>(MiFIDFields()->end());}
+    FloatingRef<Fill_StrategyFields_Composite> StrategyFields() {return FloatingRef<Fill_StrategyFields_Composite>(OptionalFieldsFill().end());}
+    FloatingRef<Fill_MiFIDFields_Composite> MiFIDFields() {return FloatingRef<Fill_MiFIDFields_Composite>(StrategyFields().end());}
+    FloatingRef<Fill_OptionalFieldsDerivatives_Composite> OptionalFieldsDerivatives() {return FloatingRef<Fill_OptionalFieldsDerivatives_Composite>(MiFIDFields().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Fill);}
@@ -7106,12 +7098,8 @@ struct Fill : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Fill& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "tradeTime=" << msg.tradeTime << ";"
        << "bookOUTTime=" << msg.bookOUTTime << ";"
@@ -7136,7 +7124,7 @@ inline std::ostream& operator<<(std::ostream& os, const Fill& msg) {
        << "StrategyFields=" << msg.StrategyFields << ";"
        << "MiFIDFields=" << msg.MiFIDFields << ";"
        << "OptionalFieldsDerivatives=" << msg.OptionalFieldsDerivatives << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Kill_MiFIDFields {
@@ -7154,7 +7142,7 @@ inline std::ostream& operator<<(std::ostream& os, const Kill_MiFIDFields& msg) {
     os << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
        << "clientIdentificationShortCode=" << msg.clientIdentificationShortCode << ";"
        << "miFIDIndicators=" << msg.miFIDIndicators << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Kill_MiFIDFields_Composite {
@@ -7172,7 +7160,7 @@ inline std::ostream& operator<<(std::ostream& os, const Kill_MiFIDFields_Composi
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Kill_MiFIDFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Kill : MessageHeader {
@@ -7201,12 +7189,8 @@ struct Kill : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Kill& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "oEGINFromMember=" << msg.oEGINFromMember << ";"
@@ -7223,7 +7207,7 @@ inline std::ostream& operator<<(std::ostream& os, const Kill& msg) {
        << "killReason=" << msg.killReason << ";"
        << "ackQualifiers=" << msg.ackQualifiers << ";"
        << "MiFIDFields=" << msg.MiFIDFields << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_FreeTextSection {
@@ -7237,7 +7221,7 @@ struct CancelReplace_FreeTextSection {
 
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_FreeTextSection& msg) {
     os << "freeText=" << msg.freeText << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_FreeTextSection_Composite {
@@ -7255,7 +7239,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_FreeTextSe
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelReplace_FreeTextSection_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_OptionalFields {
@@ -7285,7 +7269,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_OptionalFi
        << "tradingSession=" << msg.tradingSession << ";"
        << "stopTriggeredTimeInForce=" << msg.stopTriggeredTimeInForce << ";"
        << "undisclosedIcebergType=" << msg.undisclosedIcebergType << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_OptionalFields_Composite {
@@ -7303,7 +7287,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_OptionalFi
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelReplace_OptionalFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_ClearingFields {
@@ -7327,7 +7311,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_ClearingFi
        << "technicalOrigin=" << msg.technicalOrigin << ";"
        << "openClose=" << msg.openClose << ";"
        << "clearingInstruction=" << msg.clearingInstruction << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_ClearingFields_Composite {
@@ -7345,7 +7329,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_ClearingFi
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelReplace_ClearingFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_NotUsedGroup1 {
@@ -7357,7 +7341,7 @@ struct CancelReplace_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_NotUsedGroup1_Composite {
@@ -7375,7 +7359,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGro
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelReplace_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_NotUsedGroup2 {
@@ -7387,7 +7371,7 @@ struct CancelReplace_NotUsedGroup2 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGroup2& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_NotUsedGroup2_Composite {
@@ -7405,7 +7389,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGro
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelReplace_NotUsedGroup2_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_AdditionalInfos {
@@ -7419,7 +7403,7 @@ struct CancelReplace_AdditionalInfos {
 
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_AdditionalInfos& msg) {
     os << "longClientID=" << msg.longClientID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace_AdditionalInfos_Composite {
@@ -7437,7 +7421,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_Additional
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelReplace_AdditionalInfos_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelReplace : MessageHeader {
@@ -7463,11 +7447,11 @@ struct CancelReplace : MessageHeader {
     MiFIDIndicators_set miFIDIndicators;
     uint16_t sTPID;
     CancelReplace_FreeTextSection_Composite FreeTextSection;
-    CancelReplace_OptionalFields_Composite* OptionalFields() {return reinterpret_cast<CancelReplace_OptionalFields_Composite*>(FreeTextSection()->end());}
-    CancelReplace_ClearingFields_Composite* ClearingFields() {return reinterpret_cast<CancelReplace_ClearingFields_Composite*>(OptionalFields()->end());}
-    CancelReplace_NotUsedGroup1_Composite* NotUsedGroup1() {return reinterpret_cast<CancelReplace_NotUsedGroup1_Composite*>(ClearingFields()->end());}
-    CancelReplace_NotUsedGroup2_Composite* NotUsedGroup2() {return reinterpret_cast<CancelReplace_NotUsedGroup2_Composite*>(NotUsedGroup1()->end());}
-    CancelReplace_AdditionalInfos_Composite* AdditionalInfos() {return reinterpret_cast<CancelReplace_AdditionalInfos_Composite*>(NotUsedGroup2()->end());}
+    FloatingRef<CancelReplace_OptionalFields_Composite> OptionalFields() {return FloatingRef<CancelReplace_OptionalFields_Composite>(FreeTextSection().end());}
+    FloatingRef<CancelReplace_ClearingFields_Composite> ClearingFields() {return FloatingRef<CancelReplace_ClearingFields_Composite>(OptionalFields().end());}
+    FloatingRef<CancelReplace_NotUsedGroup1_Composite> NotUsedGroup1() {return FloatingRef<CancelReplace_NotUsedGroup1_Composite>(ClearingFields().end());}
+    FloatingRef<CancelReplace_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<CancelReplace_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
+    FloatingRef<CancelReplace_AdditionalInfos_Composite> AdditionalInfos() {return FloatingRef<CancelReplace_AdditionalInfos_Composite>(NotUsedGroup2().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(CancelReplace);}
@@ -7476,12 +7460,8 @@ struct CancelReplace : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
@@ -7508,7 +7488,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace& msg) {
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
        << "NotUsedGroup2=" << msg.NotUsedGroup2 << ";"
        << "AdditionalInfos=" << msg.AdditionalInfos << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Reject_CollarFields {
@@ -7524,7 +7504,7 @@ struct Reject_CollarFields {
 inline std::ostream& operator<<(std::ostream& os, const Reject_CollarFields& msg) {
     os << "collarRejType=" << msg.collarRejType << ";"
        << "breachedCollarPrice=" << msg.breachedCollarPrice << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Reject_CollarFields_Composite {
@@ -7542,7 +7522,7 @@ inline std::ostream& operator<<(std::ostream& os, const Reject_CollarFields_Comp
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Reject_CollarFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Reject_MiFIDFields {
@@ -7560,7 +7540,7 @@ inline std::ostream& operator<<(std::ostream& os, const Reject_MiFIDFields& msg)
     os << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
        << "clientIdentificationShortCode=" << msg.clientIdentificationShortCode << ";"
        << "miFIDIndicators=" << msg.miFIDIndicators << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Reject_MiFIDFields_Composite {
@@ -7578,7 +7558,7 @@ inline std::ostream& operator<<(std::ostream& os, const Reject_MiFIDFields_Compo
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Reject_MiFIDFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Reject : MessageHeader {
@@ -7600,7 +7580,7 @@ struct Reject : MessageHeader {
     uint16_t rejectedMessageID;
     AckQualifiers_set ackQualifiers;
     Reject_CollarFields_Composite CollarFields;
-    Reject_MiFIDFields_Composite* MiFIDFields() {return reinterpret_cast<Reject_MiFIDFields_Composite*>(CollarFields()->end());}
+    FloatingRef<Reject_MiFIDFields_Composite> MiFIDFields() {return FloatingRef<Reject_MiFIDFields_Composite>(CollarFields().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Reject);}
@@ -7609,12 +7589,8 @@ struct Reject : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "oEGINFromMember=" << msg.oEGINFromMember << ";"
@@ -7633,7 +7609,7 @@ inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
        << "ackQualifiers=" << msg.ackQualifiers << ";"
        << "CollarFields=" << msg.CollarFields << ";"
        << "MiFIDFields=" << msg.MiFIDFields << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Quotes_MiFIDShortcodes {
@@ -7651,7 +7627,7 @@ inline std::ostream& operator<<(std::ostream& os, const Quotes_MiFIDShortcodes& 
     os << "investmentDecisionWFirmShortCode=" << msg.investmentDecisionWFirmShortCode << ";"
        << "nonExecutingBrokerShortCode=" << msg.nonExecutingBrokerShortCode << ";"
        << "clientIdentificationShortcode=" << msg.clientIdentificationShortcode << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Quotes_MiFIDShortcodes_Composite {
@@ -7669,7 +7645,7 @@ inline std::ostream& operator<<(std::ostream& os, const Quotes_MiFIDShortcodes_C
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Quotes_MiFIDShortcodes_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Quotes_ClearingDataset {
@@ -7695,7 +7671,7 @@ inline std::ostream& operator<<(std::ostream& os, const Quotes_ClearingDataset& 
        << "openClose=" << msg.openClose << ";"
        << "clearingInstruction=" << msg.clearingInstruction << ";"
        << "freeText=" << msg.freeText << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Quotes_ClearingDataset_Composite {
@@ -7713,7 +7689,7 @@ inline std::ostream& operator<<(std::ostream& os, const Quotes_ClearingDataset_C
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Quotes_ClearingDataset_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Quotes_QuotesRep {
@@ -7737,7 +7713,7 @@ inline std::ostream& operator<<(std::ostream& os, const Quotes_QuotesRep& msg) {
        << "offerPx=" << msg.offerPx << ";"
        << "symbolIndex=" << msg.symbolIndex << ";"
        << "eMM=" << msg.eMM << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Quotes_QuotesRep_Composite {
@@ -7755,7 +7731,7 @@ inline std::ostream& operator<<(std::ostream& os, const Quotes_QuotesRep_Composi
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<Quotes_QuotesRep_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct Quotes : MessageHeader {
@@ -7772,8 +7748,8 @@ struct Quotes : MessageHeader {
     ExecutionInstruction_set executionInstruction;
     uint16_t sTPID;
     Quotes_MiFIDShortcodes_Composite MiFIDShortcodes;
-    Quotes_ClearingDataset_Composite* ClearingDataset() {return reinterpret_cast<Quotes_ClearingDataset_Composite*>(MiFIDShortcodes()->end());}
-    Quotes_QuotesRep_Composite* QuotesRep() {return reinterpret_cast<Quotes_QuotesRep_Composite*>(ClearingDataset()->end());}
+    FloatingRef<Quotes_ClearingDataset_Composite> ClearingDataset() {return FloatingRef<Quotes_ClearingDataset_Composite>(MiFIDShortcodes().end());}
+    FloatingRef<Quotes_QuotesRep_Composite> QuotesRep() {return FloatingRef<Quotes_QuotesRep_Composite>(ClearingDataset().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(Quotes);}
@@ -7782,12 +7758,8 @@ struct Quotes : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const Quotes& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
@@ -7802,7 +7774,7 @@ inline std::ostream& operator<<(std::ostream& os, const Quotes& msg) {
        << "MiFIDShortcodes=" << msg.MiFIDShortcodes << ";"
        << "ClearingDataset=" << msg.ClearingDataset << ";"
        << "QuotesRep=" << msg.QuotesRep << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteAck_QuoteAcks {
@@ -7830,7 +7802,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteAck_QuoteAcks& msg)
        << "sellRevisionFlag=" << msg.sellRevisionFlag << ";"
        << "bidErrorCode=" << msg.bidErrorCode << ";"
        << "offerErrorCode=" << msg.offerErrorCode << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteAck_QuoteAcks_Composite {
@@ -7848,7 +7820,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteAck_QuoteAcks_Compo
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<QuoteAck_QuoteAcks_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct QuoteAck : MessageHeader {
@@ -7875,12 +7847,8 @@ struct QuoteAck : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const QuoteAck& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "oEGINFromMember=" << msg.oEGINFromMember << ";"
@@ -7895,7 +7863,7 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteAck& msg) {
        << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
        << "ackQualifiers=" << msg.ackQualifiers << ";"
        << "QuoteAcks=" << msg.QuoteAcks << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelRequest_NotUsedGroup1 {
@@ -7907,7 +7875,7 @@ struct CancelRequest_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct CancelRequest_NotUsedGroup1_Composite {
@@ -7925,7 +7893,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGro
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelRequest_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelRequest_NotUsedGroup2 {
@@ -7937,7 +7905,7 @@ struct CancelRequest_NotUsedGroup2 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGroup2& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct CancelRequest_NotUsedGroup2_Composite {
@@ -7955,7 +7923,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGro
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CancelRequest_NotUsedGroup2_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CancelRequest : MessageHeader {
@@ -7973,7 +7941,7 @@ struct CancelRequest : MessageHeader {
     OrderType_enum orderType;
     OrderCategory_enum orderCategory;
     CancelRequest_NotUsedGroup1_Composite NotUsedGroup1;
-    CancelRequest_NotUsedGroup2_Composite* NotUsedGroup2() {return reinterpret_cast<CancelRequest_NotUsedGroup2_Composite*>(NotUsedGroup1()->end());}
+    FloatingRef<CancelRequest_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<CancelRequest_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(CancelRequest);}
@@ -7982,12 +7950,8 @@ struct CancelRequest : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
@@ -8002,7 +7966,7 @@ inline std::ostream& operator<<(std::ostream& os, const CancelRequest& msg) {
        << "orderCategory=" << msg.orderCategory << ";"
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
        << "NotUsedGroup2=" << msg.NotUsedGroup2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassCancel_NotUsedGroup1 {
@@ -8014,7 +7978,7 @@ struct MassCancel_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct MassCancel_NotUsedGroup1_Composite {
@@ -8032,7 +7996,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup1
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<MassCancel_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassCancel_NotUsedGroup2 {
@@ -8044,7 +8008,7 @@ struct MassCancel_NotUsedGroup2 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup2& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct MassCancel_NotUsedGroup2_Composite {
@@ -8062,7 +8026,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup2
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<MassCancel_NotUsedGroup2_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassCancel : MessageHeader {
@@ -8085,7 +8049,7 @@ struct MassCancel : MessageHeader {
     OrderCategory_enum orderCategory;
     int32_t targetExecutionWithinFirmShortCode;
     MassCancel_NotUsedGroup1_Composite NotUsedGroup1;
-    MassCancel_NotUsedGroup2_Composite* NotUsedGroup2() {return reinterpret_cast<MassCancel_NotUsedGroup2_Composite*>(NotUsedGroup1()->end());}
+    FloatingRef<MassCancel_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<MassCancel_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(MassCancel);}
@@ -8094,12 +8058,8 @@ struct MassCancel : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancel& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
@@ -8119,7 +8079,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancel& msg) {
        << "targetExecutionWithinFirmShortCode=" << msg.targetExecutionWithinFirmShortCode << ";"
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
        << "NotUsedGroup2=" << msg.NotUsedGroup2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassCancelAck_MiFIDFields {
@@ -8137,7 +8097,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancelAck_MiFIDField
     os << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
        << "clientIdentificationShortCode=" << msg.clientIdentificationShortCode << ";"
        << "miFIDIndicators=" << msg.miFIDIndicators << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassCancelAck_MiFIDFields_Composite {
@@ -8155,7 +8115,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancelAck_MiFIDField
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<MassCancelAck_MiFIDFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MassCancelAck : MessageHeader {
@@ -8192,12 +8152,8 @@ struct MassCancelAck : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MassCancelAck& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "oEGINFromMember=" << msg.oEGINFromMember << ";"
@@ -8222,7 +8178,7 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancelAck& msg) {
        << "ackQualifiers=" << msg.ackQualifiers << ";"
        << "targetExecutionWithinFirmShortCode=" << msg.targetExecutionWithinFirmShortCode << ";"
        << "MiFIDFields=" << msg.MiFIDFields << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UserNotification_NotUsedGroup1 {
@@ -8234,7 +8190,7 @@ struct UserNotification_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const UserNotification_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct UserNotification_NotUsedGroup1_Composite {
@@ -8252,7 +8208,7 @@ inline std::ostream& operator<<(std::ostream& os, const UserNotification_NotUsed
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<UserNotification_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct UserNotification : MessageHeader {
@@ -8276,12 +8232,8 @@ struct UserNotification : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const UserNotification& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "executionWithinFirmShortCode=" << msg.executionWithinFirmShortCode << ";"
        << "clientIdentificationShortcode=" << msg.clientIdentificationShortcode << ";"
@@ -8293,7 +8245,7 @@ inline std::ostream& operator<<(std::ostream& os, const UserNotification& msg) {
        << "orderAmountLimit=" << msg.orderAmountLimit << ";"
        << "exposureSide=" << msg.exposureSide << ";"
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrumentSynchronizationList_InstrumentSynchronizationSection {
@@ -8309,7 +8261,7 @@ struct InstrumentSynchronizationList_InstrumentSynchronizationSection {
 inline std::ostream& operator<<(std::ostream& os, const InstrumentSynchronizationList_InstrumentSynchronizationSection& msg) {
     os << "symbolIndex=" << msg.symbolIndex << ";"
        << "eMM=" << msg.eMM << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite {
@@ -8327,7 +8279,7 @@ inline std::ostream& operator<<(std::ostream& os, const InstrumentSynchronizatio
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct InstrumentSynchronizationList : MessageHeader {
@@ -8343,16 +8295,12 @@ struct InstrumentSynchronizationList : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const InstrumentSynchronizationList& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "oEGOUTToMember=" << msg.oEGOUTToMember << ";"
        << "resynchronizationID=" << msg.resynchronizationID << ";"
        << "InstrumentSynchronizationSection=" << msg.InstrumentSynchronizationSection << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SecurityDefinitionRequest_StrategyLegs {
@@ -8380,7 +8328,7 @@ inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionReques
        << "legStrikePrice=" << msg.legStrikePrice << ";"
        << "legLastTradingDate=" << msg.legLastTradingDate << ";"
        << "legSide=" << msg.legSide << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SecurityDefinitionRequest_StrategyLegs_Composite {
@@ -8398,7 +8346,7 @@ inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionReques
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<SecurityDefinitionRequest_StrategyLegs_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct SecurityDefinitionRequest : MessageHeader {
@@ -8417,19 +8365,15 @@ struct SecurityDefinitionRequest : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionRequest& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "securityReqID=" << msg.securityReqID << ";"
        << "contractSymbolIndex=" << msg.contractSymbolIndex << ";"
        << "strategyCode=" << msg.strategyCode << ";"
        << "StrategyLegs=" << msg.StrategyLegs << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMProtectionRequest_MMPSection {
@@ -8447,7 +8391,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMProtectionRequest_MMPS
     os << "protectionType=" << msg.protectionType << ";"
        << "protectionThreshold=" << msg.protectionThreshold << ";"
        << "breachAction=" << msg.breachAction << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMProtectionRequest_MMPSection_Composite {
@@ -8465,7 +8409,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMProtectionRequest_MMPS
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<MMProtectionRequest_MMPSection_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMProtectionRequest : MessageHeader {
@@ -8486,12 +8430,8 @@ struct MMProtectionRequest : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionRequest& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
@@ -8500,7 +8440,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMProtectionRequest& msg
        << "eMM=" << msg.eMM << ";"
        << "requestType=" << msg.requestType << ";"
        << "MMPSection=" << msg.MMPSection << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMProtectionAck_MMPSection2 {
@@ -8522,7 +8462,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMProtectionAck_MMPSecti
        << "breachAction=" << msg.breachAction << ";"
        << "currentMMPPosition=" << msg.currentMMPPosition << ";"
        << "breachStatus=" << msg.breachStatus << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMProtectionAck_MMPSection2_Composite {
@@ -8540,7 +8480,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMProtectionAck_MMPSecti
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<MMProtectionAck_MMPSection2_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct MMProtectionAck : MessageHeader {
@@ -8567,12 +8507,8 @@ struct MMProtectionAck : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionAck& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "oEGINFromMember=" << msg.oEGINFromMember << ";"
@@ -8587,7 +8523,7 @@ inline std::ostream& operator<<(std::ostream& os, const MMProtectionAck& msg) {
        << "eMM=" << msg.eMM << ";"
        << "mMPExecutionType=" << msg.mMPExecutionType << ";"
        << "MMPSection2=" << msg.MMPSection2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewWholesaleOrder_WholesaleLegsRep {
@@ -8619,7 +8555,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_Wholes
        << "legPutOrCall=" << msg.legPutOrCall << ";"
        << "legSecurityType=" << msg.legSecurityType << ";"
        << "legLastTradingDate=" << msg.legLastTradingDate << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewWholesaleOrder_WholesaleLegsRep_Composite {
@@ -8637,7 +8573,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_Wholes
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewWholesaleOrder_WholesaleLegsRep_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewWholesaleOrder_WholesaleClientRep {
@@ -8679,7 +8615,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_Wholes
        << "nonExecutingBrokerShortCode=" << msg.nonExecutingBrokerShortCode << ";"
        << "clientIdentificationShortCode=" << msg.clientIdentificationShortCode << ";"
        << "tradingCapacity=" << msg.tradingCapacity << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewWholesaleOrder_WholesaleClientRep_Composite {
@@ -8697,7 +8633,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_Wholes
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<NewWholesaleOrder_WholesaleClientRep_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct NewWholesaleOrder : MessageHeader {
@@ -8717,7 +8653,7 @@ struct NewWholesaleOrder : MessageHeader {
     unsigned_char eSCBMembership;
     MessagePriceNotation_enum messagePriceNotation;
     NewWholesaleOrder_WholesaleLegsRep_Composite WholesaleLegsRep;
-    NewWholesaleOrder_WholesaleClientRep_Composite* WholesaleClientRep() {return reinterpret_cast<NewWholesaleOrder_WholesaleClientRep_Composite*>(WholesaleLegsRep()->end());}
+    FloatingRef<NewWholesaleOrder_WholesaleClientRep_Composite> WholesaleClientRep() {return FloatingRef<NewWholesaleOrder_WholesaleClientRep_Composite>(WholesaleLegsRep().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(NewWholesaleOrder);}
@@ -8726,12 +8662,8 @@ struct NewWholesaleOrder : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
@@ -8748,7 +8680,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder& msg) 
        << "messagePriceNotation=" << msg.messagePriceNotation << ";"
        << "WholesaleLegsRep=" << msg.WholesaleLegsRep << ";"
        << "WholesaleClientRep=" << msg.WholesaleClientRep << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct WholesaleOrderAck_WholesaleAckLegsRep {
@@ -8770,7 +8702,7 @@ inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_Wholes
        << "legOfferOrderID=" << msg.legOfferOrderID << ";"
        << "legSide=" << msg.legSide << ";"
        << "legErrorCode=" << msg.legErrorCode << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct WholesaleOrderAck_WholesaleAckLegsRep_Composite {
@@ -8788,7 +8720,7 @@ inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_Wholes
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<WholesaleOrderAck_WholesaleAckLegsRep_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct WholesaleOrderAck_WholesaleAckClearingRep {
@@ -8812,7 +8744,7 @@ inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_Wholes
        << "nonExecutingBrokerShortCode=" << msg.nonExecutingBrokerShortCode << ";"
        << "clientIdentificationShortCode=" << msg.clientIdentificationShortCode << ";"
        << "nonExecutingClientID=" << msg.nonExecutingClientID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct WholesaleOrderAck_WholesaleAckClearingRep_Composite {
@@ -8830,7 +8762,7 @@ inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_Wholes
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<WholesaleOrderAck_WholesaleAckClearingRep_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct WholesaleOrderAck : MessageHeader {
@@ -8858,7 +8790,7 @@ struct WholesaleOrderAck : MessageHeader {
     uint16_t errorCode;
     AckQualifiers_set ackQualifiers;
     WholesaleOrderAck_WholesaleAckLegsRep_Composite WholesaleAckLegsRep;
-    WholesaleOrderAck_WholesaleAckClearingRep_Composite* WholesaleAckClearingRep() {return reinterpret_cast<WholesaleOrderAck_WholesaleAckClearingRep_Composite*>(WholesaleAckLegsRep()->end());}
+    FloatingRef<WholesaleOrderAck_WholesaleAckClearingRep_Composite> WholesaleAckClearingRep() {return FloatingRef<WholesaleOrderAck_WholesaleAckClearingRep_Composite>(WholesaleAckLegsRep().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(WholesaleOrderAck);}
@@ -8867,12 +8799,8 @@ struct WholesaleOrderAck : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "oEGINFromMember=" << msg.oEGINFromMember << ";"
@@ -8897,7 +8825,7 @@ inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck& msg) 
        << "ackQualifiers=" << msg.ackQualifiers << ";"
        << "WholesaleAckLegsRep=" << msg.WholesaleAckLegsRep << ";"
        << "WholesaleAckClearingRep=" << msg.WholesaleAckClearingRep << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_FreeTextSection {
@@ -8911,7 +8839,7 @@ struct CrossOrder_FreeTextSection {
 
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_FreeTextSection& msg) {
     os << "freeText=" << msg.freeText << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_FreeTextSection_Composite {
@@ -8929,7 +8857,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder_FreeTextSecti
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CrossOrder_FreeTextSection_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_MiFIDShortcodes {
@@ -8947,7 +8875,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder_MiFIDShortcod
     os << "investmentDecisionWFirmShortCode=" << msg.investmentDecisionWFirmShortCode << ";"
        << "nonExecutingBrokerShortCode=" << msg.nonExecutingBrokerShortCode << ";"
        << "clientIdentificationShortcode=" << msg.clientIdentificationShortcode << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_MiFIDShortcodes_Composite {
@@ -8965,7 +8893,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder_MiFIDShortcod
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CrossOrder_MiFIDShortcodes_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_ClearingFieldsX {
@@ -8993,7 +8921,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder_ClearingField
        << "clearingInstruction=" << msg.clearingInstruction << ";"
        << "accountType=" << msg.accountType << ";"
        << "tradingCapacity=" << msg.tradingCapacity << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_ClearingFieldsX_Composite {
@@ -9011,7 +8939,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder_ClearingField
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CrossOrder_ClearingFieldsX_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_StrategyFields {
@@ -9029,7 +8957,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder_StrategyField
     os << "legLastPx=" << msg.legLastPx << ";"
        << "legLastQty=" << msg.legLastQty << ";"
        << "legInstrumentID=" << msg.legInstrumentID << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder_StrategyFields_Composite {
@@ -9047,7 +8975,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder_StrategyField
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<CrossOrder_StrategyFields_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct CrossOrder : MessageHeader {
@@ -9068,9 +8996,9 @@ struct CrossOrder : MessageHeader {
     MessagePriceNotation_enum messagePriceNotation;
     int64_t orderTolerablePrice;
     CrossOrder_FreeTextSection_Composite FreeTextSection;
-    CrossOrder_MiFIDShortcodes_Composite* MiFIDShortcodes() {return reinterpret_cast<CrossOrder_MiFIDShortcodes_Composite*>(FreeTextSection()->end());}
-    CrossOrder_ClearingFieldsX_Composite* ClearingFieldsX() {return reinterpret_cast<CrossOrder_ClearingFieldsX_Composite*>(MiFIDShortcodes()->end());}
-    CrossOrder_StrategyFields_Composite* StrategyFields() {return reinterpret_cast<CrossOrder_StrategyFields_Composite*>(ClearingFieldsX()->end());}
+    FloatingRef<CrossOrder_MiFIDShortcodes_Composite> MiFIDShortcodes() {return FloatingRef<CrossOrder_MiFIDShortcodes_Composite>(FreeTextSection().end());}
+    FloatingRef<CrossOrder_ClearingFieldsX_Composite> ClearingFieldsX() {return FloatingRef<CrossOrder_ClearingFieldsX_Composite>(MiFIDShortcodes().end());}
+    FloatingRef<CrossOrder_StrategyFields_Composite> StrategyFields() {return FloatingRef<CrossOrder_StrategyFields_Composite>(ClearingFieldsX().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(CrossOrder);}
@@ -9079,12 +9007,8 @@ struct CrossOrder : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
@@ -9104,7 +9028,7 @@ inline std::ostream& operator<<(std::ostream& os, const CrossOrder& msg) {
        << "MiFIDShortcodes=" << msg.MiFIDShortcodes << ";"
        << "ClearingFieldsX=" << msg.ClearingFieldsX << ";"
        << "StrategyFields=" << msg.StrategyFields << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RFQAudit_RFQCounterparts {
@@ -9126,7 +9050,7 @@ inline std::ostream& operator<<(std::ostream& os, const RFQAudit_RFQCounterparts
        << "lastTradedQuantity=" << msg.lastTradedQuantity << ";"
        << "darkExecutionInstruction=" << msg.darkExecutionInstruction << ";"
        << "minimumOrderQuantity=" << msg.minimumOrderQuantity << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RFQAudit_RFQCounterparts_Composite {
@@ -9144,7 +9068,7 @@ inline std::ostream& operator<<(std::ostream& os, const RFQAudit_RFQCounterparts
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<RFQAudit_RFQCounterparts_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct RFQAudit : MessageHeader {
@@ -9166,12 +9090,8 @@ struct RFQAudit : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const RFQAudit& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "bookIn=" << msg.bookIn << ";"
        << "bookOUTTime=" << msg.bookOUTTime << ";"
@@ -9181,7 +9101,7 @@ inline std::ostream& operator<<(std::ostream& os, const RFQAudit& msg) {
        << "symbolIndex=" << msg.symbolIndex << ";"
        << "eMM=" << msg.eMM << ";"
        << "RFQCounterparts=" << msg.RFQCounterparts << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntry_NotUsedGroup1 {
@@ -9193,7 +9113,7 @@ struct DeclarationEntry_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntry_NotUsedGroup1_Composite {
@@ -9211,7 +9131,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry_NotUsed
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<DeclarationEntry_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntry : MessageHeader {
@@ -9260,12 +9180,8 @@ struct DeclarationEntry : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "clMsgSeqNum=" << msg.clMsgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "sendingTime=" << msg.sendingTime << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
@@ -9302,7 +9218,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry& msg) {
        << "investmentDecisionWFirmShortCode=" << msg.investmentDecisionWFirmShortCode << ";"
        << "clientIdentificationShortCodeCross=" << msg.clientIdentificationShortCodeCross << ";"
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntryAck_NotUsedGroup1 {
@@ -9314,7 +9230,7 @@ struct DeclarationEntryAck_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntryAck_NotUsedGroup1_Composite {
@@ -9332,7 +9248,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck_NotU
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<DeclarationEntryAck_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntryAck : MessageHeader {
@@ -9355,12 +9271,8 @@ struct DeclarationEntryAck : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "declarationID=" << msg.declarationID << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
@@ -9371,7 +9283,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck& msg
        << "preMatchingType=" << msg.preMatchingType << ";"
        << "waiverIndicator=" << msg.waiverIndicator << ";"
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationNotice_NotUsedGroup1 {
@@ -9383,7 +9295,7 @@ struct DeclarationNotice_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct DeclarationNotice_NotUsedGroup1_Composite {
@@ -9401,7 +9313,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUse
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<DeclarationNotice_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationNotice_NotUsedGroup2 {
@@ -9413,7 +9325,7 @@ struct DeclarationNotice_NotUsedGroup2 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUsedGroup2& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct DeclarationNotice_NotUsedGroup2_Composite {
@@ -9431,7 +9343,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUse
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<DeclarationNotice_NotUsedGroup2_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationNotice : MessageHeader {
@@ -9475,7 +9387,7 @@ struct DeclarationNotice : MessageHeader {
     CCPID_enum cCPID;
     char16 tradeUniqueIdentifier;
     DeclarationNotice_NotUsedGroup1_Composite NotUsedGroup1;
-    DeclarationNotice_NotUsedGroup2_Composite* NotUsedGroup2() {return reinterpret_cast<DeclarationNotice_NotUsedGroup2_Composite*>(NotUsedGroup1()->end());}
+    FloatingRef<DeclarationNotice_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<DeclarationNotice_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     size_t size() {return sizeof(DeclarationNotice);}
@@ -9484,12 +9396,8 @@ struct DeclarationNotice : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
        << "declarationID=" << msg.declarationID << ";"
@@ -9530,7 +9438,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice& msg) 
        << "tradeUniqueIdentifier=" << msg.tradeUniqueIdentifier << ";"
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
        << "NotUsedGroup2=" << msg.NotUsedGroup2 << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntryReject_NotUsedGroup1 {
@@ -9542,7 +9450,7 @@ struct DeclarationEntryReject_NotUsedGroup1 {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryReject_NotUsedGroup1& msg) {
-    os ; return os; 
+    os ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntryReject_NotUsedGroup1_Composite {
@@ -9560,7 +9468,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryReject_N
     os << "blockLength=" << msg.blockLength << ";"
        << "numInGroup=" << msg.numInGroup << ";"
        << "data=" << const_cast<DeclarationEntryReject_NotUsedGroup1_Composite&>(msg).data() << ";"
-       ; return os; 
+       ; return os;
 }
 #pragma pack(1)
 struct DeclarationEntryReject : MessageHeader {
@@ -9583,12 +9491,8 @@ struct DeclarationEntryReject : MessageHeader {
 #pragma pack()
 
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryReject& msg) {
-    os << "length=" << msg.length << ";"
-       << "blockLength=" << msg.blockLength << ";"
-       << "templateId=" << msg.templateId << ";"
-       << "schemaId=" << msg.schemaId << ";"
-       << "version=" << msg.version << ";"
-       << "msgSeqNum=" << msg.msgSeqNum << ";"
+    os << static_cast<const MessageHeader&>(msg);
+    os << "msgSeqNum=" << msg.msgSeqNum << ";"
        << "firmID=" << msg.firmID << ";"
        << "clientOrderID=" << msg.clientOrderID << ";"
        << "symbolIndex=" << msg.symbolIndex << ";"
@@ -9599,7 +9503,7 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryReject& 
        << "rejectedMessage=" << msg.rejectedMessage << ";"
        << "rejectedMessageID=" << msg.rejectedMessageID << ";"
        << "NotUsedGroup1=" << msg.NotUsedGroup1 << ";"
-       ; return os; 
+       ; return os;
 }
 } // end of namespace ENXT_SBE335
 

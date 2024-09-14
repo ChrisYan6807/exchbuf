@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="Millennium" uuid="bd2583ab-8bca-41cb-b1dc-0669dfafb4ea" moduleVersion="0" generatorOutputPath="${module}/source_gen/cpp">
+<solution name="Millennium" uuid="bd2583ab-8bca-41cb-b1dc-0669dfafb4ea" moduleVersion="0">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />

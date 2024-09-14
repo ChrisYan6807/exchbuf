@@ -61,7 +61,6 @@ public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescripto
 
   }
   /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
-    LogContext.with(EBImportPrimitive__BehaviorDescriptor.class, null, null, null).debug("ImportPrimitive getPyType");
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
       boolean isLittleEndian = (boolean) EBIntType__BehaviorDescriptor.isLittleEndian_id7qxjCwPtLrW.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej));
       int size = (int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej));

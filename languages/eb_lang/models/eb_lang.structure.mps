@@ -94,6 +94,11 @@
       <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="79EjCryfNNM" resolve="EBStatement" />
     </node>
+    <node concept="1TJgyi" id="4RVkCZeqVh$" role="1TKVEl">
+      <property role="IQ2nx" value="5619175737671791716" />
+      <property role="TrG5h" value="genType" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+    </node>
   </node>
   <node concept="1TIwiD" id="79EjCryfNNY">
     <property role="EcuMT" value="8244488409083493630" />
@@ -152,8 +157,8 @@
   <node concept="1TIwiD" id="79EjCryfNOm">
     <property role="EcuMT" value="8244488409083493654" />
     <property role="TrG5h" value="EBIntLiteral" />
-    <property role="R5$K7" value="true" />
     <property role="3GE5qa" value="literals" />
+    <property role="R5$K7" value="true" />
     <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
   </node>
   <node concept="1TIwiD" id="79EjCryfNOn">

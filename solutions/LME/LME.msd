@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<solution name="LME" uuid="9c382cc6-b68a-4a85-a570-0197c368785c" moduleVersion="0" generatorOutputPath="${module}/source_gen/cpp">
+<solution name="LME" uuid="9c382cc6-b68a-4a85-a570-0197c368785c" moduleVersion="0">
   <models>
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
