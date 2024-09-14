@@ -53,14 +53,14 @@ For SBE protocol, [simple-binary-encoding](https://github.com/real-logic/simple-
     - The user should import primitive types, create composite types and create messages manually. However, the types check and auto completion would help you a lot.
 + Automatically generating protocol based on exchange published layout file.
     - Currently only support T7 ETI and Euronext SBE
-   [Eurex T7 Release 11.0](https://www.eurex.com/resource/blob/3210092/a6b065cbbe66fcfe5f51cedb6857477c/data/T7_R.11.0_Enhanced_Trading_Interface_-_XSD_XML_representation_and_layouts_v.1.1.zip), 
-  [Euronext oeg input 319](https://connect2.euronext.com/sites/default/files/it-documentation/oeg_binary_sbe_input_319.xml)
+   [Eurex T7 Release 13.0](https://www.eurex.com/resource/blob/4076634/5a94ed214b4b8851eebc7d3d62ab0bab/data/T7_R.13.0_Enhanced_Trading_Interface_-_XSD_XML_representation_and_layouts_Version_2.zip), 
+  [Euronext oeg input 338](https://connect2.euronext.com/sites/default/files/it-documentation/oeg_binary_sbe_input_338.xml)
 
 ## Implemented protocols
 :warning: All the protocols are not tested with real exchange UAT session.
-+ LME new trading platform [spec](https://www.lme.com/-/media/Files/Trading/New-initiatives/New-trading-platform/Timeline/Binary-Order-Entry-Specification-v1-1.pdf)
-+ T7 ETI release 11.0  [Derivative](https://www.eurex.com/resource/blob/3210088/470b55382efb43ba9e23f99b4153a6a4/data/T7_Enhanced_Trading_Interface_-_Derivatives_Message_Reference_v.11.0-D0002.pdf) [Cash](https://www.eurex.com/resource/blob/3210090/7cff31abf8d5b2c3bcd0911e41911134/data/T7_Enhanced_Trading_Interface_-_Cash_Message_Reference_v.11.0-C0002.pdf)
-+ Euronext SBE [SBE 319](https://connect2.euronext.com/sites/default/files/it-documentation/Euronext%20Cash%20and%20Derivatives%20Markets%20-%20Optiq%20OEG%20SBE%20Messages%20-%20Interface%20Specification%20-%20External%20-%20v5.19.0%20%2BTC.pdf)
++ LME new trading platform [spec](https://www.lme.com/-/media/Files/Trading/New-initiatives/New-trading-platform/Access/Documents-July-2024/Binary-Order-Entry-Specification-v1-6-1.pdf)
++ T7 ETI release 13.0  [Derivative](https://www.eurex.com/resource/blob/4076630/46580a341f8ed698aa522326fc545830/data/T7_R.13.0_Enhanced_Trading_Interface_-_Derivatives_Message_Reference_Version_2.pdf) [Cash](https://www.eurex.com/resource/blob/4076632/a1133157e223c01bb8fe191cd792d9a8/data/T7_R.13.0_Enhanced_Trading_Interface_-_Cash_Message_Reference_Version%202.pdf)
++ Euronext SBE [SBE 338](https://connect2.euronext.com/sites/default/files/it-documentation/Optiq%20Files%20-%20Interface%20Specification%20-%20Euronext%20Cash%20and%20Derivatives%20Markets%20-%20External%20-%20v5.38.0_0.pdf)
 + Millennium LSE
 + Millennium Turquoise
 
