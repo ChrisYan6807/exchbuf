@@ -11,8 +11,8 @@ using CurrencyType = FixedLengthString<3, 0>;
 using ISIN = FixedLengthString<12, 0>;
 using LocalMktDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using LocalMonthYearCod = LittleEndian<uint32_t, 0, 999912, 0xFFFFFFFF>;
-using PriceType = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using Qty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using PriceType = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using Qty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using SeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 using UTCTimestamp = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 using Account = FixedLengthString<2, 0>;
@@ -21,7 +21,7 @@ using AffectedOrderID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xUL
 using AffectedOrderRequestID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using AffectedOrigClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 using AllocID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using AllocQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using AllocQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using ApplBegMsgID = FixedLengthString<16, 0>;
 using ApplBegSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 using ApplEndMsgID = FixedLengthString<16, 0>;
@@ -382,12 +382,12 @@ inline ostreamT& operator<<(ostreamT& os, const BasketTradeReportType& v){
     return os;
 }
 using BasketTrdMatchID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using BestBidPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using BestBidSize = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using BestOfferPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using BestOfferSize = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using BidCxlSize = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using BidPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using BestBidPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using BestBidSize = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using BestOfferPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using BestOfferSize = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using BidCxlSize = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using BidPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct BidPxIsLocked {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -423,7 +423,7 @@ inline ostreamT& operator<<(ostreamT& os, const BidPxIsLocked& v){
     os << v.to_string_view();
     return os;
 }
-using BidSize = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using BidSize = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using BodyLen = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using ChargeID = FixedLengthString<132, 0>;
 struct ChargeIDDisclosureInstruction {
@@ -463,8 +463,8 @@ inline ostreamT& operator<<(ostreamT& os, const ChargeIDDisclosureInstruction& v
 }
 using CheckSumCorrection = LittleEndian<uint16_t, 0, 65534, 0xFFFF>;
 using ClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using ClearingTradePrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using ClearingTradeQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using ClearingTradePrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using ClearingTradeQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using ComplianceText = FixedLengthString<20, 0>;
 using ContractDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using CrossID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
@@ -609,10 +609,10 @@ inline ostreamT& operator<<(ostreamT& os, const CrossedIndicator& v){
     os << v.to_string_view();
     return os;
 }
-using CumQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using CumQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using CustOrderHandlingInst = FixedLengthString<1, 0>;
-using CxlQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using CxlSize = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using CxlQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using CxlSize = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using DefaultCstmApplVerID = FixedLengthString<30, 0>;
 using DefaultCstmApplVerSubID = FixedLengthString<5, 0>;
 struct DeleteReason {
@@ -666,7 +666,7 @@ inline ostreamT& operator<<(ostreamT& os, const DeleteReason& v){
     os << v.to_string_view();
     return os;
 }
-using Delta = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using Delta = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct EffectOnBasket {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1156,8 +1156,8 @@ inline ostreamT& operator<<(ostreamT& os, const FillLiquidityInd& v){
     return os;
 }
 using FillMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using FillPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using FillQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using FillPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using FillQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using FillRefID = LittleEndian<uint8_t, 1_u8, 100_u8, 0x_u8FF>;
 using FirmNegotiationID = FixedLengthString<20, 0>;
 using FirmTradeID = FixedLengthString<20, 0>;
@@ -1309,7 +1309,7 @@ inline ostreamT& operator<<(ostreamT& os, const HedgingInstruction& v){
     os << v.to_string_view();
     return os;
 }
-using HighLimitPrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using HighLimitPrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct ImpliedCheckPriceIndicator {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1569,7 +1569,7 @@ inline ostreamT& operator<<(ostreamT& os, const LastMkt& v){
     os << v.to_string_view();
     return os;
 }
-using LastPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using LastPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct LastPxDisclosureInstruction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1605,7 +1605,7 @@ inline ostreamT& operator<<(ostreamT& os, const LastPxDisclosureInstruction& v){
     os << v.to_string_view();
     return os;
 }
-using LastQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using LastQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct LastQtyDisclosureInstruction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1643,7 +1643,7 @@ inline ostreamT& operator<<(ostreamT& os, const LastQtyDisclosureInstruction& v)
 }
 using LastUpdateTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 using LatestPublicKeySeqNo = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using LeavesQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using LeavesQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct LeavesQtyDisclosureInstruction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1680,7 +1680,7 @@ inline ostreamT& operator<<(ostreamT& os, const LeavesQtyDisclosureInstruction& 
     return os;
 }
 using LegAccount = FixedLengthString<2, 0>;
-using LegClearingTradePrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using LegClearingTradePrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 using LegExecID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 struct LegInputSource {
     using value_type = uint8_t;
@@ -1721,8 +1721,8 @@ inline ostreamT& operator<<(ostreamT& os, const LegInputSource& v){
     os << v.to_string_view();
     return os;
 }
-using LegLastPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using LegLastQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using LegLastPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using LegLastQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct LegPositionEffect {
     using value_type = char;
     enum Enum : value_type {
@@ -1758,8 +1758,8 @@ inline ostreamT& operator<<(ostreamT& os, const LegPositionEffect& v){
     os << v.to_string_view();
     return os;
 }
-using LegPrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using LegQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using LegPrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using LegQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using LegRatioQty = LittleEndian<uint32_t, 1, 2147483647, 0xFFFFFFFF>;
 using LegSecurityID = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, 0x8000000000000000L>;
 struct LegSecurityType {
@@ -1868,7 +1868,7 @@ inline ostreamT& operator<<(ostreamT& os, const ListUpdateAction& v){
     os << v.to_string_view();
     return os;
 }
-using LowLimitPrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using LowLimitPrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct MDBookType {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1975,8 +1975,8 @@ inline ostreamT& operator<<(ostreamT& os, const MMRiskLimitActionType& v){
     os << v.to_string_view();
     return os;
 }
-using MarginBasedRiskLimitLong = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using MarginBasedRiskLimitShort = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using MarginBasedRiskLimitLong = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using MarginBasedRiskLimitShort = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct MarketID {
     using value_type = uint16_t;
     enum Enum : value_type {
@@ -2275,7 +2275,7 @@ inline ostreamT& operator<<(ostreamT& os, const MatchingEngineStatus& v){
 using MatchingEngineTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using MaturityDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using MaturityMonthYear = LittleEndian<uint32_t, 0, 999912, 0xFFFFFFFF>;
-using MaximumPrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using MaximumPrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct MessageEventSource {
     using value_type = char;
     enum Enum : value_type {
@@ -2424,7 +2424,7 @@ inline ostreamT& operator<<(ostreamT& os, const MultilegPriceModel& v){
 }
 using NegotiationID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using NegotiationStartTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using NettingCoefficient = LittleEndian<int64_t, 0.0000, 1.0000, 0x8000000000000000, 4>;
+using NettingCoefficient = LittleEndian<int64_t, 0.0000LL, 1.0000LL, std::numeric_limits<int64_t>::min(), 4>;
 using NetworkMsgID = FixedLengthString<8, 0>;
 struct NewsRtmServiceStatus {
     using value_type = uint8_t;
@@ -2542,8 +2542,8 @@ inline ostreamT& operator<<(ostreamT& os, const NumberOfRespDisclosureInstructio
 }
 using NumberOfRespondents = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using NumberOfSecurities = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
-using OfferCxlSize = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using OfferPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using OfferCxlSize = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using OfferPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct OfferPxIsLocked {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2579,7 +2579,7 @@ inline ostreamT& operator<<(ostreamT& os, const OfferPxIsLocked& v){
     os << v.to_string_view();
     return os;
 }
-using OfferSize = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using OfferSize = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using OptAttribute = LittleEndian<uint8_t, 0_u8, 9_u8, 0x_u8FF>;
 struct OptionalEarlyTerminationIndicator {
     using value_type = uint8_t;
@@ -2804,8 +2804,8 @@ inline ostreamT& operator<<(ostreamT& os, const OrderCategory& v){
     return os;
 }
 using OrderEventMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using OrderEventPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using OrderEventQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using OrderEventPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using OrderEventQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct OrderEventReason {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2873,7 +2873,7 @@ inline ostreamT& operator<<(ostreamT& os, const OrderOrigination& v){
     os << v.to_string_view();
     return os;
 }
-using OrderQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using OrderQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct OrderQtyDisclosureInstruction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3488,7 +3488,7 @@ inline ostreamT& operator<<(ostreamT& os, const PositionEffect& v){
     os << v.to_string_view();
     return os;
 }
-using Price = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using Price = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 struct PriceDisclosureInstruction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3905,8 +3905,8 @@ inline ostreamT& operator<<(ostreamT& os, const QuoteEventLiquidityInd& v){
     return os;
 }
 using QuoteEventMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using QuoteEventPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using QuoteEventQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using QuoteEventPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using QuoteEventQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct QuoteEventReason {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4061,7 +4061,7 @@ inline ostreamT& operator<<(ostreamT& os, const QuoteInstruction& v){
     return os;
 }
 using QuoteMsgID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using QuoteRefPrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using QuoteRefPrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 using QuoteReqID = FixedLengthString<20, 0>;
 using QuoteResponseID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 struct QuoteSizeType {
@@ -4179,7 +4179,7 @@ inline ostreamT& operator<<(ostreamT& os, const QuoteType& v){
     os << v.to_string_view();
     return os;
 }
-using QuoteWeightingCoefficient = LittleEndian<int64_t, 0.0000, 1.0000, 0x8000000000000000, 4>;
+using QuoteWeightingCoefficient = LittleEndian<int64_t, 0.0000LL, 1.0000LL, std::numeric_limits<int64_t>::min(), 4>;
 struct QuotingStatus {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4272,7 +4272,7 @@ using RefApplLastMsgID = FixedLengthString<16, 0>;
 using RefApplLastSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 using RefApplSubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RegulatoryTradeID = FixedLengthString<52, 0>;
-using RelatedClosePrice = LittleEndian<int64_t, -9223372036854.775807, 9223372036854.775807, 0x8000000000000000, 6>;
+using RelatedClosePrice = LittleEndian<int64_t, -9223372036854.775807LL, 9223372036854.775807LL, std::numeric_limits<int64_t>::min(), 6>;
 using RelatedMarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 struct RelatedProductComplex {
     using value_type = uint8_t;
@@ -4327,13 +4327,13 @@ inline ostreamT& operator<<(ostreamT& os, const RelatedProductComplex& v){
     os << v.to_string_view();
     return os;
 }
-using RelatedPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using RelatedPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 using RelatedSecurityID = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, 0x8000000000000000L>;
 using RelatedSymbol = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
 using RelatedTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RelatedTradeQuantity = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using RemainingRiskAllowanceBaseLong = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using RemainingRiskAllowanceBaseShort = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using RelatedTradeQuantity = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using RemainingRiskAllowanceBaseLong = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using RemainingRiskAllowanceBaseShort = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 using RequestTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 using RequestingPartyClearingFirm = FixedLengthString<9, 0>;
 using RequestingPartyEnteringFirm = FixedLengthString<9, 0>;
@@ -4634,8 +4634,8 @@ inline ostreamT& operator<<(ostreamT& os, const RiskLimitAction& v){
 }
 using RiskLimitGroup = FixedLengthString<3, 0>;
 using RiskLimitID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RiskLimitNetPositionQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using RiskLimitOpenQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using RiskLimitNetPositionQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using RiskLimitOpenQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct RiskLimitPlatform {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4671,7 +4671,7 @@ inline ostreamT& operator<<(ostreamT& os, const RiskLimitPlatform& v){
     os << v.to_string_view();
     return os;
 }
-using RiskLimitQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using RiskLimitQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using RiskLimitReportID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
 struct RiskLimitRequestingPartyRole {
     using value_type = uint8_t;
@@ -5441,8 +5441,8 @@ inline ostreamT& operator<<(ostreamT& os, const SideIsLocked& v){
     os << v.to_string_view();
     return os;
 }
-using SideLastPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using SideLastQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using SideLastPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using SideLastQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 struct SideLiquidityInd {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -5553,9 +5553,9 @@ inline ostreamT& operator<<(ostreamT& os, const SkipValidations& v){
     os << v.to_string_view();
     return os;
 }
-using StopPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using StopPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 using StrategyLinkID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using StrikePrice = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
+using StrikePrice = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
 using SubscriptionScope = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct SwapClearer {
     using value_type = uint8_t;
@@ -6083,7 +6083,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradeRequestResult& v){
     os << v.to_string_view();
     return os;
 }
-using TradeToQuoteRatio = LittleEndian<int64_t, 0.0000, 100.0000, 0x8000000000000000, 4>;
+using TradeToQuoteRatio = LittleEndian<int64_t, 0.0000LL, 100.0000LL, std::numeric_limits<int64_t>::min(), 4>;
 using TradeToQuoteRatioPosition = LittleEndian<uint16_t, 1, 32767, 0xFFFF>;
 struct TradeToQuoteRatioRanking {
     using value_type = uint8_t;
@@ -6122,7 +6122,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradeToQuoteRatioRanking& v){
     os << v.to_string_view();
     return os;
 }
-using TradeToRequestRatio = LittleEndian<int64_t, 0.0000, 100.0000, 0x8000000000000000, 4>;
+using TradeToRequestRatio = LittleEndian<int64_t, 0.0000LL, 100.0000LL, std::numeric_limits<int64_t>::min(), 4>;
 struct TradingCapacity {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -6411,13 +6411,13 @@ inline ostreamT& operator<<(ostreamT& os, const Triggered& v){
     return os;
 }
 using UnderlyingCurrency = FixedLengthString<3, 0>;
-using UnderlyingDeltaPercentage = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
-using UnderlyingEffectiveDeltaPercentage = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using UnderlyingDeltaPercentage = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
+using UnderlyingEffectiveDeltaPercentage = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using UnderlyingIssuer = FixedLengthString<30, 0>;
 using UnderlyingMaturityDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
-using UnderlyingPriceStipValue = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using UnderlyingPx = LittleEndian<int64_t, -92233720368.54775807, 92233720368.54775807, 0x8000000000000000, 8>;
-using UnderlyingQty = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using UnderlyingPriceStipValue = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using UnderlyingPx = LittleEndian<int64_t, -92233720368.54775807LL, 92233720368.54775807LL, std::numeric_limits<int64_t>::min(), 8>;
+using UnderlyingQty = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 using UnderlyingSecurityDesc = FixedLengthString<30, 0>;
 using UnderlyingSecurityID = FixedLengthString<12, 0>;
 using UnderlyingSettlementDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
@@ -6569,7 +6569,7 @@ inline ostreamT& operator<<(ostreamT& os, const ValueCheckTypeValue& v){
 }
 using VarText = FixedLengthString<2000, 0>;
 using VarTextLen = LittleEndian<uint16_t, 0, 2000, 0xFFFF>;
-using Vega = LittleEndian<int64_t, -922337203685477.5807, 922337203685477.5807, 0x8000000000000000, 4>;
+using Vega = LittleEndian<int64_t, -922337203685477.5807LL, 922337203685477.5807LL, std::numeric_limits<int64_t>::min(), 4>;
 #pragma pack(1)
 struct AffectedOrderRequestsGrpComp {
     AffectedOrderRequestID affectedOrderRequestID;

@@ -21,7 +21,7 @@ String20 = fixed_length_string(20, b'\0')
 String25 = fixed_length_string(25, b'\0')
 String30 = fixed_length_string(30, b'\0')
 
-MillenniumPrice = float_decimal(8, 8, True, True, -2**63/10**8, (2**63-1)/10**8, 0)
+MillenniumPrice = float_decimal(8, 8, True, True, -2**63, 2**63-1, 0)
 
 class MsgType(str, Enum):
     Heartbeat = '0'

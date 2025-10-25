@@ -9,6 +9,8 @@ import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import jetbrains.mps.smodel.runtime.ConceptPresentationBuilder;
 
 public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase {
+  private ConceptPresentation props_EBAlias;
+  private ConceptPresentation props_EBArray;
   private ConceptPresentation props_EBBigEndian;
   private ConceptPresentation props_EBBitField;
   private ConceptPresentation props_EBBitFieldMember;
@@ -35,10 +37,16 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBLink;
   private ConceptPresentation props_EBLittleEndian;
   private ConceptPresentation props_EBMessage;
+  private ConceptPresentation props_EBMessageArrayMember;
+  private ConceptPresentation props_EBMessageBitMember;
   private ConceptPresentation props_EBMessageBlockMember;
   private ConceptPresentation props_EBMessageEntryMember;
   private ConceptPresentation props_EBMessageMember;
   private ConceptPresentation props_EBMessageMemberVar;
+  private ConceptPresentation props_EBMessagePresenceByEnumFieldMember;
+  private ConceptPresentation props_EBMessagePresenceByLengthFieldMember;
+  private ConceptPresentation props_EBMessagePresenceByOptionalBitMember;
+  private ConceptPresentation props_EBMessagePresenceByValueFieldMember;
   private ConceptPresentation props_EBMessagePresenceFieldMember;
   private ConceptPresentation props_EBNumberLiteral;
   private ConceptPresentation props_EBPrimitiveType;
@@ -56,6 +64,20 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   public ConceptPresentation getDescriptor(SAbstractConcept c) {
     StructureAspectDescriptor structureDescriptor = (StructureAspectDescriptor) myLanguageRuntime.getAspect(jetbrains.mps.smodel.runtime.StructureAspectDescriptor.class);
     switch (structureDescriptor.internalIndex(c)) {
+      case LanguageConceptSwitch.EBAlias:
+        if (props_EBAlias == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBAlias = cpb.create();
+        }
+        return props_EBAlias;
+      case LanguageConceptSwitch.EBArray:
+        if (props_EBArray == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBArray = cpb.create();
+        }
+        return props_EBArray;
       case LanguageConceptSwitch.EBBigEndian:
         if (props_EBBigEndian == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -238,6 +260,20 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessage = cpb.create();
         }
         return props_EBMessage;
+      case LanguageConceptSwitch.EBMessageArrayMember:
+        if (props_EBMessageArrayMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessageArrayMember = cpb.create();
+        }
+        return props_EBMessageArrayMember;
+      case LanguageConceptSwitch.EBMessageBitMember:
+        if (props_EBMessageBitMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessageBitMember = cpb.create();
+        }
+        return props_EBMessageBitMember;
       case LanguageConceptSwitch.EBMessageBlockMember:
         if (props_EBMessageBlockMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -264,6 +300,34 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageMemberVar = cpb.create();
         }
         return props_EBMessageMemberVar;
+      case LanguageConceptSwitch.EBMessagePresenceByEnumFieldMember:
+        if (props_EBMessagePresenceByEnumFieldMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessagePresenceByEnumFieldMember = cpb.create();
+        }
+        return props_EBMessagePresenceByEnumFieldMember;
+      case LanguageConceptSwitch.EBMessagePresenceByLengthFieldMember:
+        if (props_EBMessagePresenceByLengthFieldMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessagePresenceByLengthFieldMember = cpb.create();
+        }
+        return props_EBMessagePresenceByLengthFieldMember;
+      case LanguageConceptSwitch.EBMessagePresenceByOptionalBitMember:
+        if (props_EBMessagePresenceByOptionalBitMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessagePresenceByOptionalBitMember = cpb.create();
+        }
+        return props_EBMessagePresenceByOptionalBitMember;
+      case LanguageConceptSwitch.EBMessagePresenceByValueFieldMember:
+        if (props_EBMessagePresenceByValueFieldMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessagePresenceByValueFieldMember = cpb.create();
+        }
+        return props_EBMessagePresenceByValueFieldMember;
       case LanguageConceptSwitch.EBMessagePresenceFieldMember:
         if (props_EBMessagePresenceFieldMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

@@ -37,8 +37,8 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
   }
 
   /*package*/ static boolean isNotFixedLength_id5hSnPGNaBkU(@NotNull SNode __thisNode__) {
-    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBMessage$YV)) {
-      if ((boolean) EBMessage__BehaviorDescriptor.isNotFixedLength_id4Xeby11878t.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBMessage$YV))) {
+    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBMessage$YV)) {
+      if ((boolean) EBMessage__BehaviorDescriptor.isNotFixedLength_id4Xeby11878t.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBMessage$YV))) {
         return true;
       }
     }
@@ -46,11 +46,13 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
     return false;
   }
   /*package*/ static String fmtCppDefault_id7hSmxNQ32$j(@NotNull SNode __thisNode__) {
-    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBImportPrimitive$gU)) {
-      if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
-        String fmted = EBIntType__BehaviorDescriptor.fmtDefault_id7hSmxNQ2P2b.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$eiFN), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej), SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO));
+    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU)) {
+      if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
+        String fmted = EBIntType__BehaviorDescriptor.fmtDefault_id7hSmxNQ2P2b.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej), SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO));
         return fmted;
       }
+    } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37)) {
+      return SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), PROPS.name$MnvL) + "::" + SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
     }
     return SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
   }
@@ -109,7 +111,7 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
   }
 
   private static final class LINKS {
-    /*package*/ static final SReferenceLink type$eiFN = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x5737b24e0c67d176L, "type");
+    /*package*/ static final SReferenceLink type$zO4N = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, 0x3fa729f23447e491L, "type");
     /*package*/ static final SContainmentLink type$zVeR = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, 0x726a4e86e2416a07L, "type");
   }
 
@@ -117,9 +119,11 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBImportPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
+    /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
   }
 
   private static final class PROPS {
     /*package*/ static final SProperty default$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "default");
+    /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
   }
 }

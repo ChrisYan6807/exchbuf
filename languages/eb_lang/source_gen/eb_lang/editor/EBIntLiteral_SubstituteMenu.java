@@ -81,7 +81,7 @@ public class EBIntLiteral_SubstituteMenu extends SubstituteMenuBase {
           return canExecute_internal(pattern, true);
         }
         public boolean canExecute_internal(@NotNull String pattern, boolean strictly) {
-          return pattern.matches("[0-9]+");
+          return pattern.matches("[0-9]+") || pattern.matches("0b[01]+") || pattern.matches("0x[0-9a-fA-F]+");
         }
       };
     }

@@ -24,11 +24,12 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
 
   public static final SMethod<String> cppName_id3_eh5mZPdPt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043426631005L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> pyName_id3_eh5mZPez6 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043426633926L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> postFix_id3TsEK2XMb7u = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("postFix").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4493654547881308638L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
   public static final SMethod<String> maxValue_id4s_KfQOOXD = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("maxValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667565929L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
   public static final SMethod<String> minValue_id4s_KfQOOYo = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667565976L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
-  public static final SMethod<String> nullValue_id4s_KfQOOZ4 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667566020L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> nullValue_id4s_KfQOOZ4 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667566020L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(cppName_id3_eh5mZPdPt, pyName_id3_eh5mZPez6, maxValue_id4s_KfQOOXD, minValue_id4s_KfQOOYo, nullValue_id4s_KfQOOZ4);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(cppName_id3_eh5mZPdPt, pyName_id3_eh5mZPez6, postFix_id3TsEK2XMb7u, maxValue_id4s_KfQOOXD, minValue_id4s_KfQOOYo, nullValue_id4s_KfQOOZ4);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
     SPropertyOperations.assign(__thisNode__, PROPS.singed$CnQN, true);
@@ -44,9 +45,36 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
   /*package*/ static String pyName_id3_eh5mZPez6(@NotNull SNode __thisNode__) {
     return "EBFloatDecimal pyName not implemented";
   }
+  /*package*/ static String postFix_id3TsEK2XMb7u(@NotNull SNode __thisNode__, String value) {
+    if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
+      if (value.startsWith("0x") || value.startsWith("0X")) {
+        value = value.substring(2);
+
+        long long_value = Long.parseUnsignedLong(value, 16);
+        if (long_value == Long.MIN_VALUE && SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) == 8) {
+          return String.format("std::numeric_limits<int64_t>::min()");
+        } else if ((int) long_value == Long.MIN_VALUE && SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) == 4) {
+          return String.format("std::numeric_limits<int32_t>::min()");
+        } else if ((short) long_value == Long.MIN_VALUE && SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) == 2) {
+          return String.format("std::numeric_limits<int16_t>::min()");
+        } else if ((byte) long_value == Long.MIN_VALUE && SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) == 1) {
+          return String.format("std::numeric_limits<int8_t>::min()");
+        }
+      }
+    }
+
+    if (SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) > 4) {
+      if (!(SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN))) {
+        value += "U";
+      }
+      value += "LL";
+    }
+
+    return value;
+  }
   /*package*/ static String maxValue_id4s_KfQOOXD(@NotNull SNode __thisNode__, String type) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn))) {
-      return SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn);
+      return (type == "cpp" ? EBFloatDecimal__BehaviorDescriptor.postFix_id3TsEK2XMb7u.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn)) : SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn));
     }
 
     if (type == "cpp") {
@@ -54,15 +82,15 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
     } else {
       int nBits = SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8;
       if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
-        return String.format("(2**%s-1)/10**%s", nBits - 1, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP));
+        return String.format("2**%s-1", nBits - 1);
       } else {
-        return String.format("(2**%s)/10**%s", nBits, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP));
+        return String.format("2**%s", nBits);
       }
     }
   }
   /*package*/ static String minValue_id4s_KfQOOYo(@NotNull SNode __thisNode__, String type) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp))) {
-      return SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp);
+      return (type == "cpp" ? EBFloatDecimal__BehaviorDescriptor.postFix_id3TsEK2XMb7u.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp)) : SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp));
     }
 
     if (type == "cpp") {
@@ -70,18 +98,18 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
     } else {
       int nBits = SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8;
       if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
-        return String.format("-2**%s/10**%s", nBits - 1, SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP));
+        return String.format("-2**%s", nBits - 1);
       } else {
         return "0";
       }
     }
   }
-  /*package*/ static String nullValue_id4s_KfQOOZ4(@NotNull SNode __thisNode__) {
+  /*package*/ static String nullValue_id4s_KfQOOZ4(@NotNull SNode __thisNode__, String type) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$laGU))) {
-      return SPropertyOperations.getString(__thisNode__, PROPS.null$laGU);
-    } else {
-      return "0";
+      return (type == "cpp" ? EBFloatDecimal__BehaviorDescriptor.postFix_id3TsEK2XMb7u.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.null$laGU)) : SPropertyOperations.getString(__thisNode__, PROPS.null$laGU));
     }
+
+    return "0";
   }
 
   /*package*/ EBFloatDecimal__BehaviorDescriptor() {
@@ -104,11 +132,13 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
       case 1:
         return (T) ((String) pyName_id3_eh5mZPez6(node));
       case 2:
-        return (T) ((String) maxValue_id4s_KfQOOXD(node, (String) parameters[0]));
+        return (T) ((String) postFix_id3TsEK2XMb7u(node, (String) parameters[0]));
       case 3:
-        return (T) ((String) minValue_id4s_KfQOOYo(node, (String) parameters[0]));
+        return (T) ((String) maxValue_id4s_KfQOOXD(node, (String) parameters[0]));
       case 4:
-        return (T) ((String) nullValue_id4s_KfQOOZ4(node));
+        return (T) ((String) minValue_id4s_KfQOOYo(node, (String) parameters[0]));
+      case 5:
+        return (T) ((String) nullValue_id4s_KfQOOZ4(node, (String) parameters[0]));
       default:
         throw new BHMethodNotFoundException(this, method);
     }
