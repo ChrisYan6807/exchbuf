@@ -14,13 +14,6 @@
       <concept id="8244488409083636233" name="eb_lang.structure.EBPython" flags="ng" index="2gaMif">
         <property id="8244488409083636256" name="value" index="2gaMiA" />
       </concept>
-      <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
-        <reference id="2293153050483516742" name="base" index="2yvCZa" />
-        <child id="8888019748028577210" name="content" index="36JId$" />
-      </concept>
-      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
-        <reference id="6284687853304140150" name="type" index="1rk6cS" />
-      </concept>
       <concept id="8244488409083636111" name="eb_lang.structure.EBBitField" flags="ng" index="2gaMs9">
         <child id="8244488409083636116" name="values" index="2gaMsi" />
         <child id="8244488409083636114" name="type" index="2gaMsk" />
@@ -57,12 +50,6 @@
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu">
         <property id="1242549936702518724" name="value" index="2pU1_h" />
-      </concept>
-      <concept id="1399011618606694719" name="eb_lang.structure.EBLink" flags="ng" index="2KQ0yo">
-        <property id="1399011618616562416" name="field" index="2R8DHn" />
-        <reference id="1399011618608964254" name="derived" index="2KJEGT" />
-        <reference id="1399011618608964252" name="base" index="2KJEGV" />
-        <reference id="1399011618616556345" name="base_member" index="2R8Jau" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -160,43 +147,8 @@
         <ref role="2pq4PT" node="4RVkCZeRJEo" resolve="amend" />
       </node>
     </node>
-    <node concept="2gln9S" id="4RVkCZfHy$K" role="2gln9U">
-      <property role="TrG5h" value="empty" />
-    </node>
-    <node concept="2gaMiw" id="4RVkCZfHy$P" role="2gln9U">
-      <property role="TrG5h" value="header" />
-      <node concept="2gaMiM" id="4RVkCZfHy$R" role="36JId$">
-        <property role="TrG5h" value="f1" />
-        <ref role="1rk6cS" node="4nIu8bHFhNQ" resolve="U16" />
-      </node>
-      <node concept="2gaMiM" id="4RVkCZfHy$T" role="36JId$">
-        <property role="TrG5h" value="f2" />
-        <ref role="1rk6cS" node="4RVkCZeRJEb" resolve="MsgType" />
-      </node>
-    </node>
-    <node concept="2gln9S" id="3z3hb45OrPk" role="2gln9U">
-      <property role="TrG5h" value="empty" />
-    </node>
-    <node concept="2gaMiw" id="4RVkCZfHy$M" role="2gln9U">
-      <property role="TrG5h" value="msg1" />
-      <ref role="2yvCZa" node="4RVkCZfHy$P" resolve="header" />
-      <node concept="2gaMiM" id="4RVkCZfHy$W" role="36JId$">
-        <property role="TrG5h" value="f3" />
-        <ref role="1rk6cS" node="4nIu8bHFhNL" resolve="U8" />
-      </node>
-      <node concept="2gaMiM" id="4RVkCZfHy$Z" role="36JId$">
-        <property role="TrG5h" value="f4" />
-        <ref role="1rk6cS" node="4RVkCZf_h7g" resolve="em2" />
-      </node>
-    </node>
     <node concept="2gln9S" id="4RVkCZeSPhI" role="2gln9U">
       <property role="TrG5h" value="empty" />
-    </node>
-    <node concept="2KQ0yo" id="3z3hb45SP4M" role="2gln9U">
-      <property role="2R8DHn" value="new" />
-      <ref role="2KJEGV" node="4RVkCZfHy$P" resolve="header" />
-      <ref role="2KJEGT" node="4RVkCZfHy$M" resolve="msg1" />
-      <ref role="2R8Jau" node="4RVkCZfHy$T" resolve="f2" />
     </node>
     <node concept="2gln9S" id="4RVkCZfHysw" role="2gln9U">
       <property role="TrG5h" value="empty" />
