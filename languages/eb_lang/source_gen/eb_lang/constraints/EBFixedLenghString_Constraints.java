@@ -33,7 +33,10 @@ public class EBFixedLenghString_Constraints extends BaseConstraintsDescriptor {
       return result;
     }
     private static boolean staticValidateProperty(SNode node, String propertyValue) {
-      return propertyValue.length() <= 1;
+      if (!(propertyValue.startsWith("'")) || !(propertyValue.endsWith("'"))) {
+        return false;
+      }
+      return (propertyValue.charAt(1) == '\\' && propertyValue.length() == 4) || (propertyValue.charAt(1) != '\\' && propertyValue.length() == 3);
     }
   }
 

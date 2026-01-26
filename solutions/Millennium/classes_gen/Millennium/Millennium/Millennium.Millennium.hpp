@@ -8,25 +8,25 @@
 namespace Millennium {
 using namespace EB::common;
 
-using Alpha = LittleEndian<char, -128, 127, 0>;
-using UInt8 = LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>;
-using Int8 = LittleEndian<int8_t, -128, 127, 0>;
-using UInt16 = LittleEndian<uint16_t, 0, 65535, 0>;
-using Int16 = LittleEndian<int16_t, -32768, 32767, 0>;
-using UInt32 = LittleEndian<uint32_t, 0, 4294967295, 0>;
-using Int32 = LittleEndian<int32_t, -2147483648, 2147483647, 0>;
-using Uint64 = LittleEndian<uint64_t, 0UL, 9223372036854775806UL, 0UL>;
+using Alpha = LittleEndian<char, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0>;
+using UInt8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using Int8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0>;
+using UInt16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
+using Int16 = LittleEndian<int16_t, std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max(), 0>;
+using UInt32 = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using Int32 = LittleEndian<int32_t, std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max(), 0>;
+using Uint64 = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
 
-using String1 = FixedLengthString<1, 0>;
-using String8 = FixedLengthString<8, 0>;
-using String10 = FixedLengthString<10, 0>;
-using String11 = FixedLengthString<11, 0>;
-using String12 = FixedLengthString<12, 0>;
-using String16 = FixedLengthString<16, 0>;
-using String20 = FixedLengthString<20, 0>;
-using String21 = FixedLengthString<20, 0>;
-using String25 = FixedLengthString<25, 0>;
-using String30 = FixedLengthString<30, 0>;
+using String1 = FixedLengthString<1, '\0', false>;
+using String8 = FixedLengthString<8, '\0', false>;
+using String10 = FixedLengthString<10, '\0', false>;
+using String11 = FixedLengthString<11, '\0', false>;
+using String12 = FixedLengthString<12, '\0', false>;
+using String16 = FixedLengthString<16, '\0', false>;
+using String20 = FixedLengthString<20, '\0', false>;
+using String21 = FixedLengthString<20, '\0', false>;
+using String25 = FixedLengthString<25, '\0', false>;
+using String30 = FixedLengthString<30, '\0', false>;
 
 using MillenniumPrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 8>;
 
@@ -276,10 +276,8 @@ struct MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(MsgHeader);}
     size_t size() const {return sizeof(MsgHeader);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MsgHeader& msg) {
@@ -300,10 +298,8 @@ struct Logon : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(Logon);}
     size_t size() const {return sizeof(Logon);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Logon& msg) {
@@ -324,10 +320,8 @@ struct LogonResponse : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(LogonResponse);}
     size_t size() const {return sizeof(LogonResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonResponse& msg) {
@@ -345,10 +339,8 @@ struct Logout : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(Logout);}
     size_t size() const {return sizeof(Logout);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
@@ -364,10 +356,8 @@ struct Heartbeat : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(Heartbeat);}
     size_t size() const {return sizeof(Heartbeat);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
@@ -383,10 +373,8 @@ struct MissedMessageRequest : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(MissedMessageRequest);}
     size_t size() const {return sizeof(MissedMessageRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MissedMessageRequest& msg) {
@@ -404,10 +392,8 @@ struct MissedMessageRequestAck : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(MissedMessageRequestAck);}
     size_t size() const {return sizeof(MissedMessageRequestAck);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MissedMessageRequestAck& msg) {
@@ -424,10 +410,8 @@ struct TransmissionComplete : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TransmissionComplete);}
     size_t size() const {return sizeof(TransmissionComplete);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TransmissionComplete& msg) {
@@ -447,10 +431,8 @@ struct Reject : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(Reject);}
     size_t size() const {return sizeof(Reject);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
@@ -471,10 +453,8 @@ struct SystemStatus : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SystemStatus);}
     size_t size() const {return sizeof(SystemStatus);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SystemStatus& msg) {
@@ -498,10 +478,8 @@ struct BusinessReject : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(BusinessReject);}
     size_t size() const {return sizeof(BusinessReject);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const BusinessReject& msg) {

@@ -273,7 +273,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             } else {
                               SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                               SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
-                              SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, (noValue.equals("0x00") ? "0" : noValue));
+                              SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, ((noValue.equals("0x00") || noValue.isEmpty()) ? "'\\0'" : noValue));
                               SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, range);
 
                               SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
@@ -406,7 +406,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                           SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
-                          SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "0");
+                          SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "'\\0'");
                           SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, "\\x00-\\x255");
 
                           SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
@@ -712,7 +712,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                           SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, size);
-                          SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "0");
+                          SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "'\\0'");
                           SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, "\\x00-\\x255");
 
                           SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
@@ -1209,6 +1209,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                       SPropertyOperations.assign(strNode, PROPS.name$MnvL, name);
                       SNode fixed_str = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                       SPropertyOperations.assign(fixed_str, PROPS.length$ZIZR, length);
+                      SPropertyOperations.assign(fixed_str, PROPS.padding$ZJtT, "'\\0'");
                       SLinkOperations.setTarget(strNode, LINKS.type$zVeR, fixed_str);
                       ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(strNode);
 

@@ -5,8 +5,8 @@
 namespace sandbox {
 using namespace EB::common;
 
-using U8 = LittleEndian<uint8_t, 0_u8, 255_u8, 0_u8>;
-using U16 = LittleEndian<uint16_t, 0, 65535, 0>;
+using U8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using U16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
 
 //eb comment
 

@@ -434,4 +434,188 @@ constexpr T getMask = ((((T)1)<<len)-1)<<offset;
 template <typename T, uint8_t offset, uint8_t len>
 constexpr T clearMask = ~getMask<T, offset, len>;
 
+template<typename T, typename Pred>
+struct OptionalByUnaryPredRef {
+    OptionalByUnaryPredRef(const char* start, Pred pred)
+    :ptr_(reinterpret_cast<char*>(start)),
+     pred_(pred)
+    {}
+
+    explicit operator bool() const {
+        return pred_();
+    }
+
+    bool empty() const {
+        return !pred_();
+    }
+
+    size_t size() const {
+        return empty() ? 0 : sizeof(T);
+    }
+
+    T& value() {
+        return *reinter_cast<T*>(ptr_);
+    }
+
+    char* begin() {
+        return ptr_;
+    }
+
+    char* end() {
+        return begin() + size();
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const OptionalByUnaryPredRef& value) {
+        if(value) {
+            os << value.value();
+        }
+
+        return os;
+    }
+
+private:
+    char* ptr_{nullptr};
+    Pred pred_;
+};
+
+template<typename T, typename EnumT, EnumT e>
+struct TypeByEnum{
+    using type = T;
+    using enum_type = std::integral_constant<EnumT, e>;
+};
+
+template<typename EnumType, typename... Args>
+struct OptionalByEnumRef {
+    OptionalByEnumRef(const char* start, EnumType e)
+    :ptr_(const_cast<char*>(start)),
+     enum_v_(e)
+    {}
+
+    template<typename T>
+    bool is_type() {
+        return ((std::is_same_v<typename Args::type, T>) && enum_v_ == Args::enum_type::value || ... || false);
+    }
+
+    EnumType enum_value() {
+        return enum_v_;
+    }
+
+    explicit operator bool() const {
+        return !empty();
+    }
+
+    bool empty() const {
+        return size() == 0;
+    }
+
+    size_t size() const {
+        return((enum_v_ == Args::enum_type::value ? sizeof(Args::type): 0) + ... + 0);
+    }
+
+    template<typename T>
+    T& value() {
+        return *reinterpret_cast<T*>(ptr_);
+    }
+
+    char* begin() {
+        return ptr_;
+    }
+
+    char* end() {
+        return begin() + size();
+    }
+
+    std::ostream& sout(std::ostream& os) {
+        if(!empty()) {
+            ((enum_v_ == Args::enum_type::value && (os << value<Args::type>(), true)) || ...);
+        }
+
+        return os;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const OptionalByEnumRef& value) {
+        return value.sout(os);
+    }
+
+private:
+    char* ptr_{nullptr};
+    EnumType enum_v_;
+};
+
+//For OUCH5 protocol
+
+template<typename T, typename EnumT>
+struct OptionalByLengthRef {
+    OptionalByLengthRef(const char* start, size_t& size)
+    :ptr_(const_cast<char*>(start)),
+     size_(size)
+    {
+        auto ptr = start;
+        auto len = size;
+        while(len > 0) {
+            T* element = reinterpret_cast<T*>(ptr);
+            auto sz = element->size();
+            auto e = element->key.raw_value();
+            value_map_[e] = element;
+            len -= sz;
+            ptr += sz;
+        }
+    }
+
+    bool empty() const {
+        return size() == 0;
+    }
+
+    size_t size() const {
+        return size_;
+    }
+
+    T* get(EnumT e) {
+        return value_map_[e.raw_value()];
+    }
+
+    T* add(EnumT e) {
+        auto p = get(e);
+        if(p) {
+            return p;
+        }
+
+        p = reinterpret_cast<T*>(end());
+        p->tag = e;
+        p->length = p->size() - sizeof(p->length);
+        size_ += p->size();
+        value_map_[e.raw_value()] = p;
+
+        return p;
+    }
+
+    char* begin() {
+        return ptr_;
+    }
+
+    char* end() {
+        return begin() + size();
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const OptionalByLengthRef& value) {
+        auto len = value.size_;
+        auto p = value.ptr_;
+        while(len > 0) {
+            T* element = reinter_cast<T*>(p);
+            os << *element;
+            auto sz = element->size();
+            len -= sz;
+            p += sz;
+        }
+
+        return os;
+    }
+
+private:
+    char* ptr_{nullptr};
+    size_t& size_;
+    T* value_map_[EnumT::max_value+1]{nullptr};
+};
+
+
 }} //end of EB::common

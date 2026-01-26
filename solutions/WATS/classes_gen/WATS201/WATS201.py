@@ -465,26 +465,26 @@ class BidOfferUpdateType(int, Enum):
     Ipo = 1
     TenderOffer = 2
 
-Account = fixed_length_string(16, b'\0')
-ParticipantCode = fixed_length_string(16, b'\0')
-Token = fixed_length_string(8, b'\0')
-Memo = fixed_length_string(18, b'\0')
-InterestedParty = fixed_length_string(8, b'\0')
-ClientOrderId = fixed_length_string(20, b'\0')
+Account = fixed_length_string(16, '\0', False)
+ParticipantCode = fixed_length_string(16, '\0', False)
+Token = fixed_length_string(8, '\0', False)
+Memo = fixed_length_string(18, '\0', False)
+InterestedParty = fixed_length_string(8, '\0', False)
+ClientOrderId = fixed_length_string(20, '\0', False)
 class Header(Packet):
     name = 'Header'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u16("length", 0)
         LEShortEnumField("msgType", MsgType.TestEvent, MsgType)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u32("seqNum", 0)
+        u64("timestamp", 0)
     ]
 
 
 class MifidField(Packet):
     name = 'MifidField'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("shortCode", 0)
         ByteEnumField("qualifier", PartyRoleQualifier.NaturalPerson, PartyRoleQualifier)
     ]
 
@@ -499,7 +499,7 @@ class MifidFields(Packet):
     ]
 
 
-ClearingCode = fixed_length_string(20, b'\0')
+ClearingCode = fixed_length_string(20, '\0', False)
 class ConnectionClose(Packet):
     name = 'ConnectionClose'
     fields_desc = [
@@ -516,11 +516,11 @@ bind_layers(Header, Heartbeat, msgType=MsgType.Heartbeat)
 class Login(Packet):
     name = 'Login'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u16("version", 0)
         Token("token", "")
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u16("connectionId", 0)
+        u32("nextExpectedSeqNum", 0)
+        u32("lastSentSeqNum", 0)
     ]
 bind_layers(Header, Login, msgType=MsgType.Login)
 
@@ -528,9 +528,9 @@ class LoginResponse(Packet):
     name = 'LoginResponse'
     fields_desc = [
         ByteEnumField("result", LoginResult.Other, LoginResult)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u32("nextExpectedSeqNum", 0)
+        u32("lastReplaySeqNum", 0)
+        u16("sessionId", 0)
     ]
 bind_layers(Header, LoginResponse, msgType=MsgType.LoginResponse)
 
@@ -549,20 +549,20 @@ bind_layers(Header, LogoutResponse, msgType=MsgType.LogoutResponse)
 class OrderAdd(Packet):
     name = 'OrderAdd'
     fields_desc = [
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u8("stpId", 0)
+        u32("instrumentId", 0)
         ByteEnumField("orderType", OrderType.StopLoss, OrderType)
         ByteEnumField("timeInForce", TimeInForce.GTT, TimeInForce)
         ByteEnumField("side", OrderSide.Sell, OrderSide)
         Price("price", 0)
         Price("triggerPrice", 0)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("quantity", 0)
+        u64("displayQty", 0)
         ByteEnumField("capacity", Capacity.RisklessPrincipal, Capacity)
         Account("account", "")
         ByteEnumField("accountType", AccountType.House, AccountType)
         PacketField("mifidFields", "", MifidFields)
-    Unsupported type in code gen: alias
+        u64("expire", 0)
         Memo("memo", "")
         ClientOrderId("clientOrderId", "")
         ClearingCode("clearingMemberCode", "")
@@ -576,10 +576,10 @@ bind_layers(Header, OrderAdd, msgType=MsgType.OrderAdd)
 class OrderAddResponse(Packet):
     name = 'OrderAddResponse'
     fields_desc = [
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("orderId", 0)
+        u64("publicOrderId", 0)
+        u64("displayQty", 0)
+        u64("filled", 0)
         ByteEnumField("status", OrderStatus.Expired, OrderStatus)
         LEShortEnumField("reason", OrderRejectionReason.RejectedDueToKillSwitchActivation, OrderRejectionReason)
         ByteEnumField("execTypeReason", ExecTypeReason.CancelOnDcDisconnect, ExecTypeReason)
@@ -589,7 +589,7 @@ bind_layers(Header, OrderAddResponse, msgType=MsgType.OrderAddResponse)
 class OrderCancel(Packet):
     name = 'OrderCancel'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u64("orderId", 0)
         PacketField("mifidFields", "", MifidFields)
     ]
 bind_layers(Header, OrderCancel, msgType=MsgType.OrderCancel)
@@ -597,7 +597,7 @@ bind_layers(Header, OrderCancel, msgType=MsgType.OrderCancel)
 class OrderCancelResponse(Packet):
     name = 'OrderCancelResponse'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u64("orderId", 0)
         ByteEnumField("status", OrderStatus.Expired, OrderStatus)
         LEShortEnumField("reason", OrderRejectionReason.RejectedDueToKillSwitchActivation, OrderRejectionReason)
         ByteEnumField("execTypeReason", ExecTypeReason.CancelOnDcDisconnect, ExecTypeReason)
@@ -607,12 +607,12 @@ bind_layers(Header, OrderCancelResponse, msgType=MsgType.OrderCancelResponse)
 class OrderModify(Packet):
     name = 'OrderModify'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u64("orderId", 0)
         Price("price", 0)
         Price("triggerPrice", 0)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("quantity", 0)
+        u64("displayQty", 0)
+        u64("expire", 0)
         PacketField("mifidFields", "", MifidFields)
     ]
 bind_layers(Header, OrderModify, msgType=MsgType.OrderModify)
@@ -620,8 +620,8 @@ bind_layers(Header, OrderModify, msgType=MsgType.OrderModify)
 class OrderModifyResponse(Packet):
     name = 'OrderModifyResponse'
     fields_desc = [
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("orderId", 0)
+        u64("filled", 0)
         ByteEnumField("status", OrderStatus.Expired, OrderStatus)
         ByteEnumField("priorityFlag", PriorityFlag.Retained, PriorityFlag)
         LEShortEnumField("reason", OrderRejectionReason.RejectedDueToKillSwitchActivation, OrderRejectionReason)
@@ -634,8 +634,8 @@ class OrderMassCancel(Packet):
         ByteEnumField("massCancelRequestType", MassCancelRequestType.CancelOrdersForMarketSegment, MassCancelRequestType)
         ByteEnumField("targetPartyRole", TargetPartyRole.InvestmentDecisionMaker, TargetPartyRole)
         u32("targetPartyId", 0)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u32("marketSegmentId", 0)
+        u32("instrumentId", 0)
         PacketField("executingTrader", "", MifidField)
     ]
 bind_layers(Header, OrderMassCancel, msgType=MsgType.OrderMassCancel)
@@ -645,10 +645,10 @@ class OrderMassCancelResponse(Packet):
     fields_desc = [
         u64("totalAffectedOrders", 0)
         ByteEnumField("massCancelRequestType", MassCancelRequestType.CancelOrdersForMarketSegment, MassCancelRequestType)
-    Unsupported type in code gen: alias
+        u64("massCancelId", 0)
         ByteEnumField("targetPartyRole", TargetPartyRole.InvestmentDecisionMaker, TargetPartyRole)
         u32("targetPartyId", 0)
-    Unsupported type in code gen: alias
+        u32("marketSegmentId", 0)
         LEShortEnumField("reason", MassCancelRejectionReason.RequestNotAllowedOnSponsoredConnection, MassCancelRejectionReason)
     ]
 bind_layers(Header, OrderMassCancelResponse, msgType=MsgType.OrderMassCancelResponse)
@@ -656,25 +656,25 @@ bind_layers(Header, OrderMassCancelResponse, msgType=MsgType.OrderMassCancelResp
 class Test(Packet):
     name = 'Test'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u64("targetTimestamp", 0)
     ]
 bind_layers(Header, Test, msgType=MsgType.Test)
 
 class Trade(Packet):
     name = 'Trade'
     fields_desc = [
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("orderId", 0)
+        u32("id", 0)
         Price("price", 0)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("quantity", 0)
+        u64("leavesQty", 0)
     ]
 bind_layers(Header, Trade, msgType=MsgType.Trade)
 
 class Reject(Packet):
     name = 'Reject'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("refSeqNum", 0)
         ByteEnumField("rejectReason", RejectReason.InvalidGapFillSeqNum, RejectReason)
     ]
 bind_layers(Header, Reject, msgType=MsgType.Reject)
@@ -688,39 +688,39 @@ class TcrParty(Packet):
         Account("account", "")
         ByteEnumField("accountType", AccountType.House, AccountType)
         ByteEnumField("orderCapacity", Capacity.RisklessPrincipal, Capacity)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u32("orderRestrictions", 0)
+        u32("orderOrigination", 0)
         u8("feeStructureId", 0)
         InterestedParty("interestedParty", "")
         Memo("memo", "")
     ]
 
 
-TradeReportId = fixed_length_string(21, b'\0')
-TradeReportRefID = fixed_length_string(21, b'\0')
+TradeReportId = fixed_length_string(21, '\0', False)
+TradeReportRefID = fixed_length_string(21, '\0', False)
 class TradeBust(Packet):
     name = 'TradeBust'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("tradeId", 0)
     ]
 bind_layers(Header, TradeBust, msgType=MsgType.TradeBust)
 
 class TradeCaptureReportSingle(Packet):
     name = 'TradeCaptureReportSingle'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
         TradeReportId("tradeReportId", "")
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("secondaryTradeReportId", 0)
+        u32("tradeId", 0)
         ByteEnumField("tradeReportTransType", TradeReportTransType.Replace, TradeReportTransType)
         ByteEnumField("tradeReportType", TradeReportType.TradeBreak, TradeReportType)
         ByteEnumField("tradeType", TradeType.BlockTrade, TradeType)
         ByteEnumField("algorithmicTradeIndicator", AlgorithmicTradeIndicator.AlgorithmicTrade, AlgorithmicTradeIndicator)
         ByteEnumField("execType", ExecType.TradeCancel, ExecType)
         TradeReportRefID("tradeReportRefId", "")
-    Unsupported type in code gen: alias
+        u64("lastQty", 0)
         Price("lastPx", 0)
-    Unsupported type in code gen: alias
+        u32("settlementDate", 0)
         ByteEnumField("side", OrderSide.Sell, OrderSide)
         ParticipantCode("counterpartyCode", "")
         PacketField("tcrParty", "", TcrParty)
@@ -730,19 +730,19 @@ bind_layers(Header, TradeCaptureReportSingle, msgType=MsgType.TradeCaptureReport
 class TradeCaptureReportDual(Packet):
     name = 'TradeCaptureReportDual'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
         TradeReportId("tradeReportId", "")
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("secondaryTradeReportId", 0)
+        u32("tradeId", 0)
         ByteEnumField("tradeReportTransType", TradeReportTransType.Replace, TradeReportTransType)
         ByteEnumField("tradeReportType", TradeReportType.TradeBreak, TradeReportType)
         ByteEnumField("tradeType", TradeType.BlockTrade, TradeType)
         ByteEnumField("algorithmicTradeIndicator", AlgorithmicTradeIndicator.AlgorithmicTrade, AlgorithmicTradeIndicator)
         ByteEnumField("execType", ExecType.TradeCancel, ExecType)
         TradeReportRefID("tradeReportRefId", "")
-    Unsupported type in code gen: alias
+        u64("lastQty", 0)
         Price("lastPx", 0)
-    Unsupported type in code gen: alias
+        u32("settlementDate", 0)
         PacketField("tcrPartyBuy", "", TcrParty)
         PacketField("tcrPartySell", "", TcrParty)
     ]
@@ -751,16 +751,16 @@ bind_layers(Header, TradeCaptureReportDual, msgType=MsgType.TradeCaptureReportDu
 class TradeCaptureReportResponse(Packet):
     name = 'TradeCaptureReportResponse'
     fields_desc = [
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
+        u32("tradeId", 0)
         TradeReportId("tradeReportId", "")
-    Unsupported type in code gen: alias
+        u64("secondaryTradeReportId", 0)
         ByteEnumField("status", TcrStatus.Cancelled, TcrStatus)
         LEShortEnumField("reason", TcrRejectionReason.NoTradeForClobReferenceInstrument, TcrRejectionReason)
     ]
 bind_layers(Header, TradeCaptureReportResponse, msgType=MsgType.TradeCaptureReportResponse)
 
-ScenarioName = fixed_length_string(200, b'\0')
+ScenarioName = fixed_length_string(200, '\0', False)
 class GapFill(Packet):
     name = 'GapFill'
     fields_desc = [
@@ -779,14 +779,14 @@ class QuoteOrder(Packet):
     name = 'QuoteOrder'
     fields_desc = [
         Price("price", 0)
-    Unsupported type in code gen: alias
+        u64("quantity", 0)
     ]
 
 
 class Quote(Packet):
     name = 'Quote'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
         PacketField("bid", "", QuoteOrder)
         PacketField("ask", "", QuoteOrder)
     ]
@@ -804,7 +804,7 @@ class Quotes(Packet):
 class MassQuote(Packet):
     name = 'MassQuote'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u8("stpId", 0)
         ByteEnumField("capacity", Capacity.RisklessPrincipal, Capacity)
         Account("account", "")
         ByteEnumField("accountType", AccountType.House, AccountType)
@@ -822,9 +822,9 @@ bind_layers(Header, MassQuote, msgType=MsgType.MassQuote)
 class QuoteOrderResponse(Packet):
     name = 'QuoteOrderResponse'
     fields_desc = [
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
+        u64("bidOrderId", 0)
+        u64("askOrderId", 0)
         ByteEnumField("status", OrderStatus.Expired, OrderStatus)
         LEShortEnumField("reason", OrderRejectionReason.RejectedDueToKillSwitchActivation, OrderRejectionReason)
     ]
@@ -842,7 +842,7 @@ class QuoteOrderResponses(Packet):
 class MassQuoteResponse(Packet):
     name = 'MassQuoteResponse'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u64("massQuoteId", 0)
         PacketField("responses", "", QuoteOrderResponses)
         ByteEnumField("status", MassQuoteStatus.Rejected, MassQuoteStatus)
         LEShortEnumField("reason", MassQuoteRejectionReason.LiquidityProvisionActivityFlagNotSetForMassQuote, MassQuoteRejectionReason)
@@ -853,7 +853,7 @@ bind_layers(Header, MassQuoteResponse, msgType=MsgType.MassQuoteResponse)
 class MarketMakerCommand(Packet):
     name = 'MarketMakerCommand'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
         ByteEnumField("action", CommandAction.RevokeKnockOut, CommandAction)
     ]
 bind_layers(Header, MarketMakerCommand, msgType=MsgType.MarketMakerCommand)
@@ -870,7 +870,7 @@ bind_layers(Header, MarketMakerCommandResponse, msgType=MsgType.MarketMakerComma
 class RequestForExecution(Packet):
     name = 'RequestForExecution'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
         ByteEnumField("reason", RequestForExecutionReason.AggressiveQuote, RequestForExecutionReason)
     ]
 bind_layers(Header, RequestForExecution, msgType=MsgType.RequestForExecution)
@@ -878,10 +878,10 @@ bind_layers(Header, RequestForExecution, msgType=MsgType.RequestForExecution)
 class BidOfferUpdate(Packet):
     name = 'BidOfferUpdate'
     fields_desc = [
-    Unsupported type in code gen: alias
+        u32("instrumentId", 0)
         ByteEnumField("updateType", BidOfferUpdateType.TenderOffer, BidOfferUpdateType)
-    Unsupported type in code gen: alias
-    Unsupported type in code gen: alias
+        u64("totalBidSize", 0)
+        u64("totalOfferSize", 0)
         u32("bidOrders", 0)
         u32("offerOrders", 0)
     ]

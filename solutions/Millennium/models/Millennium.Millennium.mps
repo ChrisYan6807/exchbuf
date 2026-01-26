@@ -26,6 +26,7 @@
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
       <concept id="8244488409083618485" name="eb_lang.structure.EBFixedLenghString" flags="ng" index="2gaQCN">
         <property id="8244488409083618486" name="length" index="2gaQCK" />
+        <property id="8244488409083618488" name="padding" index="2gaQCY" />
       </concept>
       <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
       <concept id="8244488409083618483" name="eb_lang.structure.EBUInt64" flags="ng" index="2gaQCP" />
@@ -118,60 +119,70 @@
       <property role="TrG5h" value="String1" />
       <node concept="2gaQCN" id="zaARBR_ieg" role="2gaMi1">
         <property role="2gaQCK" value="1" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="7BNXJb7gwtG" role="2gln9U">
       <property role="TrG5h" value="String8" />
       <node concept="2gaQCN" id="zaARBR_i8D" role="2gaMi1">
         <property role="2gaQCK" value="8" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="zaARBR_ih5" role="2gln9U">
       <property role="TrG5h" value="String10" />
       <node concept="2gaQCN" id="zaARBR_ijV" role="2gaMi1">
         <property role="2gaQCK" value="10" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="zaARBR_imM" role="2gln9U">
       <property role="TrG5h" value="String11" />
       <node concept="2gaQCN" id="zaARBR_ipE" role="2gaMi1">
         <property role="2gaQCK" value="11" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="zaARBR_isz" role="2gln9U">
       <property role="TrG5h" value="String12" />
       <node concept="2gaQCN" id="zaARBR_ivt" role="2gaMi1">
         <property role="2gaQCK" value="12" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="2XMfzqE3m2I" role="2gln9U">
       <property role="TrG5h" value="String16" />
       <node concept="2gaQCN" id="2XMfzqE3m2J" role="2gaMi1">
         <property role="2gaQCK" value="16" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="2XMfzqE3m7u" role="2gln9U">
       <property role="TrG5h" value="String20" />
       <node concept="2gaQCN" id="2XMfzqE3m7v" role="2gaMi1">
         <property role="2gaQCK" value="20" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="zaARBR_iyo" role="2gln9U">
       <property role="TrG5h" value="String21" />
       <node concept="2gaQCN" id="zaARBR_i_k" role="2gaMi1">
         <property role="2gaQCK" value="20" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="zaARBR_iCh" role="2gln9U">
       <property role="TrG5h" value="String25" />
       <node concept="2gaQCN" id="zaARBR_iFf" role="2gaMi1">
         <property role="2gaQCK" value="25" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gaMi0" id="zaARBR_iIe" role="2gln9U">
       <property role="TrG5h" value="String30" />
       <node concept="2gaQCN" id="zaARBR_iLe" role="2gaMi1">
         <property role="2gaQCK" value="30" />
+        <property role="2gaQCY" value="'\0'" />
       </node>
     </node>
     <node concept="2gln9S" id="3SNypnb2As6" role="2gln9U" />

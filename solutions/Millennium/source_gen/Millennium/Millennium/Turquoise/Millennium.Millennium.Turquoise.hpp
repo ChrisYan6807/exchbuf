@@ -1393,10 +1393,8 @@ struct NewOrder : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewOrder);}
     size_t size() const {return sizeof(NewOrder);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
@@ -1474,10 +1472,8 @@ struct ExecutionReport : MsgHeader {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ExecutionReport);}
     size_t size() const {return sizeof(ExecutionReport);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {

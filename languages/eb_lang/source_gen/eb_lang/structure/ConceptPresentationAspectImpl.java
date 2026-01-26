@@ -42,11 +42,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBMessageEntryMember;
   private ConceptPresentation props_EBMessageMember;
   private ConceptPresentation props_EBMessageMemberVar;
-  private ConceptPresentation props_EBMessagePresenceByEnumFieldMember;
+  private ConceptPresentation props_EBMessagePresenceByEnumEntryMember;
+  private ConceptPresentation props_EBMessagePresenceByEnumMember;
   private ConceptPresentation props_EBMessagePresenceByLengthFieldMember;
   private ConceptPresentation props_EBMessagePresenceByOptionalBitMember;
   private ConceptPresentation props_EBMessagePresenceByValueFieldMember;
   private ConceptPresentation props_EBMessagePresenceFieldMember;
+  private ConceptPresentation props_EBMessageVarArrayMember;
   private ConceptPresentation props_EBNumberLiteral;
   private ConceptPresentation props_EBPrimitiveType;
   private ConceptPresentation props_EBProtocol;
@@ -291,13 +293,20 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageMemberVar = cpb.create();
         }
         return props_EBMessageMemberVar;
-      case LanguageConceptSwitch.EBMessagePresenceByEnumFieldMember:
-        if (props_EBMessagePresenceByEnumFieldMember == null) {
+      case LanguageConceptSwitch.EBMessagePresenceByEnumEntryMember:
+        if (props_EBMessagePresenceByEnumEntryMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.rawPresentation("enum_entry");
+          props_EBMessagePresenceByEnumEntryMember = cpb.create();
+        }
+        return props_EBMessagePresenceByEnumEntryMember;
+      case LanguageConceptSwitch.EBMessagePresenceByEnumMember:
+        if (props_EBMessagePresenceByEnumMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
           cpb.presentationByName();
-          props_EBMessagePresenceByEnumFieldMember = cpb.create();
+          props_EBMessagePresenceByEnumMember = cpb.create();
         }
-        return props_EBMessagePresenceByEnumFieldMember;
+        return props_EBMessagePresenceByEnumMember;
       case LanguageConceptSwitch.EBMessagePresenceByLengthFieldMember:
         if (props_EBMessagePresenceByLengthFieldMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -326,6 +335,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessagePresenceFieldMember = cpb.create();
         }
         return props_EBMessagePresenceFieldMember;
+      case LanguageConceptSwitch.EBMessageVarArrayMember:
+        if (props_EBMessageVarArrayMember == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByName();
+          props_EBMessageVarArrayMember = cpb.create();
+        }
+        return props_EBMessageVarArrayMember;
       case LanguageConceptSwitch.EBNumberLiteral:
         if (props_EBNumberLiteral == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

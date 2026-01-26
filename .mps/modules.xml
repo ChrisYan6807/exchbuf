@@ -4,9 +4,11 @@
     <projectModules>
       <modulePath path="$PROJECT_DIR$/languages/eb_lang/eb_lang.mpl" folder="" />
       <modulePath path="$PROJECT_DIR$/languages/eb_lang_cpp/eb_lang_codegen.mpl" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/BOE2/BOE2.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/DB/DB.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/ENXT/ENXT.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/Millennium/Millennium.msd" folder="" />
+      <modulePath path="$PROJECT_DIR$/solutions/OUCH5/OUCH5.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/WATS/WATS.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/sandbox/sandbox.msd" folder="" />
       <modulePath path="$PROJECT_DIR$/solutions/sandbox1/sandbox1.msd" folder="" />

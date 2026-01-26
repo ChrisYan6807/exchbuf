@@ -3,15 +3,15 @@ from .common import *
 # Deutsche Börse -- market: eti_Cash, version: 14.0, subVersion: C0002, buildNumber: 140.610.3.ga-140006010-6
 
 eti_CashAppVersionID = "14.0"
-CurrencyType = fixed_length_string(3, b'\0')
-ISIN = fixed_length_string(12, b'\0')
+CurrencyType = fixed_length_string(3, '\0', False)
+ISIN = fixed_length_string(12, '\0', False)
 LocalMktDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 LocalMonthYearCod = integer_type(LEIntField, 0, 999912, 0xFFFFFFFF)
 PriceType = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 Qty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 SeqNum = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 UTCTimestamp = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-Account = fixed_length_string(2, b'\0')
+Account = fixed_length_string(2, '\0', False)
 AccruedInterestAmt = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 ActivationDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 AffectedOrderID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
@@ -23,9 +23,9 @@ class AllocMethod(int, Enum):
     Manual = 3
 
 AllocQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-ApplBegMsgID = fixed_length_string(16, b'\0')
+ApplBegMsgID = fixed_length_string(16, '\0', False)
 ApplBegSeqNum = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-ApplEndMsgID = fixed_length_string(16, b'\0')
+ApplEndMsgID = fixed_length_string(16, '\0', False)
 ApplEndSeqNum = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 class ApplID(int, Enum):
     Trade = 1
@@ -43,7 +43,7 @@ class ApplID(int, Enum):
 class ApplIDStatus(int, Enum):
     Outbound_conversion_error = 105
 
-ApplMsgID = fixed_length_string(16, b'\0')
+ApplMsgID = fixed_length_string(16, '\0', False)
 class ApplResendFlag(int, Enum):
     False = 0
     True = 1
@@ -72,9 +72,9 @@ class ApplUsageQuotes(str, Enum):
     AutoSelect = 'B'
     None = 'N'
 
-ApplicationSystemName = fixed_length_string(30, b'\0')
-ApplicationSystemVendor = fixed_length_string(30, b'\0')
-ApplicationSystemVersion = fixed_length_string(30, b'\0')
+ApplicationSystemName = fixed_length_string(30, '\0', False)
+ApplicationSystemVendor = fixed_length_string(30, '\0', False)
+ApplicationSystemVersion = fixed_length_string(30, '\0', False)
 AutoApprovalRuleID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 AutoExecExpiryTime = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 AutoExecExposureDuration = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
@@ -108,7 +108,7 @@ class ClearingInstruction(int, Enum):
     Bilateral_netting_only = 2
     Self_clearing = 13
 
-ClosureReason = fixed_length_string(132, b'\0')
+ClosureReason = fixed_length_string(132, '\0', False)
 CouponRate = float_decimal(8, 7, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 class CrossMatchInstruction(int, Enum):
     Cancel_aggressive = 1
@@ -121,11 +121,11 @@ class CrossedIndicator(int, Enum):
     Cross_rejected = 1
 
 CumQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-Currency = fixed_length_string(3, b'\0')
+Currency = fixed_length_string(3, '\0', False)
 CxlQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 CxlSize = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-DefaultCstmApplVerID = fixed_length_string(30, b'\0')
-DefaultCstmApplVerSubID = fixed_length_string(5, b'\0')
+DefaultCstmApplVerID = fixed_length_string(30, '\0', False)
+DefaultCstmApplVerSubID = fixed_length_string(5, '\0', False)
 class DeleteReason(int, Enum):
     No_special_reason = 100
     TAS_Change = 101
@@ -144,7 +144,7 @@ DisplayHighQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 
 DisplayLowQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 DisplayQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 EffectiveTime = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-EncryptedPassword = fixed_length_string(684, b'\0')
+EncryptedPassword = fixed_length_string(684, '\0', False)
 EnrichmentRuleID = integer_type(LEShortField, 1, 10000, 0xFFFF)
 EventDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 EventPx = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
@@ -246,10 +246,10 @@ class ExecutingTraderQualifier(int, Enum):
 
 ExpireDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 ExpireTime = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-FIXClOrdID = fixed_length_string(20, b'\0')
-FIXEngineName = fixed_length_string(30, b'\0')
-FIXEngineVendor = fixed_length_string(30, b'\0')
-FIXEngineVersion = fixed_length_string(30, b'\0')
+FIXClOrdID = fixed_length_string(20, '\0', False)
+FIXEngineName = fixed_length_string(30, '\0', False)
+FIXEngineVendor = fixed_length_string(30, '\0', False)
+FIXEngineVersion = fixed_length_string(30, '\0', False)
 FillExecID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 class FillLiquidityInd(int, Enum):
     Added_Liquidity = 1
@@ -265,19 +265,19 @@ FillMatchID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 FillPx = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 FillQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 FillRefID = integer_type(ByteField, 1, 100, 0xFF)
-FirmNegotiationID = fixed_length_string(20, b'\0')
-FirmTradeID = fixed_length_string(20, b'\0')
-FreeText1 = fixed_length_string(12, b'\0')
-FreeText2 = fixed_length_string(12, b'\0')
-FreeText4 = fixed_length_string(16, b'\0')
-FreeText5 = fixed_length_string(132, b'\0')
+FirmNegotiationID = fixed_length_string(20, '\0', False)
+FirmTradeID = fixed_length_string(20, '\0', False)
+FreeText1 = fixed_length_string(12, '\0', False)
+FreeText2 = fixed_length_string(12, '\0', False)
+FreeText4 = fixed_length_string(16, '\0', False)
+FreeText5 = fixed_length_string(132, '\0', False)
 GatewayID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 class GatewayStatus(int, Enum):
     Standby = 0
     Active = 1
 
 GatewaySubID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-Headline = fixed_length_string(256, b'\0')
+Headline = fixed_length_string(256, '\0', False)
 HeartBtInt = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 HighLimitPrice = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 ImbalanceQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
@@ -295,7 +295,7 @@ class LastCouponDeviationIndicator(int, Enum):
     Long_two_interest_payments_due = 5
     Perpetual = 6
 
-LastEntityProcessed = fixed_length_string(16, b'\0')
+LastEntityProcessed = fixed_length_string(16, '\0', False)
 class LastFragment(int, Enum):
     Not_Last_Message = 0
     Last_Message = 1
@@ -425,10 +425,10 @@ class MidPointType(int, Enum):
 
 MinQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 MsgSeqNum = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-MsgType = fixed_length_string(3, b'\0')
+MsgType = fixed_length_string(3, '\0', False)
 NegotiationID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 NegotiationStartTime = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-NetworkMsgID = fixed_length_string(8, b'\0')
+NetworkMsgID = fixed_length_string(8, '\0', False)
 class NewsRtmServiceStatus(int, Enum):
     Unavailable = 0
     Available = 1
@@ -540,30 +540,30 @@ class OwnershipIndicator(int, Enum):
     Change_to_Executing_Trader = 1
 
 PackageID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-Pad1 = fixed_length_string(1, b'\0')
-Pad2 = fixed_length_string(2, b'\0')
-Pad2_1 = fixed_length_string(2, b'\0')
-Pad2_2 = fixed_length_string(2, b'\0')
-Pad3 = fixed_length_string(3, b'\0')
-Pad3_2 = fixed_length_string(3, b'\0')
-Pad3_3 = fixed_length_string(3, b'\0')
-Pad4 = fixed_length_string(4, b'\0')
-Pad4_1 = fixed_length_string(4, b'\0')
-Pad4_2 = fixed_length_string(4, b'\0')
-Pad5 = fixed_length_string(5, b'\0')
-Pad5_1 = fixed_length_string(5, b'\0')
-Pad6 = fixed_length_string(6, b'\0')
-Pad6_1 = fixed_length_string(6, b'\0')
-Pad6_2 = fixed_length_string(6, b'\0')
-Pad7 = fixed_length_string(7, b'\0')
+Pad1 = fixed_length_string(1, '\0', False)
+Pad2 = fixed_length_string(2, '\0', False)
+Pad2_1 = fixed_length_string(2, '\0', False)
+Pad2_2 = fixed_length_string(2, '\0', False)
+Pad3 = fixed_length_string(3, '\0', False)
+Pad3_2 = fixed_length_string(3, '\0', False)
+Pad3_3 = fixed_length_string(3, '\0', False)
+Pad4 = fixed_length_string(4, '\0', False)
+Pad4_1 = fixed_length_string(4, '\0', False)
+Pad4_2 = fixed_length_string(4, '\0', False)
+Pad5 = fixed_length_string(5, '\0', False)
+Pad5_1 = fixed_length_string(5, '\0', False)
+Pad6 = fixed_length_string(6, '\0', False)
+Pad6_1 = fixed_length_string(6, '\0', False)
+Pad6_2 = fixed_length_string(6, '\0', False)
+Pad7 = fixed_length_string(7, '\0', False)
 PartitionID = integer_type(LEShortField, 0, 65534, 0xFFFF)
 class PartyActionType(int, Enum):
     Halt_Trading = 1
     Reinstate = 2
 
-PartyDetailDeskID = fixed_length_string(3, b'\0')
-PartyDetailExecutingTrader = fixed_length_string(6, b'\0')
-PartyDetailExecutingUnit = fixed_length_string(5, b'\0')
+PartyDetailDeskID = fixed_length_string(3, '\0', False)
+PartyDetailExecutingTrader = fixed_length_string(6, '\0', False)
+PartyDetailExecutingUnit = fixed_length_string(5, '\0', False)
 PartyDetailIDExecutingTrader = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 PartyDetailIDExecutingUnit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 class PartyDetailRoleQualifier(int, Enum):
@@ -575,11 +575,11 @@ class PartyDetailStatus(int, Enum):
     Active = 0
     Suspend = 1
 
-PartyEnteringFirm = fixed_length_string(5, b'\0')
-PartyEnteringTrader = fixed_length_string(6, b'\0')
-PartyExecutingFirm = fixed_length_string(5, b'\0')
-PartyExecutingTrader = fixed_length_string(6, b'\0')
-PartyExecutingUnit = fixed_length_string(5, b'\0')
+PartyEnteringFirm = fixed_length_string(5, '\0', False)
+PartyEnteringTrader = fixed_length_string(6, '\0', False)
+PartyExecutingFirm = fixed_length_string(5, '\0', False)
+PartyExecutingTrader = fixed_length_string(6, '\0', False)
+PartyExecutingUnit = fixed_length_string(5, '\0', False)
 PartyIDClientID = integer_type(LELongField, 1, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 class PartyIDEnteringFirm(int, Enum):
     Participant = 1
@@ -598,9 +598,9 @@ class PartyIdInvestmentDecisionMakerQualifier(int, Enum):
     Algo = 22
     Human = 24
 
-PartySpecialistFirm = fixed_length_string(5, b'\0')
-PartySpecialistTrader = fixed_length_string(6, b'\0')
-Password = fixed_length_string(32, b'\0')
+PartySpecialistFirm = fixed_length_string(5, '\0', False)
+PartySpecialistTrader = fixed_length_string(6, '\0', False)
+Password = fixed_length_string(32, '\0', False)
 PegOffsetValueAbs = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 PegOffsetValuePct = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 PotentialExecVolume = float_decimal(8, 4, True, True, -2147483647, 2**63-1, 0x8000000000000000)
@@ -613,7 +613,7 @@ class PriceValidityCheckType(int, Enum):
     None = 0
     Mandatory = 2
 
-PublicKey = fixed_length_string(814, b'\0')
+PublicKey = fixed_length_string(814, '\0', False)
 PublicKeyLen = integer_type(LEShortField, 0, 814, 0xFFFF)
 class QuoteCancelReason(int, Enum):
     Expired = 5
@@ -713,7 +713,7 @@ class QuoteInstruction(int, Enum):
     Quote = 1
 
 QuoteMsgID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-QuoteReqID = fixed_length_string(20, b'\0')
+QuoteReqID = fixed_length_string(20, '\0', False)
 class QuoteRequestRejectReason(int, Enum):
     Exchange_closed = 2
     Other = 99
@@ -773,19 +773,19 @@ class RefApplID(int, Enum):
     Service_Availability_Market = 10
     Specialist_Data = 11
 
-RefApplLastMsgID = fixed_length_string(16, b'\0')
+RefApplLastMsgID = fixed_length_string(16, '\0', False)
 RefApplLastSeqNum = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 RefApplSubID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 class RefinancingEligibilityIndicator(int, Enum):
     No = 0
     Yes = 1
 
-RegulatoryTradeID = fixed_length_string(52, b'\0')
+RegulatoryTradeID = fixed_length_string(52, '\0', False)
 RelatedClosePrice = float_decimal(8, 6, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 RelatedMarketSegmentID = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 RequestTime = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
-RequestingPartyClearingFirm = fixed_length_string(9, b'\0')
-RequestingPartyEnteringFirm = fixed_length_string(9, b'\0')
+RequestingPartyClearingFirm = fixed_length_string(9, '\0', False)
+RequestingPartyEnteringFirm = fixed_length_string(9, '\0', False)
 class RequestingPartyIDEnteringFirm(int, Enum):
     Participant = 1
     MarketSupervision = 2
@@ -815,7 +815,7 @@ class RiskLimitAction(int, Enum):
     Warning = 4
 
 RiskLimitAmount = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-RiskLimitGroup = fixed_length_string(3, b'\0')
+RiskLimitGroup = fixed_length_string(3, '\0', False)
 RiskLimitNetPositionAmount = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 RiskLimitOpenAmount = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 RiskLimitReportID = integer_type(LELongField, 0, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
@@ -832,24 +832,24 @@ class RiskLimitViolationIndicator(int, Enum):
     No = 0
     Yes = 1
 
-RootPartyClearingFirm = fixed_length_string(5, b'\0')
-RootPartyContraFirm = fixed_length_string(5, b'\0')
-RootPartyContraFirmKVNumber = fixed_length_string(4, b'\0')
-RootPartyContraSettlementAccount = fixed_length_string(35, b'\0')
-RootPartyContraSettlementFirm = fixed_length_string(5, b'\0')
-RootPartyContraSettlementLocation = fixed_length_string(3, b'\0')
-RootPartyContraTrader = fixed_length_string(6, b'\0')
-RootPartyEnteringTrader = fixed_length_string(6, b'\0')
-RootPartyExecutingFirm = fixed_length_string(5, b'\0')
-RootPartyExecutingFirmKVNumber = fixed_length_string(4, b'\0')
-RootPartyExecutingTrader = fixed_length_string(6, b'\0')
+RootPartyClearingFirm = fixed_length_string(5, '\0', False)
+RootPartyContraFirm = fixed_length_string(5, '\0', False)
+RootPartyContraFirmKVNumber = fixed_length_string(4, '\0', False)
+RootPartyContraSettlementAccount = fixed_length_string(35, '\0', False)
+RootPartyContraSettlementFirm = fixed_length_string(5, '\0', False)
+RootPartyContraSettlementLocation = fixed_length_string(3, '\0', False)
+RootPartyContraTrader = fixed_length_string(6, '\0', False)
+RootPartyEnteringTrader = fixed_length_string(6, '\0', False)
+RootPartyExecutingFirm = fixed_length_string(5, '\0', False)
+RootPartyExecutingFirmKVNumber = fixed_length_string(4, '\0', False)
+RootPartyExecutingTrader = fixed_length_string(6, '\0', False)
 RootPartyIDClearingUnit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 RootPartyIDClientID = integer_type(LELongField, 1, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 RootPartyIDContraSettlementUnit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 RootPartyIDContraUnit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 RootPartyIDExecutingTrader = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 RootPartyIDExecutingUnit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-RootPartyIDExecutionVenue = fixed_length_string(4, b'\0')
+RootPartyIDExecutionVenue = fixed_length_string(4, '\0', False)
 RootPartyIDInvestmentDecisionMaker = integer_type(LELongField, 1, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 class RootPartyIDInvestmentDecisionMakerQualifier(int, Enum):
     Algo = 22
@@ -857,9 +857,9 @@ class RootPartyIDInvestmentDecisionMakerQualifier(int, Enum):
 
 RootPartyIDSessionID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 RootPartyIDSettlementUnit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-RootPartySettlementAccount = fixed_length_string(35, b'\0')
-RootPartySettlementFirm = fixed_length_string(5, b'\0')
-RootPartySettlementLocation = fixed_length_string(3, b'\0')
+RootPartySettlementAccount = fixed_length_string(35, '\0', False)
+RootPartySettlementFirm = fixed_length_string(5, '\0', False)
+RootPartySettlementLocation = fixed_length_string(3, '\0', False)
 SRQSRelatedTradeID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 SecondaryGatewayID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 class SecondaryGatewayStatus(int, Enum):
@@ -951,7 +951,7 @@ class SessionSubMode(int, Enum):
 
 SettlCurrAmt = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 SettlCurrFxRate = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-SettlCurrency = fixed_length_string(3, b'\0')
+SettlCurrency = fixed_length_string(3, '\0', False)
 SettlDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 class Side(int, Enum):
     Buy = 1
@@ -997,10 +997,10 @@ class T7EntryServiceStatus(int, Enum):
 T7EntryServiceTradeDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 TESEnrichmentRuleID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 TESExecID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
-TargetPartyEnteringTrader = fixed_length_string(6, b'\0')
-TargetPartyExecutingFirm = fixed_length_string(5, b'\0')
-TargetPartyExecutingTrader = fixed_length_string(6, b'\0')
-TargetPartyIDDeskID = fixed_length_string(3, b'\0')
+TargetPartyEnteringTrader = fixed_length_string(6, '\0', False)
+TargetPartyExecutingFirm = fixed_length_string(5, '\0', False)
+TargetPartyExecutingTrader = fixed_length_string(6, '\0', False)
+TargetPartyIDDeskID = fixed_length_string(3, '\0', False)
 TargetPartyIDExecutingTrader = integer_type(LEIntField, 0, 2147483647, 0xFFFFFFFF)
 TargetPartyIDSessionID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 ThrottleDisconnectLimit = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
@@ -1057,8 +1057,8 @@ class TradePublishIndicator(int, Enum):
     Deferred_Publication = 2
     Published = 3
 
-TradeReportID = fixed_length_string(20, b'\0')
-TradeReportText = fixed_length_string(20, b'\0')
+TradeReportID = fixed_length_string(20, '\0', False)
+TradeReportText = fixed_length_string(20, '\0', False)
 class TradeReportType(int, Enum):
     Submit = 0
     Accept = 2
@@ -1148,7 +1148,7 @@ class ValueCheckTypeValue(int, Enum):
     Do_not_check = 0
     Check = 1
 
-VarText = fixed_length_string(2000, b'\0')
+VarText = fixed_length_string(2000, '\0', False)
 VarTextLen = integer_type(LEShortField, 0, 2000, 0xFFFF)
 class TemplateID(int, Enum):
     ApproveTESTradeRequest = 10603

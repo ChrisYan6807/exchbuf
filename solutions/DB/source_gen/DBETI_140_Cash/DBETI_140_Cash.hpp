@@ -8,20 +8,20 @@ inline std::string eti_CashAppVersionID = "14.0";
 namespace DBETI_140_Cash {
 using namespace EB::common;
 
-using CurrencyType = FixedLengthString<3, 0>;
-using ISIN = FixedLengthString<12, 0>;
+using CurrencyType = FixedLengthString<3, '\0', false>;
+using ISIN = FixedLengthString<12, '\0', false>;
 using LocalMktDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using LocalMonthYearCod = LittleEndian<uint32_t, 0, 999912, 0xFFFFFFFF>;
 using PriceType = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using Qty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
-using SeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using UTCTimestamp = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using Account = FixedLengthString<2, 0>;
+using SeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using UTCTimestamp = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using Account = FixedLengthString<2, '\0', false>;
 using AccruedInterestAmt = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using ActivationDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
-using AffectedOrderID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using AffectedOrderID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using AffectedOrderRequestID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using AffectedOrigClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using AffectedOrigClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using AllocID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct AllocMethod {
     using value_type = uint8_t;
@@ -62,10 +62,10 @@ inline ostreamT& operator<<(ostreamT& os, const AllocMethod& v){
     return os;
 }
 using AllocQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
-using ApplBegMsgID = FixedLengthString<16, 0>;
-using ApplBegSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using ApplEndMsgID = FixedLengthString<16, 0>;
-using ApplEndSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ApplBegMsgID = FixedLengthString<16, '\0', false>;
+using ApplBegSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using ApplEndMsgID = FixedLengthString<16, '\0', false>;
+using ApplEndSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct ApplID {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -158,7 +158,7 @@ inline ostreamT& operator<<(ostreamT& os, const ApplIDStatus& v){
     os << v.view();
     return os;
 }
-using ApplMsgID = FixedLengthString<16, 0>;
+using ApplMsgID = FixedLengthString<16, '\0', false>;
 struct ApplResendFlag {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -235,7 +235,7 @@ inline ostreamT& operator<<(ostreamT& os, const ApplSeqIndicator& v){
     os << v.view();
     return os;
 }
-using ApplSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ApplSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct ApplSeqStatus {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -361,15 +361,15 @@ inline ostreamT& operator<<(ostreamT& os, const ApplUsageQuotes& v){
     os << v.view();
     return os;
 }
-using ApplicationSystemName = FixedLengthString<30, 0>;
-using ApplicationSystemVendor = FixedLengthString<30, 0>;
-using ApplicationSystemVersion = FixedLengthString<30, 0>;
+using ApplicationSystemName = FixedLengthString<30, '\0', false>;
+using ApplicationSystemVendor = FixedLengthString<30, '\0', false>;
+using ApplicationSystemVersion = FixedLengthString<30, '\0', false>;
 using AutoApprovalRuleID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using AutoExecExpiryTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using AutoExecExpiryTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using AutoExecExposureDuration = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using AutoExecLimitPrice = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using AutoExecMinNoOfQuotes = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using AutoExecReferencePriceOffset = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
+using AutoExecReferencePriceOffset = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
 struct AutoExecType {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -495,7 +495,7 @@ inline ostreamT& operator<<(ostreamT& os, const BidPxIsLocked& v){
 using BidSize = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 using BodyLen = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using CheckSumCorrection = LittleEndian<uint16_t, 0, 65534, 0xFFFF>;
-using ClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct ClearingInstruction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -534,7 +534,7 @@ inline ostreamT& operator<<(ostreamT& os, const ClearingInstruction& v){
     os << v.view();
     return os;
 }
-using ClosureReason = FixedLengthString<132, 0>;
+using ClosureReason = FixedLengthString<132, '\0', false>;
 using CouponRate = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 7>;
 struct CrossMatchInstruction {
     using value_type = uint8_t;
@@ -576,7 +576,7 @@ inline ostreamT& operator<<(ostreamT& os, const CrossMatchInstruction& v){
     os << v.view();
     return os;
 }
-using CrossRequestID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
+using CrossRequestID = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
 struct CrossedIndicator {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -616,11 +616,11 @@ inline ostreamT& operator<<(ostreamT& os, const CrossedIndicator& v){
     return os;
 }
 using CumQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
-using Currency = FixedLengthString<3, 0>;
+using Currency = FixedLengthString<3, '\0', false>;
 using CxlQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 using CxlSize = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
-using DefaultCstmApplVerID = FixedLengthString<30, 0>;
-using DefaultCstmApplVerSubID = FixedLengthString<5, 0>;
+using DefaultCstmApplVerID = FixedLengthString<30, '\0', false>;
+using DefaultCstmApplVerSubID = FixedLengthString<5, '\0', false>;
 struct DeleteReason {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -712,8 +712,8 @@ inline ostreamT& operator<<(ostreamT& os, const DeliveryType& v){
 using DisplayHighQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 using DisplayLowQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 using DisplayQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
-using EffectiveTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using EncryptedPassword = FixedLengthString<684, 0>;
+using EffectiveTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using EncryptedPassword = FixedLengthString<684, '\0', false>;
 using EnrichmentRuleID = LittleEndian<uint16_t, 1, 10000, 0xFFFF>;
 using EventDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using EventPx = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
@@ -781,7 +781,7 @@ inline ostreamT& operator<<(ostreamT& os, const EventType& v){
     os << v.view();
     return os;
 }
-using ExecID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ExecID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct ExecInst {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1018,7 +1018,7 @@ inline ostreamT& operator<<(ostreamT& os, const ExecType& v){
     os << v.view();
     return os;
 }
-using ExecutingTrader = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ExecutingTrader = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct ExecutingTraderQualifier {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1058,12 +1058,12 @@ inline ostreamT& operator<<(ostreamT& os, const ExecutingTraderQualifier& v){
     return os;
 }
 using ExpireDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
-using ExpireTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using FIXClOrdID = FixedLengthString<20, 0>;
-using FIXEngineName = FixedLengthString<30, 0>;
-using FIXEngineVendor = FixedLengthString<30, 0>;
-using FIXEngineVersion = FixedLengthString<30, 0>;
-using FillExecID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
+using ExpireTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using FIXClOrdID = FixedLengthString<20, '\0', false>;
+using FIXEngineName = FixedLengthString<30, '\0', false>;
+using FIXEngineVendor = FixedLengthString<30, '\0', false>;
+using FIXEngineVersion = FixedLengthString<30, '\0', false>;
+using FillExecID = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
 struct FillLiquidityInd {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1117,13 +1117,13 @@ inline ostreamT& operator<<(ostreamT& os, const FillLiquidityInd& v){
 using FillMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using FillPx = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using FillQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
-using FillRefID = LittleEndian<uint8_t, 1_u8, 100_u8, 0x_u8FF>;
-using FirmNegotiationID = FixedLengthString<20, 0>;
-using FirmTradeID = FixedLengthString<20, 0>;
-using FreeText1 = FixedLengthString<12, 0>;
-using FreeText2 = FixedLengthString<12, 0>;
-using FreeText4 = FixedLengthString<16, 0>;
-using FreeText5 = FixedLengthString<132, 0>;
+using FillRefID = LittleEndian<uint8_t, 1_u8, 100_u8, 0xFF_u8>;
+using FirmNegotiationID = FixedLengthString<20, '\0', false>;
+using FirmTradeID = FixedLengthString<20, '\0', false>;
+using FreeText1 = FixedLengthString<12, '\0', false>;
+using FreeText2 = FixedLengthString<12, '\0', false>;
+using FreeText4 = FixedLengthString<16, '\0', false>;
+using FreeText5 = FixedLengthString<132, '\0', false>;
 using GatewayID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct GatewayStatus {
     using value_type = uint8_t;
@@ -1164,7 +1164,7 @@ inline ostreamT& operator<<(ostreamT& os, const GatewayStatus& v){
     return os;
 }
 using GatewaySubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using Headline = FixedLengthString<256, 0>;
+using Headline = FixedLengthString<256, '\0', false>;
 using HeartBtInt = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using HighLimitPrice = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using ImbalanceQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
@@ -1255,7 +1255,7 @@ inline ostreamT& operator<<(ostreamT& os, const LastCouponDeviationIndicator& v)
     os << v.view();
     return os;
 }
-using LastEntityProcessed = FixedLengthString<16, 0>;
+using LastEntityProcessed = FixedLengthString<16, '\0', false>;
 struct LastFragment {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1432,7 +1432,7 @@ inline ostreamT& operator<<(ostreamT& os, const LastQtyDisclosureInstruction& v)
     os << v.view();
     return os;
 }
-using LastUpdateTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using LastUpdateTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using LatestPublicKeySeqNo = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using LeavesQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 struct LeavesQtyDisclosureInstruction {
@@ -1646,7 +1646,7 @@ inline ostreamT& operator<<(ostreamT& os, const MarketID& v){
     os << v.view();
     return os;
 }
-using MarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
+using MarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
 struct MassActionReason {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1719,7 +1719,7 @@ inline ostreamT& operator<<(ostreamT& os, const MassActionReason& v){
     os << v.view();
     return os;
 }
-using MassActionReportID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using MassActionReportID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct MassActionType {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -1980,10 +1980,10 @@ inline ostreamT& operator<<(ostreamT& os, const MidPointType& v){
 }
 using MinQty = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 using MsgSeqNum = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using MsgType = FixedLengthString<3, 0>;
+using MsgType = FixedLengthString<3, '\0', false>;
 using NegotiationID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using NegotiationStartTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using NetworkMsgID = FixedLengthString<8, 0>;
+using NegotiationStartTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using NetworkMsgID = FixedLengthString<8, '\0', false>;
 struct NewsRtmServiceStatus {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2024,37 +2024,37 @@ inline ostreamT& operator<<(ostreamT& os, const NewsRtmServiceStatus& v){
 }
 using NoAffectedOrderRequests = LittleEndian<uint16_t, 0, 500, 0xFFFF>;
 using NoAffectedOrders = LittleEndian<uint16_t, 0, 500, 0xFFFF>;
-using NoCrossLegs = LittleEndian<uint8_t, 0_u8, 40_u8, 0x_u8FF>;
+using NoCrossLegs = LittleEndian<uint8_t, 0_u8, 40_u8, 0xFF_u8>;
 using NoEnrichmentRules = LittleEndian<uint16_t, 0, 400, 0xFFFF>;
-using NoEvents = LittleEndian<uint8_t, 0_u8, 2_u8, 0x_u8FF>;
-using NoFills = LittleEndian<uint8_t, 0_u8, 100_u8, 0x_u8FF>;
-using NoInstrAttrib = LittleEndian<uint8_t, 0_u8, 6_u8, 0x_u8FF>;
-using NoMDEntryTypes = LittleEndian<uint8_t, 0_u8, 2_u8, 0x_u8FF>;
+using NoEvents = LittleEndian<uint8_t, 0_u8, 2_u8, 0xFF_u8>;
+using NoFills = LittleEndian<uint8_t, 0_u8, 100_u8, 0xFF_u8>;
+using NoInstrAttrib = LittleEndian<uint8_t, 0_u8, 6_u8, 0xFF_u8>;
+using NoMDEntryTypes = LittleEndian<uint8_t, 0_u8, 2_u8, 0xFF_u8>;
 using NoNotAffectedOrders = LittleEndian<uint16_t, 0, 500, 0xFFFF>;
 using NoNotAffectedSecurities = LittleEndian<uint16_t, 0, 500, 0xFFFF>;
-using NoOrderBookItems = LittleEndian<uint8_t, 0_u8, 26_u8, 0x_u8FF>;
-using NoOrderEntries = LittleEndian<uint8_t, 2_u8, 12_u8, 0x_u8FF>;
-using NoOrderEvents = LittleEndian<uint8_t, 0_u8, 100_u8, 0x_u8FF>;
+using NoOrderBookItems = LittleEndian<uint8_t, 0_u8, 26_u8, 0xFF_u8>;
+using NoOrderEntries = LittleEndian<uint8_t, 2_u8, 12_u8, 0xFF_u8>;
+using NoOrderEvents = LittleEndian<uint8_t, 0_u8, 100_u8, 0xFF_u8>;
 using NoPartyDetails = LittleEndian<uint16_t, 0, 1000, 0xFFFF>;
 using NoPartyRiskLimits = LittleEndian<uint16_t, 0, 1000, 0xFFFF>;
-using NoQuoteEntries = LittleEndian<uint8_t, 0_u8, 100_u8, 0x_u8FF>;
-using NoQuoteEvents = LittleEndian<uint8_t, 1_u8, 100_u8, 0x_u8FF>;
-using NoQuoteEventsIndex = LittleEndian<uint8_t, 1_u8, 100_u8, 0x_u8FF>;
-using NoQuoteSideEntries = LittleEndian<uint8_t, 0_u8, 200_u8, 0x_u8FF>;
-using NoRiskLimitAmount = LittleEndian<uint8_t, 0_u8, 2_u8, 0x_u8FF>;
-using NoRiskLimits = LittleEndian<uint8_t, 0_u8, 64_u8, 0x_u8FF>;
-using NoSRQSQuoteGrps = LittleEndian<uint8_t, 0_u8, 30_u8, 0x_u8FF>;
-using NoSRQSTargetPartyTrdGrps = LittleEndian<uint8_t, 1_u8, 30_u8, 0x_u8FF>;
+using NoQuoteEntries = LittleEndian<uint8_t, 0_u8, 100_u8, 0xFF_u8>;
+using NoQuoteEvents = LittleEndian<uint8_t, 1_u8, 100_u8, 0xFF_u8>;
+using NoQuoteEventsIndex = LittleEndian<uint8_t, 1_u8, 100_u8, 0xFF_u8>;
+using NoQuoteSideEntries = LittleEndian<uint8_t, 0_u8, 200_u8, 0xFF_u8>;
+using NoRiskLimitAmount = LittleEndian<uint8_t, 0_u8, 2_u8, 0xFF_u8>;
+using NoRiskLimits = LittleEndian<uint8_t, 0_u8, 64_u8, 0xFF_u8>;
+using NoSRQSQuoteGrps = LittleEndian<uint8_t, 0_u8, 30_u8, 0xFF_u8>;
+using NoSRQSTargetPartyTrdGrps = LittleEndian<uint8_t, 1_u8, 30_u8, 0xFF_u8>;
 using NoSessions = LittleEndian<uint16_t, 1, 1000, 0xFFFF>;
-using NoSideAllocs = LittleEndian<uint8_t, 1_u8, 99_u8, 0x_u8FF>;
-using NoSideOTCAllocs = LittleEndian<uint8_t, 1_u8, 2_u8, 0x_u8FF>;
-using NoSides = LittleEndian<uint8_t, 1_u8, 2_u8, 0x_u8FF>;
-using NoTargetPartyIDs = LittleEndian<uint8_t, 0_u8, 50_u8, 0x_u8FF>;
-using NoUnderlyingStips = LittleEndian<uint8_t, 0_u8, 1_u8, 0x_u8FF>;
-using NotAffOrigClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using NotAffectedOrderID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using NotAffectedSecurityID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using NotificationIn = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using NoSideAllocs = LittleEndian<uint8_t, 1_u8, 99_u8, 0xFF_u8>;
+using NoSideOTCAllocs = LittleEndian<uint8_t, 1_u8, 2_u8, 0xFF_u8>;
+using NoSides = LittleEndian<uint8_t, 1_u8, 2_u8, 0xFF_u8>;
+using NoTargetPartyIDs = LittleEndian<uint8_t, 0_u8, 50_u8, 0xFF_u8>;
+using NoUnderlyingStips = LittleEndian<uint8_t, 0_u8, 1_u8, 0xFF_u8>;
+using NotAffOrigClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using NotAffectedOrderID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using NotAffectedSecurityID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using NotificationIn = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using NumDaysInterest = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct NumberOfRespDisclosureInstruction {
     using value_type = uint8_t;
@@ -2095,7 +2095,7 @@ inline ostreamT& operator<<(ostreamT& os, const NumberOfRespDisclosureInstructio
     return os;
 }
 using NumberOfRespondents = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using NumberOfSecurities = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
+using NumberOfSecurities = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
 using OTCExecID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using OfferCxlSize = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 using OfferPx = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
@@ -2381,7 +2381,7 @@ inline ostreamT& operator<<(ostreamT& os, const OrderEventType& v){
     os << v.view();
     return os;
 }
-using OrderID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using OrderID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using OrderIDSfx = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct OrderOrigination {
     using value_type = uint8_t;
@@ -2534,8 +2534,8 @@ inline ostreamT& operator<<(ostreamT& os, const OrderSide& v){
     os << v.view();
     return os;
 }
-using OrigClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using OrigTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using OrigClOrdID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using OrigTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using OrigTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct OwnershipIndicator {
     using value_type = uint8_t;
@@ -2576,22 +2576,22 @@ inline ostreamT& operator<<(ostreamT& os, const OwnershipIndicator& v){
     return os;
 }
 using PackageID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using Pad1 = FixedLengthString<1, 0>;
-using Pad2 = FixedLengthString<2, 0>;
-using Pad2_1 = FixedLengthString<2, 0>;
-using Pad2_2 = FixedLengthString<2, 0>;
-using Pad3 = FixedLengthString<3, 0>;
-using Pad3_2 = FixedLengthString<3, 0>;
-using Pad3_3 = FixedLengthString<3, 0>;
-using Pad4 = FixedLengthString<4, 0>;
-using Pad4_1 = FixedLengthString<4, 0>;
-using Pad4_2 = FixedLengthString<4, 0>;
-using Pad5 = FixedLengthString<5, 0>;
-using Pad5_1 = FixedLengthString<5, 0>;
-using Pad6 = FixedLengthString<6, 0>;
-using Pad6_1 = FixedLengthString<6, 0>;
-using Pad6_2 = FixedLengthString<6, 0>;
-using Pad7 = FixedLengthString<7, 0>;
+using Pad1 = FixedLengthString<1, '\0', false>;
+using Pad2 = FixedLengthString<2, '\0', false>;
+using Pad2_1 = FixedLengthString<2, '\0', false>;
+using Pad2_2 = FixedLengthString<2, '\0', false>;
+using Pad3 = FixedLengthString<3, '\0', false>;
+using Pad3_2 = FixedLengthString<3, '\0', false>;
+using Pad3_3 = FixedLengthString<3, '\0', false>;
+using Pad4 = FixedLengthString<4, '\0', false>;
+using Pad4_1 = FixedLengthString<4, '\0', false>;
+using Pad4_2 = FixedLengthString<4, '\0', false>;
+using Pad5 = FixedLengthString<5, '\0', false>;
+using Pad5_1 = FixedLengthString<5, '\0', false>;
+using Pad6 = FixedLengthString<6, '\0', false>;
+using Pad6_1 = FixedLengthString<6, '\0', false>;
+using Pad6_2 = FixedLengthString<6, '\0', false>;
+using Pad7 = FixedLengthString<7, '\0', false>;
 using PartitionID = LittleEndian<uint16_t, 0, 65534, 0xFFFF>;
 struct PartyActionType {
     using value_type = uint8_t;
@@ -2631,9 +2631,9 @@ inline ostreamT& operator<<(ostreamT& os, const PartyActionType& v){
     os << v.view();
     return os;
 }
-using PartyDetailDeskID = FixedLengthString<3, 0>;
-using PartyDetailExecutingTrader = FixedLengthString<6, 0>;
-using PartyDetailExecutingUnit = FixedLengthString<5, 0>;
+using PartyDetailDeskID = FixedLengthString<3, '\0', false>;
+using PartyDetailExecutingTrader = FixedLengthString<6, '\0', false>;
+using PartyDetailExecutingUnit = FixedLengthString<5, '\0', false>;
 using PartyDetailIDExecutingTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using PartyDetailIDExecutingUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct PartyDetailRoleQualifier {
@@ -2714,12 +2714,12 @@ inline ostreamT& operator<<(ostreamT& os, const PartyDetailStatus& v){
     os << v.view();
     return os;
 }
-using PartyEnteringFirm = FixedLengthString<5, 0>;
-using PartyEnteringTrader = FixedLengthString<6, 0>;
-using PartyExecutingFirm = FixedLengthString<5, 0>;
-using PartyExecutingTrader = FixedLengthString<6, 0>;
-using PartyExecutingUnit = FixedLengthString<5, 0>;
-using PartyIDClientID = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using PartyEnteringFirm = FixedLengthString<5, '\0', false>;
+using PartyEnteringTrader = FixedLengthString<6, '\0', false>;
+using PartyExecutingFirm = FixedLengthString<5, '\0', false>;
+using PartyExecutingTrader = FixedLengthString<6, '\0', false>;
+using PartyExecutingUnit = FixedLengthString<5, '\0', false>;
+using PartyIDClientID = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct PartyIDEnteringFirm {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2799,7 +2799,7 @@ inline ostreamT& operator<<(ostreamT& os, const PartyIDOriginationMarket& v){
 }
 using PartyIDSessionID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using PartyIDSpecialistTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using PartyIdInvestmentDecisionMaker = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using PartyIdInvestmentDecisionMaker = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct PartyIdInvestmentDecisionMakerQualifier {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2838,9 +2838,9 @@ inline ostreamT& operator<<(ostreamT& os, const PartyIdInvestmentDecisionMakerQu
     os << v.view();
     return os;
 }
-using PartySpecialistFirm = FixedLengthString<5, 0>;
-using PartySpecialistTrader = FixedLengthString<6, 0>;
-using Password = FixedLengthString<32, 0>;
+using PartySpecialistFirm = FixedLengthString<5, '\0', false>;
+using PartySpecialistTrader = FixedLengthString<6, '\0', false>;
+using Password = FixedLengthString<32, '\0', false>;
 using PegOffsetValueAbs = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using PegOffsetValuePct = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
 using PotentialExecVolume = LittleEndian<int64_t, -2147483647LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 4>;
@@ -2921,7 +2921,7 @@ inline ostreamT& operator<<(ostreamT& os, const PriceValidityCheckType& v){
     os << v.view();
     return os;
 }
-using PublicKey = FixedLengthString<814, 0>;
+using PublicKey = FixedLengthString<814, '\0', false>;
 using PublicKeyLen = LittleEndian<uint16_t, 0, 814, 0xFFFF>;
 struct QuoteCancelReason {
     using value_type = uint8_t;
@@ -3167,7 +3167,7 @@ inline ostreamT& operator<<(ostreamT& os, const QuoteEntryStatus& v){
     os << v.view();
     return os;
 }
-using QuoteEventExecID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
+using QuoteEventExecID = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
 struct QuoteEventLiquidityInd {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3343,7 +3343,7 @@ inline ostreamT& operator<<(ostreamT& os, const QuoteEventType& v){
     os << v.view();
     return os;
 }
-using QuoteID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using QuoteID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct QuoteInstruction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3382,8 +3382,8 @@ inline ostreamT& operator<<(ostreamT& os, const QuoteInstruction& v){
     os << v.view();
     return os;
 }
-using QuoteMsgID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using QuoteReqID = FixedLengthString<20, 0>;
+using QuoteMsgID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using QuoteReqID = FixedLengthString<20, '\0', false>;
 struct QuoteRequestRejectReason {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3434,7 +3434,7 @@ inline ostreamT& operator<<(ostreamT& os, const QuoteRequestRejectReason& v){
     os << v.view();
     return os;
 }
-using QuoteResponseID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using QuoteResponseID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct QuoteSizeType {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3741,8 +3741,8 @@ inline ostreamT& operator<<(ostreamT& os, const RefApplID& v){
     os << v.view();
     return os;
 }
-using RefApplLastMsgID = FixedLengthString<16, 0>;
-using RefApplLastSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using RefApplLastMsgID = FixedLengthString<16, '\0', false>;
+using RefApplLastSeqNum = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using RefApplSubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct RefinancingEligibilityIndicator {
     using value_type = uint8_t;
@@ -3782,12 +3782,12 @@ inline ostreamT& operator<<(ostreamT& os, const RefinancingEligibilityIndicator&
     os << v.view();
     return os;
 }
-using RegulatoryTradeID = FixedLengthString<52, 0>;
+using RegulatoryTradeID = FixedLengthString<52, '\0', false>;
 using RelatedClosePrice = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 6>;
-using RelatedMarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
-using RequestTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using RequestingPartyClearingFirm = FixedLengthString<9, 0>;
-using RequestingPartyEnteringFirm = FixedLengthString<9, 0>;
+using RelatedMarketSegmentID = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
+using RequestTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using RequestingPartyClearingFirm = FixedLengthString<9, '\0', false>;
+using RequestingPartyEnteringFirm = FixedLengthString<9, '\0', false>;
 struct RequestingPartyIDEnteringFirm {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3903,7 +3903,7 @@ inline ostreamT& operator<<(ostreamT& os, const RespondentType& v){
     os << v.view();
     return os;
 }
-using ResponseIn = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ResponseIn = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct ReversalIndicator {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -3942,7 +3942,7 @@ inline ostreamT& operator<<(ostreamT& os, const ReversalIndicator& v){
     os << v.view();
     return os;
 }
-using ReversalInitiationTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ReversalInitiationTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct RiskControlRtmServiceStatus {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4022,10 +4022,10 @@ inline ostreamT& operator<<(ostreamT& os, const RiskLimitAction& v){
     return os;
 }
 using RiskLimitAmount = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
-using RiskLimitGroup = FixedLengthString<3, 0>;
+using RiskLimitGroup = FixedLengthString<3, '\0', false>;
 using RiskLimitNetPositionAmount = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using RiskLimitOpenAmount = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
-using RiskLimitReportID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using RiskLimitReportID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct RiskLimitRequestingPartyRole {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4142,25 +4142,25 @@ inline ostreamT& operator<<(ostreamT& os, const RiskLimitViolationIndicator& v){
     os << v.view();
     return os;
 }
-using RootPartyClearingFirm = FixedLengthString<5, 0>;
-using RootPartyContraFirm = FixedLengthString<5, 0>;
-using RootPartyContraFirmKVNumber = FixedLengthString<4, 0>;
-using RootPartyContraSettlementAccount = FixedLengthString<35, 0>;
-using RootPartyContraSettlementFirm = FixedLengthString<5, 0>;
-using RootPartyContraSettlementLocation = FixedLengthString<3, 0>;
-using RootPartyContraTrader = FixedLengthString<6, 0>;
-using RootPartyEnteringTrader = FixedLengthString<6, 0>;
-using RootPartyExecutingFirm = FixedLengthString<5, 0>;
-using RootPartyExecutingFirmKVNumber = FixedLengthString<4, 0>;
-using RootPartyExecutingTrader = FixedLengthString<6, 0>;
+using RootPartyClearingFirm = FixedLengthString<5, '\0', false>;
+using RootPartyContraFirm = FixedLengthString<5, '\0', false>;
+using RootPartyContraFirmKVNumber = FixedLengthString<4, '\0', false>;
+using RootPartyContraSettlementAccount = FixedLengthString<35, '\0', false>;
+using RootPartyContraSettlementFirm = FixedLengthString<5, '\0', false>;
+using RootPartyContraSettlementLocation = FixedLengthString<3, '\0', false>;
+using RootPartyContraTrader = FixedLengthString<6, '\0', false>;
+using RootPartyEnteringTrader = FixedLengthString<6, '\0', false>;
+using RootPartyExecutingFirm = FixedLengthString<5, '\0', false>;
+using RootPartyExecutingFirmKVNumber = FixedLengthString<4, '\0', false>;
+using RootPartyExecutingTrader = FixedLengthString<6, '\0', false>;
 using RootPartyIDClearingUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RootPartyIDClientID = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using RootPartyIDClientID = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using RootPartyIDContraSettlementUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RootPartyIDContraUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RootPartyIDExecutingTrader = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RootPartyIDExecutingUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RootPartyIDExecutionVenue = FixedLengthString<4, 0>;
-using RootPartyIDInvestmentDecisionMaker = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using RootPartyIDExecutionVenue = FixedLengthString<4, '\0', false>;
+using RootPartyIDInvestmentDecisionMaker = LittleEndian<uint64_t, 1UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct RootPartyIDInvestmentDecisionMakerQualifier {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4201,9 +4201,9 @@ inline ostreamT& operator<<(ostreamT& os, const RootPartyIDInvestmentDecisionMak
 }
 using RootPartyIDSessionID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using RootPartyIDSettlementUnit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using RootPartySettlementAccount = FixedLengthString<35, 0>;
-using RootPartySettlementFirm = FixedLengthString<5, 0>;
-using RootPartySettlementLocation = FixedLengthString<3, 0>;
+using RootPartySettlementAccount = FixedLengthString<35, '\0', false>;
+using RootPartySettlementFirm = FixedLengthString<5, '\0', false>;
+using RootPartySettlementLocation = FixedLengthString<3, '\0', false>;
 using SRQSRelatedTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using SecondaryGatewayID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct SecondaryGatewayStatus {
@@ -4245,10 +4245,10 @@ inline ostreamT& operator<<(ostreamT& os, const SecondaryGatewayStatus& v){
     return os;
 }
 using SecondaryGatewaySubID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using SecondaryQuoteID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using SecondaryQuoteID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using SecondaryTradeID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using SecurityID = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, 0x8000000000000000L>;
-using SecurityResponseID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using SecurityID = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, std::numeric_limits<int64_t>::min()>;
+using SecurityResponseID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct SecurityStatus {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4289,7 +4289,7 @@ inline ostreamT& operator<<(ostreamT& os, const SecurityStatus& v){
     os << v.view();
     return os;
 }
-using SecurityStatusReportID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using SecurityStatusReportID = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct SecurityTradingEvent {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -4446,7 +4446,7 @@ inline ostreamT& operator<<(ostreamT& os, const SelectiveRequestForQuoteServiceS
 }
 using SelectiveRequestForQuoteServiceTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using SenderSubID = LittleEndian<uint32_t, 0, 2147483647, 0xFFFFFFFF>;
-using SendingTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using SendingTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using SessionInstanceID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 struct SessionMode {
     using value_type = uint8_t;
@@ -4672,7 +4672,7 @@ inline ostreamT& operator<<(ostreamT& os, const SessionSubMode& v){
 }
 using SettlCurrAmt = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 using SettlCurrFxRate = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
-using SettlCurrency = FixedLengthString<3, 0>;
+using SettlCurrency = FixedLengthString<3, '\0', false>;
 using SettlDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 struct Side {
     using value_type = uint8_t;
@@ -4991,15 +4991,15 @@ inline ostreamT& operator<<(ostreamT& os, const T7EntryServiceStatus& v){
 using T7EntryServiceTradeDate = LittleEndian<uint32_t, 0, 99991231, 0xFFFFFFFF>;
 using TESEnrichmentRuleID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using TESExecID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using TargetPartyEnteringTrader = FixedLengthString<6, 0>;
-using TargetPartyExecutingFirm = FixedLengthString<5, 0>;
-using TargetPartyExecutingTrader = FixedLengthString<6, 0>;
-using TargetPartyIDDeskID = FixedLengthString<3, 0>;
+using TargetPartyEnteringTrader = FixedLengthString<6, '\0', false>;
+using TargetPartyExecutingFirm = FixedLengthString<5, '\0', false>;
+using TargetPartyExecutingTrader = FixedLengthString<6, '\0', false>;
+using TargetPartyIDDeskID = FixedLengthString<3, '\0', false>;
 using TargetPartyIDExecutingTrader = LittleEndian<uint32_t, 0, 2147483647, 0xFFFFFFFF>;
 using TargetPartyIDSessionID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using ThrottleDisconnectLimit = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
 using ThrottleNoMsgs = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using ThrottleTimeInterval = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, 0x8000000000000000L>;
+using ThrottleTimeInterval = LittleEndian<int64_t, -9223372036854775807L, 9223372036854775807L, std::numeric_limits<int64_t>::min()>;
 struct TimeInForce {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -5044,7 +5044,7 @@ inline ostreamT& operator<<(ostreamT& os, const TimeInForce& v){
     os << v.view();
     return os;
 }
-using TotNumTradeReports = LittleEndian<int32_t, -2147483647, 2147483647, 0x80000000>;
+using TotNumTradeReports = LittleEndian<int32_t, -2147483647, 2147483647, std::numeric_limits<int32_t>::min()>;
 struct TradSesEvent {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -5337,8 +5337,8 @@ inline ostreamT& operator<<(ostreamT& os, const TradePublishIndicator& v){
     os << v.view();
     return os;
 }
-using TradeReportID = FixedLengthString<20, 0>;
-using TradeReportText = FixedLengthString<20, 0>;
+using TradeReportID = FixedLengthString<20, '\0', false>;
+using TradeReportText = FixedLengthString<20, '\0', false>;
 struct TradeReportType {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -5483,8 +5483,8 @@ inline ostreamT& operator<<(ostreamT& os, const TradingSessionSubID& v){
     os << v.view();
     return os;
 }
-using TransBkdTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using TransactTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using TransBkdTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using TransactTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 using TransactionCostAmt = LittleEndian<int64_t, -9223372036854775807LL, std::numeric_limits<int64_t>::max(), std::numeric_limits<int64_t>::min(), 8>;
 struct TransactionCostCode {
     using value_type = uint8_t;
@@ -5609,11 +5609,11 @@ inline ostreamT& operator<<(ostreamT& os, const TransferReason& v){
     return os;
 }
 using TrdMatchID = LittleEndian<uint32_t, 0, 4294967294, 0xFFFFFFFF>;
-using TrdRegTSEntryTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using TrdRegTSExecutionTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using TrdRegTSTimeIn = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using TrdRegTSTimeOut = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
-using TrdRegTSTimePriority = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using TrdRegTSEntryTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using TrdRegTSExecutionTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using TrdRegTSTimeIn = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using TrdRegTSTimeOut = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
+using TrdRegTSTimePriority = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct TrdRptStatus {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -5781,7 +5781,7 @@ inline ostreamT& operator<<(ostreamT& os, const UserStatus& v){
     return os;
 }
 using Username = LittleEndian<uint32_t, 0, 2147483647, 0xFFFFFFFF>;
-using ValidUntilTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xULFFFFFFFFFFFFFFFF>;
+using ValidUntilTime = LittleEndian<uint64_t, 0UL, 18446744073709551614UL, 0xFFFFFFFFFFFFFFFFUL>;
 struct ValueCheckTypeMinLotSize {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -5896,7 +5896,7 @@ inline ostreamT& operator<<(ostreamT& os, const ValueCheckTypeValue& v){
     os << v.view();
     return os;
 }
-using VarText = FixedLengthString<2000, 0>;
+using VarText = FixedLengthString<2000, '\0', false>;
 using VarTextLen = LittleEndian<uint16_t, 0, 2000, 0xFFFF>;
 struct TemplateID {
     using value_type = int16_t;
@@ -6218,10 +6218,8 @@ struct AffectedOrdGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(AffectedOrdGrpComp);}
     size_t size() const {return sizeof(AffectedOrdGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AffectedOrdGrpComp& msg) {
@@ -6238,10 +6236,8 @@ struct AffectedOrderRequestsGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(AffectedOrderRequestsGrpComp);}
     size_t size() const {return sizeof(AffectedOrderRequestsGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AffectedOrderRequestsGrpComp& msg) {
@@ -6261,10 +6257,8 @@ struct EnrichmentRulesGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(EnrichmentRulesGrpComp);}
     size_t size() const {return sizeof(EnrichmentRulesGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const EnrichmentRulesGrpComp& msg) {
@@ -6288,10 +6282,8 @@ struct FillsGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(FillsGrpComp);}
     size_t size() const {return sizeof(FillsGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const FillsGrpComp& msg) {
@@ -6314,10 +6306,8 @@ struct MessageHeaderInComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(MessageHeaderInComp);}
     size_t size() const {return sizeof(MessageHeaderInComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MessageHeaderInComp& msg) {
@@ -6337,10 +6327,8 @@ struct MessageHeaderOutComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(MessageHeaderOutComp);}
     size_t size() const {return sizeof(MessageHeaderOutComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MessageHeaderOutComp& msg) {
@@ -6361,10 +6349,8 @@ struct NRBCHeaderComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NRBCHeaderComp);}
     size_t size() const {return sizeof(NRBCHeaderComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NRBCHeaderComp& msg) {
@@ -6390,10 +6376,8 @@ struct NRResponseHeaderMEComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NRResponseHeaderMEComp);}
     size_t size() const {return sizeof(NRResponseHeaderMEComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NRResponseHeaderMEComp& msg) {
@@ -6416,10 +6400,8 @@ struct NotAffectedOrdersGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NotAffectedOrdersGrpComp);}
     size_t size() const {return sizeof(NotAffectedOrdersGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NotAffectedOrdersGrpComp& msg) {
@@ -6435,10 +6417,8 @@ struct NotAffectedSecuritiesGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NotAffectedSecuritiesGrpComp);}
     size_t size() const {return sizeof(NotAffectedSecuritiesGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NotAffectedSecuritiesGrpComp& msg) {
@@ -6453,10 +6433,8 @@ struct NotifHeaderComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NotifHeaderComp);}
     size_t size() const {return sizeof(NotifHeaderComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NotifHeaderComp& msg) {
@@ -6477,10 +6455,8 @@ struct OrderBookItemGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OrderBookItemGrpComp);}
     size_t size() const {return sizeof(OrderBookItemGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderBookItemGrpComp& msg) {
@@ -6505,10 +6481,8 @@ struct OrderEventGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OrderEventGrpComp);}
     size_t size() const {return sizeof(OrderEventGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderEventGrpComp& msg) {
@@ -6532,10 +6506,8 @@ struct PartyDetailsGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(PartyDetailsGrpComp);}
     size_t size() const {return sizeof(PartyDetailsGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PartyDetailsGrpComp& msg) {
@@ -6560,10 +6532,8 @@ struct QuoteEntryAckGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(QuoteEntryAckGrpComp);}
     size_t size() const {return sizeof(QuoteEntryAckGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteEntryAckGrpComp& msg) {
@@ -6587,10 +6557,8 @@ struct QuoteEntryGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(QuoteEntryGrpComp);}
     size_t size() const {return sizeof(QuoteEntryGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteEntryGrpComp& msg) {
@@ -6620,10 +6588,8 @@ struct QuoteEventGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(QuoteEventGrpComp);}
     size_t size() const {return sizeof(QuoteEventGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteEventGrpComp& msg) {
@@ -6656,10 +6622,8 @@ struct RBCHeaderComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RBCHeaderComp);}
     size_t size() const {return sizeof(RBCHeaderComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RBCHeaderComp& msg) {
@@ -6690,10 +6654,8 @@ struct RBCHeaderMEComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RBCHeaderMEComp);}
     size_t size() const {return sizeof(RBCHeaderMEComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RBCHeaderMEComp& msg) {
@@ -6718,10 +6680,8 @@ struct RequestHeaderComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RequestHeaderComp);}
     size_t size() const {return sizeof(RequestHeaderComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RequestHeaderComp& msg) {
@@ -6740,10 +6700,8 @@ struct ResponseHeaderComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ResponseHeaderComp);}
     size_t size() const {return sizeof(ResponseHeaderComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ResponseHeaderComp& msg) {
@@ -6770,10 +6728,8 @@ struct ResponseHeaderMEComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ResponseHeaderMEComp);}
     size_t size() const {return sizeof(ResponseHeaderMEComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ResponseHeaderMEComp& msg) {
@@ -6799,10 +6755,8 @@ struct RiskLimitAmountGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RiskLimitAmountGrpComp);}
     size_t size() const {return sizeof(RiskLimitAmountGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RiskLimitAmountGrpComp& msg) {
@@ -6827,10 +6781,8 @@ struct RiskLimitsRptGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RiskLimitsRptGrpComp);}
     size_t size() const {return sizeof(RiskLimitsRptGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RiskLimitsRptGrpComp& msg) {
@@ -6856,10 +6808,8 @@ struct SRQSHitQuoteGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SRQSHitQuoteGrpComp);}
     size_t size() const {return sizeof(SRQSHitQuoteGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSHitQuoteGrpComp& msg) {
@@ -6893,10 +6843,8 @@ struct SRQSQuoteEntryGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SRQSQuoteEntryGrpComp);}
     size_t size() const {return sizeof(SRQSQuoteEntryGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteEntryGrpComp& msg) {
@@ -6927,10 +6875,8 @@ struct SRQSQuoteGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SRQSQuoteGrpComp);}
     size_t size() const {return sizeof(SRQSQuoteGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteGrpComp& msg) {
@@ -6951,10 +6897,8 @@ struct SRQSTargetPartyTrdGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SRQSTargetPartyTrdGrpComp);}
     size_t size() const {return sizeof(SRQSTargetPartyTrdGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSTargetPartyTrdGrpComp& msg) {
@@ -6978,10 +6922,8 @@ struct SecurityStatusEventGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SecurityStatusEventGrpComp);}
     size_t size() const {return sizeof(SecurityStatusEventGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SecurityStatusEventGrpComp& msg) {
@@ -7002,10 +6944,8 @@ struct SessionsGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SessionsGrpComp);}
     size_t size() const {return sizeof(SessionsGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SessionsGrpComp& msg) {
@@ -7029,10 +6969,8 @@ struct SideAllocGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SideAllocGrpComp);}
     size_t size() const {return sizeof(SideAllocGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SideAllocGrpComp& msg) {
@@ -7060,10 +6998,8 @@ struct SideAllocGrpBCComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SideAllocGrpBCComp);}
     size_t size() const {return sizeof(SideAllocGrpBCComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SideAllocGrpBCComp& msg) {
@@ -7092,10 +7028,8 @@ struct SideAllocOTCGrpComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SideAllocOTCGrpComp);}
     size_t size() const {return sizeof(SideAllocOTCGrpComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SideAllocOTCGrpComp& msg) {
@@ -7120,10 +7054,8 @@ struct XetraEnLightTargetPartiesComp {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightTargetPartiesComp);}
     size_t size() const {return sizeof(XetraEnLightTargetPartiesComp);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightTargetPartiesComp& msg) {
@@ -7167,10 +7099,8 @@ struct ApproveTESTradeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ApproveTESTradeRequest);}
     size_t size() const {return sizeof(ApproveTESTradeRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ApproveTESTradeRequest& msg) {
@@ -7219,10 +7149,8 @@ struct BroadcastErrorNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(BroadcastErrorNotification);}
     size_t size() const {return sizeof(BroadcastErrorNotification);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const BroadcastErrorNotification& msg) {
@@ -7249,10 +7177,8 @@ struct CrossRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(CrossRequest);}
     size_t size() const {return sizeof(CrossRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossRequest& msg) {
@@ -7274,10 +7200,8 @@ struct CrossRequestResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(CrossRequestResponse);}
     size_t size() const {return sizeof(CrossRequestResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossRequestResponse& msg) {
@@ -7316,10 +7240,8 @@ struct DeleteAllOrderBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllOrderBroadcast);}
     size_t size() const {return sizeof(DeleteAllOrderBroadcast);}
-    size_t var_size() {return affectedOrderRequestsGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return affectedOrderRequestsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderBroadcast& msg) {
@@ -7355,10 +7277,8 @@ struct DeleteAllOrderNRResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllOrderNRResponse);}
     size_t size() const {return sizeof(DeleteAllOrderNRResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderNRResponse& msg) {
@@ -7382,10 +7302,8 @@ struct DeleteAllOrderQuoteEventBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllOrderQuoteEventBroadcast);}
     size_t size() const {return sizeof(DeleteAllOrderQuoteEventBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderQuoteEventBroadcast& msg) {
@@ -7419,10 +7337,8 @@ struct DeleteAllOrderRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllOrderRequest);}
     size_t size() const {return sizeof(DeleteAllOrderRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderRequest& msg) {
@@ -7461,10 +7377,8 @@ struct DeleteAllOrderResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllOrderResponse);}
     size_t size() const {return sizeof(DeleteAllOrderResponse);}
-    size_t var_size() {return affectedOrderRequestsGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return affectedOrderRequestsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderResponse& msg) {
@@ -7502,10 +7416,8 @@ struct DeleteAllQuoteBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllQuoteBroadcast);}
     size_t size() const {return sizeof(DeleteAllQuoteBroadcast);}
-    size_t var_size() {return notAffectedSecuritiesGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteBroadcast& msg) {
@@ -7541,10 +7453,8 @@ struct DeleteAllQuoteRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllQuoteRequest);}
     size_t size() const {return sizeof(DeleteAllQuoteRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteRequest& msg) {
@@ -7573,10 +7483,8 @@ struct DeleteAllQuoteResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteAllQuoteResponse);}
     size_t size() const {return sizeof(DeleteAllQuoteResponse);}
-    size_t var_size() {return notAffectedSecuritiesGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteResponse& msg) {
@@ -7619,10 +7527,8 @@ struct DeleteOrderBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteOrderBroadcast);}
     size_t size() const {return sizeof(DeleteOrderBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderBroadcast& msg) {
@@ -7674,10 +7580,8 @@ struct DeleteOrderNRResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteOrderNRResponse);}
     size_t size() const {return sizeof(DeleteOrderNRResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderNRResponse& msg) {
@@ -7720,10 +7624,8 @@ struct DeleteOrderResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteOrderResponse);}
     size_t size() const {return sizeof(DeleteOrderResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderResponse& msg) {
@@ -7768,10 +7670,8 @@ struct DeleteOrderSingleRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteOrderSingleRequest);}
     size_t size() const {return sizeof(DeleteOrderSingleRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderSingleRequest& msg) {
@@ -7810,10 +7710,8 @@ struct DeleteTESTradeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(DeleteTESTradeRequest);}
     size_t size() const {return sizeof(DeleteTESTradeRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteTESTradeRequest& msg) {
@@ -7852,10 +7750,8 @@ struct EnterTESTradeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(EnterTESTradeRequest);}
     size_t size() const {return sizeof(EnterTESTradeRequest);}
-    size_t var_size() {return sideAllocGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return sideAllocGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const EnterTESTradeRequest& msg) {
@@ -7934,10 +7830,8 @@ struct ExtendedDeletionReport {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ExtendedDeletionReport);}
     size_t size() const {return sizeof(ExtendedDeletionReport);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ExtendedDeletionReport& msg) {
@@ -8005,10 +7899,8 @@ struct ForcedLogoutNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ForcedLogoutNotification);}
     size_t size() const {return sizeof(ForcedLogoutNotification);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ForcedLogoutNotification& msg) {
@@ -8032,10 +7924,8 @@ struct ForcedUserLogoutNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ForcedUserLogoutNotification);}
     size_t size() const {return sizeof(ForcedUserLogoutNotification);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ForcedUserLogoutNotification& msg) {
@@ -8055,10 +7945,8 @@ struct Heartbeat {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(Heartbeat);}
     size_t size() const {return sizeof(Heartbeat);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
@@ -8074,10 +7962,8 @@ struct HeartbeatNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(HeartbeatNotification);}
     size_t size() const {return sizeof(HeartbeatNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const HeartbeatNotification& msg) {
@@ -8095,10 +7981,8 @@ struct InquireEnrichmentRuleIDListRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(InquireEnrichmentRuleIDListRequest);}
     size_t size() const {return sizeof(InquireEnrichmentRuleIDListRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireEnrichmentRuleIDListRequest& msg) {
@@ -8121,10 +8005,8 @@ struct InquireEnrichmentRuleIDListResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(InquireEnrichmentRuleIDListResponse);}
     size_t size() const {return sizeof(InquireEnrichmentRuleIDListResponse);}
-    size_t var_size() {return enrichmentRulesGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return enrichmentRulesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireEnrichmentRuleIDListResponse& msg) {
@@ -8149,10 +8031,8 @@ struct InquirePreTradeRiskLimitsRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(InquirePreTradeRiskLimitsRequest);}
     size_t size() const {return sizeof(InquirePreTradeRiskLimitsRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquirePreTradeRiskLimitsRequest& msg) {
@@ -8173,10 +8053,8 @@ struct InquireSessionListRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(InquireSessionListRequest);}
     size_t size() const {return sizeof(InquireSessionListRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireSessionListRequest& msg) {
@@ -8197,10 +8075,8 @@ struct InquireSessionListResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(InquireSessionListResponse);}
     size_t size() const {return sizeof(InquireSessionListResponse);}
-    size_t var_size() {return sessionsGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return sessionsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireSessionListResponse& msg) {
@@ -8221,10 +8097,8 @@ struct InquireUserRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(InquireUserRequest);}
     size_t size() const {return sizeof(InquireUserRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireUserRequest& msg) {
@@ -8247,10 +8121,8 @@ struct InquireUserResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(InquireUserResponse);}
     size_t size() const {return sizeof(InquireUserResponse);}
-    size_t var_size() {return partyDetailsGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return partyDetailsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireUserResponse& msg) {
@@ -8282,10 +8154,8 @@ struct IssuerNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(IssuerNotification);}
     size_t size() const {return sizeof(IssuerNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const IssuerNotification& msg) {
@@ -8322,10 +8192,8 @@ struct IssuerSecurityStateChangeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(IssuerSecurityStateChangeRequest);}
     size_t size() const {return sizeof(IssuerSecurityStateChangeRequest);}
-    size_t var_size() {return securityStatusEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return securityStatusEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const IssuerSecurityStateChangeRequest& msg) {
@@ -8351,10 +8219,8 @@ struct IssuerSecurityStateChangeResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(IssuerSecurityStateChangeResponse);}
     size_t size() const {return sizeof(IssuerSecurityStateChangeResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const IssuerSecurityStateChangeResponse& msg) {
@@ -8377,10 +8243,8 @@ struct LegalNotificationBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(LegalNotificationBroadcast);}
     size_t size() const {return sizeof(LegalNotificationBroadcast);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LegalNotificationBroadcast& msg) {
@@ -8415,10 +8279,8 @@ struct LogonRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(LogonRequest);}
     size_t size() const {return sizeof(LogonRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonRequest& msg) {
@@ -8463,10 +8325,8 @@ struct LogonRequestEncrypted {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(LogonRequestEncrypted);}
     size_t size() const {return sizeof(LogonRequestEncrypted);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonRequestEncrypted& msg) {
@@ -8511,10 +8371,8 @@ struct LogonResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(LogonResponse);}
     size_t size() const {return sizeof(LogonResponse);}
-    size_t var_size() {return publicKey().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return publicKey().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonResponse& msg) {
@@ -8544,10 +8402,8 @@ struct LogoutRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(LogoutRequest);}
     size_t size() const {return sizeof(LogoutRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogoutRequest& msg) {
@@ -8564,10 +8420,8 @@ struct LogoutResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(LogoutResponse);}
     size_t size() const {return sizeof(LogoutResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogoutResponse& msg) {
@@ -8604,10 +8458,8 @@ struct MassQuoteRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(MassQuoteRequest);}
     size_t size() const {return sizeof(MassQuoteRequest);}
-    size_t var_size() {return quoteEntryGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return quoteEntryGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassQuoteRequest& msg) {
@@ -8650,10 +8502,8 @@ struct MassQuoteResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(MassQuoteResponse);}
     size_t size() const {return sizeof(MassQuoteResponse);}
-    size_t var_size() {return quoteEntryAckGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return quoteEntryAckGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassQuoteResponse& msg) {
@@ -8698,10 +8548,8 @@ struct ModifyOrderNRResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ModifyOrderNRResponse);}
     size_t size() const {return sizeof(ModifyOrderNRResponse);}
-    size_t var_size() {return orderEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderNRResponse& msg) {
@@ -8787,10 +8635,8 @@ struct ModifyOrderRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ModifyOrderRequest);}
     size_t size() const {return sizeof(ModifyOrderRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderRequest& msg) {
@@ -8878,10 +8724,8 @@ struct ModifyOrderResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ModifyOrderResponse);}
     size_t size() const {return sizeof(ModifyOrderResponse);}
-    size_t var_size() {return orderEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderResponse& msg) {
@@ -8949,10 +8793,8 @@ struct ModifyOrderShortRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ModifyOrderShortRequest);}
     size_t size() const {return sizeof(ModifyOrderShortRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderShortRequest& msg) {
@@ -9043,10 +8885,8 @@ struct ModifyOrderSingleRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ModifyOrderSingleRequest);}
     size_t size() const {return sizeof(ModifyOrderSingleRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderSingleRequest& msg) {
@@ -9134,10 +8974,8 @@ struct ModifyOrderSingleShortRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ModifyOrderSingleShortRequest);}
     size_t size() const {return sizeof(ModifyOrderSingleShortRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderSingleShortRequest& msg) {
@@ -9195,10 +9033,8 @@ struct ModifyTESTradeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ModifyTESTradeRequest);}
     size_t size() const {return sizeof(ModifyTESTradeRequest);}
-    size_t var_size() {return sideAllocGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return sideAllocGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyTESTradeRequest& msg) {
@@ -9247,10 +9083,8 @@ struct NewOrderNRResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewOrderNRResponse);}
     size_t size() const {return sizeof(NewOrderNRResponse);}
-    size_t var_size() {return orderEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderNRResponse& msg) {
@@ -9330,10 +9164,8 @@ struct NewOrderRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewOrderRequest);}
     size_t size() const {return sizeof(NewOrderRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderRequest& msg) {
@@ -9416,10 +9248,8 @@ struct NewOrderResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewOrderResponse);}
     size_t size() const {return sizeof(NewOrderResponse);}
-    size_t var_size() {return orderEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderResponse& msg) {
@@ -9483,10 +9313,8 @@ struct NewOrderShortRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewOrderShortRequest);}
     size_t size() const {return sizeof(NewOrderShortRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderShortRequest& msg) {
@@ -9573,10 +9401,8 @@ struct NewOrderSingleRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewOrderSingleRequest);}
     size_t size() const {return sizeof(NewOrderSingleRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderSingleRequest& msg) {
@@ -9660,10 +9486,8 @@ struct NewOrderSingleShortRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewOrderSingleShortRequest);}
     size_t size() const {return sizeof(NewOrderSingleShortRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderSingleShortRequest& msg) {
@@ -9710,10 +9534,8 @@ struct NewsBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(NewsBroadcast);}
     size_t size() const {return sizeof(NewsBroadcast);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewsBroadcast& msg) {
@@ -9736,10 +9558,8 @@ struct OTCResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OTCResponse);}
     size_t size() const {return sizeof(OTCResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OTCResponse& msg) {
@@ -9783,10 +9603,8 @@ struct OTCUploadBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OTCUploadBroadcast);}
     size_t size() const {return sizeof(OTCUploadBroadcast);}
-    size_t var_size() {return sideAllocOTCGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return sideAllocOTCGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OTCUploadBroadcast& msg) {
@@ -9845,10 +9663,8 @@ struct OTCUploadRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OTCUploadRequest);}
     size_t size() const {return sizeof(OTCUploadRequest);}
-    size_t var_size() {return sideAllocOTCGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return sideAllocOTCGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OTCUploadRequest& msg) {
@@ -9909,10 +9725,8 @@ struct OrderExecNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OrderExecNotification);}
     size_t size() const {return sizeof(OrderExecNotification);}
-    size_t var_size() {return orderEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderExecNotification& msg) {
@@ -10015,10 +9829,8 @@ struct OrderExecReportBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OrderExecReportBroadcast);}
     size_t size() const {return sizeof(OrderExecReportBroadcast);}
-    size_t var_size() {return orderEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderExecReportBroadcast& msg) {
@@ -10123,10 +9935,8 @@ struct OrderExecResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(OrderExecResponse);}
     size_t size() const {return sizeof(OrderExecResponse);}
-    size_t var_size() {return orderEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderExecResponse& msg) {
@@ -10179,10 +9989,8 @@ struct PartyActionReport {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(PartyActionReport);}
     size_t size() const {return sizeof(PartyActionReport);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PartyActionReport& msg) {
@@ -10218,10 +10026,8 @@ struct PartyEntitlementsUpdateReport {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(PartyEntitlementsUpdateReport);}
     size_t size() const {return sizeof(PartyEntitlementsUpdateReport);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PartyEntitlementsUpdateReport& msg) {
@@ -10250,10 +10056,8 @@ struct PingRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(PingRequest);}
     size_t size() const {return sizeof(PingRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PingRequest& msg) {
@@ -10273,10 +10077,8 @@ struct PingResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(PingResponse);}
     size_t size() const {return sizeof(PingResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PingResponse& msg) {
@@ -10302,10 +10104,8 @@ struct PreTradeRiskLimitResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(PreTradeRiskLimitResponse);}
     size_t size() const {return sizeof(PreTradeRiskLimitResponse);}
-    size_t var_size() {return riskLimitsRptGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return riskLimitsRptGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PreTradeRiskLimitResponse& msg) {
@@ -10337,10 +10137,8 @@ struct PreTradeRiskLimitsDefinitionRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(PreTradeRiskLimitsDefinitionRequest);}
     size_t size() const {return sizeof(PreTradeRiskLimitsDefinitionRequest);}
-    size_t var_size() {return riskLimitAmountGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return riskLimitAmountGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PreTradeRiskLimitsDefinitionRequest& msg) {
@@ -10374,10 +10172,8 @@ struct QuoteActivationNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(QuoteActivationNotification);}
     size_t size() const {return sizeof(QuoteActivationNotification);}
-    size_t var_size() {return notAffectedSecuritiesGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteActivationNotification& msg) {
@@ -10411,10 +10207,8 @@ struct QuoteActivationRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(QuoteActivationRequest);}
     size_t size() const {return sizeof(QuoteActivationRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteActivationRequest& msg) {
@@ -10444,10 +10238,8 @@ struct QuoteActivationResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(QuoteActivationResponse);}
     size_t size() const {return sizeof(QuoteActivationResponse);}
-    size_t var_size() {return notAffectedSecuritiesGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteActivationResponse& msg) {
@@ -10474,10 +10266,8 @@ struct QuoteExecutionReport {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(QuoteExecutionReport);}
     size_t size() const {return sizeof(QuoteExecutionReport);}
-    size_t var_size() {return quoteEventGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return quoteEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteExecutionReport& msg) {
@@ -10506,10 +10296,8 @@ struct RFQBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RFQBroadcast);}
     size_t size() const {return sizeof(RFQBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQBroadcast& msg) {
@@ -10540,10 +10328,8 @@ struct RFQRejectNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RFQRejectNotification);}
     size_t size() const {return sizeof(RFQRejectNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQRejectNotification& msg) {
@@ -10575,10 +10361,8 @@ struct RFQRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RFQRequest);}
     size_t size() const {return sizeof(RFQRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQRequest& msg) {
@@ -10604,10 +10388,8 @@ struct RFQResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RFQResponse);}
     size_t size() const {return sizeof(RFQResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQResponse& msg) {
@@ -10633,10 +10415,8 @@ struct RFQSpecialistBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RFQSpecialistBroadcast);}
     size_t size() const {return sizeof(RFQSpecialistBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQSpecialistBroadcast& msg) {
@@ -10666,10 +10446,8 @@ struct Reject {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(Reject);}
     size_t size() const {return sizeof(Reject);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
@@ -10696,10 +10474,8 @@ struct RetransmitMEMessageRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RetransmitMEMessageRequest);}
     size_t size() const {return sizeof(RetransmitMEMessageRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitMEMessageRequest& msg) {
@@ -10726,10 +10502,8 @@ struct RetransmitMEMessageResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RetransmitMEMessageResponse);}
     size_t size() const {return sizeof(RetransmitMEMessageResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitMEMessageResponse& msg) {
@@ -10755,10 +10529,8 @@ struct RetransmitRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RetransmitRequest);}
     size_t size() const {return sizeof(RetransmitRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitRequest& msg) {
@@ -10784,10 +10556,8 @@ struct RetransmitResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(RetransmitResponse);}
     size_t size() const {return sizeof(RetransmitResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitResponse& msg) {
@@ -10812,10 +10582,8 @@ struct ReverseTESTradeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ReverseTESTradeRequest);}
     size_t size() const {return sizeof(ReverseTESTradeRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ReverseTESTradeRequest& msg) {
@@ -10848,10 +10616,8 @@ struct ServiceAvailabilityBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ServiceAvailabilityBroadcast);}
     size_t size() const {return sizeof(ServiceAvailabilityBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ServiceAvailabilityBroadcast& msg) {
@@ -10885,10 +10651,8 @@ struct ServiceAvailabilityMarketBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ServiceAvailabilityMarketBroadcast);}
     size_t size() const {return sizeof(ServiceAvailabilityMarketBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ServiceAvailabilityMarketBroadcast& msg) {
@@ -10935,10 +10699,8 @@ struct SingleQuoteRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SingleQuoteRequest);}
     size_t size() const {return sizeof(SingleQuoteRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SingleQuoteRequest& msg) {
@@ -10992,10 +10754,8 @@ struct SpecialistDeleteAllOrderBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistDeleteAllOrderBroadcast);}
     size_t size() const {return sizeof(SpecialistDeleteAllOrderBroadcast);}
-    size_t var_size() {return notAffectedOrdersGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return notAffectedOrdersGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistDeleteAllOrderBroadcast& msg) {
@@ -11027,10 +10787,8 @@ struct SpecialistInstrumentEventNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistInstrumentEventNotification);}
     size_t size() const {return sizeof(SpecialistInstrumentEventNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistInstrumentEventNotification& msg) {
@@ -11097,10 +10855,8 @@ struct SpecialistOrderBookNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistOrderBookNotification);}
     size_t size() const {return sizeof(SpecialistOrderBookNotification);}
-    size_t var_size() {return fillsGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return fillsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistOrderBookNotification& msg) {
@@ -11167,10 +10923,8 @@ struct SpecialistRFQRejectRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistRFQRejectRequest);}
     size_t size() const {return sizeof(SpecialistRFQRejectRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistRFQRejectRequest& msg) {
@@ -11203,10 +10957,8 @@ struct SpecialistRFQReplyNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistRFQReplyNotification);}
     size_t size() const {return sizeof(SpecialistRFQReplyNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistRFQReplyNotification& msg) {
@@ -11242,10 +10994,8 @@ struct SpecialistRFQReplyRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistRFQReplyRequest);}
     size_t size() const {return sizeof(SpecialistRFQReplyRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistRFQReplyRequest& msg) {
@@ -11272,10 +11022,8 @@ struct SpecialistRFQReplyResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistRFQReplyResponse);}
     size_t size() const {return sizeof(SpecialistRFQReplyResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistRFQReplyResponse& msg) {
@@ -11297,10 +11045,8 @@ struct SpecialistSecurityStateChangeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistSecurityStateChangeRequest);}
     size_t size() const {return sizeof(SpecialistSecurityStateChangeRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistSecurityStateChangeRequest& msg) {
@@ -11322,10 +11068,8 @@ struct SpecialistSecurityStateChangeResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SpecialistSecurityStateChangeResponse);}
     size_t size() const {return sizeof(SpecialistSecurityStateChangeResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistSecurityStateChangeResponse& msg) {
@@ -11346,10 +11090,8 @@ struct StatusBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(StatusBroadcast);}
     size_t size() const {return sizeof(StatusBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const StatusBroadcast& msg) {
@@ -11372,10 +11114,8 @@ struct SubscribeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SubscribeRequest);}
     size_t size() const {return sizeof(SubscribeRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SubscribeRequest& msg) {
@@ -11397,10 +11137,8 @@ struct SubscribeResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(SubscribeResponse);}
     size_t size() const {return sizeof(SubscribeResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SubscribeResponse& msg) {
@@ -11455,10 +11193,8 @@ struct TESApproveBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESApproveBroadcast);}
     size_t size() const {return sizeof(TESApproveBroadcast);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESApproveBroadcast& msg) {
@@ -11535,10 +11271,8 @@ struct TESBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESBroadcast);}
     size_t size() const {return sizeof(TESBroadcast);}
-    size_t var_size() {return varText().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESBroadcast& msg) {
@@ -11589,10 +11323,8 @@ struct TESDeleteBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESDeleteBroadcast);}
     size_t size() const {return sizeof(TESDeleteBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESDeleteBroadcast& msg) {
@@ -11631,10 +11363,8 @@ struct TESExecutionBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESExecutionBroadcast);}
     size_t size() const {return sizeof(TESExecutionBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESExecutionBroadcast& msg) {
@@ -11664,10 +11394,8 @@ struct TESResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESResponse);}
     size_t size() const {return sizeof(TESResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESResponse& msg) {
@@ -11691,10 +11419,8 @@ struct TESReversalBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESReversalBroadcast);}
     size_t size() const {return sizeof(TESReversalBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESReversalBroadcast& msg) {
@@ -11786,10 +11512,8 @@ struct TESTradeBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESTradeBroadcast);}
     size_t size() const {return sizeof(TESTradeBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESTradeBroadcast& msg) {
@@ -11879,10 +11603,8 @@ struct TESTradingSessionStatusBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TESTradingSessionStatusBroadcast);}
     size_t size() const {return sizeof(TESTradingSessionStatusBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESTradingSessionStatusBroadcast& msg) {
@@ -11904,10 +11626,8 @@ struct TMTradingSessionStatusBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TMTradingSessionStatusBroadcast);}
     size_t size() const {return sizeof(TMTradingSessionStatusBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TMTradingSessionStatusBroadcast& msg) {
@@ -11929,10 +11649,8 @@ struct ThrottleUpdateNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(ThrottleUpdateNotification);}
     size_t size() const {return sizeof(ThrottleUpdateNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ThrottleUpdateNotification& msg) {
@@ -12029,10 +11747,8 @@ struct TradeBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TradeBroadcast);}
     size_t size() const {return sizeof(TradeBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TradeBroadcast& msg) {
@@ -12131,10 +11847,8 @@ struct TradingSessionStatusBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TradingSessionStatusBroadcast);}
     size_t size() const {return sizeof(TradingSessionStatusBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TradingSessionStatusBroadcast& msg) {
@@ -12171,10 +11885,8 @@ struct TrailingStopUpdateNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(TrailingStopUpdateNotification);}
     size_t size() const {return sizeof(TrailingStopUpdateNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TrailingStopUpdateNotification& msg) {
@@ -12208,10 +11920,8 @@ struct UnsubscribeRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(UnsubscribeRequest);}
     size_t size() const {return sizeof(UnsubscribeRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UnsubscribeRequest& msg) {
@@ -12230,10 +11940,8 @@ struct UnsubscribeResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(UnsubscribeResponse);}
     size_t size() const {return sizeof(UnsubscribeResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UnsubscribeResponse& msg) {
@@ -12253,10 +11961,8 @@ struct UserLoginRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(UserLoginRequest);}
     size_t size() const {return sizeof(UserLoginRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLoginRequest& msg) {
@@ -12278,10 +11984,8 @@ struct UserLoginRequestEncrypted {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(UserLoginRequestEncrypted);}
     size_t size() const {return sizeof(UserLoginRequestEncrypted);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLoginRequestEncrypted& msg) {
@@ -12300,10 +12004,8 @@ struct UserLoginResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(UserLoginResponse);}
     size_t size() const {return sizeof(UserLoginResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLoginResponse& msg) {
@@ -12322,10 +12024,8 @@ struct UserLogoutRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(UserLogoutRequest);}
     size_t size() const {return sizeof(UserLogoutRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLogoutRequest& msg) {
@@ -12344,10 +12044,8 @@ struct UserLogoutResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(UserLogoutResponse);}
     size_t size() const {return sizeof(UserLogoutResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLogoutResponse& msg) {
@@ -12398,10 +12096,8 @@ struct XetraEnLightCreateDealNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightCreateDealNotification);}
     size_t size() const {return sizeof(XetraEnLightCreateDealNotification);}
-    size_t var_size() {return orderBookItemGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return orderBookItemGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightCreateDealNotification& msg) {
@@ -12459,10 +12155,8 @@ struct XetraEnLightDealResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightDealResponse);}
     size_t size() const {return sizeof(XetraEnLightDealResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDealResponse& msg) {
@@ -12494,10 +12188,8 @@ struct XetraEnLightDealStatusNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightDealStatusNotification);}
     size_t size() const {return sizeof(XetraEnLightDealStatusNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDealStatusNotification& msg) {
@@ -12523,10 +12215,8 @@ struct XetraEnLightDeleteAllQuoteNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightDeleteAllQuoteNotification);}
     size_t size() const {return sizeof(XetraEnLightDeleteAllQuoteNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDeleteAllQuoteNotification& msg) {
@@ -12547,10 +12237,8 @@ struct XetraEnLightDeleteAllQuoteRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightDeleteAllQuoteRequest);}
     size_t size() const {return sizeof(XetraEnLightDeleteAllQuoteRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDeleteAllQuoteRequest& msg) {
@@ -12592,10 +12280,8 @@ struct XetraEnLightEnterQuoteRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightEnterQuoteRequest);}
     size_t size() const {return sizeof(XetraEnLightEnterQuoteRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightEnterQuoteRequest& msg) {
@@ -12658,10 +12344,8 @@ struct XetraEnLightHitQuoteRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightHitQuoteRequest);}
     size_t size() const {return sizeof(XetraEnLightHitQuoteRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightHitQuoteRequest& msg) {
@@ -12719,10 +12403,8 @@ struct XetraEnLightNegotiationNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightNegotiationNotification);}
     size_t size() const {return sizeof(XetraEnLightNegotiationNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightNegotiationNotification& msg) {
@@ -12802,10 +12484,8 @@ struct XetraEnLightNegotiationRequesterNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightNegotiationRequesterNotification);}
     size_t size() const {return sizeof(XetraEnLightNegotiationRequesterNotification);}
-    size_t var_size() {return xetraEnLightTargetParties().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightNegotiationRequesterNotification& msg) {
@@ -12871,10 +12551,8 @@ struct XetraEnLightNegotiationStatusNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightNegotiationStatusNotification);}
     size_t size() const {return sizeof(XetraEnLightNegotiationStatusNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightNegotiationStatusNotification& msg) {
@@ -12918,10 +12596,8 @@ struct XetraEnLightOpenNegotiationNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightOpenNegotiationNotification);}
     size_t size() const {return sizeof(XetraEnLightOpenNegotiationNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightOpenNegotiationNotification& msg) {
@@ -13000,10 +12676,8 @@ struct XetraEnLightOpenNegotiationRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightOpenNegotiationRequest);}
     size_t size() const {return sizeof(XetraEnLightOpenNegotiationRequest);}
-    size_t var_size() {return xetraEnLightTargetParties().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightOpenNegotiationRequest& msg) {
@@ -13107,10 +12781,8 @@ struct XetraEnLightOpenNegotiationRequesterNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightOpenNegotiationRequesterNotification);}
     size_t size() const {return sizeof(XetraEnLightOpenNegotiationRequesterNotification);}
-    size_t var_size() {return xetraEnLightTargetParties().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightOpenNegotiationRequesterNotification& msg) {
@@ -13196,10 +12868,8 @@ struct XetraEnLightQuoteNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightQuoteNotification);}
     size_t size() const {return sizeof(XetraEnLightQuoteNotification);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteNotification& msg) {
@@ -13246,10 +12916,8 @@ struct XetraEnLightQuoteRequesterNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightQuoteRequesterNotification);}
     size_t size() const {return sizeof(XetraEnLightQuoteRequesterNotification);}
-    size_t var_size() {return sRQSQuoteEntryGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return sRQSQuoteEntryGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteRequesterNotification& msg) {
@@ -13276,10 +12944,8 @@ struct XetraEnLightQuoteResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightQuoteResponse);}
     size_t size() const {return sizeof(XetraEnLightQuoteResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteResponse& msg) {
@@ -13304,10 +12970,8 @@ struct XetraEnLightQuoteSnapshotNotification {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightQuoteSnapshotNotification);}
     size_t size() const {return sizeof(XetraEnLightQuoteSnapshotNotification);}
-    size_t var_size() {return sRQSQuoteEntryGrp().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return sRQSQuoteEntryGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteSnapshotNotification& msg) {
@@ -13328,10 +12992,8 @@ struct XetraEnLightQuoteSnapshotRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightQuoteSnapshotRequest);}
     size_t size() const {return sizeof(XetraEnLightQuoteSnapshotRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteSnapshotRequest& msg) {
@@ -13354,10 +13016,8 @@ struct XetraEnLightQuotingStatusRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightQuotingStatusRequest);}
     size_t size() const {return sizeof(XetraEnLightQuotingStatusRequest);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuotingStatusRequest& msg) {
@@ -13380,10 +13040,8 @@ struct XetraEnLightResponse {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightResponse);}
     size_t size() const {return sizeof(XetraEnLightResponse);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightResponse& msg) {
@@ -13403,10 +13061,8 @@ struct XetraEnLightStatusBroadcast {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightStatusBroadcast);}
     size_t size() const {return sizeof(XetraEnLightStatusBroadcast);}
-    size_t var_size() {return size();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightStatusBroadcast& msg) {
@@ -13462,10 +13118,8 @@ struct XetraEnLightUpdateNegotiationRequest {
     const char* cbegin() const {return reinterpret_cast<char*>(this);}
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
-    size_t size() {return sizeof(XetraEnLightUpdateNegotiationRequest);}
     size_t size() const {return sizeof(XetraEnLightUpdateNegotiationRequest);}
-    size_t var_size() {return xetraEnLightTargetParties().end()-begin();}
-    size_t var_size() const size {return size();}
+    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightUpdateNegotiationRequest& msg) {

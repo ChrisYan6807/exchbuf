@@ -54,6 +54,12 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     if (c >= '0' && c <= '9') {
       return true;
     }
+    if (c >= 'a' && c <= 'f') {
+      return true;
+    }
+    if (c >= 'A' && c <= 'F') {
+      return true;
+    }
     if (c == 'b' || c == 'x' || c == 'o') {
       return true;
     }
@@ -62,6 +68,23 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   /*package*/ static String postFix_id7hSmxNPVYQ$(@NotNull SNode __thisNode__, String value) {
     if ((value == null || value.length() == 0)) {
       return value;
+    }
+
+    if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
+      if (value.startsWith("0x") || value.startsWith("0X")) {
+        value = value.substring(2);
+
+        long long_value = Long.parseUnsignedLong(value, 16);
+        if (long_value == Long.MIN_VALUE && ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 8) {
+          return String.format("std::numeric_limits<int64_t>::min()");
+        } else if ((int) long_value == Integer.MIN_VALUE && ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 4) {
+          return String.format("std::numeric_limits<int32_t>::min()");
+        } else if ((short) long_value == Short.MIN_VALUE && ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 2) {
+          return String.format("std::numeric_limits<int16_t>::min()");
+        } else if (Byte.parseByte(value, 16) == Byte.MIN_VALUE && ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 1) {
+          return String.format("std::numeric_limits<int8_t>::min()");
+        }
+      }
     }
 
     String pf = "";
@@ -144,23 +167,13 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO))) {
       return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO));
     }
-    int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
-    if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, String.format("%d", (long) Math.pow(2, nBits - 1) - 1));
-    } else {
-      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, String.format("%d", ((long) Math.pow(2, nBits) - 1)));
-    }
+    return String.format("std::numeric_limits<%sint%d_t>::max()", (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__)) ? "" : "u"), ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8);
   }
   /*package*/ static String cppMinValue_id7hSmxNPVVUA(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS))) {
       return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS));
     }
-    int nBits = ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8;
-    if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, String.format("%d", ((long) -Math.pow(2, nBits - 1))));
-    } else {
-      return EBIntType__BehaviorDescriptor.postFix_id7hSmxNPVYQ$.invoke(__thisNode__, "0");
-    }
+    return String.format("std::numeric_limits<%sint%d_t>::min()", (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__)) ? "" : "u"), ((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8);
   }
   /*package*/ static String cppNullValue_id7hSmxNPVVVi(@NotNull SNode __thisNode__) {
     if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd))) {

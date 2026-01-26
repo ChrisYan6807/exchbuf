@@ -64,7 +64,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     return editorCell;
   }
   private EditorCell createConstant_0() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "primitive alias");
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "primitive");
     editorCell.setCellId("Constant_bsjs5v_a0");
     editorCell.setDefaultText("");
     return editorCell;

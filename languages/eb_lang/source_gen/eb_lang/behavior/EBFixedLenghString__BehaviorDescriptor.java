@@ -27,12 +27,11 @@ public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescript
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getPadding_idzaARBRtBbI);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
+    SPropertyOperations.assign(__thisNode__, PROPS.left_padding$eGux, false);
+    SPropertyOperations.assign(__thisNode__, PROPS.padding$ZJtT, "'\\0'");
   }
 
   /*package*/ static String getPadding_idzaARBRtBbI(@NotNull SNode __thisNode__) {
-    if (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT))) {
-      return "0";
-    }
     return SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT);
   }
 
@@ -81,11 +80,9 @@ public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescript
   public SAbstractConcept getConcept() {
     return CONCEPT;
   }
-  private static boolean isEmptyString(String str) {
-    return str == null || str.isEmpty();
-  }
 
   private static final class PROPS {
+    /*package*/ static final SProperty left_padding$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "left_padding");
     /*package*/ static final SProperty padding$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "padding");
   }
 }
