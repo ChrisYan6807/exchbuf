@@ -9,7 +9,9 @@
   <registry>
     <language id="59242254-602f-42f3-ab3a-dc203eb4cc03" name="eb_lang">
       <concept id="4493654547885040486" name="eb_lang.structure.EBAlias" flags="ng" index="20ngxA">
+        <property id="349804917068590848" name="pred" index="3Ul2UR" />
         <reference id="4493654547886512862" name="type" index="20hb7u" />
+        <reference id="349804917068590849" name="opt_type" index="3Ul2UQ" />
       </concept>
       <concept id="4586680865753006152" name="eb_lang.structure.EBMessagePresenceByValueFieldMember" flags="ng" index="aViAU">
         <property id="4586680865753006155" name="pred" index="aViAT" />
@@ -182,13 +184,25 @@
       <property role="TrG5h" value="empty" />
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UP5" role="2gln9U">
-      <property role="TrG5h" value="Price" />
+      <property role="TrG5h" value="Price4" />
       <node concept="1foOjv" id="1Wrrlab0UP6" role="2gaMi1">
         <property role="3RNXZI" value="true" />
         <property role="1foOjl" value="8" />
         <property role="1foOjh" value="4" />
         <property role="1vB4Ie" value="true" />
       </node>
+    </node>
+    <node concept="2gaMi0" id="jqKrvYJyZD" role="2gln9U">
+      <property role="TrG5h" value="Price6" />
+      <node concept="1foOjv" id="jqKrvYJyZE" role="2gaMi1">
+        <property role="3RNXZI" value="true" />
+        <property role="1foOjl" value="8" />
+        <property role="1foOjh" value="6" />
+        <property role="1vB4Ie" value="true" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="jqKrvYJyZC" role="2gln9U">
+      <property role="TrG5h" value="empty" />
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UP7" role="2gln9U">
       <property role="TrG5h" value="Fee" />
@@ -218,6 +232,15 @@
       </node>
     </node>
     <node concept="2gln9S" id="1Wrrlab0UP9" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="20ngxA" id="jqKrvYJyZH" role="2gln9U">
+      <property role="TrG5h" value="Price" />
+      <property role="3Ul2UR" value="BOE2MTF" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
+      <ref role="3Ul2UQ" node="jqKrvYJyZD" resolve="Price6" />
+    </node>
+    <node concept="2gln9S" id="jqKrvYJyZG" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
     <node concept="2glneb" id="1Wrrlab0UPb" role="2gln9U">
@@ -2749,7 +2772,7 @@
     </node>
     <node concept="20ngxA" id="1Wrrlab18Pi" role="2gln9U">
       <property role="TrG5h" value="DisplayPrice" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="2glneb" id="1Wrrlab18Pl" role="2gln9U">
       <property role="TrG5h" value="ExecInst" />
@@ -2865,7 +2888,7 @@
     </node>
     <node concept="20ngxA" id="1Wrrlab18R9" role="2gln9U">
       <property role="TrG5h" value="GrossTradeAmt" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="2glneb" id="1Wrrlab18Rc" role="2gln9U">
       <property role="TrG5h" value="IDSource" />
@@ -2913,7 +2936,7 @@
     </node>
     <node concept="20ngxA" id="1Wrrlab18S8" role="2gln9U">
       <property role="TrG5h" value="LastPx" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="1Wrrlab18Sb" role="2gln9U">
       <property role="TrG5h" value="LastShares" />
@@ -3029,7 +3052,7 @@
     </node>
     <node concept="20ngxA" id="1Wrrlab18U2" role="2gln9U">
       <property role="TrG5h" value="PegDifference" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="1Wrrlab18U5" role="2gln9U">
       <property role="TrG5h" value="PreventParticipantMatch" />
@@ -3500,7 +3523,7 @@
     </node>
     <node concept="20ngxA" id="1Wrrlab191$" role="2gln9U">
       <property role="TrG5h" value="WorkingPrice" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="1Wrrlab191D" role="2gln9U">
       <property role="TrG5h" value="AllocQty" />
@@ -3583,7 +3606,7 @@
     </node>
     <node concept="20ngxA" id="1Wrrlab192N" role="2gln9U">
       <property role="TrG5h" value="StrikePrice" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="1Wrrlab192Q" role="2gln9U">
       <property role="TrG5h" value="PutOrCall" />
@@ -3607,7 +3630,7 @@
     </node>
     <node concept="20ngxA" id="1Wrrlab1936" role="2gln9U">
       <property role="TrG5h" value="StopPx" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="1Wrrlab1939" role="2gln9U">
       <property role="TrG5h" value="RouteStrategy" />
@@ -3842,7 +3865,7 @@
         <property role="TrG5h" value="price" />
         <ref role="AF5Lx" node="1Wrrlab1955" resolve="bit1" />
         <ref role="AF5Lz" node="1Wrrlab0UVU" resolve="NewOrderBit1" />
-        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price" />
+        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price4" />
         <ref role="AF5Ly" node="1Wrrlab0UWh" resolve="Price" />
       </node>
       <node concept="AF5Mu" id="6qXzstiB8fL" role="36JId$">
@@ -4484,7 +4507,7 @@
         <property role="TrG5h" value="price" />
         <ref role="AF5Lx" node="6qXzstiBlVw" resolve="bit1" />
         <ref role="AF5Lz" node="1Wrrlab0V0V" resolve="ModifyOrderBit1" />
-        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price" />
+        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price4" />
         <ref role="AF5Ly" node="1Wrrlab0V15" resolve="Price" />
       </node>
       <node concept="AF5Mu" id="6qXzstiBlVB" role="36JId$">
@@ -4650,11 +4673,11 @@
     </node>
     <node concept="20ngxA" id="6qXzstiBlX7" role="2gln9U">
       <property role="TrG5h" value="Bid" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="6qXzstiBlXa" role="2gln9U">
       <property role="TrG5h" value="Offer" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="6qXzstiBlXc" role="2gln9U">
       <property role="TrG5h" value="MarketingFeeCode" />
@@ -4686,7 +4709,7 @@
     </node>
     <node concept="20ngxA" id="6qXzstiBlXx" role="2gln9U">
       <property role="TrG5h" value="ClearingPrice" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="6qXzstiBlX$" role="2gln9U">
       <property role="TrG5h" value="ClearingSize" />
@@ -4710,11 +4733,11 @@
     </node>
     <node concept="20ngxA" id="6qXzstiBlXO" role="2gln9U">
       <property role="TrG5h" value="AvgPx" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="6qXzstiBlXR" role="2gln9U">
       <property role="TrG5h" value="DayAvgPx" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="6qXzstiBlXU" role="2gln9U">
       <property role="TrG5h" value="PendingStatus" />
@@ -4730,7 +4753,7 @@
     </node>
     <node concept="20ngxA" id="6qXzstiBlY3" role="2gln9U">
       <property role="TrG5h" value="LegStrikePrice" />
-      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price" />
+      <ref role="20hb7u" node="1Wrrlab0UP5" resolve="Price4" />
     </node>
     <node concept="20ngxA" id="6qXzstiBlY6" role="2gln9U">
       <property role="TrG5h" value="SecondaryExecID" />
@@ -4986,7 +5009,7 @@
         <property role="TrG5h" value="price" />
         <ref role="AF5Lx" node="6qXzstiBlZB" resolve="bit1" />
         <ref role="AF5Lz" node="1Wrrlab18FE" resolve="OrderAckBit1" />
-        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price" />
+        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price4" />
         <ref role="AF5Ly" node="1Wrrlab18G1" resolve="Price" />
       </node>
       <node concept="AF5Mu" id="6qXzstiBlZZ" role="36JId$">
@@ -6281,7 +6304,7 @@
       </node>
       <node concept="2gaMiM" id="1TKYz6Gp80H" role="36JId$">
         <property role="TrG5h" value="lastPx" />
-        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price" />
+        <ref role="bScPz" node="1Wrrlab0UP5" resolve="Price4" />
       </node>
       <node concept="2gaMiM" id="1TKYz6Gp80I" role="36JId$">
         <property role="TrG5h" value="leavesQty" />

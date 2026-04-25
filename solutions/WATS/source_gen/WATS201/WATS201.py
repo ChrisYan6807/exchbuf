@@ -7,29 +7,29 @@ u16 = integer_type(LEShortField, 0, 65535, 0)
 u32 = integer_type(LEIntField, 0, 4294967295, 0)
 i64 = integer_type(LESignedLongField, -9223372036854775808, 9223372036854775806, 0)
 u64 = integer_type(LELongField, 0, 9223372036854775806, 0)
-AnsiChar = integer_type(ByteField, 0, 255, 0)
-BulkSeqNum = integer_type(ByteField, 0, 255, 0)
-ConnectionId = integer_type(LEShortField, 0, 65535, 0)
-ElementId = integer_type(LEIntField, 0, 4294967295, 0)
+AnsiChar = u8;
+BulkSeqNum = u8;
+ConnectionId = u16;
+ElementId = u32;
 class MifidFlags(int, Enum):
     NONE = 0b0000
     LiquidityProvisionActivity = 0b0001
     DirectOrSponsoredAccess = 0b0010
     MarketMakerOrSpecialist = 0b0100
 
-MsgLength = integer_type(LEShortField, 0, 65535, 0)
-MsgVersion = integer_type(LEShortField, 0, 65535, 0)
-Number = integer_type(LESignedLongField, -9223372036854775808, 9223372036854775806, 0)
-STPId = integer_type(ByteField, 0, 255, 0)
-PublicOrderId = integer_type(LELongField, 0, 9223372036854775806, 0)
-OrderId = integer_type(LELongField, 0, 9223372036854775806, 0)
+MsgLength = u16;
+MsgVersion = u16;
+Number = i64;
+STPId = u8;
+PublicOrderId = u64;
+OrderId = u64;
 Price = float_decimal(8, 8, True, True, -2**63, 2**63-1, 0)
-Quantity = integer_type(LELongField, 0, 9223372036854775806, 0)
-SeqNum = integer_type(LEIntField, 0, 4294967295, 0)
-SessionId = integer_type(LEShortField, 0, 65535, 0)
-ShortCode = integer_type(LEIntField, 0, 4294967295, 0)
-Timestamp = integer_type(LELongField, 0, 9223372036854775806, 0)
-TradeId = integer_type(LEIntField, 0, 4294967295, 0)
+Quantity = u64;
+SeqNum = u32;
+SessionId = u16;
+ShortCode = u32;
+Timestamp = u64;
+TradeId = u32;
 class AccountType(int, Enum):
     Missing = 1
     Customer = 2
@@ -249,7 +249,7 @@ class TradeReportType(int, Enum):
     TradeReportCancel = 7
     TradeBreak = 8
 
-Date = integer_type(LEIntField, 0, 4294967295, 0)
+Date = u32;
 class TradeReportTransType(int, Enum):
     New = 1
     Cancel = 2

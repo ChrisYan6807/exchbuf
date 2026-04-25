@@ -281,49 +281,66 @@
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/4493654547886512885">
     <file name="EBAlias_Constraints.java">
-      <node id="4493654547886512885" at="27,81,28,44" concept="12" />
-      <node id="4493654547886512888" at="28,44,29,26" concept="2" />
-      <node id="4493654547886512888" at="33,54,34,53" concept="12" />
-      <node id="4493654547886512888" at="41,61,42,120" concept="7" />
-      <node id="4493654547886513158" at="45,78,46,153" concept="6" />
-      <node id="4493654547886519471" at="46,153,47,319" concept="6" />
-      <node id="4493654547886585244" at="47,319,48,0" concept="9" />
-      <node id="4493654547886585459" at="48,0,49,51" concept="7" />
-      <node id="4493654547886512885" at="56,0,57,0" concept="10" trace="EBAlias$Vq" />
-      <node id="4493654547886512885" at="57,0,58,0" concept="10" trace="EBProtocol$zC" />
-      <node id="4493654547886512885" at="58,0,59,0" concept="10" trace="EBTypeStatement$o0" />
-      <node id="4493654547886512885" at="62,0,63,0" concept="10" trace="type$kr$f" />
-      <node id="4493654547886512885" at="63,0,64,0" concept="10" trace="statements$_5KW" />
-      <node id="4493654547886512888" at="33,0,36,0" concept="0" trace="RD1#(Ljetbrains/mps/smodel/runtime/ConstraintsDescriptor;)V" />
-      <node id="4493654547886512885" at="27,0,31,0" concept="0" trace="EBAlias_Constraints#(Ljetbrains/mps/smodel/runtime/ConstraintsDescriptorInitContext;)V" />
-      <node id="4493654547886512888" at="40,0,44,0" concept="5" trace="getSearchScopeValidatorNode#()Lorg/jetbrains/mps/openapi/model/SNodeReference;" />
-      <node id="4493654547886512888" at="44,0,51,0" concept="5" trace="createScope#(Ljetbrains/mps/smodel/runtime/ReferenceConstraintsContext;)Ljetbrains/mps/scope/Scope;" />
-      <node id="4493654547886512888" at="38,54,51,8" concept="7" />
-      <node id="4493654547886512888" at="36,0,53,0" concept="5" trace="getScopeProvider#()Ljetbrains/mps/smodel/runtime/ReferenceScopeProvider;" />
-      <scope id="4493654547886512888" at="33,54,34,53" />
-      <scope id="4493654547886512888" at="41,61,42,120" />
-      <scope id="4493654547886512885" at="27,81,29,26" />
-      <scope id="4493654547886512888" at="33,0,36,0">
+      <node id="4493654547886512885" at="31,81,32,44" concept="12" />
+      <node id="4493654547886512888" at="32,44,33,26" concept="2" />
+      <node id="4493654547886512888" at="37,54,38,53" concept="12" />
+      <node id="4493654547886512888" at="45,61,46,120" concept="7" />
+      <node id="4493654547886513158" at="49,78,50,153" concept="6" />
+      <node id="349804917068696919" at="50,153,51,0" concept="9" />
+      <node id="349804917068699297" at="51,0,52,58" concept="6" />
+      <node id="349804917068703363" at="52,58,53,316" concept="6" />
+      <node id="349804917068785848" at="53,316,54,0" concept="9" />
+      <node id="349804917068810441" at="55,52,56,214" concept="2" />
+      <node id="349804917068698346" at="57,11,58,0" concept="9" />
+      <node id="4493654547886519471" at="58,0,59,319" concept="6" />
+      <node id="349804917068876315" at="59,319,60,0" concept="9" />
+      <node id="349804917068879196" at="60,0,61,86" concept="2" />
+      <node id="4493654547886585244" at="61,86,62,0" concept="9" />
+      <node id="4493654547886585459" at="62,0,63,56" concept="7" />
+      <node id="4493654547886512885" at="70,0,71,0" concept="10" trace="EBAlias$Vq" />
+      <node id="4493654547886512885" at="71,0,72,0" concept="10" trace="EBProtocol$zC" />
+      <node id="4493654547886512885" at="72,0,73,0" concept="10" trace="EBInclude$_h" />
+      <node id="4493654547886512885" at="73,0,74,0" concept="10" trace="EBTypeStatement$o0" />
+      <node id="4493654547886512885" at="77,0,78,0" concept="10" trace="type$kr$f" />
+      <node id="4493654547886512885" at="78,0,79,0" concept="10" trace="statements$_5KW" />
+      <node id="4493654547886512885" at="79,0,80,0" concept="10" trace="protocol$v5qn" />
+      <node id="4493654547886512888" at="37,0,40,0" concept="0" trace="RD1#(Ljetbrains/mps/smodel/runtime/ConstraintsDescriptor;)V" />
+      <node id="349804917068797819" at="54,0,57,11" concept="3" />
+      <node id="4493654547886512885" at="31,0,35,0" concept="0" trace="EBAlias_Constraints#(Ljetbrains/mps/smodel/runtime/ConstraintsDescriptorInitContext;)V" />
+      <node id="4493654547886512888" at="44,0,48,0" concept="5" trace="getSearchScopeValidatorNode#()Lorg/jetbrains/mps/openapi/model/SNodeReference;" />
+      <node id="4493654547886512888" at="48,0,65,0" concept="5" trace="createScope#(Ljetbrains/mps/smodel/runtime/ReferenceConstraintsContext;)Ljetbrains/mps/scope/Scope;" />
+      <node id="4493654547886512888" at="42,54,65,8" concept="7" />
+      <node id="4493654547886512888" at="40,0,67,0" concept="5" trace="getScopeProvider#()Ljetbrains/mps/smodel/runtime/ReferenceScopeProvider;" />
+      <scope id="4493654547886512888" at="37,54,38,53" />
+      <scope id="4493654547886512888" at="45,61,46,120" />
+      <scope id="349804917068797821" at="55,52,56,214" />
+      <scope id="4493654547886512885" at="31,81,33,26" />
+      <scope id="4493654547886512888" at="37,0,40,0">
         <var name="container" id="4493654547886512888" />
       </scope>
-      <scope id="4493654547886512885" at="27,0,31,0">
+      <scope id="349804917068797819" at="54,0,57,11">
+        <var name="include_statement" id="349804917068797822" />
+      </scope>
+      <scope id="4493654547886512885" at="31,0,35,0">
         <var name="initContext" id="4493654547886512885" />
       </scope>
-      <scope id="4493654547886512888" at="40,0,44,0" />
-      <scope id="4493654547886512888" at="45,78,49,51">
+      <scope id="4493654547886512888" at="44,0,48,0" />
+      <scope id="4493654547886512888" at="49,78,63,56">
         <var name="idx" id="4493654547886513161" />
+        <var name="includes" id="349804917068703366" />
+        <var name="statements" id="349804917068699300" />
         <var name="types" id="4493654547886519474" />
       </scope>
-      <scope id="4493654547886512888" at="44,0,51,0">
+      <scope id="4493654547886512888" at="48,0,65,0">
         <var name="_context" id="4493654547886512888" />
       </scope>
-      <scope id="4493654547886512888" at="38,54,51,8" />
-      <scope id="4493654547886512888" at="36,0,53,0" />
-      <unit id="4493654547886512885" at="61,0,65,0" name="eb_lang.constraints.EBAlias_Constraints$LINKS" />
-      <unit id="4493654547886512885" at="55,0,60,0" name="eb_lang.constraints.EBAlias_Constraints$CONCEPTS" />
-      <unit id="4493654547886512888" at="39,17,51,7" name="eb_lang.constraints.EBAlias_Constraints$RD1$1" />
-      <unit id="4493654547886512888" at="32,0,54,0" name="eb_lang.constraints.EBAlias_Constraints$RD1" />
-      <unit id="4493654547886512885" at="26,0,66,0" name="eb_lang.constraints.EBAlias_Constraints" />
+      <scope id="4493654547886512888" at="42,54,65,8" />
+      <scope id="4493654547886512888" at="40,0,67,0" />
+      <unit id="4493654547886512885" at="76,0,81,0" name="eb_lang.constraints.EBAlias_Constraints$LINKS" />
+      <unit id="4493654547886512885" at="69,0,75,0" name="eb_lang.constraints.EBAlias_Constraints$CONCEPTS" />
+      <unit id="4493654547886512888" at="43,17,65,7" name="eb_lang.constraints.EBAlias_Constraints$RD1$1" />
+      <unit id="4493654547886512888" at="36,0,68,0" name="eb_lang.constraints.EBAlias_Constraints$RD1" />
+      <unit id="4493654547886512885" at="30,0,82,0" name="eb_lang.constraints.EBAlias_Constraints" />
     </file>
   </root>
   <root nodeRef="r:3627401c-d045-43be-a0d6-b80453db7eba(eb_lang.constraints)/4586680865750544587">

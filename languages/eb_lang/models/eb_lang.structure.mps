@@ -637,6 +637,16 @@
       <property role="20lbJX" value="fLJekj4/_1" />
       <ref role="20lvS9" node="79EjCryfNNN" resolve="EBTypeStatement" />
     </node>
+    <node concept="1TJgyj" id="jqKrvYzIW1" role="1TKVEi">
+      <property role="IQ2ns" value="349804917068590849" />
+      <property role="20kJfa" value="opt_type" />
+      <ref role="20lvS9" node="79EjCryfNNN" resolve="EBTypeStatement" />
+    </node>
+    <node concept="1TJgyi" id="jqKrvYzIW0" role="1TKVEl">
+      <property role="IQ2nx" value="349804917068590848" />
+      <property role="TrG5h" value="pred" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
+    </node>
   </node>
   <node concept="1TIwiD" id="3YBav8O51Zh">
     <property role="EcuMT" value="4586680865732698065" />

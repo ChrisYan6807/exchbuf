@@ -26,83 +26,93 @@
     <file name="EBAlias__BehaviorDescriptor.java">
       <node id="4493654547886586110" at="23,0,24,0" concept="12" trace="CONCEPT" />
       <node id="4493654547886586110" at="25,0,26,0" concept="12" trace="getCppType_id7sFT47Ik3aM" />
-      <node id="4493654547886586110" at="26,0,27,0" concept="12" trace="getPyType_id7sFT47Ik3cB" />
-      <node id="4493654547886586110" at="28,0,29,0" concept="12" trace="BH_METHODS" />
-      <node id="4493654547886586126" at="33,83,34,146" concept="9" />
-      <node id="4493654547886592002" at="36,82,37,145" concept="9" />
-      <node id="4493654547886586110" at="44,114,45,21" concept="3" />
-      <node id="4493654547886586110" at="49,114,50,49" concept="8" />
-      <node id="4493654547886586110" at="51,26,52,56" concept="15" />
-      <node id="4493654547886586110" at="55,13,56,61" concept="9" />
-      <node id="4493654547886586110" at="57,13,58,60" concept="9" />
-      <node id="4493654547886586110" at="59,14,60,58" concept="15" />
-      <node id="4493654547886586110" at="65,128,66,49" concept="8" />
-      <node id="4493654547886586110" at="67,26,68,56" concept="15" />
-      <node id="4493654547886586110" at="71,14,72,58" concept="15" />
-      <node id="4493654547886586110" at="78,48,79,22" concept="9" />
-      <node id="4493654547886586110" at="84,40,85,19" concept="9" />
-      <node id="4493654547886586110" at="89,0,90,0" concept="12" trace="type$kr$f" />
-      <node id="4493654547886586110" at="30,0,32,0" concept="13" trace="___init___#(Lorg/jetbrains/mps/openapi/model/SNode;)V" />
-      <node id="4493654547886586110" at="40,0,42,0" concept="2" trace="EBAlias__BehaviorDescriptor#()V" />
-      <node id="4493654547886586110" at="33,0,36,0" concept="13" trace="getCppType_id7sFT47Ik3aM#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljava/lang/String;" />
-      <node id="4493654547886586110" at="36,0,39,0" concept="13" trace="getPyType_id7sFT47Ik3cB#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljava/lang/String;" />
-      <node id="4493654547886586110" at="50,49,53,5" concept="6" />
-      <node id="4493654547886586110" at="66,49,69,5" concept="6" />
-      <node id="4493654547886586110" at="43,0,47,0" concept="7" trace="initNode#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/core/aspects/behaviour/api/SConstructor;[Ljava/lang/Object;)V" />
-      <node id="4493654547886586110" at="69,5,73,5" concept="14" />
-      <node id="4493654547886586110" at="76,0,81,0" concept="7" trace="getDeclaredMethods#()Ljava/util/List;" />
-      <node id="4493654547886586110" at="82,0,87,0" concept="7" trace="getConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
-      <node id="4493654547886586110" at="53,5,61,5" concept="14" />
-      <node id="4493654547886586110" at="64,0,75,0" concept="7" trace="invokeSpecial0#(Lorg/jetbrains/mps/openapi/language/SAbstractConcept;Ljetbrains/mps/core/aspects/behaviour/api/SMethod;[Ljava/lang/Object;)null" />
-      <node id="4493654547886586110" at="48,0,63,0" concept="7" trace="invokeSpecial0#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/core/aspects/behaviour/api/SMethod;[Ljava/lang/Object;)null" />
-      <scope id="4493654547886586110" at="30,63,30,63" />
-      <scope id="4493654547886586110" at="40,45,40,45" />
-      <scope id="4493654547886586120" at="33,83,34,146" />
-      <scope id="4493654547886591995" at="36,82,37,145" />
-      <scope id="4493654547886586110" at="44,114,45,21" />
-      <scope id="4493654547886586110" at="51,26,52,56" />
-      <scope id="4493654547886586110" at="55,13,56,61" />
-      <scope id="4493654547886586110" at="57,13,58,60" />
-      <scope id="4493654547886586110" at="59,14,60,58" />
-      <scope id="4493654547886586110" at="67,26,68,56" />
-      <scope id="4493654547886586110" at="71,14,72,58" />
-      <scope id="4493654547886586110" at="78,48,79,22" />
-      <scope id="4493654547886586110" at="84,40,85,19" />
-      <scope id="4493654547886586110" at="30,0,32,0">
+      <node id="4493654547886586110" at="26,0,27,0" concept="12" trace="getOptCppType_idjqKrvY_3tk" />
+      <node id="4493654547886586110" at="27,0,28,0" concept="12" trace="getPyType_id7sFT47Ik3cB" />
+      <node id="4493654547886586110" at="29,0,30,0" concept="12" trace="BH_METHODS" />
+      <node id="4493654547886586126" at="34,83,35,146" concept="9" />
+      <node id="349804917068939054" at="37,85,38,150" concept="9" />
+      <node id="4493654547886592002" at="40,82,41,145" concept="9" />
+      <node id="4493654547886586110" at="48,114,49,21" concept="3" />
+      <node id="4493654547886586110" at="53,114,54,49" concept="8" />
+      <node id="4493654547886586110" at="55,26,56,56" concept="15" />
+      <node id="4493654547886586110" at="59,13,60,61" concept="9" />
+      <node id="4493654547886586110" at="61,13,62,63" concept="9" />
+      <node id="4493654547886586110" at="63,13,64,60" concept="9" />
+      <node id="4493654547886586110" at="65,14,66,58" concept="15" />
+      <node id="4493654547886586110" at="71,128,72,49" concept="8" />
+      <node id="4493654547886586110" at="73,26,74,56" concept="15" />
+      <node id="4493654547886586110" at="77,14,78,58" concept="15" />
+      <node id="4493654547886586110" at="84,48,85,22" concept="9" />
+      <node id="4493654547886586110" at="90,40,91,19" concept="9" />
+      <node id="4493654547886586110" at="95,0,96,0" concept="12" trace="type$kr$f" />
+      <node id="4493654547886586110" at="96,0,97,0" concept="12" trace="opt_type$Hq8w" />
+      <node id="4493654547886586110" at="31,0,33,0" concept="13" trace="___init___#(Lorg/jetbrains/mps/openapi/model/SNode;)V" />
+      <node id="4493654547886586110" at="44,0,46,0" concept="2" trace="EBAlias__BehaviorDescriptor#()V" />
+      <node id="4493654547886586110" at="34,0,37,0" concept="13" trace="getCppType_id7sFT47Ik3aM#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljava/lang/String;" />
+      <node id="4493654547886586110" at="37,0,40,0" concept="13" trace="getOptCppType_idjqKrvY_3tk#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljava/lang/String;" />
+      <node id="4493654547886586110" at="40,0,43,0" concept="13" trace="getPyType_id7sFT47Ik3cB#(Lorg/jetbrains/mps/openapi/model/SNode;)Ljava/lang/String;" />
+      <node id="4493654547886586110" at="54,49,57,5" concept="6" />
+      <node id="4493654547886586110" at="72,49,75,5" concept="6" />
+      <node id="4493654547886586110" at="47,0,51,0" concept="7" trace="initNode#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/core/aspects/behaviour/api/SConstructor;[Ljava/lang/Object;)V" />
+      <node id="4493654547886586110" at="75,5,79,5" concept="14" />
+      <node id="4493654547886586110" at="82,0,87,0" concept="7" trace="getDeclaredMethods#()Ljava/util/List;" />
+      <node id="4493654547886586110" at="88,0,93,0" concept="7" trace="getConcept#()Lorg/jetbrains/mps/openapi/language/SAbstractConcept;" />
+      <node id="4493654547886586110" at="57,5,67,5" concept="14" />
+      <node id="4493654547886586110" at="70,0,81,0" concept="7" trace="invokeSpecial0#(Lorg/jetbrains/mps/openapi/language/SAbstractConcept;Ljetbrains/mps/core/aspects/behaviour/api/SMethod;[Ljava/lang/Object;)null" />
+      <node id="4493654547886586110" at="52,0,69,0" concept="7" trace="invokeSpecial0#(Lorg/jetbrains/mps/openapi/model/SNode;Ljetbrains/mps/core/aspects/behaviour/api/SMethod;[Ljava/lang/Object;)null" />
+      <scope id="4493654547886586110" at="31,63,31,63" />
+      <scope id="4493654547886586110" at="44,45,44,45" />
+      <scope id="4493654547886586120" at="34,83,35,146" />
+      <scope id="349804917068937047" at="37,85,38,150" />
+      <scope id="4493654547886591995" at="40,82,41,145" />
+      <scope id="4493654547886586110" at="48,114,49,21" />
+      <scope id="4493654547886586110" at="55,26,56,56" />
+      <scope id="4493654547886586110" at="59,13,60,61" />
+      <scope id="4493654547886586110" at="61,13,62,63" />
+      <scope id="4493654547886586110" at="63,13,64,60" />
+      <scope id="4493654547886586110" at="65,14,66,58" />
+      <scope id="4493654547886586110" at="73,26,74,56" />
+      <scope id="4493654547886586110" at="77,14,78,58" />
+      <scope id="4493654547886586110" at="84,48,85,22" />
+      <scope id="4493654547886586110" at="90,40,91,19" />
+      <scope id="4493654547886586110" at="31,0,33,0">
         <var name="__thisNode__" id="4493654547886586110" />
       </scope>
-      <scope id="4493654547886586110" at="40,0,42,0" />
-      <scope id="4493654547886586110" at="33,0,36,0">
+      <scope id="4493654547886586110" at="44,0,46,0" />
+      <scope id="4493654547886586110" at="34,0,37,0">
         <var name="__thisNode__" id="4493654547886586110" />
       </scope>
-      <scope id="4493654547886586110" at="36,0,39,0">
+      <scope id="4493654547886586110" at="37,0,40,0">
         <var name="__thisNode__" id="4493654547886586110" />
       </scope>
-      <scope id="4493654547886586110" at="43,0,47,0">
+      <scope id="4493654547886586110" at="40,0,43,0">
+        <var name="__thisNode__" id="4493654547886586110" />
+      </scope>
+      <scope id="4493654547886586110" at="47,0,51,0">
         <var name="constructor" id="4493654547886586110" />
         <var name="node" id="4493654547886586110" />
         <var name="parameters" id="4493654547886586110" />
       </scope>
-      <scope id="4493654547886586110" at="76,0,81,0" />
       <scope id="4493654547886586110" at="82,0,87,0" />
-      <scope id="4493654547886586110" at="65,128,73,5">
+      <scope id="4493654547886586110" at="88,0,93,0" />
+      <scope id="4493654547886586110" at="71,128,79,5">
         <var name="methodIndex" id="4493654547886586110" />
       </scope>
-      <scope id="4493654547886586110" at="64,0,75,0">
+      <scope id="4493654547886586110" at="70,0,81,0">
         <var name="concept" id="4493654547886586110" />
         <var name="method" id="4493654547886586110" />
         <var name="parameters" id="4493654547886586110" />
       </scope>
-      <scope id="4493654547886586110" at="49,114,61,5">
+      <scope id="4493654547886586110" at="53,114,67,5">
         <var name="methodIndex" id="4493654547886586110" />
       </scope>
-      <scope id="4493654547886586110" at="48,0,63,0">
+      <scope id="4493654547886586110" at="52,0,69,0">
         <var name="method" id="4493654547886586110" />
         <var name="node" id="4493654547886586110" />
         <var name="parameters" id="4493654547886586110" />
       </scope>
-      <unit id="4493654547886586110" at="88,0,91,0" name="eb_lang.behavior.EBAlias__BehaviorDescriptor$LINKS" />
-      <unit id="4493654547886586110" at="22,0,92,0" name="eb_lang.behavior.EBAlias__BehaviorDescriptor" />
+      <unit id="4493654547886586110" at="94,0,98,0" name="eb_lang.behavior.EBAlias__BehaviorDescriptor$LINKS" />
+      <unit id="4493654547886586110" at="22,0,99,0" name="eb_lang.behavior.EBAlias__BehaviorDescriptor" />
     </file>
   </root>
   <root nodeRef="r:8c19a45a-b9f1-437b-b616-f790524c88dc(eb_lang.behavior)/4586680865732779563">

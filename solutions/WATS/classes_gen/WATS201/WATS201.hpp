@@ -12,10 +12,10 @@ using u16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::nu
 using u32 = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
 using i64 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0L>;
 using u64 = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using AnsiChar = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using BulkSeqNum = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using ConnectionId = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using ElementId = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using AnsiChar = u8;
+using BulkSeqNum = u8;
+using ConnectionId = u16;
+using ElementId = u32;
 struct MifidFlags {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -58,19 +58,19 @@ inline ostreamT& operator<<(ostreamT& os, const MifidFlags& v){
     os << v.view();
     return os;
 }
-using MsgLength = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using MsgVersion = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using Number = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0L>;
-using STPId = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using PublicOrderId = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using OrderId = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using MsgLength = u16;
+using MsgVersion = u16;
+using Number = i64;
+using STPId = u8;
+using PublicOrderId = u64;
+using OrderId = u64;
 using Price = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 8>;
-using Quantity = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using SeqNum = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using SessionId = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using ShortCode = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using Timestamp = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using TradeId = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using Quantity = u64;
+using SeqNum = u32;
+using SessionId = u16;
+using ShortCode = u32;
+using Timestamp = u64;
+using TradeId = u32;
 struct AccountType {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -989,7 +989,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradeReportType& v){
     os << v.view();
     return os;
 }
-using Date = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using Date = u32;
 struct TradeReportTransType {
     using value_type = uint8_t;
     enum Enum : value_type {

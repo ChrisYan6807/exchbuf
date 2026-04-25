@@ -5799,6 +5799,26 @@
       <node concept="17QB3L" id="3TsEK2Y6j$b" role="3clF45" />
       <node concept="3Tm1VV" id="3TsEK2Y6j$c" role="1B3o_S" />
     </node>
+    <node concept="13i0hz" id="jqKrvY_3tk" role="13h7CS">
+      <property role="TrG5h" value="getOptCppType" />
+      <node concept="3Tm1VV" id="jqKrvY_3tl" role="1B3o_S" />
+      <node concept="17QB3L" id="jqKrvY_3Vr" role="3clF45" />
+      <node concept="3clFbS" id="jqKrvY_3tn" role="3clF47">
+        <node concept="3clFbF" id="jqKrvY_3WI" role="3cqZAp">
+          <node concept="2OqwBi" id="jqKrvY_5aA" role="3clFbG">
+            <node concept="2OqwBi" id="jqKrvY_4d_" role="2Oq$k0">
+              <node concept="13iPFW" id="jqKrvY_3WH" role="2Oq$k0" />
+              <node concept="3TrEf2" id="jqKrvY_4zQ" role="2OqNvi">
+                <ref role="3Tt5mk" to="wt0b:jqKrvYzIW1" resolve="opt_type" />
+              </node>
+            </node>
+            <node concept="2qgKlT" id="jqKrvY_5Ow" role="2OqNvi">
+              <ref role="37wK5l" node="7sFT47Ik3aM" resolve="getCppType" />
+            </node>
+          </node>
+        </node>
+      </node>
+    </node>
     <node concept="13i0hz" id="3TsEK2Y6kZS" role="13h7CS">
       <property role="TrG5h" value="getPyType" />
       <ref role="13i0hy" node="7sFT47Ik3cB" resolve="getPyType" />

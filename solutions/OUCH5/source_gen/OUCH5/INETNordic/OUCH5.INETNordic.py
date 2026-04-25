@@ -11,9 +11,9 @@ string4 = fixed_length_string(4, '\0', False)
 string6 = fixed_length_string(6, '\0', False)
 string10 = fixed_length_string(10, '\0', False)
 string20 = fixed_length_string(20, '\0', False)
-UserRefNum = integer_type(IntField, 0, 4294967295, 0)
-Quantity = integer_type(IntField, 0, 4294967295, 0)
-ShortCode = integer_type(IntField, 0, 4294967295, 0)
+UserRefNum = u32;
+Quantity = u32;
+ShortCode = u32;
 Price = float_decimal(8, 4, False, False, 0, 199999.9900, 214748.3647)
 
 
@@ -166,27 +166,27 @@ class Display(str, Enum):
     Mid = 'M'
     PureStream = 'S'
 
-DisplayPrice = float_decimal(8, 4, False, False, 0, 199999.9900, 214748.3647)
-DisplayQty = integer_type(IntField, 0, 4294967295, 0)
-ExpireTime = integer_type(ShortField, 0, 65535, 0)
-Firm = fixed_length_string(4, '\0', False)
+DisplayPrice = Price;
+DisplayQty = Quantity;
+ExpireTime = u16;
+Firm = string4;
 class LiqProvInd(str, Enum):
     NoLiquidity = 'N'
     LiquidityProvision = 'Y'
 
-MaxFloor = integer_type(IntField, 0, 4294967295, 0)
-MinQty = integer_type(IntField, 0, 4294967295, 0)
-OrderReference = fixed_length_string(10, '\0', False)
-OrigOrderEntryDate = integer_type(IntField, 0, 4294967295, 0)
-OrigOrderRefNum = integer_type(LongField, 0, 9223372036854775806, 0)
-PegDiff = integer_type(SignedIntField, -2147483648, 2147483647, 0)
+MaxFloor = Quantity;
+MinQty = Quantity;
+OrderReference = string10;
+OrigOrderEntryDate = u32;
+OrigOrderRefNum = u64;
+PegDiff = i32;
 class PegType(str, Enum):
     MidPoint = 'M'
     Market = 'P'
     Primary = 'R'
 
-RanDomReserve = integer_type(IntField, 0, 4294967295, 0)
-SecondaryOrderRefNum = integer_type(LongField, 0, 9223372036854775806, 0)
+RanDomReserve = u32;
+SecondaryOrderRefNum = u64;
 class STPAuction(int, Enum):
     CancelPassiveOrder = 1
     CancelAggressiveOrder = 2
@@ -198,7 +198,7 @@ class STPLevel(int, Enum):
     MPID = 2
     SpecifiedTraderGroup = 3
 
-STPTraderGroup = fixed_length_string(2, '\0', False)
+STPTraderGroup = string2;
 class TimeInForce(str, Enum):
     Day = 0
     GTC = 1
@@ -217,7 +217,7 @@ class OrderCondition(str, Enum):
     DarkLitSweep = 'Q'
     TradeNow = 'T'
 
-CumulativeQuantity = integer_type(IntField, 0, 4294967295, 0)
+CumulativeQuantity = Quantity;
 class CustomerOrderCapacity(str, Enum):
     Client = '5'
 
@@ -227,13 +227,13 @@ class TargetStrategy(str, Enum):
     _100to200 = '5'
     Custom = 'C'
 
-MinRate = integer_type(ShortField, 0, 65535, 0)
-MaxRate = integer_type(ShortField, 0, 65535, 0)
+MinRate = u16;
+MaxRate = u16;
 class ConditionalType(str, Enum):
     ConditionalOrder = 'C'
     FirmUpOrder = 'F'
 
-FirmUpID = integer_type(IntField, 0, 4294967295, 0)
+FirmUpID = u32;
 
 class NewOrderAppendageEntry(Packet):
     name = 'NewOrderAppendageEntry'
@@ -314,10 +314,10 @@ class AlgoIndicator(str, Enum):
     NoAlgo = '-'
     Algo = 'H'
 
-appLen = integer_type(ShortField, 0, 65535, 0)
-TimeStamp = integer_type(LongField, 0, 9223372036854775806, 0)
-OrderRefNum = integer_type(LongField, 0, 9223372036854775806, 0)
-OrderBook = integer_type(IntField, 0, 4294967295, 0)
+appLen = u16;
+TimeStamp = u64;
+OrderRefNum = u64;
+OrderBook = u32;
 
 class NewOrder(Packet):
     name = 'NewOrder'

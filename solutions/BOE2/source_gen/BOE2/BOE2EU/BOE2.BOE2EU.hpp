@@ -21,10 +21,18 @@ using str16 = FixedLengthString<16, '\0', false>;
 using str20 = FixedLengthString<20, '\0', false>;
 using str60 = FixedLengthString<60, '\0', false>;
 
-using Price = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
+using Price4 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
+using Price6 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 6>;
+
 using Fee = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 5>;
 using AutoMatchPrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 6>;
 using TradePrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 7>;
+
+#if defined(BOE2MTF)
+    using Price = Price4;
+#else
+    using Price = Price6;
+#endif
 
 struct MsgType {
     using value_type = uint8_t;
@@ -2166,7 +2174,7 @@ inline ostreamT& operator<<(ostreamT& os, const OrderAckBit18& v){
     return os;
 }
 
-using Account = FixedLengthString<16, '\0', false>;
+using Account = str16;
 struct AlgorithmicIndicator {
     using value_type = char;
     enum Enum : value_type {
@@ -2409,9 +2417,9 @@ inline ostreamT& operator<<(ostreamT& os, const CentralCounterParty& v){
     os << v.view();
     return os;
 }
-using ClearingAccount = FixedLengthString<4, '\0', false>;
-using ClearingFirm = FixedLengthString<4, '\0', false>;
-using ClientID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using ClearingAccount = str8;
+using ClearingFirm = str8;
+using ClientID = u32;
 struct ClientQualifiedRole {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2452,8 +2460,8 @@ inline ostreamT& operator<<(ostreamT& os, const ClientQualifiedRole& v){
     os << v.view();
     return os;
 }
-using CorrectedSize = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using Currency = FixedLengthString<3, '\0', false>;
+using CorrectedSize = u32;
+using Currency = str3;
 struct DeferralReason {
     using value_type = char;
     enum Enum : value_type {
@@ -2530,7 +2538,7 @@ inline ostreamT& operator<<(ostreamT& os, const DisplayIndicator& v){
     os << v.view();
     return os;
 }
-using DisplayPrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
+using DisplayPrice = Price4;
 struct ExecInst {
     using value_type = char;
     enum Enum : value_type {
@@ -2617,7 +2625,7 @@ inline ostreamT& operator<<(ostreamT& os, const ExecutionMethod& v){
     os << v.view();
     return os;
 }
-using ExecutorID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using ExecutorID = u32;
 struct ExecutorQualifiedRole {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2658,7 +2666,7 @@ inline ostreamT& operator<<(ostreamT& os, const ExecutorQualifiedRole& v){
     os << v.view();
     return os;
 }
-using ExpirTime = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using ExpirTime = u64;
 struct ExtExecInst {
     using value_type = char;
     enum Enum : value_type {
@@ -2697,8 +2705,8 @@ inline ostreamT& operator<<(ostreamT& os, const ExtExecInst& v){
     os << v.view();
     return os;
 }
-using FeeCode = FixedLengthString<2, '\0', false>;
-using GrossTradeAmt = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
+using FeeCode = str2;
+using GrossTradeAmt = Price4;
 struct IDSource {
     using value_type = char;
     enum Enum : value_type {
@@ -2737,7 +2745,7 @@ inline ostreamT& operator<<(ostreamT& os, const IDSource& v){
     os << v.view();
     return os;
 }
-using InvestorID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using InvestorID = u32;
 struct InvestorQualifiedRole {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -2776,10 +2784,10 @@ inline ostreamT& operator<<(ostreamT& os, const InvestorQualifiedRole& v){
     os << v.view();
     return os;
 }
-using LargeSize = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using LastMkt = FixedLengthString<4, '\0', false>;
-using LastPx = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using LastShares = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using LargeSize = u64;
+using LastMkt = str8;
+using LastPx = Price4;
+using LastShares = u32;
 struct LiquidityProvision {
     using value_type = char;
     enum Enum : value_type {
@@ -2818,7 +2826,7 @@ inline ostreamT& operator<<(ostreamT& os, const LiquidityProvision& v){
     os << v.view();
     return os;
 }
-using LeavesQty = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using LeavesQty = u32;
 struct MatchType {
     using value_type = char;
     enum Enum : value_type {
@@ -2855,10 +2863,10 @@ inline ostreamT& operator<<(ostreamT& os, const MatchType& v){
     os << v.view();
     return os;
 }
-using MassCancelID = FixedLengthString<20, '\0', false>;
-using MassCancelInst = FixedLengthString<16, '\0', false>;
-using MaxFloor = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using MinQty = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using MassCancelID = str20;
+using MassCancelInst = str16;
+using MaxFloor = u32;
+using MinQty = u32;
 struct OrderCategory {
     using value_type = char;
     enum Enum : value_type {
@@ -2935,7 +2943,7 @@ inline ostreamT& operator<<(ostreamT& os, const OrderOrigination& v){
     os << v.view();
     return os;
 }
-using OrderQty = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using OrderQty = u32;
 struct OrdType {
     using value_type = char;
     enum Enum : value_type {
@@ -2976,9 +2984,9 @@ inline ostreamT& operator<<(ostreamT& os, const OrdType& v){
     os << v.view();
     return os;
 }
-using OrigClOrdID = FixedLengthString<20, '\0', false>;
-using PegDifference = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using PreventParticipantMatch = FixedLengthString<3, '\0', false>;
+using OrigClOrdID = str20;
+using PegDifference = Price4;
+using PreventParticipantMatch = str3;
 struct PriceFormation {
     using value_type = char;
     enum Enum : value_type {
@@ -3017,11 +3025,11 @@ inline ostreamT& operator<<(ostreamT& os, const PriceFormation& v){
     os << v.view();
     return os;
 }
-using ReportTime = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using RiskReset = FixedLengthString<4, '\0', false>;
-using RoutingInst = FixedLengthString<4, '\0', false>;
-using RptTime = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using SecondaryOrderID = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using ReportTime = u64;
+using RiskReset = str8;
+using RoutingInst = str4;
+using RptTime = u64;
+using SecondaryOrderID = u64;
 struct SecondaryTrdType {
     using value_type = char;
     enum Enum : value_type {
@@ -3058,12 +3066,12 @@ inline ostreamT& operator<<(ostreamT& os, const SecondaryTrdType& v){
     os << v.view();
     return os;
 }
-using SecurityExchange = FixedLengthString<4, '\0', false>;
-using SecurityID = FixedLengthString<16, '\0', false>;
-using SettlementCurrentcy = FixedLengthString<3, '\0', false>;
-using SettlementDate = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using SettlementLocation = FixedLengthString<2, '\0', false>;
-using SettlementPrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 7>;
+using SecurityExchange = str4;
+using SecurityID = str16;
+using SettlementCurrentcy = str3;
+using SettlementDate = u64;
+using SettlementLocation = str2;
+using SettlementPrice = TradePrice;
 struct SubLiquidityIndicator {
     using value_type = char;
     enum Enum : value_type {
@@ -3116,9 +3124,9 @@ inline ostreamT& operator<<(ostreamT& os, const SubLiquidityIndicator& v){
     os << v.view();
     return os;
 }
-using Symbol = FixedLengthString<4, '\0', false>;
+using Symbol = str8;
 //fixme, check SymbolSfx definition
-using SymbolSfx = FixedLengthString<2, '\0', false>;
+using SymbolSfx = str2;
 
 struct TimeInForce {
     using value_type = char;
@@ -3168,7 +3176,7 @@ inline ostreamT& operator<<(ostreamT& os, const TimeInForce& v){
     os << v.view();
     return os;
 }
-using Tolerance = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
+using Tolerance = u16;
 struct TradeHandlingInstruction {
     using value_type = char;
     enum Enum : value_type {
@@ -3207,8 +3215,8 @@ inline ostreamT& operator<<(ostreamT& os, const TradeHandlingInstruction& v){
     os << v.view();
     return os;
 }
-using TradeID = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using TradeLinkID = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using TradeID = u64;
+using TradeLinkID = u8;
 struct TradePriceCondition {
     using value_type = char;
     enum Enum : value_type {
@@ -3289,7 +3297,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradePubnlishIndicator& v){
     os << v.view();
     return os;
 }
-using TradeReportRefID = FixedLengthString<20, '\0', false>;
+using TradeReportRefID = str20;
 struct TradeReportTransType {
     using value_type = char;
     enum Enum : value_type {
@@ -3370,8 +3378,8 @@ inline ostreamT& operator<<(ostreamT& os, const TradeReportType& v){
     os << v.view();
     return os;
 }
-using TradeReportTypeReturn = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using TradeTime = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using TradeReportTypeReturn = u16;
+using TradeTime = u64;
 struct TradingSessionSubID {
     using value_type = char;
     enum Enum : value_type {
@@ -3584,9 +3592,9 @@ inline ostreamT& operator<<(ostreamT& os, const WaiverType& v){
     os << v.view();
     return os;
 }
-using WorkingPrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using AllocQty = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using AuctionID = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using WorkingPrice = Price4;
+using AllocQty = u32;
+using AuctionID = u64;
 struct AutoMatch {
     using value_type = char;
     enum Enum : value_type {
@@ -3669,40 +3677,40 @@ inline ostreamT& operator<<(ostreamT& os, const OpenClose& v){
 }
 
 //fixme, to be reviewed later
-using Reserved = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using MaxRemovePct = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using DiscretionAmount = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using LocateRequired = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using MaturityDate = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using StrikePrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using PutOrCall = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using CMTANumber = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using TargetPartyID = FixedLengthString<10, '\0', false>;
-using AttributedQuote = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using DisplayRange = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using StopPx = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using RouteStrategy = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using RouteDeliveryMethod = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using ExDestination = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using EchoText = FixedLengthString<20, '\0', false>;
-using RoutingFirmID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using CustomGroupID = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using CtiCode = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using ManualOrderIndicator = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using OperatorID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using QuoteRoomID = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using ClearingOptionalData = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using ClientIDAttr = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using FrequentTraderID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using Compression = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using FloorDestination = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using FloorRoutingInst = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using ORS = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using PriceType = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using TradingSessionID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using CrossTradeFlag = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using DrillThruProtection = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using CustOrderHandlingInst = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using Reserved = u8;
+using MaxRemovePct = u8;
+using DiscretionAmount = u64;
+using LocateRequired = u8;
+using MaturityDate = u64;
+using StrikePrice = Price4;
+using PutOrCall = u8;
+using CMTANumber = u32;
+using TargetPartyID = str10;
+using AttributedQuote = u8;
+using DisplayRange = u32;
+using StopPx = Price4;
+using RouteStrategy = u8;
+using RouteDeliveryMethod = u8;
+using ExDestination = u8;
+using EchoText = str20;
+using RoutingFirmID = u32;
+using CustomGroupID = u16;
+using CtiCode = u16;
+using ManualOrderIndicator = u8;
+using OperatorID = u32;
+using QuoteRoomID = u16;
+using ClearingOptionalData = u32;
+using ClientIDAttr = u8;
+using FrequentTraderID = u32;
+using Compression = u8;
+using FloorDestination = u8;
+using FloorRoutingInst = u8;
+using ORS = u8;
+using PriceType = u8;
+using TradingSessionID = u32;
+using CrossTradeFlag = u8;
+using DrillThruProtection = u8;
+using CustOrderHandlingInst = u8;
 struct AccountType {
     using value_type = char;
     enum Enum : value_type {
@@ -3780,9 +3788,9 @@ inline ostreamT& operator<<(ostreamT& os, const SIIndicator& v){
     return os;
 }
 //cancel order
-using MassCancelLockout = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using MassCancel = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using Underlying = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using MassCancelLockout = u8;
+using MassCancel = u8;
+using Underlying = u8;
 
 #pragma pack(1)
 struct NewOrderV2 : Header {
@@ -3836,7 +3844,7 @@ struct NewOrderV2 : Header {
     }
     auto price() {
         auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::Price != 0;};
-        return OptionalByUnaryPredRef<Price, decltype(pred)>(Price().end(), pred);
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(Price().end(), pred);
     }
     auto execInst() {
         auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::ExecInst != 0;};
@@ -4316,7 +4324,7 @@ struct ModifyOrderV2 : Header {
     }
     auto price() {
         auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::Price != 0;};
-        return OptionalByUnaryPredRef<Price, decltype(pred)>(Price().end(), pred);
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(Price().end(), pred);
     }
     auto ordType() {
         auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::OrdType != 0;};
@@ -4444,57 +4452,57 @@ inline ostreamT& operator<<(ostreamT& os, const MultilegReportingType& v){
 }
 
 //not defined types
-using ContraTrader = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using ClOrdIDBatch = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using PartyID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using AccessFee = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 5>;
-using CCP = FixedLengthString<4, '\0', false>;
-using ContraCapacity = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using BulkOrderIDs = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using BulkRejectReasons = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using PartyRole = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using TradePublishIndReturn = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using Text = FixedLengthString<60, '\0', false>;
-using Bid = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using Offer = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using MarketingFeeCode = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using CrossType = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using CrossPrioritization = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using CrossID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using GiveUpFirmID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using CrossExclusionIndicator = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using TradeDate = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using ClearingPrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using ClearingSize = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using ClearingSymbol = FixedLengthString<4, '\0', false>;
-using CumQty = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using DayOrderQty = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using DayCumQty = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using AvgPx = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using DayAvgPx = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using PendingStatus = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using LegCFICode = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using LegMaturityDate = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using LegStrikePrice = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 4>;
-using SecondaryExecID = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using UserRequestID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using UserName = FixedLengthString<20, '\0', false>;
-using UserStatus = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using TradeReportingIndicator = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using EquityPartyID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using LegSymbolSfx = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using EquityNBBOProtect = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using SessionEligibility = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using ComboOrder = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using MultiClassSpread = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using OrderOrigin = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using StrategyID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using TradeThroughAlertType = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using SenderLocationID = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using FloorTraderAcronym = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using ExecLegCFICode = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using CrossInitiator = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using Subreason = FixedLengthString<60, '\0', false>;
+using ContraTrader = u32;
+using ClOrdIDBatch = u32;
+using PartyID = u32;
+using AccessFee = Fee;
+using CCP = str4;
+using ContraCapacity = u8;
+using BulkOrderIDs = u32;
+using BulkRejectReasons = u8;
+using PartyRole = u8;
+using TradePublishIndReturn = u8;
+using Text = str60;
+using Bid = Price4;
+using Offer = Price4;
+using MarketingFeeCode = u8;
+using CrossType = u8;
+using CrossPrioritization = u8;
+using CrossID = u32;
+using GiveUpFirmID = u32;
+using CrossExclusionIndicator = u8;
+using TradeDate = u32;
+using ClearingPrice = Price4;
+using ClearingSize = u32;
+using ClearingSymbol = Symbol;
+using CumQty = u32;
+using DayOrderQty = u32;
+using DayCumQty = u32;
+using AvgPx = Price4;
+using DayAvgPx = Price4;
+using PendingStatus = u8;
+using LegCFICode = u8;
+using LegMaturityDate = u32;
+using LegStrikePrice = Price4;
+using SecondaryExecID = u64;
+using UserRequestID = u32;
+using UserName = str20;
+using UserStatus = u8;
+using TradeReportingIndicator = u8;
+using EquityPartyID = u32;
+using LegSymbolSfx = u8;
+using EquityNBBOProtect = u8;
+using SessionEligibility = u8;
+using ComboOrder = u8;
+using MultiClassSpread = u8;
+using OrderOrigin = u8;
+using StrategyID = u32;
+using TradeThroughAlertType = u8;
+using SenderLocationID = u32;
+using FloorTraderAcronym = u8;
+using ExecLegCFICode = u8;
+using CrossInitiator = u8;
+using Subreason = str60;
 
 struct subLidIndicator {
     using value_type = char;
@@ -4628,7 +4636,7 @@ struct OrderRespOptGrp {
     }
     auto price() {
         auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::Price != 0;};
-        return OptionalByUnaryPredRef<Price, decltype(pred)>(Price().end(), pred);
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(Price().end(), pred);
     }
     auto execInst() {
         auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::ExecInst != 0;};
@@ -5585,7 +5593,7 @@ struct OrderExecutionV2 : Header {
     str20 clOrdID;
     u64 execID;
     u32 lastShares;
-    Price lastPx;
+    Price4 lastPx;
     u32 leavesQty;
     LiqIndicator liqInd{LiqIndicator::null};
     SubLiquidityIndicator subLiqInd{SubLiquidityIndicator::null};

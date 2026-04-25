@@ -23,15 +23,19 @@ public final class EBAlias__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, "eb_lang.structure.EBAlias");
 
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223026L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> getOptCppType_idjqKrvY_3tk = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getOptCppType").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(349804917068937044L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223143L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getOptCppType_idjqKrvY_3tk, getPyType_id7sFT47Ik3cB);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
   /*package*/ static String getCppType_id7sFT47Ik3aM(@NotNull SNode __thisNode__) {
     return (String) EBTypeStatement__BehaviorDescriptor.getCppType_id7sFT47Ik3aM.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.type$kr$f));
+  }
+  /*package*/ static String getOptCppType_idjqKrvY_3tk(@NotNull SNode __thisNode__) {
+    return (String) EBTypeStatement__BehaviorDescriptor.getCppType_id7sFT47Ik3aM.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.opt_type$Hq8w));
   }
   /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
     return (String) EBTypeStatement__BehaviorDescriptor.getPyType_id7sFT47Ik3cB.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.type$kr$f));
@@ -55,6 +59,8 @@ public final class EBAlias__BehaviorDescriptor extends BaseBHDescriptor {
       case 0:
         return (T) ((String) getCppType_id7sFT47Ik3aM(node));
       case 1:
+        return (T) ((String) getOptCppType_idjqKrvY_3tk(node));
+      case 2:
         return (T) ((String) getPyType_id7sFT47Ik3cB(node));
       default:
         throw new BHMethodNotFoundException(this, method);
@@ -87,5 +93,6 @@ public final class EBAlias__BehaviorDescriptor extends BaseBHDescriptor {
 
   private static final class LINKS {
     /*package*/ static final SReferenceLink type$kr$f = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x3e5cab00be181adeL, "type");
+    /*package*/ static final SReferenceLink opt_type$Hq8w = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x4dac1b7fe8eef01L, "opt_type");
   }
 }

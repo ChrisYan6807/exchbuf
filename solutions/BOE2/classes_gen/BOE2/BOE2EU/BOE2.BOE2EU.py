@@ -16,10 +16,18 @@ str16 = fixed_length_string(16, '\0', False)
 str20 = fixed_length_string(20, '\0', False)
 str60 = fixed_length_string(60, '\0', False)
 
-Price = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
+Price4 = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
+Price6 = float_decimal(8, 6, True, True, -2**63, 2**63-1, 0)
+
 Fee = float_decimal(8, 5, True, True, -2**63, 2**63-1, 0)
 AutoMatchPrice = float_decimal(8, 6, True, True, -2**63, 2**63-1, 0)
 TradePrice = float_decimal(8, 7, True, True, -2**63, 2**63-1, 0)
+
+import builtins
+if "BOE2MTF" in builtins.__dict__ and builtins.BOE2MTF:
+    Price = Price4;
+else:
+    Price = Price6;
 
 class MsgType(int, Enum):
     LoginRequestV2 = 0x37
@@ -547,7 +555,7 @@ class OrderAckBit18(int, Enum):
     Subreason = 4
 
 
-Account = fixed_length_string(16, '\0', False)
+Account = str16;
 class AlgorithmicIndicator(str, Enum):
     NoAlgo = 'N'
     Algo = 'Y'
@@ -579,16 +587,16 @@ class CentralCounterParty(str, Enum):
     SIX = 'X'
     NONE = 'N'
 
-ClearingAccount = fixed_length_string(4, '\0', False)
-ClearingFirm = fixed_length_string(4, '\0', False)
-ClientID = integer_type(LEIntField, 0, 4294967295, 0)
+ClearingAccount = str8;
+ClearingFirm = str8;
+ClientID = u32;
 class ClientQualifiedRole(int, Enum):
     NONE = 0
     LEI = 23
     Person = 24
 
-CorrectedSize = integer_type(LEIntField, 0, 4294967295, 0)
-Currency = fixed_length_string(3, '\0', False)
+CorrectedSize = u32;
+Currency = str3;
 class DeferralReason(str, Enum):
     NoReason = '-'
     LRGS = '6'
@@ -597,7 +605,7 @@ class DisplayIndicator(str, Enum):
     Displayed = 'X'
     Invisible = 'I'
 
-DisplayPrice = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
+DisplayPrice = Price4;
 class ExecInst(str, Enum):
     Default = 0x00
     MarketPeg = 'P'
@@ -611,44 +619,44 @@ class ExecutionMethod(str, Enum):
     Manual = 'M'
     Unspecified = 'U'
 
-ExecutorID = integer_type(LEIntField, 0, 4294967295, 0)
+ExecutorID = u32;
 class ExecutorQualifiedRole(int, Enum):
     NONE = 0
     Algo = 22
     Person = 24
 
-ExpirTime = integer_type(LELongField, 0, 9223372036854775806, 0)
+ExpirTime = u64;
 class ExtExecInst(str, Enum):
     NONE = 'N'
     AlOrNONE = 'G'
 
-FeeCode = fixed_length_string(2, '\0', False)
-GrossTradeAmt = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
+FeeCode = str2;
+GrossTradeAmt = Price4;
 class IDSource(str, Enum):
     ISIN = 4
     RIC = 5
 
-InvestorID = integer_type(LEIntField, 0, 4294967295, 0)
+InvestorID = u32;
 class InvestorQualifiedRole(int, Enum):
     Algo = 22
     Person = 24
 
-LargeSize = integer_type(LELongField, 0, 9223372036854775806, 0)
-LastMkt = fixed_length_string(4, '\0', False)
-LastPx = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-LastShares = integer_type(LEIntField, 0, 4294967295, 0)
+LargeSize = u64;
+LastMkt = str8;
+LastPx = Price4;
+LastShares = u32;
 class LiquidityProvision(str, Enum):
     No = 'N'
     Yes = 'Y'
 
-LeavesQty = integer_type(LEIntField, 0, 4294967295, 0)
+LeavesQty = u32;
 class MatchType(str, Enum):
     TradeReporting = 3
 
-MassCancelID = fixed_length_string(20, '\0', False)
-MassCancelInst = fixed_length_string(16, '\0', False)
-MaxFloor = integer_type(LEIntField, 0, 4294967295, 0)
-MinQty = integer_type(LEIntField, 0, 4294967295, 0)
+MassCancelID = str20;
+MassCancelInst = str16;
+MaxFloor = u32;
+MinQty = u32;
 class OrderCategory(str, Enum):
     NotaNegotiatedTrade = 0
     PrivatelyNegotiatedTrade = 3
@@ -657,33 +665,33 @@ class OrderOrigination(str, Enum):
     DEA = '5'
     NonDEA = '0'
 
-OrderQty = integer_type(LEIntField, 0, 4294967295, 0)
+OrderQty = u32;
 class OrdType(str, Enum):
     Market = '1'
     Limit = '2'
     Pegged = 'P'
 
-OrigClOrdID = fixed_length_string(20, '\0', False)
-PegDifference = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-PreventParticipantMatch = fixed_length_string(3, '\0', False)
+OrigClOrdID = str20;
+PegDifference = Price4;
+PreventParticipantMatch = str3;
 class PriceFormation(str, Enum):
     PRIC = '3'
     NPFT = 'T'
 
-ReportTime = integer_type(LELongField, 0, 9223372036854775806, 0)
-RiskReset = fixed_length_string(4, '\0', False)
-RoutingInst = fixed_length_string(4, '\0', False)
-RptTime = integer_type(LELongField, 0, 9223372036854775806, 0)
-SecondaryOrderID = integer_type(LELongField, 0, 9223372036854775806, 0)
+ReportTime = u64;
+RiskReset = str8;
+RoutingInst = str4;
+RptTime = u64;
+SecondaryOrderID = u64;
 class SecondaryTrdType(str, Enum):
     BenchmarkTrade = 64
 
-SecurityExchange = fixed_length_string(4, '\0', False)
-SecurityID = fixed_length_string(16, '\0', False)
-SettlementCurrentcy = fixed_length_string(3, '\0', False)
-SettlementDate = integer_type(LELongField, 0, 9223372036854775806, 0)
-SettlementLocation = fixed_length_string(2, '\0', False)
-SettlementPrice = float_decimal(8, 7, True, True, -2**63, 2**63-1, 0)
+SecurityExchange = str4;
+SecurityID = str16;
+SettlementCurrentcy = str3;
+SettlementDate = u64;
+SettlementLocation = str2;
+SettlementPrice = TradePrice;
 class SubLiquidityIndicator(str, Enum):
     NO = 0x00
     CboeDarkPoolExecution = 'D'
@@ -695,9 +703,9 @@ class SubLiquidityIndicator(str, Enum):
     CboeClosingCross = 'C'
     LiquidityALPSSBBO = 'S'
 
-Symbol = fixed_length_string(4, '\0', False)
+Symbol = str8;
 # fixme, check SymbolSfx definition
-SymbolSfx = fixed_length_string(2, '\0', False)
+SymbolSfx = str2;
 
 class TimeInForce(str, Enum):
     Day = '0'
@@ -708,13 +716,13 @@ class TimeInForce(str, Enum):
     AtTheClose = '7'
     GoodForAuction = '8'
 
-Tolerance = integer_type(LEShortField, 0, 65535, 0)
+Tolerance = u16;
 class TradeHandlingInstruction(str, Enum):
     TwoPartyReport = 1
     OnePartReportForMatching = 2
 
-TradeID = integer_type(LELongField, 0, 9223372036854775806, 0)
-TradeLinkID = integer_type(ByteField, 0, 255, 0)
+TradeID = u64;
+TradeLinkID = u8;
 class TradePriceCondition(str, Enum):
     CumDividend = 0
     ExDividend = 2
@@ -725,7 +733,7 @@ class TradePubnlishIndicator(str, Enum):
     Publish = 1
     DeferredPublication = 2
 
-TradeReportRefID = fixed_length_string(20, '\0', False)
+TradeReportRefID = str20;
 class TradeReportTransType(str, Enum):
     New = 0
     Cancel = 1
@@ -736,8 +744,8 @@ class TradeReportType(str, Enum):
     Submit = 0
     TradeReportCancel = 6
 
-TradeReportTypeReturn = integer_type(LEShortField, 0, 65535, 0)
-TradeTime = integer_type(LELongField, 0, 9223372036854775806, 0)
+TradeReportTypeReturn = u16;
+TradeTime = u64;
 class TradingSessionSubID(str, Enum):
     ScheduledOpeningAuction = 2
     ScheduledClosingAuction = 4
@@ -769,9 +777,9 @@ class WaiverType(str, Enum):
     OrderManagementFacility = 'A'
     LargeInScal = '9'
 
-WorkingPrice = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-AllocQty = integer_type(LEIntField, 0, 4294967295, 0)
-AuctionID = integer_type(LELongField, 0, 9223372036854775806, 0)
+WorkingPrice = Price4;
+AllocQty = u32;
+AuctionID = u64;
 class AutoMatch(str, Enum):
     Disabled = 0
     Market = 1
@@ -784,40 +792,40 @@ class OpenClose(str, Enum):
 
 
 # fixme, to be reviewed later
-Reserved = integer_type(ByteField, 0, 255, 0)
-MaxRemovePct = integer_type(ByteField, 0, 255, 0)
-DiscretionAmount = integer_type(LELongField, 0, 9223372036854775806, 0)
-LocateRequired = integer_type(ByteField, 0, 255, 0)
-MaturityDate = integer_type(LELongField, 0, 9223372036854775806, 0)
-StrikePrice = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-PutOrCall = integer_type(ByteField, 0, 255, 0)
-CMTANumber = integer_type(LEIntField, 0, 4294967295, 0)
-TargetPartyID = fixed_length_string(10, '\0', False)
-AttributedQuote = integer_type(ByteField, 0, 255, 0)
-DisplayRange = integer_type(LEIntField, 0, 4294967295, 0)
-StopPx = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-RouteStrategy = integer_type(ByteField, 0, 255, 0)
-RouteDeliveryMethod = integer_type(ByteField, 0, 255, 0)
-ExDestination = integer_type(ByteField, 0, 255, 0)
-EchoText = fixed_length_string(20, '\0', False)
-RoutingFirmID = integer_type(LEIntField, 0, 4294967295, 0)
-CustomGroupID = integer_type(LEShortField, 0, 65535, 0)
-CtiCode = integer_type(LEShortField, 0, 65535, 0)
-ManualOrderIndicator = integer_type(ByteField, 0, 255, 0)
-OperatorID = integer_type(LEIntField, 0, 4294967295, 0)
-QuoteRoomID = integer_type(LEShortField, 0, 65535, 0)
-ClearingOptionalData = integer_type(LEIntField, 0, 4294967295, 0)
-ClientIDAttr = integer_type(ByteField, 0, 255, 0)
-FrequentTraderID = integer_type(LEIntField, 0, 4294967295, 0)
-Compression = integer_type(ByteField, 0, 255, 0)
-FloorDestination = integer_type(ByteField, 0, 255, 0)
-FloorRoutingInst = integer_type(ByteField, 0, 255, 0)
-ORS = integer_type(ByteField, 0, 255, 0)
-PriceType = integer_type(ByteField, 0, 255, 0)
-TradingSessionID = integer_type(LEIntField, 0, 4294967295, 0)
-CrossTradeFlag = integer_type(ByteField, 0, 255, 0)
-DrillThruProtection = integer_type(ByteField, 0, 255, 0)
-CustOrderHandlingInst = integer_type(ByteField, 0, 255, 0)
+Reserved = u8;
+MaxRemovePct = u8;
+DiscretionAmount = u64;
+LocateRequired = u8;
+MaturityDate = u64;
+StrikePrice = Price4;
+PutOrCall = u8;
+CMTANumber = u32;
+TargetPartyID = str10;
+AttributedQuote = u8;
+DisplayRange = u32;
+StopPx = Price4;
+RouteStrategy = u8;
+RouteDeliveryMethod = u8;
+ExDestination = u8;
+EchoText = str20;
+RoutingFirmID = u32;
+CustomGroupID = u16;
+CtiCode = u16;
+ManualOrderIndicator = u8;
+OperatorID = u32;
+QuoteRoomID = u16;
+ClearingOptionalData = u32;
+ClientIDAttr = u8;
+FrequentTraderID = u32;
+Compression = u8;
+FloorDestination = u8;
+FloorRoutingInst = u8;
+ORS = u8;
+PriceType = u8;
+TradingSessionID = u32;
+CrossTradeFlag = u8;
+DrillThruProtection = u8;
+CustOrderHandlingInst = u8;
 class AccountType(str, Enum):
     Customer = '1'
     Hose = '3'
@@ -827,9 +835,9 @@ class SIIndicator(str, Enum):
     NonSI = '0'
 
 # cancel order
-MassCancelLockout = integer_type(ByteField, 0, 255, 0)
-MassCancel = integer_type(ByteField, 0, 255, 0)
-Underlying = integer_type(ByteField, 0, 255, 0)
+MassCancelLockout = u8;
+MassCancel = u8;
+Underlying = u8;
 
 class NewOrderV2(Packet):
     name = 'NewOrderV2'
@@ -849,7 +857,7 @@ class NewOrderV2(Packet):
         ConditionalField(ByteEnumField("bit9", NewOrderBit9.DrillThruProtection, NewOrderBit9), lambda pkt:pkt.numBitFields >=9),
         ConditionalField(str8("clearingFirm", ""), lambda pkt:pkt.bit1 and (pkt.bit1 & NewOrderBit1.ClearingFirm)),
         ConditionalField(str8("clearingAccount", ""), lambda pkt:pkt.bit1 and (pkt.bit1 & NewOrderBit1.ClearingAccount)),
-        ConditionalField(Price("price", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & NewOrderBit1.Price)),
+        ConditionalField(Price4("price", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & NewOrderBit1.Price)),
         ConditionalField(CharEnumField("execInst", ExecInst.GuardedMidpoint, ExecInst), lambda pkt:pkt.bit1 and (pkt.bit1 & NewOrderBit1.ExecInst)),
         ConditionalField(CharEnumField("ordType", OrdType.Pegged, OrdType), lambda pkt:pkt.bit1 and (pkt.bit1 & NewOrderBit1.OrdType)),
         ConditionalField(CharEnumField("tif", TimeInForce.GoodForAuction, TimeInForce), lambda pkt:pkt.bit1 and (pkt.bit1 & NewOrderBit1.TimeInForce)),
@@ -867,12 +875,12 @@ class NewOrderV2(Packet):
         ConditionalField(CharEnumField("displayInd", DisplayIndicator.Invisible, DisplayIndicator), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.DisplayIndicator)),
         ConditionalField(u8("maxRemovePct", 0), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.MaxRemovePct)),
         ConditionalField(u64("discretionAmount", 0), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.DiscretionAmount)),
-        ConditionalField(Price("pegDiff", 0), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.PegDiff)),
+        ConditionalField(Price4("pegDiff", 0), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.PegDiff)),
         ConditionalField(str3("preventMatch", ""), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.PreventMatch)),
         ConditionalField(u8("locateRequired", 0), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.LocateRequired)),
         ConditionalField(u64("expireTime", 0), lambda pkt:pkt.bit3 and (pkt.bit3 & NewOrderBit3.ExpireTime)),
         ConditionalField(u64("maturityDate", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & NewOrderBit4.MaturityDate)),
-        ConditionalField(Price("strikePrice", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & NewOrderBit4.StrikePrice)),
+        ConditionalField(Price4("strikePrice", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & NewOrderBit4.StrikePrice)),
         ConditionalField(u8("putOrCall", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & NewOrderBit4.PutOrCall)),
         ConditionalField(str8("riskReset", ""), lambda pkt:pkt.bit4 and (pkt.bit4 & NewOrderBit4.RiskReset)),
         ConditionalField(CharEnumField("openClose", OpenClose.NONE, OpenClose), lambda pkt:pkt.bit4 and (pkt.bit4 & NewOrderBit4.OpenClose)),
@@ -888,7 +896,7 @@ class NewOrderV2(Packet):
         ConditionalField(u32("executorID", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & NewOrderBit5.ExecutorID)),
         ConditionalField(CharEnumField("orderOrigination", OrderOrigination.NonDEA, OrderOrigination), lambda pkt:pkt.bit5 and (pkt.bit5 & NewOrderBit5.OrderOrigination)),
         ConditionalField(u32("displayRange", 0), lambda pkt:pkt.bit6 and (pkt.bit6 & NewOrderBit6.DisplayRange)),
-        ConditionalField(Price("stopPx", 0), lambda pkt:pkt.bit6 and (pkt.bit6 & NewOrderBit6.StopPx)),
+        ConditionalField(Price4("stopPx", 0), lambda pkt:pkt.bit6 and (pkt.bit6 & NewOrderBit6.StopPx)),
         ConditionalField(u8("routeStrat", 0), lambda pkt:pkt.bit6 and (pkt.bit6 & NewOrderBit6.RouteStrategy)),
         ConditionalField(u8("routeDeliveryMethod", 0), lambda pkt:pkt.bit6 and (pkt.bit6 & NewOrderBit6.RouteDeliveryMethod)),
         ConditionalField(u8("exDest", 0), lambda pkt:pkt.bit6 and (pkt.bit6 & NewOrderBit6.ExDestination)),
@@ -955,13 +963,13 @@ class ModifyOrderV2(Packet):
         ConditionalField(str8("clearingFirm", ""), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.ClearingFirm)),
         ConditionalField(u8("reserved1", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.Reserved)),
         ConditionalField(u32("ordQty", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.OrderQty)),
-        ConditionalField(Price("price", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.Price)),
+        ConditionalField(Price4("price", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.Price)),
         ConditionalField(CharEnumField("ordType", OrdType.Pegged, OrdType), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.OrdType)),
         ConditionalField(CharEnumField("cancelOrigOnReject", CancelOrigOnReject.Cacel, CancelOrigOnReject), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.CancelOrigOnReject)),
         ConditionalField(CharEnumField("execInst", ExecInst.GuardedMidpoint, ExecInst), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.ExecInst)),
         ConditionalField(CharEnumField("side", Side.SellUndisclosed, Side), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.Side)),
         ConditionalField(u32("maxFloor", 0), lambda pkt:pkt.bit2 and (pkt.bit2 & ModifyOrderBit2.MaxFloor)),
-        ConditionalField(Price("stopPx", 0), lambda pkt:pkt.bit2 and (pkt.bit2 & ModifyOrderBit2.StopPx)),
+        ConditionalField(Price4("stopPx", 0), lambda pkt:pkt.bit2 and (pkt.bit2 & ModifyOrderBit2.StopPx)),
         ConditionalField(u32("routingFirmID", 0), lambda pkt:pkt.bit2 and (pkt.bit2 & ModifyOrderBit2.RoutingFirmID)),
         ConditionalField(u8("manualOrdInd", 0), lambda pkt:pkt.bit2 and (pkt.bit2 & ModifyOrderBit2.ManualOrderIndicator)),
         ConditionalField(u32("opID", 0), lambda pkt:pkt.bit2 and (pkt.bit2 & ModifyOrderBit2.OperatorID)),
@@ -979,57 +987,57 @@ class MultilegReportingType(str, Enum):
 
 
 # not defined types
-ContraTrader = integer_type(LEIntField, 0, 4294967295, 0)
-ClOrdIDBatch = integer_type(LEIntField, 0, 4294967295, 0)
-PartyID = integer_type(LEIntField, 0, 4294967295, 0)
-AccessFee = float_decimal(8, 5, True, True, -2**63, 2**63-1, 0)
-CCP = fixed_length_string(4, '\0', False)
-ContraCapacity = integer_type(ByteField, 0, 255, 0)
-BulkOrderIDs = integer_type(LEIntField, 0, 4294967295, 0)
-BulkRejectReasons = integer_type(ByteField, 0, 255, 0)
-PartyRole = integer_type(ByteField, 0, 255, 0)
-TradePublishIndReturn = integer_type(ByteField, 0, 255, 0)
-Text = fixed_length_string(60, '\0', False)
-Bid = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-Offer = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-MarketingFeeCode = integer_type(ByteField, 0, 255, 0)
-CrossType = integer_type(ByteField, 0, 255, 0)
-CrossPrioritization = integer_type(ByteField, 0, 255, 0)
-CrossID = integer_type(LEIntField, 0, 4294967295, 0)
-GiveUpFirmID = integer_type(LEIntField, 0, 4294967295, 0)
-CrossExclusionIndicator = integer_type(ByteField, 0, 255, 0)
-TradeDate = integer_type(LEIntField, 0, 4294967295, 0)
-ClearingPrice = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-ClearingSize = integer_type(LEIntField, 0, 4294967295, 0)
-ClearingSymbol = fixed_length_string(4, '\0', False)
-CumQty = integer_type(LEIntField, 0, 4294967295, 0)
-DayOrderQty = integer_type(LEIntField, 0, 4294967295, 0)
-DayCumQty = integer_type(LEIntField, 0, 4294967295, 0)
-AvgPx = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-DayAvgPx = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-PendingStatus = integer_type(ByteField, 0, 255, 0)
-LegCFICode = integer_type(ByteField, 0, 255, 0)
-LegMaturityDate = integer_type(LEIntField, 0, 4294967295, 0)
-LegStrikePrice = float_decimal(8, 4, True, True, -2**63, 2**63-1, 0)
-SecondaryExecID = integer_type(LELongField, 0, 9223372036854775806, 0)
-UserRequestID = integer_type(LEIntField, 0, 4294967295, 0)
-UserName = fixed_length_string(20, '\0', False)
-UserStatus = integer_type(ByteField, 0, 255, 0)
-TradeReportingIndicator = integer_type(ByteField, 0, 255, 0)
-EquityPartyID = integer_type(LEIntField, 0, 4294967295, 0)
-LegSymbolSfx = integer_type(ByteField, 0, 255, 0)
-EquityNBBOProtect = integer_type(ByteField, 0, 255, 0)
-SessionEligibility = integer_type(ByteField, 0, 255, 0)
-ComboOrder = integer_type(ByteField, 0, 255, 0)
-MultiClassSpread = integer_type(ByteField, 0, 255, 0)
-OrderOrigin = integer_type(ByteField, 0, 255, 0)
-StrategyID = integer_type(LEIntField, 0, 4294967295, 0)
-TradeThroughAlertType = integer_type(ByteField, 0, 255, 0)
-SenderLocationID = integer_type(LEIntField, 0, 4294967295, 0)
-FloorTraderAcronym = integer_type(ByteField, 0, 255, 0)
-ExecLegCFICode = integer_type(ByteField, 0, 255, 0)
-CrossInitiator = integer_type(ByteField, 0, 255, 0)
-Subreason = fixed_length_string(60, '\0', False)
+ContraTrader = u32;
+ClOrdIDBatch = u32;
+PartyID = u32;
+AccessFee = Fee;
+CCP = str4;
+ContraCapacity = u8;
+BulkOrderIDs = u32;
+BulkRejectReasons = u8;
+PartyRole = u8;
+TradePublishIndReturn = u8;
+Text = str60;
+Bid = Price4;
+Offer = Price4;
+MarketingFeeCode = u8;
+CrossType = u8;
+CrossPrioritization = u8;
+CrossID = u32;
+GiveUpFirmID = u32;
+CrossExclusionIndicator = u8;
+TradeDate = u32;
+ClearingPrice = Price4;
+ClearingSize = u32;
+ClearingSymbol = Symbol;
+CumQty = u32;
+DayOrderQty = u32;
+DayCumQty = u32;
+AvgPx = Price4;
+DayAvgPx = Price4;
+PendingStatus = u8;
+LegCFICode = u8;
+LegMaturityDate = u32;
+LegStrikePrice = Price4;
+SecondaryExecID = u64;
+UserRequestID = u32;
+UserName = str20;
+UserStatus = u8;
+TradeReportingIndicator = u8;
+EquityPartyID = u32;
+LegSymbolSfx = u8;
+EquityNBBOProtect = u8;
+SessionEligibility = u8;
+ComboOrder = u8;
+MultiClassSpread = u8;
+OrderOrigin = u8;
+StrategyID = u32;
+TradeThroughAlertType = u8;
+SenderLocationID = u32;
+FloorTraderAcronym = u8;
+ExecLegCFICode = u8;
+CrossInitiator = u8;
+Subreason = str60;
 
 class subLidIndicator(str, Enum):
     NoAdditionalInfo = 0
@@ -1063,8 +1071,8 @@ class OrderRespOptGrp(Packet):
         ConditionalField(ByteEnumField("bit17", OrderAckBit17.CustOrderHandlingInst, OrderAckBit17), lambda pkt:pkt.numReturnBitFields >=17),
         ConditionalField(ByteEnumField("bit18", OrderAckBit18.Subreason, OrderAckBit18), lambda pkt:pkt.numReturnBitFields >=18),
         ConditionalField(CharEnumField("side", Side.SellUndisclosed, Side), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.Side)),
-        ConditionalField(Price("pegDiff", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.PegDiff)),
-        ConditionalField(Price("price", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.Price)),
+        ConditionalField(Price4("pegDiff", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.PegDiff)),
+        ConditionalField(Price4("price", 0), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.Price)),
         ConditionalField(CharEnumField("execInst", ExecInst.GuardedMidpoint, ExecInst), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.ExecInst)),
         ConditionalField(CharEnumField("ordType", OrdType.Pegged, OrdType), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.OrdType)),
         ConditionalField(CharEnumField("tif", TimeInForce.GoodForAuction, TimeInForce), lambda pkt:pkt.bit1 and (pkt.bit1 & OrderAckBit1.TimeInForce)),
@@ -1087,7 +1095,7 @@ class OrderRespOptGrp(Packet):
         ConditionalField(u32("orderQty", 0), lambda pkt:pkt.bit3 and (pkt.bit3 & OrderAckBit3.OrderQty)),
         ConditionalField(str3("preventMatch", ""), lambda pkt:pkt.bit3 and (pkt.bit3 & OrderAckBit3.PreventMatch)),
         ConditionalField(u64("maturityDate", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & OrderAckBit4.MaturityDate)),
-        ConditionalField(Price("strikePrice", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & OrderAckBit4.StrikePrice)),
+        ConditionalField(Price4("strikePrice", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & OrderAckBit4.StrikePrice)),
         ConditionalField(u8("putOrCall", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & OrderAckBit4.PutOrCall)),
         ConditionalField(CharEnumField("openClose", OpenClose.NONE, OpenClose), lambda pkt:pkt.bit4 and (pkt.bit4 & OrderAckBit4.OpenClose)),
         ConditionalField(u32("clOrdIDBatch", 0), lambda pkt:pkt.bit4 and (pkt.bit4 & OrderAckBit4.ClOrdIDBatch)),
@@ -1097,9 +1105,9 @@ class OrderRespOptGrp(Packet):
         ConditionalField(str20("origClOrdID", ""), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.OrigClOrdID)),
         ConditionalField(u32("leavesQty", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.LeavesQty)),
         ConditionalField(u32("lastShares", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.LastShares)),
-        ConditionalField(Price("lastPx", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.LastPx)),
-        ConditionalField(Price("displayPx", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.DisplayPrice)),
-        ConditionalField(Price("workingPx", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.WorkingPrice)),
+        ConditionalField(Price4("lastPx", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.LastPx)),
+        ConditionalField(Price4("displayPx", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.DisplayPrice)),
+        ConditionalField(Price4("workingPx", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.WorkingPrice)),
         ConditionalField(CharEnumField("baseLiqInd", BaseLiquidityIndicator.SelfMatch, BaseLiquidityIndicator), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.BaseLiquidityIndicator)),
         ConditionalField(u64("expireTime", 0), lambda pkt:pkt.bit5 and (pkt.bit5 & OrderAckBit5.ExpireTime)),
         ConditionalField(u64("secondaryOrderID", 0), lambda pkt:pkt.bit6 and (pkt.bit6 & OrderAckBit6.SecondaryOrderID)),
@@ -1114,13 +1122,13 @@ class OrderRespOptGrp(Packet):
         ConditionalField(u16("tradeRptTypeReturn", 0), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.TradeReportTypeReturn)),
         ConditionalField(u8("tradepubIndReturn", 0), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.TradePublishIndReturn)),
         ConditionalField(str60("text", ""), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.Text)),
-        ConditionalField(Price("bid", 0), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.Bid)),
-        ConditionalField(Price("offer", 0), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.Offer)),
+        ConditionalField(Price4("bid", 0), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.Bid)),
+        ConditionalField(Price4("offer", 0), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.Offer)),
         ConditionalField(u64("largeSize", 0), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.LargeSize)),
         ConditionalField(str8("lastMkt", ""), lambda pkt:pkt.bit7 and (pkt.bit7 & OrderAckBit7.LastMkt)),
         ConditionalField(str2("feeCode", ""), lambda pkt:pkt.bit8 and (pkt.bit8 & OrderAckBit8.FeeCode)),
         ConditionalField(str20("echoText", ""), lambda pkt:pkt.bit8 and (pkt.bit8 & OrderAckBit8.EchoText)),
-        ConditionalField(Price("stopPx", 0), lambda pkt:pkt.bit8 and (pkt.bit8 & OrderAckBit8.StopPx)),
+        ConditionalField(Price4("stopPx", 0), lambda pkt:pkt.bit8 and (pkt.bit8 & OrderAckBit8.StopPx)),
         ConditionalField(str4("routingInst", ""), lambda pkt:pkt.bit8 and (pkt.bit8 & OrderAckBit8.RoutingInst)),
         ConditionalField(u8("routeStrategy", 0), lambda pkt:pkt.bit8 and (pkt.bit8 & OrderAckBit8.RouteStrategy)),
         ConditionalField(u8("routeDeliveryMethod", 0), lambda pkt:pkt.bit8 and (pkt.bit8 & OrderAckBit8.RouteDeliveryMethod)),
@@ -1154,21 +1162,21 @@ class OrderRespOptGrp(Packet):
         ConditionalField(u8("manualOrdInd", 0), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.ManualOrderIndicator)),
         ConditionalField(u32("opID", 0), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.OperatorID)),
         ConditionalField(u32("tradeDate", 0), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.TradeDate)),
-        ConditionalField(Price("clearingPrice", 0), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.ClearingPrice)),
+        ConditionalField(Price4("clearingPrice", 0), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.ClearingPrice)),
         ConditionalField(u32("clearingSize", 0), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.ClearingSize)),
         ConditionalField(str8("clearingSymbol", ""), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.ClearingSymbol)),
         ConditionalField(u32("clearingOptData", 0), lambda pkt:pkt.bit12 and (pkt.bit12 & OrderAckBit12.ClearingOptionalData)),
         ConditionalField(u32("cumQty", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.CumQty)),
         ConditionalField(u32("dayOrderQty", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.DayOrderQty)),
         ConditionalField(u32("dayCumQty", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.DayCumQty)),
-        ConditionalField(Price("avgPx", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.AvgPx)),
-        ConditionalField(Price("dayAvgPx", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.DayAvgPx)),
+        ConditionalField(Price4("avgPx", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.AvgPx)),
+        ConditionalField(Price4("dayAvgPx", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.DayAvgPx)),
         ConditionalField(u8("pendingStatus", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.PendingStatus)),
         ConditionalField(u8("drillthruProtection", 0), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.DrillThruProtection)),
         ConditionalField(CharEnumField("multilegRptType", MultilegReportingType.Spread, MultilegReportingType), lambda pkt:pkt.bit13 and (pkt.bit13 & OrderAckBit13.MultilegReportingType)),
         ConditionalField(u8("legCFICode", 0), lambda pkt:pkt.bit14 and (pkt.bit14 & OrderAckBit14.LegCFICode)),
         ConditionalField(u32("legMaturityDate", 0), lambda pkt:pkt.bit14 and (pkt.bit14 & OrderAckBit14.LegMaturityDate)),
-        ConditionalField(Price("legStrikePx", 0), lambda pkt:pkt.bit14 and (pkt.bit14 & OrderAckBit14.LegStrikePrice)),
+        ConditionalField(Price4("legStrikePx", 0), lambda pkt:pkt.bit14 and (pkt.bit14 & OrderAckBit14.LegStrikePrice)),
         ConditionalField(u16("quoteRoomID", 0), lambda pkt:pkt.bit14 and (pkt.bit14 & OrderAckBit14.QuoteRoomID)),
         ConditionalField(u64("secExecID", 0), lambda pkt:pkt.bit14 and (pkt.bit14 & OrderAckBit14.SecondaryExecID)),
         ConditionalField(u32("userRequestID", 0), lambda pkt:pkt.bit14 and (pkt.bit14 & OrderAckBit14.UserRequestID)),
@@ -1296,7 +1304,7 @@ class OrderExecutionV2(Packet):
         str20("clOrdID", "")
         u64("execID", 0)
         u32("lastShares", 0)
-        Price("lastPx", 0)
+        Price4("lastPx", 0)
         u32("leavesQty", 0)
         CharEnumField("liqInd", LiqIndicator.Auction, LiqIndicator)
         CharEnumField("subLiqInd", SubLiquidityIndicator.LiquidityALPSSBBO, SubLiquidityIndicator)

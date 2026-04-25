@@ -16,9 +16,9 @@ using string4 = FixedLengthString<4, '\0', false>;
 using string6 = FixedLengthString<6, '\0', false>;
 using string10 = FixedLengthString<10, '\0', false>;
 using string20 = FixedLengthString<20, '\0', false>;
-using UserRefNum = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using Quantity = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using ShortCode = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using UserRefNum = u32;
+using Quantity = u32;
+using ShortCode = u32;
 using Price = BigEndian<uint64_t, std::numeric_limits<uint64_t>::min(), 199999.9900ULL, 214748.3647ULL, 4>;
 
 
@@ -536,10 +536,10 @@ inline ostreamT& operator<<(ostreamT& os, const Display& v){
     os << v.view();
     return os;
 }
-using DisplayPrice = BigEndian<uint64_t, std::numeric_limits<uint64_t>::min(), 199999.9900ULL, 214748.3647ULL, 4>;
-using DisplayQty = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using ExpireTime = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using Firm = FixedLengthString<4, '\0', false>;
+using DisplayPrice = Price;
+using DisplayQty = Quantity;
+using ExpireTime = u16;
+using Firm = string4;
 struct LiqProvInd {
     using value_type = char;
     enum Enum : value_type {
@@ -578,12 +578,12 @@ inline ostreamT& operator<<(ostreamT& os, const LiqProvInd& v){
     os << v.view();
     return os;
 }
-using MaxFloor = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using MinQty = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using OrderReference = FixedLengthString<10, '\0', false>;
-using OrigOrderEntryDate = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using OrigOrderRefNum = BigEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using PegDiff = BigEndian<int32_t, std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max(), 0>;
+using MaxFloor = Quantity;
+using MinQty = Quantity;
+using OrderReference = string10;
+using OrigOrderEntryDate = u32;
+using OrigOrderRefNum = u64;
+using PegDiff = i32;
 struct PegType {
     using value_type = char;
     enum Enum : value_type {
@@ -624,8 +624,8 @@ inline ostreamT& operator<<(ostreamT& os, const PegType& v){
     os << v.view();
     return os;
 }
-using RanDomReserve = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using SecondaryOrderRefNum = BigEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using RanDomReserve = u32;
+using SecondaryOrderRefNum = u64;
 struct STPAuction {
     using value_type = uint8_t;
     enum Enum : value_type {
@@ -708,7 +708,7 @@ inline ostreamT& operator<<(ostreamT& os, const STPLevel& v){
     os << v.view();
     return os;
 }
-using STPTraderGroup = FixedLengthString<2, '\0', false>;
+using STPTraderGroup = string2;
 struct TimeInForce {
     using value_type = char;
     enum Enum : value_type {
@@ -835,7 +835,7 @@ inline ostreamT& operator<<(ostreamT& os, const OrderCondition& v){
     os << v.view();
     return os;
 }
-using CumulativeQuantity = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using CumulativeQuantity = Quantity;
 struct CustomerOrderCapacity {
     using value_type = char;
     enum Enum : value_type {
@@ -914,8 +914,8 @@ inline ostreamT& operator<<(ostreamT& os, const TargetStrategy& v){
     os << v.view();
     return os;
 }
-using MinRate = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using MaxRate = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
+using MinRate = u16;
+using MaxRate = u16;
 struct ConditionalType {
     using value_type = char;
     enum Enum : value_type {
@@ -954,7 +954,7 @@ inline ostreamT& operator<<(ostreamT& os, const ConditionalType& v){
     os << v.view();
     return os;
 }
-using FirmUpID = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using FirmUpID = u32;
 
 #pragma pack(1)
 struct NewOrderAppendageEntry {
@@ -1440,10 +1440,10 @@ inline ostreamT& operator<<(ostreamT& os, const AlgoIndicator& v){
     os << v.view();
     return os;
 }
-using appLen = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using TimeStamp = BigEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using OrderRefNum = BigEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
-using OrderBook = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using appLen = u16;
+using TimeStamp = u64;
+using OrderRefNum = u64;
+using OrderBook = u32;
 
 #pragma pack(1)
 struct NewOrder : Header {
