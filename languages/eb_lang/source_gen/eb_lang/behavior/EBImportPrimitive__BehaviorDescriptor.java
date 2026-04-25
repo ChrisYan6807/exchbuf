@@ -31,16 +31,20 @@ import org.jetbrains.mps.openapi.language.SProperty;
 public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive");
 
+  public static final SMethod<String> eb_string_id7cjtpqhK_7J = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628470190575L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223026L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223143L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getCppDefault_id3_eh5mZVnwd = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppDefault").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043428243469L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPyDefault_id3_eh5mZVois = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyDefault").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043428246684L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, getCppDefault_id3_eh5mZVnwd, getPyDefault_id3_eh5mZVois);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhK_7J, getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, getCppDefault_id3_eh5mZVnwd, getPyDefault_id3_eh5mZVois);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
+  /*package*/ static String eb_string_id7cjtpqhK_7J(@NotNull SNode __thisNode__) {
+    return "";
+  }
   /*package*/ static String getCppType_id7sFT47Ik3aM(@NotNull SNode __thisNode__) {
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
       String endianType = ((boolean) EBIntType__BehaviorDescriptor.isLittleEndian_id7qxjCwPtLrW.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) ? "LittleEndian" : "BigEndian");
@@ -83,7 +87,7 @@ public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescripto
       String left = (SPropertyOperations.getBoolean(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss), PROPS.left_padding$eGux) ? "True" : "False");
       return String.format("fixed_length_string(%s, %s, %s)", SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFixedLenghString$Ss), PROPS.length$ZIZR), padding, left);
     } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr)) {
-      return String.format("float_decimal(%s, %s, %s, %s, %s, %s, %s)", SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.size$l3Es), SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.precision$l9xP), (SPropertyOperations.getBoolean(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.singed$CnQN) ? "True" : "False"), (SPropertyOperations.getBoolean(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.little_endian$pzMh) ? "True" : "False"), EBFloatDecimal__BehaviorDescriptor.minValue_id4s_KfQOOYo.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), "py"), EBFloatDecimal__BehaviorDescriptor.maxValue_id4s_KfQOOXD.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), "py"), EBFloatDecimal__BehaviorDescriptor.nullValue_id4s_KfQOOZ4.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), "py"), SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.precision$l9xP));
+      return String.format("float_decimal(%s, %s, %s, %s, %s, %s, %s)", SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.size$l3Es), SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.precision$l9xP), (SPropertyOperations.getBoolean(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.signed$CnQN) ? "True" : "False"), (SPropertyOperations.getBoolean(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.little_endian$pzMh) ? "True" : "False"), EBFloatDecimal__BehaviorDescriptor.minValue_id4s_KfQOOYo.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), "py"), EBFloatDecimal__BehaviorDescriptor.maxValue_id4s_KfQOOXD.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), "py"), EBFloatDecimal__BehaviorDescriptor.nullValue_id4s_KfQOOZ4.invoke(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), "py"), SPropertyOperations.getInteger(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR), CONCEPTS.EBFloatDecimal$vr), PROPS.precision$l9xP));
     }
 
     String msg = "Unsupported primitive type: " + SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(__thisNode__, LINKS.type$zVeR)));
@@ -135,12 +139,14 @@ public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescripto
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
+        return (T) ((String) eb_string_id7cjtpqhK_7J(node));
       case 1:
-        return (T) ((String) getPyType_id7sFT47Ik3cB(node));
+        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
       case 2:
-        return (T) ((String) getCppDefault_id3_eh5mZVnwd(node));
+        return (T) ((String) getPyType_id7sFT47Ik3cB(node));
       case 3:
+        return (T) ((String) getCppDefault_id3_eh5mZVnwd(node));
+      case 4:
         return (T) ((String) getPyDefault_id3_eh5mZVois(node));
       default:
         throw new BHMethodNotFoundException(this, method);
@@ -187,6 +193,6 @@ public final class EBImportPrimitive__BehaviorDescriptor extends BaseBHDescripto
     /*package*/ static final SProperty little_endian$pzMh = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x9835713561f1c9dL, "little_endian");
     /*package*/ static final SProperty precision$l9xP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a8cL, "precision");
     /*package*/ static final SProperty size$l3Es = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a88L, "size");
-    /*package*/ static final SProperty singed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "singed");
+    /*package*/ static final SProperty signed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "signed");
   }
 }

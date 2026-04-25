@@ -22,8 +22,9 @@ public final class EBArray__BehaviorDescriptor extends BaseBHDescriptor {
 
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223026L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223143L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> eb_string_id7cjtpqhK_7J = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628470190575L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, eb_string_id7cjtpqhK_7J);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
@@ -32,6 +33,9 @@ public final class EBArray__BehaviorDescriptor extends BaseBHDescriptor {
     return "";
   }
   /*package*/ static String getPyType_id7sFT47Ik3cB(@NotNull SNode __thisNode__) {
+    return "";
+  }
+  /*package*/ static String eb_string_id7cjtpqhK_7J(@NotNull SNode __thisNode__) {
     return "";
   }
 
@@ -54,6 +58,8 @@ public final class EBArray__BehaviorDescriptor extends BaseBHDescriptor {
         return (T) ((String) getCppType_id7sFT47Ik3aM(node));
       case 1:
         return (T) ((String) getPyType_id7sFT47Ik3cB(node));
+      case 2:
+        return (T) ((String) eb_string_id7cjtpqhK_7J(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

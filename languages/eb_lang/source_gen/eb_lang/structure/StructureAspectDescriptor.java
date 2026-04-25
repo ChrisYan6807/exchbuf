@@ -281,7 +281,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493656");
     b.version(3);
-    b.property("value", 0x113e6c9588d675c4L).type(PrimitiveTypeId.STRING).origin("1242549936702518724").done();
     b.alias("'");
     return b.create();
   }
@@ -362,7 +361,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.property("size", 0x1314ce5d5c778a88L).type(PrimitiveTypeId.INTEGER).origin("1374950686633462408").done();
     b.property("precision", 0x1314ce5d5c778a8cL).type(PrimitiveTypeId.INTEGER).origin("1374950686633462412").done();
     b.property("null", 0x1314ce5d5c778a91L).type(PrimitiveTypeId.STRING).origin("1374950686633462417").done();
-    b.property("singed", 0x11c9703f6d348edL).type(PrimitiveTypeId.BOOLEAN).origin("80104936667564269").done();
+    b.property("signed", 0x11c9703f6d348edL).type(PrimitiveTypeId.BOOLEAN).origin("80104936667564269").done();
     b.property("little_endian", 0x9835713561f1c9dL).type(PrimitiveTypeId.BOOLEAN).origin("685487308851322013").done();
     b.alias("FloatDecimal");
     return b.create();
@@ -453,6 +452,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.class_(false, true, false);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493654");
     b.version(3);
+    b.property("value", 0x7313759691f44603L).type(PrimitiveTypeId.STRING).origin("8292100628473464323").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBIntType() {
@@ -650,7 +650,6 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.super_(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/8244488409083493655");
     b.version(3);
-    b.property("value", 0x113e6c9588d675c6L).type(PrimitiveTypeId.STRING).origin("1242549936702518726").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBPrimitiveType() {

@@ -262,7 +262,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                                   assert valueValue.length() == 1;
                                   SNode literal = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, "eb_lang.structure.EBCharLiteral"));
-                                  SPropertyOperations.assign(literal, PROPS.value$fPcU, valueValue);
+                                  SPropertyOperations.assign(literal, PROPS.value$zter, valueValue);
                                   SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, literal);
                                   ListSequence.fromList(SLinkOperations.getChildren(enumNode, LINKS.values$_zmn)).addElement(kvPair);
 
@@ -353,7 +353,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                                   SPropertyOperations.assign(kvPair, PROPS.name$MnvL, valueName);
 
                                   SNode literal = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
-                                  SPropertyOperations.assign(literal, PROPS.value$fPEt, valueValue);
+                                  SPropertyOperations.assign(literal, PROPS.value$zter, valueValue);
                                   SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, literal);
                                   ListSequence.fromList(SLinkOperations.getChildren(enumNode, LINKS.values$_zmn)).addElement(kvPair);
 
@@ -451,7 +451,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                       SNode kvPair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
                       SPropertyOperations.assign(kvPair, PROPS.name$MnvL, tempKey);
                       SNode literal = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
-                      SPropertyOperations.assign(literal, PROPS.value$fPEt, value);
+                      SPropertyOperations.assign(literal, PROPS.value$zter, value);
                       SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, literal);
                       ListSequence.fromList(SLinkOperations.getChildren(enumNode, LINKS.values$_zmn)).addElement(kvPair);
                     }
@@ -820,11 +820,11 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                           if (encodingType.equals("char")) {
                             SNode literal = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, "eb_lang.structure.EBCharLiteral"));
-                            SPropertyOperations.assign(literal, PROPS.value$fPcU, valueValue);
+                            SPropertyOperations.assign(literal, PROPS.value$zter, valueValue);
                             SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, literal);
                           } else {
                             SNode literal = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
-                            SPropertyOperations.assign(literal, PROPS.value$fPEt, valueValue);
+                            SPropertyOperations.assign(literal, PROPS.value$zter, valueValue);
                             SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, literal);
                           }
 
@@ -867,14 +867,14 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                             SNode noPair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
                             SPropertyOperations.assign(noPair, PROPS.name$MnvL, "No");
                             SNode noValue = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
-                            SPropertyOperations.assign(noValue, PROPS.value$fPEt, "0");
+                            SPropertyOperations.assign(noValue, PROPS.value$zter, "0");
                             SLinkOperations.setTarget(noPair, LINKS.value$_yQp, noValue);
                             ListSequence.fromList(SLinkOperations.getChildren(choiceEnumNode, LINKS.values$_zmn)).addElement(noPair);
 
                             SNode yesPair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
                             SPropertyOperations.assign(yesPair, PROPS.name$MnvL, "Yes");
                             SNode yesValue = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
-                            SPropertyOperations.assign(yesValue, PROPS.value$fPEt, "1");
+                            SPropertyOperations.assign(yesValue, PROPS.value$zter, "1");
                             SLinkOperations.setTarget(yesPair, LINKS.value$_yQp, yesValue);
                             ListSequence.fromList(SLinkOperations.getChildren(choiceEnumNode, LINKS.values$_zmn)).addElement(yesPair);
 
@@ -911,7 +911,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                     SNode idPair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
                     SPropertyOperations.assign(idPair, PROPS.name$MnvL, msgName);
                     SNode idValue = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral"));
-                    SPropertyOperations.assign(idValue, PROPS.value$fPEt, msgId);
+                    SPropertyOperations.assign(idValue, PROPS.value$zter, msgId);
                     SLinkOperations.setTarget(idPair, LINKS.value$_yQp, idValue);
                     ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(SLinkOperations.getTarget(SLinkOperations.getTarget(msg, LINKS.base_link_type$L0s7), LINKS.type$zO4N), CONCEPTS.EBEnum$37), LINKS.values$_zmn)).addElement(idPair);
                     SLinkOperations.setTarget(msg, LINKS.base_link_value$L0F8, ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(SLinkOperations.getTarget(SLinkOperations.getTarget(msg, LINKS.base_link_type$L0s7), LINKS.type$zO4N), CONCEPTS.EBEnum$37), LINKS.values$_zmn)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(msgName)).first());
@@ -1130,7 +1130,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                     if (name.equals("Price")) {
                       SNode floatType = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal"));
                       SPropertyOperations.assign(floatType, PROPS.size$l3Es, 8);
-                      SPropertyOperations.assign(floatType, PROPS.singed$CnQN, true);
+                      SPropertyOperations.assign(floatType, PROPS.signed$CnQN, true);
                       SPropertyOperations.assign(floatType, PROPS.precision$l9xP, 8);
 
                       SNode aliasNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
@@ -1177,9 +1177,9 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                         SPropertyOperations.assign(kvPair, PROPS.name$MnvL, "NONE");
                       }
                       if (bitflags) {
-                        SPropertyOperations.assign(numLiteral, PROPS.value$fPEt, ((String) e.get(1)));
+                        SPropertyOperations.assign(numLiteral, PROPS.value$zter, ((String) e.get(1)));
                       } else {
-                        SPropertyOperations.assign(numLiteral, PROPS.value$fPEt, Integer.toString(((Number) e.get(1)).intValue()));
+                        SPropertyOperations.assign(numLiteral, PROPS.value$zter, Integer.toString(((Number) e.get(1)).intValue()));
                       }
                       SLinkOperations.setTarget(kvPair, LINKS.value$_yQp, numLiteral);
                       ListSequence.fromList(SLinkOperations.getChildren(enumNode, LINKS.values$_zmn)).addElement(kvPair);
@@ -1390,14 +1390,13 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SProperty value$wjFT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, 0x726a4e86e24169a8L, "value");
     /*package*/ static final SProperty value$wDYR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, 0x726a4e86e24169c5L, "value");
     /*package*/ static final SProperty value$$aYn = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a09L, 0x726a4e86e2416a20L, "value");
-    /*package*/ static final SProperty value$fPcU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, 0x113e6c9588d675c4L, "value");
+    /*package*/ static final SProperty value$zter = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L, 0x7313759691f44603L, "value");
     /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
     /*package*/ static final SProperty padding$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "padding");
     /*package*/ static final SProperty range$t6I$ = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4fe9a5784793da6aL, "range");
     /*package*/ static final SProperty min$DCVS = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142298L, "min");
     /*package*/ static final SProperty max$DBZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142294L, "max");
     /*package*/ static final SProperty null$sULd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x1314ce5d5c778a97L, "null");
-    /*package*/ static final SProperty value$fPEt = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x113e6c9588d675c6L, "value");
     /*package*/ static final SProperty min$l2Xp = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a85L, "min");
     /*package*/ static final SProperty max$l2vn = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a83L, "max");
     /*package*/ static final SProperty null$laGU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a91L, "null");
@@ -1406,7 +1405,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SProperty cardinality$ec$j = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, 0x1011af616bfce4dfL, "cardinality");
     /*package*/ static final SProperty default$w7ZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, 0x54785f5b32fc627eL, "default");
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
-    /*package*/ static final SProperty singed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "singed");
+    /*package*/ static final SProperty signed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "signed");
     /*package*/ static final SProperty size$qzRT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f234141fd1L, 0x3fa729f234141fd4L, "size");
   }
 

@@ -22,7 +22,7 @@ public class EBNumberLiteral_Constraints extends BaseConstraintsDescriptor {
 
   /*package*/ static final class Value_PD extends BasePropertyConstraintsDescriptor {
     public Value_PD(ConstraintsDescriptor container) {
-      super(PROPS.value$fPEt, container, false, false, true);
+      super(PROPS.value$zter, container, false, false, true);
     }
     @Override
     public boolean validateValue(SNode node, Object propertyValue, CheckingNodeContext checkingNodeContext) {
@@ -42,6 +42,6 @@ public class EBNumberLiteral_Constraints extends BaseConstraintsDescriptor {
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty value$fPEt = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, 0x113e6c9588d675c6L, "value");
+    /*package*/ static final SProperty value$zter = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L, 0x7313759691f44603L, "value");
   }
 }

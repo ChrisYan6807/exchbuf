@@ -13,24 +13,35 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
+import org.jetbrains.mps.openapi.language.SProperty;
 import org.jetbrains.mps.openapi.language.SReferenceLink;
 
 public final class EBAlias__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, "eb_lang.structure.EBAlias");
 
+  public static final SMethod<String> eb_string_id7cjtpqhK_7J = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628470190575L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223026L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getOptCppType_idjqKrvY_3tk = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getOptCppType").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(349804917068937044L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223143L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getOptCppType_idjqKrvY_3tk, getPyType_id7sFT47Ik3cB);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhK_7J, getCppType_id7sFT47Ik3aM, getOptCppType_idjqKrvY_3tk, getPyType_id7sFT47Ik3cB);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
+  /*package*/ static String eb_string_id7cjtpqhK_7J(@NotNull SNode __thisNode__) {
+    String opt = "";
+    if (isNotEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.pred$HpTv))) {
+      opt = String.format("[ if %s else %s ]", SPropertyOperations.getString(__thisNode__, PROPS.pred$HpTv), SPropertyOperations.getString(SLinkOperations.getTarget(__thisNode__, LINKS.opt_type$Hq8w), PROPS.name$MnvL));
+    }
+
+    return String.format("alias %s = %s %s", SPropertyOperations.getString(__thisNode__, PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(__thisNode__, LINKS.type$kr$f), PROPS.name$MnvL), opt);
+  }
   /*package*/ static String getCppType_id7sFT47Ik3aM(@NotNull SNode __thisNode__) {
     return (String) EBTypeStatement__BehaviorDescriptor.getCppType_id7sFT47Ik3aM.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.type$kr$f));
   }
@@ -57,10 +68,12 @@ public final class EBAlias__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
+        return (T) ((String) eb_string_id7cjtpqhK_7J(node));
       case 1:
-        return (T) ((String) getOptCppType_idjqKrvY_3tk(node));
+        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
       case 2:
+        return (T) ((String) getOptCppType_idjqKrvY_3tk(node));
+      case 3:
         return (T) ((String) getPyType_id7sFT47Ik3cB(node));
       default:
         throw new BHMethodNotFoundException(this, method);
@@ -90,9 +103,17 @@ public final class EBAlias__BehaviorDescriptor extends BaseBHDescriptor {
   public SAbstractConcept getConcept() {
     return CONCEPT;
   }
+  private static boolean isNotEmptyString(String str) {
+    return str != null && str.length() > 0;
+  }
+
+  private static final class PROPS {
+    /*package*/ static final SProperty pred$HpTv = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x4dac1b7fe8eef00L, "pred");
+    /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
+  }
 
   private static final class LINKS {
-    /*package*/ static final SReferenceLink type$kr$f = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x3e5cab00be181adeL, "type");
     /*package*/ static final SReferenceLink opt_type$Hq8w = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x4dac1b7fe8eef01L, "opt_type");
+    /*package*/ static final SReferenceLink type$kr$f = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x3e5cab00be181adeL, "type");
   }
 }

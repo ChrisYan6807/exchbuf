@@ -22,15 +22,19 @@ import org.jetbrains.mps.openapi.language.SProperty;
 public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString");
 
+  public static final SMethod<String> eb_string_id7cjtpqhs3YN = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628464811955L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPadding_idzaARBRtBbI = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPadding").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(633489645744059118L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getPadding_idzaARBRtBbI);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhs3YN, getPadding_idzaARBRtBbI);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
     SPropertyOperations.assign(__thisNode__, PROPS.left_padding$eGux, false);
     SPropertyOperations.assign(__thisNode__, PROPS.padding$ZJtT, "'\\0'");
   }
 
+  /*package*/ static String eb_string_id7cjtpqhs3YN(@NotNull SNode __thisNode__) {
+    return String.format("FixedLengthString [ length=%s, padding=%s, left_padding=%s ]", SPropertyOperations.getInteger(__thisNode__, PROPS.length$ZIZR), SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT), SPropertyOperations.getBoolean(__thisNode__, PROPS.left_padding$eGux));
+  }
   /*package*/ static String getPadding_idzaARBRtBbI(@NotNull SNode __thisNode__) {
     return SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT);
   }
@@ -51,6 +55,8 @@ public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescript
     }
     switch (methodIndex) {
       case 0:
+        return (T) ((String) eb_string_id7cjtpqhs3YN(node));
+      case 1:
         return (T) ((String) getPadding_idzaARBRtBbI(node));
       default:
         throw new BHMethodNotFoundException(this, method);
@@ -84,5 +90,6 @@ public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescript
   private static final class PROPS {
     /*package*/ static final SProperty left_padding$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "left_padding");
     /*package*/ static final SProperty padding$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "padding");
+    /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
   }
 }

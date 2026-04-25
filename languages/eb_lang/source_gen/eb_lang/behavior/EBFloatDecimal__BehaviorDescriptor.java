@@ -22,6 +22,7 @@ import org.jetbrains.mps.openapi.language.SProperty;
 public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal");
 
+  public static final SMethod<String> eb_string_id7cjtpqhs3YN = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628464811955L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> cppName_id3_eh5mZPdPt = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043426631005L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> pyName_id3_eh5mZPez6 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("pyName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4129313043426633926L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> postFix_id3TsEK2XMb7u = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("postFix").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(4493654547881308638L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
@@ -29,24 +30,27 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
   public static final SMethod<String> minValue_id4s_KfQOOYo = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("minValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667565976L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
   public static final SMethod<String> nullValue_id4s_KfQOOZ4 = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("nullValue").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(80104936667566020L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2(SMethodBuilder.createJavaParameter(String.class, ""));
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(cppName_id3_eh5mZPdPt, pyName_id3_eh5mZPez6, postFix_id3TsEK2XMb7u, maxValue_id4s_KfQOOXD, minValue_id4s_KfQOOYo, nullValue_id4s_KfQOOZ4);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhs3YN, cppName_id3_eh5mZPdPt, pyName_id3_eh5mZPez6, postFix_id3TsEK2XMb7u, maxValue_id4s_KfQOOXD, minValue_id4s_KfQOOYo, nullValue_id4s_KfQOOZ4);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
-    SPropertyOperations.assign(__thisNode__, PROPS.singed$CnQN, true);
+    SPropertyOperations.assign(__thisNode__, PROPS.signed$CnQN, true);
     SPropertyOperations.assign(__thisNode__, PROPS.size$l3Es, 8);
     SPropertyOperations.assign(__thisNode__, PROPS.precision$l9xP, 8);
     SPropertyOperations.assign(__thisNode__, PROPS.little_endian$pzMh, true);
 
   }
 
+  /*package*/ static String eb_string_id7cjtpqhs3YN(@NotNull SNode __thisNode__) {
+    return String.format("FloatDecimal [ min=%s, max=%s, null=%s, size=%s, precision=%s,signed=%s, little_endian=%s ]", (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.min$l2Xp)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.max$l2vn)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$laGU)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.null$laGU)), SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es), SPropertyOperations.getInteger(__thisNode__, PROPS.precision$l9xP), SPropertyOperations.getBoolean(__thisNode__, PROPS.signed$CnQN), SPropertyOperations.getBoolean(__thisNode__, PROPS.little_endian$pzMh));
+  }
   /*package*/ static String cppName_id3_eh5mZPdPt(@NotNull SNode __thisNode__) {
-    return String.format("%sint%d_t", (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN) ? "" : "u"), SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8);
+    return String.format("%sint%d_t", (SPropertyOperations.getBoolean(__thisNode__, PROPS.signed$CnQN) ? "" : "u"), SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8);
   }
   /*package*/ static String pyName_id3_eh5mZPez6(@NotNull SNode __thisNode__) {
     return "EBFloatDecimal pyName not implemented";
   }
   /*package*/ static String postFix_id3TsEK2XMb7u(@NotNull SNode __thisNode__, String value) {
-    if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
+    if (SPropertyOperations.getBoolean(__thisNode__, PROPS.signed$CnQN)) {
       if (value.startsWith("0x") || value.startsWith("0X")) {
         value = value.substring(2);
 
@@ -64,7 +68,7 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
     }
 
     if (SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) > 4) {
-      if (!(SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN))) {
+      if (!(SPropertyOperations.getBoolean(__thisNode__, PROPS.signed$CnQN))) {
         value += "U";
       }
       value += "LL";
@@ -81,7 +85,7 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
       return String.format("std::numeric_limits<%s>::max()", EBFloatDecimal__BehaviorDescriptor.cppName_id3_eh5mZPdPt.invoke(__thisNode__));
     } else {
       int nBits = SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8;
-      if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
+      if (SPropertyOperations.getBoolean(__thisNode__, PROPS.signed$CnQN)) {
         return String.format("2**%s-1", nBits - 1);
       } else {
         return String.format("2**%s", nBits);
@@ -97,7 +101,7 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
       return String.format("std::numeric_limits<%s>::min()", EBFloatDecimal__BehaviorDescriptor.cppName_id3_eh5mZPdPt.invoke(__thisNode__));
     } else {
       int nBits = SPropertyOperations.getInteger(__thisNode__, PROPS.size$l3Es) * 8;
-      if (SPropertyOperations.getBoolean(__thisNode__, PROPS.singed$CnQN)) {
+      if (SPropertyOperations.getBoolean(__thisNode__, PROPS.signed$CnQN)) {
         return String.format("-2**%s", nBits - 1);
       } else {
         return "0";
@@ -128,16 +132,18 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((String) cppName_id3_eh5mZPdPt(node));
+        return (T) ((String) eb_string_id7cjtpqhs3YN(node));
       case 1:
-        return (T) ((String) pyName_id3_eh5mZPez6(node));
+        return (T) ((String) cppName_id3_eh5mZPdPt(node));
       case 2:
-        return (T) ((String) postFix_id3TsEK2XMb7u(node, (String) parameters[0]));
+        return (T) ((String) pyName_id3_eh5mZPez6(node));
       case 3:
-        return (T) ((String) maxValue_id4s_KfQOOXD(node, (String) parameters[0]));
+        return (T) ((String) postFix_id3TsEK2XMb7u(node, (String) parameters[0]));
       case 4:
-        return (T) ((String) minValue_id4s_KfQOOYo(node, (String) parameters[0]));
+        return (T) ((String) maxValue_id4s_KfQOOXD(node, (String) parameters[0]));
       case 5:
+        return (T) ((String) minValue_id4s_KfQOOYo(node, (String) parameters[0]));
+      case 6:
         return (T) ((String) nullValue_id4s_KfQOOZ4(node, (String) parameters[0]));
       default:
         throw new BHMethodNotFoundException(this, method);
@@ -167,17 +173,20 @@ public final class EBFloatDecimal__BehaviorDescriptor extends BaseBHDescriptor {
   public SAbstractConcept getConcept() {
     return CONCEPT;
   }
+  private static boolean isEmptyString(String str) {
+    return str == null || str.isEmpty();
+  }
   private static boolean isNotEmptyString(String str) {
     return str != null && str.length() > 0;
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty singed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "singed");
+    /*package*/ static final SProperty signed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "signed");
     /*package*/ static final SProperty size$l3Es = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a88L, "size");
     /*package*/ static final SProperty precision$l9xP = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a8cL, "precision");
     /*package*/ static final SProperty little_endian$pzMh = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x9835713561f1c9dL, "little_endian");
-    /*package*/ static final SProperty max$l2vn = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a83L, "max");
     /*package*/ static final SProperty min$l2Xp = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a85L, "min");
+    /*package*/ static final SProperty max$l2vn = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a83L, "max");
     /*package*/ static final SProperty null$laGU = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x1314ce5d5c778a91L, "null");
   }
 }

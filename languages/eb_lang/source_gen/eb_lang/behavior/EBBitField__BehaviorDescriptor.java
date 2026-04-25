@@ -13,27 +13,39 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
-import jetbrains.mps.internal.collections.runtime.ListSequence;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 import org.jetbrains.mps.openapi.language.SProperty;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
+import org.jetbrains.mps.openapi.language.SReferenceLink;
 
 public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, "eb_lang.structure.EBBitField");
 
+  public static final SMethod<String> eb_string_id7cjtpqhK_7J = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628470190575L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223026L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223143L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<Integer> size_id5sDYI_$HMZg = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(6280827035668918224L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, size_id5sDYI_$HMZg);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhK_7J, getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, size_id5sDYI_$HMZg);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
+  /*package*/ static String eb_string_id7cjtpqhK_7J(@NotNull SNode __thisNode__) {
+    String rtv = String.format("bitfield %s %s {\n", SPropertyOperations.getString(__thisNode__, PROPS.name$MnvL), EBPrimitiveType__BehaviorDescriptor.eb_string_id7cjtpqhs3YN.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.type$w4bT)));
+    for (SNode e : ListSequence.fromList(SLinkOperations.getChildren(__thisNode__, LINKS.values$w4DV))) {
+      rtv += String.format("  enum = %s, default = %s, length = %s\n", SPropertyOperations.getString(SLinkOperations.getTarget(e, LINKS.enum$iBH6), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(e, LINKS.default$Qsog), PROPS.name$MnvL), SPropertyOperations.getInteger(e, PROPS.length$wbxg));
+    }
+
+    rtv += String.format("}\n");
+
+    return rtv;
+  }
   /*package*/ static String getCppType_id7sFT47Ik3aM(@NotNull SNode __thisNode__) {
     return "";
   }
@@ -66,10 +78,12 @@ public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
+        return (T) ((String) eb_string_id7cjtpqhK_7J(node));
       case 1:
-        return (T) ((String) getPyType_id7sFT47Ik3cB(node));
+        return (T) ((String) getCppType_id7sFT47Ik3aM(node));
       case 2:
+        return (T) ((String) getPyType_id7sFT47Ik3cB(node));
+      case 3:
         return (T) ((Integer) size_id5sDYI_$HMZg(node));
       default:
         throw new BHMethodNotFoundException(this, method);
@@ -101,10 +115,14 @@ public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
   }
 
   private static final class PROPS {
+    /*package*/ static final SProperty name$MnvL = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
   }
 
   private static final class LINKS {
+    /*package*/ static final SContainmentLink type$w4bT = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, 0x726a4e86e2416992L, "type");
+    /*package*/ static final SReferenceLink enum$iBH6 = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x5737b24e0c5eca32L, "enum");
+    /*package*/ static final SReferenceLink default$Qsog = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x772be441ee43a938L, "default");
     /*package*/ static final SContainmentLink values$w4DV = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, 0x726a4e86e2416994L, "values");
   }
 }

@@ -27,6 +27,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
 public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
 
+  public static final SMethod<String> eb_string_id7cjtpqhs3YN = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628464811955L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<Boolean> signed_id7qxjCwPtAaQ = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("signed").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8548199914645381814L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<Integer> size_id7qxjCwPtApr = new SMethodBuilder<Integer>(new SJavaCompoundTypeImpl(Integer.TYPE)).name("size").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8548199914645382747L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> cppName_id9WwCMYBSZJ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("cppName").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(179161626193137647L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
@@ -45,11 +46,14 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   public static final SMethod<Boolean> isLittleEndian_id7qxjCwPtLrW = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isLittleEndian").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8548199914645427964L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> byteOrderChar_id4GpIFxqp7uZ = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("byteOrderChar").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(5411561728215644095L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, fmt_id4GpIFxqoQnK, isNumber_id2ZdneJ5Om96, postFix_id7hSmxNPVYQ$, fmtDefault_id7hSmxNQ2P2b, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, cppMaxValue_id7hSmxNPVVTN, cppMinValue_id7hSmxNPVVUA, cppNullValue_id7hSmxNPVVVi, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW, byteOrderChar_id4GpIFxqp7uZ);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhs3YN, signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, fmt_id4GpIFxqoQnK, isNumber_id2ZdneJ5Om96, postFix_id7hSmxNPVYQ$, fmtDefault_id7hSmxNQ2P2b, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, cppMaxValue_id7hSmxNPVVTN, cppMinValue_id7hSmxNPVVUA, cppNullValue_id7hSmxNPVVVi, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW, byteOrderChar_id4GpIFxqp7uZ);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
+  /*package*/ static String eb_string_id7cjtpqhs3YN(@NotNull SNode __thisNode__) {
+    return SConceptOperations.conceptAlias(SNodeOperations.getConcept(__thisNode__));
+  }
   /*package*/ static boolean isNumber_id2ZdneJ5Om96(@NotNull SNode __thisNode__, char c) {
     if (c >= '0' && c <= '9') {
       return true;
@@ -215,29 +219,31 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
       throw new BHMethodNotFoundException(this, method);
     }
     switch (methodIndex) {
-      case 5:
-        return (T) ((Boolean) isNumber_id2ZdneJ5Om96(node, ((char) (Character) parameters[0])));
+      case 0:
+        return (T) ((String) eb_string_id7cjtpqhs3YN(node));
       case 6:
-        return (T) ((String) postFix_id7hSmxNPVYQ$(node, (String) parameters[0]));
+        return (T) ((Boolean) isNumber_id2ZdneJ5Om96(node, ((char) (Character) parameters[0])));
       case 7:
-        return (T) ((String) fmtDefault_id7hSmxNQ2P2b(node, (String) parameters[0]));
+        return (T) ((String) postFix_id7hSmxNPVYQ$(node, (String) parameters[0]));
       case 8:
-        return (T) ((String) maxValue_id4s_KfQNT9K(node));
+        return (T) ((String) fmtDefault_id7hSmxNQ2P2b(node, (String) parameters[0]));
       case 9:
-        return (T) ((String) minValue_id4s_KfQOhiQ(node));
+        return (T) ((String) maxValue_id4s_KfQNT9K(node));
       case 10:
-        return (T) ((String) nullValue_id4s_KfQO$Rt(node));
+        return (T) ((String) minValue_id4s_KfQOhiQ(node));
       case 11:
-        return (T) ((String) cppMaxValue_id7hSmxNPVVTN(node));
+        return (T) ((String) nullValue_id4s_KfQO$Rt(node));
       case 12:
-        return (T) ((String) cppMinValue_id7hSmxNPVVUA(node));
+        return (T) ((String) cppMaxValue_id7hSmxNPVVTN(node));
       case 13:
-        return (T) ((String) cppNullValue_id7hSmxNPVVVi(node));
+        return (T) ((String) cppMinValue_id7hSmxNPVVUA(node));
       case 14:
-        return (T) ((Boolean) isNative_id5hSnPGNw5sK(node));
+        return (T) ((String) cppNullValue_id7hSmxNPVVVi(node));
       case 15:
-        return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
+        return (T) ((Boolean) isNative_id5hSnPGNw5sK(node));
       case 16:
+        return (T) ((Boolean) isLittleEndian_id7qxjCwPtLrW(node));
+      case 17:
         return (T) ((String) byteOrderChar_id4GpIFxqp7uZ(node));
       default:
         throw new BHMethodNotFoundException(this, method);

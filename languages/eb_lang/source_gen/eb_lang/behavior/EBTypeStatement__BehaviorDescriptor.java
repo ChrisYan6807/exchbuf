@@ -25,8 +25,9 @@ public final class EBTypeStatement__BehaviorDescriptor extends BaseBHDescriptor 
   public static final SMethod<String> getName_id5xcBXFwNwqN = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getName").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(6362636135990953651L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getCppType_id7sFT47Ik3aM = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getCppType").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223026L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
   public static final SMethod<String> getPyType_id7sFT47Ik3cB = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("getPyType").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8587208086334223143L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<String> eb_string_id7cjtpqhK_7J = new SMethodBuilder<String>(new SJavaCompoundTypeImpl(String.class)).name("eb_string").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(8292100628470190575L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getName_id5xcBXFwNwqN, getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(getName_id5xcBXFwNwqN, getCppType_id7sFT47Ik3aM, getPyType_id7sFT47Ik3cB, eb_string_id7cjtpqhK_7J);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
