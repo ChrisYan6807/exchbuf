@@ -413,11 +413,11 @@ public class QueriesGenerated extends QueryProviderBase {
     }
 
     if (has_var_before) {
-      return String.format("FloatingRef<%1$s> %2$s() {return FloatingRef<%1$s>(%3$s().end());}", SPropertyOperations.getString(SLinkOperations.getTarget(SNodeOperations.cast(_context.getNode(), CONCEPTS.EBMessageEntryMember$fS), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(direct_pre_node, PROPS.name$MnvL));
+      return String.format("    FloatingRef<%1$s> %2$s() {return FloatingRef<%1$s>(%3$s().end());}", SPropertyOperations.getString(SLinkOperations.getTarget(SNodeOperations.cast(_context.getNode(), CONCEPTS.EBMessageEntryMember$fS), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(direct_pre_node, PROPS.name$MnvL));
 
     }
 
-    return String.format("%s %s%s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue);
+    return String.format("    %s %s%s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue);
   }
   public static Object propertyMacro_GetValue_0_25(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
@@ -447,28 +447,28 @@ public class QueriesGenerated extends QueryProviderBase {
       if ((defaultValue == null || defaultValue.length() == 0)) {
         defaultValue = String.format("%s.%s", enumName, SPropertyOperations.getString(ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(typeNode, CONCEPTS.EBEnum$37), LINKS.values$_zmn)).last(), PROPS.name$MnvL));
       }
-      return String.format("    %s(\"%s\", %s, %s)", pyTypeName, fieldName, defaultValue, enumName);
+      return String.format("    %s(\"%s\", %s, %s),", pyTypeName, fieldName, defaultValue, enumName);
 
     } else if (SNodeOperations.isInstanceOf(typeNode, CONCEPTS.EBImportPrimitive$gU)) {
       if (isNotEmptyString(SPropertyOperations.getString(_context.getNode(), PROPS.counterOf$_QEd)) && SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(typeNode, CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
         String fmt = EBIntType__BehaviorDescriptor.fmt_id4GpIFxqoQnK.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(typeNode, CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej));
-        return String.format("    FieldLenField(\"%s\", 0, fmt=\"%s\", count_of=\"%s\")", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), fmt, SPropertyOperations.getString(_context.getNode(), PROPS.counterOf$_QEd));
+        return String.format("    FieldLenField(\"%s\", 0, fmt=\"%s\", count_of=\"%s\"),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), fmt, SPropertyOperations.getString(_context.getNode(), PROPS.counterOf$_QEd));
       }
 
       String defaultValue = SPropertyOperations.getString(_context.getNode(), PROPS.default$w7ZO);
       if ((defaultValue == null || defaultValue.length() == 0)) {
         defaultValue = EBImportPrimitive__BehaviorDescriptor.getPyDefault_id3_eh5mZVois.invoke(SNodeOperations.cast(typeNode, CONCEPTS.EBImportPrimitive$gU));
       }
-      return String.format("    %s(\"%s\", %s)", SPropertyOperations.getString(typeNode, PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue);
+      return String.format("    %s(\"%s\", %s),", SPropertyOperations.getString(typeNode, PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue);
     } else if (SNodeOperations.isInstanceOf(typeNode, CONCEPTS.EBBitField$xS)) {
       String pyTypeName = EBTypeStatement__BehaviorDescriptor.getPyType_id7sFT47Ik3cB.invoke(SNodeOperations.cast(typeNode, CONCEPTS.EBBitField$xS));
       String defaultValue = SPropertyOperations.getString(_context.getNode(), PROPS.default$w7ZO);
       if ((defaultValue == null || defaultValue.length() == 0)) {
         defaultValue = "0";
       }
-      return String.format("    %s(\"%s\", %s, %s)", pyTypeName, SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue, SPropertyOperations.getString(typeNode, PROPS.name$MnvL));
+      return String.format("    %s(\"%s\", %s, %s),", pyTypeName, SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue, SPropertyOperations.getString(typeNode, PROPS.name$MnvL));
     } else if (SNodeOperations.isInstanceOf(typeNode, CONCEPTS.EBMessage$YV)) {
-      return String.format("    PacketField(\"%s\", \"\", %s)", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(typeNode, PROPS.name$MnvL));
+      return String.format("    PacketField(\"%s\", \"\", %s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(typeNode, PROPS.name$MnvL));
     } else if (SNodeOperations.isInstanceOf(typeNode, CONCEPTS.EBArray$xg)) {
       return String.format("    %s,", SPropertyOperations.getString(typeNode, PROPS.name$MnvL));
     }
@@ -478,6 +478,13 @@ public class QueriesGenerated extends QueryProviderBase {
 
   }
   public static Object propertyMacro_GetValue_0_26(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+
+    return String.format("  %s %s", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+  }
+  public static Object propertyMacro_GetValue_0_27(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -504,21 +511,27 @@ public class QueriesGenerated extends QueryProviderBase {
     }
 
   }
-  public static Object propertyMacro_GetValue_0_27(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_28(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
     return String.format("        PacketListField(\"%s\", None, %s, count_from=lambda pkt:pkt.%s", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.counter$kzoe), PROPS.name$MnvL));
 
   }
-  public static Object propertyMacro_GetValue_0_28(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_29(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+    return String.format("  %s<type=%s, counter=%s> %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.counter$kzoe), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+  }
+  public static Object propertyMacro_GetValue_0_30(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
 
     return String.format("//not implemented EBMessageBitMember;", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
   }
-  public static Object propertyMacro_GetValue_0_29(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_31(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
@@ -530,7 +543,13 @@ public class QueriesGenerated extends QueryProviderBase {
 
     return String.format("        LEBitField('%s', 0, %s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp));
   }
-  public static Object propertyMacro_GetValue_0_30(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_32(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+    return String.format("  %s<type=%s, nbits=%s> %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+  }
+  public static Object propertyMacro_GetValue_0_33(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -560,7 +579,7 @@ public class QueriesGenerated extends QueryProviderBase {
     }
 
   }
-  public static Object propertyMacro_GetValue_0_31(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_34(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
@@ -582,7 +601,7 @@ public class QueriesGenerated extends QueryProviderBase {
     return String.format("        ConditionalField(%s, lambda pkt:pkt.%s&(1<<(%s)))", SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_map$Zjwo), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.pos$ZoEI));
 
   }
-  public static Object propertyMacro_GetValue_0_32(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_35(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -599,7 +618,7 @@ public class QueriesGenerated extends QueryProviderBase {
 
 
   }
-  public static Object propertyMacro_GetValue_0_33(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_36(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
@@ -622,7 +641,13 @@ public class QueriesGenerated extends QueryProviderBase {
     return "#not supported PresenceByLenField";
 
   }
-  public static Object propertyMacro_GetValue_0_34(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_37(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+    return String.format("  %s<type=%s, presence_length=%s> %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_len$vS6n), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+  }
+  public static Object propertyMacro_GetValue_0_38(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -639,7 +664,7 @@ public class QueriesGenerated extends QueryProviderBase {
     return String.format("    auto %1$s() {\n        return OptionalByEnumRef<%2$s, %3$s>(begin()+size(), %4$s);\n    }\n", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), enumType, Args, enumMember);
 
   }
-  public static Object propertyMacro_GetValue_0_35(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_39(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
@@ -675,7 +700,19 @@ public class QueriesGenerated extends QueryProviderBase {
     return rtv;
 
   }
-  public static Object propertyMacro_GetValue_0_36(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_40(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+    String rtv = String.format("  %s %s with presence value %s {\n", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_val$G2Qn), PROPS.name$MnvL));
+
+    for (SNode t : ListSequence.fromList(SLinkOperations.getChildren(_context.getNode(), LINKS.values$fyud))) {
+      rtv += String.format("    type: %s, enum value: %s\n", SPropertyOperations.getString(SLinkOperations.getTarget(t, LINKS.type$_vIh), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(t, LINKS.enum_value$_vXi), PROPS.name$MnvL));
+    }
+
+    return rtv + "  }";
+  }
+  public static Object propertyMacro_GetValue_0_41(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -699,7 +736,7 @@ public class QueriesGenerated extends QueryProviderBase {
     }
 
   }
-  public static Object propertyMacro_GetValue_0_37(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_42(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
@@ -728,7 +765,15 @@ public class QueriesGenerated extends QueryProviderBase {
     return "#not supported PresenceByValue";
 
   }
-  public static Object propertyMacro_GetValue_0_38(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_43(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+
+    return String.format("  %s<type=%s, presence_value=%s, expr:%s > %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_val$4Trn), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.pred$4TTp), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+
+  }
+  public static Object propertyMacro_GetValue_0_44(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -752,7 +797,7 @@ public class QueriesGenerated extends QueryProviderBase {
     }
 
   }
-  public static Object propertyMacro_GetValue_0_39(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_45(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
@@ -781,64 +826,93 @@ public class QueriesGenerated extends QueryProviderBase {
     return "#not supported PresenceByOptionalBitMember";
 
   }
-  public static Object propertyMacro_GetValue_0_40(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_46(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+
+    return String.format("  %s<type=%s, presence_value=%s, enum=%s, mask=%s> %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.presence_val$MrAR), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.target_enum$Mx0e), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.mask$Mxff), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+  }
+  public static Object propertyMacro_GetValue_0_47(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
     return String.format("    std::array<%s, %s> %s;", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$E0Ao), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
   }
-  public static Object propertyMacro_GetValue_0_41(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_48(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
 
     return String.format("        PacketListField(\"%s\", [], %s, count_from=lambda _:%s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$E0Ao));
   }
-  public static Object propertyMacro_GetValue_0_42(final PropertyMacroContext _context) {
-    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
-      return "";
-    }
-    return String.format("    VarArray<%s> %s() {return VarArray<%s>(begin()+size(), %s=%d);};", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getInteger(_context.getNode(), PROPS.offset$7HLp));
-  }
-  public static Object propertyMacro_GetValue_0_43(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_49(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
 
-    return String.format("        PacketListField(\"%s\", [], %s, length_from=lambda pkt:pkt.%s - %d),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getInteger(_context.getNode(), PROPS.offset$7HLp));
+    return String.format("  %s<type=%s, size=%s> %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$E0Ao), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
   }
-  public static Object propertyMacro_GetValue_0_44(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_50(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
+      return "";
+    }
+    return String.format("    VarArray<%s> %s() {return VarArray<%s>(begin()+size(), %s=%d);};", SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getString(_context.getNode(), PROPS.offset$7HLp));
+  }
+  public static Object propertyMacro_GetValue_0_51(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
+      return "";
+    }
+
+    return String.format("        PacketListField(\"%s\", [], %s, length_from=lambda pkt:pkt.%s - %d),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getString(_context.getNode(), PROPS.offset$7HLp));
+  }
+  public static Object propertyMacro_GetValue_0_52(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
+      return "";
+    }
+    return String.format("  %s<size=%s, offset=%s> %s\n", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getString(_context.getNode(), PROPS.offset$7HLp), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+
+  }
+  public static Object propertyMacro_GetValue_0_53(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
 
     return String.format("using %s = std::array<%s, %s>;", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$qzpR), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$qzRT));
   }
-  public static Object propertyMacro_GetValue_0_45(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_54(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
 
     return String.format("%1$s = PacketListField(\"%1$s\", None, %2$s, count_from=lambda _:%3$s)", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$qzpR), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$qzRT));
   }
-  public static Object propertyMacro_GetValue_0_46(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_55(final PropertyMacroContext _context) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
+      return "";
+    }
+    return String.format("%s<type=%s, size=%s>", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$qzpR), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$qzRT));
+  }
+  public static Object propertyMacro_GetValue_0_56(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
     return "#pragma pack(1)\n";
   }
-  public static Object propertyMacro_GetValue_0_47(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_57(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) == 0) {
       String base = "";
       if ((SLinkOperations.getTarget(_context.getNode(), LINKS.base$LfNH) != null)) {
         base = " : " + SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.base$LfNH), PROPS.name$MnvL);
       }
       return String.format("struct %s%s {\n", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), base);
-    } else {
+    } else if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) == 1) {
       return String.format("class %s(Packet):\n    name = '%s'\n    fields_desc = [\n", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
     }
+
+    return String.format("message %s : %s {\n", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), ((SLinkOperations.getTarget(_context.getNode(), LINKS.base$LfNH) != null) ? SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.base$LfNH), PROPS.name$MnvL) : ""));
   }
-  public static Object propertyMacro_GetValue_0_48(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_58(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -864,10 +938,11 @@ public class QueriesGenerated extends QueryProviderBase {
 
     return String.format("    %s\n    %s\n    %s\n    %s\n    %s\n    %s\n", begin, cbegin, end, cend, size, length);
   }
-  public static Object propertyMacro_GetValue_0_49(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_59(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) == 0) {
       return "};\n";
-    } else {
+
+    } else if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) == 1) {
       String padding = "";
       if (SPropertyOperations.getBoolean(_context.getNode(), PROPS.referred_as_member$L0d6)) {
         padding = String.format("\n    def extract_padding(self, s):\n        return '', s\n");
@@ -880,14 +955,16 @@ public class QueriesGenerated extends QueryProviderBase {
 
       return "    ]\n" + padding + bind;
     }
+
+    return "}\n";
   }
-  public static Object propertyMacro_GetValue_0_50(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_60(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
     return "#pragma pack()\n";
   }
-  public static Object propertyMacro_GetValue_0_51(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_61(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "";
     }
@@ -899,7 +976,7 @@ public class QueriesGenerated extends QueryProviderBase {
     }
     return "";
   }
-  public static Object propertyMacro_GetValue_0_52(final PropertyMacroContext _context) {
+  public static Object propertyMacro_GetValue_0_62(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {
       return "\n";
     }
@@ -1247,26 +1324,36 @@ public class QueriesGenerated extends QueryProviderBase {
     pvqMethods.put("8292100628472437903", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "eb"));
     pvqMethods.put("6284687853305109675", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("5619175737692404647", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273359954652", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("5693447180650097238", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("5693447180650097459", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "py"));
+    pvqMethods.put("3045013273361011244", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "eb"));
     pvqMethods.put("8968744803464932811", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("8968744803464932964", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273361329721", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("7035066850818182175", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("5619175737692422011", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
     pvqMethods.put("8968744803466654829", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("8968744803466654981", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273361899961", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("8968744803469122883", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("8968744803469122903", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273362014255", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("8968744803470768225", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("8968744803470768245", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273368195387", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("8968744803473991672", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("8968744803473991692", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273368313112", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("8968744803476429541", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("8968744803476429561", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273368152732", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("938998696761575501", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("938998696761575532", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273364690704", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("8968744803476807094", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "cpp"));
     pvqMethods.put("8968744803476807125", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "py"));
+    pvqMethods.put("3045013273364414034", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "eb"));
     pvqMethods.put("5619175737692848546", new PVQ(i++, MetaAdapterFactory.getProperty(0xcf681fc9c7984f89L, 0xaf38ba3c0ac342d9L, 0x692d8403c84c5eb9L, 0x692d8403c84cb291L, "text"), "pack_header"));
     pvqMethods.put("5619175737692952794", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "struct "));
     pvqMethods.put("5619175737692848595", new PVQ(i++, MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name"), "func"));
@@ -1400,10 +1487,30 @@ public class QueriesGenerated extends QueryProviderBase {
         case 52:
           return QueriesGenerated.propertyMacro_GetValue_0_52(ctx);
         case 53:
-          return QueriesGenerated.propertyMacro_GetValue_1_0(ctx);
+          return QueriesGenerated.propertyMacro_GetValue_0_53(ctx);
         case 54:
-          return QueriesGenerated.propertyMacro_GetValue_2_0(ctx);
+          return QueriesGenerated.propertyMacro_GetValue_0_54(ctx);
         case 55:
+          return QueriesGenerated.propertyMacro_GetValue_0_55(ctx);
+        case 56:
+          return QueriesGenerated.propertyMacro_GetValue_0_56(ctx);
+        case 57:
+          return QueriesGenerated.propertyMacro_GetValue_0_57(ctx);
+        case 58:
+          return QueriesGenerated.propertyMacro_GetValue_0_58(ctx);
+        case 59:
+          return QueriesGenerated.propertyMacro_GetValue_0_59(ctx);
+        case 60:
+          return QueriesGenerated.propertyMacro_GetValue_0_60(ctx);
+        case 61:
+          return QueriesGenerated.propertyMacro_GetValue_0_61(ctx);
+        case 62:
+          return QueriesGenerated.propertyMacro_GetValue_0_62(ctx);
+        case 63:
+          return QueriesGenerated.propertyMacro_GetValue_1_0(ctx);
+        case 64:
+          return QueriesGenerated.propertyMacro_GetValue_2_0(ctx);
+        case 65:
           return QueriesGenerated.propertyMacro_GetValue_3_0(ctx);
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));

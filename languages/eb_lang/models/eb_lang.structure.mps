@@ -769,8 +769,8 @@
   <node concept="1TIwiD" id="4W3c0IHYZDh">
     <property role="EcuMT" value="5693447180648184401" />
     <property role="3GE5qa" value="statement" />
-    <property role="TrG5h" value="EBMessageVarArrayMember" />
-    <property role="34LRSv" value="var_array" />
+    <property role="TrG5h" value="EBMessageVarStrMember" />
+    <property role="34LRSv" value="var_str" />
     <ref role="1TJDcQ" node="5hSnPGNaBks" resolve="EBMessageMemberVar" />
     <node concept="1TJgyj" id="4W3c0IHYZDi" role="1TKVEi">
       <property role="IQ2ns" value="5693447180648184402" />
@@ -781,7 +781,7 @@
     <node concept="1TJgyi" id="4W3c0IHYZDk" role="1TKVEl">
       <property role="IQ2nx" value="5693447180648184404" />
       <property role="TrG5h" value="offset" />
-      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
+      <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
     </node>
   </node>
   <node concept="1TIwiD" id="O7Z_rOpQhw">

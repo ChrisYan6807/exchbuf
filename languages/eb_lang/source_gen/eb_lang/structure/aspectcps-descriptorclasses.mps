@@ -598,7 +598,7 @@
       <property role="eg7rD" value="false" />
       <property role="34CwA1" value="false" />
       <property role="3TUv4t" value="false" />
-      <property role="TrG5h" value="props_EBMessageVarArrayMember" />
+      <property role="TrG5h" value="props_EBMessageVarStrMember" />
       <node concept="3uibUv" id="25" role="1tU5fm">
         <ref role="3uigEE" to="ze1i:~ConceptPresentation" resolve="ConceptPresentation" />
       </node>
@@ -3232,7 +3232,7 @@
                         </node>
                       </node>
                       <node concept="37vLTw" id="iw" role="37vLTJ">
-                        <ref role="3cqZAo" node="D" resolve="props_EBMessageVarArrayMember" />
+                        <ref role="3cqZAo" node="D" resolve="props_EBMessageVarStrMember" />
                       </node>
                     </node>
                   </node>
@@ -3240,19 +3240,19 @@
                 <node concept="3clFbC" id="ij" role="3clFbw">
                   <node concept="10Nm6u" id="iz" role="3uHU7w" />
                   <node concept="37vLTw" id="i$" role="3uHU7B">
-                    <ref role="3cqZAo" node="D" resolve="props_EBMessageVarArrayMember" />
+                    <ref role="3cqZAo" node="D" resolve="props_EBMessageVarStrMember" />
                   </node>
                 </node>
               </node>
               <node concept="3cpWs6" id="ih" role="3cqZAp">
                 <node concept="37vLTw" id="i_" role="3cqZAk">
-                  <ref role="3cqZAo" node="D" resolve="props_EBMessageVarArrayMember" />
+                  <ref role="3cqZAo" node="D" resolve="props_EBMessageVarStrMember" />
                 </node>
               </node>
             </node>
             <node concept="10M0yZ" id="if" role="3Kbmr1">
               <ref role="1PxDUh" node="mx" resolve="LanguageConceptSwitch" />
-              <ref role="3cqZAo" node="na" resolve="EBMessageVarArrayMember" />
+              <ref role="3cqZAo" node="na" resolve="EBMessageVarStrMember" />
             </node>
           </node>
           <node concept="3KbdKl" id="3m" role="3KbHQx">
@@ -4370,7 +4370,7 @@
       <property role="2dlcS1" value="false" />
       <property role="2dld4O" value="false" />
       <property role="3TUv4t" value="true" />
-      <property role="TrG5h" value="EBMessageVarArrayMember" />
+      <property role="TrG5h" value="EBMessageVarStrMember" />
       <node concept="3Tm1VV" id="pj" role="1B3o_S" />
       <node concept="10Oyi0" id="pk" role="1tU5fm" />
       <node concept="3cmrfG" id="pl" role="33vP2m">
@@ -5146,7 +5146,7 @@
                 <property role="11gdj1" value="4f03300badfbfa51L" />
               </node>
               <node concept="37vLTw" id="tS" role="37wK5m">
-                <ref role="3cqZAo" node="na" resolve="EBMessageVarArrayMember" />
+                <ref role="3cqZAo" node="na" resolve="EBMessageVarStrMember" />
               </node>
             </node>
           </node>
@@ -5860,12 +5860,12 @@
       <property role="eg7rD" value="false" />
       <property role="34CwA1" value="false" />
       <property role="3TUv4t" value="true" />
-      <property role="TrG5h" value="myConceptEBMessageVarArrayMember" />
+      <property role="TrG5h" value="myConceptEBMessageVarStrMember" />
       <node concept="3uibUv" id="y6" role="1tU5fm">
         <ref role="3uigEE" to="ze1i:~ConceptDescriptor" resolve="ConceptDescriptor" />
       </node>
       <node concept="1rXfSq" id="y7" role="33vP2m">
-        <ref role="37wK5l" node="wH" resolve="createDescriptorForEBMessageVarArrayMember" />
+        <ref role="37wK5l" node="wH" resolve="createDescriptorForEBMessageVarStrMember" />
       </node>
     </node>
     <node concept="312cEg" id="vH" role="jymVt">
@@ -6182,7 +6182,7 @@
               <ref role="3cqZAo" node="vF" resolve="myConceptEBMessagePresenceFieldMember" />
             </node>
             <node concept="37vLTw" id="zw" role="37wK5m">
-              <ref role="3cqZAo" node="vG" resolve="myConceptEBMessageVarArrayMember" />
+              <ref role="3cqZAo" node="vG" resolve="myConceptEBMessageVarStrMember" />
             </node>
             <node concept="37vLTw" id="zx" role="37wK5m">
               <ref role="3cqZAo" node="vH" resolve="myConceptEBNumberLiteral" />
@@ -6753,13 +6753,13 @@
             <node concept="3clFbS" id="B4" role="3Kbo56">
               <node concept="3cpWs6" id="B6" role="3cqZAp">
                 <node concept="37vLTw" id="B7" role="3cqZAk">
-                  <ref role="3cqZAo" node="vG" resolve="myConceptEBMessageVarArrayMember" />
+                  <ref role="3cqZAo" node="vG" resolve="myConceptEBMessageVarStrMember" />
                 </node>
               </node>
             </node>
             <node concept="10M0yZ" id="B5" role="3Kbmr1">
               <ref role="1PxDUh" node="mx" resolve="LanguageConceptSwitch" />
-              <ref role="3cqZAo" node="na" resolve="EBMessageVarArrayMember" />
+              <ref role="3cqZAo" node="na" resolve="EBMessageVarStrMember" />
             </node>
           </node>
           <node concept="3KbdKl" id="$s" role="3KbHQx">
@@ -14832,7 +14832,7 @@
       <property role="od$2w" value="false" />
       <property role="DiZV1" value="false" />
       <property role="2aFKle" value="false" />
-      <property role="TrG5h" value="createDescriptorForEBMessageVarArrayMember" />
+      <property role="TrG5h" value="createDescriptorForEBMessageVarStrMember" />
       <node concept="3clFbS" id="1mr" role="3clF47">
         <node concept="3cpWs8" id="1mu" role="3cqZAp">
           <node concept="3cpWsn" id="1mC" role="3cpWs9">
@@ -14847,7 +14847,7 @@
                   <property role="Xl_RC" value="eb_lang" />
                 </node>
                 <node concept="Xl_RD" id="1mH" role="37wK5m">
-                  <property role="Xl_RC" value="EBMessageVarArrayMember" />
+                  <property role="Xl_RC" value="EBMessageVarStrMember" />
                 </node>
                 <node concept="11gdke" id="1mI" role="37wK5m">
                   <property role="11gdj1" value="59242254602f42f3L" />
@@ -14955,7 +14955,7 @@
                 <node concept="liA8E" id="1nf" role="2OqNvi">
                   <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2$PropertyBuilder.type(jetbrains.mps.smodel.adapter.ids.STypeId)" resolve="type" />
                   <node concept="Rm8GO" id="1nk" role="37wK5m">
-                    <ref role="Rm8GQ" to="e8bb:~PrimitiveTypeId.INTEGER" resolve="INTEGER" />
+                    <ref role="Rm8GQ" to="e8bb:~PrimitiveTypeId.STRING" resolve="STRING" />
                     <ref role="1Px2BO" to="e8bb:~PrimitiveTypeId" resolve="PrimitiveTypeId" />
                   </node>
                 </node>
@@ -15029,7 +15029,7 @@
             <node concept="liA8E" id="1nE" role="2OqNvi">
               <ref role="37wK5l" to="bzg8:~ConceptDescriptorBuilder2.alias(java.lang.String)" resolve="alias" />
               <node concept="Xl_RD" id="1nF" role="37wK5m">
-                <property role="Xl_RC" value="var_array" />
+                <property role="Xl_RC" value="var_str" />
               </node>
             </node>
           </node>

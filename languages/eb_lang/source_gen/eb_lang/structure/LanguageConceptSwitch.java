@@ -48,7 +48,7 @@ public final class LanguageConceptSwitch {
   public static final int EBMessagePresenceByOptionalBitMember = 36;
   public static final int EBMessagePresenceByValueFieldMember = 37;
   public static final int EBMessagePresenceFieldMember = 38;
-  public static final int EBMessageVarArrayMember = 39;
+  public static final int EBMessageVarStrMember = 39;
   public static final int EBNumberLiteral = 40;
   public static final int EBPrimitiveType = 41;
   public static final int EBProtocol = 42;
@@ -101,7 +101,7 @@ public final class LanguageConceptSwitch {
     builder.put(0x7c7761e15adb3d7fL, EBMessagePresenceByOptionalBitMember);
     builder.put(0x3fa729f2354a0048L, EBMessagePresenceByValueFieldMember);
     builder.put(0x61a1940705f3e4dfL, EBMessagePresenceFieldMember);
-    builder.put(0x4f03300badfbfa51L, EBMessageVarArrayMember);
+    builder.put(0x4f03300badfbfa51L, EBMessageVarStrMember);
     builder.put(0x726a4e86e23f3d17L, EBNumberLiteral);
     builder.put(0x726a4e86e23f3d10L, EBPrimitiveType);
     builder.put(0x726a4e86e23f3cf6L, EBProtocol);

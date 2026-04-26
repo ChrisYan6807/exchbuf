@@ -52,7 +52,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptEBMessagePresenceByOptionalBitMember = createDescriptorForEBMessagePresenceByOptionalBitMember();
   /*package*/ final ConceptDescriptor myConceptEBMessagePresenceByValueFieldMember = createDescriptorForEBMessagePresenceByValueFieldMember();
   /*package*/ final ConceptDescriptor myConceptEBMessagePresenceFieldMember = createDescriptorForEBMessagePresenceFieldMember();
-  /*package*/ final ConceptDescriptor myConceptEBMessageVarArrayMember = createDescriptorForEBMessageVarArrayMember();
+  /*package*/ final ConceptDescriptor myConceptEBMessageVarStrMember = createDescriptorForEBMessageVarStrMember();
   /*package*/ final ConceptDescriptor myConceptEBNumberLiteral = createDescriptorForEBNumberLiteral();
   /*package*/ final ConceptDescriptor myConceptEBPrimitiveType = createDescriptorForEBPrimitiveType();
   /*package*/ final ConceptDescriptor myConceptEBProtocol = createDescriptorForEBProtocol();
@@ -77,7 +77,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptEBAlias, myConceptEBArray, myConceptEBBigEndian, myConceptEBBitField, myConceptEBBitFieldMember, myConceptEBCPP, myConceptEBChar, myConceptEBCharLiteral, myConceptEBComment, myConceptEBEmptyStatement, myConceptEBEndian, myConceptEBEnum, myConceptEBExtern, myConceptEBFixedLenghString, myConceptEBFloatDecimal, myConceptEBIIdentifierConcept, myConceptEBImportPrimitive, myConceptEBInclude, myConceptEBInt16, myConceptEBInt32, myConceptEBInt64, myConceptEBInt8, myConceptEBIntKVPair, myConceptEBIntLiteral, myConceptEBIntType, myConceptEBLittleEndian, myConceptEBMessage, myConceptEBMessageArrayMember, myConceptEBMessageBitMember, myConceptEBMessageBlockMember, myConceptEBMessageEntryMember, myConceptEBMessageMember, myConceptEBMessageMemberVar, myConceptEBMessagePresenceByEnumEntryMember, myConceptEBMessagePresenceByEnumMember, myConceptEBMessagePresenceByLengthFieldMember, myConceptEBMessagePresenceByOptionalBitMember, myConceptEBMessagePresenceByValueFieldMember, myConceptEBMessagePresenceFieldMember, myConceptEBMessageVarArrayMember, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBPython, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBUInt16, myConceptEBUInt32, myConceptEBUInt64, myConceptEBUInt8);
+    return Arrays.asList(myConceptEBAlias, myConceptEBArray, myConceptEBBigEndian, myConceptEBBitField, myConceptEBBitFieldMember, myConceptEBCPP, myConceptEBChar, myConceptEBCharLiteral, myConceptEBComment, myConceptEBEmptyStatement, myConceptEBEndian, myConceptEBEnum, myConceptEBExtern, myConceptEBFixedLenghString, myConceptEBFloatDecimal, myConceptEBIIdentifierConcept, myConceptEBImportPrimitive, myConceptEBInclude, myConceptEBInt16, myConceptEBInt32, myConceptEBInt64, myConceptEBInt8, myConceptEBIntKVPair, myConceptEBIntLiteral, myConceptEBIntType, myConceptEBLittleEndian, myConceptEBMessage, myConceptEBMessageArrayMember, myConceptEBMessageBitMember, myConceptEBMessageBlockMember, myConceptEBMessageEntryMember, myConceptEBMessageMember, myConceptEBMessageMemberVar, myConceptEBMessagePresenceByEnumEntryMember, myConceptEBMessagePresenceByEnumMember, myConceptEBMessagePresenceByLengthFieldMember, myConceptEBMessagePresenceByOptionalBitMember, myConceptEBMessagePresenceByValueFieldMember, myConceptEBMessagePresenceFieldMember, myConceptEBMessageVarStrMember, myConceptEBNumberLiteral, myConceptEBPrimitiveType, myConceptEBProtocol, myConceptEBPython, myConceptEBStatement, myConceptEBTypeStatement, myConceptEBUInt16, myConceptEBUInt32, myConceptEBUInt64, myConceptEBUInt8);
   }
 
   @Override
@@ -162,8 +162,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptEBMessagePresenceByValueFieldMember;
       case LanguageConceptSwitch.EBMessagePresenceFieldMember:
         return myConceptEBMessagePresenceFieldMember;
-      case LanguageConceptSwitch.EBMessageVarArrayMember:
-        return myConceptEBMessageVarArrayMember;
+      case LanguageConceptSwitch.EBMessageVarStrMember:
+        return myConceptEBMessageVarStrMember;
       case LanguageConceptSwitch.EBNumberLiteral:
         return myConceptEBNumberLiteral;
       case LanguageConceptSwitch.EBPrimitiveType:
@@ -631,16 +631,16 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.alias("optional");
     return b.create();
   }
-  private static ConceptDescriptor createDescriptorForEBMessageVarArrayMember() {
-    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBMessageVarArrayMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x4f03300badfbfa51L);
+  private static ConceptDescriptor createDescriptorForEBMessageVarStrMember() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("eb_lang", "EBMessageVarStrMember", 0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x4f03300badfbfa51L);
     b.class_(false, false, false);
     // extends: eb_lang.structure.EBMessageMemberVar
     b.super_(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL);
     b.origin("r:99a1f447-abd0-4348-b6c6-8254eb5de280(eb_lang.structure)/5693447180648184401");
     b.version(3);
-    b.property("offset", 0x4f03300badfbfa54L).type(PrimitiveTypeId.INTEGER).origin("5693447180648184404").done();
+    b.property("offset", 0x4f03300badfbfa54L).type(PrimitiveTypeId.STRING).origin("5693447180648184404").done();
     b.associate("size", 0x4f03300badfbfa52L).target(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L).optional(false).origin("5693447180648184402").done();
-    b.alias("var_array");
+    b.alias("var_str");
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForEBNumberLiteral() {

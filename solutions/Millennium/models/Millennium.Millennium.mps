@@ -57,7 +57,7 @@
         <property id="1374950686633462412" name="precision" index="1foOjh" />
         <property id="1374950686633462408" name="size" index="1foOjl" />
         <property id="685487308851322013" name="little_endian" index="1vB4Ie" />
-        <property id="80104936667564269" name="singed" index="3RNXZI" />
+        <property id="80104936667564269" name="signed" index="3RNXZI" />
       </concept>
       <concept id="6086719741696308508" name="eb_lang.structure.EBMessageMemberVar" flags="ng" index="1BkyD7">
         <reference id="4586680865736090769" name="type" index="bScPz" />

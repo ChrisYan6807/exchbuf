@@ -6524,23 +6524,9 @@
   </node>
   <node concept="13h7C7" id="4W3c0IHZ1M6">
     <property role="3GE5qa" value="statement" />
-    <ref role="13h7C2" to="wt0b:4W3c0IHYZDh" resolve="EBMessageVarArrayMember" />
+    <ref role="13h7C2" to="wt0b:4W3c0IHYZDh" resolve="EBMessageVarStrMember" />
     <node concept="13hLZK" id="4W3c0IHZ1M7" role="13h7CW">
-      <node concept="3clFbS" id="4W3c0IHZ1M8" role="2VODD2">
-        <node concept="3clFbF" id="4W3c0IHZ27K" role="3cqZAp">
-          <node concept="37vLTI" id="4W3c0IHZ6ji" role="3clFbG">
-            <node concept="3cmrfG" id="4W3c0IHZ6uc" role="37vLTx">
-              <property role="3cmrfH" value="0" />
-            </node>
-            <node concept="2OqwBi" id="4W3c0IHZ2op" role="37vLTJ">
-              <node concept="13iPFW" id="4W3c0IHZ2al" role="2Oq$k0" />
-              <node concept="3TrcHB" id="4W3c0IHZ4jl" role="2OqNvi">
-                <ref role="3TsBF5" to="wt0b:4W3c0IHYZDk" resolve="offset" />
-              </node>
-            </node>
-          </node>
-        </node>
-      </node>
+      <node concept="3clFbS" id="4W3c0IHZ1M8" role="2VODD2" />
     </node>
     <node concept="13i0hz" id="4W3c0IHZ6ud" role="13h7CS">
       <property role="TrG5h" value="isNotFixedLength" />

@@ -20,7 +20,7 @@ public final class BehaviorAspectDescriptor extends BaseBehaviorAspectDescriptor
   private final BHDescriptor myEBMessagePresenceByEnumMember__BehaviorDescriptor = new EBMessagePresenceByEnumMember__BehaviorDescriptor();
   private final BHDescriptor myEBMessagePresenceByValueFieldMember__BehaviorDescriptor = new EBMessagePresenceByValueFieldMember__BehaviorDescriptor();
   private final BHDescriptor myEBMessagePresenceByLengthFieldMember__BehaviorDescriptor = new EBMessagePresenceByLengthFieldMember__BehaviorDescriptor();
-  private final BHDescriptor myEBMessageVarArrayMember__BehaviorDescriptor = new EBMessageVarArrayMember__BehaviorDescriptor();
+  private final BHDescriptor myEBMessageVarStrMember__BehaviorDescriptor = new EBMessageVarStrMember__BehaviorDescriptor();
   private final BHDescriptor myEBInclude__BehaviorDescriptor = new EBInclude__BehaviorDescriptor();
   private final BHDescriptor myEBMessageMemberVar__BehaviorDescriptor = new EBMessageMemberVar__BehaviorDescriptor();
   private final BHDescriptor myEBMessagePresenceFieldMember__BehaviorDescriptor = new EBMessagePresenceFieldMember__BehaviorDescriptor();
@@ -127,7 +127,7 @@ public final class BehaviorAspectDescriptor extends BaseBehaviorAspectDescriptor
       case 31:
         return myEBMessagePresenceFieldMember__BehaviorDescriptor;
       case 32:
-        return myEBMessageVarArrayMember__BehaviorDescriptor;
+        return myEBMessageVarStrMember__BehaviorDescriptor;
       case 33:
         return myEBNumberLiteral__BehaviorDescriptor;
       case 34:

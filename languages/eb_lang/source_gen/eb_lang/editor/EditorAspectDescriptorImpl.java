@@ -78,7 +78,7 @@ public class EditorAspectDescriptorImpl extends EditorAspectDescriptorBase {
       case 27:
         return Collections.<ConceptEditor>singletonList(new EBMessagePresenceFieldMember_Editor());
       case 28:
-        return Collections.<ConceptEditor>singletonList(new EBMessageVarArrayMember_Editor());
+        return Collections.<ConceptEditor>singletonList(new EBMessageVarStrMember_Editor());
       case 29:
         return Collections.<ConceptEditor>singletonList(new EBNumberLiteral_Editor());
       case 30:
@@ -204,7 +204,7 @@ public class EditorAspectDescriptorImpl extends EditorAspectDescriptorBase {
       case 38:
         return Collections.<SubstituteMenu>singletonList(new GrammarCellsSubstituteMenu_EBMessagePresenceFieldMember());
       case 39:
-        return Collections.<SubstituteMenu>singletonList(new GrammarCellsSubstituteMenu_EBMessageVarArrayMember());
+        return Collections.<SubstituteMenu>singletonList(new GrammarCellsSubstituteMenu_EBMessageVarStrMember());
       case 40:
         return Collections.<SubstituteMenu>singletonList(new GrammarCellsSubstituteMenu_EBNumberLiteral());
       case 41:

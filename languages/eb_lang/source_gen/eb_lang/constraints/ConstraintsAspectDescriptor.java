@@ -60,7 +60,7 @@ public class ConstraintsAspectDescriptor extends BaseConstraintsAspectDescriptor
       case 18:
         return new EBMessagePresenceFieldMember_Constraints(context);
       case 19:
-        return new EBMessageVarArrayMember_Constraints(context);
+        return new EBMessageVarStrMember_Constraints(context);
       case 20:
         return new EBNumberLiteral_Constraints(context);
       case 21:

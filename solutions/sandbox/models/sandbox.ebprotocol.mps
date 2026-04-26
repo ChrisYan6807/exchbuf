@@ -13,12 +13,30 @@
         <reference id="4493654547886512862" name="type" index="20hb7u" />
         <reference id="349804917068590849" name="opt_type" index="3Ul2UQ" />
       </concept>
+      <concept id="4586680865752963856" name="eb_lang.structure.EBMessagePresenceByEnumMember" flags="ng" index="aVBby">
+        <reference id="4586680865752963857" name="presence_val" index="aVBbz" />
+        <child id="938998696757460004" name="values" index="3TNS9M" />
+      </concept>
+      <concept id="4586680865754378478" name="eb_lang.structure.EBMessagePresenceByLengthFieldMember" flags="ng" index="aYt$s">
+        <reference id="4586680865754378479" name="presence_len" index="aYt$t" />
+      </concept>
+      <concept id="4586680865734662652" name="eb_lang.structure.EBMessageBitMember" flags="ng" index="b_j0e">
+        <property id="4586680865734662655" name="nbits" index="b_j0d" />
+      </concept>
       <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
       <concept id="8244488409083636233" name="eb_lang.structure.EBPython" flags="ng" index="2gaMif">
         <property id="8244488409083636256" name="value" index="2gaMiA" />
       </concept>
+      <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
+        <reference id="2293153050483516742" name="base" index="2yvCZa" />
+        <child id="8888019748028577210" name="content" index="36JId$" />
+      </concept>
+      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageBlockMember" flags="ng" index="2gaMiJ">
+        <reference id="4482077330613725983" name="counter" index="3Pf6aa" />
+      </concept>
+      <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM" />
       <concept id="8244488409083636111" name="eb_lang.structure.EBBitField" flags="ng" index="2gaMs9">
         <child id="8244488409083636116" name="values" index="2gaMsi" />
         <child id="8244488409083636114" name="type" index="2gaMsk" />
@@ -37,6 +55,7 @@
       <concept id="8244488409083618478" name="eb_lang.structure.EBInt16" flags="ng" index="2gaQCC" />
       <concept id="8244488409083618484" name="eb_lang.structure.EBUInt8" flags="ng" index="2gaQCM" />
       <concept id="8244488409083618485" name="eb_lang.structure.EBFixedLenghString" flags="ng" index="2gaQCN">
+        <property id="8244488409083618486" name="length" index="2gaQCK" />
         <property id="8244488409083618488" name="padding" index="2gaQCY" />
       </concept>
       <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
@@ -52,6 +71,7 @@
         <property id="8292100628473464323" name="value" index="3yTNel" />
       </concept>
       <concept id="8244488409083493655" name="eb_lang.structure.EBNumberLiteral" flags="ng" index="2glneh" />
+      <concept id="8244488409083493652" name="eb_lang.structure.EBInt8" flags="ng" index="2glnei" />
       <concept id="8244488409083493653" name="eb_lang.structure.EBChar" flags="ng" index="2glnej" />
       <concept id="8244488409083493661" name="eb_lang.structure.EBIntKVPair" flags="ng" index="2glner">
         <child id="8244488409083493664" name="value" index="2glneA" />
@@ -62,6 +82,17 @@
         <property id="1374950686633462408" name="size" index="1foOjl" />
         <property id="685487308851322013" name="little_endian" index="1vB4Ie" />
         <property id="80104936667564269" name="signed" index="3RNXZI" />
+      </concept>
+      <concept id="5693447180648184401" name="eb_lang.structure.EBMessageVarStrMember" flags="ng" index="3yYcDq">
+        <property id="5693447180648184404" name="offset" index="3yYcDv" />
+        <reference id="5693447180648184402" name="size" index="3yYcDp" />
+      </concept>
+      <concept id="6086719741696308508" name="eb_lang.structure.EBMessageMemberVar" flags="ng" index="1BkyD7">
+        <reference id="4586680865736090769" name="type" index="bScPz" />
+      </concept>
+      <concept id="938998696751096928" name="eb_lang.structure.EBMessagePresenceByEnumEntryMember" flags="ng" index="3To9CQ">
+        <reference id="938998696751096934" name="type" index="3To9CK" />
+        <reference id="938998696751096935" name="enum_value" index="3To9CL" />
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
@@ -102,7 +133,18 @@
       <property role="TrG5h" value="str3" />
       <node concept="2gaQCN" id="7cjtpqhtybQ" role="2gaMi1">
         <property role="2gaQCY" value="'\0'" />
+        <property role="2gaQCK" value="3" />
       </node>
+    </node>
+    <node concept="2gaMi0" id="2D23R1v5TVf" role="2gln9U">
+      <property role="TrG5h" value="str10" />
+      <node concept="2gaQCN" id="2D23R1v5TVg" role="2gaMi1">
+        <property role="2gaQCY" value="'\0'" />
+        <property role="2gaQCK" value="10" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2D23R1v5TVe" role="2gln9U">
+      <property role="TrG5h" value="empty" />
     </node>
     <node concept="2gln9S" id="7cjtpqhKzoj" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -134,7 +176,11 @@
       <ref role="20hb7u" node="7cjtpqht0C4" resolve="Price3" />
       <ref role="3Ul2UQ" node="7cjtpqhKzoh" resolve="Price4" />
     </node>
-    <node concept="2gln9S" id="7cjtpqhq1B_" role="2gln9U">
+    <node concept="20ngxA" id="2D23R1uY2Ku" role="2gln9U">
+      <property role="TrG5h" value="MsgLen" />
+      <ref role="20hb7u" node="4nIu8bHFhNQ" resolve="U16" />
+    </node>
+    <node concept="2gln9S" id="2D23R1uY2Kt" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
     <node concept="2glneb" id="7cjtpqhT9Lr" role="2gln9U">
@@ -187,6 +233,172 @@
         <property role="2gaMsq" value="2" />
         <ref role="1rqnxW" node="7cjtpqhT9LG" resolve="E2" />
         <ref role="2pq4PT" node="7cjtpqhT9LK" resolve="F2" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2D23R1uY2JU" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2glneb" id="2D23R1uY2K5" role="2gln9U">
+      <property role="TrG5h" value="MsgType" />
+      <node concept="2gaQCC" id="2D23R1uY2Kd" role="2glne$" />
+      <node concept="2glner" id="2D23R1uY2K9" role="2glney">
+        <property role="TrG5h" value="New" />
+        <node concept="2glneh" id="2D23R1uY2Kh" role="2glneA">
+          <property role="3yTNel" value="1" />
+        </node>
+      </node>
+      <node concept="2glner" id="2D23R1uY2Ki" role="2glney">
+        <property role="TrG5h" value="Amend" />
+        <node concept="2glneh" id="2D23R1uY2Km" role="2glneA">
+          <property role="3yTNel" value="2" />
+        </node>
+      </node>
+      <node concept="2glner" id="2D23R1uY2Kn" role="2glney">
+        <property role="TrG5h" value="Cancel" />
+        <node concept="2glneh" id="2D23R1uY2Kr" role="2glneA">
+          <property role="3yTNel" value="3" />
+        </node>
+      </node>
+    </node>
+    <node concept="2gln9S" id="2D23R1uY2K3" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gaMiw" id="2D23R1uY2K0" role="2gln9U">
+      <property role="TrG5h" value="Head" />
+      <node concept="2gaMiM" id="2D23R1uY2Ks" role="36JId$">
+        <property role="TrG5h" value="len" />
+        <ref role="bScPz" node="2D23R1uY2Ku" resolve="MsgLen" />
+      </node>
+      <node concept="2gaMiM" id="2D23R1uY2K$" role="36JId$">
+        <property role="TrG5h" value="msgType" />
+        <ref role="bScPz" node="2D23R1uY2K5" resolve="MsgType" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2D23R1v258t" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gaMiw" id="2D23R1v258v" role="2gln9U">
+      <property role="TrG5h" value="RptGrp" />
+      <node concept="2gaMiM" id="2D23R1v258x" role="36JId$">
+        <property role="TrG5h" value="key" />
+        <ref role="bScPz" node="4nIu8bHFhNL" resolve="U8" />
+      </node>
+      <node concept="2gaMiM" id="2D23R1v258z" role="36JId$">
+        <property role="TrG5h" value="value" />
+        <ref role="bScPz" node="7cjtpqhtybM" resolve="str3" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="2D23R1v5TUC" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2glneb" id="2D23R1v5TUE" role="2gln9U">
+      <property role="TrG5h" value="AppendageType" />
+      <node concept="2glnei" id="2D23R1v5TUM" role="2glne$" />
+      <node concept="2glner" id="2D23R1v5TUI" role="2glney">
+        <property role="TrG5h" value="ClearingAccount" />
+        <node concept="2glneh" id="2D23R1v5TUQ" role="2glneA">
+          <property role="3yTNel" value="1" />
+        </node>
+      </node>
+      <node concept="2glner" id="2D23R1v5TUR" role="2glney">
+        <property role="TrG5h" value="ClearingAccountType" />
+        <node concept="2glneh" id="2D23R1v5TUV" role="2glneA">
+          <property role="3yTNel" value="2" />
+        </node>
+      </node>
+      <node concept="2glner" id="2D23R1v5TUW" role="2glney">
+        <property role="TrG5h" value="ClearingFirm" />
+        <node concept="2glneh" id="2D23R1v5TV0" role="2glneA">
+          <property role="3yTNel" value="3" />
+        </node>
+      </node>
+    </node>
+    <node concept="2gln9S" id="2D23R1v5TV4" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="20ngxA" id="2D23R1v5TV6" role="2gln9U">
+      <property role="TrG5h" value="ClearingAccount" />
+      <ref role="20hb7u" node="7cjtpqhtybM" resolve="str3" />
+    </node>
+    <node concept="20ngxA" id="2D23R1v5TV9" role="2gln9U">
+      <property role="TrG5h" value="ClearingAccountType" />
+      <ref role="20hb7u" node="4nIu8bHFhNL" resolve="U8" />
+    </node>
+    <node concept="20ngxA" id="2D23R1v5TVc" role="2gln9U">
+      <property role="TrG5h" value="ClearingFirm" />
+      <ref role="20hb7u" node="2D23R1v5TVf" resolve="str10" />
+    </node>
+    <node concept="2gln9S" id="2D23R1v5TUu" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gaMiw" id="2D23R1v5TUw" role="2gln9U">
+      <property role="TrG5h" value="Entry" />
+      <node concept="2gaMiM" id="2D23R1v5TUy" role="36JId$">
+        <property role="TrG5h" value="len" />
+        <ref role="bScPz" node="4nIu8bHFhNL" resolve="U8" />
+      </node>
+      <node concept="2gaMiM" id="2D23R1v5TV2" role="36JId$">
+        <property role="TrG5h" value="tag" />
+        <ref role="bScPz" node="2D23R1v5TUE" resolve="AppendageType" />
+      </node>
+      <node concept="aVBby" id="2D23R1v5TU$" role="36JId$">
+        <property role="TrG5h" value="value" />
+        <ref role="aVBbz" node="2D23R1v5TV2" resolve="tag" />
+        <node concept="3To9CQ" id="2D23R1v5TUA" role="3TNS9M">
+          <ref role="3To9CK" node="2D23R1v5TV6" resolve="ClearingAccount" />
+          <ref role="3To9CL" node="2D23R1v5TUI" resolve="ClearingAccount" />
+        </node>
+        <node concept="3To9CQ" id="2D23R1v5TVh" role="3TNS9M">
+          <ref role="3To9CK" node="2D23R1v5TV9" resolve="ClearingAccountType" />
+          <ref role="3To9CL" node="2D23R1v5TUR" resolve="ClearingAccountType" />
+        </node>
+        <node concept="3To9CQ" id="2D23R1v5TVi" role="3TNS9M">
+          <ref role="3To9CK" node="2D23R1v5TVc" resolve="ClearingFirm" />
+          <ref role="3To9CL" node="2D23R1v5TUW" resolve="ClearingFirm" />
+        </node>
+      </node>
+    </node>
+    <node concept="2gln9S" id="2D23R1uY2JY" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gaMiw" id="2D23R1uY2JW" role="2gln9U">
+      <property role="TrG5h" value="NewOrder" />
+      <ref role="2yvCZa" node="2D23R1uY2K0" resolve="Head" />
+      <node concept="2gaMiM" id="2D23R1uY2KA" role="36JId$">
+        <property role="TrG5h" value="price" />
+        <ref role="bScPz" node="7cjtpqhKzol" resolve="Price" />
+      </node>
+      <node concept="2gaMiM" id="2D23R1uY2KC" role="36JId$">
+        <property role="TrG5h" value="qty" />
+        <ref role="bScPz" node="4nIu8bHFhNQ" resolve="U16" />
+      </node>
+      <node concept="2gaMiM" id="2D23R1v258o" role="36JId$">
+        <property role="TrG5h" value="size" />
+        <ref role="bScPz" node="4nIu8bHFhNL" resolve="U8" />
+      </node>
+      <node concept="2gaMiJ" id="2D23R1v258r" role="36JId$">
+        <property role="TrG5h" value="grp" />
+        <ref role="bScPz" node="2D23R1v258v" resolve="RptGrp" />
+        <ref role="3Pf6aa" node="2D23R1v258o" resolve="size" />
+      </node>
+      <node concept="b_j0e" id="2D23R1v4y18" role="36JId$">
+        <property role="b_j0d" value="28" />
+        <property role="TrG5h" value="bitmem" />
+        <ref role="bScPz" node="4nIu8bHFhNQ" resolve="U16" />
+      </node>
+      <node concept="3yYcDq" id="2D23R1vBfrU" role="36JId$">
+        <property role="3yYcDv" value="2" />
+        <property role="TrG5h" value="sss" />
+        <ref role="3yYcDp" node="2D23R1v258o" resolve="size" />
+      </node>
+      <node concept="2gaMiM" id="2D23R1v5TUr" role="36JId$">
+        <property role="TrG5h" value="plen" />
+        <ref role="bScPz" node="4nIu8bHFhNQ" resolve="U16" />
+      </node>
+      <node concept="aYt$s" id="2D23R1v5TVj" role="36JId$">
+        <property role="TrG5h" value="appendage" />
+        <ref role="bScPz" node="2D23R1v5TUw" resolve="Entry" />
+        <ref role="aYt$t" node="2D23R1v5TUr" resolve="plen" />
       </node>
     </node>
     <node concept="2gln9S" id="7cjtpqhT9LF" role="2gln9U">
