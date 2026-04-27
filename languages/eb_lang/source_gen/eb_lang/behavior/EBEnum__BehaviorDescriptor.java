@@ -14,10 +14,10 @@ import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
-import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
@@ -38,7 +38,7 @@ public final class EBEnum__BehaviorDescriptor extends BaseBHDescriptor {
   }
 
   /*package*/ static String eb_string_id7cjtpqhK_7J(@NotNull SNode __thisNode__) {
-    String rtv = String.format("enum %s : %s {\n", SPropertyOperations.getString(__thisNode__, PROPS.name$MnvL), EBPrimitiveType__BehaviorDescriptor.eb_string_id7cjtpqhs3YN.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.type$_ySl)));
+    String rtv = String.format("enum %s : %s {\n", SPropertyOperations.getString(__thisNode__, PROPS.name$MnvL), SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(__thisNode__, LINKS.type$_ySl))));
 
     for (SNode kv : ListSequence.fromList(SLinkOperations.getChildren(__thisNode__, LINKS.values$_zmn))) {
       rtv += String.format("  %s = %s\n", SPropertyOperations.getString(kv, PROPS.name$MnvL), EBIntLiteral__BehaviorDescriptor.get_value_id7cjtpqiaFf_.invoke(SLinkOperations.getTarget(kv, LINKS.value$_yQp)));

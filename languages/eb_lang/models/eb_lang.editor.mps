@@ -14806,11 +14806,17 @@
         <property role="1$x2rV" value="0" />
         <ref role="1NtTu8" to="wt0b:79EjCrygiiS" resolve="padding" />
       </node>
+      <node concept="3F0ifn" id="2D23R1w1mC7" role="3EZMnx">
+        <property role="3F0ifm" value="," />
+        <node concept="11L4FC" id="25jvKnMKC$m" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
+      </node>
       <node concept="3F0ifn" id="4W3c0IIg00o" role="3EZMnx">
-        <property role="3F0ifm" value="left_padding=" />
+        <property role="3F0ifm" value="right_padding=" />
       </node>
       <node concept="3F0A7n" id="4W3c0IIg00r" role="3EZMnx">
-        <ref role="1NtTu8" to="wt0b:4W3c0IIg00k" resolve="left_padding" />
+        <ref role="1NtTu8" to="wt0b:4W3c0IIg00k" resolve="right_padding" />
         <node concept="11L4FC" id="4W3c0IIu2Rg" role="3F10Kt">
           <property role="VOm3f" value="true" />
         </node>
@@ -16356,6 +16362,9 @@
       </node>
       <node concept="3F0ifn" id="O7Z_rOpQhT" role="3EZMnx">
         <property role="3F0ifm" value=", enum value:" />
+        <node concept="11L4FC" id="2D23R1wlj8s" role="3F10Kt">
+          <property role="VOm3f" value="true" />
+        </node>
       </node>
       <node concept="1iCGBv" id="O7Z_rOpQhV" role="3EZMnx">
         <ref role="1NtTu8" to="wt0b:O7Z_rOpQhB" resolve="enum_value" />

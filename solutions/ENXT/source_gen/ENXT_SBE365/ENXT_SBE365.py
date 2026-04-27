@@ -106,29 +106,26 @@ class TemplateIdType(int, Enum):
 class MessageHeader(Packet):
     name = 'MessageHeader'
     fields_desc = [
-        uint16("frameLength", 0)
-        uint16("blockLength", 0)
-        LEShortEnumField("templateId", TemplateIdType.DeclarationEntryReject, TemplateIdType)
-        uint16("schemaId", 0)
-        uint16("version", 365)
+    uint16("frameLength", 0),
+    uint16("blockLength", 0),
+    LEShortEnumField("templateId", TemplateIdType.DeclarationEntryReject, TemplateIdType),
+    uint16("schemaId", 0),
+    uint16("version", 365),
     ]
-
 
 class groupSizeEncoding(Packet):
     name = 'groupSizeEncoding'
     fields_desc = [
-        uint8("blockLength", 0)
-        uint8("numInGroup", 0)
+    uint8("blockLength", 0),
+    uint8("numInGroup", 0),
     ]
-
 
 class groupSizeEncoding16(Packet):
     name = 'groupSizeEncoding16'
     fields_desc = [
-        uint16("blockLength", 0)
-        uint8("numInGroup", 0)
+    uint16("blockLength", 0),
+    uint8("numInGroup", 0),
     ]
-
 
 class AccountType_enum(int, Enum):
     Client = 1
@@ -1179,2037 +1176,1878 @@ class TargetCounterparties_set(Packet):
 class NewOrder_FreeTextSection(Packet):
     name = 'NewOrder_FreeTextSection'
     fields_desc = [
-        char18("freeText", "")
+    char18("freeText", ""),
     ]
-
 
 class NewOrder_FreeTextSection_Composite(Packet):
     name = 'NewOrder_FreeTextSection_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_FreeTextSection, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder_MiFIDShortcodes(Packet):
     name = 'NewOrder_MiFIDShortcodes'
     fields_desc = [
-        i32("investmentDecisionWFirmShortCode", -2147483648)
-        i32("nonExecutingBrokerShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
+    i32("investmentDecisionWFirmShortCode", -2147483648),
+    i32("nonExecutingBrokerShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
     ]
-
 
 class NewOrder_MiFIDShortcodes_Composite(Packet):
     name = 'NewOrder_MiFIDShortcodes_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_MiFIDShortcodes, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder_OptionalFields(Packet):
     name = 'NewOrder_OptionalFields'
     fields_desc = [
-        i64("stopPx", -9223372036854775808)
-        i64("undisclosedPrice", -9223372036854775808)
-        u64("disclosedQty", 18446744073709551615)
-        u64("minOrderQty", 18446744073709551615)
-        u64("quoteReqID", 18446744073709551615)
-        u32("orderExpirationTime", 4294967295)
-        u16("orderExpirationDate", 65535)
-        i8("pegOffset", -128)
-        PacketField("tradingSession", 0, TradingSessionValidity_set)
-        ByteEnumField("undisclosedIcebergType", UndisclosedIcebergType_enum.Peg_Market, UndisclosedIcebergType_enum)
-        ByteEnumField("stopTriggeredTimeInForce", TriggeredStopTimeInForce_enum.Good_till_Date, TriggeredStopTimeInForce_enum)
+    i64("stopPx", -9223372036854775808),
+    i64("undisclosedPrice", -9223372036854775808),
+    u64("disclosedQty", 18446744073709551615),
+    u64("minOrderQty", 18446744073709551615),
+    u64("quoteReqID", 18446744073709551615),
+    u32("orderExpirationTime", 4294967295),
+    u16("orderExpirationDate", 65535),
+    i8("pegOffset", -128),
+    PacketField("tradingSession", 0, TradingSessionValidity_set),
+    ByteEnumField("undisclosedIcebergType", UndisclosedIcebergType_enum.Peg_Market, UndisclosedIcebergType_enum),
+    ByteEnumField("stopTriggeredTimeInForce", TriggeredStopTimeInForce_enum.Good_till_Date, TriggeredStopTimeInForce_enum),
     ]
-
 
 class NewOrder_OptionalFields_Composite(Packet):
     name = 'NewOrder_OptionalFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_OptionalFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder_ClearingFields(Packet):
     name = 'NewOrder_ClearingFields'
     fields_desc = [
-        char8("clearingFirmID", "")
-        char8("clientID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
-        ByteEnumField("accountTypeCross", AccountTypeCross_enum.Ceres_Client, AccountTypeCross_enum)
-        ByteEnumField("tradingCapacityCross", TradingCapacityCross_enum.Any_other_capacity, TradingCapacityCross_enum)
+    char8("clearingFirmID", ""),
+    char8("clientID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
+    ByteEnumField("accountTypeCross", AccountTypeCross_enum.Ceres_Client, AccountTypeCross_enum),
+    ByteEnumField("tradingCapacityCross", TradingCapacityCross_enum.Any_other_capacity, TradingCapacityCross_enum),
     ]
-
 
 class NewOrder_ClearingFields_Composite(Packet):
     name = 'NewOrder_ClearingFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_ClearingFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder_NotUsedGroup1(Packet):
     name = 'NewOrder_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class NewOrder_NotUsedGroup1_Composite(Packet):
     name = 'NewOrder_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder_NotUsedGroup2(Packet):
     name = 'NewOrder_NotUsedGroup2'
     fields_desc = [
     ]
 
-
 class NewOrder_NotUsedGroup2_Composite(Packet):
     name = 'NewOrder_NotUsedGroup2_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_NotUsedGroup2, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder_AdditionalInfos(Packet):
     name = 'NewOrder_AdditionalInfos'
     fields_desc = [
-        char16("longClientID", "")
+    char16("longClientID", ""),
     ]
-
 
 class NewOrder_AdditionalInfos_Composite(Packet):
     name = 'NewOrder_AdditionalInfos_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_AdditionalInfos, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder_OptionalIDs(Packet):
     name = 'NewOrder_OptionalIDs'
     fields_desc = [
-        u32("lPID", 4294967295)
+    u32("lPID", 4294967295),
     ]
-
 
 class NewOrder_OptionalIDs_Composite(Packet):
     name = 'NewOrder_OptionalIDs_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewOrder_OptionalIDs, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewOrder(Packet):
     name = 'NewOrder'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum)
-        ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum)
-        ByteEnumField("timeInForce", TimeInForce_enum.Valid_for_Session, TimeInForce_enum)
-        i64("orderPx", -9223372036854775808)
-        u64("orderQty", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum)
-        PacketField("executionInstruction", 0, ExecutionInstruction_set)
-        PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        u16("sTPID", 65535)
-        u16("nonExecutingClientID", 65535)
-        i64("iOIID", -9223372036854775808)
-        PacketField("FreeTextSection", "", NewOrder_FreeTextSection_Composite)
-        PacketField("MiFIDShortcodes", "", NewOrder_MiFIDShortcodes_Composite)
-        PacketField("OptionalFields", "", NewOrder_OptionalFields_Composite)
-        PacketField("ClearingFields", "", NewOrder_ClearingFields_Composite)
-        PacketField("NotUsedGroup1", "", NewOrder_NotUsedGroup1_Composite)
-        PacketField("NotUsedGroup2", "", NewOrder_NotUsedGroup2_Composite)
-        PacketField("AdditionalInfos", "", NewOrder_AdditionalInfos_Composite)
-        PacketField("OptionalIDs", "", NewOrder_OptionalIDs_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum),
+    ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum),
+    ByteEnumField("timeInForce", TimeInForce_enum.Valid_for_Session, TimeInForce_enum),
+    i64("orderPx", -9223372036854775808),
+    u64("orderQty", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum),
+    PacketField("executionInstruction", 0, ExecutionInstruction_set),
+    PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    u16("sTPID", 65535),
+    u16("nonExecutingClientID", 65535),
+    i64("iOIID", -9223372036854775808),
+    PacketField("FreeTextSection", "", NewOrder_FreeTextSection_Composite),
+    PacketField("MiFIDShortcodes", "", NewOrder_MiFIDShortcodes_Composite),
+    PacketField("OptionalFields", "", NewOrder_OptionalFields_Composite),
+    PacketField("ClearingFields", "", NewOrder_ClearingFields_Composite),
+    PacketField("NotUsedGroup1", "", NewOrder_NotUsedGroup1_Composite),
+    PacketField("NotUsedGroup2", "", NewOrder_NotUsedGroup2_Composite),
+    PacketField("AdditionalInfos", "", NewOrder_AdditionalInfos_Composite),
+    PacketField("OptionalIDs", "", NewOrder_OptionalIDs_Composite),
     ]
 bind_layers(MessageHeader, NewOrder, templateId=TemplateIdType.NewOrder)
-
 class Ack_MiFIDFields(Packet):
     name = 'Ack_MiFIDFields'
     fields_desc = [
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
     ]
-
 
 class Ack_MiFIDFields_Composite(Packet):
     name = 'Ack_MiFIDFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Ack_MiFIDFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Ack(Packet):
     name = 'Ack'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        i64("origClientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum)
-        ByteEnumField("ackType", AckType_enum.AVD_Triggered_Ack, AckType_enum)
-        ByteEnumField("ackPhase", AckPhase_enum.Uncrossing_Phase, AckPhase_enum)
-        u64("orderID", 18446744073709551615)
-        u64("orderPriority", 18446744073709551615)
-        i64("orderPx", -9223372036854775808)
-        u64("orderQty", 18446744073709551615)
-        PacketField("ackQualifiers", 0, AckQualifiers_set)
-        i64("orderTolerablePrice", -9223372036854775808)
-        PacketField("MiFIDFields", "", Ack_MiFIDFields_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    i64("origClientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum),
+    ByteEnumField("ackType", AckType_enum.AVD_Triggered_Ack, AckType_enum),
+    ByteEnumField("ackPhase", AckPhase_enum.Uncrossing_Phase, AckPhase_enum),
+    u64("orderID", 18446744073709551615),
+    u64("orderPriority", 18446744073709551615),
+    i64("orderPx", -9223372036854775808),
+    u64("orderQty", 18446744073709551615),
+    PacketField("ackQualifiers", 0, AckQualifiers_set),
+    i64("orderTolerablePrice", -9223372036854775808),
+    PacketField("MiFIDFields", "", Ack_MiFIDFields_Composite),
     ]
 bind_layers(MessageHeader, Ack, templateId=TemplateIdType.Ack)
-
 class Fill_OptionalFieldsFill(Packet):
     name = 'Fill_OptionalFieldsFill'
     fields_desc = [
-        char8("counterpartFirmID", "")
-        i64("otherLegLastPx", -9223372036854775808)
-        char12("packageID", "")
-        u32("underlyingInstrumentID", 4294967295)
+    char8("counterpartFirmID", ""),
+    i64("otherLegLastPx", -9223372036854775808),
+    char12("packageID", ""),
+    u32("underlyingInstrumentID", 4294967295),
     ]
-
 
 class Fill_OptionalFieldsFill_Composite(Packet):
     name = 'Fill_OptionalFieldsFill_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Fill_OptionalFieldsFill, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Fill_StrategyFields(Packet):
     name = 'Fill_StrategyFields'
     fields_desc = [
-        i64("legLastPx", -9223372036854775808)
-        u64("legLastQty", 18446744073709551615)
-        u32("legInstrumentID", 4294967295)
-        ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum)
-        u32("executionID", 4294967295)
-        char16("tradeUniqueIdentifier", "")
+    i64("legLastPx", -9223372036854775808),
+    u64("legLastQty", 18446744073709551615),
+    u32("legInstrumentID", 4294967295),
+    ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum),
+    u32("executionID", 4294967295),
+    char16("tradeUniqueIdentifier", ""),
     ]
-
 
 class Fill_StrategyFields_Composite(Packet):
     name = 'Fill_StrategyFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Fill_StrategyFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Fill_MiFIDFields(Packet):
     name = 'Fill_MiFIDFields'
     fields_desc = [
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
     ]
-
 
 class Fill_MiFIDFields_Composite(Packet):
     name = 'Fill_MiFIDFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Fill_MiFIDFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Fill_OptionalFieldsDerivatives(Packet):
     name = 'Fill_OptionalFieldsDerivatives'
     fields_desc = [
-        i64("evaluatedPrice", -9223372036854775808)
-        ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum)
-        u32("finalSymbolIndex", 4294967295)
-        u32("finalExecutionID", 4294967295)
+    i64("evaluatedPrice", -9223372036854775808),
+    ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum),
+    u32("finalSymbolIndex", 4294967295),
+    u32("finalExecutionID", 4294967295),
     ]
-
 
 class Fill_OptionalFieldsDerivatives_Composite(Packet):
     name = 'Fill_OptionalFieldsDerivatives_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Fill_OptionalFieldsDerivatives, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Fill(Packet):
     name = 'Fill'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("tradeTime", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", FillOrderSide_enum.Sell, FillOrderSide_enum)
-        ByteEnumField("tradeType", TradeType_enum.Block_Historical_Trade, TradeType_enum)
-        PacketField("tradeQualifier", 0, TradeQualifier_set)
-        u64("orderID", 18446744073709551615)
-        i64("lastTradedPx", -9223372036854775808)
-        u64("lastShares", 18446744073709551615)
-        u64("leavesQty", 18446744073709551615)
-        u32("executionID", 4294967295)
-        ByteEnumField("executionPhase", ExecutionPhase_enum.IPO, ExecutionPhase_enum)
-        u32("lISTransactionID", 4294967295)
-        unsigned_char("eSCBMembership", 255)
-        char16("tradeUniqueIdentifier", "")
-        PacketField("OptionalFieldsFill", "", Fill_OptionalFieldsFill_Composite)
-        PacketField("StrategyFields", "", Fill_StrategyFields_Composite)
-        PacketField("MiFIDFields", "", Fill_MiFIDFields_Composite)
-        PacketField("OptionalFieldsDerivatives", "", Fill_OptionalFieldsDerivatives_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("tradeTime", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", FillOrderSide_enum.Sell, FillOrderSide_enum),
+    ByteEnumField("tradeType", TradeType_enum.Block_Historical_Trade, TradeType_enum),
+    PacketField("tradeQualifier", 0, TradeQualifier_set),
+    u64("orderID", 18446744073709551615),
+    i64("lastTradedPx", -9223372036854775808),
+    u64("lastShares", 18446744073709551615),
+    u64("leavesQty", 18446744073709551615),
+    u32("executionID", 4294967295),
+    ByteEnumField("executionPhase", ExecutionPhase_enum.IPO, ExecutionPhase_enum),
+    u32("lISTransactionID", 4294967295),
+    unsigned_char("eSCBMembership", 255),
+    char16("tradeUniqueIdentifier", ""),
+    PacketField("OptionalFieldsFill", "", Fill_OptionalFieldsFill_Composite),
+    PacketField("StrategyFields", "", Fill_StrategyFields_Composite),
+    PacketField("MiFIDFields", "", Fill_MiFIDFields_Composite),
+    PacketField("OptionalFieldsDerivatives", "", Fill_OptionalFieldsDerivatives_Composite),
     ]
 bind_layers(MessageHeader, Fill, templateId=TemplateIdType.Fill)
-
 class Kill_MiFIDFields(Packet):
     name = 'Kill_MiFIDFields'
     fields_desc = [
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
     ]
-
 
 class Kill_MiFIDFields_Composite(Packet):
     name = 'Kill_MiFIDFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Kill_MiFIDFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Kill(Packet):
     name = 'Kill'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        i64("origClientOrderID", -9223372036854775808)
-        u64("orderID", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        LEShortEnumField("killReason", KillReason_enum.Order_Cancelled_due_to_incompatibility_with_Uncrossing_Price, KillReason_enum)
-        PacketField("ackQualifiers", 0, AckQualifiers_set)
-        PacketField("MiFIDFields", "", Kill_MiFIDFields_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    i64("origClientOrderID", -9223372036854775808),
+    u64("orderID", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    LEShortEnumField("killReason", KillReason_enum.Order_Cancelled_due_to_incompatibility_with_Uncrossing_Price, KillReason_enum),
+    PacketField("ackQualifiers", 0, AckQualifiers_set),
+    PacketField("MiFIDFields", "", Kill_MiFIDFields_Composite),
     ]
 bind_layers(MessageHeader, Kill, templateId=TemplateIdType.Kill)
-
 class CancelReplace_FreeTextSection(Packet):
     name = 'CancelReplace_FreeTextSection'
     fields_desc = [
-        char18("freeText", "")
+    char18("freeText", ""),
     ]
-
 
 class CancelReplace_FreeTextSection_Composite(Packet):
     name = 'CancelReplace_FreeTextSection_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelReplace_FreeTextSection, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelReplace_OptionalFields(Packet):
     name = 'CancelReplace_OptionalFields'
     fields_desc = [
-        i64("stopPx", -9223372036854775808)
-        i8("pegOffset", -128)
-        i64("undisclosedPrice", -9223372036854775808)
-        u64("disclosedQty", 18446744073709551615)
-        u32("orderExpirationTime", 4294967295)
-        u16("orderExpirationDate", 65535)
-        PacketField("tradingSession", 0, TradingSessionValidity_set)
-        ByteEnumField("stopTriggeredTimeInForce", TriggeredStopTimeInForce_enum.Good_till_Date, TriggeredStopTimeInForce_enum)
-        ByteEnumField("undisclosedIcebergType", UndisclosedIcebergType_enum.Peg_Market, UndisclosedIcebergType_enum)
+    i64("stopPx", -9223372036854775808),
+    i8("pegOffset", -128),
+    i64("undisclosedPrice", -9223372036854775808),
+    u64("disclosedQty", 18446744073709551615),
+    u32("orderExpirationTime", 4294967295),
+    u16("orderExpirationDate", 65535),
+    PacketField("tradingSession", 0, TradingSessionValidity_set),
+    ByteEnumField("stopTriggeredTimeInForce", TriggeredStopTimeInForce_enum.Good_till_Date, TriggeredStopTimeInForce_enum),
+    ByteEnumField("undisclosedIcebergType", UndisclosedIcebergType_enum.Peg_Market, UndisclosedIcebergType_enum),
     ]
-
 
 class CancelReplace_OptionalFields_Composite(Packet):
     name = 'CancelReplace_OptionalFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelReplace_OptionalFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelReplace_ClearingFields(Packet):
     name = 'CancelReplace_ClearingFields'
     fields_desc = [
-        char8("clearingFirmID", "")
-        char8("clientID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
+    char8("clearingFirmID", ""),
+    char8("clientID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
     ]
-
 
 class CancelReplace_ClearingFields_Composite(Packet):
     name = 'CancelReplace_ClearingFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelReplace_ClearingFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelReplace_NotUsedGroup1(Packet):
     name = 'CancelReplace_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class CancelReplace_NotUsedGroup1_Composite(Packet):
     name = 'CancelReplace_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelReplace_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelReplace_NotUsedGroup2(Packet):
     name = 'CancelReplace_NotUsedGroup2'
     fields_desc = [
     ]
 
-
 class CancelReplace_NotUsedGroup2_Composite(Packet):
     name = 'CancelReplace_NotUsedGroup2_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelReplace_NotUsedGroup2, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelReplace_AdditionalInfos(Packet):
     name = 'CancelReplace_AdditionalInfos'
     fields_desc = [
-        char16("longClientID", "")
+    char16("longClientID", ""),
     ]
-
 
 class CancelReplace_AdditionalInfos_Composite(Packet):
     name = 'CancelReplace_AdditionalInfos_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelReplace_AdditionalInfos, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelReplace(Packet):
     name = 'CancelReplace'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u64("orderID", 18446744073709551615)
-        i64("origClientOrderID", -9223372036854775808)
-        i64("orderPx", -9223372036854775808)
-        u64("orderQty", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", CancelReplaceOrderSide_enum.Sell, CancelReplaceOrderSide_enum)
-        ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum)
-        ByteEnumField("timeInForce", TimeInForce_enum.Valid_for_Session, TimeInForce_enum)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum)
-        PacketField("executionInstruction", 0, ExecutionInstruction_set)
-        PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        u16("sTPID", 65535)
-        PacketField("FreeTextSection", "", CancelReplace_FreeTextSection_Composite)
-        PacketField("OptionalFields", "", CancelReplace_OptionalFields_Composite)
-        PacketField("ClearingFields", "", CancelReplace_ClearingFields_Composite)
-        PacketField("NotUsedGroup1", "", CancelReplace_NotUsedGroup1_Composite)
-        PacketField("NotUsedGroup2", "", CancelReplace_NotUsedGroup2_Composite)
-        PacketField("AdditionalInfos", "", CancelReplace_AdditionalInfos_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u64("orderID", 18446744073709551615),
+    i64("origClientOrderID", -9223372036854775808),
+    i64("orderPx", -9223372036854775808),
+    u64("orderQty", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", CancelReplaceOrderSide_enum.Sell, CancelReplaceOrderSide_enum),
+    ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum),
+    ByteEnumField("timeInForce", TimeInForce_enum.Valid_for_Session, TimeInForce_enum),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum),
+    PacketField("executionInstruction", 0, ExecutionInstruction_set),
+    PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    u16("sTPID", 65535),
+    PacketField("FreeTextSection", "", CancelReplace_FreeTextSection_Composite),
+    PacketField("OptionalFields", "", CancelReplace_OptionalFields_Composite),
+    PacketField("ClearingFields", "", CancelReplace_ClearingFields_Composite),
+    PacketField("NotUsedGroup1", "", CancelReplace_NotUsedGroup1_Composite),
+    PacketField("NotUsedGroup2", "", CancelReplace_NotUsedGroup2_Composite),
+    PacketField("AdditionalInfos", "", CancelReplace_AdditionalInfos_Composite),
     ]
 bind_layers(MessageHeader, CancelReplace, templateId=TemplateIdType.CancelReplace)
-
 class Reject_CollarFields(Packet):
     name = 'Reject_CollarFields'
     fields_desc = [
-        ByteEnumField("collarRejType", CollarRejectionType_enum.High_static_collar, CollarRejectionType_enum)
-        i64("breachedCollarPrice", -9223372036854775808)
+    ByteEnumField("collarRejType", CollarRejectionType_enum.High_static_collar, CollarRejectionType_enum),
+    i64("breachedCollarPrice", -9223372036854775808),
     ]
-
 
 class Reject_CollarFields_Composite(Packet):
     name = 'Reject_CollarFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Reject_CollarFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Reject_MiFIDFields(Packet):
     name = 'Reject_MiFIDFields'
     fields_desc = [
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
     ]
-
 
 class Reject_MiFIDFields_Composite(Packet):
     name = 'Reject_MiFIDFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Reject_MiFIDFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Reject(Packet):
     name = 'Reject'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u64("orderID", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        unsigned_char("rejectedMessage", 255)
-        u16("errorCode", 65535)
-        u16("rejectedMessageID", 65535)
-        PacketField("ackQualifiers", 0, AckQualifiers_set)
-        PacketField("CollarFields", "", Reject_CollarFields_Composite)
-        PacketField("MiFIDFields", "", Reject_MiFIDFields_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u64("orderID", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    unsigned_char("rejectedMessage", 255),
+    u16("errorCode", 65535),
+    u16("rejectedMessageID", 65535),
+    PacketField("ackQualifiers", 0, AckQualifiers_set),
+    PacketField("CollarFields", "", Reject_CollarFields_Composite),
+    PacketField("MiFIDFields", "", Reject_MiFIDFields_Composite),
     ]
 bind_layers(MessageHeader, Reject, templateId=TemplateIdType.Reject)
-
 class Quotes_MiFIDShortcodes(Packet):
     name = 'Quotes_MiFIDShortcodes'
     fields_desc = [
-        i32("investmentDecisionWFirmShortCode", -2147483648)
-        i32("nonExecutingBrokerShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
+    i32("investmentDecisionWFirmShortCode", -2147483648),
+    i32("nonExecutingBrokerShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
     ]
-
 
 class Quotes_MiFIDShortcodes_Composite(Packet):
     name = 'Quotes_MiFIDShortcodes_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Quotes_MiFIDShortcodes, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Quotes_ClearingDataset(Packet):
     name = 'Quotes_ClearingDataset'
     fields_desc = [
-        char8("clearingFirmID", "")
-        char8("clientID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
-        char18("freeText", "")
+    char8("clearingFirmID", ""),
+    char8("clientID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
+    char18("freeText", ""),
     ]
-
 
 class Quotes_ClearingDataset_Composite(Packet):
     name = 'Quotes_ClearingDataset_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Quotes_ClearingDataset, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Quotes_QuotesRep(Packet):
     name = 'Quotes_QuotesRep'
     fields_desc = [
-        u64("bidSize", 18446744073709551615)
-        i64("bidPx", -9223372036854775808)
-        u64("offerSize", 18446744073709551615)
-        i64("offerPx", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
+    u64("bidSize", 18446744073709551615),
+    i64("bidPx", -9223372036854775808),
+    u64("offerSize", 18446744073709551615),
+    i64("offerPx", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
     ]
-
 
 class Quotes_QuotesRep_Composite(Packet):
     name = 'Quotes_QuotesRep_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, Quotes_QuotesRep, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class Quotes(Packet):
     name = 'Quotes'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        i32("executionWithinFirmShortCode", -2147483648)
-        ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        unsigned_char("rFEAnswer", 255)
-        PacketField("executionInstruction", 0, ExecutionInstruction_set)
-        u16("sTPID", 65535)
-        PacketField("MiFIDShortcodes", "", Quotes_MiFIDShortcodes_Composite)
-        PacketField("ClearingDataset", "", Quotes_ClearingDataset_Composite)
-        PacketField("QuotesRep", "", Quotes_QuotesRep_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    i32("executionWithinFirmShortCode", -2147483648),
+    ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    unsigned_char("rFEAnswer", 255),
+    PacketField("executionInstruction", 0, ExecutionInstruction_set),
+    u16("sTPID", 65535),
+    PacketField("MiFIDShortcodes", "", Quotes_MiFIDShortcodes_Composite),
+    PacketField("ClearingDataset", "", Quotes_ClearingDataset_Composite),
+    PacketField("QuotesRep", "", Quotes_QuotesRep_Composite),
     ]
 bind_layers(MessageHeader, Quotes, templateId=TemplateIdType.Quotes)
-
 class QuoteAck_QuoteAcks(Packet):
     name = 'QuoteAck_QuoteAcks'
     fields_desc = [
-        u64("bidOrderID", 18446744073709551615)
-        u64("offerOrderID", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("buyRevisionFlag", BuyRevisionIndicator_enum.Cancellation, BuyRevisionIndicator_enum)
-        ByteEnumField("sellRevisionFlag", SellRevisionIndicator_enum.Cancellation, SellRevisionIndicator_enum)
-        u16("bidErrorCode", 65535)
-        u16("offerErrorCode", 65535)
+    u64("bidOrderID", 18446744073709551615),
+    u64("offerOrderID", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("buyRevisionFlag", BuyRevisionIndicator_enum.Cancellation, BuyRevisionIndicator_enum),
+    ByteEnumField("sellRevisionFlag", SellRevisionIndicator_enum.Cancellation, SellRevisionIndicator_enum),
+    u16("bidErrorCode", 65535),
+    u16("offerErrorCode", 65535),
     ]
-
 
 class QuoteAck_QuoteAcks_Composite(Packet):
     name = 'QuoteAck_QuoteAcks_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, QuoteAck_QuoteAcks, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class QuoteAck(Packet):
     name = 'QuoteAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum)
-        i32("executionWithinFirmShortCode", -2147483648)
-        PacketField("ackQualifiers", 0, AckQualifiers_set)
-        PacketField("QuoteAcks", "", QuoteAck_QuoteAcks_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("lPRole", LPRole_enum.RFQ_Liquidity_Provider, LPRole_enum),
+    i32("executionWithinFirmShortCode", -2147483648),
+    PacketField("ackQualifiers", 0, AckQualifiers_set),
+    PacketField("QuoteAcks", "", QuoteAck_QuoteAcks_Composite),
     ]
 bind_layers(MessageHeader, QuoteAck, templateId=TemplateIdType.QuoteAck)
-
 class QuoteRequest_FreeTextSection(Packet):
     name = 'QuoteRequest_FreeTextSection'
     fields_desc = [
-        char18("freeText", "")
+    char18("freeText", ""),
     ]
-
 
 class QuoteRequest_FreeTextSection_Composite(Packet):
     name = 'QuoteRequest_FreeTextSection_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, QuoteRequest_FreeTextSection, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class QuoteRequest_RFQOptionalFields(Packet):
     name = 'QuoteRequest_RFQOptionalFields'
     fields_desc = [
-        i64("limitMatchingPrice", -9223372036854775808)
-        unsigned_char("minimumNumberOfLPs", 255)
-        u16("expirationDelay", 65535)
+    i64("limitMatchingPrice", -9223372036854775808),
+    unsigned_char("minimumNumberOfLPs", 255),
+    u16("expirationDelay", 65535),
     ]
-
 
 class QuoteRequest_RFQOptionalFields_Composite(Packet):
     name = 'QuoteRequest_RFQOptionalFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, QuoteRequest_RFQOptionalFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class QuoteRequest(Packet):
     name = 'QuoteRequest'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u64("orderQty", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", QuoteRequestOrderSide_enum.Sell, QuoteRequestOrderSide_enum)
-        unsigned_char("firmIDPublication", 255)
-        char11("endClient", "")
-        PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set)
-        u64("minOrderQty", 18446744073709551615)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        i32("investmentDecisionWFirmShortCode", -2147483648)
-        i32("nonExecutingBrokerShortCode", -2147483648)
-        char8("clearingFirmID", "")
-        char8("clientID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
-        ByteEnumField("rFQType", RFQType_enum.Auto_RFQ, RFQType_enum)
-        PacketField("FreeTextSection", "", QuoteRequest_FreeTextSection_Composite)
-        PacketField("RFQOptionalFields", "", QuoteRequest_RFQOptionalFields_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u64("orderQty", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", QuoteRequestOrderSide_enum.Sell, QuoteRequestOrderSide_enum),
+    unsigned_char("firmIDPublication", 255),
+    char11("endClient", ""),
+    PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set),
+    u64("minOrderQty", 18446744073709551615),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    i32("investmentDecisionWFirmShortCode", -2147483648),
+    i32("nonExecutingBrokerShortCode", -2147483648),
+    char8("clearingFirmID", ""),
+    char8("clientID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
+    ByteEnumField("rFQType", RFQType_enum.Auto_RFQ, RFQType_enum),
+    PacketField("FreeTextSection", "", QuoteRequest_FreeTextSection_Composite),
+    PacketField("RFQOptionalFields", "", QuoteRequest_RFQOptionalFields_Composite),
     ]
 bind_layers(MessageHeader, QuoteRequest, templateId=TemplateIdType.QuoteRequest)
-
 class CancelRequest_NotUsedGroup1(Packet):
     name = 'CancelRequest_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class CancelRequest_NotUsedGroup1_Composite(Packet):
     name = 'CancelRequest_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelRequest_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelRequest_NotUsedGroup2(Packet):
     name = 'CancelRequest_NotUsedGroup2'
     fields_desc = [
     ]
 
-
 class CancelRequest_NotUsedGroup2_Composite(Packet):
     name = 'CancelRequest_NotUsedGroup2_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CancelRequest_NotUsedGroup2, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CancelRequest(Packet):
     name = 'CancelRequest'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u64("orderID", 18446744073709551615)
-        i64("origClientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", CancelRequestOrderSide_enum.Sell, CancelRequestOrderSide_enum)
-        ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum)
-        ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum)
-        PacketField("NotUsedGroup1", "", CancelRequest_NotUsedGroup1_Composite)
-        PacketField("NotUsedGroup2", "", CancelRequest_NotUsedGroup2_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u64("orderID", 18446744073709551615),
+    i64("origClientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", CancelRequestOrderSide_enum.Sell, CancelRequestOrderSide_enum),
+    ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum),
+    ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
+    PacketField("NotUsedGroup1", "", CancelRequest_NotUsedGroup1_Composite),
+    PacketField("NotUsedGroup2", "", CancelRequest_NotUsedGroup2_Composite),
     ]
 bind_layers(MessageHeader, CancelRequest, templateId=TemplateIdType.CancelRequest)
-
 class MassCancel_NotUsedGroup1(Packet):
     name = 'MassCancel_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class MassCancel_NotUsedGroup1_Composite(Packet):
     name = 'MassCancel_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, MassCancel_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class MassCancel_NotUsedGroup2(Packet):
     name = 'MassCancel_NotUsedGroup2'
     fields_desc = [
     ]
 
-
 class MassCancel_NotUsedGroup2_Composite(Packet):
     name = 'MassCancel_NotUsedGroup2_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, MassCancel_NotUsedGroup2, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class MassCancel(Packet):
     name = 'MassCancel'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        char2("instrumentGroupCode", "")
-        ByteEnumField("orderSide", MassCancelOrderSide_enum.Sell, MassCancelOrderSide_enum)
-        u32("logicalAccessID", 4294967295)
-        u16("oEPartitionID", 65535)
-        u32("contractID", 4294967295)
-        char8("maturity", "")
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("optionType", OptionType_enum.Other, OptionType_enum)
-        ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum)
-        i32("targetExecutionWithinFirmShortCode", -2147483648)
-        PacketField("NotUsedGroup1", "", MassCancel_NotUsedGroup1_Composite)
-        PacketField("NotUsedGroup2", "", MassCancel_NotUsedGroup2_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    char2("instrumentGroupCode", ""),
+    ByteEnumField("orderSide", MassCancelOrderSide_enum.Sell, MassCancelOrderSide_enum),
+    u32("logicalAccessID", 4294967295),
+    u16("oEPartitionID", 65535),
+    u32("contractID", 4294967295),
+    char8("maturity", ""),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("optionType", OptionType_enum.Other, OptionType_enum),
+    ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
+    i32("targetExecutionWithinFirmShortCode", -2147483648),
+    PacketField("NotUsedGroup1", "", MassCancel_NotUsedGroup1_Composite),
+    PacketField("NotUsedGroup2", "", MassCancel_NotUsedGroup2_Composite),
     ]
 bind_layers(MessageHeader, MassCancel, templateId=TemplateIdType.MassCancel)
-
 class MassCancelAck_MiFIDFields(Packet):
     name = 'MassCancelAck_MiFIDFields'
     fields_desc = [
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
     ]
-
 
 class MassCancelAck_MiFIDFields_Composite(Packet):
     name = 'MassCancelAck_MiFIDFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, MassCancelAck_MiFIDFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class MassCancelAck(Packet):
     name = 'MassCancelAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        i32("totalAffectedOrders", -2147483648)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        char2("instrumentGroupCode", "")
-        ByteEnumField("orderSide", MassCancelAckOrderSide_enum.Sell, MassCancelAckOrderSide_enum)
-        u32("logicalAccessID", 4294967295)
-        u16("oEPartitionID", 65535)
-        u32("contractID", 4294967295)
-        char8("maturity", "")
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("optionType", OptionType_enum.Other, OptionType_enum)
-        ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum)
-        PacketField("ackQualifiers", 0, AckQualifiers_set)
-        i32("targetExecutionWithinFirmShortCode", -2147483648)
-        PacketField("MiFIDFields", "", MassCancelAck_MiFIDFields_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    i32("totalAffectedOrders", -2147483648),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    char2("instrumentGroupCode", ""),
+    ByteEnumField("orderSide", MassCancelAckOrderSide_enum.Sell, MassCancelAckOrderSide_enum),
+    u32("logicalAccessID", 4294967295),
+    u16("oEPartitionID", 65535),
+    u32("contractID", 4294967295),
+    char8("maturity", ""),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("optionType", OptionType_enum.Other, OptionType_enum),
+    ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
+    PacketField("ackQualifiers", 0, AckQualifiers_set),
+    i32("targetExecutionWithinFirmShortCode", -2147483648),
+    PacketField("MiFIDFields", "", MassCancelAck_MiFIDFields_Composite),
     ]
 bind_layers(MessageHeader, MassCancelAck, templateId=TemplateIdType.MassCancelAck)
-
 class OpenOrderRequest(Packet):
     name = 'OpenOrderRequest'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u64("orderID", 18446744073709551615)
-        i64("origClientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u64("orderID", 18446744073709551615),
+    i64("origClientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
     ]
 bind_layers(MessageHeader, OpenOrderRequest, templateId=TemplateIdType.OpenOrderRequest)
-
 class OwnershipRequestAck(Packet):
     name = 'OwnershipRequestAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        i64("clientOrderID", -9223372036854775808)
-        u64("orderID", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        u32("logicalAccessID", 4294967295)
-        u16("oEPartitionID", 65535)
-        i32("totalAffectedOrders", -2147483648)
-        ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    i64("clientOrderID", -9223372036854775808),
+    u64("orderID", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    u32("logicalAccessID", 4294967295),
+    u16("oEPartitionID", 65535),
+    i32("totalAffectedOrders", -2147483648),
+    ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
     ]
 bind_layers(MessageHeader, OwnershipRequestAck, templateId=TemplateIdType.OwnershipRequestAck)
-
 class OwnershipRequest(Packet):
     name = 'OwnershipRequest'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u64("orderID", 18446744073709551615)
-        i64("origClientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        u32("logicalAccessID", 4294967295)
-        u16("oEPartitionID", 65535)
-        ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u64("orderID", 18446744073709551615),
+    i64("origClientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    u32("logicalAccessID", 4294967295),
+    u16("oEPartitionID", 65535),
+    ByteEnumField("orderCategory", OrderCategory_enum.RFQ_LP_Answer, OrderCategory_enum),
     ]
 bind_layers(MessageHeader, OwnershipRequest, templateId=TemplateIdType.OwnershipRequest)
-
 class TradeBustNotification(Packet):
     name = 'TradeBustNotification'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        u32("executionID", 4294967295)
-        i64("lastTradedPx", -9223372036854775808)
-        u64("lastShares", 18446744073709551615)
-        u32("lISTransactionID", 4294967295)
-        u32("parentExecID", 4294967295)
-        u32("parentSymbolIndex", 4294967295)
-        char16("tradeUniqueIdentifier", "")
-        char16("parentTradeUniqueIdentifier", "")
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    u32("executionID", 4294967295),
+    i64("lastTradedPx", -9223372036854775808),
+    u64("lastShares", 18446744073709551615),
+    u32("lISTransactionID", 4294967295),
+    u32("parentExecID", 4294967295),
+    u32("parentSymbolIndex", 4294967295),
+    char16("tradeUniqueIdentifier", ""),
+    char16("parentTradeUniqueIdentifier", ""),
     ]
 bind_layers(MessageHeader, TradeBustNotification, templateId=TemplateIdType.TradeBustNotification)
-
 class CollarBreachConfirmation(Packet):
     name = 'CollarBreachConfirmation'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        u64("orderID", 18446744073709551615)
-        i64("origClientOrderID", -9223372036854775808)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    u64("orderID", 18446744073709551615),
+    i64("origClientOrderID", -9223372036854775808),
     ]
 bind_layers(MessageHeader, CollarBreachConfirmation, templateId=TemplateIdType.CollarBreachConfirmation)
-
 class PriceInput(Packet):
     name = 'PriceInput'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("inputPriceType", InputPriceType_enum.Alternative_Indicative_Price_AIP, InputPriceType_enum)
-        i64("price", -9223372036854775808)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("inputPriceType", InputPriceType_enum.Alternative_Indicative_Price_AIP, InputPriceType_enum),
+    i64("price", -9223372036854775808),
     ]
 bind_layers(MessageHeader, PriceInput, templateId=TemplateIdType.PriceInput)
-
 class LiquidityProviderCommand(Packet):
     name = 'LiquidityProviderCommand'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("lPActionCode", LPActionCode_enum.Offer_Only, LPActionCode_enum)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("lPActionCode", LPActionCode_enum.Offer_Only, LPActionCode_enum),
     ]
 bind_layers(MessageHeader, LiquidityProviderCommand, templateId=TemplateIdType.LiquidityProviderCommand)
-
 class AskForQuote(Packet):
     name = 'AskForQuote'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("aFQReason", AFQReason_enum.Quote_completely_matched, AFQReason_enum)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("aFQReason", AFQReason_enum.Quote_completely_matched, AFQReason_enum),
     ]
 bind_layers(MessageHeader, AskForQuote, templateId=TemplateIdType.AskForQuote)
-
 class RequestForExecution(Packet):
     name = 'RequestForExecution'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
     ]
 bind_layers(MessageHeader, RequestForExecution, templateId=TemplateIdType.RequestForExecution)
-
 class RFQNotification(Packet):
     name = 'RFQNotification'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u64("quoteReqID", 18446744073709551615)
-        u64("orderQty", 18446744073709551615)
-        char8("counterpartFirmID", "")
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("rFQUpdateType", RFQUpdateType_enum.Partially_or_Fully_Matched, RFQUpdateType_enum)
-        ByteEnumField("orderSide", RFQNotificationOrderSide_enum.Sell, RFQNotificationOrderSide_enum)
-        char11("endClient", "")
-        PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set)
-        u64("minOrderQty", 18446744073709551615)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u64("quoteReqID", 18446744073709551615),
+    u64("orderQty", 18446744073709551615),
+    char8("counterpartFirmID", ""),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("rFQUpdateType", RFQUpdateType_enum.Partially_or_Fully_Matched, RFQUpdateType_enum),
+    ByteEnumField("orderSide", RFQNotificationOrderSide_enum.Sell, RFQNotificationOrderSide_enum),
+    char11("endClient", ""),
+    PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set),
+    u64("minOrderQty", 18446744073709551615),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
     ]
 bind_layers(MessageHeader, RFQNotification, templateId=TemplateIdType.RFQNotification)
-
 class RFQMatchingStatus(Packet):
     name = 'RFQMatchingStatus'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u64("quoteReqID", 18446744073709551615)
-        i64("potentialMatchingPX", -9223372036854775808)
-        u64("potentialMatchingQty", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", RFQMatchingStatusOrderSide_enum.Sell, RFQMatchingStatusOrderSide_enum)
-        unsigned_char("numberOfLPs", 255)
-        ByteEnumField("recipientType", RecipientType_enum.RFQ_recipient__LP_, RecipientType_enum)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u64("quoteReqID", 18446744073709551615),
+    i64("potentialMatchingPX", -9223372036854775808),
+    u64("potentialMatchingQty", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", RFQMatchingStatusOrderSide_enum.Sell, RFQMatchingStatusOrderSide_enum),
+    unsigned_char("numberOfLPs", 255),
+    ByteEnumField("recipientType", RecipientType_enum.RFQ_recipient__LP_, RecipientType_enum),
     ]
 bind_layers(MessageHeader, RFQMatchingStatus, templateId=TemplateIdType.RFQMatchingStatus)
-
 class RFQLPMatchingStatus(Packet):
     name = 'RFQLPMatchingStatus'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u64("quoteReqID", 18446744073709551615)
-        u64("potentialMatchingQty", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u64("quoteReqID", 18446744073709551615),
+    u64("potentialMatchingQty", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum),
     ]
 bind_layers(MessageHeader, RFQLPMatchingStatus, templateId=TemplateIdType.RFQLPMatchingStatus)
-
 class UserNotification_NotUsedGroup1(Packet):
     name = 'UserNotification_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class UserNotification_NotUsedGroup1_Composite(Packet):
     name = 'UserNotification_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, UserNotification_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class UserNotification(Packet):
     name = 'UserNotification'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        char8("familyID", "")
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("userStatus", UserStatus_enum.OSL_Deactivated_for_a_Logical_Access_by_Risk_Manager, UserStatus_enum)
-        u32("logicalAccessID", 4294967295)
-        u64("orderSizeLimit", 18446744073709551615)
-        u64("orderAmountLimit", 18446744073709551615)
-        ByteEnumField("exposureSide", ExposureSide_enum.Sell, ExposureSide_enum)
-        PacketField("marketCondition", 0, MarketCondition_set)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        char3("marketPlace", "")
-        PacketField("NotUsedGroup1", "", UserNotification_NotUsedGroup1_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    char8("familyID", ""),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("userStatus", UserStatus_enum.OSL_Deactivated_for_a_Logical_Access_by_Risk_Manager, UserStatus_enum),
+    u32("logicalAccessID", 4294967295),
+    u64("orderSizeLimit", 18446744073709551615),
+    u64("orderAmountLimit", 18446744073709551615),
+    ByteEnumField("exposureSide", ExposureSide_enum.Sell, ExposureSide_enum),
+    PacketField("marketCondition", 0, MarketCondition_set),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    char3("marketPlace", ""),
+    PacketField("NotUsedGroup1", "", UserNotification_NotUsedGroup1_Composite),
     ]
 bind_layers(MessageHeader, UserNotification, templateId=TemplateIdType.UserNotification)
-
 class MMSignIn(Packet):
     name = 'MMSignIn'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u32("logicalAccessID", 4294967295)
-        u16("oEPartitionID", 65535)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        i32("executionWithinFirmShortCode", -2147483648)
-        char8("clearingFirmID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
-        char18("freeText", "")
-        char16("longClientID", "")
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u32("logicalAccessID", 4294967295),
+    u16("oEPartitionID", 65535),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    i32("executionWithinFirmShortCode", -2147483648),
+    char8("clearingFirmID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
+    char18("freeText", ""),
+    char16("longClientID", ""),
     ]
 bind_layers(MessageHeader, MMSignIn, templateId=TemplateIdType.MMSignIn)
-
 class MMSignInAck(Packet):
     name = 'MMSignInAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u32("logicalAccessID", 4294967295)
-        u16("oEPartitionID", 65535)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        i32("executionWithinFirmShortCode", -2147483648)
-        char8("clearingFirmID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
-        char18("freeText", "")
-        char16("longClientID", "")
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u32("logicalAccessID", 4294967295),
+    u16("oEPartitionID", 65535),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    i32("executionWithinFirmShortCode", -2147483648),
+    char8("clearingFirmID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
+    char18("freeText", ""),
+    char16("longClientID", ""),
     ]
 bind_layers(MessageHeader, MMSignInAck, templateId=TemplateIdType.MMSignInAck)
-
 class InstrumentSynchronizationList_InstrumentSynchronizationSection(Packet):
     name = 'InstrumentSynchronizationList_InstrumentSynchronizationSection'
     fields_desc = [
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
     ]
-
 
 class InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite(Packet):
     name = 'InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, InstrumentSynchronizationList_InstrumentSynchronizationSection, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class InstrumentSynchronizationList(Packet):
     name = 'InstrumentSynchronizationList'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u16("resynchronizationID", 65535)
-        PacketField("InstrumentSynchronizationSection", "", InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite)
+    u32("msgSeqNum", 4294967295),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u16("resynchronizationID", 65535),
+    PacketField("InstrumentSynchronizationSection", "", InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite),
     ]
 bind_layers(MessageHeader, InstrumentSynchronizationList, templateId=TemplateIdType.InstrumentSynchronizationList)
-
 class SynchronizationTime(Packet):
     name = 'SynchronizationTime'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u16("resynchronizationID", 65535)
-        u64("lastBookInTime", 18446744073709551615)
+    u32("msgSeqNum", 4294967295),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u16("resynchronizationID", 65535),
+    u64("lastBookInTime", 18446744073709551615),
     ]
 bind_layers(MessageHeader, SynchronizationTime, templateId=TemplateIdType.SynchronizationTime)
-
 class SecurityDefinitionRequest_StrategyLegs(Packet):
     name = 'SecurityDefinitionRequest_StrategyLegs'
     fields_desc = [
-        u32("legSymbolIndex", 4294967295)
-        u32("legRatio", 4294967295)
-        ByteEnumField("legSecurityType", LegSecurityType_enum.Cash, LegSecurityType_enum)
-        ByteEnumField("legPutOrCall", LegPutOrCall_enum.Put, LegPutOrCall_enum)
-        i64("legPrice", -9223372036854775808)
-        i64("legStrikePrice", -9223372036854775808)
-        char8("legLastTradingDate", "")
-        ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum)
+    u32("legSymbolIndex", 4294967295),
+    u32("legRatio", 4294967295),
+    ByteEnumField("legSecurityType", LegSecurityType_enum.Cash, LegSecurityType_enum),
+    ByteEnumField("legPutOrCall", LegPutOrCall_enum.Put, LegPutOrCall_enum),
+    i64("legPrice", -9223372036854775808),
+    i64("legStrikePrice", -9223372036854775808),
+    char8("legLastTradingDate", ""),
+    ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum),
     ]
-
 
 class SecurityDefinitionRequest_StrategyLegs_Composite(Packet):
     name = 'SecurityDefinitionRequest_StrategyLegs_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, SecurityDefinitionRequest_StrategyLegs, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class SecurityDefinitionRequest(Packet):
     name = 'SecurityDefinitionRequest'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("securityReqID", -9223372036854775808)
-        u32("contractSymbolIndex", 4294967295)
-        CharEnumField("strategyCode", StrategyCode_enum.Ratio_Spread_Option, StrategyCode_enum)
-        PacketField("StrategyLegs", "", SecurityDefinitionRequest_StrategyLegs_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("securityReqID", -9223372036854775808),
+    u32("contractSymbolIndex", 4294967295),
+    CharEnumField("strategyCode", StrategyCode_enum.Ratio_Spread_Option, StrategyCode_enum),
+    PacketField("StrategyLegs", "", SecurityDefinitionRequest_StrategyLegs_Composite),
     ]
 bind_layers(MessageHeader, SecurityDefinitionRequest, templateId=TemplateIdType.SecurityDefinitionRequest)
-
 class SecurityDefinitionAck(Packet):
     name = 'SecurityDefinitionAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("securityReqID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("securityReqID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
     ]
 bind_layers(MessageHeader, SecurityDefinitionAck, templateId=TemplateIdType.SecurityDefinitionAck)
-
 class MMProtectionRequest_MMPSection(Packet):
     name = 'MMProtectionRequest_MMPSection'
     fields_desc = [
-        ByteEnumField("protectionType", ProtectionType_enum.Volume, ProtectionType_enum)
-        u64("protectionThreshold", 18446744073709551615)
-        ByteEnumField("breachAction", BreachAction_enum.Pull, BreachAction_enum)
+    ByteEnumField("protectionType", ProtectionType_enum.Volume, ProtectionType_enum),
+    u64("protectionThreshold", 18446744073709551615),
+    ByteEnumField("breachAction", BreachAction_enum.Pull, BreachAction_enum),
     ]
-
 
 class MMProtectionRequest_MMPSection_Composite(Packet):
     name = 'MMProtectionRequest_MMPSection_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, MMProtectionRequest_MMPSection, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class MMProtectionRequest(Packet):
     name = 'MMProtectionRequest'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        i32("executionWithinFirmShortCode", -2147483648)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("requestType", RequestType_enum.Adjust, RequestType_enum)
-        PacketField("MMPSection", "", MMProtectionRequest_MMPSection_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    i32("executionWithinFirmShortCode", -2147483648),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("requestType", RequestType_enum.Adjust, RequestType_enum),
+    PacketField("MMPSection", "", MMProtectionRequest_MMPSection_Composite),
     ]
 bind_layers(MessageHeader, MMProtectionRequest, templateId=TemplateIdType.MMProtectionRequest)
-
 class MMProtectionAck_MMPSection2(Packet):
     name = 'MMProtectionAck_MMPSection2'
     fields_desc = [
-        ByteEnumField("protectionType", ProtectionType_enum.Volume, ProtectionType_enum)
-        u64("protectionThreshold", 18446744073709551615)
-        ByteEnumField("breachAction", BreachAction_enum.Pull, BreachAction_enum)
-        i64("currentMMPPosition", -9223372036854775808)
-        unsigned_char("breachStatus", 255)
+    ByteEnumField("protectionType", ProtectionType_enum.Volume, ProtectionType_enum),
+    u64("protectionThreshold", 18446744073709551615),
+    ByteEnumField("breachAction", BreachAction_enum.Pull, BreachAction_enum),
+    i64("currentMMPPosition", -9223372036854775808),
+    unsigned_char("breachStatus", 255),
     ]
-
 
 class MMProtectionAck_MMPSection2_Composite(Packet):
     name = 'MMProtectionAck_MMPSection2_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, MMProtectionAck_MMPSection2, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class MMProtectionAck(Packet):
     name = 'MMProtectionAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        i32("executionWithinFirmShortCode", -2147483648)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        PacketField("mMPExecutionType", 0, MMPExecutionType_set)
-        PacketField("MMPSection2", "", MMProtectionAck_MMPSection2_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    i32("executionWithinFirmShortCode", -2147483648),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    PacketField("mMPExecutionType", 0, MMPExecutionType_set),
+    PacketField("MMPSection2", "", MMProtectionAck_MMPSection2_Composite),
     ]
 bind_layers(MessageHeader, MMProtectionAck, templateId=TemplateIdType.MMProtectionAck)
-
 class NewWholesaleOrder_WholesaleLegsRep(Packet):
     name = 'NewWholesaleOrder_WholesaleLegsRep'
     fields_desc = [
-        u32("legSymbolIndex", 4294967295)
-        i64("legPrice", -9223372036854775808)
-        u64("bidQuantity", 18446744073709551615)
-        u64("offerQuantity", 18446744073709551615)
-        ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum)
-        i64("legStrikePrice", -9223372036854775808)
-        u32("legRatio", 4294967295)
-        ByteEnumField("legPutOrCall", LegPutOrCall_enum.Put, LegPutOrCall_enum)
-        ByteEnumField("legSecurityType", LegSecurityType_enum.Cash, LegSecurityType_enum)
-        char8("legLastTradingDate", "")
+    u32("legSymbolIndex", 4294967295),
+    i64("legPrice", -9223372036854775808),
+    u64("bidQuantity", 18446744073709551615),
+    u64("offerQuantity", 18446744073709551615),
+    ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum),
+    i64("legStrikePrice", -9223372036854775808),
+    u32("legRatio", 4294967295),
+    ByteEnumField("legPutOrCall", LegPutOrCall_enum.Put, LegPutOrCall_enum),
+    ByteEnumField("legSecurityType", LegSecurityType_enum.Cash, LegSecurityType_enum),
+    char8("legLastTradingDate", ""),
     ]
-
 
 class NewWholesaleOrder_WholesaleLegsRep_Composite(Packet):
     name = 'NewWholesaleOrder_WholesaleLegsRep_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewWholesaleOrder_WholesaleLegsRep, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewWholesaleOrder_WholesaleClientRep(Packet):
     name = 'NewWholesaleOrder_WholesaleClientRep'
     fields_desc = [
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("side", Side_enum.Cross, Side_enum)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        char8("clearingFirmID", "")
-        char16("longClientID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
-        char18("freeText", "")
-        u16("nonExecutingClientID", 65535)
-        i32("investmentDecisionWFirmShortCode", -2147483648)
-        i32("nonExecutingBrokerShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum)
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("side", Side_enum.Cross, Side_enum),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    char8("clearingFirmID", ""),
+    char16("longClientID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
+    char18("freeText", ""),
+    u16("nonExecutingClientID", 65535),
+    i32("investmentDecisionWFirmShortCode", -2147483648),
+    i32("nonExecutingBrokerShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum),
     ]
-
 
 class NewWholesaleOrder_WholesaleClientRep_Composite(Packet):
     name = 'NewWholesaleOrder_WholesaleClientRep_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, NewWholesaleOrder_WholesaleClientRep, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class NewWholesaleOrder(Packet):
     name = 'NewWholesaleOrder'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("contractSymbolIndex", 4294967295)
-        ByteEnumField("wholesaleTradeType", WholesaleTradeType_enum.Block_Historical, WholesaleTradeType_enum)
-        u32("lISTransactionID", 4294967295)
-        CharEnumField("strategyCode", StrategyCode_enum.Ratio_Spread_Option, StrategyCode_enum)
-        i64("price", -9223372036854775808)
-        u64("quantity", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        ByteEnumField("wholesaleSide", WholesaleSide_enum.Cross, WholesaleSide_enum)
-        unsigned_char("eSCBMembership", 255)
-        ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum)
-        PacketField("WholesaleLegsRep", "", NewWholesaleOrder_WholesaleLegsRep_Composite)
-        PacketField("WholesaleClientRep", "", NewWholesaleOrder_WholesaleClientRep_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("contractSymbolIndex", 4294967295),
+    ByteEnumField("wholesaleTradeType", WholesaleTradeType_enum.Block_Historical, WholesaleTradeType_enum),
+    u32("lISTransactionID", 4294967295),
+    CharEnumField("strategyCode", StrategyCode_enum.Ratio_Spread_Option, StrategyCode_enum),
+    i64("price", -9223372036854775808),
+    u64("quantity", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    ByteEnumField("wholesaleSide", WholesaleSide_enum.Cross, WholesaleSide_enum),
+    unsigned_char("eSCBMembership", 255),
+    ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum),
+    PacketField("WholesaleLegsRep", "", NewWholesaleOrder_WholesaleLegsRep_Composite),
+    PacketField("WholesaleClientRep", "", NewWholesaleOrder_WholesaleClientRep_Composite),
     ]
 bind_layers(MessageHeader, NewWholesaleOrder, templateId=TemplateIdType.NewWholesaleOrder)
-
 class WholesaleOrderAck_WholesaleAckLegsRep(Packet):
     name = 'WholesaleOrderAck_WholesaleAckLegsRep'
     fields_desc = [
-        u32("legSymbolIndex", 4294967295)
-        u64("legBidOrderID", 18446744073709551615)
-        u64("legOfferOrderID", 18446744073709551615)
-        ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum)
-        u16("legErrorCode", 65535)
+    u32("legSymbolIndex", 4294967295),
+    u64("legBidOrderID", 18446744073709551615),
+    u64("legOfferOrderID", 18446744073709551615),
+    ByteEnumField("legSide", LegSide_enum.Sell, LegSide_enum),
+    u16("legErrorCode", 65535),
     ]
-
 
 class WholesaleOrderAck_WholesaleAckLegsRep_Composite(Packet):
     name = 'WholesaleOrderAck_WholesaleAckLegsRep_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, WholesaleOrderAck_WholesaleAckLegsRep, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class WholesaleOrderAck_WholesaleAckClearingRep(Packet):
     name = 'WholesaleOrderAck_WholesaleAckClearingRep'
     fields_desc = [
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("side", Side_enum.Cross, Side_enum)
-        i32("investmentDecisionWFirmShortCode", -2147483648)
-        i32("nonExecutingBrokerShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        u16("nonExecutingClientID", 65535)
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("side", Side_enum.Cross, Side_enum),
+    i32("investmentDecisionWFirmShortCode", -2147483648),
+    i32("nonExecutingBrokerShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    u16("nonExecutingClientID", 65535),
     ]
-
 
 class WholesaleOrderAck_WholesaleAckClearingRep_Composite(Packet):
     name = 'WholesaleOrderAck_WholesaleAckClearingRep_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, WholesaleOrderAck_WholesaleAckClearingRep, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class WholesaleOrderAck(Packet):
     name = 'WholesaleOrderAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("contractSymbolIndex", 4294967295)
-        ByteEnumField("wholesaleTradeType", WholesaleTradeType_enum.Block_Historical, WholesaleTradeType_enum)
-        u32("lISTransactionID", 4294967295)
-        CharEnumField("strategyCode", StrategyCode_enum.Ratio_Spread_Option, StrategyCode_enum)
-        i64("price", -9223372036854775808)
-        u64("quantity", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        ByteEnumField("wholesaleSide", WholesaleSide_enum.Cross, WholesaleSide_enum)
-        unsigned_char("eSCBMembership", 255)
-        ByteEnumField("responseType", ResponseType_enum.Reject, ResponseType_enum)
-        u16("errorCode", 65535)
-        PacketField("ackQualifiers", 0, AckQualifiers_set)
-        PacketField("WholesaleAckLegsRep", "", WholesaleOrderAck_WholesaleAckLegsRep_Composite)
-        PacketField("WholesaleAckClearingRep", "", WholesaleOrderAck_WholesaleAckClearingRep_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("contractSymbolIndex", 4294967295),
+    ByteEnumField("wholesaleTradeType", WholesaleTradeType_enum.Block_Historical, WholesaleTradeType_enum),
+    u32("lISTransactionID", 4294967295),
+    CharEnumField("strategyCode", StrategyCode_enum.Ratio_Spread_Option, StrategyCode_enum),
+    i64("price", -9223372036854775808),
+    u64("quantity", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    ByteEnumField("wholesaleSide", WholesaleSide_enum.Cross, WholesaleSide_enum),
+    unsigned_char("eSCBMembership", 255),
+    ByteEnumField("responseType", ResponseType_enum.Reject, ResponseType_enum),
+    u16("errorCode", 65535),
+    PacketField("ackQualifiers", 0, AckQualifiers_set),
+    PacketField("WholesaleAckLegsRep", "", WholesaleOrderAck_WholesaleAckLegsRep_Composite),
+    PacketField("WholesaleAckClearingRep", "", WholesaleOrderAck_WholesaleAckClearingRep_Composite),
     ]
 bind_layers(MessageHeader, WholesaleOrderAck, templateId=TemplateIdType.WholesaleOrderAck)
-
 class RequestForImpliedExecution(Packet):
     name = 'RequestForImpliedExecution'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        u64("orderID", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    u64("orderID", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
     ]
 bind_layers(MessageHeader, RequestForImpliedExecution, templateId=TemplateIdType.RequestForImpliedExecution)
-
 class CrossOrder_FreeTextSection(Packet):
     name = 'CrossOrder_FreeTextSection'
     fields_desc = [
-        char18("freeText", "")
+    char18("freeText", ""),
     ]
-
 
 class CrossOrder_FreeTextSection_Composite(Packet):
     name = 'CrossOrder_FreeTextSection_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CrossOrder_FreeTextSection, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CrossOrder_MiFIDShortcodes(Packet):
     name = 'CrossOrder_MiFIDShortcodes'
     fields_desc = [
-        i32("investmentDecisionWFirmShortCode", -2147483648)
-        i32("nonExecutingBrokerShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
+    i32("investmentDecisionWFirmShortCode", -2147483648),
+    i32("nonExecutingBrokerShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
     ]
-
 
 class CrossOrder_MiFIDShortcodes_Composite(Packet):
     name = 'CrossOrder_MiFIDShortcodes_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CrossOrder_MiFIDShortcodes, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CrossOrder_ClearingFieldsX(Packet):
     name = 'CrossOrder_ClearingFieldsX'
     fields_desc = [
-        char8("clearingFirmID", "")
-        char16("longClientID", "")
-        char12("accountNumber", "")
-        ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum)
-        PacketField("openClose", 0, OpenClose_set)
-        LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum)
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum)
+    char8("clearingFirmID", ""),
+    char16("longClientID", ""),
+    char12("accountNumber", ""),
+    ByteEnumField("technicalOrigin", TechnicalOrigin_enum.Cross_margining, TechnicalOrigin_enum),
+    PacketField("openClose", 0, OpenClose_set),
+    LEShortEnumField("clearingInstruction", ClearingInstruction_enum.Give_up_to_single_firm, ClearingInstruction_enum),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum),
     ]
-
 
 class CrossOrder_ClearingFieldsX_Composite(Packet):
     name = 'CrossOrder_ClearingFieldsX_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CrossOrder_ClearingFieldsX, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CrossOrder_StrategyFields(Packet):
     name = 'CrossOrder_StrategyFields'
     fields_desc = [
-        i64("legLastPx", -9223372036854775808)
-        u64("legLastQty", 18446744073709551615)
-        u32("legInstrumentID", 4294967295)
+    i64("legLastPx", -9223372036854775808),
+    u64("legLastQty", 18446744073709551615),
+    u32("legInstrumentID", 4294967295),
     ]
-
 
 class CrossOrder_StrategyFields_Composite(Packet):
     name = 'CrossOrder_StrategyFields_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, CrossOrder_StrategyFields, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class CrossOrder(Packet):
     name = 'CrossOrder'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum)
-        ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum)
-        i64("orderPx", -9223372036854775808)
-        u64("orderQty", 18446744073709551615)
-        i32("executionWithinFirmShortCode", -2147483648)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        u16("nonExecutingClientID", 65535)
-        ByteEnumField("orderActorType", OrderActorType_enum.Reactor, OrderActorType_enum)
-        ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum)
-        i64("orderTolerablePrice", -9223372036854775808)
-        PacketField("FreeTextSection", "", CrossOrder_FreeTextSection_Composite)
-        PacketField("MiFIDShortcodes", "", CrossOrder_MiFIDShortcodes_Composite)
-        PacketField("ClearingFieldsX", "", CrossOrder_ClearingFieldsX_Composite)
-        PacketField("StrategyFields", "", CrossOrder_StrategyFields_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("orderSide", OrderSide_enum.Cross, OrderSide_enum),
+    ByteEnumField("orderType", OrderType_enum.Auction_Volume_Discovery, OrderType_enum),
+    i64("orderPx", -9223372036854775808),
+    u64("orderQty", 18446744073709551615),
+    i32("executionWithinFirmShortCode", -2147483648),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    u16("nonExecutingClientID", 65535),
+    ByteEnumField("orderActorType", OrderActorType_enum.Reactor, OrderActorType_enum),
+    ByteEnumField("messagePriceNotation", MessagePriceNotation_enum.Spread, MessagePriceNotation_enum),
+    i64("orderTolerablePrice", -9223372036854775808),
+    PacketField("FreeTextSection", "", CrossOrder_FreeTextSection_Composite),
+    PacketField("MiFIDShortcodes", "", CrossOrder_MiFIDShortcodes_Composite),
+    PacketField("ClearingFieldsX", "", CrossOrder_ClearingFieldsX_Composite),
+    PacketField("StrategyFields", "", CrossOrder_StrategyFields_Composite),
     ]
 bind_layers(MessageHeader, CrossOrder, templateId=TemplateIdType.CrossOrder)
-
 class RFQAudit_RFQCounterparts(Packet):
     name = 'RFQAudit_RFQCounterparts'
     fields_desc = [
-        ByteEnumField("orderOrigin", OrderOrigin_enum.LP_Answer, OrderOrigin_enum)
-        i64("orderPrice", -9223372036854775808)
-        u64("lastTradedQuantity", 18446744073709551615)
-        PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set)
-        u64("minimumOrderQuantity", 18446744073709551615)
+    ByteEnumField("orderOrigin", OrderOrigin_enum.LP_Answer, OrderOrigin_enum),
+    i64("orderPrice", -9223372036854775808),
+    u64("lastTradedQuantity", 18446744073709551615),
+    PacketField("darkExecutionInstruction", 0, DarkExecutionInstruction_set),
+    u64("minimumOrderQuantity", 18446744073709551615),
     ]
-
 
 class RFQAudit_RFQCounterparts_Composite(Packet):
     name = 'RFQAudit_RFQCounterparts_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, RFQAudit_RFQCounterparts, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class RFQAudit(Packet):
     name = 'RFQAudit'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u64("quoteReqID", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        PacketField("RFQCounterparts", "", RFQAudit_RFQCounterparts_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u64("quoteReqID", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    PacketField("RFQCounterparts", "", RFQAudit_RFQCounterparts_Composite),
     ]
 bind_layers(MessageHeader, RFQAudit, templateId=TemplateIdType.RFQAudit)
-
 class WaveForLiquidity(Packet):
     name = 'WaveForLiquidity'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("iOIID", -9223372036854775808)
-        ByteEnumField("iOITransactionType", WaveForLiquidityIOITransactionType_enum.Replace, WaveForLiquidityIOITransactionType_enum)
-        i64("originalIOIID", -9223372036854775808)
-        PacketField("targetCounterparties", 0, TargetCounterparties_set)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("iOISide", IOISide_enum.Undisclosed, IOISide_enum)
-        u64("orderQuantity", 18446744073709551615)
-        ByteEnumField("iOIQuantity", IOIQuantity_enum.Undisclosed_Quantity, IOIQuantity_enum)
-        ByteEnumField("iOIQualityIndication", IOIQualityIndication_enum.Medium, IOIQualityIndication_enum)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("iOIID", -9223372036854775808),
+    ByteEnumField("iOITransactionType", WaveForLiquidityIOITransactionType_enum.Replace, WaveForLiquidityIOITransactionType_enum),
+    i64("originalIOIID", -9223372036854775808),
+    PacketField("targetCounterparties", 0, TargetCounterparties_set),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("iOISide", IOISide_enum.Undisclosed, IOISide_enum),
+    u64("orderQuantity", 18446744073709551615),
+    ByteEnumField("iOIQuantity", IOIQuantity_enum.Undisclosed_Quantity, IOIQuantity_enum),
+    ByteEnumField("iOIQualityIndication", IOIQualityIndication_enum.Medium, IOIQualityIndication_enum),
     ]
 bind_layers(MessageHeader, WaveForLiquidity, templateId=TemplateIdType.WaveForLiquidity)
-
 class WaveForLiquidityNotification(Packet):
     name = 'WaveForLiquidityNotification'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        u64("oEGINFromMember", 18446744073709551615)
-        u64("oEGOUTTimeToME", 18446744073709551615)
-        u64("bookIn", 18446744073709551615)
-        u64("bookOUTTime", 18446744073709551615)
-        u64("oEGINFromME", 18446744073709551615)
-        u64("oEGOUTToMember", 18446744073709551615)
-        i64("iOIID", -9223372036854775808)
-        i64("exchangeIOIID", -9223372036854775808)
-        ByteEnumField("iOIType", IOIType_enum.IOI_Replacement_Notification, IOIType_enum)
-        i64("originalIOIID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        ByteEnumField("iOISide", IOISide_enum.Undisclosed, IOISide_enum)
-        u64("orderQuantity", 18446744073709551615)
-        ByteEnumField("iOIQuantity", IOIQuantity_enum.Undisclosed_Quantity, IOIQuantity_enum)
-        ByteEnumField("iOIQualityIndication", IOIQualityIndication_enum.Medium, IOIQualityIndication_enum)
-        u16("errorCode", 65535)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    u64("oEGINFromMember", 18446744073709551615),
+    u64("oEGOUTTimeToME", 18446744073709551615),
+    u64("bookIn", 18446744073709551615),
+    u64("bookOUTTime", 18446744073709551615),
+    u64("oEGINFromME", 18446744073709551615),
+    u64("oEGOUTToMember", 18446744073709551615),
+    i64("iOIID", -9223372036854775808),
+    i64("exchangeIOIID", -9223372036854775808),
+    ByteEnumField("iOIType", IOIType_enum.IOI_Replacement_Notification, IOIType_enum),
+    i64("originalIOIID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    ByteEnumField("iOISide", IOISide_enum.Undisclosed, IOISide_enum),
+    u64("orderQuantity", 18446744073709551615),
+    ByteEnumField("iOIQuantity", IOIQuantity_enum.Undisclosed_Quantity, IOIQuantity_enum),
+    ByteEnumField("iOIQualityIndication", IOIQualityIndication_enum.Medium, IOIQualityIndication_enum),
+    u16("errorCode", 65535),
     ]
 bind_layers(MessageHeader, WaveForLiquidityNotification, templateId=TemplateIdType.WaveForLiquidityNotification)
-
 class ClearBook(Packet):
     name = 'ClearBook'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        u64("oEGOUTToMember", 18446744073709551615)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
+    u32("msgSeqNum", 4294967295),
+    u64("oEGOUTToMember", 18446744073709551615),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
     ]
 bind_layers(MessageHeader, ClearBook, templateId=TemplateIdType.ClearBook)
-
 class Logon(Packet):
     name = 'Logon'
     fields_desc = [
-        u32("logicalAccessID", 4294967295)
-        u16("oEPartitionID", 65535)
-        u32("lastMsgSeqNum", 4294967295)
-        char8("softwareProvider", "")
-        unsigned_char("queueingIndicator", 255)
+    u32("logicalAccessID", 4294967295),
+    u16("oEPartitionID", 65535),
+    u32("lastMsgSeqNum", 4294967295),
+    char8("softwareProvider", ""),
+    unsigned_char("queueingIndicator", 255),
     ]
 bind_layers(MessageHeader, Logon, templateId=TemplateIdType.Logon)
-
 class LogonAck(Packet):
     name = 'LogonAck'
     fields_desc = [
-        char8("exchangeID", "")
-        u32("lastClMsgSeqNum", 4294967295)
+    char8("exchangeID", ""),
+    u32("lastClMsgSeqNum", 4294967295),
     ]
 bind_layers(MessageHeader, LogonAck, templateId=TemplateIdType.LogonAck)
-
 class LogonReject(Packet):
     name = 'LogonReject'
     fields_desc = [
-        char8("exchangeID", "")
-        ByteEnumField("logonRejectCode", LogonRejectCode_enum.Invalid_Logon_format, LogonRejectCode_enum)
-        u32("lastClMsgSeqNum", 4294967295)
-        u32("lastMsgSeqNum", 4294967295)
+    char8("exchangeID", ""),
+    ByteEnumField("logonRejectCode", LogonRejectCode_enum.Invalid_Logon_format, LogonRejectCode_enum),
+    u32("lastClMsgSeqNum", 4294967295),
+    u32("lastMsgSeqNum", 4294967295),
     ]
 bind_layers(MessageHeader, LogonReject, templateId=TemplateIdType.LogonReject)
-
 class Logout(Packet):
     name = 'Logout'
     fields_desc = [
-        ByteEnumField("logOutReasonCode", LogOutReasonCode_enum.Logout_By_Market_Operations, LogOutReasonCode_enum)
+    ByteEnumField("logOutReasonCode", LogOutReasonCode_enum.Logout_By_Market_Operations, LogOutReasonCode_enum),
     ]
 bind_layers(MessageHeader, Logout, templateId=TemplateIdType.Logout)
-
 class Heartbeat(Packet):
     name = 'Heartbeat'
     fields_desc = [
     ]
 bind_layers(MessageHeader, Heartbeat, templateId=TemplateIdType.Heartbeat)
-
 class TestRequest(Packet):
     name = 'TestRequest'
     fields_desc = [
     ]
 bind_layers(MessageHeader, TestRequest, templateId=TemplateIdType.TestRequest)
-
 class TechnicalReject(Packet):
     name = 'TechnicalReject'
     fields_desc = [
-        u64("oEGOUTToMember", 18446744073709551615)
-        u32("rejectedClientMessageSequenceNumber", 4294967295)
-        unsigned_char("rejectedMessage", 255)
-        u16("errorCode", 65535)
-        u16("rejectedMessageID", 65535)
+    u64("oEGOUTToMember", 18446744073709551615),
+    u32("rejectedClientMessageSequenceNumber", 4294967295),
+    unsigned_char("rejectedMessage", 255),
+    u16("errorCode", 65535),
+    u16("rejectedMessageID", 65535),
     ]
 bind_layers(MessageHeader, TechnicalReject, templateId=TemplateIdType.TechnicalReject)
-
 class DeclarationEntry_NotUsedGroup1(Packet):
     name = 'DeclarationEntry_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class DeclarationEntry_NotUsedGroup1_Composite(Packet):
     name = 'DeclarationEntry_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, DeclarationEntry_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class DeclarationEntry(Packet):
     name = 'DeclarationEntry'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        char8("enteringCounterparty", "")
-        ByteEnumField("side", Side_enum.Cross, Side_enum)
-        u64("quantity", 18446744073709551615)
-        i64("price", -9223372036854775808)
-        i32("executionWithinFirmShortCode", -2147483648)
-        i32("clientIdentificationShortcode", -2147483648)
-        char4("mICofSecondaryListing", "")
-        char10("centralisationDate", "")
-        char8("clearingFirmID", "")
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("accountTypeCross", AccountTypeCross_enum.Ceres_Client, AccountTypeCross_enum)
-        ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum)
-        ByteEnumField("tradingCapacityCross", TradingCapacityCross_enum.Any_other_capacity, TradingCapacityCross_enum)
-        unsigned_char("settlementPeriod", 255)
-        unsigned_char("settlementFlag", 255)
-        ByteEnumField("guaranteeFlag", GuaranteeFlag_enum.Cleared_and_Guaranteed, GuaranteeFlag_enum)
-        PacketField("miFIDIndicators", 0, MiFIDIndicators_set)
-        ByteEnumField("transactionPriceType", TransactionPriceType_enum.Dark_Trade, TransactionPriceType_enum)
-        char8("principalCode", "")
-        char8("principalCodeCross", "")
-        u32("startTimeVwap", 4294967295)
-        u32("endTimeVwap", 4294967295)
-        i64("grossTradeAmount", -9223372036854775808)
-        char12("accountNumber", "")
-        char12("accountNumberCross", "")
-        char18("freeText", "")
-        char18("freeTextCross", "")
-        i32("investmentDecisionWFirmShortCode", -2147483648)
-        i32("clientIdentificationShortCodeCross", -2147483648)
-        PacketField("NotUsedGroup1", "", DeclarationEntry_NotUsedGroup1_Composite)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    char8("enteringCounterparty", ""),
+    ByteEnumField("side", Side_enum.Cross, Side_enum),
+    u64("quantity", 18446744073709551615),
+    i64("price", -9223372036854775808),
+    i32("executionWithinFirmShortCode", -2147483648),
+    i32("clientIdentificationShortcode", -2147483648),
+    char4("mICofSecondaryListing", ""),
+    char10("centralisationDate", ""),
+    char8("clearingFirmID", ""),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("accountTypeCross", AccountTypeCross_enum.Ceres_Client, AccountTypeCross_enum),
+    ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum),
+    ByteEnumField("tradingCapacityCross", TradingCapacityCross_enum.Any_other_capacity, TradingCapacityCross_enum),
+    unsigned_char("settlementPeriod", 255),
+    unsigned_char("settlementFlag", 255),
+    ByteEnumField("guaranteeFlag", GuaranteeFlag_enum.Cleared_and_Guaranteed, GuaranteeFlag_enum),
+    PacketField("miFIDIndicators", 0, MiFIDIndicators_set),
+    ByteEnumField("transactionPriceType", TransactionPriceType_enum.Dark_Trade, TransactionPriceType_enum),
+    char8("principalCode", ""),
+    char8("principalCodeCross", ""),
+    u32("startTimeVwap", 4294967295),
+    u32("endTimeVwap", 4294967295),
+    i64("grossTradeAmount", -9223372036854775808),
+    char12("accountNumber", ""),
+    char12("accountNumberCross", ""),
+    char18("freeText", ""),
+    char18("freeTextCross", ""),
+    i32("investmentDecisionWFirmShortCode", -2147483648),
+    i32("clientIdentificationShortCodeCross", -2147483648),
+    PacketField("NotUsedGroup1", "", DeclarationEntry_NotUsedGroup1_Composite),
     ]
 bind_layers(MessageHeader, DeclarationEntry, templateId=TemplateIdType.DeclarationEntry)
-
 class DeclarationEntryAck_NotUsedGroup1(Packet):
     name = 'DeclarationEntryAck_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class DeclarationEntryAck_NotUsedGroup1_Composite(Packet):
     name = 'DeclarationEntryAck_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, DeclarationEntryAck_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class DeclarationEntryAck(Packet):
     name = 'DeclarationEntryAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("declarationID", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        char4("mICofSecondaryListing", "")
-        ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum)
-        ByteEnumField("preMatchingType", PreMatchingType_enum.Prematched_for_the_fifth_next_fixing, PreMatchingType_enum)
-        PacketField("waiverIndicator", 0, WaiverIndicator_set)
-        PacketField("NotUsedGroup1", "", DeclarationEntryAck_NotUsedGroup1_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("declarationID", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    char4("mICofSecondaryListing", ""),
+    ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum),
+    ByteEnumField("preMatchingType", PreMatchingType_enum.Prematched_for_the_fifth_next_fixing, PreMatchingType_enum),
+    PacketField("waiverIndicator", 0, WaiverIndicator_set),
+    PacketField("NotUsedGroup1", "", DeclarationEntryAck_NotUsedGroup1_Composite),
     ]
 bind_layers(MessageHeader, DeclarationEntryAck, templateId=TemplateIdType.DeclarationEntryAck)
-
 class DeclarationNotice_NotUsedGroup1(Packet):
     name = 'DeclarationNotice_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class DeclarationNotice_NotUsedGroup1_Composite(Packet):
     name = 'DeclarationNotice_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, DeclarationNotice_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class DeclarationNotice_NotUsedGroup2(Packet):
     name = 'DeclarationNotice_NotUsedGroup2'
     fields_desc = [
     ]
 
-
 class DeclarationNotice_NotUsedGroup2_Composite(Packet):
     name = 'DeclarationNotice_NotUsedGroup2_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, DeclarationNotice_NotUsedGroup2, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class DeclarationNotice(Packet):
     name = 'DeclarationNotice'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        i64("clientOrderID", -9223372036854775808)
-        u64("declarationID", 18446744073709551615)
-        ByteEnumField("declarationStatus", DeclarationStatus_enum.Pre_Matched, DeclarationStatus_enum)
-        ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        char8("enteringCounterparty", "")
-        ByteEnumField("side", Side_enum.Cross, Side_enum)
-        u64("quantity", 18446744073709551615)
-        i64("price", -9223372036854775808)
-        ByteEnumField("preMatchingType", PreMatchingType_enum.Prematched_for_the_fifth_next_fixing, PreMatchingType_enum)
-        u64("tradeTime", 18446744073709551615)
-        char4("mICofSecondaryListing", "")
-        char10("centralisationDate", "")
-        char8("clearingFirmID", "")
-        ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum)
-        ByteEnumField("accountTypeCross", AccountTypeCross_enum.Ceres_Client, AccountTypeCross_enum)
-        ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum)
-        ByteEnumField("tradingCapacityCross", TradingCapacityCross_enum.Any_other_capacity, TradingCapacityCross_enum)
-        unsigned_char("settlementFlag", 255)
-        unsigned_char("settlementPeriod", 255)
-        ByteEnumField("guaranteeFlag", GuaranteeFlag_enum.Cleared_and_Guaranteed, GuaranteeFlag_enum)
-        ByteEnumField("transactionPriceType", TransactionPriceType_enum.Dark_Trade, TransactionPriceType_enum)
-        char8("principalCode", "")
-        char8("principalCodeCross", "")
-        u32("startTimeVwap", 4294967295)
-        u32("endTimeVwap", 4294967295)
-        i64("grossTradeAmount", -9223372036854775808)
-        char12("accountNumber", "")
-        char12("accountNumberCross", "")
-        char18("freeText", "")
-        char18("freeTextCross", "")
-        PacketField("waiverIndicator", 0, WaiverIndicator_set)
-        unsigned_char("previousDayIndicator", 255)
-        i64("miscellaneousFeeAmount", -9223372036854775808)
-        ByteEnumField("cCPID", CCPID_enum.Euronext_Clearing, CCPID_enum)
-        char16("tradeUniqueIdentifier", "")
-        PacketField("NotUsedGroup1", "", DeclarationNotice_NotUsedGroup1_Composite)
-        PacketField("NotUsedGroup2", "", DeclarationNotice_NotUsedGroup2_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    i64("clientOrderID", -9223372036854775808),
+    u64("declarationID", 18446744073709551615),
+    ByteEnumField("declarationStatus", DeclarationStatus_enum.Pre_Matched, DeclarationStatus_enum),
+    ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    char8("enteringCounterparty", ""),
+    ByteEnumField("side", Side_enum.Cross, Side_enum),
+    u64("quantity", 18446744073709551615),
+    i64("price", -9223372036854775808),
+    ByteEnumField("preMatchingType", PreMatchingType_enum.Prematched_for_the_fifth_next_fixing, PreMatchingType_enum),
+    u64("tradeTime", 18446744073709551615),
+    char4("mICofSecondaryListing", ""),
+    char10("centralisationDate", ""),
+    char8("clearingFirmID", ""),
+    ByteEnumField("accountType", AccountType_enum.Ceres_Client, AccountType_enum),
+    ByteEnumField("accountTypeCross", AccountTypeCross_enum.Ceres_Client, AccountTypeCross_enum),
+    ByteEnumField("tradingCapacity", TradingCapacity_enum.Any_other_capacity, TradingCapacity_enum),
+    ByteEnumField("tradingCapacityCross", TradingCapacityCross_enum.Any_other_capacity, TradingCapacityCross_enum),
+    unsigned_char("settlementFlag", 255),
+    unsigned_char("settlementPeriod", 255),
+    ByteEnumField("guaranteeFlag", GuaranteeFlag_enum.Cleared_and_Guaranteed, GuaranteeFlag_enum),
+    ByteEnumField("transactionPriceType", TransactionPriceType_enum.Dark_Trade, TransactionPriceType_enum),
+    char8("principalCode", ""),
+    char8("principalCodeCross", ""),
+    u32("startTimeVwap", 4294967295),
+    u32("endTimeVwap", 4294967295),
+    i64("grossTradeAmount", -9223372036854775808),
+    char12("accountNumber", ""),
+    char12("accountNumberCross", ""),
+    char18("freeText", ""),
+    char18("freeTextCross", ""),
+    PacketField("waiverIndicator", 0, WaiverIndicator_set),
+    unsigned_char("previousDayIndicator", 255),
+    i64("miscellaneousFeeAmount", -9223372036854775808),
+    ByteEnumField("cCPID", CCPID_enum.Euronext_Clearing, CCPID_enum),
+    char16("tradeUniqueIdentifier", ""),
+    PacketField("NotUsedGroup1", "", DeclarationNotice_NotUsedGroup1_Composite),
+    PacketField("NotUsedGroup2", "", DeclarationNotice_NotUsedGroup2_Composite),
     ]
 bind_layers(MessageHeader, DeclarationNotice, templateId=TemplateIdType.DeclarationNotice)
-
 class DeclarationCancelAndRefusal(Packet):
     name = 'DeclarationCancelAndRefusal'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        u64("declarationID", 18446744073709551615)
-        ByteEnumField("actionType", ActionType_enum.Trade_Cancellation_Request, ActionType_enum)
-        char16("tradeUniqueIdentifier", "")
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    u64("declarationID", 18446744073709551615),
+    ByteEnumField("actionType", ActionType_enum.Trade_Cancellation_Request, ActionType_enum),
+    char16("tradeUniqueIdentifier", ""),
     ]
 bind_layers(MessageHeader, DeclarationCancelAndRefusal, templateId=TemplateIdType.DeclarationCancelAndRefusal)
-
 class FundPriceInput(Packet):
     name = 'FundPriceInput'
     fields_desc = [
-        u32("clMsgSeqNum", 4294967295)
-        char8("firmID", "")
-        u64("sendingTime", 18446744073709551615)
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        i64("price", -9223372036854775808)
-        unsigned_char("bypassIndicator", 255)
+    u32("clMsgSeqNum", 4294967295),
+    char8("firmID", ""),
+    u64("sendingTime", 18446744073709551615),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    i64("price", -9223372036854775808),
+    unsigned_char("bypassIndicator", 255),
     ]
 bind_layers(MessageHeader, FundPriceInput, templateId=TemplateIdType.FundPriceInput)
-
 class FundPriceInputAck(Packet):
     name = 'FundPriceInputAck'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        i64("price", -9223372036854775808)
-        unsigned_char("bypassIndicator", 255)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    i64("price", -9223372036854775808),
+    unsigned_char("bypassIndicator", 255),
     ]
 bind_layers(MessageHeader, FundPriceInputAck, templateId=TemplateIdType.FundPriceInputAck)
-
 class DeclarationEntryReject_NotUsedGroup1(Packet):
     name = 'DeclarationEntryReject_NotUsedGroup1'
     fields_desc = [
     ]
 
-
 class DeclarationEntryReject_NotUsedGroup1_Composite(Packet):
     name = 'DeclarationEntryReject_NotUsedGroup1_Composite'
     fields_desc = [
-        int8("blockLength", 0)
-        FieldLenField("numInGroup", 0, fmt="<b", count_of="data")
+    int8("blockLength", 0),
+    FieldLenField("numInGroup", 0, fmt="<b", count_of="data"),
         PacketListField("data", None, DeclarationEntryReject_NotUsedGroup1, count_from=lambda pkt:pkt.numInGroup
     ]
-
 
 class DeclarationEntryReject(Packet):
     name = 'DeclarationEntryReject'
     fields_desc = [
-        u32("msgSeqNum", 4294967295)
-        char8("firmID", "")
-        i64("clientOrderID", -9223372036854775808)
-        u32("symbolIndex", 4294967295)
-        ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum)
-        char4("mICofSecondaryListing", "")
-        ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum)
-        u16("errorCode", 65535)
-        unsigned_char("rejectedMessage", 255)
-        u16("rejectedMessageID", 65535)
-        PacketField("NotUsedGroup1", "", DeclarationEntryReject_NotUsedGroup1_Composite)
+    u32("msgSeqNum", 4294967295),
+    char8("firmID", ""),
+    i64("clientOrderID", -9223372036854775808),
+    u32("symbolIndex", 4294967295),
+    ByteEnumField("eMM", EMM_enum.Not_Applicable, EMM_enum),
+    char4("mICofSecondaryListing", ""),
+    ByteEnumField("operationType", OperationType_enum.Declaration_of_a_trade_on_a_Secondary_listing_place, OperationType_enum),
+    u16("errorCode", 65535),
+    unsigned_char("rejectedMessage", 255),
+    u16("rejectedMessageID", 65535),
+    PacketField("NotUsedGroup1", "", DeclarationEntryReject_NotUsedGroup1_Composite),
     ]
 bind_layers(MessageHeader, DeclarationEntryReject, templateId=TemplateIdType.DeclarationEntryReject)
-
 
 

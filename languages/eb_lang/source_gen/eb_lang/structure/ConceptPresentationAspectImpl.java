@@ -42,6 +42,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBMessageEntryMember;
   private ConceptPresentation props_EBMessageMember;
   private ConceptPresentation props_EBMessageMemberVar;
+  private ConceptPresentation props_EBMessageMemberVarNoType;
   private ConceptPresentation props_EBMessagePresenceByEnumEntryMember;
   private ConceptPresentation props_EBMessagePresenceByEnumMember;
   private ConceptPresentation props_EBMessagePresenceByLengthFieldMember;
@@ -293,6 +294,12 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBMessageMemberVar = cpb.create();
         }
         return props_EBMessageMemberVar;
+      case LanguageConceptSwitch.EBMessageMemberVarNoType:
+        if (props_EBMessageMemberVarNoType == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          props_EBMessageMemberVarNoType = cpb.create();
+        }
+        return props_EBMessageMemberVarNoType;
       case LanguageConceptSwitch.EBMessagePresenceByEnumEntryMember:
         if (props_EBMessagePresenceByEnumEntryMember == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

@@ -11,7 +11,9 @@ using namespace EB::common;
 
 using U8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
 using U16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using str3 = FixedLengthString<0, '\0', false>;
+using str3 = FixedLengthString<3, '\0', false>;
+using str10 = FixedLengthString<10, '\0', false>;
+
 
 using Price3 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 8>;
 using Price4 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 8>;
@@ -21,6 +23,7 @@ using Price4 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::n
 #else
     using Price = Price4;
 #endif
+using MsgLen = U16;
 
 struct E1 {
     using value_type = char;
@@ -135,6 +138,192 @@ template<typename ostreamT>
 ostreamT& operator<<(ostreamT& os, const BF1& v) {
     os << "E1=" << v.getE1();
     os << "|E2=" << v.getE2();
+}
+
+struct MsgType {
+    using value_type = int16_t;
+    enum Enum : value_type {
+        New = 1,
+        Amend = 2,
+        Cancel = 3,
+    };
+    static constexpr size_t size = 2;
+    static constexpr char* name() {return "MsgType";}
+    static constexpr value_type min_value = std::min<value_type>({static_cast<int16_t>(1), static_cast<int16_t>(2), static_cast<int16_t>(3), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<int16_t>(1), static_cast<int16_t>(2), static_cast<int16_t>(3), });
+    constexpr MsgType():value_{max_value} {}
+    constexpr explicit MsgType(int16_t v):value_{v} {}
+    constexpr MsgType(Enum v):value_{v} {}
+    constexpr bool operator==(const MsgType& rhs) const {return value_ == rhs.value_;}
+    constexpr bool operator!=(const MsgType& rhs) const {return value_ != rhs.value_;}
+    constexpr bool operator!=(Enum v) const {return value_ != v;}
+    constexpr Enum value() const {return value_;}
+    constexpr int16_t raw_value() const {return static_cast<int16_t>(value_);}
+    constexpr void raw_value(int16_t v) {value_ = Enum(v);}
+    constexpr void set(Enum v) {value_ = v;}
+    constexpr MsgType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr MsgType& operator=(const MsgType& rhs) = default;
+    constexpr int length() const {return sizeof(value_);}
+    constexpr const std::string_view view() const {
+        switch(value_) {
+            case Enum::New: return "New";
+            case Enum::Amend: return "Amend";
+            case Enum::Cancel: return "Cancel";
+        }
+        return "";
+    }
+    Enum value_{max_value};
+};
+
+template <typename ostreamT>
+inline ostreamT& operator<<(ostreamT& os, const MsgType& v){
+    os << v.view();
+    return os;
+}
+
+#pragma pack(1)
+struct Head {
+    MsgLen len;
+    MsgType msgType{MsgType::null};
+    char* begin() {return reinterpret_cast<char*>(this);}
+    const char* cbegin() const {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    const char* cend() const {return begin()+length();}
+    size_t size() const {return sizeof(Head);}
+    size_t var_size() const {return size();}
+};
+#pragma pack()
+inline std::ostream& operator<<(std::ostream& os, const Head& msg) {
+    os << "len=" << msg.len << ";"
+       << "msgType=" << msg.msgType << ";"
+       << "}";
+    return os;
+}
+
+#pragma pack(1)
+struct RptGrp {
+    U8 key;
+    str3 value;
+    char* begin() {return reinterpret_cast<char*>(this);}
+    const char* cbegin() const {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    const char* cend() const {return begin()+length();}
+    size_t size() const {return sizeof(RptGrp);}
+    size_t var_size() const {return size();}
+};
+#pragma pack()
+inline std::ostream& operator<<(std::ostream& os, const RptGrp& msg) {
+    os << "key=" << msg.key << ";"
+       << "value=" << msg.value << ";"
+       << "}";
+    return os;
+}
+
+struct AppendageType {
+    using value_type = int8_t;
+    enum Enum : value_type {
+        ClearingAccount = 1,
+        ClearingAccountType = 2,
+        ClearingFirm = 3,
+    };
+    static constexpr size_t size = 1;
+    static constexpr char* name() {return "AppendageType";}
+    static constexpr value_type min_value = std::min<value_type>({static_cast<int8_t>(1), static_cast<int8_t>(2), static_cast<int8_t>(3), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<int8_t>(1), static_cast<int8_t>(2), static_cast<int8_t>(3), });
+    constexpr AppendageType():value_{max_value} {}
+    constexpr explicit AppendageType(int8_t v):value_{v} {}
+    constexpr AppendageType(Enum v):value_{v} {}
+    constexpr bool operator==(const AppendageType& rhs) const {return value_ == rhs.value_;}
+    constexpr bool operator!=(const AppendageType& rhs) const {return value_ != rhs.value_;}
+    constexpr bool operator!=(Enum v) const {return value_ != v;}
+    constexpr Enum value() const {return value_;}
+    constexpr int8_t raw_value() const {return static_cast<int8_t>(value_);}
+    constexpr void raw_value(int8_t v) {value_ = Enum(v);}
+    constexpr void set(Enum v) {value_ = v;}
+    constexpr AppendageType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr AppendageType& operator=(const AppendageType& rhs) = default;
+    constexpr int length() const {return sizeof(value_);}
+    constexpr const std::string_view view() const {
+        switch(value_) {
+            case Enum::ClearingAccount: return "ClearingAccount";
+            case Enum::ClearingAccountType: return "ClearingAccountType";
+            case Enum::ClearingFirm: return "ClearingFirm";
+        }
+        return "";
+    }
+    Enum value_{max_value};
+};
+
+template <typename ostreamT>
+inline ostreamT& operator<<(ostreamT& os, const AppendageType& v){
+    os << v.view();
+    return os;
+}
+
+using ClearingAccount = str3;
+using ClearingAccountType = U8;
+using ClearingFirm = str10;
+
+#pragma pack(1)
+struct Entry {
+    U8 len;
+    AppendageType tag{AppendageType::null};
+    auto value() {
+        return OptionalByEnumRef<AppendageType, TypeByEnum<typename ClearingAccount, typename AppendageType, auto AppendageType::ClearingAccount>,
+                                   TypeByEnum<typename ClearingAccountType, typename AppendageType, auto AppendageType::ClearingAccountType>,
+                                   TypeByEnum<typename ClearingFirm, typename AppendageType, auto AppendageType::ClearingFirm>
+                          >(begin()+size(), tag);
+    }
+
+    char* begin() {return reinterpret_cast<char*>(this);}
+    const char* cbegin() const {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    const char* cend() const {return begin()+length();}
+    size_t size() const {return sizeof(Entry);}
+    size_t var_size() const {return size();}
+};
+#pragma pack()
+inline std::ostream& operator<<(std::ostream& os, const Entry& msg) {
+    os << "len=" << msg.len << ";"
+       << "tag=" << msg.tag << ";"
+       << "}";
+    return os;
+}
+
+#pragma pack(1)
+struct NewOrder : Head {
+    Price price;
+    U16 qty;
+    U8 size;
+    BlockRef<RptGrp> grp() {return BlockRef<RptGrp>(begin()+size(), size);}
+    BlockRef<RptGrp> grp() const {return BlockRef<RptGrp>(begin()+size(), size);}
+//not implemented EBMessageBitMember;
+    std::string_view sss() {return std::string_view(begin()+size(), size.raw_value()2);}
+    std::string_view sss() const {return std::string_view(cbegin()+size(), size.raw_value()2);}
+    FloatingRef<U16> plen() {return FloatingRef<U16>(sss().end());}
+    //this member should be only varlen member and the last one
+    auto appendage() {
+        return OptionalByLengthRef<Entry, AppendageType>(begin()+size(), plen);
+    
+    char* begin() {return reinterpret_cast<char*>(this);}
+    const char* cbegin() const {return reinterpret_cast<char*>(this);}
+    char* end() {return begin()+length();}
+    const char* cend() const {return begin()+length();}
+    size_t size() const {return sizeof(NewOrder);}
+    size_t var_size() const {return appendage().end()-begin();}
+};
+#pragma pack()
+inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
+    os << static_cast<const Head&>(msg);
+    os << "price=" << msg.price << ";"
+       << "qty=" << msg.qty << ";"
+       << "size=" << msg.size << ";"
+       << "grp=" << const_cast<NewOrder&>(msg).grp() << ";"
+       << "bitmem=" << const_cast<NewOrder&>(msg).bitmem() << ";"
+       << "plen=" << msg.plen << ";"
+       << "appendage=" << const_cast<NewOrder&>(msg).appendage() << ";"
+       << "}";
+    return os;
 }
 
 

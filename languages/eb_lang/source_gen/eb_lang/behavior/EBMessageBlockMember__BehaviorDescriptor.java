@@ -20,14 +20,14 @@ import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 public final class EBMessageBlockMember__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember");
 
-  public static final SMethod<Boolean> isNotFixedLength_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(6086719741696308538L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<Boolean> isNotFixedLength_id2D23R1vLKti = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(3045013273373509458L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isNotFixedLength_id5hSnPGNaBkU);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isNotFixedLength_id2D23R1vLKti);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
-  /*package*/ static boolean isNotFixedLength_id5hSnPGNaBkU(@NotNull SNode __thisNode__) {
+  /*package*/ static boolean isNotFixedLength_id2D23R1vLKti(@NotNull SNode __thisNode__) {
     return true;
   }
 
@@ -47,7 +47,7 @@ public final class EBMessageBlockMember__BehaviorDescriptor extends BaseBHDescri
     }
     switch (methodIndex) {
       case 0:
-        return (T) ((Boolean) isNotFixedLength_id5hSnPGNaBkU(node));
+        return (T) ((Boolean) isNotFixedLength_id2D23R1vLKti(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

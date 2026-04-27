@@ -41,13 +41,13 @@ struct MsgType {
         LogoutRequest = 0x02,
         ClientHeartbeat = 0x03,
         NewOrderV2 = 0x38,
-        CancelOrderV2 = 0x39,
+        CancelOrderV2 = 0x38,
         ModifyOrderV2 = 0x3A,
         QuoteV2 = 0x3D,
         QuoteCancelV2 = 0x3E,
         ParticipantSuspend = 0x4F,
         LoginResponseV2 = 0x24,
-        Logout = 0x80,
+        Logout = 0x08,
         ServerHeartbeat = 0x09,
         ReplayComplete = 0x13,
         OrderAcknowledgementV2 = 0x25,
@@ -64,8 +64,8 @@ struct MsgType {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "MsgType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0x37), static_cast<uint8_t>(0x02), static_cast<uint8_t>(0x03), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x39), static_cast<uint8_t>(0x3A), static_cast<uint8_t>(0x3D), static_cast<uint8_t>(0x3E), static_cast<uint8_t>(0x4F), static_cast<uint8_t>(0x24), static_cast<uint8_t>(0x80), static_cast<uint8_t>(0x09), static_cast<uint8_t>(0x13), static_cast<uint8_t>(0x25), static_cast<uint8_t>(0x26), static_cast<uint8_t>(0x27), static_cast<uint8_t>(0x29), static_cast<uint8_t>(0x2A), static_cast<uint8_t>(0x2B), static_cast<uint8_t>(0x2C), static_cast<uint8_t>(0x2D), static_cast<uint8_t>(0x3F), static_cast<uint8_t>(0x40), static_cast<uint8_t>(0x50), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0x37), static_cast<uint8_t>(0x02), static_cast<uint8_t>(0x03), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x39), static_cast<uint8_t>(0x3A), static_cast<uint8_t>(0x3D), static_cast<uint8_t>(0x3E), static_cast<uint8_t>(0x4F), static_cast<uint8_t>(0x24), static_cast<uint8_t>(0x80), static_cast<uint8_t>(0x09), static_cast<uint8_t>(0x13), static_cast<uint8_t>(0x25), static_cast<uint8_t>(0x26), static_cast<uint8_t>(0x27), static_cast<uint8_t>(0x29), static_cast<uint8_t>(0x2A), static_cast<uint8_t>(0x2B), static_cast<uint8_t>(0x2C), static_cast<uint8_t>(0x2D), static_cast<uint8_t>(0x3F), static_cast<uint8_t>(0x40), static_cast<uint8_t>(0x50), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0x37), static_cast<uint8_t>(0x02), static_cast<uint8_t>(0x03), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x3A), static_cast<uint8_t>(0x3D), static_cast<uint8_t>(0x3E), static_cast<uint8_t>(0x4F), static_cast<uint8_t>(0x24), static_cast<uint8_t>(0x08), static_cast<uint8_t>(0x09), static_cast<uint8_t>(0x13), static_cast<uint8_t>(0x25), static_cast<uint8_t>(0x26), static_cast<uint8_t>(0x27), static_cast<uint8_t>(0x29), static_cast<uint8_t>(0x2A), static_cast<uint8_t>(0x2B), static_cast<uint8_t>(0x2C), static_cast<uint8_t>(0x2D), static_cast<uint8_t>(0x3F), static_cast<uint8_t>(0x40), static_cast<uint8_t>(0x50), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0x37), static_cast<uint8_t>(0x02), static_cast<uint8_t>(0x03), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x3A), static_cast<uint8_t>(0x3D), static_cast<uint8_t>(0x3E), static_cast<uint8_t>(0x4F), static_cast<uint8_t>(0x24), static_cast<uint8_t>(0x08), static_cast<uint8_t>(0x09), static_cast<uint8_t>(0x13), static_cast<uint8_t>(0x25), static_cast<uint8_t>(0x26), static_cast<uint8_t>(0x27), static_cast<uint8_t>(0x29), static_cast<uint8_t>(0x2A), static_cast<uint8_t>(0x2B), static_cast<uint8_t>(0x2C), static_cast<uint8_t>(0x2D), static_cast<uint8_t>(0x3F), static_cast<uint8_t>(0x40), static_cast<uint8_t>(0x50), });
     constexpr MsgType():value_{max_value} {}
     constexpr explicit MsgType(uint8_t v):value_{v} {}
     constexpr MsgType(Enum v):value_{v} {}
@@ -276,13 +276,12 @@ struct ParaGrp {
     char* end() {return begin()+length();}
     const char* cend() const {return begin()+length();}
     size_t size() const {return sizeof(ParaGrp);}
-    size_t var_size() const {return grpValue().end()-begin();}
+    size_t var_size() const {return size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ParaGrp& msg) {
     os << "length=" << msg.length << ";"
        << "paraGrpType=" << msg.paraGrpType << ";"
-       << "grpValue=" << const_cast<ParaGrp&>(msg).grpValue() << ";"
        << "}";
     return os;
 }
@@ -2542,7 +2541,7 @@ using DisplayPrice = Price4;
 struct ExecInst {
     using value_type = char;
     enum Enum : value_type {
-        Default = 0x00,
+        Default = 0,
         MarketPeg = 'P',
         PrimaryPeg = 'R',
         Midpoint = 'M',
@@ -2551,8 +2550,8 @@ struct ExecInst {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "ExecInst";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0x00), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0x00), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
     constexpr ExecInst():value_{max_value} {}
     constexpr explicit ExecInst(char v):value_{v} {}
     constexpr ExecInst(Enum v):value_{v} {}
@@ -3075,7 +3074,7 @@ using SettlementPrice = TradePrice;
 struct SubLiquidityIndicator {
     using value_type = char;
     enum Enum : value_type {
-        NO = 0x00,
+        NO = 0,
         CboeDarkPoolExecution = 'D',
         RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T',
         TradeAddedHiddenLiquidity = 'H',
@@ -3087,8 +3086,8 @@ struct SubLiquidityIndicator {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "SubLiquidityIndicator";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0x00), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0x00), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
     constexpr SubLiquidityIndicator():value_{max_value} {}
     constexpr explicit SubLiquidityIndicator(char v):value_{v} {}
     constexpr SubLiquidityIndicator(Enum v):value_{v} {}
@@ -3388,13 +3387,14 @@ struct TradingSessionSubID {
         ScheduledIntradayAuction = 6,
         UnspecifiedAuction = 8,
         UnscheduledAuction = 9,
+        ContinuousTrading = 3,
         PostTrading = 5,
         OutOfMainSessionTrading = 10,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "TradingSessionSubID";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(2), static_cast<char>(4), static_cast<char>(6), static_cast<char>(8), static_cast<char>(9), static_cast<char>(5), static_cast<char>(10), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(2), static_cast<char>(4), static_cast<char>(6), static_cast<char>(8), static_cast<char>(9), static_cast<char>(5), static_cast<char>(10), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(2), static_cast<char>(4), static_cast<char>(6), static_cast<char>(8), static_cast<char>(9), static_cast<char>(3), static_cast<char>(5), static_cast<char>(10), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(2), static_cast<char>(4), static_cast<char>(6), static_cast<char>(8), static_cast<char>(9), static_cast<char>(3), static_cast<char>(5), static_cast<char>(10), });
     constexpr TradingSessionSubID():value_{max_value} {}
     constexpr explicit TradingSessionSubID(char v):value_{v} {}
     constexpr TradingSessionSubID(Enum v):value_{v} {}
@@ -3415,6 +3415,7 @@ struct TradingSessionSubID {
             case Enum::ScheduledIntradayAuction: return "ScheduledIntradayAuction";
             case Enum::UnspecifiedAuction: return "UnspecifiedAuction";
             case Enum::UnscheduledAuction: return "UnscheduledAuction";
+            case Enum::ContinuousTrading: return "ContinuousTrading";
             case Enum::PostTrading: return "PostTrading";
             case Enum::OutOfMainSessionTrading: return "OutOfMainSessionTrading";
         }
@@ -3550,12 +3551,12 @@ struct WaiverType {
         SIZE = '5',
         ILQDandSIZE = 'B',
         OrderManagementFacility = 'A',
-        LargeInScal = '9',
+        LargeInScal = 9,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "WaiverType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>('9'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>('9'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>(9), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>(9), });
     constexpr WaiverType():value_{max_value} {}
     constexpr explicit WaiverType(char v):value_{v} {}
     constexpr WaiverType(Enum v):value_{v} {}
@@ -3715,12 +3716,12 @@ struct AccountType {
     using value_type = char;
     enum Enum : value_type {
         Customer = '1',
-        Hose = '3',
+        Hose = 3,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "AccountType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>('3'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>('3'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>(3), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>(3), });
     constexpr AccountType():value_{max_value} {}
     constexpr explicit AccountType(char v):value_{v} {}
     constexpr AccountType(Enum v):value_{v} {}
@@ -5393,7 +5394,7 @@ struct ReasonCode {
         CantModifyAnOrderThatIsPendingFill = 'P',
         WaitingForFirstTrade = 'Q',
         UserRequested = 'U',
-        WouldWash = 'V',
+        WouldWash = 'Y',
         AddLiquidityOnlyOrderWouldRemove = 'W',
         OrderExpired = 'X',
         SymbolNotSupported = 'Y',
@@ -5408,8 +5409,8 @@ struct ReasonCode {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "ReasonCode";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('D'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('J'), static_cast<char>('K'), static_cast<char>('L'), static_cast<char>('M'), static_cast<char>('N'), static_cast<char>('O'), static_cast<char>('P'), static_cast<char>('Q'), static_cast<char>('U'), static_cast<char>('V'), static_cast<char>('W'), static_cast<char>('X'), static_cast<char>('Y'), static_cast<char>('Z'), static_cast<char>('j'), static_cast<char>('m'), static_cast<char>('o'), static_cast<char>('s'), static_cast<char>('x'), static_cast<char>('y'), static_cast<char>('1'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('D'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('J'), static_cast<char>('K'), static_cast<char>('L'), static_cast<char>('M'), static_cast<char>('N'), static_cast<char>('O'), static_cast<char>('P'), static_cast<char>('Q'), static_cast<char>('U'), static_cast<char>('V'), static_cast<char>('W'), static_cast<char>('X'), static_cast<char>('Y'), static_cast<char>('Z'), static_cast<char>('j'), static_cast<char>('m'), static_cast<char>('o'), static_cast<char>('s'), static_cast<char>('x'), static_cast<char>('y'), static_cast<char>('1'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('D'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('J'), static_cast<char>('K'), static_cast<char>('L'), static_cast<char>('M'), static_cast<char>('N'), static_cast<char>('O'), static_cast<char>('P'), static_cast<char>('Q'), static_cast<char>('U'), static_cast<char>('Y'), static_cast<char>('W'), static_cast<char>('X'), static_cast<char>('Y'), static_cast<char>('Z'), static_cast<char>('j'), static_cast<char>('m'), static_cast<char>('o'), static_cast<char>('s'), static_cast<char>('x'), static_cast<char>('y'), static_cast<char>('1'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('D'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('J'), static_cast<char>('K'), static_cast<char>('L'), static_cast<char>('M'), static_cast<char>('N'), static_cast<char>('O'), static_cast<char>('P'), static_cast<char>('Q'), static_cast<char>('U'), static_cast<char>('Y'), static_cast<char>('W'), static_cast<char>('X'), static_cast<char>('Y'), static_cast<char>('Z'), static_cast<char>('j'), static_cast<char>('m'), static_cast<char>('o'), static_cast<char>('s'), static_cast<char>('x'), static_cast<char>('y'), static_cast<char>('1'), });
     constexpr ReasonCode():value_{max_value} {}
     constexpr explicit ReasonCode(char v):value_{v} {}
     constexpr ReasonCode(Enum v):value_{v} {}

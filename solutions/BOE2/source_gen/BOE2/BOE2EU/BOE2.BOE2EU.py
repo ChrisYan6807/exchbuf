@@ -34,13 +34,13 @@ class MsgType(int, Enum):
     LogoutRequest = 0x02
     ClientHeartbeat = 0x03
     NewOrderV2 = 0x38
-    CancelOrderV2 = 0x39
+    CancelOrderV2 = 0x38
     ModifyOrderV2 = 0x3A
     QuoteV2 = 0x3D
     QuoteCancelV2 = 0x3E
     ParticipantSuspend = 0x4F
     LoginResponseV2 = 0x24
-    Logout = 0x80
+    Logout = 0x08
     ServerHeartbeat = 0x09
     ReplayComplete = 0x13
     OrderAcknowledgementV2 = 0x25
@@ -59,50 +59,45 @@ class MsgType(int, Enum):
 class Header(Packet):
     name = 'Header'
     fields_desc = [
-        u16("startOfMesssage", 0xBABA)
-        u16("messageLength", 0)
-        ByteEnumField("msgType", MsgType.ParticipantSuspendResponse, MsgType)
-        u8("matchingUnit", 0)
-        u32("seqNum", 0)
+    u16("startOfMesssage", 0xBABA),
+    u16("messageLength", 0),
+    ByteEnumField("msgType", MsgType.ParticipantSuspendResponse, MsgType),
+    u8("matchingUnit", 0),
+    u32("seqNum", 0),
     ]
-
 
 
 class SeqNumUnit(Packet):
     name = 'SeqNumUnit'
     fields_desc = [
-        u8("unitNum", 0)
-        u32("unitSeq", 0)
+    u8("unitNum", 0),
+    u32("unitSeq", 0),
     ]
-
 
 
 class BitfieldsUnit(Packet):
     name = 'BitfieldsUnit'
     fields_desc = [
-        u8("bit", 0)
+    u8("bit", 0),
     ]
-
 
 
 class UnitSeqParaGrp(Packet):
     name = 'UnitSeqParaGrp'
     fields_desc = [
-        u8("noUnspecifiedUnitReplay", 0)
-        FieldLenField("numUnits", 0, fmt="<B", count_of="seqGrp")
+    u8("noUnspecifiedUnitReplay", 0),
+    FieldLenField("numUnits", 0, fmt="<B", count_of="seqGrp"),
         PacketListField("seqGrp", None, SeqNumUnit, count_from=lambda pkt:pkt.numUnits
     ]
-
 
 
 class ReturnBitFieldsParaGrp(Packet):
     name = 'ReturnBitFieldsParaGrp'
     fields_desc = [
-        ByteEnumField("msgType", MsgType.ParticipantSuspendResponse, MsgType)
-        FieldLenField("numReturnBitfields", 0, fmt="<B", count_of="returnBitfieldGrp")
+    ByteEnumField("msgType", MsgType.ParticipantSuspendResponse, MsgType),
+    FieldLenField("numReturnBitfields", 0, fmt="<B", count_of="returnBitfieldGrp"),
         PacketListField("returnBitfieldGrp", None, BitfieldsUnit, count_from=lambda pkt:pkt.numReturnBitfields
     ]
-
 
 
 class ParaGrpType(int, Enum):
@@ -113,24 +108,24 @@ class ParaGrpType(int, Enum):
 class ParaGrp(Packet):
     name = 'ParaGrp'
     fields_desc = [
-        u16("length", 0)
-        ByteEnumField("paraGrpType", ParaGrpType.ReturnBitfields, ParaGrpType)
+    u16("length", 0),
+    ByteEnumField("paraGrpType", ParaGrpType.ReturnBitfields, ParaGrpType),
+        ConditionalField(PacketField("unitSeq", UnitSeqParaGrp(), UnitSeqParaGrp), lambda pkt:pkt.paraGrpType == ParaGrpType.UnitSeq),
+        ConditionalField(PacketField("returnBitfields", ReturnBitFieldsParaGrp(), ReturnBitFieldsParaGrp), lambda pkt:pkt.paraGrpType == ParaGrpType.ReturnBitfields),
 
     ]
-
 
 
 class LoginRequestsV2(Packet):
     name = 'LoginRequestsV2'
     fields_desc = [
-        str8("subID", "")
-        str8("username", "")
-        str10("password", "")
-        FieldLenField("numParaGrp", 0, fmt="<B", count_of="paraGrps")
+    str8("subID", ""),
+    str8("username", ""),
+    str10("password", ""),
+    FieldLenField("numParaGrp", 0, fmt="<B", count_of="paraGrps"),
         PacketListField("paraGrps", None, ParaGrp, count_from=lambda pkt:pkt.numParaGrp
     ]
 bind_layers(Header, LoginRequestsV2, msgType=MsgType.LoginRequestV2)
-
 
 class LogoutRequest(Packet):
     name = 'LogoutRequest'
@@ -138,13 +133,11 @@ class LogoutRequest(Packet):
     ]
 bind_layers(Header, LogoutRequest, msgType=MsgType.LogoutRequest)
 
-
 class ClientHeartbeat(Packet):
     name = 'ClientHeartbeat'
     fields_desc = [
     ]
 bind_layers(Header, ClientHeartbeat, msgType=MsgType.ClientHeartbeat)
-
 
 class ServerHeartbeat(Packet):
     name = 'ServerHeartbeat'
@@ -152,13 +145,11 @@ class ServerHeartbeat(Packet):
     ]
 bind_layers(Header, ServerHeartbeat, msgType=MsgType.ServerHeartbeat)
 
-
 class ReplayComplete(Packet):
     name = 'ReplayComplete'
     fields_desc = [
     ]
 bind_layers(Header, ReplayComplete, msgType=MsgType.ReplayComplete)
-
 
 class LoginResponseStatus(str, Enum):
     LoginAccepted = 'A'
@@ -175,16 +166,15 @@ class LoginResponseStatus(str, Enum):
 class LoginResponseV2(Packet):
     name = 'LoginResponseV2'
     fields_desc = [
-        CharEnumField("status", LoginResponseStatus.InvalidLoginRequestMessageStructure, LoginResponseStatus)
-        str60("text", "")
-        u8("noUnspecifiedUnitReplay", 0)
-        u32("lastRcvSeqNum", 0)
-        FieldLenField("numUnites", 0, fmt="<B", count_of="seqNumUnits")
+    CharEnumField("status", LoginResponseStatus.InvalidLoginRequestMessageStructure, LoginResponseStatus),
+    str60("text", ""),
+    u8("noUnspecifiedUnitReplay", 0),
+    u32("lastRcvSeqNum", 0),
+    FieldLenField("numUnites", 0, fmt="<B", count_of="seqNumUnits"),
         PacketListField("seqNumUnits", None, SeqNumUnit, count_from=lambda pkt:pkt.numUnites
-        FieldLenField("numParaGrp", 0, fmt="<B", count_of="paraGrps")
+    FieldLenField("numParaGrp", 0, fmt="<B", count_of="paraGrps"),
         PacketListField("paraGrps", None, ParaGrp, count_from=lambda pkt:pkt.numParaGrp
     ]
-
 
 
 class LogoutReason(str, Enum):
@@ -197,13 +187,12 @@ class LogoutReason(str, Enum):
 class Logout(Packet):
     name = 'Logout'
     fields_desc = [
-        CharEnumField("reason", LogoutReason.ProtocolViolation, LogoutReason)
-        str60("text", "")
-        u32("lastRcvSeqNum", 0)
-        FieldLenField("numUnits", 0, fmt="<B", count_of="seqNumUnits")
+    CharEnumField("reason", LogoutReason.ProtocolViolation, LogoutReason),
+    str60("text", ""),
+    u32("lastRcvSeqNum", 0),
+    FieldLenField("numUnits", 0, fmt="<B", count_of="seqNumUnits"),
         PacketListField("seqNumUnits", None, SeqNumUnit, count_from=lambda pkt:pkt.numUnits
     ]
-
 
 
 class Side(str, Enum):
@@ -607,7 +596,7 @@ class DisplayIndicator(str, Enum):
 
 DisplayPrice = Price4;
 class ExecInst(str, Enum):
-    Default = 0x00
+    Default = 0
     MarketPeg = 'P'
     PrimaryPeg = 'R'
     Midpoint = 'M'
@@ -693,7 +682,7 @@ SettlementDate = u64;
 SettlementLocation = str2;
 SettlementPrice = TradePrice;
 class SubLiquidityIndicator(str, Enum):
-    NO = 0x00
+    NO = 0
     CboeDarkPoolExecution = 'D'
     RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T'
     TradeAddedHiddenLiquidity = 'H'
@@ -752,6 +741,7 @@ class TradingSessionSubID(str, Enum):
     ScheduledIntradayAuction = 6
     UnspecifiedAuction = 8
     UnscheduledAuction = 9
+    ContinuousTrading = 3
     PostTrading = 5
     OutOfMainSessionTrading = 10
 
@@ -775,7 +765,7 @@ class WaiverType(str, Enum):
     SIZE = '5'
     ILQDandSIZE = 'B'
     OrderManagementFacility = 'A'
-    LargeInScal = '9'
+    LargeInScal = 9
 
 WorkingPrice = Price4;
 AllocQty = u32;
@@ -828,7 +818,7 @@ DrillThruProtection = u8;
 CustOrderHandlingInst = u8;
 class AccountType(str, Enum):
     Customer = '1'
-    Hose = '3'
+    Hose = 3
 
 class SIIndicator(str, Enum):
     SI = '5'
@@ -842,10 +832,10 @@ Underlying = u8;
 class NewOrderV2(Packet):
     name = 'NewOrderV2'
     fields_desc = [
-        str20("clOrdID", "")
-        CharEnumField("side", Side.SellUndisclosed, Side)
-        u32("qty", 0)
-        u8("numBitFields", 0)
+    str20("clOrdID", ""),
+    CharEnumField("side", Side.SellUndisclosed, Side),
+    u32("qty", 0),
+    u8("numBitFields", 0),
         ConditionalField(ByteEnumField("bit1", NewOrderBit1.MaxFloor, NewOrderBit1), lambda pkt:pkt.numBitFields >=1),
         ConditionalField(ByteEnumField("bit2", NewOrderBit2.RoutingInst, NewOrderBit2), lambda pkt:pkt.numBitFields >=2),
         ConditionalField(ByteEnumField("bit3", NewOrderBit3.ExpireTime, NewOrderBit3), lambda pkt:pkt.numBitFields >=3),
@@ -930,12 +920,11 @@ class NewOrderV2(Packet):
     ]
 bind_layers(Header, NewOrderV2, msgType=MsgType.NewOrderV2)
 
-
 class CancelOrderV2(Packet):
     name = 'CancelOrderV2'
     fields_desc = [
-        str20("origClOrdID", "")
-        u8("numBitFields", 0)
+    str20("origClOrdID", ""),
+    u8("numBitFields", 0),
         ConditionalField(ByteEnumField("bit1", CancelOrderBit1.OperatorID, CancelOrderBit1), lambda pkt:pkt.numBitFields >=1),
         ConditionalField(ByteEnumField("bit2", CancelOrderBit1.OperatorID, CancelOrderBit1), lambda pkt:pkt.numBitFields >=2),
         ConditionalField(str8("clearingFirm", ""), lambda pkt:pkt.bit1 and (pkt.bit1 & CancelOrderBit1.ClearingFirm)),
@@ -950,14 +939,13 @@ class CancelOrderV2(Packet):
     ]
 bind_layers(Header, CancelOrderV2, msgType=MsgType.CancelOrderV2)
 
-
 class ModifyOrderV2(Packet):
     name = 'ModifyOrderV2'
     fields_desc = [
-        str20("clOrdID", "")
-        u64("orderID", 0)
-        u8("reserved", 0)
-        u8("numBitFields", 0)
+    str20("clOrdID", ""),
+    u64("orderID", 0),
+    u8("reserved", 0),
+    u8("numBitFields", 0),
         ConditionalField(ByteEnumField("bit1", ModifyOrderBit1.Side, ModifyOrderBit1), lambda pkt:pkt.numBitFields >=1),
         ConditionalField(ByteEnumField("bit2", ModifyOrderBit2.Reserved, ModifyOrderBit2), lambda pkt:pkt.numBitFields >=2),
         ConditionalField(str8("clearingFirm", ""), lambda pkt:pkt.bit1 and (pkt.bit1 & ModifyOrderBit1.ClearingFirm)),
@@ -978,7 +966,6 @@ class ModifyOrderV2(Packet):
         ConditionalField(u8("reserved2", 0), lambda pkt:pkt.bit2 and (pkt.bit2 & ModifyOrderBit2.Reserved)),
     ]
 bind_layers(Header, ModifyOrderV2, msgType=MsgType.ModifyOrderV2)
-
 
 class MultilegReportingType(str, Enum):
     SimpleInstrument = '1'
@@ -1051,7 +1038,7 @@ class subLidIndicator(str, Enum):
 class OrderRespOptGrp(Packet):
     name = 'OrderRespOptGrp'
     fields_desc = [
-        u8("numReturnBitFields", 0)
+    u8("numReturnBitFields", 0),
         ConditionalField(ByteEnumField("bit1", OrderAckBit1.MaxRemovePct, OrderAckBit1), lambda pkt:pkt.numReturnBitFields >=1),
         ConditionalField(ByteEnumField("bit2", OrderAckBit2.ContraTrader, OrderAckBit2), lambda pkt:pkt.numReturnBitFields >=2),
         ConditionalField(ByteEnumField("bit3", OrderAckBit3.PreventMatch, OrderAckBit3), lambda pkt:pkt.numReturnBitFields >=3),
@@ -1212,17 +1199,15 @@ class OrderRespOptGrp(Packet):
     ]
 
 
-
 class OrderAckV2(Packet):
     name = 'OrderAckV2'
     fields_desc = [
-        u64("transactionTime", 0)
-        str20("clOrdID", "")
-        u8("reserved", 0)
-        PacketField("optGrp", "", OrderRespOptGrp)
+    u64("transactionTime", 0),
+    str20("clOrdID", ""),
+    u8("reserved", 0),
+    PacketField("optGrp", "", OrderRespOptGrp),
     ]
 bind_layers(Header, OrderAckV2, msgType=MsgType.OrderAcknowledgementV2)
-
 
 class ReasonCode(str, Enum):
     Admin = 'A'
@@ -1238,7 +1223,7 @@ class ReasonCode(str, Enum):
     CantModifyAnOrderThatIsPendingFill = 'P'
     WaitingForFirstTrade = 'Q'
     UserRequested = 'U'
-    WouldWash = 'V'
+    WouldWash = 'Y'
     AddLiquidityOnlyOrderWouldRemove = 'W'
     OrderExpired = 'X'
     SymbolNotSupported = 'Y'
@@ -1255,40 +1240,37 @@ class ReasonCode(str, Enum):
 class OrderRejectedV2(Packet):
     name = 'OrderRejectedV2'
     fields_desc = [
-        u64("transTime", 0)
-        str20("clOrdID", "")
-        CharEnumField("code", ReasonCode.RegQuoteDifferentToRoomQuote, ReasonCode)
-        str60("text", "")
-        u8("reserved", 0)
-        PacketField("optGrp", "", OrderRespOptGrp)
+    u64("transTime", 0),
+    str20("clOrdID", ""),
+    CharEnumField("code", ReasonCode.RegQuoteDifferentToRoomQuote, ReasonCode),
+    str60("text", ""),
+    u8("reserved", 0),
+    PacketField("optGrp", "", OrderRespOptGrp),
     ]
 bind_layers(Header, OrderRejectedV2, msgType=MsgType.OrderRejectedV2)
-
 
 class OrderCancelledV2(Packet):
     name = 'OrderCancelledV2'
     fields_desc = [
-        u64("transTime", 0)
-        str20("clOrdID", "")
-        CharEnumField("code", ReasonCode.RegQuoteDifferentToRoomQuote, ReasonCode)
-        str60("text", "")
-        u8("reserved", 0)
-        PacketField("optGrp", "", OrderRespOptGrp)
+    u64("transTime", 0),
+    str20("clOrdID", ""),
+    CharEnumField("code", ReasonCode.RegQuoteDifferentToRoomQuote, ReasonCode),
+    str60("text", ""),
+    u8("reserved", 0),
+    PacketField("optGrp", "", OrderRespOptGrp),
     ]
 bind_layers(Header, OrderCancelledV2, msgType=MsgType.OrderCancelledV2)
-
 
 class OrderModifiedV2(Packet):
     name = 'OrderModifiedV2'
     fields_desc = [
-        u64("transTime", 0)
-        str20("clOrdID", "")
-        u64("orderID", 0)
-        u8("reserved", 0)
-        PacketField("optGrp", "", OrderRespOptGrp)
+    u64("transTime", 0),
+    str20("clOrdID", ""),
+    u64("orderID", 0),
+    u8("reserved", 0),
+    PacketField("optGrp", "", OrderRespOptGrp),
     ]
 bind_layers(Header, OrderModifiedV2, msgType=MsgType.OrderModifiedV2)
-
 
 class LiqIndicator(str, Enum):
     Added = 'A'
@@ -1300,20 +1282,19 @@ class LiqIndicator(str, Enum):
 class OrderExecutionV2(Packet):
     name = 'OrderExecutionV2'
     fields_desc = [
-        u64("transTime", 0)
-        str20("clOrdID", "")
-        u64("execID", 0)
-        u32("lastShares", 0)
-        Price4("lastPx", 0)
-        u32("leavesQty", 0)
-        CharEnumField("liqInd", LiqIndicator.Auction, LiqIndicator)
-        CharEnumField("subLiqInd", SubLiquidityIndicator.LiquidityALPSSBBO, SubLiquidityIndicator)
-        str4("contraBroker", "")
-        u8("reserved", 0)
-        PacketField("optGrp", "", OrderRespOptGrp)
+    u64("transTime", 0),
+    str20("clOrdID", ""),
+    u64("execID", 0),
+    u32("lastShares", 0),
+    Price4("lastPx", 0),
+    u32("leavesQty", 0),
+    CharEnumField("liqInd", LiqIndicator.Auction, LiqIndicator),
+    CharEnumField("subLiqInd", SubLiquidityIndicator.LiquidityALPSSBBO, SubLiquidityIndicator),
+    str4("contraBroker", ""),
+    u8("reserved", 0),
+    PacketField("optGrp", "", OrderRespOptGrp),
     ]
 bind_layers(Header, OrderExecutionV2, msgType=MsgType.OrderExecutionV2)
-
 
 
 

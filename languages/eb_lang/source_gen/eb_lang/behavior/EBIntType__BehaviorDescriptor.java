@@ -52,7 +52,7 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   }
 
   /*package*/ static String eb_string_id7cjtpqhs3YN(@NotNull SNode __thisNode__) {
-    return SConceptOperations.conceptAlias(SNodeOperations.getConcept(__thisNode__));
+    return String.format("%s [ min=%s, max=%s, null=%s, endian=%s ]", SConceptOperations.conceptAlias(SNodeOperations.getConcept(__thisNode__)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)), ((SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_) == null) ? "" : SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_)));
   }
   /*package*/ static boolean isNumber_id2ZdneJ5Om96(@NotNull SNode __thisNode__, char c) {
     if (c >= '0' && c <= '9') {
@@ -273,16 +273,16 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   public SAbstractConcept getConcept() {
     return CONCEPT;
   }
-  private static boolean isNotEmptyString(String str) {
-    return str != null && str.length() > 0;
-  }
   private static boolean isEmptyString(String str) {
     return str == null || str.isEmpty();
   }
+  private static boolean isNotEmptyString(String str) {
+    return str != null && str.length() > 0;
+  }
 
   private static final class PROPS {
-    /*package*/ static final SProperty max$DBZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142294L, "max");
     /*package*/ static final SProperty min$DCVS = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142298L, "min");
+    /*package*/ static final SProperty max$DBZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142294L, "max");
     /*package*/ static final SProperty null$sULd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x1314ce5d5c778a97L, "null");
   }
 

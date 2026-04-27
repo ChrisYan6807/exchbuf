@@ -12,6 +12,7 @@
   </facets>
   <languageVersions>
     <language slang="l:59242254-602f-42f3-ab3a-dc203eb4cc03:eb_lang" version="0" />
+    <language slang="l:87d4987f-c831-4a03-9f51-66048c99e214:eb_lang_codegen" version="0" />
     <language slang="l:ceab5195-25ea-4f22-9b92-103b95ca8c0c:jetbrains.mps.lang.core" version="2" />
   </languageVersions>
   <dependencyVersions>

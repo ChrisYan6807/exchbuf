@@ -6,7 +6,9 @@ from .common import *
 
 U8 = integer_type(ByteField, 0, 255, 0)
 U16 = integer_type(LEShortField, 0, 65535, 0)
-str3 = fixed_length_string(0, '\0', False)
+str3 = fixed_length_string(3, '\0', False)
+str10 = fixed_length_string(10, '\0', False)
+
 
 Price3 = float_decimal(8, 8, True, True, -2**63, 2**63-1, 0)
 Price4 = float_decimal(8, 8, True, True, -2**63, 2**63-1, 0)
@@ -16,6 +18,7 @@ if "P3" in builtins.__dict__ and builtins.P3:
     Price = Price3;
 else:
     Price = Price4;
+MsgLen = U16;
 
 class E1(str, Enum):
     F1 = 1
@@ -30,11 +33,70 @@ class E2(str, Enum):
 class BF1(Packet):
      fields_desc = [
         BitEnumField('E1', E1.F1, 2, E1)
-        BitEnumField('E2', E2.F1, 2, E2)
+        BitEnumField('E2', E2.F2, 2, E2)
         BitEnumField('EBPlaceHolderValue', EBPlaceHolderEnum.Zero, 12, EBPlaceHolderEnum), 
 )    ]
     def extract_padding(self, s):
         return '', s
+
+
+class MsgType(int, Enum):
+    New = 1
+    Amend = 2
+    Cancel = 3
+
+
+class Head(Packet):
+    name = 'Head'
+    fields_desc = [
+    U16("len", 0),
+    LEShortEnumField("msgType", MsgType.Cancel, MsgType),
+    ]
+
+
+class RptGrp(Packet):
+    name = 'RptGrp'
+    fields_desc = [
+    U8("key", 0),
+    str3("value", ""),
+    ]
+
+
+class AppendageType(int, Enum):
+    ClearingAccount = 1
+    ClearingAccountType = 2
+    ClearingFirm = 3
+
+
+ClearingAccount = str3;
+ClearingAccountType = U8;
+ClearingFirm = str10;
+
+class Entry(Packet):
+    name = 'Entry'
+    fields_desc = [
+    U8("len", 0),
+    ByteEnumField("tag", AppendageType.ClearingFirm, AppendageType),
+        ConditionalField(str3("clearingAccount", ""), lambda pkt:pkt.tag == AppendageType.ClearingAccount),
+        ConditionalField(U8("clearingAccountType", 0), lambda pkt:pkt.tag == AppendageType.ClearingAccountType),
+        ConditionalField(str10("clearingFirm", ""), lambda pkt:pkt.tag == AppendageType.ClearingFirm),
+
+    ]
+
+
+class NewOrder(Packet):
+    name = 'NewOrder'
+    fields_desc = [
+    Price3("price", 0),
+    U16("qty", 0),
+    FieldLenField("size", 0, fmt="<B", count_of="grp"),
+        PacketListField("grp", None, RptGrp, count_from=lambda pkt:pkt.size
+        LEBitField('bitmem', 0, 28),
+        StrLenField("sss", b"", length_from=lambda pkt:pkt.size - 2),  var_str<size=size, offset=2> sss
+
+    U16("plen", 0),
+        ConditionalField(PacketListField("appendage", [], Entry, length_from=lambda pkg:pkt.plen), lambda pkt:pkt.plen > 0),
+    ]
 
 
 

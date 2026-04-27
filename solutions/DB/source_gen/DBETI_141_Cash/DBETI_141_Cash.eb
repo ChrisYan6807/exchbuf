@@ -5,28 +5,28 @@
 @python eti_CashAppVersionID = "14.1"
 primitive CurrencyType = FixedLengthString [ length=3, padding='\0', left_padding=false ]
 primitive ISIN = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive LocalMktDate = uint32_ebt
-primitive LocalMonthYearCod = uint32_ebt
+primitive LocalMktDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive LocalMonthYearCod = uint32_ebt [ min=0, max=999912, null=0xFFFFFFFF, endian= ]
 primitive PriceType = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive Qty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
-primitive SeqNum = uint64_ebt
-primitive UTCTimestamp = uint64_ebt
+primitive SeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive UTCTimestamp = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive Account = FixedLengthString [ length=2, padding='\0', left_padding=false ]
 primitive AccruedInterestAmt = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
-primitive ActivationDate = uint32_ebt
-primitive AffectedOrderID = uint64_ebt
-primitive AffectedOrderRequestID = uint32_ebt
-primitive AffectedOrigClOrdID = uint64_ebt
-primitive AllocID = uint32_ebt
+primitive ActivationDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive AffectedOrderID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive AffectedOrderRequestID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive AffectedOrigClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive AllocID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum AllocMethod : uint8_ebt {
   Automatic_Random = 1
   Manual = 3
 }
 primitive AllocQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 primitive ApplBegMsgID = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive ApplBegSeqNum = uint64_ebt
+primitive ApplBegSeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive ApplEndMsgID = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive ApplEndSeqNum = uint64_ebt
+primitive ApplEndSeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum ApplID : uint8_ebt {
   Trade = 1
   News = 2
@@ -52,14 +52,14 @@ enum ApplSeqIndicator : uint8_ebt {
   No_Recovery_Required = 0
   Recovery_Required = 1
 }
-primitive ApplSeqNum = uint64_ebt
+primitive ApplSeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum ApplSeqStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
 }
-primitive ApplSeqTradeDate = uint32_ebt
-primitive ApplSubID = uint32_ebt
-primitive ApplTotalMessageCount = uint16_ebt
+primitive ApplSeqTradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive ApplSubID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive ApplTotalMessageCount = uint16_ebt [ min=0, max=65534, null=0xFFFF, endian= ]
 enum ApplUsageOrders : char_ebt {
   Automated = 'A'
   Manual = 'M'
@@ -75,12 +75,12 @@ enum ApplUsageQuotes : char_ebt {
 primitive ApplicationSystemName = FixedLengthString [ length=30, padding='\0', left_padding=false ]
 primitive ApplicationSystemVendor = FixedLengthString [ length=30, padding='\0', left_padding=false ]
 primitive ApplicationSystemVersion = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive AutoApprovalRuleID = uint32_ebt
-primitive AutoExecExpiryTime = uint64_ebt
-primitive AutoExecExposureDuration = uint32_ebt
+primitive AutoApprovalRuleID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive AutoExecExpiryTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive AutoExecExposureDuration = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive AutoExecLimitPrice = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
-primitive AutoExecMinNoOfQuotes = uint32_ebt
-primitive AutoExecReferencePriceOffset = int32_ebt
+primitive AutoExecMinNoOfQuotes = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive AutoExecReferencePriceOffset = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
 enum AutoExecType : uint8_ebt {
   MidPointBBO = 1
   BestBid = 2
@@ -101,10 +101,10 @@ enum BidPxIsLocked : uint8_ebt {
   Yes = 1
 }
 primitive BidSize = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
-primitive BodyLen = uint32_ebt
-primitive BrokerInternalizationID = uint32_ebt
-primitive CheckSumCorrection = uint16_ebt
-primitive ClOrdID = uint64_ebt
+primitive BodyLen = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive BrokerInternalizationID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive CheckSumCorrection = uint16_ebt [ min=0, max=65534, null=0xFFFF, endian= ]
+primitive ClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum ClearingInstruction : uint8_ebt {
   Bilateral_netting_only = 2
   Self_clearing = 13
@@ -117,7 +117,7 @@ enum CrossMatchInstruction : uint8_ebt {
   Cancel_passive = 2
   Cancel_aggressive_and_passive = 3
 }
-primitive CrossRequestID = int32_ebt
+primitive CrossRequestID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
 enum CrossedIndicator : uint8_ebt {
   No_crossing = 0
   Cross_rejected = 1
@@ -145,10 +145,10 @@ enum DeliveryType : uint8_ebt {
 primitive DisplayHighQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 primitive DisplayLowQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 primitive DisplayQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
-primitive EffectiveTime = uint64_ebt
+primitive EffectiveTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive EncryptedPassword = FixedLengthString [ length=684, padding='\0', left_padding=false ]
-primitive EnrichmentRuleID = uint16_ebt
-primitive EventDate = uint32_ebt
+primitive EnrichmentRuleID = uint16_ebt [ min=1, max=10000, null=0xFFFF, endian= ]
+primitive EventDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
 primitive EventPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 enum EventType : uint8_ebt {
   Redemption = 26
@@ -167,7 +167,7 @@ enum EventType : uint8_ebt {
   Suspend = 116
   Unsuspend = 117
 }
-primitive ExecID = uint64_ebt
+primitive ExecID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum ExecInst : uint8_ebt {
   H = 1
   Q = 2
@@ -242,18 +242,18 @@ enum ExecType : char_ebt {
   Pending_New = 'A'
   Pending_Replace = 'E'
 }
-primitive ExecutingTrader = uint64_ebt
+primitive ExecutingTrader = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum ExecutingTraderQualifier : uint8_ebt {
   Algo = 22
   Human = 24
 }
-primitive ExpireDate = uint32_ebt
-primitive ExpireTime = uint64_ebt
+primitive ExpireDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive ExpireTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive FIXClOrdID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
 primitive FIXEngineName = FixedLengthString [ length=30, padding='\0', left_padding=false ]
 primitive FIXEngineVendor = FixedLengthString [ length=30, padding='\0', left_padding=false ]
 primitive FIXEngineVersion = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive FillExecID = int32_ebt
+primitive FillExecID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
 enum FillLiquidityInd : uint8_ebt {
   Added_Liquidity = 1
   Removed_Liquidity = 2
@@ -264,31 +264,31 @@ enum FillLiquidityInd : uint8_ebt {
   Added_Liquidity_Midpoint = 100
   Removed_Liquidity_Midpoint = 101
 }
-primitive FillMatchID = uint32_ebt
+primitive FillMatchID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive FillPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive FillQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
-primitive FillRefID = uint8_ebt
+primitive FillRefID = uint8_ebt [ min=1, max=100, null=0xFF, endian= ]
 primitive FirmNegotiationID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
 primitive FirmTradeID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
 primitive FreeText1 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
 primitive FreeText2 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
 primitive FreeText4 = FixedLengthString [ length=16, padding='\0', left_padding=false ]
 primitive FreeText5 = FixedLengthString [ length=132, padding='\0', left_padding=false ]
-primitive GatewayID = uint32_ebt
+primitive GatewayID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum GatewayStatus : uint8_ebt {
   Standby = 0
   Active = 1
 }
-primitive GatewaySubID = uint32_ebt
+primitive GatewaySubID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive Headline = FixedLengthString [ length=256, padding='\0', left_padding=false ]
-primitive HeartBtInt = uint32_ebt
+primitive HeartBtInt = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive HighLimitPrice = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive ImbalanceQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 enum ImpliedMarketIndicator : uint8_ebt {
   Not_implied = 0
   Implied_in_out = 3
 }
-primitive IndividualAllocID = uint32_ebt
+primitive IndividualAllocID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum LastCouponDeviationIndicator : uint8_ebt {
   None = 0
   Short_period = 1
@@ -328,8 +328,8 @@ enum LastQtyDisclosureInstruction : uint8_ebt {
   No = 0
   Yes = 1
 }
-primitive LastUpdateTime = uint64_ebt
-primitive LatestPublicKeySeqNo = uint32_ebt
+primitive LastUpdateTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive LatestPublicKeySeqNo = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive LeavesQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 enum LeavesQtyDisclosureInstruction : uint8_ebt {
   No = 0
@@ -362,7 +362,7 @@ enum MarketID : uint16_ebt {
   XHAN = 16
   XMUN = 17
 }
-primitive MarketSegmentID = int32_ebt
+primitive MarketSegmentID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
 enum MassActionReason : uint8_ebt {
   No_Special_Reason = 0
   Stop_Trading = 1
@@ -384,14 +384,14 @@ enum MassActionReason : uint8_ebt {
   Automatic_Quote_Deletion = 119
   Outside_Quoting_Period = 120
 }
-primitive MassActionReportID = uint64_ebt
+primitive MassActionReportID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum MassActionType : uint8_ebt {
   Suspend_quotes = 1
   Release_quotes = 2
   Suspend_delete_quotes = 3
 }
-primitive MatchDate = uint32_ebt
-primitive MatchInstCrossID = uint32_ebt
+primitive MatchDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive MatchInstCrossID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum MatchSubType : uint8_ebt {
   Opening_Auction = 1
   Closing_Auction = 2
@@ -416,8 +416,8 @@ enum MatchingEngineStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
 }
-primitive MatchingEngineTradeDate = uint32_ebt
-primitive MaturityMonthYear = uint32_ebt
+primitive MatchingEngineTradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive MaturityMonthYear = uint32_ebt [ min=0, max=999912, null=0xFFFFFFFF, endian= ]
 enum MessageEventSource : char_ebt {
   Broadcast_to_Initiator = 'I'
   Broadcast_to_Approver = 'A'
@@ -429,56 +429,56 @@ enum MidPointType : uint8_ebt {
   MidPointSweep = 2
 }
 primitive MinQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
-primitive MsgSeqNum = uint32_ebt
+primitive MsgSeqNum = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive MsgType = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive NegotiationID = uint32_ebt
-primitive NegotiationStartTime = uint64_ebt
+primitive NegotiationID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive NegotiationStartTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive NetworkMsgID = FixedLengthString [ length=8, padding='\0', left_padding=false ]
 enum NewsRtmServiceStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
 }
-primitive NoAffectedOrderRequests = uint16_ebt
-primitive NoAffectedOrders = uint16_ebt
-primitive NoCrossLegs = uint8_ebt
-primitive NoEnrichmentRules = uint16_ebt
-primitive NoEvents = uint8_ebt
-primitive NoFills = uint8_ebt
-primitive NoInstrAttrib = uint8_ebt
-primitive NoMDEntryTypes = uint8_ebt
-primitive NoNotAffectedOrders = uint16_ebt
-primitive NoNotAffectedSecurities = uint16_ebt
-primitive NoOrderBookItems = uint8_ebt
-primitive NoOrderEntries = uint8_ebt
-primitive NoOrderEvents = uint8_ebt
-primitive NoPartyDetails = uint16_ebt
-primitive NoPartyRiskLimits = uint16_ebt
-primitive NoQuoteEntries = uint8_ebt
-primitive NoQuoteEvents = uint8_ebt
-primitive NoQuoteEventsIndex = uint8_ebt
-primitive NoQuoteSideEntries = uint8_ebt
-primitive NoRiskLimitAmount = uint8_ebt
-primitive NoRiskLimits = uint8_ebt
-primitive NoSRQSQuoteGrps = uint8_ebt
-primitive NoSRQSTargetPartyTrdGrps = uint8_ebt
-primitive NoSessions = uint16_ebt
-primitive NoSideAllocs = uint8_ebt
-primitive NoSideOTCAllocs = uint8_ebt
-primitive NoSides = uint8_ebt
-primitive NoTargetPartyIDs = uint8_ebt
-primitive NoUnderlyingStips = uint8_ebt
-primitive NotAffOrigClOrdID = uint64_ebt
-primitive NotAffectedOrderID = uint64_ebt
-primitive NotAffectedSecurityID = int64_ebt
-primitive NotificationIn = uint64_ebt
-primitive NumDaysInterest = uint32_ebt
+primitive NoAffectedOrderRequests = uint16_ebt [ min=0, max=500, null=0xFFFF, endian= ]
+primitive NoAffectedOrders = uint16_ebt [ min=0, max=500, null=0xFFFF, endian= ]
+primitive NoCrossLegs = uint8_ebt [ min=0, max=40, null=0xFF, endian= ]
+primitive NoEnrichmentRules = uint16_ebt [ min=0, max=400, null=0xFFFF, endian= ]
+primitive NoEvents = uint8_ebt [ min=0, max=2, null=0xFF, endian= ]
+primitive NoFills = uint8_ebt [ min=0, max=100, null=0xFF, endian= ]
+primitive NoInstrAttrib = uint8_ebt [ min=0, max=6, null=0xFF, endian= ]
+primitive NoMDEntryTypes = uint8_ebt [ min=0, max=2, null=0xFF, endian= ]
+primitive NoNotAffectedOrders = uint16_ebt [ min=0, max=500, null=0xFFFF, endian= ]
+primitive NoNotAffectedSecurities = uint16_ebt [ min=0, max=500, null=0xFFFF, endian= ]
+primitive NoOrderBookItems = uint8_ebt [ min=0, max=26, null=0xFF, endian= ]
+primitive NoOrderEntries = uint8_ebt [ min=2, max=12, null=0xFF, endian= ]
+primitive NoOrderEvents = uint8_ebt [ min=0, max=100, null=0xFF, endian= ]
+primitive NoPartyDetails = uint16_ebt [ min=0, max=1000, null=0xFFFF, endian= ]
+primitive NoPartyRiskLimits = uint16_ebt [ min=0, max=1000, null=0xFFFF, endian= ]
+primitive NoQuoteEntries = uint8_ebt [ min=0, max=100, null=0xFF, endian= ]
+primitive NoQuoteEvents = uint8_ebt [ min=1, max=100, null=0xFF, endian= ]
+primitive NoQuoteEventsIndex = uint8_ebt [ min=1, max=100, null=0xFF, endian= ]
+primitive NoQuoteSideEntries = uint8_ebt [ min=0, max=200, null=0xFF, endian= ]
+primitive NoRiskLimitAmount = uint8_ebt [ min=0, max=2, null=0xFF, endian= ]
+primitive NoRiskLimits = uint8_ebt [ min=0, max=64, null=0xFF, endian= ]
+primitive NoSRQSQuoteGrps = uint8_ebt [ min=0, max=30, null=0xFF, endian= ]
+primitive NoSRQSTargetPartyTrdGrps = uint8_ebt [ min=1, max=30, null=0xFF, endian= ]
+primitive NoSessions = uint16_ebt [ min=1, max=1000, null=0xFFFF, endian= ]
+primitive NoSideAllocs = uint8_ebt [ min=1, max=99, null=0xFF, endian= ]
+primitive NoSideOTCAllocs = uint8_ebt [ min=1, max=2, null=0xFF, endian= ]
+primitive NoSides = uint8_ebt [ min=1, max=2, null=0xFF, endian= ]
+primitive NoTargetPartyIDs = uint8_ebt [ min=0, max=50, null=0xFF, endian= ]
+primitive NoUnderlyingStips = uint8_ebt [ min=0, max=1, null=0xFF, endian= ]
+primitive NotAffOrigClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive NotAffectedOrderID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive NotAffectedSecurityID = int64_ebt [ min=-9223372036854775807, max=9223372036854775807, null=0x8000000000000000, endian= ]
+primitive NotificationIn = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive NumDaysInterest = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum NumberOfRespDisclosureInstruction : uint8_ebt {
   No = 0
   Yes = 1
 }
-primitive NumberOfRespondents = uint32_ebt
-primitive NumberOfSecurities = int32_ebt
-primitive OTCExecID = uint32_ebt
+primitive NumberOfRespondents = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive NumberOfSecurities = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
+primitive OTCExecID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive OfferCxlSize = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 primitive OfferPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 enum OfferPxIsLocked : uint8_ebt {
@@ -510,7 +510,7 @@ enum OrderCategory : char_ebt {
   Order = '1'
   Quote = '2'
 }
-primitive OrderEventMatchID = uint32_ebt
+primitive OrderEventMatchID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive OrderEventPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive OrderEventQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 enum OrderEventReason : uint8_ebt {
@@ -519,8 +519,8 @@ enum OrderEventReason : uint8_ebt {
 enum OrderEventType : uint8_ebt {
   Pending_requests_discarded = 100
 }
-primitive OrderID = uint64_ebt
-primitive OrderIDSfx = uint32_ebt
+primitive OrderID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive OrderIDSfx = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum OrderOrigination : uint8_ebt {
   Direct_access_customer = 5
   Sponsored_access_customer = 105
@@ -538,14 +538,14 @@ enum OrderSide : uint8_ebt {
   Buy = 1
   Sell = 2
 }
-primitive OrigClOrdID = uint64_ebt
-primitive OrigTime = uint64_ebt
-primitive OrigTradeID = uint32_ebt
+primitive OrigClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive OrigTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive OrigTradeID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum OwnershipIndicator : uint8_ebt {
   No_Change_of_Ownership = 0
   Change_to_Executing_Trader = 1
 }
-primitive PackageID = uint32_ebt
+primitive PackageID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive Pad1 = FixedLengthString [ length=1, padding='\0', left_padding=false ]
 primitive Pad1_3 = FixedLengthString [ length=1, padding='\0', left_padding=false ]
 primitive Pad2 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
@@ -560,7 +560,7 @@ primitive Pad5 = FixedLengthString [ length=5, padding='\0', left_padding=false 
 primitive Pad6 = FixedLengthString [ length=6, padding='\0', left_padding=false ]
 primitive Pad6_2 = FixedLengthString [ length=6, padding='\0', left_padding=false ]
 primitive Pad7 = FixedLengthString [ length=7, padding='\0', left_padding=false ]
-primitive PartitionID = uint16_ebt
+primitive PartitionID = uint16_ebt [ min=0, max=65534, null=0xFFFF, endian= ]
 enum PartyActionType : uint8_ebt {
   Halt_Trading = 1
   Reinstate = 2
@@ -568,8 +568,8 @@ enum PartyActionType : uint8_ebt {
 primitive PartyDetailDeskID = FixedLengthString [ length=3, padding='\0', left_padding=false ]
 primitive PartyDetailExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
 primitive PartyDetailExecutingUnit = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive PartyDetailIDExecutingTrader = uint32_ebt
-primitive PartyDetailIDExecutingUnit = uint32_ebt
+primitive PartyDetailIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive PartyDetailIDExecutingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum PartyDetailRoleQualifier : uint8_ebt {
   Trader = 10
   Head_Trader = 11
@@ -584,20 +584,20 @@ primitive PartyEnteringTrader = FixedLengthString [ length=6, padding='\0', left
 primitive PartyExecutingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
 primitive PartyExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
 primitive PartyExecutingUnit = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive PartyIDClientID = uint64_ebt
+primitive PartyIDClientID = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum PartyIDEnteringFirm : uint8_ebt {
   Participant = 1
   MarketSupervision = 2
 }
-primitive PartyIDEnteringTrader = uint32_ebt
-primitive PartyIDExecutingTrader = uint32_ebt
-primitive PartyIDExecutingUnit = uint32_ebt
+primitive PartyIDEnteringTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive PartyIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive PartyIDExecutingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum PartyIDOriginationMarket : uint8_ebt {
   XKFE = 1
 }
-primitive PartyIDSessionID = uint32_ebt
-primitive PartyIDSpecialistTrader = uint32_ebt
-primitive PartyIdInvestmentDecisionMaker = uint64_ebt
+primitive PartyIDSessionID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive PartyIDSpecialistTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive PartyIdInvestmentDecisionMaker = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum PartyIdInvestmentDecisionMakerQualifier : uint8_ebt {
   Algo = 22
   Human = 24
@@ -618,7 +618,7 @@ enum PriceValidityCheckType : uint8_ebt {
   Mandatory = 2
 }
 primitive PublicKey = FixedLengthString [ length=814, padding='\0', left_padding=false ]
-primitive PublicKeyLen = uint16_ebt
+primitive PublicKeyLen = uint16_ebt [ min=0, max=814, null=0xFFFF, endian= ]
 enum QuoteCancelReason : uint8_ebt {
   Expired = 5
 }
@@ -681,13 +681,13 @@ enum QuoteEntryStatus : uint8_ebt {
   Removed_and_Rejected = 6
   Pending = 10
 }
-primitive QuoteEventExecID = int32_ebt
+primitive QuoteEventExecID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
 enum QuoteEventLiquidityInd : uint8_ebt {
   Added_Liquidity = 1
   Removed_Liquidity = 2
   Auction = 4
 }
-primitive QuoteEventMatchID = uint32_ebt
+primitive QuoteEventMatchID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive QuoteEventPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive QuoteEventQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4,signed=true, little_endian=true ]
 enum QuoteEventReason : uint8_ebt {
@@ -710,12 +710,12 @@ enum QuoteEventType : uint8_ebt {
   Filled = 5
   Removed_Quantity = 6
 }
-primitive QuoteID = uint64_ebt
+primitive QuoteID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum QuoteInstruction : uint8_ebt {
   Do_Not_Quote = 0
   Quote = 1
 }
-primitive QuoteMsgID = uint64_ebt
+primitive QuoteMsgID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive QuoteReqID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
 enum QuoteRequestRejectReason : uint8_ebt {
   Exchange_closed = 2
@@ -727,7 +727,7 @@ enum QuoteRequestRejectReason : uint8_ebt {
   Trading_restriction = 104
   Pending_request_timed_out = 105
 }
-primitive QuoteResponseID = uint64_ebt
+primitive QuoteResponseID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum QuoteSizeType : uint8_ebt {
   TotalSize = 1
   OpenSize = 2
@@ -778,16 +778,16 @@ enum RefApplID : uint8_ebt {
   Specialist_Data = 11
 }
 primitive RefApplLastMsgID = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive RefApplLastSeqNum = uint64_ebt
-primitive RefApplSubID = uint32_ebt
+primitive RefApplLastSeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive RefApplSubID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum RefinancingEligibilityIndicator : uint8_ebt {
   No = 0
   Yes = 1
 }
 primitive RegulatoryTradeID = FixedLengthString [ length=52, padding='\0', left_padding=false ]
 primitive RelatedClosePrice = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=6,signed=true, little_endian=true ]
-primitive RelatedMarketSegmentID = int32_ebt
-primitive RequestTime = uint64_ebt
+primitive RelatedMarketSegmentID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
+primitive RequestTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive RequestingPartyClearingFirm = FixedLengthString [ length=9, padding='\0', left_padding=false ]
 primitive RequestingPartyEnteringFirm = FixedLengthString [ length=9, padding='\0', left_padding=false ]
 enum RequestingPartyIDEnteringFirm : uint8_ebt {
@@ -797,18 +797,18 @@ enum RequestingPartyIDEnteringFirm : uint8_ebt {
 enum RequestingPartyIDExecutingSystem : uint32_ebt {
   T7 = 2
 }
-primitive RequestingPartyIDExecutingTrader = uint32_ebt
+primitive RequestingPartyIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum RespondentType : uint8_ebt {
   Specified_market_participants = 2
   Specified_and_SmartRfQ_selected_participants = 100
   SmartRfQ_selected_participants = 101
 }
-primitive ResponseIn = uint64_ebt
+primitive ResponseIn = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum ReversalIndicator : uint8_ebt {
   No = 0
   Yes = 1
 }
-primitive ReversalInitiationTime = uint64_ebt
+primitive ReversalInitiationTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum RiskControlRtmServiceStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
@@ -822,7 +822,7 @@ primitive RiskLimitAmount = FloatDecimal [ min=-9223372036854775807, max=, null=
 primitive RiskLimitGroup = FixedLengthString [ length=3, padding='\0', left_padding=false ]
 primitive RiskLimitNetPositionAmount = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive RiskLimitOpenAmount = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
-primitive RiskLimitReportID = uint64_ebt
+primitive RiskLimitReportID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum RiskLimitRequestingPartyRole : uint8_ebt {
   Clearing_firm = 4
   Exchange = 22
@@ -847,40 +847,40 @@ primitive RootPartyEnteringTrader = FixedLengthString [ length=6, padding='\0', 
 primitive RootPartyExecutingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
 primitive RootPartyExecutingFirmKVNumber = FixedLengthString [ length=4, padding='\0', left_padding=false ]
 primitive RootPartyExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive RootPartyIDClearingUnit = uint32_ebt
-primitive RootPartyIDClientID = uint64_ebt
-primitive RootPartyIDContraSettlementUnit = uint32_ebt
-primitive RootPartyIDContraUnit = uint32_ebt
-primitive RootPartyIDExecutingTrader = uint32_ebt
-primitive RootPartyIDExecutingUnit = uint32_ebt
+primitive RootPartyIDClearingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive RootPartyIDClientID = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive RootPartyIDContraSettlementUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive RootPartyIDContraUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive RootPartyIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive RootPartyIDExecutingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive RootPartyIDExecutionVenue = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive RootPartyIDInvestmentDecisionMaker = uint64_ebt
+primitive RootPartyIDInvestmentDecisionMaker = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum RootPartyIDInvestmentDecisionMakerQualifier : uint8_ebt {
   Algo = 22
   Human = 24
 }
-primitive RootPartyIDSessionID = uint32_ebt
-primitive RootPartyIDSettlementUnit = uint32_ebt
+primitive RootPartyIDSessionID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive RootPartyIDSettlementUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive RootPartySettlementAccount = FixedLengthString [ length=35, padding='\0', left_padding=false ]
 primitive RootPartySettlementFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
 primitive RootPartySettlementLocation = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive SRQSRelatedTradeID = uint32_ebt
-primitive SecondaryGatewayID = uint32_ebt
+primitive SRQSRelatedTradeID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive SecondaryGatewayID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum SecondaryGatewayStatus : uint8_ebt {
   Standby = 0
   Active = 1
 }
-primitive SecondaryGatewaySubID = uint32_ebt
-primitive SecondaryQuoteID = uint64_ebt
-primitive SecondaryTradeID = uint32_ebt
-primitive SecurityID = int64_ebt
-primitive SecurityResponseID = uint64_ebt
+primitive SecondaryGatewaySubID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive SecondaryQuoteID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive SecondaryTradeID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive SecurityID = int64_ebt [ min=-9223372036854775807, max=9223372036854775807, null=0x8000000000000000, endian= ]
+primitive SecurityResponseID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum SecurityStatus : uint8_ebt {
   Knocked_out = 6
   Knock_out_revoked = 7
   Knocked_out_and_suspend = 12
 }
-primitive SecurityStatusReportID = uint64_ebt
+primitive SecurityStatusReportID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum SecurityTradingEvent : uint8_ebt {
   Instrument_State_Change = 6
   Instrument_Assigment_Change = 100
@@ -898,10 +898,10 @@ enum SelectiveRequestForQuoteServiceStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
 }
-primitive SelectiveRequestForQuoteServiceTradeDate = uint32_ebt
-primitive SenderSubID = uint32_ebt
-primitive SendingTime = uint64_ebt
-primitive SessionInstanceID = uint32_ebt
+primitive SelectiveRequestForQuoteServiceTradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive SenderSubID = uint32_ebt [ min=0, max=2147483647, null=0xFFFFFFFF, endian= ]
+primitive SendingTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive SessionInstanceID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum SessionMode : uint8_ebt {
   ETI_HF = 1
   ETI_LF = 2
@@ -956,7 +956,7 @@ enum SessionSubMode : uint8_ebt {
 primitive SettlCurrAmt = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive SettlCurrFxRate = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 primitive SettlCurrency = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive SettlDate = uint32_ebt
+primitive SettlDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
 enum Side : uint8_ebt {
   Buy = 1
   Sell = 2
@@ -977,8 +977,8 @@ enum SideLiquidityInd : uint8_ebt {
   Removed_Liquidity = 2
   Auction = 4
 }
-primitive SideTradeID = uint32_ebt
-primitive SideTradeReportID = uint32_ebt
+primitive SideTradeID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive SideTradeReportID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum SoldOutIndicator : uint8_ebt {
   Revert_sold_out = 0
   Sold_out = 1
@@ -988,28 +988,28 @@ enum StopPxIndicator : uint8_ebt {
   Do_not_overwrite = 0
   Overwrite = 1
 }
-primitive SubscriptionScope = uint32_ebt
+primitive SubscriptionScope = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum T7EntryServiceRtmStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
 }
-primitive T7EntryServiceRtmTradeDate = uint32_ebt
+primitive T7EntryServiceRtmTradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
 enum T7EntryServiceStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
 }
-primitive T7EntryServiceTradeDate = uint32_ebt
-primitive TESEnrichmentRuleID = uint32_ebt
-primitive TESExecID = uint32_ebt
+primitive T7EntryServiceTradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive TESEnrichmentRuleID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive TESExecID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 primitive TargetPartyEnteringTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
 primitive TargetPartyExecutingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
 primitive TargetPartyExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
 primitive TargetPartyIDDeskID = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive TargetPartyIDExecutingTrader = uint32_ebt
-primitive TargetPartyIDSessionID = uint32_ebt
-primitive ThrottleDisconnectLimit = uint32_ebt
-primitive ThrottleNoMsgs = uint32_ebt
-primitive ThrottleTimeInterval = int64_ebt
+primitive TargetPartyIDExecutingTrader = uint32_ebt [ min=0, max=2147483647, null=0xFFFFFFFF, endian= ]
+primitive TargetPartyIDSessionID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive ThrottleDisconnectLimit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive ThrottleNoMsgs = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive ThrottleTimeInterval = int64_ebt [ min=-9223372036854775807, max=9223372036854775807, null=0x8000000000000000, endian= ]
 enum TimeInForce : uint8_ebt {
   Day = 0
   GTC = 1
@@ -1017,7 +1017,7 @@ enum TimeInForce : uint8_ebt {
   FOK = 4
   GTD = 6
 }
-primitive TotNumTradeReports = int32_ebt
+primitive TotNumTradeReports = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, endian= ]
 enum TradSesEvent : uint8_ebt {
   Start_of_Service = 101
   Market_Reset = 102
@@ -1043,14 +1043,14 @@ enum TradeAtCloseOptIn : uint8_ebt {
   No = 0
   Yes = 1
 }
-primitive TradeDate = uint32_ebt
-primitive TradeID = uint32_ebt
+primitive TradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive TradeID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum TradeManagerStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
 }
-primitive TradeManagerTradeDate = uint32_ebt
-primitive TradeNumber = uint32_ebt
+primitive TradeManagerTradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, endian= ]
+primitive TradeNumber = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
 enum TradePlatform : uint8_ebt {
   Off_Book = 0
   On_Book = 1
@@ -1093,8 +1093,8 @@ enum TradingSessionSubID : uint8_ebt {
   AVD_Intraday_Auction = 108
   AVD_Closing_Auction = 109
 }
-primitive TransBkdTime = uint64_ebt
-primitive TransactTime = uint64_ebt
+primitive TransBkdTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive TransactTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 primitive TransactionCostAmt = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8,signed=true, little_endian=true ]
 enum TransactionCostCode : uint8_ebt {
   No_additional_cost = 0
@@ -1112,12 +1112,12 @@ enum TransferReason : uint8_ebt {
   Owner = 1
   Clearer = 2
 }
-primitive TrdMatchID = uint32_ebt
-primitive TrdRegTSEntryTime = uint64_ebt
-primitive TrdRegTSExecutionTime = uint64_ebt
-primitive TrdRegTSTimeIn = uint64_ebt
-primitive TrdRegTSTimeOut = uint64_ebt
-primitive TrdRegTSTimePriority = uint64_ebt
+primitive TrdMatchID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, endian= ]
+primitive TrdRegTSEntryTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive TrdRegTSExecutionTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive TrdRegTSTimeIn = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive TrdRegTSTimeOut = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
+primitive TrdRegTSTimePriority = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum TrdRptStatus : uint8_ebt {
   Accepted = 0
   Rejected = 1
@@ -1141,8 +1141,8 @@ enum UserStatus : uint8_ebt {
   User_stopped = 10
   User_released = 11
 }
-primitive Username = uint32_ebt
-primitive ValidUntilTime = uint64_ebt
+primitive Username = uint32_ebt [ min=0, max=2147483647, null=0xFFFFFFFF, endian= ]
+primitive ValidUntilTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, endian= ]
 enum ValueCheckTypeMinLotSize : uint8_ebt {
   Do_not_check = 0
   Check = 1
@@ -1156,7 +1156,7 @@ enum ValueCheckTypeValue : uint8_ebt {
   Check = 1
 }
 primitive VarText = FixedLengthString [ length=2000, padding='\0', left_padding=false ]
-primitive VarTextLen = uint16_ebt
+primitive VarTextLen = uint16_ebt [ min=0, max=2000, null=0xFFFF, endian= ]
 enum TemplateID : int16_ebt {
   ApproveTESTradeRequest = 10603
   BroadcastErrorNotification = 10032
@@ -1294,3116 +1294,2440 @@ enum TemplateID : int16_ebt {
   XetraEnLightStatusBroadcast = 10814
   XetraEnLightUpdateNegotiationRequest = 10801
 }
-class AffectedOrdGrpComp(Packet):
-    name = 'AffectedOrdGrpComp'
-    fields_desc = [
-    
-    
-    ]
-
-
-class AffectedOrderRequestsGrpComp(Packet):
-    name = 'AffectedOrderRequestsGrpComp'
-    fields_desc = [
-    
-    
-    ]
-
-
-class EnrichmentRulesGrpComp(Packet):
-    name = 'EnrichmentRulesGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class FillsGrpComp(Packet):
-    name = 'FillsGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class MessageHeaderInComp(Packet):
-    name = 'MessageHeaderInComp'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class MessageHeaderOutComp(Packet):
-    name = 'MessageHeaderOutComp'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class NRBCHeaderComp(Packet):
-    name = 'NRBCHeaderComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class NRResponseHeaderMEComp(Packet):
-    name = 'NRResponseHeaderMEComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class NotAffectedOrdersGrpComp(Packet):
-    name = 'NotAffectedOrdersGrpComp'
-    fields_desc = [
-    
-    
-    ]
-
-
-class NotAffectedSecuritiesGrpComp(Packet):
-    name = 'NotAffectedSecuritiesGrpComp'
-    fields_desc = [
-    
-    ]
-
-
-class NotifHeaderComp(Packet):
-    name = 'NotifHeaderComp'
-    fields_desc = [
-    
-    ]
-
-
-class OrderBookItemGrpComp(Packet):
-    name = 'OrderBookItemGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class OrderEventGrpComp(Packet):
-    name = 'OrderEventGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class PartyDetailsGrpComp(Packet):
-    name = 'PartyDetailsGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class QuoteEntryAckGrpComp(Packet):
-    name = 'QuoteEntryAckGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class QuoteEntryGrpComp(Packet):
-    name = 'QuoteEntryGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class QuoteEventGrpComp(Packet):
-    name = 'QuoteEventGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RBCHeaderComp(Packet):
-    name = 'RBCHeaderComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RBCHeaderMEComp(Packet):
-    name = 'RBCHeaderMEComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RequestHeaderComp(Packet):
-    name = 'RequestHeaderComp'
-    fields_desc = [
-    
-    
-    ]
-
-
-class ResponseHeaderComp(Packet):
-    name = 'ResponseHeaderComp'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class ResponseHeaderMEComp(Packet):
-    name = 'ResponseHeaderMEComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RiskLimitAmountGrpComp(Packet):
-    name = 'RiskLimitAmountGrpComp'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class RiskLimitsRptGrpComp(Packet):
-    name = 'RiskLimitsRptGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SRQSHitQuoteGrpComp(Packet):
-    name = 'SRQSHitQuoteGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class SRQSQuoteEntryGrpComp(Packet):
-    name = 'SRQSQuoteEntryGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SRQSQuoteGrpComp(Packet):
-    name = 'SRQSQuoteGrpComp'
-    fields_desc = [
-    
-    ]
-
-
-class SRQSTargetPartyTrdGrpComp(Packet):
-    name = 'SRQSTargetPartyTrdGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SecurityStatusEventGrpComp(Packet):
-    name = 'SecurityStatusEventGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class SessionsGrpComp(Packet):
-    name = 'SessionsGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class SideAllocGrpComp(Packet):
-    name = 'SideAllocGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SideAllocGrpBCComp(Packet):
-    name = 'SideAllocGrpBCComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SideAllocOTCGrpComp(Packet):
-    name = 'SideAllocOTCGrpComp'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightTargetPartiesComp(Packet):
-    name = 'XetraEnLightTargetPartiesComp'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class ApproveTESTradeRequest(Packet):
-    name = 'ApproveTESTradeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class BroadcastErrorNotification(Packet):
-    name = 'BroadcastErrorNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class CrossRequest(Packet):
-    name = 'CrossRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class CrossRequestResponse(Packet):
-    name = 'CrossRequestResponse'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class DeleteAllOrderBroadcast(Packet):
-    name = 'DeleteAllOrderBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-    ]
-
-
-class DeleteAllOrderNRResponse(Packet):
-    name = 'DeleteAllOrderNRResponse'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class DeleteAllOrderQuoteEventBroadcast(Packet):
-    name = 'DeleteAllOrderQuoteEventBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class DeleteAllOrderRequest(Packet):
-    name = 'DeleteAllOrderRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class DeleteAllOrderResponse(Packet):
-    name = 'DeleteAllOrderResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-
-
-
-    ]
-
-
-class DeleteAllQuoteBroadcast(Packet):
-    name = 'DeleteAllQuoteBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class DeleteAllQuoteRequest(Packet):
-    name = 'DeleteAllQuoteRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class DeleteAllQuoteResponse(Packet):
-    name = 'DeleteAllQuoteResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class DeleteOrderBroadcast(Packet):
-    name = 'DeleteOrderBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class DeleteOrderNRResponse(Packet):
-    name = 'DeleteOrderNRResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class DeleteOrderResponse(Packet):
-    name = 'DeleteOrderResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class DeleteOrderSingleRequest(Packet):
-    name = 'DeleteOrderSingleRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class DeleteTESTradeRequest(Packet):
-    name = 'DeleteTESTradeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class EnterTESTradeRequest(Packet):
-    name = 'EnterTESTradeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class ExtendedDeletionReport(Packet):
-    name = 'ExtendedDeletionReport'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class ForcedLogoutNotification(Packet):
-    name = 'ForcedLogoutNotification'
-    fields_desc = [
-    
-    
-    
-
-    ]
-
-
-class ForcedUserLogoutNotification(Packet):
-    name = 'ForcedUserLogoutNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class Heartbeat(Packet):
-    name = 'Heartbeat'
-    fields_desc = [
-    
-    ]
-
-
-class HeartbeatNotification(Packet):
-    name = 'HeartbeatNotification'
-    fields_desc = [
-    
-    
-    ]
-
-
-class InquireEnrichmentRuleIDListRequest(Packet):
-    name = 'InquireEnrichmentRuleIDListRequest'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class InquireEnrichmentRuleIDListResponse(Packet):
-    name = 'InquireEnrichmentRuleIDListResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class InquirePreTradeRiskLimitsRequest(Packet):
-    name = 'InquirePreTradeRiskLimitsRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class InquireSessionListRequest(Packet):
-    name = 'InquireSessionListRequest'
-    fields_desc = [
-    
-    
-    ]
-
-
-class InquireSessionListResponse(Packet):
-    name = 'InquireSessionListResponse'
-    fields_desc = [
-    
-    
-    
-    
-
-    ]
-
-
-class InquireUserRequest(Packet):
-    name = 'InquireUserRequest'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class InquireUserResponse(Packet):
-    name = 'InquireUserResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class IssuerNotification(Packet):
-    name = 'IssuerNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class IssuerSecurityStateChangeRequest(Packet):
-    name = 'IssuerSecurityStateChangeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class IssuerSecurityStateChangeResponse(Packet):
-    name = 'IssuerSecurityStateChangeResponse'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class LegalNotificationBroadcast(Packet):
-    name = 'LegalNotificationBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class LogonRequest(Packet):
-    name = 'LogonRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class LogonRequestEncrypted(Packet):
-    name = 'LogonRequestEncrypted'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class LogonResponse(Packet):
-    name = 'LogonResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class LogoutRequest(Packet):
-    name = 'LogoutRequest'
-    fields_desc = [
-    
-    
-    ]
-
-
-class LogoutResponse(Packet):
-    name = 'LogoutResponse'
-    fields_desc = [
-    
-    
-    ]
-
-
-class MassQuoteRequest(Packet):
-    name = 'MassQuoteRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class MassQuoteResponse(Packet):
-    name = 'MassQuoteResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class ModifyOrderNRResponse(Packet):
-    name = 'ModifyOrderNRResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class ModifyOrderRequest(Packet):
-    name = 'ModifyOrderRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class ModifyOrderResponse(Packet):
-    name = 'ModifyOrderResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class ModifyOrderShortRequest(Packet):
-    name = 'ModifyOrderShortRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class ModifyTESTradeRequest(Packet):
-    name = 'ModifyTESTradeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class NewOrderNRResponse(Packet):
-    name = 'NewOrderNRResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class NewOrderRequest(Packet):
-    name = 'NewOrderRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class NewOrderResponse(Packet):
-    name = 'NewOrderResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class NewOrderShortRequest(Packet):
-    name = 'NewOrderShortRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class NewsBroadcast(Packet):
-    name = 'NewsBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class OTCResponse(Packet):
-    name = 'OTCResponse'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class OTCUploadBroadcast(Packet):
-    name = 'OTCUploadBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class OTCUploadRequest(Packet):
-    name = 'OTCUploadRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class OrderExecNotification(Packet):
-    name = 'OrderExecNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    ]
-
-
-class OrderExecReportBroadcast(Packet):
-    name = 'OrderExecReportBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    ]
-
-
-class OrderExecResponse(Packet):
-    name = 'OrderExecResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    ]
-
-
-class PartyActionReport(Packet):
-    name = 'PartyActionReport'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class PartyEntitlementsUpdateReport(Packet):
-    name = 'PartyEntitlementsUpdateReport'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class PingRequest(Packet):
-    name = 'PingRequest'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class PingResponse(Packet):
-    name = 'PingResponse'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class PreTradeRiskLimitResponse(Packet):
-    name = 'PreTradeRiskLimitResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class PreTradeRiskLimitsDefinitionRequest(Packet):
-    name = 'PreTradeRiskLimitsDefinitionRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class QuoteActivationNotification(Packet):
-    name = 'QuoteActivationNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class QuoteActivationRequest(Packet):
-    name = 'QuoteActivationRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class QuoteActivationResponse(Packet):
-    name = 'QuoteActivationResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class QuoteExecutionReport(Packet):
-    name = 'QuoteExecutionReport'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class RFQBroadcast(Packet):
-    name = 'RFQBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RFQRejectNotification(Packet):
-    name = 'RFQRejectNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RFQRejectRequest(Packet):
-    name = 'RFQRejectRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RFQReplyNotification(Packet):
-    name = 'RFQReplyNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RFQReplyRequest(Packet):
-    name = 'RFQReplyRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RFQReplyResponse(Packet):
-    name = 'RFQReplyResponse'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class RFQRequest(Packet):
-    name = 'RFQRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RFQResponse(Packet):
-    name = 'RFQResponse'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class RFQSpecialistIssuerBroadcast(Packet):
-    name = 'RFQSpecialistIssuerBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class Reject(Packet):
-    name = 'Reject'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class RetransmitMEMessageRequest(Packet):
-    name = 'RetransmitMEMessageRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RetransmitMEMessageResponse(Packet):
-    name = 'RetransmitMEMessageResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RetransmitRequest(Packet):
-    name = 'RetransmitRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class RetransmitResponse(Packet):
-    name = 'RetransmitResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class ReverseTESTradeRequest(Packet):
-    name = 'ReverseTESTradeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class ServiceAvailabilityBroadcast(Packet):
-    name = 'ServiceAvailabilityBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class ServiceAvailabilityMarketBroadcast(Packet):
-    name = 'ServiceAvailabilityMarketBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SingleQuoteRequest(Packet):
-    name = 'SingleQuoteRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SpecialistDeleteAllOrderBroadcast(Packet):
-    name = 'SpecialistDeleteAllOrderBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    ]
-
-
-class SpecialistInstrumentEventNotification(Packet):
-    name = 'SpecialistInstrumentEventNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SpecialistOrderBookNotification(Packet):
-    name = 'SpecialistOrderBookNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class SpecialistSecurityStateChangeRequest(Packet):
-    name = 'SpecialistSecurityStateChangeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class SpecialistSecurityStateChangeResponse(Packet):
-    name = 'SpecialistSecurityStateChangeResponse'
-    fields_desc = [
-    
-    
-    
-    ]
-
-
-class StatusBroadcast(Packet):
-    name = 'StatusBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class SubscribeRequest(Packet):
-    name = 'SubscribeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class SubscribeResponse(Packet):
-    name = 'SubscribeResponse'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class TESApproveBroadcast(Packet):
-    name = 'TESApproveBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class TESBroadcast(Packet):
-    name = 'TESBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-    ]
-
-
-class TESDeleteBroadcast(Packet):
-    name = 'TESDeleteBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class TESExecutionBroadcast(Packet):
-    name = 'TESExecutionBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class TESResponse(Packet):
-    name = 'TESResponse'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class TESReversalBroadcast(Packet):
-    name = 'TESReversalBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class TESTradeBroadcast(Packet):
-    name = 'TESTradeBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class TESTradingSessionStatusBroadcast(Packet):
-    name = 'TESTradingSessionStatusBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class TMTradingSessionStatusBroadcast(Packet):
-    name = 'TMTradingSessionStatusBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class ThrottleUpdateNotification(Packet):
-    name = 'ThrottleUpdateNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class TradeBroadcast(Packet):
-    name = 'TradeBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class TradingSessionStatusBroadcast(Packet):
-    name = 'TradingSessionStatusBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class TrailingStopUpdateNotification(Packet):
-    name = 'TrailingStopUpdateNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class UnsubscribeRequest(Packet):
-    name = 'UnsubscribeRequest'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class UnsubscribeResponse(Packet):
-    name = 'UnsubscribeResponse'
-    fields_desc = [
-    
-    
-    ]
-
-
-class UserLoginRequest(Packet):
-    name = 'UserLoginRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class UserLoginRequestEncrypted(Packet):
-    name = 'UserLoginRequestEncrypted'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class UserLoginResponse(Packet):
-    name = 'UserLoginResponse'
-    fields_desc = [
-    
-    
-    ]
-
-
-class UserLogoutRequest(Packet):
-    name = 'UserLogoutRequest'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class UserLogoutResponse(Packet):
-    name = 'UserLogoutResponse'
-    fields_desc = [
-    
-    
-    ]
-
-
-class XetraEnLightCreateDealNotification(Packet):
-    name = 'XetraEnLightCreateDealNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class XetraEnLightDealResponse(Packet):
-    name = 'XetraEnLightDealResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightDealStatusNotification(Packet):
-    name = 'XetraEnLightDealStatusNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightDeleteAllQuoteNotification(Packet):
-    name = 'XetraEnLightDeleteAllQuoteNotification'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightDeleteAllQuoteRequest(Packet):
-    name = 'XetraEnLightDeleteAllQuoteRequest'
-    fields_desc = [
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightEnterQuoteRequest(Packet):
-    name = 'XetraEnLightEnterQuoteRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightHitQuoteRequest(Packet):
-    name = 'XetraEnLightHitQuoteRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightNegotiationNotification(Packet):
-    name = 'XetraEnLightNegotiationNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightNegotiationRequesterNotification(Packet):
-    name = 'XetraEnLightNegotiationRequesterNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class XetraEnLightNegotiationStatusNotification(Packet):
-    name = 'XetraEnLightNegotiationStatusNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightOpenNegotiationNotification(Packet):
-    name = 'XetraEnLightOpenNegotiationNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightOpenNegotiationRequest(Packet):
-    name = 'XetraEnLightOpenNegotiationRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class XetraEnLightOpenNegotiationRequesterNotification(Packet):
-    name = 'XetraEnLightOpenNegotiationRequesterNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class XetraEnLightQuoteNotification(Packet):
-    name = 'XetraEnLightQuoteNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightQuoteRequesterNotification(Packet):
-    name = 'XetraEnLightQuoteRequesterNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
-class XetraEnLightQuoteResponse(Packet):
-    name = 'XetraEnLightQuoteResponse'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightQuoteSnapshotNotification(Packet):
-    name = 'XetraEnLightQuoteSnapshotNotification'
-    fields_desc = [
-    
-    
-    
-    
-    
-
-    ]
-
-
-class XetraEnLightQuoteSnapshotRequest(Packet):
-    name = 'XetraEnLightQuoteSnapshotRequest'
-    fields_desc = [
-    
-    
-    ]
-
-
-class XetraEnLightQuotingStatusRequest(Packet):
-    name = 'XetraEnLightQuotingStatusRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightResponse(Packet):
-    name = 'XetraEnLightResponse'
-    fields_desc = [
-    
-    
-    ]
-
-
-class XetraEnLightStatusBroadcast(Packet):
-    name = 'XetraEnLightStatusBroadcast'
-    fields_desc = [
-    
-    
-    
-    
-    
-    ]
-
-
-class XetraEnLightUpdateNegotiationRequest(Packet):
-    name = 'XetraEnLightUpdateNegotiationRequest'
-    fields_desc = [
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    ]
-
-
+message AffectedOrdGrpComp :  {
+  AffectedOrderID affectedOrderID
+  AffectedOrigClOrdID affectedOrigClOrdID
+}
+message AffectedOrderRequestsGrpComp :  {
+  AffectedOrderRequestID affectedOrderRequestID
+  Pad4 pad4
+}
+message EnrichmentRulesGrpComp :  {
+  EnrichmentRuleID enrichmentRuleID
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  Pad6 pad6
+}
+message FillsGrpComp :  {
+  FillPx fillPx
+  FillQty fillQty
+  FillMatchID fillMatchID
+  FillExecID fillExecID
+  FillLiquidityInd fillLiquidityInd
+  Pad7 pad7
+}
+message MessageHeaderInComp :  {
+  BodyLen bodyLen
+  TemplateID templateID
+  NetworkMsgID networkMsgID
+  Pad2 pad2
+}
+message MessageHeaderOutComp :  {
+  BodyLen bodyLen
+  TemplateID templateID
+  Pad2 pad2
+}
+message NRBCHeaderComp :  {
+  SendingTime sendingTime
+  ApplSubID applSubID
+  ApplID applID
+  LastFragment lastFragment
+  Pad2 pad2
+}
+message NRResponseHeaderMEComp :  {
+  RequestTime requestTime
+  TrdRegTSTimeIn trdRegTSTimeIn
+  TrdRegTSTimeOut trdRegTSTimeOut
+  ResponseIn responseIn
+  SendingTime sendingTime
+  MsgSeqNum msgSeqNum
+  LastFragment lastFragment
+  Pad3 pad3
+}
+message NotAffectedOrdersGrpComp :  {
+  NotAffectedOrderID notAffectedOrderID
+  NotAffOrigClOrdID notAffOrigClOrdID
+}
+message NotAffectedSecuritiesGrpComp :  {
+  NotAffectedSecurityID notAffectedSecurityID
+}
+message NotifHeaderComp :  {
+  SendingTime sendingTime
+}
+message OrderBookItemGrpComp :  {
+  BestBidPx bestBidPx
+  BestBidSize bestBidSize
+  BestOfferPx bestOfferPx
+  BestOfferSize bestOfferSize
+  MDBookType mDBookType
+  MDSubBookType mDSubBookType
+  Pad6 pad6
+}
+message OrderEventGrpComp :  {
+  OrderEventPx orderEventPx
+  OrderEventQty orderEventQty
+  OrderEventMatchID orderEventMatchID
+  OrderEventReason orderEventReason
+  Pad3 pad3
+}
+message PartyDetailsGrpComp :  {
+  PartyDetailIDExecutingTrader partyDetailIDExecutingTrader
+  PartyDetailExecutingTrader partyDetailExecutingTrader
+  PartyDetailRoleQualifier partyDetailRoleQualifier
+  PartyDetailStatus partyDetailStatus
+  PartyDetailDeskID partyDetailDeskID
+  Pad1 pad1
+}
+message QuoteEntryAckGrpComp :  {
+  SecurityID securityID
+  CxlSize cxlSize
+  QuoteEntryRejectReason quoteEntryRejectReason
+  QuoteEntryStatus quoteEntryStatus
+  Side side
+  Pad2 pad2
+}
+message QuoteEntryGrpComp :  {
+  SecurityID securityID
+  BidPx bidPx
+  BidSize bidSize
+  OfferPx offerPx
+  OfferSize offerSize
+}
+message QuoteEventGrpComp :  {
+  SecurityID securityID
+  QuoteEventPx quoteEventPx
+  QuoteEventQty quoteEventQty
+  QuoteMsgID quoteMsgID
+  QuoteEventMatchID quoteEventMatchID
+  QuoteEventExecID quoteEventExecID
+  QuoteEventType quoteEventType
+  QuoteEventSide quoteEventSide
+  QuoteEventLiquidityInd quoteEventLiquidityInd
+  BBOSetting bBOSetting
+  QuoteEventReason quoteEventReason
+  Pad3 pad3
+}
+message RBCHeaderComp :  {
+  SendingTime sendingTime
+  ApplSeqNum applSeqNum
+  ApplSubID applSubID
+  PartitionID partitionID
+  ApplResendFlag applResendFlag
+  ApplID applID
+  LastFragment lastFragment
+  Pad7 pad7
+}
+message RBCHeaderMEComp :  {
+  TrdRegTSTimeOut trdRegTSTimeOut
+  NotificationIn notificationIn
+  SendingTime sendingTime
+  ApplSubID applSubID
+  PartitionID partitionID
+  ApplMsgID applMsgID
+  ApplID applID
+  ApplResendFlag applResendFlag
+  LastFragment lastFragment
+  Pad7 pad7
+}
+message RequestHeaderComp :  {
+  MsgSeqNum msgSeqNum
+  SenderSubID senderSubID
+}
+message ResponseHeaderComp :  {
+  RequestTime requestTime
+  SendingTime sendingTime
+  MsgSeqNum msgSeqNum
+  Pad4 pad4
+}
+message ResponseHeaderMEComp :  {
+  RequestTime requestTime
+  TrdRegTSTimeIn trdRegTSTimeIn
+  TrdRegTSTimeOut trdRegTSTimeOut
+  ResponseIn responseIn
+  SendingTime sendingTime
+  MsgSeqNum msgSeqNum
+  PartitionID partitionID
+  ApplID applID
+  ApplMsgID applMsgID
+  LastFragment lastFragment
+}
+message RiskLimitAmountGrpComp :  {
+  RiskLimitAmount riskLimitAmount
+  RiskLimitType riskLimitType
+  Pad7 pad7
+}
+message RiskLimitsRptGrpComp :  {
+  RiskLimitAmount riskLimitAmount
+  RiskLimitOpenAmount riskLimitOpenAmount
+  RiskLimitNetPositionAmount riskLimitNetPositionAmount
+  ActivationDate activationDate
+  RiskLimitType riskLimitType
+  RiskLimitRequestingPartyRole riskLimitRequestingPartyRole
+  RiskLimitViolationIndicator riskLimitViolationIndicator
+  RiskLimitGroup riskLimitGroup
+  Pad6 pad6
+}
+message SRQSHitQuoteGrpComp :  {
+  OrderQty orderQty
+  QuoteID quoteID
+  Side side
+  Pad7 pad7
+}
+message SRQSQuoteEntryGrpComp :  {
+  TransactTime transactTime
+  ExpireTime expireTime
+  QuoteID quoteID
+  SecondaryQuoteID secondaryQuoteID
+  BidPx bidPx
+  BidSize bidSize
+  OfferPx offerPx
+  OfferSize offerSize
+  PartyIDExecutingTrader partyIDExecutingTrader
+  NegotiationID negotiationID
+  QuotingStatus quotingStatus
+  QuotingFrequency quotingFrequency
+  FirmNegotiationID firmNegotiationID
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  PartyEnteringTrader partyEnteringTrader
+  Pad1 pad1
+}
+message SRQSQuoteGrpComp :  {
+  QuoteID quoteID
+}
+message SRQSTargetPartyTrdGrpComp :  {
+  SideLastQty sideLastQty
+  QuoteID quoteID
+  TargetPartyIDExecutingTrader targetPartyIDExecutingTrader
+  TargetPartyExecutingFirm targetPartyExecutingFirm
+  TargetPartyExecutingTrader targetPartyExecutingTrader
+  TargetPartyEnteringTrader targetPartyEnteringTrader
+  Pad3 pad3
+}
+message SecurityStatusEventGrpComp :  {
+  EventPx eventPx
+  EventDate eventDate
+  EventType eventType
+  Pad3 pad3
+}
+message SessionsGrpComp :  {
+  PartyIDSessionID partyIDSessionID
+  SessionMode sessionMode
+  SessionSubMode sessionSubMode
+  Pad2 pad2
+}
+message SideAllocGrpComp :  {
+  AllocQty allocQty
+  IndividualAllocID individualAllocID
+  TESEnrichmentRuleID tESEnrichmentRuleID
+  Side side
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  Pad4 pad4
+}
+message SideAllocGrpBCComp :  {
+  AllocQty allocQty
+  IndividualAllocID individualAllocID
+  TESEnrichmentRuleID tESEnrichmentRuleID
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  Side side
+  TradeAllocStatus tradeAllocStatus
+  Pad3 pad3
+}
+message SideAllocOTCGrpComp :  {
+  Side side
+  TradingCapacity tradingCapacity
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  Pad3 pad3
+}
+message XetraEnLightTargetPartiesComp :  {
+  TargetPartyIDExecutingTrader targetPartyIDExecutingTrader
+  TargetPartyExecutingFirm targetPartyExecutingFirm
+  TargetPartyExecutingTrader targetPartyExecutingTrader
+  Pad1 pad1
+}
+message ApproveTESTradeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  AllocQty allocQty
+  PackageID packageID
+  AllocID allocID
+  TESExecID tESExecID
+  MarketSegmentID marketSegmentID
+  TrdType trdType
+  TradingCapacity tradingCapacity
+  TradeReportType tradeReportType
+  Side side
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  ExecutingTraderQualifier executingTraderQualifier
+  OrderOrigination orderOrigination
+  TradeReportID tradeReportID
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  Pad6 pad6
+}
+message BroadcastErrorNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  NotifHeaderComp notifHeader
+  ApplIDStatus applIDStatus
+  RefApplSubID refApplSubID
+  VarTextLen varTextLen
+  RefApplID refApplID
+  SessionStatus sessionStatus
+  group<type=VarText, counter=varTextLen> varText
+}
+message CrossRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  OrderQty orderQty
+  MarketSegmentID marketSegmentID
+  Pad4 pad4
+}
+message CrossRequestResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  ExecID execID
+}
+message DeleteAllOrderBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  MassActionReportID massActionReportID
+  SecurityID securityID
+  Price price
+  MarketSegmentID marketSegmentID
+  TargetPartyIDSessionID targetPartyIDSessionID
+  TargetPartyIDExecutingTrader targetPartyIDExecutingTrader
+  PartyIDEnteringTrader partyIDEnteringTrader
+  NoNotAffectedOrders noNotAffectedOrders
+  NoAffectedOrders noAffectedOrders
+  NoAffectedOrderRequests noAffectedOrderRequests
+  PartyIDEnteringFirm partyIDEnteringFirm
+  MassActionReason massActionReason
+  ExecInst execInst
+  Side side
+  Pad6 pad6
+  group<type=NotAffectedOrdersGrpComp, counter=noNotAffectedOrders> notAffectedOrdersGrp
+  group<type=AffectedOrdGrpComp, counter=noAffectedOrders> affectedOrdGrp
+  group<type=AffectedOrderRequestsGrpComp, counter=noAffectedOrderRequests> affectedOrderRequestsGrp
+}
+message DeleteAllOrderNRResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  MassActionReportID massActionReportID
+}
+message DeleteAllOrderQuoteEventBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  MassActionReportID massActionReportID
+  SecurityID securityID
+  MarketSegmentID marketSegmentID
+  MassActionReason massActionReason
+  ExecInst execInst
+  Pad2 pad2
+}
+message DeleteAllOrderRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  Price price
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  MarketSegmentID marketSegmentID
+  TargetPartyIDSessionID targetPartyIDSessionID
+  TargetPartyIDExecutingTrader targetPartyIDExecutingTrader
+  Side side
+  OrderOrigination orderOrigination
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  ExecutingTraderQualifier executingTraderQualifier
+}
+message DeleteAllOrderResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderMEComp responseHeaderME
+  MassActionReportID massActionReportID
+  NoNotAffectedOrders noNotAffectedOrders
+  NoAffectedOrders noAffectedOrders
+  NoAffectedOrderRequests noAffectedOrderRequests
+  Pad2 pad2
+  group<type=NotAffectedOrdersGrpComp, counter=noNotAffectedOrders> notAffectedOrdersGrp
+  group<type=AffectedOrdGrpComp, counter=noAffectedOrders> affectedOrdGrp
+  group<type=AffectedOrderRequestsGrpComp, counter=noAffectedOrderRequests> affectedOrderRequestsGrp
+}
+message DeleteAllQuoteBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  MassActionReportID massActionReportID
+  SecurityID securityID
+  MarketSegmentID marketSegmentID
+  TargetPartyIDSessionID targetPartyIDSessionID
+  PartyIDEnteringTrader partyIDEnteringTrader
+  TargetPartyIDExecutingTrader targetPartyIDExecutingTrader
+  NoNotAffectedSecurities noNotAffectedSecurities
+  MassActionReason massActionReason
+  PartyIDEnteringFirm partyIDEnteringFirm
+  TargetPartyIDDeskID targetPartyIDDeskID
+  Pad1 pad1
+  group<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
+}
+message DeleteAllQuoteRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  MarketSegmentID marketSegmentID
+  TargetPartyIDSessionID targetPartyIDSessionID
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  ExecutingTraderQualifier executingTraderQualifier
+  Pad6 pad6
+}
+message DeleteAllQuoteResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  MassActionReportID massActionReportID
+  NoNotAffectedSecurities noNotAffectedSecurities
+  Pad6 pad6
+  group<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
+}
+message DeleteOrderBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  CumQty cumQty
+  CxlQty cxlQty
+  QuoteID quoteID
+  OrderIDSfx orderIDSfx
+  MarketSegmentID marketSegmentID
+  PartyIDEnteringTrader partyIDEnteringTrader
+  PartyIDSessionID partyIDSessionID
+  ExecRestatementReason execRestatementReason
+  PartyIDEnteringFirm partyIDEnteringFirm
+  OrdStatus ordStatus
+  ExecType execType
+  Side side
+  OrderEventType orderEventType
+  FIXClOrdID fIXClOrdID
+  PartyEnteringFirm partyEnteringFirm
+  PartyEnteringTrader partyEnteringTrader
+  Pad2 pad2
+}
+message DeleteOrderNRResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  CumQty cumQty
+  CxlQty cxlQty
+  OrderIDSfx orderIDSfx
+  OrdStatus ordStatus
+  ExecType execType
+  ExecRestatementReason execRestatementReason
+  TransactionDelayIndicator transactionDelayIndicator
+  Pad7 pad7
+}
+message DeleteOrderResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderMEComp responseHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  CumQty cumQty
+  CxlQty cxlQty
+  OrderIDSfx orderIDSfx
+  OrdStatus ordStatus
+  ExecType execType
+  ExecRestatementReason execRestatementReason
+  TransactionDelayIndicator transactionDelayIndicator
+  Pad7 pad7
+}
+message DeleteOrderSingleRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  MarketSegmentID marketSegmentID
+  TargetPartyIDSessionID targetPartyIDSessionID
+  OrderOrigination orderOrigination
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  ExecutingTraderQualifier executingTraderQualifier
+  FIXClOrdID fIXClOrdID
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  Pad6 pad6
+}
+message DeleteTESTradeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  PackageID packageID
+  MarketSegmentID marketSegmentID
+  TESExecID tESExecID
+  TrdType trdType
+  TradeReportType tradeReportType
+  TradeReportID tradeReportID
+  Pad5 pad5
+}
+message EnterTESTradeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  LastPx lastPx
+  TransBkdTime transBkdTime
+  SettlCurrFxRate settlCurrFxRate
+  MarketSegmentID marketSegmentID
+  SettlDate settlDate
+  TrdType trdType
+  TradeReportType tradeReportType
+  TradePublishIndicator tradePublishIndicator
+  NoSideAllocs noSideAllocs
+  TradeReportText tradeReportText
+  TradeReportID tradeReportID
+  Pad3 pad3
+  group<type=SideAllocGrpComp, counter=noSideAllocs> sideAllocGrp
+}
+message ExtendedDeletionReport :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  TrdRegTSEntryTime trdRegTSEntryTime
+  Price price
+  LeavesQty leavesQty
+  CumQty cumQty
+  CxlQty cxlQty
+  OrderQty orderQty
+  DisplayQty displayQty
+  DisplayLowQty displayLowQty
+  DisplayHighQty displayHighQty
+  MinQty minQty
+  StopPx stopPx
+  PegOffsetValueAbs pegOffsetValueAbs
+  PegOffsetValuePct pegOffsetValuePct
+  QuoteID quoteID
+  MarketSegmentID marketSegmentID
+  OrderIDSfx orderIDSfx
+  ExpireDate expireDate
+  MatchInstCrossID matchInstCrossID
+  PartyIDExecutingUnit partyIDExecutingUnit
+  PartyIDSessionID partyIDSessionID
+  PartyIDExecutingTrader partyIDExecutingTrader
+  PartyIDEnteringTrader partyIDEnteringTrader
+  ExecRestatementReason execRestatementReason
+  OrdStatus ordStatus
+  ExecType execType
+  Side side
+  OrdType ordType
+  TradingCapacity tradingCapacity
+  MidPointType midPointType
+  TimeInForce timeInForce
+  ExecInst execInst
+  TradingSessionSubID tradingSessionSubID
+  ApplSeqIndicator applSeqIndicator
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  PartyEnteringFirm partyEnteringFirm
+  PartyEnteringTrader partyEnteringTrader
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FIXClOrdID fIXClOrdID
+  Triggered triggered
+  Pad1 pad1
+}
+message ForcedLogoutNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  NotifHeaderComp notifHeader
+  VarTextLen varTextLen
+  group<type=VarText, counter=varTextLen> varText
+}
+message ForcedUserLogoutNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  NotifHeaderComp notifHeader
+  Username username
+  VarTextLen varTextLen
+  UserStatus userStatus
+  group<type=VarText, counter=varTextLen> varText
+}
+message Heartbeat :  {
+  MessageHeaderInComp messageHeaderIn
+}
+message HeartbeatNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  NotifHeaderComp notifHeader
+}
+message InquireEnrichmentRuleIDListRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  LastEntityProcessed lastEntityProcessed
+}
+message InquireEnrichmentRuleIDListResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  LastEntityProcessed lastEntityProcessed
+  NoEnrichmentRules noEnrichmentRules
+  Pad6 pad6
+  group<type=EnrichmentRulesGrpComp, counter=noEnrichmentRules> enrichmentRulesGrp
+}
+message InquirePreTradeRiskLimitsRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  MarketSegmentID marketSegmentID
+  PartyExecutingUnit partyExecutingUnit
+  RiskLimitGroup riskLimitGroup
+  Pad4 pad4
+}
+message InquireSessionListRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+}
+message InquireSessionListResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  NoSessions noSessions
+  Pad6 pad6
+  group<type=SessionsGrpComp, counter=noSessions> sessionsGrp
+}
+message InquireUserRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  LastEntityProcessed lastEntityProcessed
+}
+message InquireUserResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  LastEntityProcessed lastEntityProcessed
+  NoPartyDetails noPartyDetails
+  Pad6 pad6
+  group<type=PartyDetailsGrpComp, counter=noPartyDetails> partyDetailsGrp
+}
+message IssuerNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  SecurityID securityID
+  TransactTime transactTime
+  LastPx lastPx
+  PotentialExecVolume potentialExecVolume
+  LastQty lastQty
+  ImbalanceQty imbalanceQty
+  MarketSegmentID marketSegmentID
+  PartyIDSessionID partyIDSessionID
+  SecurityTradingStatus securityTradingStatus
+  EventType eventType
+  Pad6 pad6
+}
+message IssuerSecurityStateChangeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  TransactTime transactTime
+  MarketSegmentID marketSegmentID
+  NoEvents noEvents
+  SecurityStatus securityStatus
+  SoldOutIndicator soldOutIndicator
+  Pad1 pad1
+  group<type=SecurityStatusEventGrpComp, counter=noEvents> securityStatusEventGrp
+}
+message IssuerSecurityStateChangeResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  SecurityStatusReportID securityStatusReportID
+}
+message LegalNotificationBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  VarTextLen varTextLen
+  UserStatus userStatus
+  group<type=VarText, counter=varTextLen> varText
+}
+message LogonRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  HeartBtInt heartBtInt
+  PartyIDSessionID partyIDSessionID
+  DefaultCstmApplVerID defaultCstmApplVerID
+  Password password
+  ApplUsageOrders applUsageOrders
+  ApplUsageQuotes applUsageQuotes
+  OrderRoutingIndicator orderRoutingIndicator
+  FIXEngineName fIXEngineName
+  FIXEngineVersion fIXEngineVersion
+  FIXEngineVendor fIXEngineVendor
+  ApplicationSystemName applicationSystemName
+  ApplicationSystemVersion applicationSystemVersion
+  ApplicationSystemVendor applicationSystemVendor
+  Pad3 pad3
+}
+message LogonRequestEncrypted :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  HeartBtInt heartBtInt
+  PartyIDSessionID partyIDSessionID
+  DefaultCstmApplVerID defaultCstmApplVerID
+  EncryptedPassword encryptedPassword
+  ApplUsageOrders applUsageOrders
+  ApplUsageQuotes applUsageQuotes
+  OrderRoutingIndicator orderRoutingIndicator
+  FIXEngineName fIXEngineName
+  FIXEngineVersion fIXEngineVersion
+  FIXEngineVendor fIXEngineVendor
+  ApplicationSystemName applicationSystemName
+  ApplicationSystemVersion applicationSystemVersion
+  ApplicationSystemVendor applicationSystemVendor
+  Pad7 pad7
+}
+message LogonResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  ThrottleTimeInterval throttleTimeInterval
+  ThrottleNoMsgs throttleNoMsgs
+  ThrottleDisconnectLimit throttleDisconnectLimit
+  HeartBtInt heartBtInt
+  SessionInstanceID sessionInstanceID
+  LatestPublicKeySeqNo latestPublicKeySeqNo
+  PublicKeyLen publicKeyLen
+  MarketID marketID
+  TradSesMode tradSesMode
+  DefaultCstmApplVerID defaultCstmApplVerID
+  DefaultCstmApplVerSubID defaultCstmApplVerSubID
+  PartitionID partitionID
+  group<type=PublicKey, counter=publicKeyLen> publicKey
+}
+message LogoutRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+}
+message LogoutResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+}
+message MassQuoteRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  QuoteID quoteID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  MarketSegmentID marketSegmentID
+  MatchInstCrossID matchInstCrossID
+  EnrichmentRuleID enrichmentRuleID
+  CrossMatchInstruction crossMatchInstruction
+  PriceValidityCheckType priceValidityCheckType
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  QuoteSizeType quoteSizeType
+  QuoteType quoteType
+  TradingCapacity tradingCapacity
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  NoQuoteEntries noQuoteEntries
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  ExecutingTraderQualifier executingTraderQualifier
+  Pad3 pad3
+  group<type=QuoteEntryGrpComp, counter=noQuoteEntries> quoteEntryGrp
+}
+message MassQuoteResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  QuoteID quoteID
+  QuoteResponseID quoteResponseID
+  MarketSegmentID marketSegmentID
+  NoQuoteSideEntries noQuoteSideEntries
+  Pad3 pad3
+  group<type=QuoteEntryAckGrpComp, counter=noQuoteSideEntries> quoteEntryAckGrp
+}
+message ModifyOrderNRResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  StopPx stopPx
+  LeavesQty leavesQty
+  CumQty cumQty
+  CxlQty cxlQty
+  DisplayQty displayQty
+  OrderIDSfx orderIDSfx
+  OrdStatus ordStatus
+  ExecType execType
+  ExecRestatementReason execRestatementReason
+  CrossedIndicator crossedIndicator
+  Triggered triggered
+  TransactionDelayIndicator transactionDelayIndicator
+  BBOSetting bBOSetting
+  NoOrderEvents noOrderEvents
+  Pad3 pad3
+  group<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
+}
+message ModifyOrderRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  OrderID orderID
+  DisplayQty displayQty
+  DisplayLowQty displayLowQty
+  DisplayHighQty displayHighQty
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  StopPx stopPx
+  PegOffsetValueAbs pegOffsetValueAbs
+  PegOffsetValuePct pegOffsetValuePct
+  PartyIDClientID partyIDClientID
+  ExecutingTrader executingTrader
+  BrokerInternalizationID brokerInternalizationID
+  MatchInstCrossID matchInstCrossID
+  ExpireDate expireDate
+  TargetPartyIDSessionID targetPartyIDSessionID
+  TradingSessionSubID tradingSessionSubID
+  StopPxIndicator stopPxIndicator
+  OwnershipIndicator ownershipIndicator
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  ApplSeqIndicator applSeqIndicator
+  OrdType ordType
+  PriceValidityCheckType priceValidityCheckType
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  OrderOrigination orderOrigination
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  FIXClOrdID fIXClOrdID
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  Pad6 pad6
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  TradingCapacity tradingCapacity
+  CrossMatchInstruction crossMatchInstruction
+  Pad1 pad1
+  MarketSegmentID marketSegmentID
+  SecurityID securityID
+  MinQty minQty
+  OrderQty orderQty
+  Price price
+  Side side
+  ExecInst execInst
+  TimeInForce timeInForce
+  MidPointType midPointType
+  CheckSumCorrection checkSumCorrection
+  Pad2 pad2
+}
+message ModifyOrderResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderMEComp responseHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  StopPx stopPx
+  LeavesQty leavesQty
+  CumQty cumQty
+  CxlQty cxlQty
+  DisplayQty displayQty
+  TrdRegTSTimePriority trdRegTSTimePriority
+  OrderIDSfx orderIDSfx
+  OrdStatus ordStatus
+  ExecType execType
+  ExecRestatementReason execRestatementReason
+  CrossedIndicator crossedIndicator
+  Triggered triggered
+  TransactionDelayIndicator transactionDelayIndicator
+  BBOSetting bBOSetting
+  NoOrderEvents noOrderEvents
+  Pad3 pad3
+  group<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
+}
+message ModifyOrderShortRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  PartyIDClientID partyIDClientID
+  ExecutingTrader executingTrader
+  MatchInstCrossID matchInstCrossID
+  ApplSeqIndicator applSeqIndicator
+  PriceValidityCheckType priceValidityCheckType
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  TradingCapacity tradingCapacity
+  OrderOrigination orderOrigination
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  Pad4 pad4
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  EnrichmentRuleID enrichmentRuleID
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  CrossMatchInstruction crossMatchInstruction
+  Pad4_1 pad4_1
+  SecurityID securityID
+  MinQty minQty
+  OrderQty orderQty
+  Price price
+  Side side
+  ExecInst execInst
+  TimeInForce timeInForce
+  MidPointType midPointType
+  CheckSumCorrection checkSumCorrection
+  Pad2 pad2
+}
+message ModifyTESTradeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  LastPx lastPx
+  TransBkdTime transBkdTime
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  TESExecID tESExecID
+  SettlDate settlDate
+  TrdType trdType
+  TradeReportType tradeReportType
+  TradePublishIndicator tradePublishIndicator
+  NoSideAllocs noSideAllocs
+  TradeReportText tradeReportText
+  TradeReportID tradeReportID
+  Pad3 pad3
+  group<type=SideAllocGrpComp, counter=noSideAllocs> sideAllocGrp
+}
+message NewOrderNRResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  SecurityID securityID
+  ExecID execID
+  LeavesQty leavesQty
+  CxlQty cxlQty
+  OrderIDSfx orderIDSfx
+  OrdStatus ordStatus
+  ExecType execType
+  ExecRestatementReason execRestatementReason
+  CrossedIndicator crossedIndicator
+  Triggered triggered
+  TransactionDelayIndicator transactionDelayIndicator
+  BBOSetting bBOSetting
+  NoOrderEvents noOrderEvents
+  Pad3 pad3
+  group<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
+}
+message NewOrderRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  ClOrdID clOrdID
+  StopPx stopPx
+  DisplayQty displayQty
+  DisplayLowQty displayLowQty
+  DisplayHighQty displayHighQty
+  PegOffsetValueAbs pegOffsetValueAbs
+  PegOffsetValuePct pegOffsetValuePct
+  PartyIDClientID partyIDClientID
+  ExecutingTrader executingTrader
+  QuoteID quoteID
+  BrokerInternalizationID brokerInternalizationID
+  TargetPartyIDSessionID targetPartyIDSessionID
+  MatchInstCrossID matchInstCrossID
+  ExpireDate expireDate
+  TradingSessionSubID tradingSessionSubID
+  TradeAtCloseOptIn tradeAtCloseOptIn
+  CrossMatchInstruction crossMatchInstruction
+  ApplSeqIndicator applSeqIndicator
+  OrdType ordType
+  PriceValidityCheckType priceValidityCheckType
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  OrderOrigination orderOrigination
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  FIXClOrdID fIXClOrdID
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  Pad6 pad6
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  TradingCapacity tradingCapacity
+  Pad2 pad2
+  MarketSegmentID marketSegmentID
+  SecurityID securityID
+  MinQty minQty
+  OrderQty orderQty
+  Price price
+  Side side
+  ExecInst execInst
+  TimeInForce timeInForce
+  MidPointType midPointType
+  CheckSumCorrection checkSumCorrection
+  Pad2_1 pad2_1
+}
+message NewOrderResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderMEComp responseHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  SecurityID securityID
+  ExecID execID
+  LeavesQty leavesQty
+  CxlQty cxlQty
+  TrdRegTSEntryTime trdRegTSEntryTime
+  TrdRegTSTimePriority trdRegTSTimePriority
+  OrderIDSfx orderIDSfx
+  OrdStatus ordStatus
+  ExecType execType
+  ExecRestatementReason execRestatementReason
+  CrossedIndicator crossedIndicator
+  Triggered triggered
+  TransactionDelayIndicator transactionDelayIndicator
+  BBOSetting bBOSetting
+  NoOrderEvents noOrderEvents
+  Pad3 pad3
+  group<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
+}
+message NewOrderShortRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  ClOrdID clOrdID
+  PartyIDClientID partyIDClientID
+  ExecutingTrader executingTrader
+  MatchInstCrossID matchInstCrossID
+  ApplSeqIndicator applSeqIndicator
+  PriceValidityCheckType priceValidityCheckType
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  TradingCapacity tradingCapacity
+  OrderOrigination orderOrigination
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  Pad4 pad4
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  EnrichmentRuleID enrichmentRuleID
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  CrossMatchInstruction crossMatchInstruction
+  Pad4_1 pad4_1
+  SecurityID securityID
+  MinQty minQty
+  OrderQty orderQty
+  Price price
+  Side side
+  ExecInst execInst
+  TimeInForce timeInForce
+  MidPointType midPointType
+  CheckSumCorrection checkSumCorrection
+  Pad2 pad2
+}
+message NewsBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  OrigTime origTime
+  VarTextLen varTextLen
+  Headline headline
+  group<type=VarText, counter=varTextLen> varText
+}
+message OTCResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  OTCExecID oTCExecID
+  TradeReportID tradeReportID
+}
+message OTCUploadBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  OTCExecID oTCExecID
+  Pad4 pad4
+  SecurityID securityID
+  LastPx lastPx
+  LastQty lastQty
+  SettlCurrFxRate settlCurrFxRate
+  TransactionCostAmt transactionCostAmt
+  TransBkdTime transBkdTime
+  TransactTime transactTime
+  ReversalInitiationTime reversalInitiationTime
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  SettlDate settlDate
+  TrdType trdType
+  TradeReportType tradeReportType
+  TrdRptStatus trdRptStatus
+  TradePublishIndicator tradePublishIndicator
+  NoSideOTCAllocs noSideOTCAllocs
+  TransactionCostCode transactionCostCode
+  TradePlatform tradePlatform
+  SettlCurrency settlCurrency
+  TradeReportID tradeReportID
+  RegulatoryTradeID regulatoryTradeID
+  Pad1 pad1
+  group<type=SideAllocOTCGrpComp, counter=noSideOTCAllocs> sideAllocOTCGrp
+}
+message OTCUploadRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  LastPx lastPx
+  LastQty lastQty
+  SettlCurrFxRate settlCurrFxRate
+  TransBkdTime transBkdTime
+  TransactionCostAmt transactionCostAmt
+  MarketSegmentID marketSegmentID
+  SettlDate settlDate
+  TradeReportType tradeReportType
+  NoSideOTCAllocs noSideOTCAllocs
+  TransactionCostCode transactionCostCode
+  TradePlatform tradePlatform
+  SettlCurrency settlCurrency
+  TradeReportID tradeReportID
+  RegulatoryTradeID regulatoryTradeID
+  Pad1 pad1
+  group<type=SideAllocOTCGrpComp, counter=noSideOTCAllocs> sideAllocOTCGrp
+}
+message OrderExecNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  LeavesQty leavesQty
+  CumQty cumQty
+  CxlQty cxlQty
+  DisplayQty displayQty
+  MarketSegmentID marketSegmentID
+  OrderIDSfx orderIDSfx
+  ExecRestatementReason execRestatementReason
+  Side side
+  OrdStatus ordStatus
+  ExecType execType
+  OrderEventType orderEventType
+  MatchType matchType
+  Triggered triggered
+  CrossedIndicator crossedIndicator
+  BBOSetting bBOSetting
+  FIXClOrdID fIXClOrdID
+  NoFills noFills
+  NoOrderEvents noOrderEvents
+  group<type=FillsGrpComp, counter=noFills> fillsGrp
+  group<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
+}
+message OrderExecReportBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  TrdRegTSEntryTime trdRegTSEntryTime
+  TrdRegTSTimePriority trdRegTSTimePriority
+  Price price
+  LeavesQty leavesQty
+  CumQty cumQty
+  CxlQty cxlQty
+  OrderQty orderQty
+  DisplayQty displayQty
+  DisplayLowQty displayLowQty
+  DisplayHighQty displayHighQty
+  MinQty minQty
+  StopPx stopPx
+  PegOffsetValueAbs pegOffsetValueAbs
+  PegOffsetValuePct pegOffsetValuePct
+  QuoteID quoteID
+  BrokerInternalizationID brokerInternalizationID
+  MarketSegmentID marketSegmentID
+  OrderIDSfx orderIDSfx
+  ExpireDate expireDate
+  MatchInstCrossID matchInstCrossID
+  PartyIDExecutingUnit partyIDExecutingUnit
+  PartyIDSessionID partyIDSessionID
+  PartyIDExecutingTrader partyIDExecutingTrader
+  PartyIDEnteringTrader partyIDEnteringTrader
+  ExecRestatementReason execRestatementReason
+  PartyIDEnteringFirm partyIDEnteringFirm
+  OrdStatus ordStatus
+  ExecType execType
+  OrderEventType orderEventType
+  MatchType matchType
+  Side side
+  OrdType ordType
+  TradingCapacity tradingCapacity
+  MidPointType midPointType
+  TimeInForce timeInForce
+  ExecInst execInst
+  TradingSessionSubID tradingSessionSubID
+  ApplSeqIndicator applSeqIndicator
+  PartyEnteringFirm partyEnteringFirm
+  PartyEnteringTrader partyEnteringTrader
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  FIXClOrdID fIXClOrdID
+  NoFills noFills
+  NoOrderEvents noOrderEvents
+  Triggered triggered
+  CrossedIndicator crossedIndicator
+  TradeAtCloseOptIn tradeAtCloseOptIn
+  BBOSetting bBOSetting
+  Pad5 pad5
+  group<type=FillsGrpComp, counter=noFills> fillsGrp
+  group<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
+}
+message OrderExecResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderMEComp responseHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  TrdRegTSEntryTime trdRegTSEntryTime
+  TrdRegTSTimePriority trdRegTSTimePriority
+  LeavesQty leavesQty
+  CumQty cumQty
+  CxlQty cxlQty
+  DisplayQty displayQty
+  MarketSegmentID marketSegmentID
+  OrderIDSfx orderIDSfx
+  ExecRestatementReason execRestatementReason
+  Side side
+  OrdStatus ordStatus
+  ExecType execType
+  MatchType matchType
+  Triggered triggered
+  CrossedIndicator crossedIndicator
+  TransactionDelayIndicator transactionDelayIndicator
+  BBOSetting bBOSetting
+  NoFills noFills
+  NoOrderEvents noOrderEvents
+  Pad4 pad4
+  group<type=FillsGrpComp, counter=noFills> fillsGrp
+  group<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
+}
+message PartyActionReport :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  TradeDate tradeDate
+  RequestingPartyIDExecutingTrader requestingPartyIDExecutingTrader
+  PartyIDExecutingUnit partyIDExecutingUnit
+  PartyIDExecutingTrader partyIDExecutingTrader
+  RequestingPartyIDExecutingSystem requestingPartyIDExecutingSystem
+  MarketID marketID
+  PartyActionType partyActionType
+  RequestingPartyIDEnteringFirm requestingPartyIDEnteringFirm
+}
+message PartyEntitlementsUpdateReport :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  TradeDate tradeDate
+  PartyDetailIDExecutingUnit partyDetailIDExecutingUnit
+  RequestingPartyIDExecutingSystem requestingPartyIDExecutingSystem
+  MarketID marketID
+  ListUpdateAction listUpdateAction
+  RequestingPartyEnteringFirm requestingPartyEnteringFirm
+  RequestingPartyClearingFirm requestingPartyClearingFirm
+  PartyDetailStatus partyDetailStatus
+  Pad6 pad6
+}
+message PingRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  PartitionID partitionID
+  Pad6 pad6
+}
+message PingResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  TransactTime transactTime
+}
+message PreTradeRiskLimitResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  RiskLimitReportID riskLimitReportID
+  MarketSegmentID marketSegmentID
+  NoRiskLimits noRiskLimits
+  PartyDetailStatus partyDetailStatus
+  PartyDetailExecutingUnit partyDetailExecutingUnit
+  Pad5 pad5
+  group<type=RiskLimitsRptGrpComp, counter=noRiskLimits> riskLimitsRptGrp
+}
+message PreTradeRiskLimitsDefinitionRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  MarketSegmentID marketSegmentID
+  NoRiskLimitAmount noRiskLimitAmount
+  PartyDetailStatus partyDetailStatus
+  RiskLimitGroup riskLimitGroup
+  PartyDetailExecutingUnit partyDetailExecutingUnit
+  Pad2 pad2
+  group<type=RiskLimitAmountGrpComp, counter=noRiskLimitAmount> riskLimitAmountGrp
+}
+message QuoteActivationNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  MassActionReportID massActionReportID
+  MarketSegmentID marketSegmentID
+  PartyIDEnteringTrader partyIDEnteringTrader
+  NoNotAffectedSecurities noNotAffectedSecurities
+  PartyIDEnteringFirm partyIDEnteringFirm
+  MassActionType massActionType
+  MassActionReason massActionReason
+  Pad3 pad3
+  group<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
+}
+message QuoteActivationRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  MarketSegmentID marketSegmentID
+  TargetPartyIDSessionID targetPartyIDSessionID
+  MassActionType massActionType
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  ExecutingTraderQualifier executingTraderQualifier
+  Pad5 pad5
+}
+message QuoteActivationResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  MassActionReportID massActionReportID
+  NoNotAffectedSecurities noNotAffectedSecurities
+  Pad6 pad6
+  group<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
+}
+message QuoteExecutionReport :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  ExecID execID
+  MarketSegmentID marketSegmentID
+  NoQuoteEvents noQuoteEvents
+  Pad3 pad3
+  group<type=QuoteEventGrpComp, counter=noQuoteEvents> quoteEventGrp
+}
+message RFQBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  SecurityID securityID
+  ExecID execID
+  OrderQty orderQty
+  MarketSegmentID marketSegmentID
+  Side side
+  PartyExecutingFirm partyExecutingFirm
+  Pad6 pad6
+}
+message RFQRejectNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  SecurityID securityID
+  ExecID execID
+  QuoteID quoteID
+  MarketSegmentID marketSegmentID
+  QuoteRequestRejectReason quoteRequestRejectReason
+  PartyExecutingFirm partyExecutingFirm
+  Pad6 pad6
+}
+message RFQRejectRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  QuoteID quoteID
+  MarketSegmentID marketSegmentID
+  QuoteRequestRejectReason quoteRequestRejectReason
+  PartyExecutingFirm partyExecutingFirm
+  Pad6 pad6
+}
+message RFQReplyNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  SecurityID securityID
+  TransactTime transactTime
+  QuoteID quoteID
+  BidPx bidPx
+  BidSize bidSize
+  OfferPx offerPx
+  OfferSize offerSize
+  MarketSegmentID marketSegmentID
+  PartyExecutingFirm partyExecutingFirm
+  Pad7 pad7
+}
+message RFQReplyRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  QuoteID quoteID
+  BidPx bidPx
+  BidSize bidSize
+  OfferPx offerPx
+  OfferSize offerSize
+  MarketSegmentID marketSegmentID
+  PartyExecutingFirm partyExecutingFirm
+  Pad7 pad7
+}
+message RFQReplyResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  TransactTime transactTime
+}
+message RFQRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  OrderQty orderQty
+  QuoteID quoteID
+  MarketSegmentID marketSegmentID
+  RFQPublishIndicator rFQPublishIndicator
+  RFQRequesterDisclosureInstruction rFQRequesterDisclosureInstruction
+  Side side
+  Pad1 pad1
+}
+message RFQResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  ExecID execID
+}
+message RFQSpecialistIssuerBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  SecurityID securityID
+  ExecID execID
+  OrderQty orderQty
+  QuoteID quoteID
+  MarketSegmentID marketSegmentID
+  Side side
+  PartyExecutingFirm partyExecutingFirm
+  Pad6 pad6
+}
+message Reject :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  SessionRejectReason sessionRejectReason
+  VarTextLen varTextLen
+  SessionStatus sessionStatus
+  group<type=VarText, counter=varTextLen> varText
+}
+message RetransmitMEMessageRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SubscriptionScope subscriptionScope
+  PartitionID partitionID
+  RefApplID refApplID
+  ApplBegMsgID applBegMsgID
+  ApplEndMsgID applEndMsgID
+  Pad1 pad1
+}
+message RetransmitMEMessageResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  ApplTotalMessageCount applTotalMessageCount
+  ApplEndMsgID applEndMsgID
+  RefApplLastMsgID refApplLastMsgID
+  Pad6 pad6
+}
+message RetransmitRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  ApplBegSeqNum applBegSeqNum
+  ApplEndSeqNum applEndSeqNum
+  PartitionID partitionID
+  RefApplID refApplID
+  Pad5 pad5
+}
+message RetransmitResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  ApplEndSeqNum applEndSeqNum
+  RefApplLastSeqNum refApplLastSeqNum
+  ApplTotalMessageCount applTotalMessageCount
+  Pad6 pad6
+}
+message ReverseTESTradeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  TESExecID tESExecID
+  Pad4 pad4
+}
+message ServiceAvailabilityBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRBCHeaderComp nRBCHeader
+  MatchingEngineTradeDate matchingEngineTradeDate
+  TradeManagerTradeDate tradeManagerTradeDate
+  ApplSeqTradeDate applSeqTradeDate
+  T7EntryServiceTradeDate t7EntryServiceTradeDate
+  T7EntryServiceRtmTradeDate t7EntryServiceRtmTradeDate
+  PartitionID partitionID
+  MatchingEngineStatus matchingEngineStatus
+  TradeManagerStatus tradeManagerStatus
+  ApplSeqStatus applSeqStatus
+  T7EntryServiceStatus t7EntryServiceStatus
+  T7EntryServiceRtmStatus t7EntryServiceRtmStatus
+  Pad5 pad5
+}
+message ServiceAvailabilityMarketBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRBCHeaderComp nRBCHeader
+  SelectiveRequestForQuoteServiceTradeDate selectiveRequestForQuoteServiceTradeDate
+  SelectiveRequestForQuoteServiceStatus selectiveRequestForQuoteServiceStatus
+  SelectiveRequestForQuoteRtmServiceStatus selectiveRequestForQuoteRtmServiceStatus
+  NewsRtmServiceStatus newsRtmServiceStatus
+  RiskControlRtmServiceStatus riskControlRtmServiceStatus
+}
+message SingleQuoteRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  QuoteID quoteID
+  SecurityID securityID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  BidPx bidPx
+  BidSize bidSize
+  OfferPx offerPx
+  OfferSize offerSize
+  SettlCurrFxRate settlCurrFxRate
+  MarketSegmentID marketSegmentID
+  MatchInstCrossID matchInstCrossID
+  CrossMatchInstruction crossMatchInstruction
+  PriceValidityCheckType priceValidityCheckType
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  QuoteSizeType quoteSizeType
+  QuoteType quoteType
+  TradingCapacity tradingCapacity
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  Pad6 pad6
+}
+message SpecialistDeleteAllOrderBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  MassActionReportID massActionReportID
+  MarketSegmentID marketSegmentID
+  PartyIDEnteringTrader partyIDEnteringTrader
+  NoAffectedOrders noAffectedOrders
+  NoNotAffectedOrders noNotAffectedOrders
+  PartyIDEnteringFirm partyIDEnteringFirm
+  MassActionReason massActionReason
+  Pad2 pad2
+  group<type=AffectedOrdGrpComp, counter=noAffectedOrders> affectedOrdGrp
+  group<type=NotAffectedOrdersGrpComp, counter=noNotAffectedOrders> notAffectedOrdersGrp
+}
+message SpecialistInstrumentEventNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  SecurityID securityID
+  TransactTime transactTime
+  MarketSegmentID marketSegmentID
+  EventType eventType
+  Pad3 pad3
+}
+message SpecialistOrderBookNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  TrdRegTSEntryTime trdRegTSEntryTime
+  TrdRegTSTimePriority trdRegTSTimePriority
+  Price price
+  LeavesQty leavesQty
+  CumQty cumQty
+  CxlQty cxlQty
+  OrderQty orderQty
+  StopPx stopPx
+  QuoteID quoteID
+  MarketSegmentID marketSegmentID
+  OrderIDSfx orderIDSfx
+  ExpireDate expireDate
+  PartyIDExecutingUnit partyIDExecutingUnit
+  PartyIDSessionID partyIDSessionID
+  PartyIDExecutingTrader partyIDExecutingTrader
+  PartyIDEnteringTrader partyIDEnteringTrader
+  NoFills noFills
+  Pad1 pad1
+  ExecRestatementReason execRestatementReason
+  PartyIDEnteringFirm partyIDEnteringFirm
+  OrdStatus ordStatus
+  ExecType execType
+  OrderEventType orderEventType
+  MatchType matchType
+  Side side
+  OrdType ordType
+  TradingCapacity tradingCapacity
+  TimeInForce timeInForce
+  ExecInst execInst
+  TradingSessionSubID tradingSessionSubID
+  ApplSeqIndicator applSeqIndicator
+  Triggered triggered
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  PartyEnteringFirm partyEnteringFirm
+  PartyEnteringTrader partyEnteringTrader
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FIXClOrdID fIXClOrdID
+  group<type=FillsGrpComp, counter=noFills> fillsGrp
+}
+message SpecialistSecurityStateChangeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  MarketSegmentID marketSegmentID
+  EventType eventType
+  Pad3 pad3
+}
+message SpecialistSecurityStateChangeResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  NRResponseHeaderMEComp nRResponseHeaderME
+  SecurityStatusReportID securityStatusReportID
+}
+message StatusBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TradeDate tradeDate
+  TradSesEvent tradSesEvent
+  Pad3 pad3
+}
+message SubscribeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SubscriptionScope subscriptionScope
+  RefApplID refApplID
+  Pad3 pad3
+}
+message SubscribeResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  ApplSubID applSubID
+  Pad4 pad4
+}
+message TESApproveBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  SecurityID securityID
+  LastPx lastPx
+  AllocQty allocQty
+  TransactTime transactTime
+  TransBkdTime transBkdTime
+  SettlCurrFxRate settlCurrFxRate
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  TESExecID tESExecID
+  AllocID allocID
+  SettlDate settlDate
+  TESEnrichmentRuleID tESEnrichmentRuleID
+  AutoApprovalRuleID autoApprovalRuleID
+  TrdType trdType
+  VarTextLen varTextLen
+  Side side
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  TradePublishIndicator tradePublishIndicator
+  TradeReportType tradeReportType
+  TrdRptStatus trdRptStatus
+  TradingCapacity tradingCapacity
+  TradeAllocStatus tradeAllocStatus
+  MessageEventSource messageEventSource
+  TradeReportID tradeReportID
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  PartyIDEnteringFirm partyIDEnteringFirm
+  PartyEnteringTrader partyEnteringTrader
+  RootPartyExecutingFirm rootPartyExecutingFirm
+  RootPartyExecutingTrader rootPartyExecutingTrader
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  group<type=VarText, counter=varTextLen> varText
+}
+message TESBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  SecurityID securityID
+  LastPx lastPx
+  TransactTime transactTime
+  TransBkdTime transBkdTime
+  SettlCurrFxRate settlCurrFxRate
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  TESExecID tESExecID
+  SettlDate settlDate
+  AutoApprovalRuleID autoApprovalRuleID
+  TrdType trdType
+  VarTextLen varTextLen
+  TradeReportType tradeReportType
+  TrdRptStatus trdRptStatus
+  TradePublishIndicator tradePublishIndicator
+  NoSideAllocs noSideAllocs
+  MessageEventSource messageEventSource
+  TradeReportText tradeReportText
+  TradeReportID tradeReportID
+  RootPartyExecutingFirm rootPartyExecutingFirm
+  RootPartyExecutingTrader rootPartyExecutingTrader
+  group<type=SideAllocGrpBCComp, counter=noSideAllocs> sideAllocGrpBC
+  group<type=VarText, counter=varTextLen> varText
+}
+message TESDeleteBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  TESExecID tESExecID
+  TrdType trdType
+  DeleteReason deleteReason
+  TradeReportType tradeReportType
+  TrdRptStatus trdRptStatus
+  MessageEventSource messageEventSource
+  TradeReportID tradeReportID
+  Pad2 pad2
+}
+message TESExecutionBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  TESExecID tESExecID
+  AllocID allocID
+  TrdType trdType
+  TradeReportType tradeReportType
+  Side side
+  TrdRptStatus trdRptStatus
+  MessageEventSource messageEventSource
+  Pad2 pad2
+}
+message TESResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  TESExecID tESExecID
+  TradeReportID tradeReportID
+}
+message TESReversalBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  ReversalInitiationTime reversalInitiationTime
+  MarketSegmentID marketSegmentID
+  PackageID packageID
+  TESExecID tESExecID
+  Pad4 pad4
+}
+message TESTradeBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  SecurityID securityID
+  LastPx lastPx
+  LastQty lastQty
+  TransactTime transactTime
+  TransBkdTime transBkdTime
+  SettlCurrAmt settlCurrAmt
+  SideGrossTradeAmt sideGrossTradeAmt
+  SettlCurrFxRate settlCurrFxRate
+  AccruedInterestAmt accruedInterestAmt
+  CouponRate couponRate
+  RootPartyIDClientID rootPartyIDClientID
+  ExecutingTrader executingTrader
+  RootPartyIDInvestmentDecisionMaker rootPartyIDInvestmentDecisionMaker
+  TransactionCostAmt transactionCostAmt
+  PackageID packageID
+  MarketSegmentID marketSegmentID
+  TradeID tradeID
+  TradeDate tradeDate
+  SideTradeID sideTradeID
+  RootPartyIDSessionID rootPartyIDSessionID
+  RootPartyIDSettlementUnit rootPartyIDSettlementUnit
+  RootPartyIDContraUnit rootPartyIDContraUnit
+  RootPartyIDContraSettlementUnit rootPartyIDContraSettlementUnit
+  OrigTradeID origTradeID
+  RootPartyIDExecutingUnit rootPartyIDExecutingUnit
+  RootPartyIDExecutingTrader rootPartyIDExecutingTrader
+  RootPartyIDClearingUnit rootPartyIDClearingUnit
+  SettlDate settlDate
+  NumDaysInterest numDaysInterest
+  NegotiationID negotiationID
+  SRQSRelatedTradeID sRQSRelatedTradeID
+  TrdType trdType
+  LastMkt lastMkt
+  Side side
+  TradingCapacity tradingCapacity
+  TradeReportType tradeReportType
+  TransferReason transferReason
+  TradePublishIndicator tradePublishIndicator
+  DeliveryType deliveryType
+  LastCouponDeviationIndicator lastCouponDeviationIndicator
+  RefinancingEligibilityIndicator refinancingEligibilityIndicator
+  ClearingInstruction clearingInstruction
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  RootPartyIDInvestmentDecisionMakerQualifier rootPartyIDInvestmentDecisionMakerQualifier
+  OrderOrigination orderOrigination
+  ReversalIndicator reversalIndicator
+  TransactionCostCode transactionCostCode
+  TradePlatform tradePlatform
+  Account account
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  SettlCurrency settlCurrency
+  RootPartyExecutingFirm rootPartyExecutingFirm
+  RootPartyExecutingTrader rootPartyExecutingTrader
+  RootPartyClearingFirm rootPartyClearingFirm
+  RootPartyExecutingFirmKVNumber rootPartyExecutingFirmKVNumber
+  RootPartySettlementAccount rootPartySettlementAccount
+  RootPartySettlementLocation rootPartySettlementLocation
+  RootPartySettlementFirm rootPartySettlementFirm
+  RootPartyContraFirm rootPartyContraFirm
+  RootPartyContraSettlementFirm rootPartyContraSettlementFirm
+  RootPartyContraFirmKVNumber rootPartyContraFirmKVNumber
+  RootPartyContraSettlementAccount rootPartyContraSettlementAccount
+  RootPartyContraSettlementLocation rootPartyContraSettlementLocation
+  RootPartyIDExecutionVenue rootPartyIDExecutionVenue
+  RegulatoryTradeID regulatoryTradeID
+  TradeReportID tradeReportID
+  Pad4 pad4
+}
+message TESTradingSessionStatusBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TradeDate tradeDate
+  TradSesEvent tradSesEvent
+  Pad3 pad3
+}
+message TMTradingSessionStatusBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TradSesEvent tradSesEvent
+  Pad7 pad7
+}
+message ThrottleUpdateNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  NotifHeaderComp notifHeader
+  ThrottleTimeInterval throttleTimeInterval
+  ThrottleNoMsgs throttleNoMsgs
+  ThrottleDisconnectLimit throttleDisconnectLimit
+}
+message TradeBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  SecurityID securityID
+  Price price
+  LastPx lastPx
+  LastQty lastQty
+  SettlCurrAmt settlCurrAmt
+  SettlCurrFxRate settlCurrFxRate
+  TransactTime transactTime
+  OrderID orderID
+  ClOrdID clOrdID
+  LeavesQty leavesQty
+  CumQty cumQty
+  SideGrossTradeAmt sideGrossTradeAmt
+  AccruedInterestAmt accruedInterestAmt
+  CouponRate couponRate
+  RootPartyIDClientID rootPartyIDClientID
+  ExecutingTrader executingTrader
+  RootPartyIDInvestmentDecisionMaker rootPartyIDInvestmentDecisionMaker
+  TradeID tradeID
+  OrigTradeID origTradeID
+  RootPartyIDExecutingUnit rootPartyIDExecutingUnit
+  RootPartyIDSessionID rootPartyIDSessionID
+  RootPartyIDExecutingTrader rootPartyIDExecutingTrader
+  RootPartyIDSettlementUnit rootPartyIDSettlementUnit
+  RootPartyIDClearingUnit rootPartyIDClearingUnit
+  RootPartyIDContraUnit rootPartyIDContraUnit
+  RootPartyIDContraSettlementUnit rootPartyIDContraSettlementUnit
+  PartyIDSpecialistTrader partyIDSpecialistTrader
+  OrderIDSfx orderIDSfx
+  MarketSegmentID marketSegmentID
+  SideTradeID sideTradeID
+  SideTradeReportID sideTradeReportID
+  TradeNumber tradeNumber
+  MatchDate matchDate
+  SettlDate settlDate
+  TrdMatchID trdMatchID
+  NumDaysInterest numDaysInterest
+  LastMkt lastMkt
+  TradeReportType tradeReportType
+  TransferReason transferReason
+  MatchType matchType
+  MatchSubType matchSubType
+  Side side
+  SideLiquidityInd sideLiquidityInd
+  DeliveryType deliveryType
+  TradingCapacity tradingCapacity
+  LastCouponDeviationIndicator lastCouponDeviationIndicator
+  RefinancingEligibilityIndicator refinancingEligibilityIndicator
+  ClearingInstruction clearingInstruction
+  OrderOrigination orderOrigination
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  RootPartyIDInvestmentDecisionMakerQualifier rootPartyIDInvestmentDecisionMakerQualifier
+  Account account
+  SettlCurrency settlCurrency
+  Currency currency
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  OrderCategory orderCategory
+  OrdType ordType
+  RootPartyExecutingFirm rootPartyExecutingFirm
+  RootPartyExecutingTrader rootPartyExecutingTrader
+  RootPartyClearingFirm rootPartyClearingFirm
+  RootPartyExecutingFirmKVNumber rootPartyExecutingFirmKVNumber
+  RootPartySettlementAccount rootPartySettlementAccount
+  RootPartySettlementLocation rootPartySettlementLocation
+  RootPartySettlementFirm rootPartySettlementFirm
+  RootPartyContraFirm rootPartyContraFirm
+  RootPartyContraSettlementFirm rootPartyContraSettlementFirm
+  RootPartyContraFirmKVNumber rootPartyContraFirmKVNumber
+  RootPartyContraSettlementAccount rootPartyContraSettlementAccount
+  RootPartyContraSettlementLocation rootPartyContraSettlementLocation
+  PartySpecialistFirm partySpecialistFirm
+  PartySpecialistTrader partySpecialistTrader
+  RegulatoryTradeID regulatoryTradeID
+  RootPartyIDExecutionVenue rootPartyIDExecutionVenue
+  Pad3 pad3
+}
+message TradingSessionStatusBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  MarketSegmentID marketSegmentID
+  TradeDate tradeDate
+  TradSesEvent tradSesEvent
+  RefApplLastMsgID refApplLastMsgID
+  Pad7 pad7
+}
+message TrailingStopUpdateNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderMEComp rBCHeaderME
+  OrderID orderID
+  ClOrdID clOrdID
+  OrigClOrdID origClOrdID
+  SecurityID securityID
+  ExecID execID
+  StopPx stopPx
+  OrderQty orderQty
+  OrderIDSfx orderIDSfx
+  MarketSegmentID marketSegmentID
+  ExecRestatementReason execRestatementReason
+  OrdStatus ordStatus
+  ExecType execType
+  Side side
+  FIXClOrdID fIXClOrdID
+  Pad7 pad7
+}
+message UnsubscribeRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  RefApplSubID refApplSubID
+  Pad4 pad4
+}
+message UnsubscribeResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+}
+message UserLoginRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  Username username
+  Password password
+  Pad4 pad4
+}
+message UserLoginRequestEncrypted :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  Username username
+  EncryptedPassword encryptedPassword
+}
+message UserLoginResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+}
+message UserLogoutRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  Username username
+  Pad4 pad4
+}
+message UserLogoutResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+}
+message XetraEnLightCreateDealNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  LastPx lastPx
+  LastQty lastQty
+  QuoteID quoteID
+  SecurityID securityID
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  NegotiationID negotiationID
+  TradeID tradeID
+  SettlDate settlDate
+  TradingCapacity tradingCapacity
+  TrdRptStatus trdRptStatus
+  MessageEventSource messageEventSource
+  Side side
+  AllocMethod allocMethod
+  AutoExecType autoExecType
+  NoOrderBookItems noOrderBookItems
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  RootPartyExecutingFirm rootPartyExecutingFirm
+  RootPartyExecutingTrader rootPartyExecutingTrader
+  RootPartyEnteringTrader rootPartyEnteringTrader
+  TargetPartyExecutingFirm targetPartyExecutingFirm
+  TargetPartyExecutingTrader targetPartyExecutingTrader
+  TargetPartyEnteringTrader targetPartyEnteringTrader
+  FirmTradeID firmTradeID
+  FirmNegotiationID firmNegotiationID
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  group<type=OrderBookItemGrpComp, counter=noOrderBookItems> orderBookItemGrp
+}
+message XetraEnLightDealResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  SecurityID securityID
+  QuoteID quoteID
+  NegotiationID negotiationID
+  TradeID tradeID
+  SecondaryTradeID secondaryTradeID
+  FirmTradeID firmTradeID
+  FirmNegotiationID firmNegotiationID
+  Pad4 pad4
+}
+message XetraEnLightDealStatusNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  MarketSegmentID marketSegmentID
+  NegotiationID negotiationID
+  TradeID tradeID
+  MessageEventSource messageEventSource
+  TrdRptStatus trdRptStatus
+  Pad2 pad2
+}
+message XetraEnLightDeleteAllQuoteNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TargetPartyIDSessionID targetPartyIDSessionID
+  Pad4 pad4
+}
+message XetraEnLightDeleteAllQuoteRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  TargetPartyIDSessionID targetPartyIDSessionID
+  Pad4 pad4
+}
+message XetraEnLightEnterQuoteRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  BidPx bidPx
+  OfferPx offerPx
+  BidSize bidSize
+  OfferSize offerSize
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  ValidUntilTime validUntilTime
+  MarketSegmentID marketSegmentID
+  NegotiationID negotiationID
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  ValueCheckTypeValue valueCheckTypeValue
+  TradingCapacity tradingCapacity
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  QuotingFrequency quotingFrequency
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  Pad6 pad6
+}
+message XetraEnLightHitQuoteRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  QuoteID quoteID
+  OrderQty orderQty
+  Price price
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  MarketSegmentID marketSegmentID
+  NegotiationID negotiationID
+  Side side
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  ValueCheckTypeValue valueCheckTypeValue
+  TradingCapacity tradingCapacity
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  AllocMethod allocMethod
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  OrderOrigination orderOrigination
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FirmTradeID firmTradeID
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+}
+message XetraEnLightNegotiationNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  BidPx bidPx
+  OfferPx offerPx
+  LeavesQty leavesQty
+  NegotiationID negotiationID
+  NumberOfRespondents numberOfRespondents
+  SettlDate settlDate
+  Side side
+  QuoteType quoteType
+  QuoteCondition quoteCondition
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  PartyEnteringTrader partyEnteringTrader
+  TargetPartyExecutingFirm targetPartyExecutingFirm
+  TargetPartyExecutingTrader targetPartyExecutingTrader
+  FirmNegotiationID firmNegotiationID
+  FreeText5 freeText5
+  Pad5 pad5
+}
+message XetraEnLightNegotiationRequesterNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  TrdRegTSExecutionTime trdRegTSExecutionTime
+  BidPx bidPx
+  OfferPx offerPx
+  OrderQty orderQty
+  LastPx lastPx
+  LeavesQty leavesQty
+  LastQty lastQty
+  AutoExecLimitPrice autoExecLimitPrice
+  ExpireTime expireTime
+  AutoExecExpiryTime autoExecExpiryTime
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  NegotiationID negotiationID
+  NumberOfRespondents numberOfRespondents
+  SettlDate settlDate
+  AutoExecReferencePriceOffset autoExecReferencePriceOffset
+  AutoExecMinNoOfQuotes autoExecMinNoOfQuotes
+  NoTargetPartyIDs noTargetPartyIDs
+  NumberOfRespDisclosureInstruction numberOfRespDisclosureInstruction
+  Side side
+  QuoteType quoteType
+  RespondentType respondentType
+  TradingCapacity tradingCapacity
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  AutoExecType autoExecType
+  SideDisclosureInstruction sideDisclosureInstruction
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  OrderOrigination orderOrigination
+  QuoteCondition quoteCondition
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  PartyEnteringTrader partyEnteringTrader
+  FirmNegotiationID firmNegotiationID
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  FreeText5 freeText5
+  ClosureReason closureReason
+  group<type=XetraEnLightTargetPartiesComp, counter=noTargetPartyIDs> xetraEnLightTargetParties
+}
+message XetraEnLightNegotiationStatusNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  NegotiationID negotiationID
+  QuoteCondition quoteCondition
+  FirmNegotiationID firmNegotiationID
+  Pad7 pad7
+}
+message XetraEnLightOpenNegotiationNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  NegotiationStartTime negotiationStartTime
+  SecurityID securityID
+  BidPx bidPx
+  OfferPx offerPx
+  LeavesQty leavesQty
+  ExpireTime expireTime
+  NegotiationID negotiationID
+  MarketSegmentID marketSegmentID
+  NumberOfRespondents numberOfRespondents
+  SettlDate settlDate
+  Side side
+  QuoteType quoteType
+  RespondentType respondentType
+  QuoteCondition quoteCondition
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  PartyEnteringTrader partyEnteringTrader
+  TargetPartyExecutingFirm targetPartyExecutingFirm
+  TargetPartyExecutingTrader targetPartyExecutingTrader
+  FirmNegotiationID firmNegotiationID
+  FreeText5 freeText5
+}
+message XetraEnLightOpenNegotiationRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  SecurityID securityID
+  BidPx bidPx
+  OfferPx offerPx
+  OrderQty orderQty
+  ValidUntilTime validUntilTime
+  AutoExecLimitPrice autoExecLimitPrice
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  MarketSegmentID marketSegmentID
+  SettlDate settlDate
+  AutoExecExposureDuration autoExecExposureDuration
+  AutoExecReferencePriceOffset autoExecReferencePriceOffset
+  AutoExecMinNoOfQuotes autoExecMinNoOfQuotes
+  NoTargetPartyIDs noTargetPartyIDs
+  NumberOfRespDisclosureInstruction numberOfRespDisclosureInstruction
+  Side side
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  RespondentType respondentType
+  BidPxIsLocked bidPxIsLocked
+  OfferPxIsLocked offerPxIsLocked
+  SideIsLocked sideIsLocked
+  TradingCapacity tradingCapacity
+  AutoExecType autoExecType
+  SideDisclosureInstruction sideDisclosureInstruction
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  OrderOrigination orderOrigination
+  QuoteCondition quoteCondition
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FreeText5 freeText5
+  QuoteReqID quoteReqID
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  group<type=XetraEnLightTargetPartiesComp, counter=noTargetPartyIDs> xetraEnLightTargetParties
+}
+message XetraEnLightOpenNegotiationRequesterNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  SecurityID securityID
+  BidPx bidPx
+  OfferPx offerPx
+  OrderQty orderQty
+  LastPx lastPx
+  LastQty lastQty
+  ExpireTime expireTime
+  AutoExecExpiryTime autoExecExpiryTime
+  AutoExecLimitPrice autoExecLimitPrice
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  NegotiationID negotiationID
+  MarketSegmentID marketSegmentID
+  NumberOfRespondents numberOfRespondents
+  SettlDate settlDate
+  AutoExecReferencePriceOffset autoExecReferencePriceOffset
+  AutoExecMinNoOfQuotes autoExecMinNoOfQuotes
+  NoTargetPartyIDs noTargetPartyIDs
+  Side side
+  QuoteType quoteType
+  NumberOfRespDisclosureInstruction numberOfRespDisclosureInstruction
+  RespondentType respondentType
+  BidPxIsLocked bidPxIsLocked
+  OfferPxIsLocked offerPxIsLocked
+  SideIsLocked sideIsLocked
+  TradingCapacity tradingCapacity
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  AutoExecType autoExecType
+  SideDisclosureInstruction sideDisclosureInstruction
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  OrderOrigination orderOrigination
+  QuoteCondition quoteCondition
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  PartyEnteringTrader partyEnteringTrader
+  FirmNegotiationID firmNegotiationID
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  FreeText5 freeText5
+  Pad5 pad5
+  group<type=XetraEnLightTargetPartiesComp, counter=noTargetPartyIDs> xetraEnLightTargetParties
+}
+message XetraEnLightQuoteNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  QuoteID quoteID
+  SecondaryQuoteID secondaryQuoteID
+  BidPx bidPx
+  BidSize bidSize
+  OfferPx offerPx
+  OfferSize offerSize
+  ExpireTime expireTime
+  NegotiationID negotiationID
+  TradingCapacity tradingCapacity
+  QuotingStatus quotingStatus
+  QuoteEventReason quoteEventReason
+  QuoteCancelReason quoteCancelReason
+  QuotingFrequency quotingFrequency
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  PartyEnteringTrader partyEnteringTrader
+  QuoteReqID quoteReqID
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  Pad2 pad2
+}
+message XetraEnLightQuoteRequesterNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TransactTime transactTime
+  NegotiationID negotiationID
+  TradeID tradeID
+  QuoteReqID quoteReqID
+  NoQuoteEntries noQuoteEntries
+  Pad3 pad3
+  group<type=SRQSQuoteEntryGrpComp, counter=noQuoteEntries> sRQSQuoteEntryGrp
+}
+message XetraEnLightQuoteResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+  QuoteID quoteID
+  NegotiationID negotiationID
+  QuoteReqID quoteReqID
+}
+message XetraEnLightQuoteSnapshotNotification :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  NoQuoteEntries noQuoteEntries
+  MessageEventSource messageEventSource
+  Pad6 pad6
+  group<type=SRQSQuoteEntryGrpComp, counter=noQuoteEntries> sRQSQuoteEntryGrp
+}
+message XetraEnLightQuoteSnapshotRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+}
+message XetraEnLightQuotingStatusRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  MarketSegmentID marketSegmentID
+  NegotiationID negotiationID
+  QuotingStatus quotingStatus
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  Pad4 pad4
+}
+message XetraEnLightResponse :  {
+  MessageHeaderOutComp messageHeaderOut
+  ResponseHeaderComp responseHeader
+}
+message XetraEnLightStatusBroadcast :  {
+  MessageHeaderOutComp messageHeaderOut
+  RBCHeaderComp rBCHeader
+  TradeDate tradeDate
+  TradSesEvent tradSesEvent
+  Pad3 pad3
+}
+message XetraEnLightUpdateNegotiationRequest :  {
+  MessageHeaderInComp messageHeaderIn
+  RequestHeaderComp requestHeader
+  BidPx bidPx
+  OfferPx offerPx
+  OrderQty orderQty
+  PartyIDClientID partyIDClientID
+  PartyIdInvestmentDecisionMaker partyIdInvestmentDecisionMaker
+  ExecutingTrader executingTrader
+  AutoExecLimitPrice autoExecLimitPrice
+  AutoExecReferencePriceOffset autoExecReferencePriceOffset
+  MarketSegmentID marketSegmentID
+  NegotiationID negotiationID
+  SettlDate settlDate
+  AutoExecExposureDuration autoExecExposureDuration
+  AutoExecMinNoOfQuotes autoExecMinNoOfQuotes
+  NoTargetPartyIDs noTargetPartyIDs
+  NumberOfRespDisclosureInstruction numberOfRespDisclosureInstruction
+  Side side
+  ValueCheckTypeValue valueCheckTypeValue
+  ValueCheckTypeQuantity valueCheckTypeQuantity
+  RespondentType respondentType
+  TradingCapacity tradingCapacity
+  AutoExecType autoExecType
+  SideDisclosureInstruction sideDisclosureInstruction
+  OrderAttributeLiquidityProvision orderAttributeLiquidityProvision
+  ExecutingTraderQualifier executingTraderQualifier
+  PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
+  OrderOrigination orderOrigination
+  QuoteCondition quoteCondition
+  PartyExecutingFirm partyExecutingFirm
+  PartyExecutingTrader partyExecutingTrader
+  FreeText1 freeText1
+  FreeText2 freeText2
+  FreeText4 freeText4
+  FreeText5 freeText5
+  Pad3 pad3
+  group<type=XetraEnLightTargetPartiesComp, counter=noTargetPartyIDs> xetraEnLightTargetParties
+}
 
 

@@ -5,11 +5,8 @@ package eb_lang.behavior;
 import jetbrains.mps.core.aspects.behaviour.BaseBHDescriptor;
 import org.jetbrains.mps.openapi.language.SAbstractConcept;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
-import jetbrains.mps.core.aspects.behaviour.api.SMethod;
-import jetbrains.mps.core.aspects.behaviour.SMethodBuilder;
-import jetbrains.mps.core.aspects.behaviour.SJavaCompoundTypeImpl;
-import jetbrains.mps.core.aspects.behaviour.AccessPrivileges;
 import java.util.List;
+import jetbrains.mps.core.aspects.behaviour.api.SMethod;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
@@ -20,16 +17,12 @@ import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 public final class EBMessageVarStrMember__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x4f03300badfbfa51L, "eb_lang.structure.EBMessageVarStrMember");
 
-  public static final SMethod<Boolean> isNotFixedLength_id5hSnPGNaBkU = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(8, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(6086719741696308538L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isNotFixedLength_id5hSnPGNaBkU);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList();
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
-  /*package*/ static boolean isNotFixedLength_id5hSnPGNaBkU(@NotNull SNode __thisNode__) {
-    return true;
-  }
 
   /*package*/ EBMessageVarStrMember__BehaviorDescriptor() {
   }
@@ -46,8 +39,6 @@ public final class EBMessageVarStrMember__BehaviorDescriptor extends BaseBHDescr
       throw new BHMethodNotFoundException(this, method);
     }
     switch (methodIndex) {
-      case 0:
-        return (T) ((Boolean) isNotFixedLength_id5hSnPGNaBkU(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }

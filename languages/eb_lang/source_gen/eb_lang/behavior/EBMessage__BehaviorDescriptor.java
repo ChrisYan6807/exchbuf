@@ -46,7 +46,7 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
   }
   /*package*/ static boolean isNotFixedLength_id4Xeby11878t(@NotNull SNode __thisNode__) {
     for (SNode m : Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(__thisNode__, LINKS.content$vVwC), CONCEPTS.EBMessageMemberVar$_K))) {
-      if ((boolean) EBMessageMemberVar__BehaviorDescriptor.isNotFixedLength_id5hSnPGNaBkU.invoke(m)) {
+      if ((boolean) EBMessageMember__BehaviorDescriptor.isNotFixedLength_id2D23R1vLKti.invoke(m)) {
         return true;
       }
     }

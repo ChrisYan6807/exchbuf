@@ -1297,3113 +1297,2944 @@ class TemplateID(int, Enum):
 class AffectedOrdGrpComp(Packet):
     name = 'AffectedOrdGrpComp'
     fields_desc = [
-        AffectedOrderID("affectedOrderID", 0xFFFFFFFFFFFFFFFF)
-        AffectedOrigClOrdID("affectedOrigClOrdID", 0xFFFFFFFFFFFFFFFF)
+    AffectedOrderID("affectedOrderID", 0xFFFFFFFFFFFFFFFF),
+    AffectedOrigClOrdID("affectedOrigClOrdID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class AffectedOrderRequestsGrpComp(Packet):
     name = 'AffectedOrderRequestsGrpComp'
     fields_desc = [
-        AffectedOrderRequestID("affectedOrderRequestID", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    AffectedOrderRequestID("affectedOrderRequestID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class EnrichmentRulesGrpComp(Packet):
     name = 'EnrichmentRulesGrpComp'
     fields_desc = [
-        EnrichmentRuleID("enrichmentRuleID", 0xFFFF)
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        Pad6("pad6", "")
+    EnrichmentRuleID("enrichmentRuleID", 0xFFFF),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class FillsGrpComp(Packet):
     name = 'FillsGrpComp'
     fields_desc = [
-        FillPx("fillPx", 0x8000000000000000)
-        FillQty("fillQty", 0x8000000000000000)
-        FillMatchID("fillMatchID", 0xFFFFFFFF)
-        FillExecID("fillExecID", 0x80000000)
-        ByteEnumField("fillLiquidityInd", FillLiquidityInd.Removed_Liquidity_Midpoint, FillLiquidityInd)
-        Pad7("pad7", "")
+    FillPx("fillPx", 0x8000000000000000),
+    FillQty("fillQty", 0x8000000000000000),
+    FillMatchID("fillMatchID", 0xFFFFFFFF),
+    FillExecID("fillExecID", 0x80000000),
+    ByteEnumField("fillLiquidityInd", FillLiquidityInd.Removed_Liquidity_Midpoint, FillLiquidityInd),
+    Pad7("pad7", ""),
     ]
-
 
 class MessageHeaderInComp(Packet):
     name = 'MessageHeaderInComp'
     fields_desc = [
-        BodyLen("bodyLen", 0xFFFFFFFF)
-        LEShortEnumField("templateID", TemplateID.XetraEnLightUpdateNegotiationRequest, TemplateID)
-        NetworkMsgID("networkMsgID", "")
-        Pad2("pad2", "")
+    BodyLen("bodyLen", 0xFFFFFFFF),
+    LEShortEnumField("templateID", TemplateID.XetraEnLightUpdateNegotiationRequest, TemplateID),
+    NetworkMsgID("networkMsgID", ""),
+    Pad2("pad2", ""),
     ]
-
 
 class MessageHeaderOutComp(Packet):
     name = 'MessageHeaderOutComp'
     fields_desc = [
-        BodyLen("bodyLen", 0xFFFFFFFF)
-        LEShortEnumField("templateID", TemplateID.XetraEnLightUpdateNegotiationRequest, TemplateID)
-        Pad2("pad2", "")
+    BodyLen("bodyLen", 0xFFFFFFFF),
+    LEShortEnumField("templateID", TemplateID.XetraEnLightUpdateNegotiationRequest, TemplateID),
+    Pad2("pad2", ""),
     ]
-
 
 class NRBCHeaderComp(Packet):
     name = 'NRBCHeaderComp'
     fields_desc = [
-        SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF)
-        ApplSubID("applSubID", 0xFFFFFFFF)
-        ByteEnumField("applID", ApplID.Specialist_Data, ApplID)
-        ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment)
-        Pad2("pad2", "")
+    SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF),
+    ApplSubID("applSubID", 0xFFFFFFFF),
+    ByteEnumField("applID", ApplID.Specialist_Data, ApplID),
+    ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment),
+    Pad2("pad2", ""),
     ]
-
 
 class NRResponseHeaderMEComp(Packet):
     name = 'NRResponseHeaderMEComp'
     fields_desc = [
-        RequestTime("requestTime", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimeIn("trdRegTSTimeIn", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimeOut("trdRegTSTimeOut", 0xFFFFFFFFFFFFFFFF)
-        ResponseIn("responseIn", 0xFFFFFFFFFFFFFFFF)
-        SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF)
-        MsgSeqNum("msgSeqNum", 0xFFFFFFFF)
-        ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment)
-        Pad3("pad3", "")
+    RequestTime("requestTime", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimeIn("trdRegTSTimeIn", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimeOut("trdRegTSTimeOut", 0xFFFFFFFFFFFFFFFF),
+    ResponseIn("responseIn", 0xFFFFFFFFFFFFFFFF),
+    SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF),
+    MsgSeqNum("msgSeqNum", 0xFFFFFFFF),
+    ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment),
+    Pad3("pad3", ""),
     ]
-
 
 class NotAffectedOrdersGrpComp(Packet):
     name = 'NotAffectedOrdersGrpComp'
     fields_desc = [
-        NotAffectedOrderID("notAffectedOrderID", 0xFFFFFFFFFFFFFFFF)
-        NotAffOrigClOrdID("notAffOrigClOrdID", 0xFFFFFFFFFFFFFFFF)
+    NotAffectedOrderID("notAffectedOrderID", 0xFFFFFFFFFFFFFFFF),
+    NotAffOrigClOrdID("notAffOrigClOrdID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class NotAffectedSecuritiesGrpComp(Packet):
     name = 'NotAffectedSecuritiesGrpComp'
     fields_desc = [
-        NotAffectedSecurityID("notAffectedSecurityID", 0x8000000000000000)
+    NotAffectedSecurityID("notAffectedSecurityID", 0x8000000000000000),
     ]
-
 
 class NotifHeaderComp(Packet):
     name = 'NotifHeaderComp'
     fields_desc = [
-        SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF)
+    SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class OrderBookItemGrpComp(Packet):
     name = 'OrderBookItemGrpComp'
     fields_desc = [
-        BestBidPx("bestBidPx", 0x8000000000000000)
-        BestBidSize("bestBidSize", 0x8000000000000000)
-        BestOfferPx("bestOfferPx", 0x8000000000000000)
-        BestOfferSize("bestOfferSize", 0x8000000000000000)
-        ByteEnumField("mDBookType", MDBookType.PriceDepth, MDBookType)
-        ByteEnumField("mDSubBookType", MDSubBookType.VolumeWeightedAverage, MDSubBookType)
-        Pad6("pad6", "")
+    BestBidPx("bestBidPx", 0x8000000000000000),
+    BestBidSize("bestBidSize", 0x8000000000000000),
+    BestOfferPx("bestOfferPx", 0x8000000000000000),
+    BestOfferSize("bestOfferSize", 0x8000000000000000),
+    ByteEnumField("mDBookType", MDBookType.PriceDepth, MDBookType),
+    ByteEnumField("mDSubBookType", MDSubBookType.VolumeWeightedAverage, MDSubBookType),
+    Pad6("pad6", ""),
     ]
-
 
 class OrderEventGrpComp(Packet):
     name = 'OrderEventGrpComp'
     fields_desc = [
-        OrderEventPx("orderEventPx", 0x8000000000000000)
-        OrderEventQty("orderEventQty", 0x8000000000000000)
-        OrderEventMatchID("orderEventMatchID", 0xFFFFFFFF)
-        ByteEnumField("orderEventReason", OrderEventReason.SMP, OrderEventReason)
-        Pad3("pad3", "")
+    OrderEventPx("orderEventPx", 0x8000000000000000),
+    OrderEventQty("orderEventQty", 0x8000000000000000),
+    OrderEventMatchID("orderEventMatchID", 0xFFFFFFFF),
+    ByteEnumField("orderEventReason", OrderEventReason.SMP, OrderEventReason),
+    Pad3("pad3", ""),
     ]
-
 
 class PartyDetailsGrpComp(Packet):
     name = 'PartyDetailsGrpComp'
     fields_desc = [
-        PartyDetailIDExecutingTrader("partyDetailIDExecutingTrader", 0xFFFFFFFF)
-        PartyDetailExecutingTrader("partyDetailExecutingTrader", "")
-        ByteEnumField("partyDetailRoleQualifier", PartyDetailRoleQualifier.Supervisor, PartyDetailRoleQualifier)
-        ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus)
-        PartyDetailDeskID("partyDetailDeskID", "")
-        Pad1("pad1", "")
+    PartyDetailIDExecutingTrader("partyDetailIDExecutingTrader", 0xFFFFFFFF),
+    PartyDetailExecutingTrader("partyDetailExecutingTrader", ""),
+    ByteEnumField("partyDetailRoleQualifier", PartyDetailRoleQualifier.Supervisor, PartyDetailRoleQualifier),
+    ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus),
+    PartyDetailDeskID("partyDetailDeskID", ""),
+    Pad1("pad1", ""),
     ]
-
 
 class QuoteEntryAckGrpComp(Packet):
     name = 'QuoteEntryAckGrpComp'
     fields_desc = [
-        SecurityID("securityID", 0x8000000000000000)
-        CxlSize("cxlSize", 0x8000000000000000)
-        LEIntEnumField("quoteEntryRejectReason", QuoteEntryRejectReason.Indicative_Quote_not_allowed_in_current_state, QuoteEntryRejectReason)
-        ByteEnumField("quoteEntryStatus", QuoteEntryStatus.Pending, QuoteEntryStatus)
-        ByteEnumField("side", Side.Sell, Side)
-        Pad2("pad2", "")
+    SecurityID("securityID", 0x8000000000000000),
+    CxlSize("cxlSize", 0x8000000000000000),
+    LEIntEnumField("quoteEntryRejectReason", QuoteEntryRejectReason.Indicative_Quote_not_allowed_in_current_state, QuoteEntryRejectReason),
+    ByteEnumField("quoteEntryStatus", QuoteEntryStatus.Pending, QuoteEntryStatus),
+    ByteEnumField("side", Side.Sell, Side),
+    Pad2("pad2", ""),
     ]
-
 
 class QuoteEntryGrpComp(Packet):
     name = 'QuoteEntryGrpComp'
     fields_desc = [
-        SecurityID("securityID", 0x8000000000000000)
-        BidPx("bidPx", 0x8000000000000000)
-        BidSize("bidSize", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OfferSize("offerSize", 0x8000000000000000)
+    SecurityID("securityID", 0x8000000000000000),
+    BidPx("bidPx", 0x8000000000000000),
+    BidSize("bidSize", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OfferSize("offerSize", 0x8000000000000000),
     ]
-
 
 class QuoteEventGrpComp(Packet):
     name = 'QuoteEventGrpComp'
     fields_desc = [
-        SecurityID("securityID", 0x8000000000000000)
-        QuoteEventPx("quoteEventPx", 0x8000000000000000)
-        QuoteEventQty("quoteEventQty", 0x8000000000000000)
-        QuoteMsgID("quoteMsgID", 0xFFFFFFFFFFFFFFFF)
-        QuoteEventMatchID("quoteEventMatchID", 0xFFFFFFFF)
-        QuoteEventExecID("quoteEventExecID", 0x80000000)
-        ByteEnumField("quoteEventType", QuoteEventType.Removed_Quantity, QuoteEventType)
-        ByteEnumField("quoteEventSide", QuoteEventSide.Sell, QuoteEventSide)
-        ByteEnumField("quoteEventLiquidityInd", QuoteEventLiquidityInd.Auction, QuoteEventLiquidityInd)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        ByteEnumField("quoteEventReason", QuoteEventReason.RLP_Quote_Cleanup, QuoteEventReason)
-        Pad3("pad3", "")
+    SecurityID("securityID", 0x8000000000000000),
+    QuoteEventPx("quoteEventPx", 0x8000000000000000),
+    QuoteEventQty("quoteEventQty", 0x8000000000000000),
+    QuoteMsgID("quoteMsgID", 0xFFFFFFFFFFFFFFFF),
+    QuoteEventMatchID("quoteEventMatchID", 0xFFFFFFFF),
+    QuoteEventExecID("quoteEventExecID", 0x80000000),
+    ByteEnumField("quoteEventType", QuoteEventType.Removed_Quantity, QuoteEventType),
+    ByteEnumField("quoteEventSide", QuoteEventSide.Sell, QuoteEventSide),
+    ByteEnumField("quoteEventLiquidityInd", QuoteEventLiquidityInd.Auction, QuoteEventLiquidityInd),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    ByteEnumField("quoteEventReason", QuoteEventReason.RLP_Quote_Cleanup, QuoteEventReason),
+    Pad3("pad3", ""),
     ]
-
 
 class RBCHeaderComp(Packet):
     name = 'RBCHeaderComp'
     fields_desc = [
-        SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF)
-        ApplSeqNum("applSeqNum", 0xFFFFFFFFFFFFFFFF)
-        ApplSubID("applSubID", 0xFFFFFFFF)
-        PartitionID("partitionID", 0xFFFF)
-        ByteEnumField("applResendFlag", ApplResendFlag.True, ApplResendFlag)
-        ByteEnumField("applID", ApplID.Specialist_Data, ApplID)
-        ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment)
-        Pad7("pad7", "")
+    SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF),
+    ApplSeqNum("applSeqNum", 0xFFFFFFFFFFFFFFFF),
+    ApplSubID("applSubID", 0xFFFFFFFF),
+    PartitionID("partitionID", 0xFFFF),
+    ByteEnumField("applResendFlag", ApplResendFlag.True, ApplResendFlag),
+    ByteEnumField("applID", ApplID.Specialist_Data, ApplID),
+    ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment),
+    Pad7("pad7", ""),
     ]
-
 
 class RBCHeaderMEComp(Packet):
     name = 'RBCHeaderMEComp'
     fields_desc = [
-        TrdRegTSTimeOut("trdRegTSTimeOut", 0xFFFFFFFFFFFFFFFF)
-        NotificationIn("notificationIn", 0xFFFFFFFFFFFFFFFF)
-        SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF)
-        ApplSubID("applSubID", 0xFFFFFFFF)
-        PartitionID("partitionID", 0xFFFF)
-        ApplMsgID("applMsgID", "")
-        ByteEnumField("applID", ApplID.Specialist_Data, ApplID)
-        ByteEnumField("applResendFlag", ApplResendFlag.True, ApplResendFlag)
-        ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment)
-        Pad7("pad7", "")
+    TrdRegTSTimeOut("trdRegTSTimeOut", 0xFFFFFFFFFFFFFFFF),
+    NotificationIn("notificationIn", 0xFFFFFFFFFFFFFFFF),
+    SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF),
+    ApplSubID("applSubID", 0xFFFFFFFF),
+    PartitionID("partitionID", 0xFFFF),
+    ApplMsgID("applMsgID", ""),
+    ByteEnumField("applID", ApplID.Specialist_Data, ApplID),
+    ByteEnumField("applResendFlag", ApplResendFlag.True, ApplResendFlag),
+    ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment),
+    Pad7("pad7", ""),
     ]
-
 
 class RequestHeaderComp(Packet):
     name = 'RequestHeaderComp'
     fields_desc = [
-        MsgSeqNum("msgSeqNum", 0xFFFFFFFF)
-        SenderSubID("senderSubID", 0xFFFFFFFF)
+    MsgSeqNum("msgSeqNum", 0xFFFFFFFF),
+    SenderSubID("senderSubID", 0xFFFFFFFF),
     ]
-
 
 class ResponseHeaderComp(Packet):
     name = 'ResponseHeaderComp'
     fields_desc = [
-        RequestTime("requestTime", 0xFFFFFFFFFFFFFFFF)
-        SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF)
-        MsgSeqNum("msgSeqNum", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    RequestTime("requestTime", 0xFFFFFFFFFFFFFFFF),
+    SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF),
+    MsgSeqNum("msgSeqNum", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class ResponseHeaderMEComp(Packet):
     name = 'ResponseHeaderMEComp'
     fields_desc = [
-        RequestTime("requestTime", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimeIn("trdRegTSTimeIn", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimeOut("trdRegTSTimeOut", 0xFFFFFFFFFFFFFFFF)
-        ResponseIn("responseIn", 0xFFFFFFFFFFFFFFFF)
-        SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF)
-        MsgSeqNum("msgSeqNum", 0xFFFFFFFF)
-        PartitionID("partitionID", 0xFFFF)
-        ByteEnumField("applID", ApplID.Specialist_Data, ApplID)
-        ApplMsgID("applMsgID", "")
-        ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment)
+    RequestTime("requestTime", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimeIn("trdRegTSTimeIn", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimeOut("trdRegTSTimeOut", 0xFFFFFFFFFFFFFFFF),
+    ResponseIn("responseIn", 0xFFFFFFFFFFFFFFFF),
+    SendingTime("sendingTime", 0xFFFFFFFFFFFFFFFF),
+    MsgSeqNum("msgSeqNum", 0xFFFFFFFF),
+    PartitionID("partitionID", 0xFFFF),
+    ByteEnumField("applID", ApplID.Specialist_Data, ApplID),
+    ApplMsgID("applMsgID", ""),
+    ByteEnumField("lastFragment", LastFragment.Last_Message, LastFragment),
     ]
-
 
 class RiskLimitAmountGrpComp(Packet):
     name = 'RiskLimitAmountGrpComp'
     fields_desc = [
-        RiskLimitAmount("riskLimitAmount", 0x8000000000000000)
-        ByteEnumField("riskLimitType", RiskLimitType.Short_limit, RiskLimitType)
-        Pad7("pad7", "")
+    RiskLimitAmount("riskLimitAmount", 0x8000000000000000),
+    ByteEnumField("riskLimitType", RiskLimitType.Short_limit, RiskLimitType),
+    Pad7("pad7", ""),
     ]
-
 
 class RiskLimitsRptGrpComp(Packet):
     name = 'RiskLimitsRptGrpComp'
     fields_desc = [
-        RiskLimitAmount("riskLimitAmount", 0x8000000000000000)
-        RiskLimitOpenAmount("riskLimitOpenAmount", 0x8000000000000000)
-        RiskLimitNetPositionAmount("riskLimitNetPositionAmount", 0x8000000000000000)
-        ActivationDate("activationDate", 0xFFFFFFFF)
-        ByteEnumField("riskLimitType", RiskLimitType.Short_limit, RiskLimitType)
-        ByteEnumField("riskLimitRequestingPartyRole", RiskLimitRequestingPartyRole.Executing_unit, RiskLimitRequestingPartyRole)
-        ByteEnumField("riskLimitViolationIndicator", RiskLimitViolationIndicator.Yes, RiskLimitViolationIndicator)
-        RiskLimitGroup("riskLimitGroup", "")
-        Pad6("pad6", "")
+    RiskLimitAmount("riskLimitAmount", 0x8000000000000000),
+    RiskLimitOpenAmount("riskLimitOpenAmount", 0x8000000000000000),
+    RiskLimitNetPositionAmount("riskLimitNetPositionAmount", 0x8000000000000000),
+    ActivationDate("activationDate", 0xFFFFFFFF),
+    ByteEnumField("riskLimitType", RiskLimitType.Short_limit, RiskLimitType),
+    ByteEnumField("riskLimitRequestingPartyRole", RiskLimitRequestingPartyRole.Executing_unit, RiskLimitRequestingPartyRole),
+    ByteEnumField("riskLimitViolationIndicator", RiskLimitViolationIndicator.Yes, RiskLimitViolationIndicator),
+    RiskLimitGroup("riskLimitGroup", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class SRQSHitQuoteGrpComp(Packet):
     name = 'SRQSHitQuoteGrpComp'
     fields_desc = [
-        OrderQty("orderQty", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        ByteEnumField("side", Side.Sell, Side)
-        Pad7("pad7", "")
+    OrderQty("orderQty", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    ByteEnumField("side", Side.Sell, Side),
+    Pad7("pad7", ""),
     ]
-
 
 class SRQSQuoteEntryGrpComp(Packet):
     name = 'SRQSQuoteEntryGrpComp'
     fields_desc = [
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        SecondaryQuoteID("secondaryQuoteID", 0xFFFFFFFFFFFFFFFF)
-        BidPx("bidPx", 0x8000000000000000)
-        BidSize("bidSize", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OfferSize("offerSize", 0x8000000000000000)
-        PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        ByteEnumField("quotingStatus", QuotingStatus.PreFunding_not_sufficient, QuotingStatus)
-        ByteEnumField("quotingFrequency", QuotingFrequency.LF, QuotingFrequency)
-        FirmNegotiationID("firmNegotiationID", "")
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        Pad1("pad1", "")
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    SecondaryQuoteID("secondaryQuoteID", 0xFFFFFFFFFFFFFFFF),
+    BidPx("bidPx", 0x8000000000000000),
+    BidSize("bidSize", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OfferSize("offerSize", 0x8000000000000000),
+    PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    ByteEnumField("quotingStatus", QuotingStatus.PreFunding_not_sufficient, QuotingStatus),
+    ByteEnumField("quotingFrequency", QuotingFrequency.LF, QuotingFrequency),
+    FirmNegotiationID("firmNegotiationID", ""),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    Pad1("pad1", ""),
     ]
-
 
 class SRQSQuoteGrpComp(Packet):
     name = 'SRQSQuoteGrpComp'
     fields_desc = [
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class SRQSTargetPartyTrdGrpComp(Packet):
     name = 'SRQSTargetPartyTrdGrpComp'
     fields_desc = [
-        SideLastQty("sideLastQty", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF)
-        TargetPartyExecutingFirm("targetPartyExecutingFirm", "")
-        TargetPartyExecutingTrader("targetPartyExecutingTrader", "")
-        TargetPartyEnteringTrader("targetPartyEnteringTrader", "")
-        Pad3("pad3", "")
+    SideLastQty("sideLastQty", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF),
+    TargetPartyExecutingFirm("targetPartyExecutingFirm", ""),
+    TargetPartyExecutingTrader("targetPartyExecutingTrader", ""),
+    TargetPartyEnteringTrader("targetPartyEnteringTrader", ""),
+    Pad3("pad3", ""),
     ]
-
 
 class SecurityStatusEventGrpComp(Packet):
     name = 'SecurityStatusEventGrpComp'
     fields_desc = [
-        EventPx("eventPx", 0x8000000000000000)
-        EventDate("eventDate", 0xFFFFFFFF)
-        ByteEnumField("eventType", EventType.Unsuspend, EventType)
-        Pad3("pad3", "")
+    EventPx("eventPx", 0x8000000000000000),
+    EventDate("eventDate", 0xFFFFFFFF),
+    ByteEnumField("eventType", EventType.Unsuspend, EventType),
+    Pad3("pad3", ""),
     ]
-
 
 class SessionsGrpComp(Packet):
     name = 'SessionsGrpComp'
     fields_desc = [
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        ByteEnumField("sessionMode", SessionMode.FIX_LF, SessionMode)
-        ByteEnumField("sessionSubMode", SessionSubMode.Regular_Back_Office_session, SessionSubMode)
-        Pad2("pad2", "")
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    ByteEnumField("sessionMode", SessionMode.FIX_LF, SessionMode),
+    ByteEnumField("sessionSubMode", SessionSubMode.Regular_Back_Office_session, SessionSubMode),
+    Pad2("pad2", ""),
     ]
-
 
 class SideAllocGrpComp(Packet):
     name = 'SideAllocGrpComp'
     fields_desc = [
-        AllocQty("allocQty", 0x8000000000000000)
-        IndividualAllocID("individualAllocID", 0xFFFFFFFF)
-        TESEnrichmentRuleID("tESEnrichmentRuleID", 0xFFFFFFFF)
-        ByteEnumField("side", Side.Sell, Side)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        Pad4("pad4", "")
+    AllocQty("allocQty", 0x8000000000000000),
+    IndividualAllocID("individualAllocID", 0xFFFFFFFF),
+    TESEnrichmentRuleID("tESEnrichmentRuleID", 0xFFFFFFFF),
+    ByteEnumField("side", Side.Sell, Side),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    Pad4("pad4", ""),
     ]
-
 
 class SideAllocGrpBCComp(Packet):
     name = 'SideAllocGrpBCComp'
     fields_desc = [
-        AllocQty("allocQty", 0x8000000000000000)
-        IndividualAllocID("individualAllocID", 0xFFFFFFFF)
-        TESEnrichmentRuleID("tESEnrichmentRuleID", 0xFFFFFFFF)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("tradeAllocStatus", TradeAllocStatus.Canceled, TradeAllocStatus)
-        Pad3("pad3", "")
+    AllocQty("allocQty", 0x8000000000000000),
+    IndividualAllocID("individualAllocID", 0xFFFFFFFF),
+    TESEnrichmentRuleID("tESEnrichmentRuleID", 0xFFFFFFFF),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("tradeAllocStatus", TradeAllocStatus.Canceled, TradeAllocStatus),
+    Pad3("pad3", ""),
     ]
-
 
 class SideAllocOTCGrpComp(Packet):
     name = 'SideAllocOTCGrpComp'
     fields_desc = [
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        Pad3("pad3", "")
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    Pad3("pad3", ""),
     ]
-
 
 class XetraEnLightTargetPartiesComp(Packet):
     name = 'XetraEnLightTargetPartiesComp'
     fields_desc = [
-        TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF)
-        TargetPartyExecutingFirm("targetPartyExecutingFirm", "")
-        TargetPartyExecutingTrader("targetPartyExecutingTrader", "")
-        Pad1("pad1", "")
+    TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF),
+    TargetPartyExecutingFirm("targetPartyExecutingFirm", ""),
+    TargetPartyExecutingTrader("targetPartyExecutingTrader", ""),
+    Pad1("pad1", ""),
     ]
-
 
 class ApproveTESTradeRequest(Packet):
     name = 'ApproveTESTradeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        AllocQty("allocQty", 0x8000000000000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        AllocID("allocID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        TradeReportID("tradeReportID", "")
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    AllocQty("allocQty", 0x8000000000000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    AllocID("allocID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    TradeReportID("tradeReportID", ""),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class BroadcastErrorNotification(Packet):
     name = 'BroadcastErrorNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("notifHeader", "", NotifHeaderComp)
-        LEIntEnumField("applIDStatus", ApplIDStatus.Outbound_conversion_error, ApplIDStatus)
-        RefApplSubID("refApplSubID", 0xFFFFFFFF)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
-        ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID)
-        ByteEnumField("sessionStatus", SessionStatus.Logout, SessionStatus)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("notifHeader", "", NotifHeaderComp),
+    LEIntEnumField("applIDStatus", ApplIDStatus.Outbound_conversion_error, ApplIDStatus),
+    RefApplSubID("refApplSubID", 0xFFFFFFFF),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
+    ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID),
+    ByteEnumField("sessionStatus", SessionStatus.Logout, SessionStatus),
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
-
 
 class CrossRequest(Packet):
     name = 'CrossRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    Pad4("pad4", ""),
     ]
-
 
 class CrossRequestResponse(Packet):
     name = 'CrossRequestResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class DeleteAllOrderBroadcast(Packet):
     name = 'DeleteAllOrderBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp")
-        FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp")
-        FieldLenField("noAffectedOrderRequests", 0, fmt="<H", count_of="affectedOrderRequestsGrp")
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("side", Side.Sell, Side)
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp"),
+    FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp"),
+    FieldLenField("noAffectedOrderRequests", 0, fmt="<H", count_of="affectedOrderRequestsGrp"),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("side", Side.Sell, Side),
+    Pad6("pad6", ""),
         PacketListField("notAffectedOrdersGrp", None, NotAffectedOrdersGrpComp, count_from=lambda pkt:pkt.noNotAffectedOrders
         PacketListField("affectedOrdGrp", None, AffectedOrdGrpComp, count_from=lambda pkt:pkt.noAffectedOrders
         PacketListField("affectedOrderRequestsGrp", None, AffectedOrderRequestsGrpComp, count_from=lambda pkt:pkt.noAffectedOrderRequests
     ]
-
 
 class DeleteAllOrderNRResponse(Packet):
     name = 'DeleteAllOrderNRResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class DeleteAllOrderQuoteEventBroadcast(Packet):
     name = 'DeleteAllOrderQuoteEventBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    Pad2("pad2", ""),
     ]
-
 
 class DeleteAllOrderRequest(Packet):
     name = 'DeleteAllOrderRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
     ]
-
 
 class DeleteAllOrderResponse(Packet):
     name = 'DeleteAllOrderResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeaderME", "", ResponseHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp")
-        FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp")
-        FieldLenField("noAffectedOrderRequests", 0, fmt="<H", count_of="affectedOrderRequestsGrp")
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeaderME", "", ResponseHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp"),
+    FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp"),
+    FieldLenField("noAffectedOrderRequests", 0, fmt="<H", count_of="affectedOrderRequestsGrp"),
+    Pad2("pad2", ""),
         PacketListField("notAffectedOrdersGrp", None, NotAffectedOrdersGrpComp, count_from=lambda pkt:pkt.noNotAffectedOrders
         PacketListField("affectedOrdGrp", None, AffectedOrdGrpComp, count_from=lambda pkt:pkt.noAffectedOrders
         PacketListField("affectedOrderRequestsGrp", None, AffectedOrderRequestsGrpComp, count_from=lambda pkt:pkt.noAffectedOrderRequests
     ]
 
-
 class DeleteAllQuoteBroadcast(Packet):
     name = 'DeleteAllQuoteBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF)
-        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp")
-        ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason)
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        TargetPartyIDDeskID("targetPartyIDDeskID", "")
-        Pad1("pad1", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    TargetPartyIDExecutingTrader("targetPartyIDExecutingTrader", 0xFFFFFFFF),
+    FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
+    ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    TargetPartyIDDeskID("targetPartyIDDeskID", ""),
+    Pad1("pad1", ""),
         PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities
     ]
-
 
 class DeleteAllQuoteRequest(Packet):
     name = 'DeleteAllQuoteRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        Pad6("pad6", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    Pad6("pad6", ""),
     ]
-
 
 class DeleteAllQuoteResponse(Packet):
     name = 'DeleteAllQuoteResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
+    Pad6("pad6", ""),
         PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities
     ]
-
 
 class DeleteOrderBroadcast(Packet):
     name = 'DeleteOrderBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType)
-        FIXClOrdID("fIXClOrdID", "")
-        PartyEnteringFirm("partyEnteringFirm", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType),
+    FIXClOrdID("fIXClOrdID", ""),
+    PartyEnteringFirm("partyEnteringFirm", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    Pad2("pad2", ""),
     ]
-
 
 class DeleteOrderNRResponse(Packet):
     name = 'DeleteOrderNRResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator)
-        Pad7("pad7", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
+    Pad7("pad7", ""),
     ]
-
 
 class DeleteOrderResponse(Packet):
     name = 'DeleteOrderResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeaderME", "", ResponseHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator)
-        Pad7("pad7", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeaderME", "", ResponseHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
+    Pad7("pad7", ""),
     ]
-
 
 class DeleteOrderSingleRequest(Packet):
     name = 'DeleteOrderSingleRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        FIXClOrdID("fIXClOrdID", "")
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    FIXClOrdID("fIXClOrdID", ""),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class DeleteTESTradeRequest(Packet):
     name = 'DeleteTESTradeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        PackageID("packageID", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        TradeReportID("tradeReportID", "")
-        Pad5("pad5", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    PackageID("packageID", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    TradeReportID("tradeReportID", ""),
+    Pad5("pad5", ""),
     ]
-
 
 class EnterTESTradeRequest(Packet):
     name = 'EnterTESTradeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator)
-        FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrp")
-        TradeReportText("tradeReportText", "")
-        TradeReportID("tradeReportID", "")
-        Pad3("pad3", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator),
+    FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrp"),
+    TradeReportText("tradeReportText", ""),
+    TradeReportID("tradeReportID", ""),
+    Pad3("pad3", ""),
         PacketListField("sideAllocGrp", None, SideAllocGrpComp, count_from=lambda pkt:pkt.noSideAllocs
     ]
-
 
 class ExtendedDeletionReport(Packet):
     name = 'ExtendedDeletionReport'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF)
-        Price("price", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        DisplayQty("displayQty", 0x8000000000000000)
-        DisplayLowQty("displayLowQty", 0x8000000000000000)
-        DisplayHighQty("displayHighQty", 0x8000000000000000)
-        MinQty("minQty", 0x8000000000000000)
-        StopPx("stopPx", 0x8000000000000000)
-        PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000)
-        PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        ExpireDate("expireDate", 0xFFFFFFFF)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF)
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("ordType", OrdType.Stop_Limit, OrdType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType)
-        ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID)
-        ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator)
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        PartyEnteringFirm("partyEnteringFirm", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FIXClOrdID("fIXClOrdID", "")
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        Pad1("pad1", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF),
+    Price("price", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    DisplayQty("displayQty", 0x8000000000000000),
+    DisplayLowQty("displayLowQty", 0x8000000000000000),
+    DisplayHighQty("displayHighQty", 0x8000000000000000),
+    MinQty("minQty", 0x8000000000000000),
+    StopPx("stopPx", 0x8000000000000000),
+    PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000),
+    PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    ExpireDate("expireDate", 0xFFFFFFFF),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF),
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType),
+    ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID),
+    ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    PartyEnteringFirm("partyEnteringFirm", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FIXClOrdID("fIXClOrdID", ""),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    Pad1("pad1", ""),
     ]
-
 
 class ForcedLogoutNotification(Packet):
     name = 'ForcedLogoutNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("notifHeader", "", NotifHeaderComp)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("notifHeader", "", NotifHeaderComp),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
-
 
 class ForcedUserLogoutNotification(Packet):
     name = 'ForcedUserLogoutNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("notifHeader", "", NotifHeaderComp)
-        Username("username", 0xFFFFFFFF)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
-        ByteEnumField("userStatus", UserStatus.User_released, UserStatus)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("notifHeader", "", NotifHeaderComp),
+    Username("username", 0xFFFFFFFF),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
+    ByteEnumField("userStatus", UserStatus.User_released, UserStatus),
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
-
 
 class Heartbeat(Packet):
     name = 'Heartbeat'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
     ]
-
 
 class HeartbeatNotification(Packet):
     name = 'HeartbeatNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("notifHeader", "", NotifHeaderComp)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("notifHeader", "", NotifHeaderComp),
     ]
-
 
 class InquireEnrichmentRuleIDListRequest(Packet):
     name = 'InquireEnrichmentRuleIDListRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        LastEntityProcessed("lastEntityProcessed", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    LastEntityProcessed("lastEntityProcessed", ""),
     ]
-
 
 class InquireEnrichmentRuleIDListResponse(Packet):
     name = 'InquireEnrichmentRuleIDListResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        LastEntityProcessed("lastEntityProcessed", "")
-        FieldLenField("noEnrichmentRules", 0, fmt="<H", count_of="enrichmentRulesGrp")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    LastEntityProcessed("lastEntityProcessed", ""),
+    FieldLenField("noEnrichmentRules", 0, fmt="<H", count_of="enrichmentRulesGrp"),
+    Pad6("pad6", ""),
         PacketListField("enrichmentRulesGrp", None, EnrichmentRulesGrpComp, count_from=lambda pkt:pkt.noEnrichmentRules
     ]
-
 
 class InquirePreTradeRiskLimitsRequest(Packet):
     name = 'InquirePreTradeRiskLimitsRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PartyExecutingUnit("partyExecutingUnit", "")
-        RiskLimitGroup("riskLimitGroup", "")
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PartyExecutingUnit("partyExecutingUnit", ""),
+    RiskLimitGroup("riskLimitGroup", ""),
+    Pad4("pad4", ""),
     ]
-
 
 class InquireSessionListRequest(Packet):
     name = 'InquireSessionListRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
     ]
-
 
 class InquireSessionListResponse(Packet):
     name = 'InquireSessionListResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        FieldLenField("noSessions", 0, fmt="<H", count_of="sessionsGrp")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    FieldLenField("noSessions", 0, fmt="<H", count_of="sessionsGrp"),
+    Pad6("pad6", ""),
         PacketListField("sessionsGrp", None, SessionsGrpComp, count_from=lambda pkt:pkt.noSessions
     ]
-
 
 class InquireUserRequest(Packet):
     name = 'InquireUserRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        LastEntityProcessed("lastEntityProcessed", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    LastEntityProcessed("lastEntityProcessed", ""),
     ]
-
 
 class InquireUserResponse(Packet):
     name = 'InquireUserResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        LastEntityProcessed("lastEntityProcessed", "")
-        FieldLenField("noPartyDetails", 0, fmt="<H", count_of="partyDetailsGrp")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    LastEntityProcessed("lastEntityProcessed", ""),
+    FieldLenField("noPartyDetails", 0, fmt="<H", count_of="partyDetailsGrp"),
+    Pad6("pad6", ""),
         PacketListField("partyDetailsGrp", None, PartyDetailsGrpComp, count_from=lambda pkt:pkt.noPartyDetails
     ]
-
 
 class IssuerNotification(Packet):
     name = 'IssuerNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        SecurityID("securityID", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        LastPx("lastPx", 0x8000000000000000)
-        PotentialExecVolume("potentialExecVolume", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        ImbalanceQty("imbalanceQty", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        ByteEnumField("securityTradingStatus", SecurityTradingStatus.Market_Imbalance_Sell, SecurityTradingStatus)
-        ByteEnumField("eventType", EventType.Unsuspend, EventType)
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    SecurityID("securityID", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    LastPx("lastPx", 0x8000000000000000),
+    PotentialExecVolume("potentialExecVolume", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    ImbalanceQty("imbalanceQty", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    ByteEnumField("securityTradingStatus", SecurityTradingStatus.Market_Imbalance_Sell, SecurityTradingStatus),
+    ByteEnumField("eventType", EventType.Unsuspend, EventType),
+    Pad6("pad6", ""),
     ]
-
 
 class IssuerSecurityStateChangeRequest(Packet):
     name = 'IssuerSecurityStateChangeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        FieldLenField("noEvents", 0, fmt="<B", count_of="securityStatusEventGrp")
-        ByteEnumField("securityStatus", SecurityStatus.Knocked_out_and_suspend, SecurityStatus)
-        ByteEnumField("soldOutIndicator", SoldOutIndicator.Sold_out, SoldOutIndicator)
-        Pad1("pad1", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    FieldLenField("noEvents", 0, fmt="<B", count_of="securityStatusEventGrp"),
+    ByteEnumField("securityStatus", SecurityStatus.Knocked_out_and_suspend, SecurityStatus),
+    ByteEnumField("soldOutIndicator", SoldOutIndicator.Sold_out, SoldOutIndicator),
+    Pad1("pad1", ""),
         PacketListField("securityStatusEventGrp", None, SecurityStatusEventGrpComp, count_from=lambda pkt:pkt.noEvents
     ]
-
 
 class IssuerSecurityStateChangeResponse(Packet):
     name = 'IssuerSecurityStateChangeResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        SecurityStatusReportID("securityStatusReportID", 0xFFFFFFFFFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    SecurityStatusReportID("securityStatusReportID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class LegalNotificationBroadcast(Packet):
     name = 'LegalNotificationBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
-        ByteEnumField("userStatus", UserStatus.User_released, UserStatus)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
+    ByteEnumField("userStatus", UserStatus.User_released, UserStatus),
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
-
 
 class LogonRequest(Packet):
     name = 'LogonRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        HeartBtInt("heartBtInt", 0xFFFFFFFF)
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        DefaultCstmApplVerID("defaultCstmApplVerID", "")
-        Password("password", "")
-        CharEnumField("applUsageOrders", ApplUsageOrders.None, ApplUsageOrders)
-        CharEnumField("applUsageQuotes", ApplUsageQuotes.None, ApplUsageQuotes)
-        CharEnumField("orderRoutingIndicator", OrderRoutingIndicator.No, OrderRoutingIndicator)
-        FIXEngineName("fIXEngineName", "")
-        FIXEngineVersion("fIXEngineVersion", "")
-        FIXEngineVendor("fIXEngineVendor", "")
-        ApplicationSystemName("applicationSystemName", "")
-        ApplicationSystemVersion("applicationSystemVersion", "")
-        ApplicationSystemVendor("applicationSystemVendor", "")
-        Pad3("pad3", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    HeartBtInt("heartBtInt", 0xFFFFFFFF),
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    DefaultCstmApplVerID("defaultCstmApplVerID", ""),
+    Password("password", ""),
+    CharEnumField("applUsageOrders", ApplUsageOrders.None, ApplUsageOrders),
+    CharEnumField("applUsageQuotes", ApplUsageQuotes.None, ApplUsageQuotes),
+    CharEnumField("orderRoutingIndicator", OrderRoutingIndicator.No, OrderRoutingIndicator),
+    FIXEngineName("fIXEngineName", ""),
+    FIXEngineVersion("fIXEngineVersion", ""),
+    FIXEngineVendor("fIXEngineVendor", ""),
+    ApplicationSystemName("applicationSystemName", ""),
+    ApplicationSystemVersion("applicationSystemVersion", ""),
+    ApplicationSystemVendor("applicationSystemVendor", ""),
+    Pad3("pad3", ""),
     ]
-
 
 class LogonRequestEncrypted(Packet):
     name = 'LogonRequestEncrypted'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        HeartBtInt("heartBtInt", 0xFFFFFFFF)
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        DefaultCstmApplVerID("defaultCstmApplVerID", "")
-        EncryptedPassword("encryptedPassword", "")
-        CharEnumField("applUsageOrders", ApplUsageOrders.None, ApplUsageOrders)
-        CharEnumField("applUsageQuotes", ApplUsageQuotes.None, ApplUsageQuotes)
-        CharEnumField("orderRoutingIndicator", OrderRoutingIndicator.No, OrderRoutingIndicator)
-        FIXEngineName("fIXEngineName", "")
-        FIXEngineVersion("fIXEngineVersion", "")
-        FIXEngineVendor("fIXEngineVendor", "")
-        ApplicationSystemName("applicationSystemName", "")
-        ApplicationSystemVersion("applicationSystemVersion", "")
-        ApplicationSystemVendor("applicationSystemVendor", "")
-        Pad7("pad7", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    HeartBtInt("heartBtInt", 0xFFFFFFFF),
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    DefaultCstmApplVerID("defaultCstmApplVerID", ""),
+    EncryptedPassword("encryptedPassword", ""),
+    CharEnumField("applUsageOrders", ApplUsageOrders.None, ApplUsageOrders),
+    CharEnumField("applUsageQuotes", ApplUsageQuotes.None, ApplUsageQuotes),
+    CharEnumField("orderRoutingIndicator", OrderRoutingIndicator.No, OrderRoutingIndicator),
+    FIXEngineName("fIXEngineName", ""),
+    FIXEngineVersion("fIXEngineVersion", ""),
+    FIXEngineVendor("fIXEngineVendor", ""),
+    ApplicationSystemName("applicationSystemName", ""),
+    ApplicationSystemVersion("applicationSystemVersion", ""),
+    ApplicationSystemVendor("applicationSystemVendor", ""),
+    Pad7("pad7", ""),
     ]
-
 
 class LogonResponse(Packet):
     name = 'LogonResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        ThrottleTimeInterval("throttleTimeInterval", 0x8000000000000000)
-        ThrottleNoMsgs("throttleNoMsgs", 0xFFFFFFFF)
-        ThrottleDisconnectLimit("throttleDisconnectLimit", 0xFFFFFFFF)
-        HeartBtInt("heartBtInt", 0xFFFFFFFF)
-        SessionInstanceID("sessionInstanceID", 0xFFFFFFFF)
-        LatestPublicKeySeqNo("latestPublicKeySeqNo", 0xFFFFFFFF)
-        FieldLenField("publicKeyLen", 0, fmt="<H", count_of="publicKey")
-        LEShortEnumField("marketID", MarketID.XMUN, MarketID)
-        ByteEnumField("tradSesMode", TradSesMode.Disaster_Recovery, TradSesMode)
-        DefaultCstmApplVerID("defaultCstmApplVerID", "")
-        DefaultCstmApplVerSubID("defaultCstmApplVerSubID", "")
-        PartitionID("partitionID", 0xFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    ThrottleTimeInterval("throttleTimeInterval", 0x8000000000000000),
+    ThrottleNoMsgs("throttleNoMsgs", 0xFFFFFFFF),
+    ThrottleDisconnectLimit("throttleDisconnectLimit", 0xFFFFFFFF),
+    HeartBtInt("heartBtInt", 0xFFFFFFFF),
+    SessionInstanceID("sessionInstanceID", 0xFFFFFFFF),
+    LatestPublicKeySeqNo("latestPublicKeySeqNo", 0xFFFFFFFF),
+    FieldLenField("publicKeyLen", 0, fmt="<H", count_of="publicKey"),
+    LEShortEnumField("marketID", MarketID.XMUN, MarketID),
+    ByteEnumField("tradSesMode", TradSesMode.Disaster_Recovery, TradSesMode),
+    DefaultCstmApplVerID("defaultCstmApplVerID", ""),
+    DefaultCstmApplVerSubID("defaultCstmApplVerSubID", ""),
+    PartitionID("partitionID", 0xFFFF),
         PacketListField("publicKey", None, PublicKey, count_from=lambda pkt:pkt.publicKeyLen
     ]
-
 
 class LogoutRequest(Packet):
     name = 'LogoutRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
     ]
-
 
 class LogoutResponse(Packet):
     name = 'LogoutResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
     ]
-
 
 class MassQuoteRequest(Packet):
     name = 'MassQuoteRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        EnrichmentRuleID("enrichmentRuleID", 0xFFFF)
-        ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction)
-        ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("quoteSizeType", QuoteSizeType.OpenSize, QuoteSizeType)
-        ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="quoteEntryGrp")
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        Pad3("pad3", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    EnrichmentRuleID("enrichmentRuleID", 0xFFFF),
+    ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction),
+    ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("quoteSizeType", QuoteSizeType.OpenSize, QuoteSizeType),
+    ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="quoteEntryGrp"),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    Pad3("pad3", ""),
         PacketListField("quoteEntryGrp", None, QuoteEntryGrpComp, count_from=lambda pkt:pkt.noQuoteEntries
     ]
-
 
 class MassQuoteResponse(Packet):
     name = 'MassQuoteResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        QuoteResponseID("quoteResponseID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        FieldLenField("noQuoteSideEntries", 0, fmt="<B", count_of="quoteEntryAckGrp")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    QuoteResponseID("quoteResponseID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    FieldLenField("noQuoteSideEntries", 0, fmt="<B", count_of="quoteEntryAckGrp"),
+    Pad3("pad3", ""),
         PacketListField("quoteEntryAckGrp", None, QuoteEntryAckGrpComp, count_from=lambda pkt:pkt.noQuoteSideEntries
     ]
-
 
 class ModifyOrderNRResponse(Packet):
     name = 'ModifyOrderNRResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        StopPx("stopPx", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        DisplayQty("displayQty", 0x8000000000000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator)
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    StopPx("stopPx", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    DisplayQty("displayQty", 0x8000000000000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
+    Pad3("pad3", ""),
         PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents
     ]
-
 
 class ModifyOrderRequest(Packet):
     name = 'ModifyOrderRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        DisplayQty("displayQty", 0x8000000000000000)
-        DisplayLowQty("displayLowQty", 0x8000000000000000)
-        DisplayHighQty("displayHighQty", 0x8000000000000000)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        StopPx("stopPx", 0x8000000000000000)
-        PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000)
-        PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        BrokerInternalizationID("brokerInternalizationID", 0xFFFFFFFF)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        ExpireDate("expireDate", 0xFFFFFFFF)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID)
-        ByteEnumField("stopPxIndicator", StopPxIndicator.Overwrite, StopPxIndicator)
-        ByteEnumField("ownershipIndicator", OwnershipIndicator.Change_to_Executing_Trader, OwnershipIndicator)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator)
-        ByteEnumField("ordType", OrdType.Stop_Limit, OrdType)
-        ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        FIXClOrdID("fIXClOrdID", "")
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        Pad6("pad6", "")
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction)
-        Pad1("pad1", "")
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        SecurityID("securityID", 0x8000000000000000)
-        MinQty("minQty", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce)
-        ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType)
-        CheckSumCorrection("checkSumCorrection", 0xFFFF)
-        Pad2("pad2", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    DisplayQty("displayQty", 0x8000000000000000),
+    DisplayLowQty("displayLowQty", 0x8000000000000000),
+    DisplayHighQty("displayHighQty", 0x8000000000000000),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    StopPx("stopPx", 0x8000000000000000),
+    PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000),
+    PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    BrokerInternalizationID("brokerInternalizationID", 0xFFFFFFFF),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    ExpireDate("expireDate", 0xFFFFFFFF),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID),
+    ByteEnumField("stopPxIndicator", StopPxIndicator.Overwrite, StopPxIndicator),
+    ByteEnumField("ownershipIndicator", OwnershipIndicator.Change_to_Executing_Trader, OwnershipIndicator),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
+    ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
+    ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    FIXClOrdID("fIXClOrdID", ""),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    Pad6("pad6", ""),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction),
+    Pad1("pad1", ""),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    SecurityID("securityID", 0x8000000000000000),
+    MinQty("minQty", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce),
+    ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType),
+    CheckSumCorrection("checkSumCorrection", 0xFFFF),
+    Pad2("pad2", ""),
     ]
-
 
 class ModifyOrderResponse(Packet):
     name = 'ModifyOrderResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeaderME", "", ResponseHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        StopPx("stopPx", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        DisplayQty("displayQty", 0x8000000000000000)
-        TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator)
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeaderME", "", ResponseHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    StopPx("stopPx", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    DisplayQty("displayQty", 0x8000000000000000),
+    TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
+    Pad3("pad3", ""),
         PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents
     ]
-
 
 class ModifyOrderShortRequest(Packet):
     name = 'ModifyOrderShortRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator)
-        ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        Pad4("pad4", "")
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        EnrichmentRuleID("enrichmentRuleID", 0xFFFF)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction)
-        Pad4_1("pad4_1", "")
-        SecurityID("securityID", 0x8000000000000000)
-        MinQty("minQty", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce)
-        ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType)
-        CheckSumCorrection("checkSumCorrection", 0xFFFF)
-        Pad2("pad2", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
+    ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    Pad4("pad4", ""),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    EnrichmentRuleID("enrichmentRuleID", 0xFFFF),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction),
+    Pad4_1("pad4_1", ""),
+    SecurityID("securityID", 0x8000000000000000),
+    MinQty("minQty", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce),
+    ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType),
+    CheckSumCorrection("checkSumCorrection", 0xFFFF),
+    Pad2("pad2", ""),
     ]
-
 
 class ModifyTESTradeRequest(Packet):
     name = 'ModifyTESTradeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        LastPx("lastPx", 0x8000000000000000)
-        TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator)
-        FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrp")
-        TradeReportText("tradeReportText", "")
-        TradeReportID("tradeReportID", "")
-        Pad3("pad3", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    LastPx("lastPx", 0x8000000000000000),
+    TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator),
+    FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrp"),
+    TradeReportText("tradeReportText", ""),
+    TradeReportID("tradeReportID", ""),
+    Pad3("pad3", ""),
         PacketListField("sideAllocGrp", None, SideAllocGrpComp, count_from=lambda pkt:pkt.noSideAllocs
     ]
-
 
 class NewOrderNRResponse(Packet):
     name = 'NewOrderNRResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator)
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
+    Pad3("pad3", ""),
         PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents
     ]
-
 
 class NewOrderRequest(Packet):
     name = 'NewOrderRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        StopPx("stopPx", 0x8000000000000000)
-        DisplayQty("displayQty", 0x8000000000000000)
-        DisplayLowQty("displayLowQty", 0x8000000000000000)
-        DisplayHighQty("displayHighQty", 0x8000000000000000)
-        PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000)
-        PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        BrokerInternalizationID("brokerInternalizationID", 0xFFFFFFFF)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        ExpireDate("expireDate", 0xFFFFFFFF)
-        ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID)
-        ByteEnumField("tradeAtCloseOptIn", TradeAtCloseOptIn.Yes, TradeAtCloseOptIn)
-        ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction)
-        ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator)
-        ByteEnumField("ordType", OrdType.Stop_Limit, OrdType)
-        ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        FIXClOrdID("fIXClOrdID", "")
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        Pad6("pad6", "")
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        Pad2("pad2", "")
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        SecurityID("securityID", 0x8000000000000000)
-        MinQty("minQty", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce)
-        ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType)
-        CheckSumCorrection("checkSumCorrection", 0xFFFF)
-        Pad2_1("pad2_1", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    StopPx("stopPx", 0x8000000000000000),
+    DisplayQty("displayQty", 0x8000000000000000),
+    DisplayLowQty("displayLowQty", 0x8000000000000000),
+    DisplayHighQty("displayHighQty", 0x8000000000000000),
+    PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000),
+    PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    BrokerInternalizationID("brokerInternalizationID", 0xFFFFFFFF),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    ExpireDate("expireDate", 0xFFFFFFFF),
+    ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID),
+    ByteEnumField("tradeAtCloseOptIn", TradeAtCloseOptIn.Yes, TradeAtCloseOptIn),
+    ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction),
+    ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
+    ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
+    ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    FIXClOrdID("fIXClOrdID", ""),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    Pad6("pad6", ""),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    Pad2("pad2", ""),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    SecurityID("securityID", 0x8000000000000000),
+    MinQty("minQty", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce),
+    ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType),
+    CheckSumCorrection("checkSumCorrection", 0xFFFF),
+    Pad2_1("pad2_1", ""),
     ]
-
 
 class NewOrderResponse(Packet):
     name = 'NewOrderResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeaderME", "", ResponseHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator)
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeaderME", "", ResponseHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
+    Pad3("pad3", ""),
         PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents
     ]
-
 
 class NewOrderShortRequest(Packet):
     name = 'NewOrderShortRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator)
-        ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        Pad4("pad4", "")
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        EnrichmentRuleID("enrichmentRuleID", 0xFFFF)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction)
-        Pad4_1("pad4_1", "")
-        SecurityID("securityID", 0x8000000000000000)
-        MinQty("minQty", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce)
-        ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType)
-        CheckSumCorrection("checkSumCorrection", 0xFFFF)
-        Pad2("pad2", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
+    ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    Pad4("pad4", ""),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    EnrichmentRuleID("enrichmentRuleID", 0xFFFF),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction),
+    Pad4_1("pad4_1", ""),
+    SecurityID("securityID", 0x8000000000000000),
+    MinQty("minQty", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce),
+    ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType),
+    CheckSumCorrection("checkSumCorrection", 0xFFFF),
+    Pad2("pad2", ""),
     ]
-
 
 class NewsBroadcast(Packet):
     name = 'NewsBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        OrigTime("origTime", 0xFFFFFFFFFFFFFFFF)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
-        Headline("headline", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    OrigTime("origTime", 0xFFFFFFFFFFFFFFFF),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
+    Headline("headline", ""),
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
-
 
 class OTCResponse(Packet):
     name = 'OTCResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        OTCExecID("oTCExecID", 0xFFFFFFFF)
-        TradeReportID("tradeReportID", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    OTCExecID("oTCExecID", 0xFFFFFFFF),
+    TradeReportID("tradeReportID", ""),
     ]
-
 
 class OTCUploadBroadcast(Packet):
     name = 'OTCUploadBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        OTCExecID("oTCExecID", 0xFFFFFFFF)
-        Pad4("pad4", "")
-        SecurityID("securityID", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        TransactionCostAmt("transactionCostAmt", 0x8000000000000000)
-        TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        ReversalInitiationTime("reversalInitiationTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus)
-        ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator)
-        FieldLenField("noSideOTCAllocs", 0, fmt="<B", count_of="sideAllocOTCGrp")
-        ByteEnumField("transactionCostCode", TransactionCostCode.Provision, TransactionCostCode)
-        ByteEnumField("tradePlatform", TradePlatform.On_Book, TradePlatform)
-        SettlCurrency("settlCurrency", "")
-        TradeReportID("tradeReportID", "")
-        RegulatoryTradeID("regulatoryTradeID", "")
-        Pad1("pad1", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    OTCExecID("oTCExecID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
+    SecurityID("securityID", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    TransactionCostAmt("transactionCostAmt", 0x8000000000000000),
+    TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    ReversalInitiationTime("reversalInitiationTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
+    ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator),
+    FieldLenField("noSideOTCAllocs", 0, fmt="<B", count_of="sideAllocOTCGrp"),
+    ByteEnumField("transactionCostCode", TransactionCostCode.Provision, TransactionCostCode),
+    ByteEnumField("tradePlatform", TradePlatform.On_Book, TradePlatform),
+    SettlCurrency("settlCurrency", ""),
+    TradeReportID("tradeReportID", ""),
+    RegulatoryTradeID("regulatoryTradeID", ""),
+    Pad1("pad1", ""),
         PacketListField("sideAllocOTCGrp", None, SideAllocOTCGrpComp, count_from=lambda pkt:pkt.noSideOTCAllocs
     ]
-
 
 class OTCUploadRequest(Packet):
     name = 'OTCUploadRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF)
-        TransactionCostAmt("transactionCostAmt", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        FieldLenField("noSideOTCAllocs", 0, fmt="<B", count_of="sideAllocOTCGrp")
-        ByteEnumField("transactionCostCode", TransactionCostCode.Provision, TransactionCostCode)
-        ByteEnumField("tradePlatform", TradePlatform.On_Book, TradePlatform)
-        SettlCurrency("settlCurrency", "")
-        TradeReportID("tradeReportID", "")
-        RegulatoryTradeID("regulatoryTradeID", "")
-        Pad1("pad1", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
+    TransactionCostAmt("transactionCostAmt", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    FieldLenField("noSideOTCAllocs", 0, fmt="<B", count_of="sideAllocOTCGrp"),
+    ByteEnumField("transactionCostCode", TransactionCostCode.Provision, TransactionCostCode),
+    ByteEnumField("tradePlatform", TradePlatform.On_Book, TradePlatform),
+    SettlCurrency("settlCurrency", ""),
+    TradeReportID("tradeReportID", ""),
+    RegulatoryTradeID("regulatoryTradeID", ""),
+    Pad1("pad1", ""),
         PacketListField("sideAllocOTCGrp", None, SideAllocOTCGrpComp, count_from=lambda pkt:pkt.noSideOTCAllocs
     ]
-
 
 class OrderExecNotification(Packet):
     name = 'OrderExecNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        DisplayQty("displayQty", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("side", Side.Sell, Side)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType)
-        ByteEnumField("matchType", MatchType.AVD, MatchType)
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        FIXClOrdID("fIXClOrdID", "")
-        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp")
-        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    DisplayQty("displayQty", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("side", Side.Sell, Side),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType),
+    ByteEnumField("matchType", MatchType.AVD, MatchType),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    FIXClOrdID("fIXClOrdID", ""),
+    FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
+    FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
         PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills
         PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents
     ]
-
 
 class OrderExecReportBroadcast(Packet):
     name = 'OrderExecReportBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF)
-        Price("price", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        DisplayQty("displayQty", 0x8000000000000000)
-        DisplayLowQty("displayLowQty", 0x8000000000000000)
-        DisplayHighQty("displayHighQty", 0x8000000000000000)
-        MinQty("minQty", 0x8000000000000000)
-        StopPx("stopPx", 0x8000000000000000)
-        PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000)
-        PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        BrokerInternalizationID("brokerInternalizationID", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        ExpireDate("expireDate", 0xFFFFFFFF)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF)
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType)
-        ByteEnumField("matchType", MatchType.AVD, MatchType)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("ordType", OrdType.Stop_Limit, OrdType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType)
-        ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID)
-        ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator)
-        PartyEnteringFirm("partyEnteringFirm", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        FIXClOrdID("fIXClOrdID", "")
-        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp")
-        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp")
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator)
-        ByteEnumField("tradeAtCloseOptIn", TradeAtCloseOptIn.Yes, TradeAtCloseOptIn)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        Pad5("pad5", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF),
+    Price("price", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    DisplayQty("displayQty", 0x8000000000000000),
+    DisplayLowQty("displayLowQty", 0x8000000000000000),
+    DisplayHighQty("displayHighQty", 0x8000000000000000),
+    MinQty("minQty", 0x8000000000000000),
+    StopPx("stopPx", 0x8000000000000000),
+    PegOffsetValueAbs("pegOffsetValueAbs", 0x8000000000000000),
+    PegOffsetValuePct("pegOffsetValuePct", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    BrokerInternalizationID("brokerInternalizationID", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    ExpireDate("expireDate", 0xFFFFFFFF),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF),
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType),
+    ByteEnumField("matchType", MatchType.AVD, MatchType),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("midPointType", MidPointType.MidPointSweep, MidPointType),
+    ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID),
+    ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
+    PartyEnteringFirm("partyEnteringFirm", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    FIXClOrdID("fIXClOrdID", ""),
+    FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
+    FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
+    ByteEnumField("tradeAtCloseOptIn", TradeAtCloseOptIn.Yes, TradeAtCloseOptIn),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    Pad5("pad5", ""),
         PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills
         PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents
     ]
-
 
 class OrderExecResponse(Packet):
     name = 'OrderExecResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeaderME", "", ResponseHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        DisplayQty("displayQty", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("side", Side.Sell, Side)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        ByteEnumField("matchType", MatchType.AVD, MatchType)
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator)
-        ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator)
-        ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting)
-        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp")
-        FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp")
-        Pad4("pad4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeaderME", "", ResponseHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    DisplayQty("displayQty", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("side", Side.Sell, Side),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    ByteEnumField("matchType", MatchType.AVD, MatchType),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("crossedIndicator", CrossedIndicator.Cross_rejected, CrossedIndicator),
+    ByteEnumField("transactionDelayIndicator", TransactionDelayIndicator.Delayed, TransactionDelayIndicator),
+    ByteEnumField("bBOSetting", BBOSetting.Yes, BBOSetting),
+    FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
+    FieldLenField("noOrderEvents", 0, fmt="<B", count_of="orderEventGrp"),
+    Pad4("pad4", ""),
         PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills
         PacketListField("orderEventGrp", None, OrderEventGrpComp, count_from=lambda pkt:pkt.noOrderEvents
     ]
 
-
 class PartyActionReport(Packet):
     name = 'PartyActionReport'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        TradeDate("tradeDate", 0xFFFFFFFF)
-        RequestingPartyIDExecutingTrader("requestingPartyIDExecutingTrader", 0xFFFFFFFF)
-        PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF)
-        PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF)
-        LEIntEnumField("requestingPartyIDExecutingSystem", RequestingPartyIDExecutingSystem.T7, RequestingPartyIDExecutingSystem)
-        LEShortEnumField("marketID", MarketID.XMUN, MarketID)
-        ByteEnumField("partyActionType", PartyActionType.Reinstate, PartyActionType)
-        ByteEnumField("requestingPartyIDEnteringFirm", RequestingPartyIDEnteringFirm.MarketSupervision, RequestingPartyIDEnteringFirm)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    TradeDate("tradeDate", 0xFFFFFFFF),
+    RequestingPartyIDExecutingTrader("requestingPartyIDExecutingTrader", 0xFFFFFFFF),
+    PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF),
+    PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF),
+    LEIntEnumField("requestingPartyIDExecutingSystem", RequestingPartyIDExecutingSystem.T7, RequestingPartyIDExecutingSystem),
+    LEShortEnumField("marketID", MarketID.XMUN, MarketID),
+    ByteEnumField("partyActionType", PartyActionType.Reinstate, PartyActionType),
+    ByteEnumField("requestingPartyIDEnteringFirm", RequestingPartyIDEnteringFirm.MarketSupervision, RequestingPartyIDEnteringFirm),
     ]
-
 
 class PartyEntitlementsUpdateReport(Packet):
     name = 'PartyEntitlementsUpdateReport'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        TradeDate("tradeDate", 0xFFFFFFFF)
-        PartyDetailIDExecutingUnit("partyDetailIDExecutingUnit", 0xFFFFFFFF)
-        LEIntEnumField("requestingPartyIDExecutingSystem", RequestingPartyIDExecutingSystem.T7, RequestingPartyIDExecutingSystem)
-        LEShortEnumField("marketID", MarketID.XMUN, MarketID)
-        CharEnumField("listUpdateAction", ListUpdateAction.Delete, ListUpdateAction)
-        RequestingPartyEnteringFirm("requestingPartyEnteringFirm", "")
-        RequestingPartyClearingFirm("requestingPartyClearingFirm", "")
-        ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus)
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    TradeDate("tradeDate", 0xFFFFFFFF),
+    PartyDetailIDExecutingUnit("partyDetailIDExecutingUnit", 0xFFFFFFFF),
+    LEIntEnumField("requestingPartyIDExecutingSystem", RequestingPartyIDExecutingSystem.T7, RequestingPartyIDExecutingSystem),
+    LEShortEnumField("marketID", MarketID.XMUN, MarketID),
+    CharEnumField("listUpdateAction", ListUpdateAction.Delete, ListUpdateAction),
+    RequestingPartyEnteringFirm("requestingPartyEnteringFirm", ""),
+    RequestingPartyClearingFirm("requestingPartyClearingFirm", ""),
+    ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus),
+    Pad6("pad6", ""),
     ]
-
 
 class PingRequest(Packet):
     name = 'PingRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        PartitionID("partitionID", 0xFFFF)
-        Pad6("pad6", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    PartitionID("partitionID", 0xFFFF),
+    Pad6("pad6", ""),
     ]
-
 
 class PingResponse(Packet):
     name = 'PingResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class PreTradeRiskLimitResponse(Packet):
     name = 'PreTradeRiskLimitResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        RiskLimitReportID("riskLimitReportID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        FieldLenField("noRiskLimits", 0, fmt="<B", count_of="riskLimitsRptGrp")
-        ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus)
-        PartyDetailExecutingUnit("partyDetailExecutingUnit", "")
-        Pad5("pad5", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    RiskLimitReportID("riskLimitReportID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    FieldLenField("noRiskLimits", 0, fmt="<B", count_of="riskLimitsRptGrp"),
+    ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus),
+    PartyDetailExecutingUnit("partyDetailExecutingUnit", ""),
+    Pad5("pad5", ""),
         PacketListField("riskLimitsRptGrp", None, RiskLimitsRptGrpComp, count_from=lambda pkt:pkt.noRiskLimits
     ]
-
 
 class PreTradeRiskLimitsDefinitionRequest(Packet):
     name = 'PreTradeRiskLimitsDefinitionRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        FieldLenField("noRiskLimitAmount", 0, fmt="<B", count_of="riskLimitAmountGrp")
-        ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus)
-        RiskLimitGroup("riskLimitGroup", "")
-        PartyDetailExecutingUnit("partyDetailExecutingUnit", "")
-        Pad2("pad2", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    FieldLenField("noRiskLimitAmount", 0, fmt="<B", count_of="riskLimitAmountGrp"),
+    ByteEnumField("partyDetailStatus", PartyDetailStatus.Suspend, PartyDetailStatus),
+    RiskLimitGroup("riskLimitGroup", ""),
+    PartyDetailExecutingUnit("partyDetailExecutingUnit", ""),
+    Pad2("pad2", ""),
         PacketListField("riskLimitAmountGrp", None, RiskLimitAmountGrpComp, count_from=lambda pkt:pkt.noRiskLimitAmount
     ]
-
 
 class QuoteActivationNotification(Packet):
     name = 'QuoteActivationNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp")
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        ByteEnumField("massActionType", MassActionType.Suspend_delete_quotes, MassActionType)
-        ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason)
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    ByteEnumField("massActionType", MassActionType.Suspend_delete_quotes, MassActionType),
+    ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
+    Pad3("pad3", ""),
         PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities
     ]
-
 
 class QuoteActivationRequest(Packet):
     name = 'QuoteActivationRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        ByteEnumField("massActionType", MassActionType.Suspend_delete_quotes, MassActionType)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        Pad5("pad5", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    ByteEnumField("massActionType", MassActionType.Suspend_delete_quotes, MassActionType),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    Pad5("pad5", ""),
     ]
-
 
 class QuoteActivationResponse(Packet):
     name = 'QuoteActivationResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    FieldLenField("noNotAffectedSecurities", 0, fmt="<H", count_of="notAffectedSecuritiesGrp"),
+    Pad6("pad6", ""),
         PacketListField("notAffectedSecuritiesGrp", None, NotAffectedSecuritiesGrpComp, count_from=lambda pkt:pkt.noNotAffectedSecurities
     ]
-
 
 class QuoteExecutionReport(Packet):
     name = 'QuoteExecutionReport'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        FieldLenField("noQuoteEvents", 0, fmt="<B", count_of="quoteEventGrp")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    FieldLenField("noQuoteEvents", 0, fmt="<B", count_of="quoteEventGrp"),
+    Pad3("pad3", ""),
         PacketListField("quoteEventGrp", None, QuoteEventGrpComp, count_from=lambda pkt:pkt.noQuoteEvents
     ]
-
 
 class RFQBroadcast(Packet):
     name = 'RFQBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        OrderQty("orderQty", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("side", Side.Sell, Side)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    OrderQty("orderQty", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("side", Side.Sell, Side),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class RFQRejectNotification(Packet):
     name = 'RFQRejectNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("quoteRequestRejectReason", QuoteRequestRejectReason.Pending_request_timed_out, QuoteRequestRejectReason)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("quoteRequestRejectReason", QuoteRequestRejectReason.Pending_request_timed_out, QuoteRequestRejectReason),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class RFQRejectRequest(Packet):
     name = 'RFQRejectRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("quoteRequestRejectReason", QuoteRequestRejectReason.Pending_request_timed_out, QuoteRequestRejectReason)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("quoteRequestRejectReason", QuoteRequestRejectReason.Pending_request_timed_out, QuoteRequestRejectReason),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class RFQReplyNotification(Packet):
     name = 'RFQReplyNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        SecurityID("securityID", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        BidPx("bidPx", 0x8000000000000000)
-        BidSize("bidSize", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OfferSize("offerSize", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        Pad7("pad7", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    SecurityID("securityID", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    BidPx("bidPx", 0x8000000000000000),
+    BidSize("bidSize", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OfferSize("offerSize", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    Pad7("pad7", ""),
     ]
-
 
 class RFQReplyRequest(Packet):
     name = 'RFQReplyRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        BidPx("bidPx", 0x8000000000000000)
-        BidSize("bidSize", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OfferSize("offerSize", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        Pad7("pad7", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    BidPx("bidPx", 0x8000000000000000),
+    BidSize("bidSize", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OfferSize("offerSize", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    Pad7("pad7", ""),
     ]
-
 
 class RFQReplyResponse(Packet):
     name = 'RFQReplyResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class RFQRequest(Packet):
     name = 'RFQRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("rFQPublishIndicator", RFQPublishIndicator.Issuer, RFQPublishIndicator)
-        ByteEnumField("rFQRequesterDisclosureInstruction", RFQRequesterDisclosureInstruction.Yes, RFQRequesterDisclosureInstruction)
-        ByteEnumField("side", Side.Sell, Side)
-        Pad1("pad1", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("rFQPublishIndicator", RFQPublishIndicator.Issuer, RFQPublishIndicator),
+    ByteEnumField("rFQRequesterDisclosureInstruction", RFQRequesterDisclosureInstruction.Yes, RFQRequesterDisclosureInstruction),
+    ByteEnumField("side", Side.Sell, Side),
+    Pad1("pad1", ""),
     ]
-
 
 class RFQResponse(Packet):
     name = 'RFQResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class RFQSpecialistIssuerBroadcast(Packet):
     name = 'RFQSpecialistIssuerBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        OrderQty("orderQty", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("side", Side.Sell, Side)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    OrderQty("orderQty", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("side", Side.Sell, Side),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class Reject(Packet):
     name = 'Reject'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        LEIntEnumField("sessionRejectReason", SessionRejectReason.Price_Not_Reasonable_Extended, SessionRejectReason)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
-        ByteEnumField("sessionStatus", SessionStatus.Logout, SessionStatus)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    LEIntEnumField("sessionRejectReason", SessionRejectReason.Price_Not_Reasonable_Extended, SessionRejectReason),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
+    ByteEnumField("sessionStatus", SessionStatus.Logout, SessionStatus),
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
-
 
 class RetransmitMEMessageRequest(Packet):
     name = 'RetransmitMEMessageRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SubscriptionScope("subscriptionScope", 0xFFFFFFFF)
-        PartitionID("partitionID", 0xFFFF)
-        ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID)
-        ApplBegMsgID("applBegMsgID", "")
-        ApplEndMsgID("applEndMsgID", "")
-        Pad1("pad1", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SubscriptionScope("subscriptionScope", 0xFFFFFFFF),
+    PartitionID("partitionID", 0xFFFF),
+    ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID),
+    ApplBegMsgID("applBegMsgID", ""),
+    ApplEndMsgID("applEndMsgID", ""),
+    Pad1("pad1", ""),
     ]
-
 
 class RetransmitMEMessageResponse(Packet):
     name = 'RetransmitMEMessageResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        ApplTotalMessageCount("applTotalMessageCount", 0xFFFF)
-        ApplEndMsgID("applEndMsgID", "")
-        RefApplLastMsgID("refApplLastMsgID", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    ApplTotalMessageCount("applTotalMessageCount", 0xFFFF),
+    ApplEndMsgID("applEndMsgID", ""),
+    RefApplLastMsgID("refApplLastMsgID", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class RetransmitRequest(Packet):
     name = 'RetransmitRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        ApplBegSeqNum("applBegSeqNum", 0xFFFFFFFFFFFFFFFF)
-        ApplEndSeqNum("applEndSeqNum", 0xFFFFFFFFFFFFFFFF)
-        PartitionID("partitionID", 0xFFFF)
-        ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID)
-        Pad5("pad5", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    ApplBegSeqNum("applBegSeqNum", 0xFFFFFFFFFFFFFFFF),
+    ApplEndSeqNum("applEndSeqNum", 0xFFFFFFFFFFFFFFFF),
+    PartitionID("partitionID", 0xFFFF),
+    ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID),
+    Pad5("pad5", ""),
     ]
-
 
 class RetransmitResponse(Packet):
     name = 'RetransmitResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        ApplEndSeqNum("applEndSeqNum", 0xFFFFFFFFFFFFFFFF)
-        RefApplLastSeqNum("refApplLastSeqNum", 0xFFFFFFFFFFFFFFFF)
-        ApplTotalMessageCount("applTotalMessageCount", 0xFFFF)
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    ApplEndSeqNum("applEndSeqNum", 0xFFFFFFFFFFFFFFFF),
+    RefApplLastSeqNum("refApplLastSeqNum", 0xFFFFFFFFFFFFFFFF),
+    ApplTotalMessageCount("applTotalMessageCount", 0xFFFF),
+    Pad6("pad6", ""),
     ]
-
 
 class ReverseTESTradeRequest(Packet):
     name = 'ReverseTESTradeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class ServiceAvailabilityBroadcast(Packet):
     name = 'ServiceAvailabilityBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRBCHeader", "", NRBCHeaderComp)
-        MatchingEngineTradeDate("matchingEngineTradeDate", 0xFFFFFFFF)
-        TradeManagerTradeDate("tradeManagerTradeDate", 0xFFFFFFFF)
-        ApplSeqTradeDate("applSeqTradeDate", 0xFFFFFFFF)
-        T7EntryServiceTradeDate("t7EntryServiceTradeDate", 0xFFFFFFFF)
-        T7EntryServiceRtmTradeDate("t7EntryServiceRtmTradeDate", 0xFFFFFFFF)
-        PartitionID("partitionID", 0xFFFF)
-        ByteEnumField("matchingEngineStatus", MatchingEngineStatus.Available, MatchingEngineStatus)
-        ByteEnumField("tradeManagerStatus", TradeManagerStatus.Available, TradeManagerStatus)
-        ByteEnumField("applSeqStatus", ApplSeqStatus.Available, ApplSeqStatus)
-        ByteEnumField("t7EntryServiceStatus", T7EntryServiceStatus.Available, T7EntryServiceStatus)
-        ByteEnumField("t7EntryServiceRtmStatus", T7EntryServiceRtmStatus.Available, T7EntryServiceRtmStatus)
-        Pad5("pad5", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRBCHeader", "", NRBCHeaderComp),
+    MatchingEngineTradeDate("matchingEngineTradeDate", 0xFFFFFFFF),
+    TradeManagerTradeDate("tradeManagerTradeDate", 0xFFFFFFFF),
+    ApplSeqTradeDate("applSeqTradeDate", 0xFFFFFFFF),
+    T7EntryServiceTradeDate("t7EntryServiceTradeDate", 0xFFFFFFFF),
+    T7EntryServiceRtmTradeDate("t7EntryServiceRtmTradeDate", 0xFFFFFFFF),
+    PartitionID("partitionID", 0xFFFF),
+    ByteEnumField("matchingEngineStatus", MatchingEngineStatus.Available, MatchingEngineStatus),
+    ByteEnumField("tradeManagerStatus", TradeManagerStatus.Available, TradeManagerStatus),
+    ByteEnumField("applSeqStatus", ApplSeqStatus.Available, ApplSeqStatus),
+    ByteEnumField("t7EntryServiceStatus", T7EntryServiceStatus.Available, T7EntryServiceStatus),
+    ByteEnumField("t7EntryServiceRtmStatus", T7EntryServiceRtmStatus.Available, T7EntryServiceRtmStatus),
+    Pad5("pad5", ""),
     ]
-
 
 class ServiceAvailabilityMarketBroadcast(Packet):
     name = 'ServiceAvailabilityMarketBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRBCHeader", "", NRBCHeaderComp)
-        SelectiveRequestForQuoteServiceTradeDate("selectiveRequestForQuoteServiceTradeDate", 0xFFFFFFFF)
-        ByteEnumField("selectiveRequestForQuoteServiceStatus", SelectiveRequestForQuoteServiceStatus.Available, SelectiveRequestForQuoteServiceStatus)
-        ByteEnumField("selectiveRequestForQuoteRtmServiceStatus", SelectiveRequestForQuoteRtmServiceStatus.Available, SelectiveRequestForQuoteRtmServiceStatus)
-        ByteEnumField("newsRtmServiceStatus", NewsRtmServiceStatus.Available, NewsRtmServiceStatus)
-        ByteEnumField("riskControlRtmServiceStatus", RiskControlRtmServiceStatus.Available, RiskControlRtmServiceStatus)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRBCHeader", "", NRBCHeaderComp),
+    SelectiveRequestForQuoteServiceTradeDate("selectiveRequestForQuoteServiceTradeDate", 0xFFFFFFFF),
+    ByteEnumField("selectiveRequestForQuoteServiceStatus", SelectiveRequestForQuoteServiceStatus.Available, SelectiveRequestForQuoteServiceStatus),
+    ByteEnumField("selectiveRequestForQuoteRtmServiceStatus", SelectiveRequestForQuoteRtmServiceStatus.Available, SelectiveRequestForQuoteRtmServiceStatus),
+    ByteEnumField("newsRtmServiceStatus", NewsRtmServiceStatus.Available, NewsRtmServiceStatus),
+    ByteEnumField("riskControlRtmServiceStatus", RiskControlRtmServiceStatus.Available, RiskControlRtmServiceStatus),
     ]
-
 
 class SingleQuoteRequest(Packet):
     name = 'SingleQuoteRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        BidPx("bidPx", 0x8000000000000000)
-        BidSize("bidSize", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OfferSize("offerSize", 0x8000000000000000)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF)
-        ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction)
-        ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("quoteSizeType", QuoteSizeType.OpenSize, QuoteSizeType)
-        ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    BidPx("bidPx", 0x8000000000000000),
+    BidSize("bidSize", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OfferSize("offerSize", 0x8000000000000000),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    MatchInstCrossID("matchInstCrossID", 0xFFFFFFFF),
+    ByteEnumField("crossMatchInstruction", CrossMatchInstruction.Cancel_aggressive_and_passive, CrossMatchInstruction),
+    ByteEnumField("priceValidityCheckType", PriceValidityCheckType.Mandatory, PriceValidityCheckType),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("quoteSizeType", QuoteSizeType.OpenSize, QuoteSizeType),
+    ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class SpecialistDeleteAllOrderBroadcast(Packet):
     name = 'SpecialistDeleteAllOrderBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp")
-        FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp")
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason)
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    MassActionReportID("massActionReportID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    FieldLenField("noAffectedOrders", 0, fmt="<H", count_of="affectedOrdGrp"),
+    FieldLenField("noNotAffectedOrders", 0, fmt="<H", count_of="notAffectedOrdersGrp"),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    ByteEnumField("massActionReason", MassActionReason.Outside_Quoting_Period, MassActionReason),
+    Pad2("pad2", ""),
         PacketListField("affectedOrdGrp", None, AffectedOrdGrpComp, count_from=lambda pkt:pkt.noAffectedOrders
         PacketListField("notAffectedOrdersGrp", None, NotAffectedOrdersGrpComp, count_from=lambda pkt:pkt.noNotAffectedOrders
     ]
 
-
 class SpecialistInstrumentEventNotification(Packet):
     name = 'SpecialistInstrumentEventNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        SecurityID("securityID", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("eventType", EventType.Unsuspend, EventType)
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    SecurityID("securityID", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("eventType", EventType.Unsuspend, EventType),
+    Pad3("pad3", ""),
     ]
-
 
 class SpecialistOrderBookNotification(Packet):
     name = 'SpecialistOrderBookNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF)
-        Price("price", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        CxlQty("cxlQty", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        StopPx("stopPx", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        ExpireDate("expireDate", 0xFFFFFFFF)
-        PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF)
-        PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF)
-        PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF)
-        PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF)
-        FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp")
-        Pad1("pad1", "")
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType)
-        ByteEnumField("matchType", MatchType.AVD, MatchType)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("ordType", OrdType.Stop_Limit, OrdType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce)
-        ByteEnumField("execInst", ExecInst.Q_6, ExecInst)
-        ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID)
-        ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator)
-        ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        PartyEnteringFirm("partyEnteringFirm", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FIXClOrdID("fIXClOrdID", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSEntryTime("trdRegTSEntryTime", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSTimePriority("trdRegTSTimePriority", 0xFFFFFFFFFFFFFFFF),
+    Price("price", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    CxlQty("cxlQty", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    StopPx("stopPx", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    ExpireDate("expireDate", 0xFFFFFFFF),
+    PartyIDExecutingUnit("partyIDExecutingUnit", 0xFFFFFFFF),
+    PartyIDSessionID("partyIDSessionID", 0xFFFFFFFF),
+    PartyIDExecutingTrader("partyIDExecutingTrader", 0xFFFFFFFF),
+    PartyIDEnteringTrader("partyIDEnteringTrader", 0xFFFFFFFF),
+    FieldLenField("noFills", 0, fmt="<B", count_of="fillsGrp"),
+    Pad1("pad1", ""),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    ByteEnumField("orderEventType", OrderEventType.Pending_requests_discarded, OrderEventType),
+    ByteEnumField("matchType", MatchType.AVD, MatchType),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("timeInForce", TimeInForce.GTD, TimeInForce),
+    ByteEnumField("execInst", ExecInst.Q_6, ExecInst),
+    ByteEnumField("tradingSessionSubID", TradingSessionSubID.AVD_Closing_Auction, TradingSessionSubID),
+    ByteEnumField("applSeqIndicator", ApplSeqIndicator.Recovery_Required, ApplSeqIndicator),
+    ByteEnumField("triggered", Triggered.Triggered_OCO, Triggered),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    PartyEnteringFirm("partyEnteringFirm", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FIXClOrdID("fIXClOrdID", ""),
         PacketListField("fillsGrp", None, FillsGrpComp, count_from=lambda pkt:pkt.noFills
     ]
-
 
 class SpecialistSecurityStateChangeRequest(Packet):
     name = 'SpecialistSecurityStateChangeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        ByteEnumField("eventType", EventType.Unsuspend, EventType)
-        Pad3("pad3", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    ByteEnumField("eventType", EventType.Unsuspend, EventType),
+    Pad3("pad3", ""),
     ]
-
 
 class SpecialistSecurityStateChangeResponse(Packet):
     name = 'SpecialistSecurityStateChangeResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp)
-        SecurityStatusReportID("securityStatusReportID", 0xFFFFFFFFFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("nRResponseHeaderME", "", NRResponseHeaderMEComp),
+    SecurityStatusReportID("securityStatusReportID", 0xFFFFFFFFFFFFFFFF),
     ]
-
 
 class StatusBroadcast(Packet):
     name = 'StatusBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TradeDate("tradeDate", 0xFFFFFFFF)
-        ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent)
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TradeDate("tradeDate", 0xFFFFFFFF),
+    ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
+    Pad3("pad3", ""),
     ]
-
 
 class SubscribeRequest(Packet):
     name = 'SubscribeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SubscriptionScope("subscriptionScope", 0xFFFFFFFF)
-        ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID)
-        Pad3("pad3", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SubscriptionScope("subscriptionScope", 0xFFFFFFFF),
+    ByteEnumField("refApplID", RefApplID.Specialist_Data, RefApplID),
+    Pad3("pad3", ""),
     ]
-
 
 class SubscribeResponse(Packet):
     name = 'SubscribeResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        ApplSubID("applSubID", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    ApplSubID("applSubID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class TESApproveBroadcast(Packet):
     name = 'TESApproveBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        AllocQty("allocQty", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        AllocID("allocID", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        TESEnrichmentRuleID("tESEnrichmentRuleID", 0xFFFFFFFF)
-        AutoApprovalRuleID("autoApprovalRuleID", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("tradeAllocStatus", TradeAllocStatus.Canceled, TradeAllocStatus)
-        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource)
-        TradeReportID("tradeReportID", "")
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm)
-        PartyEnteringTrader("partyEnteringTrader", "")
-        RootPartyExecutingFirm("rootPartyExecutingFirm", "")
-        RootPartyExecutingTrader("rootPartyExecutingTrader", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    AllocQty("allocQty", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    AllocID("allocID", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    TESEnrichmentRuleID("tESEnrichmentRuleID", 0xFFFFFFFF),
+    AutoApprovalRuleID("autoApprovalRuleID", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("tradeAllocStatus", TradeAllocStatus.Canceled, TradeAllocStatus),
+    CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+    TradeReportID("tradeReportID", ""),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    ByteEnumField("partyIDEnteringFirm", PartyIDEnteringFirm.MarketSupervision, PartyIDEnteringFirm),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
+    RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
-
 
 class TESBroadcast(Packet):
     name = 'TESBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        AutoApprovalRuleID("autoApprovalRuleID", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        FieldLenField("varTextLen", 0, fmt="<H", count_of="varText")
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus)
-        ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator)
-        FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrpBC")
-        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource)
-        TradeReportText("tradeReportText", "")
-        TradeReportID("tradeReportID", "")
-        RootPartyExecutingFirm("rootPartyExecutingFirm", "")
-        RootPartyExecutingTrader("rootPartyExecutingTrader", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    AutoApprovalRuleID("autoApprovalRuleID", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    FieldLenField("varTextLen", 0, fmt="<H", count_of="varText"),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
+    ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator),
+    FieldLenField("noSideAllocs", 0, fmt="<B", count_of="sideAllocGrpBC"),
+    CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+    TradeReportText("tradeReportText", ""),
+    TradeReportID("tradeReportID", ""),
+    RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
+    RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
         PacketListField("sideAllocGrpBC", None, SideAllocGrpBCComp, count_from=lambda pkt:pkt.noSideAllocs
         PacketListField("varText", None, VarText, count_from=lambda pkt:pkt.varTextLen
     ]
 
-
 class TESDeleteBroadcast(Packet):
     name = 'TESDeleteBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        ByteEnumField("deleteReason", DeleteReason.Stop_Trading, DeleteReason)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus)
-        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource)
-        TradeReportID("tradeReportID", "")
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    ByteEnumField("deleteReason", DeleteReason.Stop_Trading, DeleteReason),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
+    CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+    TradeReportID("tradeReportID", ""),
+    Pad2("pad2", ""),
     ]
-
 
 class TESExecutionBroadcast(Packet):
     name = 'TESExecutionBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        AllocID("allocID", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus)
-        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource)
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    AllocID("allocID", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
+    CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+    Pad2("pad2", ""),
     ]
-
 
 class TESResponse(Packet):
     name = 'TESResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        TradeReportID("tradeReportID", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    TradeReportID("tradeReportID", ""),
     ]
-
 
 class TESReversalBroadcast(Packet):
     name = 'TESReversalBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        ReversalInitiationTime("reversalInitiationTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        TESExecID("tESExecID", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    ReversalInitiationTime("reversalInitiationTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    TESExecID("tESExecID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class TESTradeBroadcast(Packet):
     name = 'TESTradeBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF)
-        SettlCurrAmt("settlCurrAmt", 0x8000000000000000)
-        SideGrossTradeAmt("sideGrossTradeAmt", 0x8000000000000000)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        AccruedInterestAmt("accruedInterestAmt", 0x8000000000000000)
-        CouponRate("couponRate", 0x8000000000000000)
-        RootPartyIDClientID("rootPartyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        RootPartyIDInvestmentDecisionMaker("rootPartyIDInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        TransactionCostAmt("transactionCostAmt", 0x8000000000000000)
-        PackageID("packageID", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TradeID("tradeID", 0xFFFFFFFF)
-        TradeDate("tradeDate", 0xFFFFFFFF)
-        SideTradeID("sideTradeID", 0xFFFFFFFF)
-        RootPartyIDSessionID("rootPartyIDSessionID", 0xFFFFFFFF)
-        RootPartyIDSettlementUnit("rootPartyIDSettlementUnit", 0xFFFFFFFF)
-        RootPartyIDContraUnit("rootPartyIDContraUnit", 0xFFFFFFFF)
-        RootPartyIDContraSettlementUnit("rootPartyIDContraSettlementUnit", 0xFFFFFFFF)
-        OrigTradeID("origTradeID", 0xFFFFFFFF)
-        RootPartyIDExecutingUnit("rootPartyIDExecutingUnit", 0xFFFFFFFF)
-        RootPartyIDExecutingTrader("rootPartyIDExecutingTrader", 0xFFFFFFFF)
-        RootPartyIDClearingUnit("rootPartyIDClearingUnit", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        NumDaysInterest("numDaysInterest", 0xFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        SRQSRelatedTradeID("sRQSRelatedTradeID", 0xFFFFFFFF)
-        LEShortEnumField("trdType", TrdType.Enlight, TrdType)
-        LEShortEnumField("lastMkt", LastMkt.XMUN, LastMkt)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("transferReason", TransferReason.Clearer, TransferReason)
-        ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator)
-        ByteEnumField("deliveryType", DeliveryType.AKT, DeliveryType)
-        ByteEnumField("lastCouponDeviationIndicator", LastCouponDeviationIndicator.Perpetual, LastCouponDeviationIndicator)
-        ByteEnumField("refinancingEligibilityIndicator", RefinancingEligibilityIndicator.Yes, RefinancingEligibilityIndicator)
-        ByteEnumField("clearingInstruction", ClearingInstruction.AVD_Broker_Internalization, ClearingInstruction)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("rootPartyIDInvestmentDecisionMakerQualifier", RootPartyIDInvestmentDecisionMakerQualifier.Human, RootPartyIDInvestmentDecisionMakerQualifier)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        ByteEnumField("reversalIndicator", ReversalIndicator.Yes, ReversalIndicator)
-        ByteEnumField("transactionCostCode", TransactionCostCode.Provision, TransactionCostCode)
-        ByteEnumField("tradePlatform", TradePlatform.On_Book, TradePlatform)
-        Account("account", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        SettlCurrency("settlCurrency", "")
-        RootPartyExecutingFirm("rootPartyExecutingFirm", "")
-        RootPartyExecutingTrader("rootPartyExecutingTrader", "")
-        RootPartyClearingFirm("rootPartyClearingFirm", "")
-        RootPartyExecutingFirmKVNumber("rootPartyExecutingFirmKVNumber", "")
-        RootPartySettlementAccount("rootPartySettlementAccount", "")
-        RootPartySettlementLocation("rootPartySettlementLocation", "")
-        RootPartySettlementFirm("rootPartySettlementFirm", "")
-        RootPartyContraFirm("rootPartyContraFirm", "")
-        RootPartyContraSettlementFirm("rootPartyContraSettlementFirm", "")
-        RootPartyContraFirmKVNumber("rootPartyContraFirmKVNumber", "")
-        RootPartyContraSettlementAccount("rootPartyContraSettlementAccount", "")
-        RootPartyContraSettlementLocation("rootPartyContraSettlementLocation", "")
-        RootPartyIDExecutionVenue("rootPartyIDExecutionVenue", "")
-        RegulatoryTradeID("regulatoryTradeID", "")
-        TradeReportID("tradeReportID", "")
-        Pad4("pad4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    TransBkdTime("transBkdTime", 0xFFFFFFFFFFFFFFFF),
+    SettlCurrAmt("settlCurrAmt", 0x8000000000000000),
+    SideGrossTradeAmt("sideGrossTradeAmt", 0x8000000000000000),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    AccruedInterestAmt("accruedInterestAmt", 0x8000000000000000),
+    CouponRate("couponRate", 0x8000000000000000),
+    RootPartyIDClientID("rootPartyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    RootPartyIDInvestmentDecisionMaker("rootPartyIDInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    TransactionCostAmt("transactionCostAmt", 0x8000000000000000),
+    PackageID("packageID", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TradeID("tradeID", 0xFFFFFFFF),
+    TradeDate("tradeDate", 0xFFFFFFFF),
+    SideTradeID("sideTradeID", 0xFFFFFFFF),
+    RootPartyIDSessionID("rootPartyIDSessionID", 0xFFFFFFFF),
+    RootPartyIDSettlementUnit("rootPartyIDSettlementUnit", 0xFFFFFFFF),
+    RootPartyIDContraUnit("rootPartyIDContraUnit", 0xFFFFFFFF),
+    RootPartyIDContraSettlementUnit("rootPartyIDContraSettlementUnit", 0xFFFFFFFF),
+    OrigTradeID("origTradeID", 0xFFFFFFFF),
+    RootPartyIDExecutingUnit("rootPartyIDExecutingUnit", 0xFFFFFFFF),
+    RootPartyIDExecutingTrader("rootPartyIDExecutingTrader", 0xFFFFFFFF),
+    RootPartyIDClearingUnit("rootPartyIDClearingUnit", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    NumDaysInterest("numDaysInterest", 0xFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    SRQSRelatedTradeID("sRQSRelatedTradeID", 0xFFFFFFFF),
+    LEShortEnumField("trdType", TrdType.Enlight, TrdType),
+    LEShortEnumField("lastMkt", LastMkt.XMUN, LastMkt),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("transferReason", TransferReason.Clearer, TransferReason),
+    ByteEnumField("tradePublishIndicator", TradePublishIndicator.Published, TradePublishIndicator),
+    ByteEnumField("deliveryType", DeliveryType.AKT, DeliveryType),
+    ByteEnumField("lastCouponDeviationIndicator", LastCouponDeviationIndicator.Perpetual, LastCouponDeviationIndicator),
+    ByteEnumField("refinancingEligibilityIndicator", RefinancingEligibilityIndicator.Yes, RefinancingEligibilityIndicator),
+    ByteEnumField("clearingInstruction", ClearingInstruction.AVD_Broker_Internalization, ClearingInstruction),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("rootPartyIDInvestmentDecisionMakerQualifier", RootPartyIDInvestmentDecisionMakerQualifier.Human, RootPartyIDInvestmentDecisionMakerQualifier),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    ByteEnumField("reversalIndicator", ReversalIndicator.Yes, ReversalIndicator),
+    ByteEnumField("transactionCostCode", TransactionCostCode.Provision, TransactionCostCode),
+    ByteEnumField("tradePlatform", TradePlatform.On_Book, TradePlatform),
+    Account("account", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    SettlCurrency("settlCurrency", ""),
+    RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
+    RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
+    RootPartyClearingFirm("rootPartyClearingFirm", ""),
+    RootPartyExecutingFirmKVNumber("rootPartyExecutingFirmKVNumber", ""),
+    RootPartySettlementAccount("rootPartySettlementAccount", ""),
+    RootPartySettlementLocation("rootPartySettlementLocation", ""),
+    RootPartySettlementFirm("rootPartySettlementFirm", ""),
+    RootPartyContraFirm("rootPartyContraFirm", ""),
+    RootPartyContraSettlementFirm("rootPartyContraSettlementFirm", ""),
+    RootPartyContraFirmKVNumber("rootPartyContraFirmKVNumber", ""),
+    RootPartyContraSettlementAccount("rootPartyContraSettlementAccount", ""),
+    RootPartyContraSettlementLocation("rootPartyContraSettlementLocation", ""),
+    RootPartyIDExecutionVenue("rootPartyIDExecutionVenue", ""),
+    RegulatoryTradeID("regulatoryTradeID", ""),
+    TradeReportID("tradeReportID", ""),
+    Pad4("pad4", ""),
     ]
-
 
 class TESTradingSessionStatusBroadcast(Packet):
     name = 'TESTradingSessionStatusBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TradeDate("tradeDate", 0xFFFFFFFF)
-        ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent)
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TradeDate("tradeDate", 0xFFFFFFFF),
+    ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
+    Pad3("pad3", ""),
     ]
-
 
 class TMTradingSessionStatusBroadcast(Packet):
     name = 'TMTradingSessionStatusBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent)
-        Pad7("pad7", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
+    Pad7("pad7", ""),
     ]
-
 
 class ThrottleUpdateNotification(Packet):
     name = 'ThrottleUpdateNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("notifHeader", "", NotifHeaderComp)
-        ThrottleTimeInterval("throttleTimeInterval", 0x8000000000000000)
-        ThrottleNoMsgs("throttleNoMsgs", 0xFFFFFFFF)
-        ThrottleDisconnectLimit("throttleDisconnectLimit", 0xFFFFFFFF)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("notifHeader", "", NotifHeaderComp),
+    ThrottleTimeInterval("throttleTimeInterval", 0x8000000000000000),
+    ThrottleNoMsgs("throttleNoMsgs", 0xFFFFFFFF),
+    ThrottleDisconnectLimit("throttleDisconnectLimit", 0xFFFFFFFF),
     ]
-
 
 class TradeBroadcast(Packet):
     name = 'TradeBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        SettlCurrAmt("settlCurrAmt", 0x8000000000000000)
-        SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        CumQty("cumQty", 0x8000000000000000)
-        SideGrossTradeAmt("sideGrossTradeAmt", 0x8000000000000000)
-        AccruedInterestAmt("accruedInterestAmt", 0x8000000000000000)
-        CouponRate("couponRate", 0x8000000000000000)
-        RootPartyIDClientID("rootPartyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        RootPartyIDInvestmentDecisionMaker("rootPartyIDInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        TradeID("tradeID", 0xFFFFFFFF)
-        OrigTradeID("origTradeID", 0xFFFFFFFF)
-        RootPartyIDExecutingUnit("rootPartyIDExecutingUnit", 0xFFFFFFFF)
-        RootPartyIDSessionID("rootPartyIDSessionID", 0xFFFFFFFF)
-        RootPartyIDExecutingTrader("rootPartyIDExecutingTrader", 0xFFFFFFFF)
-        RootPartyIDSettlementUnit("rootPartyIDSettlementUnit", 0xFFFFFFFF)
-        RootPartyIDClearingUnit("rootPartyIDClearingUnit", 0xFFFFFFFF)
-        RootPartyIDContraUnit("rootPartyIDContraUnit", 0xFFFFFFFF)
-        RootPartyIDContraSettlementUnit("rootPartyIDContraSettlementUnit", 0xFFFFFFFF)
-        PartyIDSpecialistTrader("partyIDSpecialistTrader", 0xFFFFFFFF)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        SideTradeID("sideTradeID", 0xFFFFFFFF)
-        SideTradeReportID("sideTradeReportID", 0xFFFFFFFF)
-        TradeNumber("tradeNumber", 0xFFFFFFFF)
-        MatchDate("matchDate", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        TrdMatchID("trdMatchID", 0xFFFFFFFF)
-        NumDaysInterest("numDaysInterest", 0xFFFFFFFF)
-        LEShortEnumField("lastMkt", LastMkt.XMUN, LastMkt)
-        ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType)
-        ByteEnumField("transferReason", TransferReason.Clearer, TransferReason)
-        ByteEnumField("matchType", MatchType.AVD, MatchType)
-        ByteEnumField("matchSubType", MatchSubType.Retail_Auction, MatchSubType)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("sideLiquidityInd", SideLiquidityInd.Auction, SideLiquidityInd)
-        ByteEnumField("deliveryType", DeliveryType.AKT, DeliveryType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("lastCouponDeviationIndicator", LastCouponDeviationIndicator.Perpetual, LastCouponDeviationIndicator)
-        ByteEnumField("refinancingEligibilityIndicator", RefinancingEligibilityIndicator.Yes, RefinancingEligibilityIndicator)
-        ByteEnumField("clearingInstruction", ClearingInstruction.AVD_Broker_Internalization, ClearingInstruction)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("rootPartyIDInvestmentDecisionMakerQualifier", RootPartyIDInvestmentDecisionMakerQualifier.Human, RootPartyIDInvestmentDecisionMakerQualifier)
-        Account("account", "")
-        SettlCurrency("settlCurrency", "")
-        Currency("currency", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        CharEnumField("orderCategory", OrderCategory.Quote, OrderCategory)
-        ByteEnumField("ordType", OrdType.Stop_Limit, OrdType)
-        RootPartyExecutingFirm("rootPartyExecutingFirm", "")
-        RootPartyExecutingTrader("rootPartyExecutingTrader", "")
-        RootPartyClearingFirm("rootPartyClearingFirm", "")
-        RootPartyExecutingFirmKVNumber("rootPartyExecutingFirmKVNumber", "")
-        RootPartySettlementAccount("rootPartySettlementAccount", "")
-        RootPartySettlementLocation("rootPartySettlementLocation", "")
-        RootPartySettlementFirm("rootPartySettlementFirm", "")
-        RootPartyContraFirm("rootPartyContraFirm", "")
-        RootPartyContraSettlementFirm("rootPartyContraSettlementFirm", "")
-        RootPartyContraFirmKVNumber("rootPartyContraFirmKVNumber", "")
-        RootPartyContraSettlementAccount("rootPartyContraSettlementAccount", "")
-        RootPartyContraSettlementLocation("rootPartyContraSettlementLocation", "")
-        PartySpecialistFirm("partySpecialistFirm", "")
-        PartySpecialistTrader("partySpecialistTrader", "")
-        RegulatoryTradeID("regulatoryTradeID", "")
-        RootPartyIDExecutionVenue("rootPartyIDExecutionVenue", "")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    SettlCurrAmt("settlCurrAmt", 0x8000000000000000),
+    SettlCurrFxRate("settlCurrFxRate", 0x8000000000000000),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    CumQty("cumQty", 0x8000000000000000),
+    SideGrossTradeAmt("sideGrossTradeAmt", 0x8000000000000000),
+    AccruedInterestAmt("accruedInterestAmt", 0x8000000000000000),
+    CouponRate("couponRate", 0x8000000000000000),
+    RootPartyIDClientID("rootPartyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    RootPartyIDInvestmentDecisionMaker("rootPartyIDInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    TradeID("tradeID", 0xFFFFFFFF),
+    OrigTradeID("origTradeID", 0xFFFFFFFF),
+    RootPartyIDExecutingUnit("rootPartyIDExecutingUnit", 0xFFFFFFFF),
+    RootPartyIDSessionID("rootPartyIDSessionID", 0xFFFFFFFF),
+    RootPartyIDExecutingTrader("rootPartyIDExecutingTrader", 0xFFFFFFFF),
+    RootPartyIDSettlementUnit("rootPartyIDSettlementUnit", 0xFFFFFFFF),
+    RootPartyIDClearingUnit("rootPartyIDClearingUnit", 0xFFFFFFFF),
+    RootPartyIDContraUnit("rootPartyIDContraUnit", 0xFFFFFFFF),
+    RootPartyIDContraSettlementUnit("rootPartyIDContraSettlementUnit", 0xFFFFFFFF),
+    PartyIDSpecialistTrader("partyIDSpecialistTrader", 0xFFFFFFFF),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    SideTradeID("sideTradeID", 0xFFFFFFFF),
+    SideTradeReportID("sideTradeReportID", 0xFFFFFFFF),
+    TradeNumber("tradeNumber", 0xFFFFFFFF),
+    MatchDate("matchDate", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    TrdMatchID("trdMatchID", 0xFFFFFFFF),
+    NumDaysInterest("numDaysInterest", 0xFFFFFFFF),
+    LEShortEnumField("lastMkt", LastMkt.XMUN, LastMkt),
+    ByteEnumField("tradeReportType", TradeReportType.Alleged_No_Was, TradeReportType),
+    ByteEnumField("transferReason", TransferReason.Clearer, TransferReason),
+    ByteEnumField("matchType", MatchType.AVD, MatchType),
+    ByteEnumField("matchSubType", MatchSubType.Retail_Auction, MatchSubType),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("sideLiquidityInd", SideLiquidityInd.Auction, SideLiquidityInd),
+    ByteEnumField("deliveryType", DeliveryType.AKT, DeliveryType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("lastCouponDeviationIndicator", LastCouponDeviationIndicator.Perpetual, LastCouponDeviationIndicator),
+    ByteEnumField("refinancingEligibilityIndicator", RefinancingEligibilityIndicator.Yes, RefinancingEligibilityIndicator),
+    ByteEnumField("clearingInstruction", ClearingInstruction.AVD_Broker_Internalization, ClearingInstruction),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("rootPartyIDInvestmentDecisionMakerQualifier", RootPartyIDInvestmentDecisionMakerQualifier.Human, RootPartyIDInvestmentDecisionMakerQualifier),
+    Account("account", ""),
+    SettlCurrency("settlCurrency", ""),
+    Currency("currency", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    CharEnumField("orderCategory", OrderCategory.Quote, OrderCategory),
+    ByteEnumField("ordType", OrdType.Stop_Limit, OrdType),
+    RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
+    RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
+    RootPartyClearingFirm("rootPartyClearingFirm", ""),
+    RootPartyExecutingFirmKVNumber("rootPartyExecutingFirmKVNumber", ""),
+    RootPartySettlementAccount("rootPartySettlementAccount", ""),
+    RootPartySettlementLocation("rootPartySettlementLocation", ""),
+    RootPartySettlementFirm("rootPartySettlementFirm", ""),
+    RootPartyContraFirm("rootPartyContraFirm", ""),
+    RootPartyContraSettlementFirm("rootPartyContraSettlementFirm", ""),
+    RootPartyContraFirmKVNumber("rootPartyContraFirmKVNumber", ""),
+    RootPartyContraSettlementAccount("rootPartyContraSettlementAccount", ""),
+    RootPartyContraSettlementLocation("rootPartyContraSettlementLocation", ""),
+    PartySpecialistFirm("partySpecialistFirm", ""),
+    PartySpecialistTrader("partySpecialistTrader", ""),
+    RegulatoryTradeID("regulatoryTradeID", ""),
+    RootPartyIDExecutionVenue("rootPartyIDExecutionVenue", ""),
+    Pad3("pad3", ""),
     ]
-
 
 class TradingSessionStatusBroadcast(Packet):
     name = 'TradingSessionStatusBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        TradeDate("tradeDate", 0xFFFFFFFF)
-        ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent)
-        RefApplLastMsgID("refApplLastMsgID", "")
-        Pad7("pad7", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    TradeDate("tradeDate", 0xFFFFFFFF),
+    ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
+    RefApplLastMsgID("refApplLastMsgID", ""),
+    Pad7("pad7", ""),
     ]
-
 
 class TrailingStopUpdateNotification(Packet):
     name = 'TrailingStopUpdateNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeaderME", "", RBCHeaderMEComp)
-        OrderID("orderID", 0xFFFFFFFFFFFFFFFF)
-        ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF)
-        OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        ExecID("execID", 0xFFFFFFFFFFFFFFFF)
-        StopPx("stopPx", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        OrderIDSfx("orderIDSfx", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason)
-        CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus)
-        CharEnumField("execType", ExecType.Pending_Replace, ExecType)
-        ByteEnumField("side", Side.Sell, Side)
-        FIXClOrdID("fIXClOrdID", "")
-        Pad7("pad7", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeaderME", "", RBCHeaderMEComp),
+    OrderID("orderID", 0xFFFFFFFFFFFFFFFF),
+    ClOrdID("clOrdID", 0xFFFFFFFFFFFFFFFF),
+    OrigClOrdID("origClOrdID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    ExecID("execID", 0xFFFFFFFFFFFFFFFF),
+    StopPx("stopPx", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    OrderIDSfx("orderIDSfx", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    LEShortEnumField("execRestatementReason", ExecRestatementReason.RLP_Order_Quote_Cleanup, ExecRestatementReason),
+    CharEnumField("ordStatus", OrdStatus.Pending_Replace, OrdStatus),
+    CharEnumField("execType", ExecType.Pending_Replace, ExecType),
+    ByteEnumField("side", Side.Sell, Side),
+    FIXClOrdID("fIXClOrdID", ""),
+    Pad7("pad7", ""),
     ]
-
 
 class UnsubscribeRequest(Packet):
     name = 'UnsubscribeRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        RefApplSubID("refApplSubID", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    RefApplSubID("refApplSubID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class UnsubscribeResponse(Packet):
     name = 'UnsubscribeResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
     ]
-
 
 class UserLoginRequest(Packet):
     name = 'UserLoginRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        Username("username", 0xFFFFFFFF)
-        Password("password", "")
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    Username("username", 0xFFFFFFFF),
+    Password("password", ""),
+    Pad4("pad4", ""),
     ]
-
 
 class UserLoginRequestEncrypted(Packet):
     name = 'UserLoginRequestEncrypted'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        Username("username", 0xFFFFFFFF)
-        EncryptedPassword("encryptedPassword", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    Username("username", 0xFFFFFFFF),
+    EncryptedPassword("encryptedPassword", ""),
     ]
-
 
 class UserLoginResponse(Packet):
     name = 'UserLoginResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
     ]
-
 
 class UserLogoutRequest(Packet):
     name = 'UserLogoutRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        Username("username", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    Username("username", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class UserLogoutResponse(Packet):
     name = 'UserLogoutResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
     ]
-
 
 class XetraEnLightCreateDealNotification(Packet):
     name = 'XetraEnLightCreateDealNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        LastPx("lastPx", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        TradeID("tradeID", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus)
-        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("allocMethod", AllocMethod.Manual, AllocMethod)
-        ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType)
-        FieldLenField("noOrderBookItems", 0, fmt="<B", count_of="orderBookItemGrp")
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        RootPartyExecutingFirm("rootPartyExecutingFirm", "")
-        RootPartyExecutingTrader("rootPartyExecutingTrader", "")
-        RootPartyEnteringTrader("rootPartyEnteringTrader", "")
-        TargetPartyExecutingFirm("targetPartyExecutingFirm", "")
-        TargetPartyExecutingTrader("targetPartyExecutingTrader", "")
-        TargetPartyEnteringTrader("targetPartyEnteringTrader", "")
-        FirmTradeID("firmTradeID", "")
-        FirmNegotiationID("firmNegotiationID", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    LastPx("lastPx", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    TradeID("tradeID", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
+    CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("allocMethod", AllocMethod.Manual, AllocMethod),
+    ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType),
+    FieldLenField("noOrderBookItems", 0, fmt="<B", count_of="orderBookItemGrp"),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    RootPartyExecutingFirm("rootPartyExecutingFirm", ""),
+    RootPartyExecutingTrader("rootPartyExecutingTrader", ""),
+    RootPartyEnteringTrader("rootPartyEnteringTrader", ""),
+    TargetPartyExecutingFirm("targetPartyExecutingFirm", ""),
+    TargetPartyExecutingTrader("targetPartyExecutingTrader", ""),
+    TargetPartyEnteringTrader("targetPartyEnteringTrader", ""),
+    FirmTradeID("firmTradeID", ""),
+    FirmNegotiationID("firmNegotiationID", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
         PacketListField("orderBookItemGrp", None, OrderBookItemGrpComp, count_from=lambda pkt:pkt.noOrderBookItems
     ]
-
 
 class XetraEnLightDealResponse(Packet):
     name = 'XetraEnLightDealResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        TradeID("tradeID", 0xFFFFFFFF)
-        SecondaryTradeID("secondaryTradeID", 0xFFFFFFFF)
-        FirmTradeID("firmTradeID", "")
-        FirmNegotiationID("firmNegotiationID", "")
-        Pad4("pad4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    TradeID("tradeID", 0xFFFFFFFF),
+    SecondaryTradeID("secondaryTradeID", 0xFFFFFFFF),
+    FirmTradeID("firmTradeID", ""),
+    FirmNegotiationID("firmNegotiationID", ""),
+    Pad4("pad4", ""),
     ]
-
 
 class XetraEnLightDealStatusNotification(Packet):
     name = 'XetraEnLightDealStatusNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        TradeID("tradeID", 0xFFFFFFFF)
-        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource)
-        ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus)
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    TradeID("tradeID", 0xFFFFFFFF),
+    CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+    ByteEnumField("trdRptStatus", TrdRptStatus.Deemed_Verified, TrdRptStatus),
+    Pad2("pad2", ""),
     ]
-
 
 class XetraEnLightDeleteAllQuoteNotification(Packet):
     name = 'XetraEnLightDeleteAllQuoteNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class XetraEnLightDeleteAllQuoteRequest(Packet):
     name = 'XetraEnLightDeleteAllQuoteRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF)
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    TargetPartyIDSessionID("targetPartyIDSessionID", 0xFFFFFFFF),
+    Pad4("pad4", ""),
     ]
-
 
 class XetraEnLightEnterQuoteRequest(Packet):
     name = 'XetraEnLightEnterQuoteRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        BidPx("bidPx", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        BidSize("bidSize", 0x8000000000000000)
-        OfferSize("offerSize", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        ValidUntilTime("validUntilTime", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("quotingFrequency", QuotingFrequency.LF, QuotingFrequency)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        Pad6("pad6", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    BidPx("bidPx", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    BidSize("bidSize", 0x8000000000000000),
+    OfferSize("offerSize", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    ValidUntilTime("validUntilTime", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("quotingFrequency", QuotingFrequency.LF, QuotingFrequency),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    Pad6("pad6", ""),
     ]
-
 
 class XetraEnLightHitQuoteRequest(Packet):
     name = 'XetraEnLightHitQuoteRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        OrderQty("orderQty", 0x8000000000000000)
-        Price("price", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("allocMethod", AllocMethod.Manual, AllocMethod)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FirmTradeID("firmTradeID", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    OrderQty("orderQty", 0x8000000000000000),
+    Price("price", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("allocMethod", AllocMethod.Manual, AllocMethod),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FirmTradeID("firmTradeID", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
     ]
-
 
 class XetraEnLightNegotiationNotification(Packet):
     name = 'XetraEnLightNegotiationNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        BidPx("bidPx", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType)
-        CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        TargetPartyExecutingFirm("targetPartyExecutingFirm", "")
-        TargetPartyExecutingTrader("targetPartyExecutingTrader", "")
-        FirmNegotiationID("firmNegotiationID", "")
-        FreeText5("freeText5", "")
-        Pad5("pad5", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    BidPx("bidPx", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
+    CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    TargetPartyExecutingFirm("targetPartyExecutingFirm", ""),
+    TargetPartyExecutingTrader("targetPartyExecutingTrader", ""),
+    FirmNegotiationID("firmNegotiationID", ""),
+    FreeText5("freeText5", ""),
+    Pad5("pad5", ""),
     ]
-
 
 class XetraEnLightNegotiationRequesterNotification(Packet):
     name = 'XetraEnLightNegotiationRequesterNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        TrdRegTSExecutionTime("trdRegTSExecutionTime", 0xFFFFFFFFFFFFFFFF)
-        BidPx("bidPx", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000)
-        ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF)
-        AutoExecExpiryTime("autoExecExpiryTime", 0xFFFFFFFFFFFFFFFF)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000)
-        AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF)
-        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties")
-        ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType)
-        ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType)
-        ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        FirmNegotiationID("firmNegotiationID", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        FreeText5("freeText5", "")
-        ClosureReason("closureReason", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    TrdRegTSExecutionTime("trdRegTSExecutionTime", 0xFFFFFFFFFFFFFFFF),
+    BidPx("bidPx", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000),
+    ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF),
+    AutoExecExpiryTime("autoExecExpiryTime", 0xFFFFFFFFFFFFFFFF),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000),
+    AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
+    FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
+    ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
+    ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType),
+    ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    FirmNegotiationID("firmNegotiationID", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    FreeText5("freeText5", ""),
+    ClosureReason("closureReason", ""),
         PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs
     ]
-
 
 class XetraEnLightNegotiationStatusNotification(Packet):
     name = 'XetraEnLightNegotiationStatusNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition)
-        FirmNegotiationID("firmNegotiationID", "")
-        Pad7("pad7", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
+    FirmNegotiationID("firmNegotiationID", ""),
+    Pad7("pad7", ""),
     ]
-
 
 class XetraEnLightOpenNegotiationNotification(Packet):
     name = 'XetraEnLightOpenNegotiationNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        NegotiationStartTime("negotiationStartTime", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        BidPx("bidPx", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        LeavesQty("leavesQty", 0x8000000000000000)
-        ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType)
-        ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType)
-        CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        TargetPartyExecutingFirm("targetPartyExecutingFirm", "")
-        TargetPartyExecutingTrader("targetPartyExecutingTrader", "")
-        FirmNegotiationID("firmNegotiationID", "")
-        FreeText5("freeText5", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    NegotiationStartTime("negotiationStartTime", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    BidPx("bidPx", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    LeavesQty("leavesQty", 0x8000000000000000),
+    ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
+    ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType),
+    CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    TargetPartyExecutingFirm("targetPartyExecutingFirm", ""),
+    TargetPartyExecutingTrader("targetPartyExecutingTrader", ""),
+    FirmNegotiationID("firmNegotiationID", ""),
+    FreeText5("freeText5", ""),
     ]
-
 
 class XetraEnLightOpenNegotiationRequest(Packet):
     name = 'XetraEnLightOpenNegotiationRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        SecurityID("securityID", 0x8000000000000000)
-        BidPx("bidPx", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        ValidUntilTime("validUntilTime", 0xFFFFFFFFFFFFFFFF)
-        AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        AutoExecExposureDuration("autoExecExposureDuration", 0xFFFFFFFF)
-        AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000)
-        AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF)
-        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties")
-        ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType)
-        ByteEnumField("bidPxIsLocked", BidPxIsLocked.Yes, BidPxIsLocked)
-        ByteEnumField("offerPxIsLocked", OfferPxIsLocked.Yes, OfferPxIsLocked)
-        ByteEnumField("sideIsLocked", SideIsLocked.Yes, SideIsLocked)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType)
-        ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FreeText5("freeText5", "")
-        QuoteReqID("quoteReqID", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    SecurityID("securityID", 0x8000000000000000),
+    BidPx("bidPx", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    ValidUntilTime("validUntilTime", 0xFFFFFFFFFFFFFFFF),
+    AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    AutoExecExposureDuration("autoExecExposureDuration", 0xFFFFFFFF),
+    AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000),
+    AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
+    FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
+    ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType),
+    ByteEnumField("bidPxIsLocked", BidPxIsLocked.Yes, BidPxIsLocked),
+    ByteEnumField("offerPxIsLocked", OfferPxIsLocked.Yes, OfferPxIsLocked),
+    ByteEnumField("sideIsLocked", SideIsLocked.Yes, SideIsLocked),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType),
+    ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FreeText5("freeText5", ""),
+    QuoteReqID("quoteReqID", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
         PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs
     ]
-
 
 class XetraEnLightOpenNegotiationRequesterNotification(Packet):
     name = 'XetraEnLightOpenNegotiationRequesterNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        SecurityID("securityID", 0x8000000000000000)
-        BidPx("bidPx", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        LastPx("lastPx", 0x8000000000000000)
-        LastQty("lastQty", 0x8000000000000000)
-        ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF)
-        AutoExecExpiryTime("autoExecExpiryTime", 0xFFFFFFFFFFFFFFFF)
-        AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000)
-        AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF)
-        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties")
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType)
-        ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction)
-        ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType)
-        ByteEnumField("bidPxIsLocked", BidPxIsLocked.Yes, BidPxIsLocked)
-        ByteEnumField("offerPxIsLocked", OfferPxIsLocked.Yes, OfferPxIsLocked)
-        ByteEnumField("sideIsLocked", SideIsLocked.Yes, SideIsLocked)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType)
-        ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        FirmNegotiationID("firmNegotiationID", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        FreeText5("freeText5", "")
-        Pad5("pad5", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    SecurityID("securityID", 0x8000000000000000),
+    BidPx("bidPx", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    LastPx("lastPx", 0x8000000000000000),
+    LastQty("lastQty", 0x8000000000000000),
+    ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF),
+    AutoExecExpiryTime("autoExecExpiryTime", 0xFFFFFFFFFFFFFFFF),
+    AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    NumberOfRespondents("numberOfRespondents", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000),
+    AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
+    FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("quoteType", QuoteType.PWT_within_Special_Auction, QuoteType),
+    ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
+    ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType),
+    ByteEnumField("bidPxIsLocked", BidPxIsLocked.Yes, BidPxIsLocked),
+    ByteEnumField("offerPxIsLocked", OfferPxIsLocked.Yes, OfferPxIsLocked),
+    ByteEnumField("sideIsLocked", SideIsLocked.Yes, SideIsLocked),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType),
+    ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    FirmNegotiationID("firmNegotiationID", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    FreeText5("freeText5", ""),
+    Pad5("pad5", ""),
         PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs
     ]
-
 
 class XetraEnLightQuoteNotification(Packet):
     name = 'XetraEnLightQuoteNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        SecondaryQuoteID("secondaryQuoteID", 0xFFFFFFFFFFFFFFFF)
-        BidPx("bidPx", 0x8000000000000000)
-        BidSize("bidSize", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OfferSize("offerSize", 0x8000000000000000)
-        ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("quotingStatus", QuotingStatus.PreFunding_not_sufficient, QuotingStatus)
-        ByteEnumField("quoteEventReason", QuoteEventReason.RLP_Quote_Cleanup, QuoteEventReason)
-        ByteEnumField("quoteCancelReason", QuoteCancelReason.Expired, QuoteCancelReason)
-        ByteEnumField("quotingFrequency", QuotingFrequency.LF, QuotingFrequency)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        PartyEnteringTrader("partyEnteringTrader", "")
-        QuoteReqID("quoteReqID", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        Pad2("pad2", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    SecondaryQuoteID("secondaryQuoteID", 0xFFFFFFFFFFFFFFFF),
+    BidPx("bidPx", 0x8000000000000000),
+    BidSize("bidSize", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OfferSize("offerSize", 0x8000000000000000),
+    ExpireTime("expireTime", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("quotingStatus", QuotingStatus.PreFunding_not_sufficient, QuotingStatus),
+    ByteEnumField("quoteEventReason", QuoteEventReason.RLP_Quote_Cleanup, QuoteEventReason),
+    ByteEnumField("quoteCancelReason", QuoteCancelReason.Expired, QuoteCancelReason),
+    ByteEnumField("quotingFrequency", QuotingFrequency.LF, QuotingFrequency),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    PartyEnteringTrader("partyEnteringTrader", ""),
+    QuoteReqID("quoteReqID", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    Pad2("pad2", ""),
     ]
-
 
 class XetraEnLightQuoteRequesterNotification(Packet):
     name = 'XetraEnLightQuoteRequesterNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        TradeID("tradeID", 0xFFFFFFFF)
-        QuoteReqID("quoteReqID", "")
-        FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="sRQSQuoteEntryGrp")
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TransactTime("transactTime", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    TradeID("tradeID", 0xFFFFFFFF),
+    QuoteReqID("quoteReqID", ""),
+    FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="sRQSQuoteEntryGrp"),
+    Pad3("pad3", ""),
         PacketListField("sRQSQuoteEntryGrp", None, SRQSQuoteEntryGrpComp, count_from=lambda pkt:pkt.noQuoteEntries
     ]
-
 
 class XetraEnLightQuoteResponse(Packet):
     name = 'XetraEnLightQuoteResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
-        QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        QuoteReqID("quoteReqID", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
+    QuoteID("quoteID", 0xFFFFFFFFFFFFFFFF),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    QuoteReqID("quoteReqID", ""),
     ]
-
 
 class XetraEnLightQuoteSnapshotNotification(Packet):
     name = 'XetraEnLightQuoteSnapshotNotification'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="sRQSQuoteEntryGrp")
-        CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource)
-        Pad6("pad6", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    FieldLenField("noQuoteEntries", 0, fmt="<B", count_of="sRQSQuoteEntryGrp"),
+    CharEnumField("messageEventSource", MessageEventSource.Broadcast_to_Quote_Submitter, MessageEventSource),
+    Pad6("pad6", ""),
         PacketListField("sRQSQuoteEntryGrp", None, SRQSQuoteEntryGrpComp, count_from=lambda pkt:pkt.noQuoteEntries
     ]
-
 
 class XetraEnLightQuoteSnapshotRequest(Packet):
     name = 'XetraEnLightQuoteSnapshotRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
     ]
-
 
 class XetraEnLightQuotingStatusRequest(Packet):
     name = 'XetraEnLightQuotingStatusRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        ByteEnumField("quotingStatus", QuotingStatus.PreFunding_not_sufficient, QuotingStatus)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        Pad4("pad4", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    ByteEnumField("quotingStatus", QuotingStatus.PreFunding_not_sufficient, QuotingStatus),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    Pad4("pad4", ""),
     ]
-
 
 class XetraEnLightResponse(Packet):
     name = 'XetraEnLightResponse'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("responseHeader", "", ResponseHeaderComp)
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("responseHeader", "", ResponseHeaderComp),
     ]
-
 
 class XetraEnLightStatusBroadcast(Packet):
     name = 'XetraEnLightStatusBroadcast'
     fields_desc = [
-        PacketField("messageHeaderOut", "", MessageHeaderOutComp)
-        PacketField("rBCHeader", "", RBCHeaderComp)
-        TradeDate("tradeDate", 0xFFFFFFFF)
-        ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent)
-        Pad3("pad3", "")
+    PacketField("messageHeaderOut", "", MessageHeaderOutComp),
+    PacketField("rBCHeader", "", RBCHeaderComp),
+    TradeDate("tradeDate", 0xFFFFFFFF),
+    ByteEnumField("tradSesEvent", TradSesEvent.Service_Resumed, TradSesEvent),
+    Pad3("pad3", ""),
     ]
-
 
 class XetraEnLightUpdateNegotiationRequest(Packet):
     name = 'XetraEnLightUpdateNegotiationRequest'
     fields_desc = [
-        PacketField("messageHeaderIn", "", MessageHeaderInComp)
-        PacketField("requestHeader", "", RequestHeaderComp)
-        BidPx("bidPx", 0x8000000000000000)
-        OfferPx("offerPx", 0x8000000000000000)
-        OrderQty("orderQty", 0x8000000000000000)
-        PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF)
-        PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF)
-        ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF)
-        AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000)
-        AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000)
-        MarketSegmentID("marketSegmentID", 0x80000000)
-        NegotiationID("negotiationID", 0xFFFFFFFF)
-        SettlDate("settlDate", 0xFFFFFFFF)
-        AutoExecExposureDuration("autoExecExposureDuration", 0xFFFFFFFF)
-        AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF)
-        FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties")
-        ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction)
-        ByteEnumField("side", Side.Sell, Side)
-        ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue)
-        ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity)
-        ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType)
-        ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity)
-        ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType)
-        ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction)
-        ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision)
-        ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier)
-        ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier)
-        ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination)
-        CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition)
-        PartyExecutingFirm("partyExecutingFirm", "")
-        PartyExecutingTrader("partyExecutingTrader", "")
-        FreeText1("freeText1", "")
-        FreeText2("freeText2", "")
-        FreeText4("freeText4", "")
-        FreeText5("freeText5", "")
-        Pad3("pad3", "")
+    PacketField("messageHeaderIn", "", MessageHeaderInComp),
+    PacketField("requestHeader", "", RequestHeaderComp),
+    BidPx("bidPx", 0x8000000000000000),
+    OfferPx("offerPx", 0x8000000000000000),
+    OrderQty("orderQty", 0x8000000000000000),
+    PartyIDClientID("partyIDClientID", 0xFFFFFFFFFFFFFFFF),
+    PartyIdInvestmentDecisionMaker("partyIdInvestmentDecisionMaker", 0xFFFFFFFFFFFFFFFF),
+    ExecutingTrader("executingTrader", 0xFFFFFFFFFFFFFFFF),
+    AutoExecLimitPrice("autoExecLimitPrice", 0x8000000000000000),
+    AutoExecReferencePriceOffset("autoExecReferencePriceOffset", 0x80000000),
+    MarketSegmentID("marketSegmentID", 0x80000000),
+    NegotiationID("negotiationID", 0xFFFFFFFF),
+    SettlDate("settlDate", 0xFFFFFFFF),
+    AutoExecExposureDuration("autoExecExposureDuration", 0xFFFFFFFF),
+    AutoExecMinNoOfQuotes("autoExecMinNoOfQuotes", 0xFFFFFFFF),
+    FieldLenField("noTargetPartyIDs", 0, fmt="<B", count_of="xetraEnLightTargetParties"),
+    ByteEnumField("numberOfRespDisclosureInstruction", NumberOfRespDisclosureInstruction.Yes, NumberOfRespDisclosureInstruction),
+    ByteEnumField("side", Side.Sell, Side),
+    ByteEnumField("valueCheckTypeValue", ValueCheckTypeValue.Check, ValueCheckTypeValue),
+    ByteEnumField("valueCheckTypeQuantity", ValueCheckTypeQuantity.Check, ValueCheckTypeQuantity),
+    ByteEnumField("respondentType", RespondentType.SmartRfQ_selected_participants, RespondentType),
+    ByteEnumField("tradingCapacity", TradingCapacity.Retail_Market_Maker, TradingCapacity),
+    ByteEnumField("autoExecType", AutoExecType.LimitPrice, AutoExecType),
+    ByteEnumField("sideDisclosureInstruction", SideDisclosureInstruction.Yes, SideDisclosureInstruction),
+    ByteEnumField("orderAttributeLiquidityProvision", OrderAttributeLiquidityProvision.N, OrderAttributeLiquidityProvision),
+    ByteEnumField("executingTraderQualifier", ExecutingTraderQualifier.Human, ExecutingTraderQualifier),
+    ByteEnumField("partyIdInvestmentDecisionMakerQualifier", PartyIdInvestmentDecisionMakerQualifier.Human, PartyIdInvestmentDecisionMakerQualifier),
+    ByteEnumField("orderOrigination", OrderOrigination.Sponsored_access_customer, OrderOrigination),
+    CharEnumField("quoteCondition", QuoteCondition.Locked, QuoteCondition),
+    PartyExecutingFirm("partyExecutingFirm", ""),
+    PartyExecutingTrader("partyExecutingTrader", ""),
+    FreeText1("freeText1", ""),
+    FreeText2("freeText2", ""),
+    FreeText4("freeText4", ""),
+    FreeText5("freeText5", ""),
+    Pad3("pad3", ""),
         PacketListField("xetraEnLightTargetParties", None, XetraEnLightTargetPartiesComp, count_from=lambda pkt:pkt.noTargetPartyIDs
     ]
-
 
 
 
