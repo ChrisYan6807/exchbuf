@@ -28,12 +28,12 @@ public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescript
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhs3YN, getPadding_idzaARBRtBbI);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
-    SPropertyOperations.assign(__thisNode__, PROPS.right_padding$eGux, false);
+    SPropertyOperations.assign(__thisNode__, PROPS.right_padded$eGux, false);
     SPropertyOperations.assign(__thisNode__, PROPS.padding$ZJtT, "'\\0'");
   }
 
   /*package*/ static String eb_string_id7cjtpqhs3YN(@NotNull SNode __thisNode__) {
-    return String.format("FixedLengthString [ length=%s, padding=%s, left_padding=%s ]", SPropertyOperations.getInteger(__thisNode__, PROPS.length$ZIZR), SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT), SPropertyOperations.getBoolean(__thisNode__, PROPS.right_padding$eGux));
+    return String.format("FixedLengthString [ length=%s, padding=%s, left_padding=%s ]", SPropertyOperations.getInteger(__thisNode__, PROPS.length$ZIZR), SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT), SPropertyOperations.getBoolean(__thisNode__, PROPS.right_padded$eGux));
   }
   /*package*/ static String getPadding_idzaARBRtBbI(@NotNull SNode __thisNode__) {
     return SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT);
@@ -88,7 +88,7 @@ public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescript
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty right_padding$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "right_padding");
+    /*package*/ static final SProperty right_padded$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "right_padded");
     /*package*/ static final SProperty padding$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "padding");
     /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
   }

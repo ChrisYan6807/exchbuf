@@ -27,7 +27,7 @@
       <concept id="8244488409083618485" name="eb_lang.structure.EBFixedLenghString" flags="ng" index="2gaQCN">
         <property id="8244488409083618486" name="length" index="2gaQCK" />
         <property id="8244488409083618488" name="padding" index="2gaQCY" />
-        <property id="5693447180652642324" name="right_padding" index="3xgN0v" />
+        <property id="5693447180652642324" name="right_padded" index="3xgN0v" />
       </concept>
       <concept id="8244488409083618482" name="eb_lang.structure.EBUInt16" flags="ng" index="2gaQCO" />
       <concept id="8244488409083618481" name="eb_lang.structure.EBUInt32" flags="ng" index="2gaQCR" />

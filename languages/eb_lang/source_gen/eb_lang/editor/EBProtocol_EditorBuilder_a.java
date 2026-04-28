@@ -62,6 +62,8 @@ import java.nio.file.Paths;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import com.google.gson.internal.LinkedTreeMap;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import jetbrains.mps.nodeEditor.cellProviders.AbstractCellListHandler;
 import jetbrains.mps.lang.editor.cellProviders.RefNodeListHandler;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
@@ -101,7 +103,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     setCellContext(editorCell);
     editorCell.addEditorCell(createCollection_1());
     editorCell.addEditorCell(createCollection_2());
-    editorCell.addEditorCell(createConstant_4());
+    editorCell.addEditorCell(createConstant_5());
     editorCell.addEditorCell(createRefNodeList_0());
     return editorCell;
   }
@@ -155,6 +157,8 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     editorCell.addEditorCell(createJComponent_2());
     editorCell.addEditorCell(createConstant_3());
     editorCell.addEditorCell(createJComponent_3());
+    editorCell.addEditorCell(createConstant_4());
+    editorCell.addEditorCell(createJComponent_4());
     return editorCell;
   }
   private EditorCell createJComponent_0() {
@@ -166,7 +170,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     final SNode protocolRootASTNode = myNode;
 
     JButton button = new JButton("DB T7");
-    button.setBackground(Color.WHITE);
+    button.setBackground(Color.DARK_GRAY);
     button.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent p1) {
@@ -539,7 +543,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     final SNode protocolRootASTNode = myNode;
 
     JButton button = new JButton("SBE");
-    button.setBackground(Color.WHITE);
+    button.setBackground(Color.DARK_GRAY);
     button.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent p1) {
@@ -1041,7 +1045,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     final SNode protocolRootASTNode = myNode;
 
     JButton button = new JButton("WSE WATS");
-    button.setBackground(Color.WHITE);
+    button.setBackground(Color.DARK_GRAY);
     button.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent p1) {
@@ -1280,8 +1284,318 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     return editorCell;
   }
   private JComponent _QueryFunction_JComponent_peo863_a6b0() {
+    final SNode protocolRootASTNode = myNode;
+
+    JButton button = new JButton("EB");
+    button.setBackground(Color.DARK_GRAY);
+    button.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent p1) {
+        final JFileChooser chooser = new JFileChooser();
+        int returnVal = chooser.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+          Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+              String path = chooser.getSelectedFile().getPath();
+
+
+              try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+                SLinkOperations.getChildren(myNode, LINKS.statements$_5KW).clear();
+                LogContext.with(EBProtocol_EditorBuilder_a.class, null, null, null).debug("selected path: " + path);
+                String line;
+                while ((line = reader.readLine()) != null) {
+                  line = line.strip();
+                  if (line.startsWith("primitive")) {
+                    String[] raw = line.split("[ ,\\]\\[]+");
+                    ArrayList<String> tokens = new ArrayList<String>();
+                    for (String s : raw) {
+                      if (!(s == null || s.length() == 0)) {
+                        tokens.add(s);
+                      }
+                    }
+                    SNode primitive = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                    SPropertyOperations.assign(primitive, PROPS.name$MnvL, tokens.get(1));
+                    // primitive u8 = uint8_ebt [ min=, max=, null=, endian= ]
+                    // primitive Price = FloatDecimal [ min=, max=, null=, size=8, precision=8,signed=true, little_endian=true ]
+                    // primitive str10 = FixedLengthString [ length=10, padding='\0', left_padding=false ]
+                    String type = tokens.get(2);
+                    String min_v;
+                    String max_v;
+                    String null_v;
+                    String endian_v;
+
+                    if (type.endsWith("ebt")) {
+                      min_v = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
+                      max_v = tokens.get(5).substring(tokens.get(5).indexOf('=') + 1);
+                      null_v = tokens.get(6).substring(tokens.get(6).indexOf('=') + 1);
+                      endian_v = tokens.get(7).substring(tokens.get(7).indexOf('=') + 1);
+
+                      if (type.equals("uint8_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b4L, "eb_lang.structure.EBUInt8")));
+                      } else if (type.equals("int8_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d14L, "eb_lang.structure.EBInt8")));
+                      } else if (type.equals("uint16_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b2L, "eb_lang.structure.EBUInt16")));
+                      } else if (type.equals("int16_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124aeL, "eb_lang.structure.EBInt16")));
+                      } else if (type.equals("uint32_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b1L, "eb_lang.structure.EBUInt32")));
+                      } else if (type.equals("int32_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124afL, "eb_lang.structure.EBInt32")));
+                      } else if (type.equals("uint64_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b3L, "eb_lang.structure.EBUInt64")));
+                      } else if (type.equals("int64_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b0L, "eb_lang.structure.EBInt64")));
+                      } else if (type.equals("char_ebt")) {
+                        SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar")));
+                      }
+
+                      SPropertyOperations.assign(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), PROPS.min$DCVS, min_v);
+                      SPropertyOperations.assign(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), PROPS.max$DBZO, max_v);
+                      SPropertyOperations.assign(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), PROPS.null$sULd, null_v);
+                      if (endian_v.isEmpty() || endian_v.equals("little")) {
+                        SLinkOperations.setTarget(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), LINKS.endian$mcO_, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f327120L, "eb_lang.structure.EBLittleEndian")));
+                      } else {
+                        SLinkOperations.setTarget(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), LINKS.endian$mcO_, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f32711fL, "eb_lang.structure.EBBigEndian")));
+                      }
+                    } else if (type.equals("FloatDecimal")) {
+                      min_v = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
+                      max_v = tokens.get(5).substring(tokens.get(5).indexOf('=') + 1);
+                      null_v = tokens.get(6).substring(tokens.get(6).indexOf('=') + 1);
+                      String size_v = tokens.get(7).substring(tokens.get(7).indexOf('=') + 1);
+                      String precision_v = tokens.get(8).substring(tokens.get(8).indexOf('=') + 1);
+                      String signed_v = tokens.get(9).substring(tokens.get(9).indexOf('=') + 1);
+                      endian_v = tokens.get(10).substring(tokens.get(10).indexOf('=') + 1);
+
+                      SNode floatDec = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal"));
+                      SPropertyOperations.assign(floatDec, PROPS.min$l2Xp, min_v);
+                      SPropertyOperations.assign(floatDec, PROPS.max$l2vn, max_v);
+                      SPropertyOperations.assign(floatDec, PROPS.null$laGU, null_v);
+                      SPropertyOperations.assign(floatDec, PROPS.size$l3Es, Integer.parseInt(size_v));
+                      SPropertyOperations.assign(floatDec, PROPS.precision$l9xP, Integer.parseInt(precision_v));
+                      SPropertyOperations.assign(floatDec, PROPS.signed$CnQN, Boolean.parseBoolean(signed_v));
+                      SPropertyOperations.assign(floatDec, PROPS.little_endian$pzMh, Boolean.parseBoolean(endian_v));
+
+                      SLinkOperations.setTarget(primitive, LINKS.type$zVeR, floatDec);
+
+                    } else if (type.equals("FixedLengthString")) {
+                      String length_v = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
+                      String padding_v = tokens.get(5).substring(tokens.get(5).indexOf('=') + 1);
+                      boolean right_padded = tokens.get(6).substring(tokens.get(6).indexOf('=') + 1) == "true";
+                      SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
+                      SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, Integer.parseInt(length_v));
+                      SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, padding_v);
+                      SPropertyOperations.assign(fixedStr, PROPS.right_padded$eGux, right_padded);
+
+                      SLinkOperations.setTarget(primitive, LINKS.type$zVeR, fixedStr);
+
+                    } else {
+                      LogContext.with(EBProtocol_EditorBuilder_a.class, null, null, null).error("unknown primitive type:" + type);
+                    }
+
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(primitive);
+                  } else if (line.startsWith("alias")) {
+                    String[] raw = line.split("[ ,\\]\\[]+");
+                    final ArrayList<String> tokens = new ArrayList<String>();
+                    for (String s : raw) {
+                      if (!(s == null || s.length() == 0)) {
+                        tokens.add(s);
+                      }
+                    }
+                    // alias Price = Price3 [ if P3 else Price4 ] 
+                    // alias MsgLen = U16
+                    SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, "eb_lang.structure.EBAlias"));
+                    SPropertyOperations.assign(alias, PROPS.name$MnvL, tokens.get(1));
+                    SLinkOperations.setTarget(alias, LINKS.type$kr$f, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(3))).first());
+                    if (tokens.size() == 7) {
+                      SPropertyOperations.assign(alias, PROPS.pred$HpTv, tokens.get(5));
+                      SLinkOperations.setTarget(alias, LINKS.opt_type$Hq8w, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(7))).first());
+                    } else {
+                      LogContext.with(EBProtocol_EditorBuilder_a.class, null, null, null).error("alias tokens is not 4 or 7");
+                    }
+
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
+                  } else if (line.startsWith("array")) {
+                    String[] raw = line.split("[ ,<>]+");
+                    ArrayList<String> tokens = new ArrayList<String>();
+                    for (String s : raw) {
+                      if (!(s == null || s.length() == 0)) {
+                        tokens.add(s);
+                      }
+                    }
+
+                    SNode array = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f234141fd1L, "eb_lang.structure.EBArray"));
+                    SPropertyOperations.assign(array, PROPS.name$MnvL, tokens.get(3));
+                    final String array_type = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
+                    String array_size = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
+                    SLinkOperations.setTarget(array, LINKS.type$qzpR, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(array_type)).first());
+                    SPropertyOperations.assign(array, PROPS.size$qzRT, Integer.parseInt(array_size));
+
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(array);
+
+                  } else if (line.startsWith("// ")) {
+                    SNode comment = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, "eb_lang.structure.EBComment"));
+                    SPropertyOperations.assign(comment, PROPS.value$wjFT, line.substring(3));
+                    ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(comment);
+                  } else if (line.startsWith("@cpp ")) {
+                    SNode cpp = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
+                    SPropertyOperations.assign(cpp, PROPS.value$wDYR, line.substring(5));
+                    ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(cpp);
+                  } else if (line.startsWith("@python ")) {
+                    SNode py = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a09L, "eb_lang.structure.EBPython"));
+                    SPropertyOperations.assign(py, PROPS.value$$aYn, line.substring(8));
+                    ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(py);
+                  } else if (line.isEmpty()) {
+                    ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cfeL, "eb_lang.structure.EBEmptyStatement")));
+                  } else if (line.startsWith("enum ")) {
+                    String[] raw = line.split(" +");
+                    ArrayList<String> tokens = new ArrayList<String>();
+                    for (String s : raw) {
+                      if (!(s == null || s.length() == 0)) {
+                        tokens.add(s);
+                      }
+                    }
+
+                    SNode enum_node = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum"));
+                    SPropertyOperations.assign(enum_node, PROPS.name$MnvL, tokens.get(1));
+                    String int_type = tokens.get(3);
+                    if (int_type.equals("char_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar")));
+                    } else if (int_type.equals("uint8_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b4L, "eb_lang.structure.EBUInt8")));
+                    } else if (int_type.equals("int8_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d14L, "eb_lang.structure.EBInt8")));
+                    } else if (int_type.equals("uint16_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b2L, "eb_lang.structure.EBUInt16")));
+                    } else if (int_type.equals("int16_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124aeL, "eb_lang.structure.EBInt16")));
+                    } else if (int_type.equals("uint32_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b1L, "eb_lang.structure.EBUInt32")));
+                    } else if (int_type.equals("int32_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124afL, "eb_lang.structure.EBInt32")));
+                    } else if (int_type.equals("uint64_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b3L, "eb_lang.structure.EBUInt64")));
+                    } else if (int_type.equals("int64_ebt")) {
+                      SLinkOperations.setTarget(enum_node, LINKS.type$_ySl, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b0L, "eb_lang.structure.EBInt64")));
+                    }
+
+                    String subline;
+                    while ((subline = reader.readLine()) != null) {
+                      if (line.startsWith("}")) {
+                        break;
+                      }
+                      line = line.strip();
+                      String[] subraw = line.split("[ ,<>]+");
+                      ArrayList<String> sub_tokens = new ArrayList<String>();
+                      for (String s : subraw) {
+                        if (!(s == null || s.length() == 0)) {
+                          sub_tokens.add(s);
+                        }
+                      }
+
+                      SNode pair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
+                      SPropertyOperations.assign(pair, PROPS.name$MnvL, sub_tokens.get(0));
+                      SLinkOperations.setTarget(pair, LINKS.value$_yQp, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L, "eb_lang.structure.EBIntLiteral")));
+                      SPropertyOperations.assign(SLinkOperations.getTarget(pair, LINKS.value$_yQp), PROPS.value$zter, sub_tokens.get(2));
+                      ListSequence.fromList(SLinkOperations.getChildren(enum_node, LINKS.values$_zmn)).addElement(pair);
+                    }
+
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(enum_node);
+                  } else if (line.startsWith("bitfield ")) {
+                    String[] raw = line.split(" +");
+                    ArrayList<String> tokens = new ArrayList<String>();
+                    for (String s : raw) {
+                      if (!(s == null || s.length() == 0)) {
+                        tokens.add(s);
+                      }
+                    }
+
+                    SNode bitfield = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, "eb_lang.structure.EBBitField"));
+                    SPropertyOperations.assign(bitfield, PROPS.name$MnvL, tokens.get(1));
+                    String int_type = tokens.get(2);
+                    if (int_type.equals("char_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar")));
+                    } else if (int_type.equals("uint8_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b4L, "eb_lang.structure.EBUInt8")));
+                    } else if (int_type.equals("int8_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d14L, "eb_lang.structure.EBInt8")));
+                    } else if (int_type.equals("uint16_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b2L, "eb_lang.structure.EBUInt16")));
+                    } else if (int_type.equals("int16_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124aeL, "eb_lang.structure.EBInt16")));
+                    } else if (int_type.equals("uint32_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b1L, "eb_lang.structure.EBUInt32")));
+                    } else if (int_type.equals("int32_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124afL, "eb_lang.structure.EBInt32")));
+                    } else if (int_type.equals("uint64_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b3L, "eb_lang.structure.EBUInt64")));
+                    } else if (int_type.equals("int64_ebt")) {
+                      SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b0L, "eb_lang.structure.EBInt64")));
+                    }
+
+                    String subline;
+                    while ((subline = reader.readLine()) != null) {
+                      if (line.startsWith("}")) {
+                        break;
+                      }
+                      line = line.strip();
+                      String[] subraw = line.split("[ ,=]+");
+                      final ArrayList<String> sub_tokens = new ArrayList<String>();
+                      for (String s : subraw) {
+                        if (!(s == null || s.length() == 0)) {
+                          sub_tokens.add(s);
+                        }
+                      }
+
+                      SNode bfm = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, "eb_lang.structure.EBBitFieldMember"));
+                      SPropertyOperations.assign(bfm, PROPS.length$wbxg, Integer.parseInt(sub_tokens.get(5)));
+                      SLinkOperations.setTarget(bfm, LINKS.enum$iBH6, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBEnum$37)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(1))).first());
+                      SLinkOperations.setTarget(bfm, LINKS.default$Qsog, ListSequence.fromList(SLinkOperations.getChildren(SLinkOperations.getTarget(bfm, LINKS.enum$iBH6), LINKS.values$_zmn)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(3))).first());
+
+                      ListSequence.fromList(SLinkOperations.getChildren(bitfield, LINKS.values$w4DV)).addElement(bfm);
+                    }
+
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(bitfield);
+                  } else if (line.startsWith("@include ")) {
+                    SNode include = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, "eb_lang.structure.EBInclude"));
+                    final String include_name = line.substring(line.indexOf(" ") + 1);
+                    SLinkOperations.setTarget(include, LINKS.protocol$v5qn, Sequence.fromIterable(SNodeOperations.ofConcept(SNodeOperations.getAllSiblings(protocolRootASTNode, false), CONCEPTS.EBProtocol$zC)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(include_name)).first());
+
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(include);
+
+                  } else if (line.startsWith("message ")) {
+                  }
+
+                }
+
+
+
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
+            }
+          };
+          getEditorContext().getRepository().getModelAccess().executeCommand(runnable);
+        }
+      }
+    });
+    return button;
+  }
+  private EditorCell createConstant_4() {
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, " ");
+    editorCell.setCellId("Constant_peo863_h1a");
+    editorCell.setDefaultText("");
+    return editorCell;
+  }
+  private EditorCell createJComponent_4() {
+    EditorCell editorCell = EditorCell_Component.createComponentCell(getEditorContext(), myNode, _QueryFunction_JComponent_peo863_a8b0(), "JComponent_peo863_i1a");
+    editorCell.setCellId("JComponent_peo863_i1a_0");
+    return editorCell;
+  }
+  private JComponent _QueryFunction_JComponent_peo863_a8b0() {
     JButton button = new JButton("Clear");
-    button.setBackground(Color.WHITE);
+    button.setBackground(Color.GRAY);
     button.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent p1) {
@@ -1298,7 +1612,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
     return button;
   }
-  private EditorCell createConstant_4() {
+  private EditorCell createConstant_5() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "");
     editorCell.setCellId("Constant_peo863_c0");
     editorCell.setDefaultText("");
@@ -1407,6 +1721,9 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
     /*package*/ static final SProperty signed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "signed");
     /*package*/ static final SProperty size$qzRT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f234141fd1L, 0x3fa729f234141fd4L, "size");
+    /*package*/ static final SProperty little_endian$pzMh = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x9835713561f1c9dL, "little_endian");
+    /*package*/ static final SProperty right_padded$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "right_padded");
+    /*package*/ static final SProperty pred$HpTv = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x4dac1b7fe8eef00L, "pred");
   }
 
   private static final class CONCEPTS {
@@ -1418,6 +1735,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBImportPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
+    /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
     /*package*/ static final SConcept EBStatement$nx = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf2L, "eb_lang.structure.EBStatement");
   }
 
@@ -1439,5 +1757,8 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SReferenceLink base_link_value$L0F8 = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x3fa729f2342fad35L, "base_link_value");
     /*package*/ static final SReferenceLink type$kr$f = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x3e5cab00be181adeL, "type");
     /*package*/ static final SReferenceLink type$qzpR = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f234141fd1L, 0x3fa729f234141fd2L, "type");
+    /*package*/ static final SContainmentLink endian$mcO_ = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f327121L, "endian");
+    /*package*/ static final SReferenceLink opt_type$Hq8w = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x4dac1b7fe8eef01L, "opt_type");
+    /*package*/ static final SReferenceLink protocol$v5qn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, 0x5300c8f52845c9abL, "protocol");
   }
 }

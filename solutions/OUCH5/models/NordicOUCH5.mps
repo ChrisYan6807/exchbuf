@@ -49,7 +49,7 @@
       <concept id="8244488409083618485" name="eb_lang.structure.EBFixedLenghString" flags="ng" index="2gaQCN">
         <property id="8244488409083618486" name="length" index="2gaQCK" />
         <property id="8244488409083618488" name="padding" index="2gaQCY" />
-        <property id="5693447180652642324" name="right_padding" index="3xgN0v" />
+        <property id="5693447180652642324" name="right_padded" index="3xgN0v" />
       </concept>
       <concept id="8244488409083618483" name="eb_lang.structure.EBUInt64" flags="ng" index="2gaQCP" />
       <concept id="8244488409083493622" name="eb_lang.structure.EBProtocol" flags="ng" index="2gln9K">

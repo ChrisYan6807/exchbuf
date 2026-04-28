@@ -170,7 +170,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     return editorCell;
   }
   private EditorCell createConstant_7() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "right_padding=");
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "right_padded");
     editorCell.setCellId("Constant_mrszm6_k0");
     editorCell.setDefaultText("");
     return editorCell;
@@ -178,11 +178,11 @@ import org.jetbrains.mps.openapi.language.SConcept;
   private EditorCell createProperty_2() {
     getCellFactory().pushCellContext();
     try {
-      final SProperty property = PROPS.right_padding$eGux;
+      final SProperty property = PROPS.right_padded$eGux;
       getCellFactory().setPropertyInfo(new SPropertyInfo(myNode, property));
       EditorCell_Property editorCell = EditorCell_Property.create(getEditorContext(), new SPropertyAccessor(myNode, property, false, false), myNode);
-      editorCell.setDefaultText("<no right_padding>");
-      editorCell.setCellId("property_right_padding");
+      editorCell.setDefaultText("<no right_padded>");
+      editorCell.setCellId("property_right_padded");
       Style style = new StyleImpl();
       style.set(StyleAttributes.PUNCTUATION_LEFT, true);
       style.set(StyleAttributes.PUNCTUATION_RIGHT, true);
@@ -210,7 +210,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
   private static final class PROPS {
     /*package*/ static final SProperty length$ZIZR = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b6L, "length");
     /*package*/ static final SProperty padding$ZJtT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x726a4e86e24124b8L, "padding");
-    /*package*/ static final SProperty right_padding$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "right_padding");
+    /*package*/ static final SProperty right_padded$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "right_padded");
   }
 
   private static final class CONCEPTS {

@@ -160,7 +160,7 @@ public class QueriesGenerated extends QueryProviderBase {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) == 0) {
       return "//" + SPropertyOperations.getString(_context.getNode(), PROPS.value$wjFT);
     }
-    return "# " + SPropertyOperations.getString(_context.getNode(), PROPS.value$wjFT);
+    return "// " + SPropertyOperations.getString(_context.getNode(), PROPS.value$wjFT);
   }
   public static Object propertyMacro_GetValue_0_13(final PropertyMacroContext _context) {
     return SPropertyOperations.getString(_context.getNode(), PROPS.value$zter);
@@ -885,7 +885,7 @@ public class QueriesGenerated extends QueryProviderBase {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
       return "";
     }
-    return String.format("%s<type=%s, size=%s>", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$qzpR), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$qzRT));
+    return String.format("%s<type=%s, size=%s> %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$qzpR), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$qzRT), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
   }
   public static Object propertyMacro_GetValue_0_56(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 0) {

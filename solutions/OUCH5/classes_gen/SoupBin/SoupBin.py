@@ -36,7 +36,6 @@ class Header(Packet):
     ]
 
 
-
 class Debug(Packet):
     name = 'Debug'
     fields_desc = [
@@ -45,7 +44,6 @@ class Debug(Packet):
     ]
 bind_layers(Header, Debug, pkgType=PktType.Debug)
 
-
 class LoginAccepted(Packet):
     name = 'LoginAccepted'
     fields_desc = [
@@ -53,7 +51,6 @@ class LoginAccepted(Packet):
     string20lp("seqNum", ""),
     ]
 bind_layers(Header, LoginAccepted, pkgType=PktType.LoginAccepted)
-
 
 class LoginRejectCode(str, Enum):
     NotAuthorized = 'A'
@@ -67,13 +64,11 @@ class LoginRejected(Packet):
     ]
 bind_layers(Header, LoginRejected, pkgType=PktType.LoginRejected)
 
-
 class ServerHeartbeat(Packet):
     name = 'ServerHeartbeat'
     fields_desc = [
     ]
 bind_layers(Header, ServerHeartbeat, pkgType=PktType.ServerHeartbeat)
-
 
 class ClientHeartbeat(Packet):
     name = 'ClientHeartbeat'
@@ -81,13 +76,11 @@ class ClientHeartbeat(Packet):
     ]
 bind_layers(Header, ClientHeartbeat, pkgType=PktType.ClientHeartbeat)
 
-
 class EndOfSession(Packet):
     name = 'EndOfSession'
     fields_desc = [
     ]
 bind_layers(Header, EndOfSession, pkgType=PktType.EndOfSession)
-
 
 class LoginRequest(Packet):
     name = 'LoginRequest'
@@ -99,13 +92,11 @@ class LoginRequest(Packet):
     ]
 bind_layers(Header, LoginRequest, pkgType=PktType.LoginRequest)
 
-
 class LogoutRequest(Packet):
     name = 'LogoutRequest'
     fields_desc = [
     ]
 bind_layers(Header, LogoutRequest, pkgType=PktType.LogoutRequest)
-
 
 
 

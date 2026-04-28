@@ -693,7 +693,7 @@ class SubLiquidityIndicator(str, Enum):
     LiquidityALPSSBBO = 'S'
 
 Symbol = str8;
-# fixme, check SymbolSfx definition
+// fixme, check SymbolSfx definition
 SymbolSfx = str2;
 
 class TimeInForce(str, Enum):
@@ -781,7 +781,7 @@ class OpenClose(str, Enum):
     NONE = 'N'
 
 
-# fixme, to be reviewed later
+// fixme, to be reviewed later
 Reserved = u8;
 MaxRemovePct = u8;
 DiscretionAmount = u64;
@@ -824,7 +824,7 @@ class SIIndicator(str, Enum):
     SI = '5'
     NonSI = '0'
 
-# cancel order
+// cancel order
 MassCancelLockout = u8;
 MassCancel = u8;
 Underlying = u8;
@@ -973,7 +973,7 @@ class MultilegReportingType(str, Enum):
     Spread = '3'
 
 
-# not defined types
+// not defined types
 ContraTrader = u32;
 ClOrdIDBatch = u32;
 PartyID = u32;

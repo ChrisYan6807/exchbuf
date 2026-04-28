@@ -269,7 +269,7 @@
     </node>
     <node concept="1TJgyi" id="4W3c0IIg00k" role="1TKVEl">
       <property role="IQ2nx" value="5693447180652642324" />
-      <property role="TrG5h" value="right_padding" />
+      <property role="TrG5h" value="right_padded" />
       <ref role="AX2Wp" to="tpck:fKAQMTB" resolve="boolean" />
     </node>
   </node>
@@ -344,16 +344,6 @@
       <property role="IQ2nx" value="8244488409083636165" />
       <property role="TrG5h" value="value" />
       <ref role="AX2Wp" to="tpck:fKAOsGN" resolve="string" />
-    </node>
-  </node>
-  <node concept="1TIwiD" id="79EjCrygmBD">
-    <property role="EcuMT" value="8244488409083636201" />
-    <property role="TrG5h" value="EBExtern" />
-    <property role="34LRSv" value="extern" />
-    <property role="3GE5qa" value="statement" />
-    <ref role="1TJDcQ" node="79EjCryfNNN" resolve="EBTypeStatement" />
-    <node concept="PrWs8" id="79EjCrygmBE" role="PzmwI">
-      <ref role="PrY4T" node="79EjCryfBwO" resolve="EBIIdentifierConcept" />
     </node>
   </node>
   <node concept="1TIwiD" id="79EjCrygmC6">

@@ -21,7 +21,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_EBEmptyStatement;
   private ConceptPresentation props_EBEndian;
   private ConceptPresentation props_EBEnum;
-  private ConceptPresentation props_EBExtern;
   private ConceptPresentation props_EBFixedLenghString;
   private ConceptPresentation props_EBFloatDecimal;
   private ConceptPresentation props_EBIIdentifierConcept;
@@ -152,13 +151,6 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_EBEnum = cpb.create();
         }
         return props_EBEnum;
-      case LanguageConceptSwitch.EBExtern:
-        if (props_EBExtern == null) {
-          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.presentationByName();
-          props_EBExtern = cpb.create();
-        }
-        return props_EBExtern;
       case LanguageConceptSwitch.EBFixedLenghString:
         if (props_EBFixedLenghString == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();

@@ -178,7 +178,6 @@ class NewOrderAppendageEntry(Packet):
     ]
 
 
-
 class AmendOrderAppendageEntry(Packet):
     name = 'AmendOrderAppendageEntry'
     fields_desc = [
@@ -200,7 +199,6 @@ class AmendOrderAppendageEntry(Packet):
         ConditionalField(CharEnumField("timeInForce", TimeInForce.GFA, TimeInForce), lambda pkt:pkt.tag == AppendixKeyEnum.TimeInForce),
 
     ]
-
 
 
 class OrderAckAppendageEntry(Packet):
@@ -239,7 +237,6 @@ class OrderAckAppendageEntry(Packet):
     ]
 
 
-
 class OrderReplacedAppendageEntry(Packet):
     name = 'OrderReplacedAppendageEntry'
     fields_desc = [
@@ -263,7 +260,6 @@ class OrderReplacedAppendageEntry(Packet):
 
     ]
 
-
 class OrderRestatedAppendageEntry(Packet):
     name = 'OrderRestatedAppendageEntry'
     fields_desc = [
@@ -274,7 +270,6 @@ class OrderRestatedAppendageEntry(Packet):
         ConditionalField(u64("secondaryOrderRefNum", 0), lambda pkt:pkt.tag == AppendixKeyEnum.SecondaryOrderRefNum),
 
     ]
-
 
 
 
@@ -373,7 +368,6 @@ class NewOrder(Packet):
     ]
 bind_layers(Header, NewOrder, pkgType=PktType.UnSeqData)
 
-
 class AmendOrder(Packet):
     name = 'AmendOrder'
     fields_desc = [
@@ -388,7 +382,6 @@ class AmendOrder(Packet):
     ]
 bind_layers(Header, AmendOrder, pkgType=PktType.UnSeqData)
 
-
 class CancelOrder(Packet):
     name = 'CancelOrder'
     fields_desc = [
@@ -398,7 +391,6 @@ class CancelOrder(Packet):
     string6("user", ""),
     ]
 bind_layers(Header, CancelOrder, pkgType=PktType.UnSeqData)
-
 
 class MMOReason(str, Enum):
     Passive = 'P'
@@ -415,7 +407,6 @@ class MMORefreshRequest(Packet):
     CharEnumField("reason", MMOReason.Aggressive, MMOReason),
     ]
 bind_layers(Header, MMORefreshRequest, pkgType=PktType.UnSeqData)
-
 
 class MMIInstruction(str, Enum):
     SO = '1'
@@ -457,7 +448,6 @@ class MMIRequest(Packet):
     ]
 bind_layers(Header, MMIRequest, pkgType=PktType.UnSeqData)
 
-
 class MMIResponse(Packet):
     name = 'MMIResponse'
     fields_desc = [
@@ -473,13 +463,11 @@ class MMIResponse(Packet):
     ]
 bind_layers(Header, MMIResponse, pkgType=PktType.SeqData)
 
-
 class AccountQuery(Packet):
     name = 'AccountQuery'
     fields_desc = [
     CharEnumField("msgType", AccountQuery, InMsgType),
     ]
-
 
 
 class EventCode(str, Enum):
@@ -495,7 +483,6 @@ class SystemEvent(Packet):
     CharEnumField("code", EventCode.EndOfDay, EventCode),
     ]
 bind_layers(Header, SystemEvent, pkgType=PktType.SeqData)
-
 
 class AcceptedOrder(Packet):
     name = 'AcceptedOrder'
@@ -519,7 +506,6 @@ class AcceptedOrder(Packet):
     ]
 bind_layers(Header, AcceptedOrder, pkgType=PktType.SeqData)
 
-
 class ReplacedOrder(Packet):
     name = 'ReplacedOrder'
     fields_desc = [
@@ -537,7 +523,6 @@ class ReplacedOrder(Packet):
         ConditionalField(PacketListField("appendage", [], OrderAckAppendageEntry, length_from=lambda pkg:pkt.appendageLength), lambda pkt:pkt.appendageLength > 0),
     ]
 bind_layers(Header, ReplacedOrder, pkgType=PktType.SeqData)
-
 
 class CancelReason(str, Enum):
     UserRequestedCancel = 'U'
@@ -561,7 +546,6 @@ class CancelledOrder(Packet):
     ]
 bind_layers(Header, CancelledOrder, pkgType=PktType.SeqData)
 
-
 class PendingReason(str, Enum):
     Pending = 'A'
 
@@ -576,7 +560,6 @@ class CancelPendingOrder(Packet):
     ]
 bind_layers(Header, CancelPendingOrder, pkgType=PktType.SeqData)
 
-
 class ReplacePendingOrder(Packet):
     name = 'ReplacePendingOrder'
     fields_desc = [
@@ -587,7 +570,6 @@ class ReplacePendingOrder(Packet):
     CharEnumField("reason", PendingReason.Pending, PendingReason),
     ]
 bind_layers(Header, ReplacePendingOrder, pkgType=PktType.SeqData)
-
 
 class LiqFlag(str, Enum):
     Continuous = 'A'
@@ -720,7 +702,6 @@ class ExecutedOrder(Packet):
     ]
 bind_layers(Header, ExecutedOrder, pkgType=PktType.SeqData)
 
-
 class BrokenReason(str, Enum):
     Erroneous = 'E'
     Consent = 'C'
@@ -742,7 +723,6 @@ class BrokenTradeOrder(Packet):
     ]
 bind_layers(Header, BrokenTradeOrder, pkgType=PktType.SeqData)
 
-
 RejectReason = i16;
 
 class RejectedOrder(Packet):
@@ -754,7 +734,6 @@ class RejectedOrder(Packet):
     i16("reason", 0),
     ]
 bind_layers(Header, RejectedOrder, pkgType=PktType.SeqData)
-
 
 class RestatedReason(str, Enum):
     Refresh = 'R'
@@ -773,7 +752,6 @@ class RestatedOrder(Packet):
     ]
 bind_layers(Header, RestatedOrder, pkgType=PktType.SeqData)
 
-
 class AccountQueryResponse(Packet):
     name = 'AccountQueryResponse'
     fields_desc = [
@@ -782,7 +760,6 @@ class AccountQueryResponse(Packet):
     u32("nextUserRef", 0),
     ]
 bind_layers(Header, AccountQueryResponse, pkgType=PktType.SeqData)
-
 
 class GTCCancelledOrder(Packet):
     name = 'GTCCancelledOrder'
@@ -794,7 +771,6 @@ class GTCCancelledOrder(Packet):
     i16("reason", 0),
     ]
 bind_layers(Header, GTCCancelledOrder, pkgType=PktType.SeqData)
-
 
 
 
