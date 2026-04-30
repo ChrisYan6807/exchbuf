@@ -14,6 +14,8 @@ import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
@@ -37,7 +39,7 @@ public final class EBBitField__BehaviorDescriptor extends BaseBHDescriptor {
   }
 
   /*package*/ static String eb_string_id7cjtpqhK_7J(@NotNull SNode __thisNode__) {
-    String rtv = String.format("bitfield %s %s {\n", SPropertyOperations.getString(__thisNode__, PROPS.name$MnvL), EBPrimitiveType__BehaviorDescriptor.eb_string_id7cjtpqhs3YN.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.type$w4bT)));
+    String rtv = String.format("bitfield %s : %s {\n", SPropertyOperations.getString(__thisNode__, PROPS.name$MnvL), SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(__thisNode__, LINKS.type$w4bT))));
     for (SNode e : ListSequence.fromList(SLinkOperations.getChildren(__thisNode__, LINKS.values$w4DV))) {
       rtv += String.format("  enum = %s, default = %s, length = %s\n", SPropertyOperations.getString(SLinkOperations.getTarget(e, LINKS.enum$iBH6), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(e, LINKS.default$Qsog), PROPS.name$MnvL), SPropertyOperations.getInteger(e, PROPS.length$wbxg));
     }

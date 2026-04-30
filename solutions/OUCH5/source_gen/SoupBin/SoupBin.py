@@ -39,7 +39,7 @@ class Header(Packet):
 class Debug(Packet):
     name = 'Debug'
     fields_desc = [
-        StrLenField("text", b"", length_from=lambda pkt:pkt.pkgLength - -1),  var_str<size=pkgLength, offset=-1> text
+        StrLenField("text", b"", length_from=lambda pkt:pkt.pkgLength - -1),  @var_str<size=pkgLength, offset=-1> text
 
     ]
 bind_layers(Header, Debug, pkgType=PktType.Debug)

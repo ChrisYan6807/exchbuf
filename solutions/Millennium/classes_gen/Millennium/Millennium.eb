@@ -2,14 +2,14 @@
 // Millennium
 
 
-primitive Alpha = char_ebt [ min=, max=, null=, endian= ]
-primitive UInt8 = uint8_ebt [ min=, max=, null=, endian= ]
-primitive Int8 = int8_ebt [ min=, max=, null=, endian= ]
-primitive UInt16 = uint16_ebt [ min=, max=, null=, endian= ]
-primitive Int16 = int16_ebt [ min=, max=, null=, endian= ]
-primitive UInt32 = uint32_ebt [ min=, max=, null=, endian= ]
-primitive Int32 = int32_ebt [ min=, max=, null=, endian= ]
-primitive Uint64 = uint64_ebt [ min=, max=, null=, endian= ]
+primitive Alpha = char_ebt [ min=, max=, null=, little_endian=false ]
+primitive UInt8 = uint8_ebt [ min=, max=, null=, little_endian=false ]
+primitive Int8 = int8_ebt [ min=, max=, null=, little_endian=false ]
+primitive UInt16 = uint16_ebt [ min=, max=, null=, little_endian=false ]
+primitive Int16 = int16_ebt [ min=, max=, null=, little_endian=false ]
+primitive UInt32 = uint32_ebt [ min=, max=, null=, little_endian=false ]
+primitive Int32 = int32_ebt [ min=, max=, null=, little_endian=false ]
+primitive Uint64 = uint64_ebt [ min=, max=, null=, little_endian=false ]
 
 primitive String1 = FixedLengthString [ length=1, padding='\0', left_padding=false ]
 primitive String8 = FixedLengthString [ length=8, padding='\0', left_padding=false ]
@@ -22,7 +22,7 @@ primitive String21 = FixedLengthString [ length=20, padding='\0', left_padding=f
 primitive String25 = FixedLengthString [ length=25, padding='\0', left_padding=false ]
 primitive String30 = FixedLengthString [ length=30, padding='\0', left_padding=false ]
 
-primitive MillenniumPrice = FloatDecimal [ min=, max=, null=, size=8, precision=8,signed=true, little_endian=true ]
+primitive MillenniumPrice = FloatDecimal [ min=, max=, null=, size=8, precision=8, signed=true, little_endian=true ]
 
 enum MsgType : char_ebt {
   Heartbeat = '0'

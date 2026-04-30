@@ -11,11 +11,11 @@ using namespace EB::common;
 using Alpha = LittleEndian<char, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0>;
 using UInt8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
 using Int8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0>;
-using UInt16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using Int16 = LittleEndian<int16_t, std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max(), 0>;
-using UInt32 = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using Int32 = LittleEndian<int32_t, std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max(), 0>;
-using Uint64 = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using UInt16 = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
+using Int16 = BigEndian<int16_t, std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max(), 0>;
+using UInt32 = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using Int32 = BigEndian<int32_t, std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max(), 0>;
+using Uint64 = BigEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
 
 using String1 = FixedLengthString<1, '\0', false>;
 using String8 = FixedLengthString<8, '\0', false>;

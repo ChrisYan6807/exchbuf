@@ -48,10 +48,10 @@ public class EBMessagePresenceByLengthFieldMember_Constraints extends BaseConstr
         public Scope createScope(final ReferenceConstraintsContext _context) {
           List<SNode> statements = new ArrayList<SNode>();
           SNode msg = SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBMessage$YV, false, false);
-          ListSequence.fromList(statements).addSequence(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SNodeOperations.isInstanceOf(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU) && SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
+          ListSequence.fromList(statements).addSequence(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SNodeOperations.isInstanceOf(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU) && SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
 
           if ((SLinkOperations.getTarget(msg, LINKS.base$LfNH) != null)) {
-            ListSequence.fromList(statements).addSequence(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SLinkOperations.getTarget(msg, LINKS.base$LfNH), LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SNodeOperations.isInstanceOf(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU) && SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
+            ListSequence.fromList(statements).addSequence(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SLinkOperations.getTarget(msg, LINKS.base$LfNH), LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SNodeOperations.isInstanceOf(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU) && SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(it, LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
           }
 
           return ListScope.forNamedElements(statements);
@@ -64,7 +64,7 @@ public class EBMessagePresenceByLengthFieldMember_Constraints extends BaseConstr
     /*package*/ static final SConcept EBMessagePresenceByLengthFieldMember$aD = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2355ef0eeL, "eb_lang.structure.EBMessagePresenceByLengthFieldMember");
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
     /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
-    /*package*/ static final SConcept EBImportPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive");
+    /*package*/ static final SConcept EBPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
   }
 

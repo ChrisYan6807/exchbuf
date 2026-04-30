@@ -23,25 +23,25 @@
       <concept id="4586680865754378478" name="eb_lang.structure.EBMessagePresenceByLengthFieldMember" flags="ng" index="aYt$s">
         <reference id="4586680865754378479" name="presence_len" index="aYt$t" />
       </concept>
-      <concept id="4586680865734662652" name="eb_lang.structure.EBMessageBitMember" flags="ng" index="b_j0e">
+      <concept id="4586680865734662652" name="eb_lang.structure.EBMessageFixedBitsMember" flags="ng" index="b_j0e">
         <property id="4586680865734662655" name="nbits" index="b_j0d" />
       </concept>
       <concept id="4586680865732698065" name="eb_lang.structure.EBArray" flags="ng" index="bGNoz">
         <property id="4586680865732698068" name="size" index="bGNoA" />
         <reference id="4586680865732698066" name="type" index="bGNow" />
       </concept>
-      <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
+      <concept id="8244488409083636230" name="eb_lang.structure.EBPrimitive" flags="ng" index="2gaMi0">
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
       <concept id="8244488409083636233" name="eb_lang.structure.EBPython" flags="ng" index="2gaMif">
         <property id="8244488409083636256" name="value" index="2gaMiA" />
       </concept>
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
+        <property id="6362636135990793682" name="size" index="2SxKC8" />
         <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
-      <concept id="8244488409083636266" name="eb_lang.structure.EBMessageMember" flags="ng" index="2gaMiG" />
-      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageBlockMember" flags="ng" index="2gaMiJ">
+      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageVarArrayMember" flags="ng" index="2gaMiJ">
         <reference id="4482077330613725983" name="counter" index="3Pf6aa" />
       </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM" />
@@ -85,24 +85,22 @@
         <child id="8244488409083493664" name="value" index="2glneA" />
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu" />
-      <concept id="8717146646090248479" name="eb_lang.structure.EBBigEndian" flags="ng" index="nMZuJ" />
       <concept id="8717146646088251492" name="eb_lang.structure.EBIntType" flags="ng" index="nUBVk">
+        <property id="7525553852834343333" name="little_endian" index="0cOFY" />
         <property id="8717146646088262296" name="min" index="nVqgC" />
-        <child id="8717146646090248481" name="endian" index="nMZuh" />
       </concept>
       <concept id="1374950686633462402" name="eb_lang.structure.EBFloatDecimal" flags="ng" index="1foOjv">
+        <property id="1374950686633462417" name="null" index="1foOjc" />
         <property id="1374950686633462412" name="precision" index="1foOjh" />
         <property id="1374950686633462408" name="size" index="1foOjl" />
+        <property id="1374950686633462405" name="min" index="1foOjo" />
+        <property id="1374950686633462403" name="max" index="1foOju" />
         <property id="685487308851322013" name="little_endian" index="1vB4Ie" />
         <property id="80104936667564269" name="signed" index="3RNXZI" />
       </concept>
       <concept id="5693447180648184401" name="eb_lang.structure.EBMessageVarStrMember" flags="ng" index="3yYcDq">
         <property id="5693447180648184404" name="offset" index="3yYcDv" />
         <reference id="5693447180648184402" name="size" index="3yYcDp" />
-      </concept>
-      <concept id="7035066850814977247" name="eb_lang.structure.EBMessagePresenceFieldMember" flags="ng" index="1$kB3o">
-        <property id="7035066850814977250" name="pos" index="1$kB3_" />
-        <reference id="7035066850814977249" name="presence_map" index="1$kB3A" />
       </concept>
       <concept id="6086719741696308508" name="eb_lang.structure.EBMessageMemberVar" flags="ng" index="1BkyD7">
         <reference id="4586680865736090769" name="type" index="bScPz" />
@@ -140,13 +138,16 @@
     </node>
     <node concept="2gaMi0" id="4nIu8bHFhNL" role="2gln9U">
       <property role="TrG5h" value="U8" />
-      <node concept="2gaQCM" id="4nIu8bHFhNN" role="2gaMi1" />
+      <node concept="2gaQCM" id="4nIu8bHFhNN" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="4nIu8bHFhNQ" role="2gln9U">
       <property role="TrG5h" value="U16" />
-      <node concept="2gaQCO" id="4nIu8bHFhNU" role="2gaMi1">
+      <node concept="2gaQCO" id="6xK8PHCB8qL" role="2gaMi1">
+        <property role="0cOFY" value="true" />
         <property role="nVqgC" value="" />
-        <node concept="nMZuJ" id="25jvKnOSkAk" role="nMZuh" />
       </node>
     </node>
     <node concept="2gaMi0" id="7cjtpqhtybM" role="2gln9U">
@@ -174,7 +175,20 @@
     </node>
     <node concept="2gaMi0" id="25jvKnQAyHb" role="2gln9U">
       <property role="TrG5h" value="v1" />
-      <node concept="2glnej" id="25jvKnQC0Av" role="2gaMi1" />
+      <node concept="2glnej" id="25jvKnQC0Av" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
+    </node>
+    <node concept="2gln9S" id="34_KF$SZQay" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gaMi0" id="34_KF$SZQa$" role="2gln9U">
+      <property role="TrG5h" value="v2" />
+      <node concept="2glnei" id="34_KF$SZQaC" role="2gaMi1">
+        <property role="0cOFY" value="true" />
+        <property role="nVqgC" value="" />
+      </node>
     </node>
     <node concept="2gln9S" id="7cjtpqhKzoj" role="2gln9U">
       <property role="TrG5h" value="empty" />
@@ -186,6 +200,9 @@
         <property role="1foOjl" value="8" />
         <property role="1foOjh" value="8" />
         <property role="1vB4Ie" value="true" />
+        <property role="1foOjo" value="1" />
+        <property role="1foOju" value="2" />
+        <property role="1foOjc" value="3" />
       </node>
     </node>
     <node concept="2gaMi0" id="7cjtpqhKzoh" role="2gln9U">
@@ -401,6 +418,7 @@
     </node>
     <node concept="2gaMiw" id="2D23R1uY2JW" role="2gln9U">
       <property role="TrG5h" value="NewOrder" />
+      <property role="2SxKC8" value="" />
       <ref role="2yvCZa" node="2D23R1uY2K0" resolve="Head" />
       <node concept="2gaMiM" id="2D23R1uY2KA" role="36JId$">
         <property role="TrG5h" value="price" />
@@ -442,18 +460,11 @@
         <property role="TrG5h" value="pmap" />
         <ref role="bScPz" node="4nIu8bHFhNL" resolve="U8" />
       </node>
-      <node concept="1$kB3o" id="6xK8PHBKRQe" role="36JId$">
-        <property role="1$kB3_" value="1" />
-        <property role="TrG5h" value="optional_account" />
-        <ref role="bScPz" node="2D23R1v5TV6" resolve="ClearingAccount" />
-        <ref role="1$kB3A" node="6xK8PHBKS$A" resolve="pmap" />
-      </node>
       <node concept="awP_h" id="6xK8PHBKS$D" role="36JId$">
         <property role="awP_n" value="2" />
         <property role="TrG5h" value="firm_arr" />
         <ref role="bScPz" node="2D23R1v5TVc" resolve="ClearingFirm" />
       </node>
-      <node concept="2gaMiG" id="6xK8PHBLi6w" role="36JId$" />
     </node>
     <node concept="2gln9S" id="7cjtpqhT9LF" role="2gln9U">
       <property role="TrG5h" value="empty" />

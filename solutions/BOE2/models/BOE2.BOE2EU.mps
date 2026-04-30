@@ -21,7 +21,7 @@
         <reference id="4586680865752963857" name="presence_val" index="aVBbz" />
         <child id="938998696757460004" name="values" index="3TNS9M" />
       </concept>
-      <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
+      <concept id="8244488409083636230" name="eb_lang.structure.EBPrimitive" flags="ng" index="2gaMi0">
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
@@ -31,7 +31,7 @@
         <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
-      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageBlockMember" flags="ng" index="2gaMiJ">
+      <concept id="8244488409083636265" name="eb_lang.structure.EBMessageVarArrayMember" flags="ng" index="2gaMiJ">
         <reference id="4482077330613725983" name="counter" index="3Pf6aa" />
       </concept>
       <concept id="8244488409083636276" name="eb_lang.structure.EBMessageEntryMember" flags="ng" index="2gaMiM">
@@ -68,7 +68,11 @@
         <child id="8244488409083493664" name="value" index="2glneA" />
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu" />
-      <concept id="8968744803451485567" name="eb_lang.structure.EBMessagePresenceByOptionalBitMember" flags="ng" index="AF5Mu">
+      <concept id="8717146646088251492" name="eb_lang.structure.EBIntType" flags="ng" index="nUBVk">
+        <property id="7525553852834343333" name="little_endian" index="0cOFY" />
+        <property id="8717146646088262296" name="min" index="nVqgC" />
+      </concept>
+      <concept id="8968744803451485567" name="eb_lang.structure.EBMessagePresenceByBitMember" flags="ng" index="AF5Mu">
         <reference id="8968744803451485568" name="presence_val" index="AF5Lx" />
         <reference id="8968744803451485571" name="mask" index="AF5Ly" />
         <reference id="8968744803451485570" name="target_enum" index="AF5Lz" />
@@ -97,31 +101,52 @@
     <property role="TrG5h" value="BOE2EU" />
     <node concept="2gaMi0" id="1Wrrlab0UNZ" role="2gln9U">
       <property role="TrG5h" value="i8" />
-      <node concept="2glnei" id="1Wrrlab0UO3" role="2gaMi1" />
+      <node concept="2glnei" id="1Wrrlab0UO3" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UO6" role="2gln9U">
       <property role="TrG5h" value="u8" />
-      <node concept="2gaQCM" id="1Wrrlab0UOa" role="2gaMi1" />
+      <node concept="2gaQCM" id="1Wrrlab0UOa" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UNT" role="2gln9U">
       <property role="TrG5h" value="i16" />
-      <node concept="2gaQCC" id="1Wrrlab0UNV" role="2gaMi1" />
+      <node concept="2gaQCC" id="1Wrrlab0UNV" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UOd" role="2gln9U">
       <property role="TrG5h" value="u16" />
-      <node concept="2gaQCO" id="1Wrrlab0UOh" role="2gaMi1" />
+      <node concept="2gaQCO" id="1Wrrlab0UOh" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UOk" role="2gln9U">
       <property role="TrG5h" value="i32" />
-      <node concept="2gaQCD" id="1Wrrlab0UOo" role="2gaMi1" />
+      <node concept="2gaQCD" id="1Wrrlab0UOo" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UOr" role="2gln9U">
       <property role="TrG5h" value="u32" />
-      <node concept="2gaQCR" id="1Wrrlab0UOv" role="2gaMi1" />
+      <node concept="2gaQCR" id="1Wrrlab0UOv" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="1Wrrlab0UOy" role="2gln9U">
       <property role="TrG5h" value="u64" />
-      <node concept="2gaQCP" id="1Wrrlab0UOA" role="2gaMi1" />
+      <node concept="2gaQCP" id="1Wrrlab0UOA" role="2gaMi1">
+        <property role="nVqgC" value="" />
+        <property role="0cOFY" value="true" />
+      </node>
     </node>
     <node concept="2gaMi0" id="1Wrrlab18R3" role="2gln9U">
       <property role="TrG5h" value="str2" />

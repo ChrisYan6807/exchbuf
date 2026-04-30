@@ -13,16 +13,13 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SConceptOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
 import org.jetbrains.mps.openapi.language.SProperty;
-import org.jetbrains.mps.openapi.language.SContainmentLink;
-import org.jetbrains.mps.openapi.language.SConcept;
 
 public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
@@ -49,10 +46,11 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(eb_string_id7cjtpqhs3YN, signed_id7qxjCwPtAaQ, size_id7qxjCwPtApr, cppName_id9WwCMYBSZJ, pyName_id9WwCMYBWwT, fmt_id4GpIFxqoQnK, isNumber_id2ZdneJ5Om96, postFix_id7hSmxNPVYQ$, fmtDefault_id7hSmxNQ2P2b, maxValue_id4s_KfQNT9K, minValue_id4s_KfQOhiQ, nullValue_id4s_KfQO$Rt, cppMaxValue_id7hSmxNPVVTN, cppMinValue_id7hSmxNPVVUA, cppNullValue_id7hSmxNPVVVi, isNative_id5hSnPGNw5sK, isLittleEndian_id7qxjCwPtLrW, byteOrderChar_id4GpIFxqp7uZ);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
+    SPropertyOperations.assign(__thisNode__, PROPS.little_endian$UiG8, true);
   }
 
   /*package*/ static String eb_string_id7cjtpqhs3YN(@NotNull SNode __thisNode__) {
-    return String.format("%s [ min=%s, max=%s, null=%s, endian=%s ]", SConceptOperations.conceptAlias(SNodeOperations.getConcept(__thisNode__)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)), ((SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_) == null) ? "" : EBEndian__BehaviorDescriptor.value_id25jvKnP5y1D.invoke(SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_))));
+    return String.format("%s [ min=%s, max=%s, null=%s, little_endian=%s ]", SConceptOperations.conceptAlias(SNodeOperations.getConcept(__thisNode__)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)), (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)) ? "" : SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)), (SPropertyOperations.getBoolean(__thisNode__, PROPS.little_endian$UiG8) ? "true" : "false"));
   }
   /*package*/ static boolean isNumber_id2ZdneJ5Om96(@NotNull SNode __thisNode__, char c) {
     if (c >= '0' && c <= '9') {
@@ -187,18 +185,10 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
     }
   }
   /*package*/ static boolean isNative_id5hSnPGNw5sK(@NotNull SNode __thisNode__) {
-    return isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)) && isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)) && isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)) && (SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_) == null);
+    return isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.max$DBZO)) && isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.min$DCVS)) && isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.null$sULd)) && SPropertyOperations.getBoolean(__thisNode__, PROPS.little_endian$UiG8);
   }
   /*package*/ static boolean isLittleEndian_id7qxjCwPtLrW(@NotNull SNode __thisNode__) {
-    if ((SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_) == null)) {
-      return true;
-    } else {
-      if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.endian$mcO_), CONCEPTS.EBLittleEndian$e5)) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    return SPropertyOperations.getBoolean(__thisNode__, PROPS.little_endian$UiG8);
   }
   /*package*/ static String byteOrderChar_id4GpIFxqp7uZ(@NotNull SNode __thisNode__) {
     return (((boolean) EBIntType__BehaviorDescriptor.isLittleEndian_id7qxjCwPtLrW.invoke(__thisNode__)) ? "<" : ">");
@@ -281,16 +271,9 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
   }
 
   private static final class PROPS {
+    /*package*/ static final SProperty little_endian$UiG8 = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x6870235b684369a5L, "little_endian");
     /*package*/ static final SProperty min$DCVS = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142298L, "min");
     /*package*/ static final SProperty max$DBZO = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f142294L, "max");
     /*package*/ static final SProperty null$sULd = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x1314ce5d5c778a97L, "null");
-  }
-
-  private static final class LINKS {
-    /*package*/ static final SContainmentLink endian$mcO_ = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f327121L, "endian");
-  }
-
-  private static final class CONCEPTS {
-    /*package*/ static final SConcept EBLittleEndian$e5 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f327120L, "eb_lang.structure.EBLittleEndian");
   }
 }

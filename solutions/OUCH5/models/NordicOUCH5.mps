@@ -21,7 +21,7 @@
       <concept id="4586680865754378478" name="eb_lang.structure.EBMessagePresenceByLengthFieldMember" flags="ng" index="aYt$s">
         <reference id="4586680865754378479" name="presence_len" index="aYt$t" />
       </concept>
-      <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
+      <concept id="8244488409083636230" name="eb_lang.structure.EBPrimitive" flags="ng" index="2gaMi0">
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
@@ -70,10 +70,8 @@
         <child id="8244488409083493664" name="value" index="2glneA" />
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu" />
-      <concept id="8717146646090248479" name="eb_lang.structure.EBBigEndian" flags="ng" index="nMZuJ" />
       <concept id="8717146646088251492" name="eb_lang.structure.EBIntType" flags="ng" index="nUBVk">
         <property id="8717146646088262296" name="min" index="nVqgC" />
-        <child id="8717146646090248481" name="endian" index="nMZuh" />
       </concept>
       <concept id="6086719741696308508" name="eb_lang.structure.EBMessageMemberVar" flags="ng" index="1BkyD7">
         <reference id="4586680865736090769" name="type" index="bScPz" />
@@ -87,8 +85,15 @@
       </concept>
     </language>
     <language id="ceab5195-25ea-4f22-9b92-103b95ca8c0c" name="jetbrains.mps.lang.core">
+      <concept id="1133920641626" name="jetbrains.mps.lang.core.structure.BaseConcept" flags="ng" index="2VYdi">
+        <child id="5169995583184591170" name="smodelAttribute" index="lGtFl" />
+      </concept>
       <concept id="1169194658468" name="jetbrains.mps.lang.core.structure.INamedConcept" flags="ngI" index="TrEIO">
         <property id="1169194664001" name="name" index="TrG5h" />
+      </concept>
+      <concept id="779128492853369165" name="jetbrains.mps.lang.core.structure.SideTransformInfo" flags="ng" index="1KehLL">
+        <property id="779128492853934523" name="cellId" index="1K8rM7" />
+        <property id="779128492853699361" name="side" index="1Kfyot" />
       </concept>
     </language>
   </registry>
@@ -101,28 +106,25 @@
     <node concept="2gln9S" id="2D23R1wlj2Q" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
-    <node concept="2gaMi0" id="O7Z_rQ4rUO" role="2gln9U">
+    <node concept="2gaMi0" id="6xK8PHCA8nV" role="2gln9U">
       <property role="TrG5h" value="u64" />
-      <node concept="2gaQCP" id="2D23R1wlj6h" role="2gaMi1">
+      <node concept="2gaQCP" id="6xK8PHCA8nZ" role="2gaMi1">
         <property role="nVqgC" value="" />
-        <node concept="nMZuJ" id="2D23R1wlj6l" role="nMZuh" />
       </node>
     </node>
-    <node concept="2gaMi0" id="2D23R1wlj6n" role="2gln9U">
+    <node concept="2gaMi0" id="6xK8PHCA8o3" role="2gln9U">
       <property role="TrG5h" value="i32" />
-      <node concept="2gaQCD" id="2D23R1wlj6t" role="2gaMi1">
+      <node concept="2gaQCD" id="6xK8PHCA8o7" role="2gaMi1">
         <property role="nVqgC" value="" />
-        <node concept="nMZuJ" id="2D23R1wlj6w" role="nMZuh" />
       </node>
     </node>
-    <node concept="2gaMi0" id="2D23R1woV85" role="2gln9U">
+    <node concept="2gaMi0" id="6xK8PHCA8ob" role="2gln9U">
       <property role="TrG5h" value="i16" />
-      <node concept="2gaQCC" id="2D23R1woV89" role="2gaMi1">
+      <node concept="2gaQCC" id="6xK8PHCA8of" role="2gaMi1">
         <property role="nVqgC" value="" />
-        <node concept="nMZuJ" id="2D23R1woV8c" role="nMZuh" />
       </node>
     </node>
-    <node concept="2gln9S" id="2D23R1wlj6g" role="2gln9U">
+    <node concept="2gln9S" id="6xK8PHC$kKQ" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
     <node concept="2gaMi0" id="O7Z_rQ4rUA" role="2gln9U">
@@ -550,11 +552,11 @@
     </node>
     <node concept="20ngxA" id="O7Z_rQ4s2A" role="2gln9U">
       <property role="TrG5h" value="OrigOrderRefNum" />
-      <ref role="20hb7u" node="O7Z_rQ4rUO" resolve="u64" />
+      <ref role="20hb7u" node="6xK8PHCA8nV" resolve="u64" />
     </node>
     <node concept="20ngxA" id="O7Z_rQ4s2D" role="2gln9U">
       <property role="TrG5h" value="PegDiff" />
-      <ref role="20hb7u" node="2D23R1wlj6n" resolve="i32" />
+      <ref role="20hb7u" node="6xK8PHCA8o3" resolve="i32" />
     </node>
     <node concept="2glneb" id="O7Z_rQ4s2G" role="2gln9U">
       <property role="TrG5h" value="PegType" />
@@ -584,7 +586,7 @@
     </node>
     <node concept="20ngxA" id="O7Z_rQ4s37" role="2gln9U">
       <property role="TrG5h" value="SecondaryOrderRefNum" />
-      <ref role="20hb7u" node="O7Z_rQ4rUO" resolve="u64" />
+      <ref role="20hb7u" node="6xK8PHCA8nV" resolve="u64" />
     </node>
     <node concept="2glneb" id="O7Z_rQ4s3a" role="2gln9U">
       <property role="TrG5h" value="STPAuction" />
@@ -910,6 +912,10 @@
           <ref role="3To9CK" node="O7Z_rQ4s4E" resolve="TradingAtClosingPrice" />
           <ref role="3To9CL" node="O7Z_rQ4rYt" resolve="TradingAtClosingPrice" />
         </node>
+      </node>
+      <node concept="1KehLL" id="34_KF$P_D3Z" role="lGtFl">
+        <property role="1K8rM7" value="defaultEditor_InspectorCell" />
+        <property role="1Kfyot" value="Fg1jLUVyTf/left" />
       </node>
     </node>
     <node concept="2gln9S" id="O7Z_rQ4rZJ" role="2gln9U">
@@ -1532,11 +1538,11 @@
     </node>
     <node concept="20ngxA" id="O7Z_rQ4saZ" role="2gln9U">
       <property role="TrG5h" value="TimeStamp" />
-      <ref role="20hb7u" node="O7Z_rQ4rUO" resolve="u64" />
+      <ref role="20hb7u" node="6xK8PHCA8nV" resolve="u64" />
     </node>
     <node concept="20ngxA" id="O7Z_rQ4sb2" role="2gln9U">
       <property role="TrG5h" value="OrderRefNum" />
-      <ref role="20hb7u" node="O7Z_rQ4rUO" resolve="u64" />
+      <ref role="20hb7u" node="6xK8PHCA8nV" resolve="u64" />
     </node>
     <node concept="20ngxA" id="O7Z_rQ4sb5" role="2gln9U">
       <property role="TrG5h" value="OrderBook" />
@@ -2978,7 +2984,7 @@
     </node>
     <node concept="20ngxA" id="2D23R1woV82" role="2gln9U">
       <property role="TrG5h" value="RejectReason" />
-      <ref role="20hb7u" node="2D23R1woV85" resolve="i16" />
+      <ref role="20hb7u" node="6xK8PHCA8ob" resolve="i16" />
     </node>
     <node concept="2gln9S" id="2D23R1woV7K" role="2gln9U">
       <property role="TrG5h" value="empty" />

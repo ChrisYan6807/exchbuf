@@ -125,7 +125,7 @@ enum Algo : uint8_ebt {
 }
 
 
-bitfield MiFIDFlags uint8_ebt [ min=, max=, null=, endian= ] {
+bitfield MiFIDFlags : uint8_ebt {
   enum = DEA, default = Yes, length = 1
   enum = LiqProv, default = Yes, length = 1
   enum = Algo, default = No, length = 1
@@ -153,7 +153,7 @@ enum EDMT : uint8_ebt {
   Person = 3
 }
 
-bitfield PartyRoleQualifiers uint8_ebt [ min=, max=, null=, endian= ] {
+bitfield PartyRoleQualifiers : uint8_ebt {
   enum = ClientIDType, default = None, length = 2
   enum = IDMT, default = None, length = 2
   enum = EDMT, default = None, length = 2
@@ -196,13 +196,13 @@ enum RFPT : uint8_ebt {
   Yes = 1
 }
 
-bitfield WaiverFlags uint8_ebt [ min=, max=, null=, endian= ] {
+bitfield WaiverFlags : uint8_ebt {
   enum = Dummy, default = NA, length = 5
   enum = RFPT, default = No, length = 1
 }
 
 
-bitfield WaiverFlags2 uint8_ebt [ min=, max=, null=, endian= ] {
+bitfield WaiverFlags2 : uint8_ebt {
   enum = Dummy, default = NA, length = 1
   enum = NETW, default = No, length = 1
 }

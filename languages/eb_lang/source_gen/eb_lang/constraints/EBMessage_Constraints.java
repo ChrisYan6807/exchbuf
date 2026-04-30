@@ -83,7 +83,7 @@ public class EBMessage_Constraints extends BaseConstraintsDescriptor {
         public Scope createScope(final ReferenceConstraintsContext _context) {
           List<SNode> enums = new ArrayList<SNode>();
           ListSequence.fromList(enums).addSequence(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SLinkOperations.getTarget(_context.getReferenceNode(), LINKS.base$LfNH), LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SConceptOperations.isExactly(SNodeOperations.asSConcept(SNodeOperations.getConcept(SLinkOperations.getTarget(it, LINKS.type$zO4N))), CONCEPTS.EBEnum$37)));
-          ListSequence.fromList(enums).addSequence(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SLinkOperations.getTarget(_context.getReferenceNode(), LINKS.base$LfNH), LINKS.content$vVwC), CONCEPTS.EBMessageBitMember$57)).where((it) -> SConceptOperations.isExactly(SNodeOperations.asSConcept(SNodeOperations.getConcept(SLinkOperations.getTarget(it, LINKS.type$zO4N))), CONCEPTS.EBEnum$37)));
+          ListSequence.fromList(enums).addSequence(Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SLinkOperations.getTarget(_context.getReferenceNode(), LINKS.base$LfNH), LINKS.content$vVwC), CONCEPTS.EBMessageFixedBitsMember$57)).where((it) -> SConceptOperations.isExactly(SNodeOperations.asSConcept(SNodeOperations.getConcept(SLinkOperations.getTarget(it, LINKS.type$zO4N))), CONCEPTS.EBEnum$37)));
 
           return ListScope.forNamedElements(enums);
 
@@ -118,7 +118,7 @@ public class EBMessage_Constraints extends BaseConstraintsDescriptor {
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
     /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
     /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
-    /*package*/ static final SConcept EBMessageBitMember$57 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2343219fcL, "eb_lang.structure.EBMessageBitMember");
+    /*package*/ static final SConcept EBMessageFixedBitsMember$57 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2343219fcL, "eb_lang.structure.EBMessageFixedBitsMember");
   }
 
   private static final class LINKS {

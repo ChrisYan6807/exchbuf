@@ -12,7 +12,7 @@
       <concept id="4493654547885040486" name="eb_lang.structure.EBAlias" flags="ng" index="20ngxA">
         <reference id="4493654547886512862" name="type" index="20hb7u" />
       </concept>
-      <concept id="8244488409083636230" name="eb_lang.structure.EBImportPrimitive" flags="ng" index="2gaMi0">
+      <concept id="8244488409083636230" name="eb_lang.structure.EBPrimitive" flags="ng" index="2gaMi0">
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
@@ -47,10 +47,8 @@
         <child id="8244488409083493664" name="value" index="2glneA" />
       </concept>
       <concept id="8244488409083493656" name="eb_lang.structure.EBCharLiteral" flags="ng" index="2glneu" />
-      <concept id="8717146646090248479" name="eb_lang.structure.EBBigEndian" flags="ng" index="nMZuJ" />
       <concept id="8717146646088251492" name="eb_lang.structure.EBIntType" flags="ng" index="nUBVk">
         <property id="8717146646088262296" name="min" index="nVqgC" />
-        <child id="8717146646090248481" name="endian" index="nMZuh" />
       </concept>
       <concept id="1374950686633462402" name="eb_lang.structure.EBFloatDecimal" flags="ng" index="1foOjv">
         <property id="1374950686633462417" name="null" index="1foOjc" />
@@ -86,16 +84,14 @@
     </node>
     <node concept="2gaMi0" id="O7Z_rQ4rUf" role="2gln9U">
       <property role="TrG5h" value="u16" />
-      <node concept="2gaQCO" id="O7Z_rQ4rUj" role="2gaMi1">
+      <node concept="2gaQCO" id="6xK8PHCA8oj" role="2gaMi1">
         <property role="nVqgC" value="" />
-        <node concept="nMZuJ" id="O7Z_rQ4rUm" role="nMZuh" />
       </node>
     </node>
     <node concept="2gaMi0" id="O7Z_rQ4rUO" role="2gln9U">
       <property role="TrG5h" value="u32" />
-      <node concept="2gaQCR" id="O7Z_rQ4rUS" role="2gaMi1">
+      <node concept="2gaQCR" id="6xK8PHCA8on" role="2gaMi1">
         <property role="nVqgC" value="" />
-        <node concept="nMZuJ" id="O7Z_rQ4rUV" role="nMZuh" />
       </node>
     </node>
     <node concept="2gaMi0" id="O7Z_rQ4rUA" role="2gln9U">

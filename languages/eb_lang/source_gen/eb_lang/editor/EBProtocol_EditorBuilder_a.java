@@ -280,7 +280,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                               SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, ((noValue.equals("0x00") || noValue.isEmpty()) ? "'\\0'" : noValue));
                               SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, range);
 
-                              SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                              SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                               SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
                               SLinkOperations.setTarget(alias, LINKS.type$zVeR, fixedStr);
 
@@ -366,7 +366,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                               }
                             } else {
                               // int type
-                              SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                              SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                               SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
                               SLinkOperations.setTarget(alias, LINKS.type$zVeR, typeNode);
 
@@ -394,7 +394,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           SPropertyOperations.assign(floatType, PROPS.size$l3Es, size);
                           SPropertyOperations.assign(floatType, PROPS.precision$l9xP, precision);
 
-                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                           SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
                           SLinkOperations.setTarget(alias, LINKS.type$zVeR, floatType);
 
@@ -413,7 +413,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "'\\0'");
                           SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, "\\x00-\\x255");
 
-                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                           SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
                           SLinkOperations.setTarget(alias, LINKS.type$zVeR, fixedStr);
 
@@ -493,7 +493,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                             int cardinality = Integer.parseInt(membeEle.getAttribute("cardinality"));
 
-                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember"));
+                            SNode member = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageVarArrayMember"));
                             SPropertyOperations.assign(member, PROPS.name$MnvL, memberName);
                             SLinkOperations.setTarget(member, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(memberType)).first());
 
@@ -588,47 +588,47 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                 ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cfeL, "eb_lang.structure.EBEmptyStatement")));
 
                 {
-                  SNode char_t = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode char_t = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(char_t, PROPS.name$MnvL, "char_t");
                   SLinkOperations.setTarget(char_t, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(char_t);
 
-                  SNode u8 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode u8 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(u8, PROPS.name$MnvL, "uint8");
                   SLinkOperations.setTarget(u8, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b4L, "eb_lang.structure.EBUInt8")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(u8);
 
-                  SNode i8 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode i8 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(i8, PROPS.name$MnvL, "int8");
                   SLinkOperations.setTarget(i8, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d14L, "eb_lang.structure.EBInt8")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(i8);
 
-                  SNode u16 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode u16 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(u16, PROPS.name$MnvL, "uint16");
                   SLinkOperations.setTarget(u16, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b2L, "eb_lang.structure.EBUInt16")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(u16);
 
-                  SNode i16 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode i16 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(i16, PROPS.name$MnvL, "int16");
                   SLinkOperations.setTarget(i16, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124aeL, "eb_lang.structure.EBInt16")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(i16);
 
-                  SNode u32 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode u32 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(u32, PROPS.name$MnvL, "uint32");
                   SLinkOperations.setTarget(u32, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b1L, "eb_lang.structure.EBUInt32")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(u32);
 
-                  SNode i32 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode i32 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(i32, PROPS.name$MnvL, "int32");
                   SLinkOperations.setTarget(i32, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124afL, "eb_lang.structure.EBInt32")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(i32);
 
-                  SNode u64 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode u64 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(u64, PROPS.name$MnvL, "uint64");
                   SLinkOperations.setTarget(u64, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b1L, "eb_lang.structure.EBUInt32")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(u64);
 
-                  SNode i64 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  SNode i64 = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                   SPropertyOperations.assign(i64, PROPS.name$MnvL, "int64");
                   SLinkOperations.setTarget(i64, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124afL, "eb_lang.structure.EBInt32")));
                   ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(i64);
@@ -693,7 +693,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                         SPropertyOperations.assign(typeASTNode, PROPS.max$DBZO, maxValue);
                         SPropertyOperations.assign(typeASTNode, PROPS.null$sULd, nullValue);
 
-                        SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                        SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                         SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
                         SLinkOperations.setTarget(alias, LINKS.type$zVeR, typeASTNode);
 
@@ -705,7 +705,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                         if (length.equals("1")) {
                           // char type
                           SNode typeASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar"));
-                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                           SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
                           SLinkOperations.setTarget(alias, LINKS.type$zVeR, typeASTNode);
                           ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
@@ -719,7 +719,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, "'\\0'");
                           SPropertyOperations.assign(fixedStr, PROPS.range$t6I$, "\\x00-\\x255");
 
-                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                          SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                           SPropertyOperations.assign(alias, PROPS.name$MnvL, name);
                           SLinkOperations.setTarget(alias, LINKS.type$zVeR, fixedStr);
 
@@ -995,7 +995,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                           SLinkOperations.setTarget(numASTNode, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals("int8")).first());
                           ListSequence.fromList(SLinkOperations.getChildren(compositeMsg, LINKS.content$vVwC)).addElement(numASTNode);
 
-                          SNode dataASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageBlockMember"));
+                          SNode dataASTNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageVarArrayMember"));
                           SPropertyOperations.assign(dataASTNode, PROPS.name$MnvL, "data");
                           SLinkOperations.setTarget(dataASTNode, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBMessage$YV)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(groupMsgName)).first());
                           SLinkOperations.setTarget(dataASTNode, LINKS.counter$kzoe, numASTNode);
@@ -1091,7 +1091,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                     boolean signed = desc.contains("Signed");
                     int int_size = ((Number) typeDef.get("size")).intValue();
 
-                    SNode primitive = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                    SNode primitive = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                     SPropertyOperations.assign(primitive, PROPS.name$MnvL, name);
                     switch (int_size) {
                       case 1:
@@ -1137,7 +1137,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                       SPropertyOperations.assign(floatType, PROPS.signed$CnQN, true);
                       SPropertyOperations.assign(floatType, PROPS.precision$l9xP, 8);
 
-                      SNode aliasNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                      SNode aliasNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                       SPropertyOperations.assign(aliasNode, PROPS.name$MnvL, name);
                       SLinkOperations.setTarget(aliasNode, LINKS.type$zVeR, floatType);
                       ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(aliasNode);
@@ -1164,7 +1164,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                     String underlying = ((String) typeDef.get("underlying"));
                     for (SNode statement : SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)) {
                       if (SNodeOperations.isInstanceOf(statement, CONCEPTS.EBTypeStatement$o0) && SPropertyOperations.getString(SNodeOperations.cast(statement, CONCEPTS.EBTypeStatement$o0), PROPS.name$MnvL).equals(underlying)) {
-                        SLinkOperations.setTarget(enumNode, LINKS.type$_ySl, SNodeOperations.copyNode(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(statement, CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
+                        SLinkOperations.setTarget(enumNode, LINKS.type$_ySl, SNodeOperations.copyNode(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(statement, CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)));
                         break;
                       }
                     }
@@ -1209,7 +1209,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                     Integer length = ((Number) typeDef.get("length")).intValue();
 
                     if (type.equals("AnsiChar")) {
-                      SNode strNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                      SNode strNode = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                       SPropertyOperations.assign(strNode, PROPS.name$MnvL, name);
                       SNode fixed_str = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                       SPropertyOperations.assign(fixed_str, PROPS.length$ZIZR, length);
@@ -1299,22 +1299,23 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
             public void run() {
               String path = chooser.getSelectedFile().getPath();
 
-
               try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
                 SLinkOperations.getChildren(myNode, LINKS.statements$_5KW).clear();
                 LogContext.with(EBProtocol_EditorBuilder_a.class, null, null, null).debug("selected path: " + path);
                 String line;
+                String delimiter = new String("[ ,=<>\\]\\[]+");
                 while ((line = reader.readLine()) != null) {
+
                   line = line.strip();
-                  if (line.startsWith("primitive")) {
-                    String[] raw = line.split("[ ,\\]\\[]+");
-                    ArrayList<String> tokens = new ArrayList<String>();
-                    for (String s : raw) {
-                      if (!(s == null || s.length() == 0)) {
-                        tokens.add(s);
-                      }
+                  String[] raw = line.split(delimiter);
+                  final ArrayList<String> tokens = new ArrayList<String>();
+                  for (String s : raw) {
+                    if (!(s == null || s.length() == 0)) {
+                      tokens.add(s);
                     }
-                    SNode primitive = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive"));
+                  }
+                  if (line.startsWith("primitive")) {
+                    SNode primitive = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive"));
                     SPropertyOperations.assign(primitive, PROPS.name$MnvL, tokens.get(1));
                     // primitive u8 = uint8_ebt [ min=, max=, null=, endian= ]
                     // primitive Price = FloatDecimal [ min=, max=, null=, size=8, precision=8,signed=true, little_endian=true ]
@@ -1323,13 +1324,38 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                     String min_v;
                     String max_v;
                     String null_v;
-                    String endian_v;
+                    Boolean little_endian_v;
 
                     if (type.endsWith("ebt")) {
-                      min_v = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
-                      max_v = tokens.get(5).substring(tokens.get(5).indexOf('=') + 1);
-                      null_v = tokens.get(6).substring(tokens.get(6).indexOf('=') + 1);
-                      endian_v = tokens.get(7).substring(tokens.get(7).indexOf('=') + 1);
+                      int idx = 4;
+                      if (tokens.get(idx).equals("max")) {
+                        // min has no value
+                        min_v = "";
+                        idx += 1;
+                      } else {
+                        min_v = tokens.get(idx);
+                        idx += 2;
+                      }
+
+                      if (tokens.get(idx).equals("null")) {
+                        // max has no value
+                        max_v = "";
+                        idx += 1;
+                      } else {
+                        max_v = tokens.get(idx);
+                        idx += 2;
+                      }
+
+                      if (tokens.get(idx).equals("little_endian")) {
+                        // max has no value
+                        null_v = "";
+                        idx += 1;
+                      } else {
+                        null_v = tokens.get(idx);
+                        idx += 2;
+                      }
+
+                      little_endian_v = Boolean.parseBoolean(tokens.get(idx));
 
                       if (type.equals("uint8_ebt")) {
                         SLinkOperations.setTarget(primitive, LINKS.type$zVeR, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b4L, "eb_lang.structure.EBUInt8")));
@@ -1354,35 +1380,60 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                       SPropertyOperations.assign(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), PROPS.min$DCVS, min_v);
                       SPropertyOperations.assign(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), PROPS.max$DBZO, max_v);
                       SPropertyOperations.assign(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), PROPS.null$sULd, null_v);
-                      if (endian_v.isEmpty() || endian_v.equals("little")) {
-                        SLinkOperations.setTarget(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), LINKS.endian$mcO_, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f327120L, "eb_lang.structure.EBLittleEndian")));
-                      } else {
-                        SLinkOperations.setTarget(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), LINKS.endian$mcO_, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f32711fL, "eb_lang.structure.EBBigEndian")));
-                      }
+                      SPropertyOperations.assign(SNodeOperations.cast(SLinkOperations.getTarget(primitive, LINKS.type$zVeR), CONCEPTS.EBIntType$ej), PROPS.little_endian$UiG8, little_endian_v);
+
                     } else if (type.equals("FloatDecimal")) {
-                      min_v = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
-                      max_v = tokens.get(5).substring(tokens.get(5).indexOf('=') + 1);
-                      null_v = tokens.get(6).substring(tokens.get(6).indexOf('=') + 1);
-                      String size_v = tokens.get(7).substring(tokens.get(7).indexOf('=') + 1);
-                      String precision_v = tokens.get(8).substring(tokens.get(8).indexOf('=') + 1);
-                      String signed_v = tokens.get(9).substring(tokens.get(9).indexOf('=') + 1);
-                      endian_v = tokens.get(10).substring(tokens.get(10).indexOf('=') + 1);
+                      int idx = 4;
+                      if (tokens.get(idx).equals("max")) {
+                        // min has no value
+                        min_v = "";
+                        idx += 1;
+                      } else {
+                        min_v = tokens.get(idx);
+                        idx += 2;
+                      }
+
+                      if (tokens.get(idx).equals("null")) {
+                        // max has no value
+                        max_v = "";
+                        idx += 1;
+                      } else {
+                        max_v = tokens.get(idx);
+                        idx += 2;
+                      }
+
+                      if (tokens.get(idx).equals("size")) {
+                        // max has no value
+                        null_v = "";
+                        idx += 1;
+                      } else {
+                        null_v = tokens.get(idx);
+                        idx += 2;
+                      }
+
+                      int size_v = Integer.parseInt(tokens.get(idx));
+                      idx += 2;
+                      int precision_v = Integer.parseInt(tokens.get(idx));
+                      idx += 2;
+                      boolean signed_v = Boolean.parseBoolean(tokens.get(idx));
+                      idx += 2;
+                      little_endian_v = Boolean.parseBoolean(tokens.get(idx));
 
                       SNode floatDec = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, "eb_lang.structure.EBFloatDecimal"));
                       SPropertyOperations.assign(floatDec, PROPS.min$l2Xp, min_v);
                       SPropertyOperations.assign(floatDec, PROPS.max$l2vn, max_v);
                       SPropertyOperations.assign(floatDec, PROPS.null$laGU, null_v);
-                      SPropertyOperations.assign(floatDec, PROPS.size$l3Es, Integer.parseInt(size_v));
-                      SPropertyOperations.assign(floatDec, PROPS.precision$l9xP, Integer.parseInt(precision_v));
-                      SPropertyOperations.assign(floatDec, PROPS.signed$CnQN, Boolean.parseBoolean(signed_v));
-                      SPropertyOperations.assign(floatDec, PROPS.little_endian$pzMh, Boolean.parseBoolean(endian_v));
+                      SPropertyOperations.assign(floatDec, PROPS.size$l3Es, size_v);
+                      SPropertyOperations.assign(floatDec, PROPS.precision$l9xP, precision_v);
+                      SPropertyOperations.assign(floatDec, PROPS.signed$CnQN, signed_v);
+                      SPropertyOperations.assign(floatDec, PROPS.little_endian$pzMh, little_endian_v);
 
                       SLinkOperations.setTarget(primitive, LINKS.type$zVeR, floatDec);
 
                     } else if (type.equals("FixedLengthString")) {
-                      String length_v = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
-                      String padding_v = tokens.get(5).substring(tokens.get(5).indexOf('=') + 1);
-                      boolean right_padded = tokens.get(6).substring(tokens.get(6).indexOf('=') + 1) == "true";
+                      String length_v = tokens.get(4);
+                      String padding_v = tokens.get(6);
+                      boolean right_padded = Boolean.parseBoolean(tokens.get(8));
                       SNode fixedStr = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, "eb_lang.structure.EBFixedLenghString"));
                       SPropertyOperations.assign(fixedStr, PROPS.length$ZIZR, Integer.parseInt(length_v));
                       SPropertyOperations.assign(fixedStr, PROPS.padding$ZJtT, padding_v);
@@ -1396,67 +1447,45 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                     ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(primitive);
                   } else if (line.startsWith("alias")) {
-                    String[] raw = line.split("[ ,\\]\\[]+");
-                    final ArrayList<String> tokens = new ArrayList<String>();
-                    for (String s : raw) {
-                      if (!(s == null || s.length() == 0)) {
-                        tokens.add(s);
-                      }
-                    }
                     // alias Price = Price3 [ if P3 else Price4 ] 
                     // alias MsgLen = U16
                     SNode alias = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, "eb_lang.structure.EBAlias"));
                     SPropertyOperations.assign(alias, PROPS.name$MnvL, tokens.get(1));
-                    SLinkOperations.setTarget(alias, LINKS.type$kr$f, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(3))).first());
+                    SLinkOperations.setTarget(alias, LINKS.type$kr$f, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(2))).first());
                     if (tokens.size() == 7) {
-                      SPropertyOperations.assign(alias, PROPS.pred$HpTv, tokens.get(5));
-                      SLinkOperations.setTarget(alias, LINKS.opt_type$Hq8w, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(7))).first());
+                      SPropertyOperations.assign(alias, PROPS.pred$HpTv, tokens.get(4));
+                      SLinkOperations.setTarget(alias, LINKS.opt_type$Hq8w, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(6))).first());
                     } else {
-                      LogContext.with(EBProtocol_EditorBuilder_a.class, null, null, null).error("alias tokens is not 4 or 7");
+                      if (tokens.size() != 3) {
+                        LogContext.with(EBProtocol_EditorBuilder_a.class, null, null, null).error("alias tokens is not 3 or 7: " + Integer.toString(tokens.size()));
+                      }
                     }
 
                     ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(alias);
                   } else if (line.startsWith("array")) {
-                    String[] raw = line.split("[ ,<>]+");
-                    ArrayList<String> tokens = new ArrayList<String>();
-                    for (String s : raw) {
-                      if (!(s == null || s.length() == 0)) {
-                        tokens.add(s);
-                      }
-                    }
-
                     SNode array = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f234141fd1L, "eb_lang.structure.EBArray"));
-                    SPropertyOperations.assign(array, PROPS.name$MnvL, tokens.get(3));
-                    final String array_type = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
-                    String array_size = tokens.get(4).substring(tokens.get(4).indexOf('=') + 1);
+                    SPropertyOperations.assign(array, PROPS.name$MnvL, tokens.getLast());
+                    final String array_type = tokens.get(2);
+                    String array_size = tokens.get(4);
                     SLinkOperations.setTarget(array, LINKS.type$qzpR, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(array_type)).first());
                     SPropertyOperations.assign(array, PROPS.size$qzRT, Integer.parseInt(array_size));
 
                     ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(array);
-
                   } else if (line.startsWith("// ")) {
                     SNode comment = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169a5L, "eb_lang.structure.EBComment"));
                     SPropertyOperations.assign(comment, PROPS.value$wjFT, line.substring(3));
-                    ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(comment);
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(comment);
                   } else if (line.startsWith("@cpp ")) {
                     SNode cpp = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24169c4L, "eb_lang.structure.EBCPP"));
                     SPropertyOperations.assign(cpp, PROPS.value$wDYR, line.substring(5));
-                    ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(cpp);
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(cpp);
                   } else if (line.startsWith("@python ")) {
                     SNode py = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a09L, "eb_lang.structure.EBPython"));
                     SPropertyOperations.assign(py, PROPS.value$$aYn, line.substring(8));
-                    ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(py);
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(py);
                   } else if (line.isEmpty()) {
                     ListSequence.fromList(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW)).addElement(SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cfeL, "eb_lang.structure.EBEmptyStatement")));
                   } else if (line.startsWith("enum ")) {
-                    String[] raw = line.split(" +");
-                    ArrayList<String> tokens = new ArrayList<String>();
-                    for (String s : raw) {
-                      if (!(s == null || s.length() == 0)) {
-                        tokens.add(s);
-                      }
-                    }
-
                     SNode enum_node = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum"));
                     SPropertyOperations.assign(enum_node, PROPS.name$MnvL, tokens.get(1));
                     String int_type = tokens.get(3);
@@ -1482,11 +1511,11 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                     String subline;
                     while ((subline = reader.readLine()) != null) {
-                      if (line.startsWith("}")) {
+                      if (subline.startsWith("}")) {
                         break;
                       }
-                      line = line.strip();
-                      String[] subraw = line.split("[ ,<>]+");
+                      subline = subline.strip();
+                      String[] subraw = subline.split(delimiter);
                       ArrayList<String> sub_tokens = new ArrayList<String>();
                       for (String s : subraw) {
                         if (!(s == null || s.length() == 0)) {
@@ -1496,24 +1525,21 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                       SNode pair = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair"));
                       SPropertyOperations.assign(pair, PROPS.name$MnvL, sub_tokens.get(0));
-                      SLinkOperations.setTarget(pair, LINKS.value$_yQp, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d16L, "eb_lang.structure.EBIntLiteral")));
-                      SPropertyOperations.assign(SLinkOperations.getTarget(pair, LINKS.value$_yQp), PROPS.value$zter, sub_tokens.get(2));
+                      if (sub_tokens.get(1).startsWith("'")) {
+                        SLinkOperations.setTarget(pair, LINKS.value$_yQp, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d18L, "eb_lang.structure.EBCharLiteral")));
+                        SPropertyOperations.assign(SLinkOperations.getTarget(pair, LINKS.value$_yQp), PROPS.value$zter, sub_tokens.get(1).replaceAll("^'|'$", ""));
+                      } else {
+                        SLinkOperations.setTarget(pair, LINKS.value$_yQp, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d17L, "eb_lang.structure.EBNumberLiteral")));
+                        SPropertyOperations.assign(SLinkOperations.getTarget(pair, LINKS.value$_yQp), PROPS.value$zter, sub_tokens.get(1));
+                      }
                       ListSequence.fromList(SLinkOperations.getChildren(enum_node, LINKS.values$_zmn)).addElement(pair);
                     }
 
                     ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(enum_node);
                   } else if (line.startsWith("bitfield ")) {
-                    String[] raw = line.split(" +");
-                    ArrayList<String> tokens = new ArrayList<String>();
-                    for (String s : raw) {
-                      if (!(s == null || s.length() == 0)) {
-                        tokens.add(s);
-                      }
-                    }
-
                     SNode bitfield = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e241698fL, "eb_lang.structure.EBBitField"));
                     SPropertyOperations.assign(bitfield, PROPS.name$MnvL, tokens.get(1));
-                    String int_type = tokens.get(2);
+                    String int_type = tokens.get(3);
                     if (int_type.equals("char_ebt")) {
                       SLinkOperations.setTarget(bitfield, LINKS.type$w4bT, SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d15L, "eb_lang.structure.EBChar")));
                     } else if (int_type.equals("uint8_ebt")) {
@@ -1536,11 +1562,11 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                     String subline;
                     while ((subline = reader.readLine()) != null) {
-                      if (line.startsWith("}")) {
+                      if (subline.startsWith("}")) {
                         break;
                       }
-                      line = line.strip();
-                      String[] subraw = line.split("[ ,=]+");
+                      subline = subline.strip();
+                      String[] subraw = subline.split(delimiter);
                       final ArrayList<String> sub_tokens = new ArrayList<String>();
                       for (String s : subraw) {
                         if (!(s == null || s.length() == 0)) {
@@ -1550,7 +1576,7 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
 
                       SNode bfm = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, "eb_lang.structure.EBBitFieldMember"));
                       SPropertyOperations.assign(bfm, PROPS.length$wbxg, Integer.parseInt(sub_tokens.get(5)));
-                      SLinkOperations.setTarget(bfm, LINKS.enum$iBH6, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(myNode, LINKS.statements$_5KW), CONCEPTS.EBEnum$37)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(1))).first());
+                      SLinkOperations.setTarget(bfm, LINKS.enum$iBH6, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBEnum$37)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(1))).first());
                       SLinkOperations.setTarget(bfm, LINKS.default$Qsog, ListSequence.fromList(SLinkOperations.getChildren(SLinkOperations.getTarget(bfm, LINKS.enum$iBH6), LINKS.values$_zmn)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(3))).first());
 
                       ListSequence.fromList(SLinkOperations.getChildren(bitfield, LINKS.values$w4DV)).addElement(bfm);
@@ -1559,20 +1585,150 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
                     ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(bitfield);
                   } else if (line.startsWith("@include ")) {
                     SNode include = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, "eb_lang.structure.EBInclude"));
-                    final String include_name = line.substring(line.indexOf(" ") + 1);
-                    SLinkOperations.setTarget(include, LINKS.protocol$v5qn, Sequence.fromIterable(SNodeOperations.ofConcept(SNodeOperations.getAllSiblings(protocolRootASTNode, false), CONCEPTS.EBProtocol$zC)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(include_name)).first());
+                    SLinkOperations.setTarget(include, LINKS.protocol$v5qn, Sequence.fromIterable(SNodeOperations.ofConcept(SNodeOperations.getAllSiblings(protocolRootASTNode, false), CONCEPTS.EBProtocol$zC)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(1))).first());
 
                     ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(include);
 
                   } else if (line.startsWith("message ")) {
+
+                    SNode msg = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage"));
+                    ListSequence.fromList(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW)).addElement(msg);
+
+                    SPropertyOperations.assign(msg, PROPS.name$MnvL, tokens.get(1));
+                    if (!(tokens.get(3).equals("{"))) {
+                      // has base
+                      SLinkOperations.setTarget(msg, LINKS.base$LfNH, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBMessage$YV)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(tokens.get(3))).first());
+                    }
+
+                    String subline;
+                    while ((subline = reader.readLine()) != null) {
+                      if (subline.startsWith("}")) {
+                        break;
+                      }
+                      subline = subline.strip();
+                      String[] subraw = subline.split(delimiter);
+                      final ArrayList<String> sub_tokens = new ArrayList<String>();
+                      for (String s : subraw) {
+                        if (!(s == null || s.length() == 0)) {
+                          sub_tokens.add(s);
+                        }
+                      }
+
+                      if (!(sub_tokens.get(0).startsWith("@"))) {
+                        // entry member
+                        SNode entry = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember"));
+                        SPropertyOperations.assign(entry, PROPS.name$MnvL, sub_tokens.get(1));
+                        SLinkOperations.setTarget(entry, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(0))).first());
+                        if (sub_tokens.size() == 4) {
+                          // has default
+                          SPropertyOperations.assign(entry, PROPS.default$w7ZO, sub_tokens.get(3));
+                        }
+
+                        ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(entry);
+
+                      } else {
+                        // var len member
+                        String type = sub_tokens.get(0);
+                        if (type.startsWith("@array")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2352470a3L, "eb_lang.structure.EBMessageArrayMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.getLast());
+                          SLinkOperations.setTarget(mem, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(2))).first());
+                          SPropertyOperations.assign(mem, PROPS.size$E0Ao, Integer.parseInt(sub_tokens.get(4)));
+
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+
+                        } else if (type.startsWith("@var_array")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a29L, "eb_lang.structure.EBMessageVarArrayMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.get(5));
+                          SLinkOperations.setTarget(mem, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(2))).first());
+                          SLinkOperations.setTarget(mem, LINKS.counter$kzoe, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(4))).first());
+
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+
+                        } else if (type.startsWith("@var_str")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x4f03300badfbfa51L, "eb_lang.structure.EBMessageVarStrMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.getLast());
+                          SLinkOperations.setTarget(mem, LINKS.size$7Hjn, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(2))).first());
+                          SPropertyOperations.assign(mem, PROPS.offset$7HLp, sub_tokens.get(4));
+
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+
+                        } else if (type.startsWith("fixed_bits")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2343219fcL, "eb_lang.structure.EBMessageFixedBitsMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.getLast());
+                          SLinkOperations.setTarget(mem, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(2))).first());
+                          SPropertyOperations.assign(mem, PROPS.nbits$ElNp, Integer.parseInt(sub_tokens.get(4)));
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+
+                        } else if (type.startsWith("@optional_by_value")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2354a0048L, "eb_lang.structure.EBMessagePresenceByValueFieldMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.getLast());
+                          SLinkOperations.setTarget(mem, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(2))).first());
+                          SLinkOperations.setTarget(mem, LINKS.presence_val$4Trn, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(4))).first());
+                          SPropertyOperations.assign(mem, PROPS.pred$4TTp, sub_tokens.get(6));
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+
+                        } else if (type.startsWith("@optional_by_len")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2355ef0eeL, "eb_lang.structure.EBMessagePresenceByLengthFieldMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.getLast());
+                          SLinkOperations.setTarget(mem, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(2))).first());
+                          SLinkOperations.setTarget(mem, LINKS.presence_len$vS6n, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageEntryMember$fS)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(4))).first());
+
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+                        } else if (type.startsWith("@optional_by_enum")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f235495b10L, "eb_lang.structure.EBMessagePresenceByEnumMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.get(1));
+                          SLinkOperations.setTarget(mem, LINKS.presence_val$G2Qn, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageMemberVar$_K)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(3))).first());
+                          // tbd
+                          String itemline;
+                          while ((itemline = reader.readLine()) != null) {
+                            itemline = itemline.strip();
+                            if (itemline.startsWith("}")) {
+                              break;
+                            }
+                            String[] subsubraw = itemline.split(delimiter);
+                            final ArrayList<String> item_tokens = new ArrayList<String>();
+                            for (String s : subsubraw) {
+                              if (!(s == null || s.length() == 0)) {
+                                item_tokens.add(s);
+                              }
+                            }
+
+                            SNode enum_entry = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0xd07fe56f4676460L, "eb_lang.structure.EBMessagePresenceByEnumEntryMember"));
+                            SLinkOperations.setTarget(enum_entry, LINKS.type$_vIh, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(item_tokens.get(1))).first());
+                            SLinkOperations.setTarget(enum_entry, LINKS.enum_value$_vXi, ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(SLinkOperations.getTarget(SLinkOperations.getTarget(mem, LINKS.presence_val$G2Qn), LINKS.type$zO4N), CONCEPTS.EBEnum$37), LINKS.values$_zmn)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(item_tokens.get(3))).first());
+
+                            ListSequence.fromList(SLinkOperations.getChildren(mem, LINKS.values$fyud)).addElement(enum_entry);
+                          }
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+
+                        } else if (type.startsWith("@optional_by_bit")) {
+                          SNode mem = SConceptOperations.createNewNode(MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x7c7761e15adb3d7fL, "eb_lang.structure.EBMessagePresenceByBitMember"));
+                          SPropertyOperations.assign(mem, PROPS.name$MnvL, sub_tokens.getLast());
+                          SLinkOperations.setTarget(mem, LINKS.type$zO4N, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(protocolRootASTNode, LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(2))).first());
+                          SLinkOperations.setTarget(mem, LINKS.presence_val$MrAR, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBMessageMemberVar$_K)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(4))).first());
+                          SLinkOperations.setTarget(mem, LINKS.target_enum$Mx0e, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(msg, LINKS.content$vVwC), CONCEPTS.EBEnum$37)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(6))).first());
+                          SLinkOperations.setTarget(mem, LINKS.mask$Mxff, Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SLinkOperations.getTarget(mem, LINKS.target_enum$Mx0e), LINKS.values$_zmn), CONCEPTS.EBIntKVPair$vd)).where((it) -> SPropertyOperations.getString(it, PROPS.name$MnvL).equals(sub_tokens.get(8))).first());
+
+                          ListSequence.fromList(SLinkOperations.getChildren(msg, LINKS.content$vVwC)).addElement(mem);
+                        }
+                      }
+                    }
                   }
+                }
+
+              } catch (Exception e) {
+                LogContext.with(EBProtocol_EditorBuilder_a.class, null, null, null).debug("exception:" + e.getMessage());
+
+                for (StackTraceElement s : e.getStackTrace()) {
+
+
+                  e.getStackTrace();
+
 
                 }
 
 
-
-              } catch (IOException e) {
-                e.printStackTrace();
               }
             }
           };
@@ -1721,9 +1877,14 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SProperty length$wbxg = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416997L, 0x726a4e86e241699cL, "length");
     /*package*/ static final SProperty signed$CnQN = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x11c9703f6d348edL, "signed");
     /*package*/ static final SProperty size$qzRT = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f234141fd1L, 0x3fa729f234141fd4L, "size");
+    /*package*/ static final SProperty little_endian$UiG8 = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x6870235b684369a5L, "little_endian");
     /*package*/ static final SProperty little_endian$pzMh = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x1314ce5d5c778a82L, 0x9835713561f1c9dL, "little_endian");
     /*package*/ static final SProperty right_padded$eGux = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e24124b5L, 0x4f03300bae400014L, "right_padded");
     /*package*/ static final SProperty pred$HpTv = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x4dac1b7fe8eef00L, "pred");
+    /*package*/ static final SProperty size$E0Ao = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2352470a3L, 0x3fa729f2352470a5L, "size");
+    /*package*/ static final SProperty offset$7HLp = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x4f03300badfbfa51L, 0x4f03300badfbfa54L, "offset");
+    /*package*/ static final SProperty nbits$ElNp = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2343219fcL, 0x3fa729f2343219ffL, "nbits");
+    /*package*/ static final SProperty pred$4TTp = MetaAdapterFactory.getProperty(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2354a0048L, 0x3fa729f2354a004bL, "pred");
   }
 
   private static final class CONCEPTS {
@@ -1733,9 +1894,10 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
     /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
-    /*package*/ static final SConcept EBImportPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive");
+    /*package*/ static final SConcept EBPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
     /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
+    /*package*/ static final SConcept EBIntKVPair$vd = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d1dL, "eb_lang.structure.EBIntKVPair");
     /*package*/ static final SConcept EBStatement$nx = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf2L, "eb_lang.structure.EBStatement");
   }
 
@@ -1757,8 +1919,17 @@ import org.jetbrains.mps.openapi.language.SReferenceLink;
     /*package*/ static final SReferenceLink base_link_value$L0F8 = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x3fa729f2342fad35L, "base_link_value");
     /*package*/ static final SReferenceLink type$kr$f = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x3e5cab00be181adeL, "type");
     /*package*/ static final SReferenceLink type$qzpR = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f234141fd1L, 0x3fa729f234141fd2L, "type");
-    /*package*/ static final SContainmentLink endian$mcO_ = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f327121L, "endian");
     /*package*/ static final SReferenceLink opt_type$Hq8w = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, 0x4dac1b7fe8eef01L, "opt_type");
     /*package*/ static final SReferenceLink protocol$v5qn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, 0x5300c8f52845c9abL, "protocol");
+    /*package*/ static final SReferenceLink size$7Hjn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x4f03300badfbfa51L, 0x4f03300badfbfa52L, "size");
+    /*package*/ static final SReferenceLink presence_val$4Trn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2354a0048L, 0x3fa729f2354a0049L, "presence_val");
+    /*package*/ static final SReferenceLink presence_len$vS6n = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f2355ef0eeL, 0x3fa729f2355ef0efL, "presence_len");
+    /*package*/ static final SReferenceLink presence_val$G2Qn = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f235495b10L, 0x3fa729f235495b11L, "presence_val");
+    /*package*/ static final SReferenceLink type$_vIh = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0xd07fe56f4676460L, 0xd07fe56f4676466L, "type");
+    /*package*/ static final SReferenceLink enum_value$_vXi = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0xd07fe56f4676460L, 0xd07fe56f4676467L, "enum_value");
+    /*package*/ static final SContainmentLink values$fyud = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3fa729f235495b10L, 0xd07fe56f4c87c24L, "values");
+    /*package*/ static final SReferenceLink presence_val$MrAR = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x7c7761e15adb3d7fL, 0x7c7761e15adb3d80L, "presence_val");
+    /*package*/ static final SReferenceLink target_enum$Mx0e = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x7c7761e15adb3d7fL, 0x7c7761e15adb3d82L, "target_enum");
+    /*package*/ static final SReferenceLink mask$Mxff = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x7c7761e15adb3d7fL, 0x7c7761e15adb3d83L, "mask");
   }
 }

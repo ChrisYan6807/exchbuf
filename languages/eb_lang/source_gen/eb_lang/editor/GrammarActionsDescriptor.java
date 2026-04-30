@@ -30,8 +30,6 @@ import org.jetbrains.mps.openapi.language.SProperty;
 import jetbrains.mps.editor.runtime.selection.SelectionUtil;
 import jetbrains.mps.editor.runtime.cells.CellIdManager;
 import com.mbeddr.mpsutil.grammarcells.runtime.EditorHierachyCache;
-import com.mbeddr.mpsutil.grammarcells.runtime.Parser;
-import java.util.Objects;
 import jetbrains.mps.openapi.editor.cells.SubstituteAction;
 import jetbrains.mps.smodel.IOperationContext;
 import jetbrains.mps.smodel.action.NodeSubstituteActionsFactoryContext;
@@ -312,14 +310,6 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             }
           }.renderingCondition(sourceNode);
         })));
-        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBMessageEntryMember$fS) ? _context : null), ((_FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>) (TransformationMenuContext parentContext) -> {
-          final SNode sourceNode = parentContext.getNode();
-          return new Object() {
-            public boolean renderingCondition(SNode node) {
-              return node.getProperty(PROPS.default$w7ZO) != null;
-            }
-          }.renderingCondition(sourceNode);
-        })));
         new Object() {
           public void withRedirectedContext(final TransformationMenuContext _context) {
             if (_context == null) {
@@ -526,26 +516,7 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
             }
           }.renderingCondition(sourceNode);
         })));
-        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from(new Object() {
-          public TransformationMenuContext redirect() {
-            // redirect to endian
-            final SNode sourceNode = _context.getNode();
-
-            // Use the grammar rules for a deep search
-            SNode parentNode = new Parser(_context.getModel()).isEndOf(sourceNode, _context.getMenuLocation() == MenuLocations.LEFT_SIDE_TRANSFORM, CONCEPTS.EBIntType$ej, LINKS.endian$mcO_);
-            if (parentNode != null) {
-              return _context.withNode(parentNode);
-            }
-
-            // There might be no grammar for some concepts. Try a single level check.
-            if (SNodeOperations.isInstanceOf(sourceNode, CONCEPTS.EBEndian$2W) && SNodeOperations.isInstanceOf(SNodeOperations.getParent(sourceNode), CONCEPTS.EBIntType$ej) && Objects.equals(sourceNode.getContainmentLink(), LINKS.endian$mcO_) && (_context.getMenuLocation() == MenuLocations.RIGHT_SIDE_TRANSFORM) == false) {
-              TransformationMenuContext parentContext = _context.withNode(_context.getNode().getParent());
-              return parentContext;
-            }
-
-            return null;
-          }
-        }.redirect(), ((_FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>) (TransformationMenuContext parentContext) -> {
+        ListSequence.fromList(redirectedAfter).addElement(MultiTuple.<TransformationMenuContext,_FunctionTypes._return_P1_E0<? extends Boolean, ? super TransformationMenuContext>>from((SNodeOperations.isInstanceOf(((SNode) _context.getNode()), CONCEPTS.EBIntType$ej) ? _context : null), ((_FunctionTypes._return_P1_E0<Boolean, TransformationMenuContext>) (TransformationMenuContext parentContext) -> {
           final SNode sourceNode = parentContext.getNode();
           return new Object() {
             public boolean renderingCondition(SNode node) {
@@ -814,13 +785,11 @@ public class GrammarActionsDescriptor extends AbstractGrammarActionDescriptor im
     /*package*/ static final SConcept EBMessageMember$R = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, "eb_lang.structure.EBMessageMember");
     /*package*/ static final SConcept EBMessageEntryMember$fS = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a34L, "eb_lang.structure.EBMessageEntryMember");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
-    /*package*/ static final SConcept EBEndian$2W = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f32711eL, "eb_lang.structure.EBEndian");
     /*package*/ static final SConcept EBAlias$Vq = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x3e5cab00be01a366L, "eb_lang.structure.EBAlias");
   }
 
   private static final class LINKS {
     /*package*/ static final SContainmentLink content$vVwC = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, 0x7b5896debde675baL, "content");
-    /*package*/ static final SContainmentLink endian$mcO_ = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, 0x78f986b06f327121L, "endian");
   }
 
   private static final class PROPS {

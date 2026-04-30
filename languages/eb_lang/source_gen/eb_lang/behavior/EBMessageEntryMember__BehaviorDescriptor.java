@@ -46,9 +46,9 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
     return false;
   }
   /*package*/ static String fmtCppDefault_id7hSmxNQ32$j(@NotNull SNode __thisNode__) {
-    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU)) {
-      if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
-        String fmted = EBIntType__BehaviorDescriptor.fmtDefault_id7hSmxNQ2P2b.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBImportPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej), SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO));
+    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU)) {
+      if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
+        String fmted = EBIntType__BehaviorDescriptor.fmtDefault_id7hSmxNQ2P2b.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej), SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO));
         return fmted;
       }
     } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37)) {
@@ -117,7 +117,7 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
 
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBMessage$YV = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a26L, "eb_lang.structure.EBMessage");
-    /*package*/ static final SConcept EBImportPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBImportPrimitive");
+    /*package*/ static final SConcept EBPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
     /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
   }
