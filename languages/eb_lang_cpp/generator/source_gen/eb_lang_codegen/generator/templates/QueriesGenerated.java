@@ -5,7 +5,6 @@ package eb_lang_codegen.generator.templates;
 import jetbrains.mps.generator.runtime.Generated;
 import jetbrains.mps.generator.impl.query.QueryProviderBase;
 import jetbrains.mps.generator.template.BaseMappingRuleContext;
-import jetbrains.mps.baseLanguage.logging.rt.LogContext;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.generator.template.PropertyMacroContext;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
@@ -55,30 +54,24 @@ public class QueriesGenerated extends QueryProviderBase {
     super(1);
   }
   public static boolean rule_Condition_0_0(final BaseMappingRuleContext _context) {
-    LogContext.with(QueriesGenerated.class, null, null, null).debug(SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI));
     return SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI) == 0;
   }
   public static boolean rule_Condition_0_1(final BaseMappingRuleContext _context) {
-    LogContext.with(QueriesGenerated.class, null, null, null).debug(SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI));
     return SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI) == 1;
   }
   public static boolean rule_Condition_0_2(final BaseMappingRuleContext _context) {
-    LogContext.with(QueriesGenerated.class, null, null, null).debug(SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI));
     return SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI) == 2;
   }
   public static boolean rule_Condition_0_3(final BaseMappingRuleContext _context) {
     SPropertyOperations.assign(_context.getNode(), PROPS.genType$AtJI, 0);
-    LogContext.with(QueriesGenerated.class, null, null, null).debug(SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI));
     return true;
   }
   public static boolean rule_Condition_0_4(final BaseMappingRuleContext _context) {
     SPropertyOperations.assign(_context.getNode(), PROPS.genType$AtJI, 1);
-    LogContext.with(QueriesGenerated.class, null, null, null).debug(SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI));
     return true;
   }
   public static boolean rule_Condition_0_5(final BaseMappingRuleContext _context) {
     SPropertyOperations.assign(_context.getNode(), PROPS.genType$AtJI, 2);
-    LogContext.with(QueriesGenerated.class, null, null, null).debug(SPropertyOperations.getInteger(_context.getNode(), PROPS.genType$AtJI));
     return true;
   }
   public static Object propertyMacro_GetValue_0_0(final PropertyMacroContext _context) {
