@@ -2259,13 +2259,13 @@ inline ostreamT& operator<<(ostreamT& os, const BaseLiquidityIndicator& v){
 struct BookingType {
     using value_type = char;
     enum Enum : value_type {
-        Regular = 0,
-        CFD = 1,
+        Regular = '0',
+        CFD = '1',
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "BookingType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>(1), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>(1), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('0'), static_cast<char>('1'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('0'), static_cast<char>('1'), });
     constexpr BookingType():value_{max_value} {}
     constexpr explicit BookingType(char v):value_{v} {}
     constexpr BookingType(Enum v):value_{v} {}
@@ -2541,7 +2541,7 @@ using DisplayPrice = Price4;
 struct ExecInst {
     using value_type = char;
     enum Enum : value_type {
-        Default = 0,
+        Default = '\0',
         MarketPeg = 'P',
         PrimaryPeg = 'R',
         Midpoint = 'M',
@@ -2550,8 +2550,8 @@ struct ExecInst {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "ExecInst";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('\0'), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('\0'), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
     constexpr ExecInst():value_{max_value} {}
     constexpr explicit ExecInst(char v):value_{v} {}
     constexpr ExecInst(Enum v):value_{v} {}
@@ -2709,13 +2709,13 @@ using GrossTradeAmt = Price4;
 struct IDSource {
     using value_type = char;
     enum Enum : value_type {
-        ISIN = 4,
-        RIC = 5,
+        ISIN = '4',
+        RIC = '5',
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "IDSource";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(4), static_cast<char>(5), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(4), static_cast<char>(5), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('4'), static_cast<char>('5'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('4'), static_cast<char>('5'), });
     constexpr IDSource():value_{max_value} {}
     constexpr explicit IDSource(char v):value_{v} {}
     constexpr IDSource(Enum v):value_{v} {}
@@ -2827,23 +2827,23 @@ inline ostreamT& operator<<(ostreamT& os, const LiquidityProvision& v){
 }
 using LeavesQty = u32;
 struct MatchType {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         TradeReporting = 3,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "MatchType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(3), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(3), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(3), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(3), });
     constexpr MatchType():value_{max_value} {}
-    constexpr explicit MatchType(char v):value_{v} {}
+    constexpr explicit MatchType(uint8_t v):value_{v} {}
     constexpr MatchType(Enum v):value_{v} {}
     constexpr bool operator==(const MatchType& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const MatchType& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr MatchType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MatchType& operator=(const MatchType& rhs) = default;
@@ -2867,24 +2867,24 @@ using MassCancelInst = str16;
 using MaxFloor = u32;
 using MinQty = u32;
 struct OrderCategory {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         NotaNegotiatedTrade = 0,
         PrivatelyNegotiatedTrade = 3,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "OrderCategory";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>(3), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>(3), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(3), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(3), });
     constexpr OrderCategory():value_{max_value} {}
-    constexpr explicit OrderCategory(char v):value_{v} {}
+    constexpr explicit OrderCategory(uint8_t v):value_{v} {}
     constexpr OrderCategory(Enum v):value_{v} {}
     constexpr bool operator==(const OrderCategory& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const OrderCategory& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderCategory& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderCategory& operator=(const OrderCategory& rhs) = default;
@@ -3030,23 +3030,23 @@ using RoutingInst = str4;
 using RptTime = u64;
 using SecondaryOrderID = u64;
 struct SecondaryTrdType {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         BenchmarkTrade = 64,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "SecondaryTrdType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(64), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(64), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(64), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(64), });
     constexpr SecondaryTrdType():value_{max_value} {}
-    constexpr explicit SecondaryTrdType(char v):value_{v} {}
+    constexpr explicit SecondaryTrdType(uint8_t v):value_{v} {}
     constexpr SecondaryTrdType(Enum v):value_{v} {}
     constexpr bool operator==(const SecondaryTrdType& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const SecondaryTrdType& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr SecondaryTrdType& operator=(Enum v) {value_ == v;return *this;}
     constexpr SecondaryTrdType& operator=(const SecondaryTrdType& rhs) = default;
@@ -3074,7 +3074,7 @@ using SettlementPrice = TradePrice;
 struct SubLiquidityIndicator {
     using value_type = char;
     enum Enum : value_type {
-        NO = 0,
+        NO = '\0',
         CboeDarkPoolExecution = 'D',
         RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T',
         TradeAddedHiddenLiquidity = 'H',
@@ -3086,8 +3086,8 @@ struct SubLiquidityIndicator {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "SubLiquidityIndicator";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
     constexpr SubLiquidityIndicator():value_{max_value} {}
     constexpr explicit SubLiquidityIndicator(char v):value_{v} {}
     constexpr SubLiquidityIndicator(Enum v):value_{v} {}
@@ -3177,24 +3177,24 @@ inline ostreamT& operator<<(ostreamT& os, const TimeInForce& v){
 }
 using Tolerance = u16;
 struct TradeHandlingInstruction {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         TwoPartyReport = 1,
         OnePartReportForMatching = 2,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "TradeHandlingInstruction";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(1), static_cast<char>(2), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(1), static_cast<char>(2), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
     constexpr TradeHandlingInstruction():value_{max_value} {}
-    constexpr explicit TradeHandlingInstruction(char v):value_{v} {}
+    constexpr explicit TradeHandlingInstruction(uint8_t v):value_{v} {}
     constexpr TradeHandlingInstruction(Enum v):value_{v} {}
     constexpr bool operator==(const TradeHandlingInstruction& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const TradeHandlingInstruction& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeHandlingInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeHandlingInstruction& operator=(const TradeHandlingInstruction& rhs) = default;
@@ -3217,7 +3217,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradeHandlingInstruction& v){
 using TradeID = u64;
 using TradeLinkID = u8;
 struct TradePriceCondition {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         CumDividend = 0,
         ExDividend = 2,
@@ -3225,17 +3225,17 @@ struct TradePriceCondition {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "TradePriceCondition";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>(2), static_cast<char>(13), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>(2), static_cast<char>(13), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(2), static_cast<uint8_t>(13), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(2), static_cast<uint8_t>(13), });
     constexpr TradePriceCondition():value_{max_value} {}
-    constexpr explicit TradePriceCondition(char v):value_{v} {}
+    constexpr explicit TradePriceCondition(uint8_t v):value_{v} {}
     constexpr TradePriceCondition(Enum v):value_{v} {}
     constexpr bool operator==(const TradePriceCondition& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const TradePriceCondition& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradePriceCondition& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradePriceCondition& operator=(const TradePriceCondition& rhs) = default;
@@ -3257,7 +3257,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradePriceCondition& v){
     return os;
 }
 struct TradePubnlishIndicator {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         DoNotPublish = 0,
         Publish = 1,
@@ -3265,17 +3265,17 @@ struct TradePubnlishIndicator {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "TradePubnlishIndicator";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>(1), static_cast<char>(2), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>(1), static_cast<char>(2), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
     constexpr TradePubnlishIndicator():value_{max_value} {}
-    constexpr explicit TradePubnlishIndicator(char v):value_{v} {}
+    constexpr explicit TradePubnlishIndicator(uint8_t v):value_{v} {}
     constexpr TradePubnlishIndicator(Enum v):value_{v} {}
     constexpr bool operator==(const TradePubnlishIndicator& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const TradePubnlishIndicator& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradePubnlishIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradePubnlishIndicator& operator=(const TradePubnlishIndicator& rhs) = default;
@@ -3298,7 +3298,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradePubnlishIndicator& v){
 }
 using TradeReportRefID = str20;
 struct TradeReportTransType {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         New = 0,
         Cancel = 1,
@@ -3307,17 +3307,17 @@ struct TradeReportTransType {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "TradeReportTransType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>(1), static_cast<char>(2), static_cast<char>(3), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>(1), static_cast<char>(2), static_cast<char>(3), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(3), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(3), });
     constexpr TradeReportTransType():value_{max_value} {}
-    constexpr explicit TradeReportTransType(char v):value_{v} {}
+    constexpr explicit TradeReportTransType(uint8_t v):value_{v} {}
     constexpr TradeReportTransType(Enum v):value_{v} {}
     constexpr bool operator==(const TradeReportTransType& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const TradeReportTransType& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeReportTransType& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeReportTransType& operator=(const TradeReportTransType& rhs) = default;
@@ -3380,7 +3380,7 @@ inline ostreamT& operator<<(ostreamT& os, const TradeReportType& v){
 using TradeReportTypeReturn = u16;
 using TradeTime = u64;
 struct TradingSessionSubID {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         ScheduledOpeningAuction = 2,
         ScheduledClosingAuction = 4,
@@ -3393,17 +3393,17 @@ struct TradingSessionSubID {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "TradingSessionSubID";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(2), static_cast<char>(4), static_cast<char>(6), static_cast<char>(8), static_cast<char>(9), static_cast<char>(3), static_cast<char>(5), static_cast<char>(10), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(2), static_cast<char>(4), static_cast<char>(6), static_cast<char>(8), static_cast<char>(9), static_cast<char>(3), static_cast<char>(5), static_cast<char>(10), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(6), static_cast<uint8_t>(8), static_cast<uint8_t>(9), static_cast<uint8_t>(3), static_cast<uint8_t>(5), static_cast<uint8_t>(10), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(6), static_cast<uint8_t>(8), static_cast<uint8_t>(9), static_cast<uint8_t>(3), static_cast<uint8_t>(5), static_cast<uint8_t>(10), });
     constexpr TradingSessionSubID():value_{max_value} {}
-    constexpr explicit TradingSessionSubID(char v):value_{v} {}
+    constexpr explicit TradingSessionSubID(uint8_t v):value_{v} {}
     constexpr TradingSessionSubID(Enum v):value_{v} {}
     constexpr bool operator==(const TradingSessionSubID& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const TradingSessionSubID& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradingSessionSubID& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradingSessionSubID& operator=(const TradingSessionSubID& rhs) = default;
@@ -3468,23 +3468,23 @@ inline ostreamT& operator<<(ostreamT& os, const TransactionCategory& v){
     return os;
 }
 struct TrdSubType {
-    using value_type = char;
+    using value_type = uint8_t;
     enum Enum : value_type {
         AgencyCrossTrade = 37,
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "TrdSubType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(37), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(37), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(37), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(37), });
     constexpr TrdSubType():value_{max_value} {}
-    constexpr explicit TrdSubType(char v):value_{v} {}
+    constexpr explicit TrdSubType(uint8_t v):value_{v} {}
     constexpr TrdSubType(Enum v):value_{v} {}
     constexpr bool operator==(const TrdSubType& rhs) const {return value_ == rhs.value_;}
     constexpr bool operator!=(const TrdSubType& rhs) const {return value_ != rhs.value_;}
     constexpr bool operator!=(Enum v) const {return value_ != v;}
     constexpr Enum value() const {return value_;}
-    constexpr char raw_value() const {return static_cast<char>(value_);}
-    constexpr void raw_value(char v) {value_ = Enum(v);}
+    constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
+    constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
     constexpr TrdSubType& operator=(Enum v) {value_ == v;return *this;}
     constexpr TrdSubType& operator=(const TrdSubType& rhs) = default;
@@ -3716,12 +3716,12 @@ struct AccountType {
     using value_type = char;
     enum Enum : value_type {
         Customer = '1',
-        Hose = 3,
+        Hose = '3',
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "AccountType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>(3), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>(3), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>('3'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>('3'), });
     constexpr AccountType():value_{max_value} {}
     constexpr explicit AccountType(char v):value_{v} {}
     constexpr AccountType(Enum v):value_{v} {}
@@ -4508,7 +4508,7 @@ using Subreason = str60;
 struct subLidIndicator {
     using value_type = char;
     enum Enum : value_type {
-        NoAdditionalInfo = 0,
+        NoAdditionalInfo = '\0',
         CboeDarkPoolExecution = 'D',
         RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T',
         TradeAddedHiddenLiquidity = 'H',
@@ -4517,8 +4517,8 @@ struct subLidIndicator {
     };
     static constexpr size_t size = 1;
     static constexpr char* name() {return "subLidIndicator";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('i'), static_cast<char>('P'), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('i'), static_cast<char>('P'), });
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('i'), static_cast<char>('P'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('i'), static_cast<char>('P'), });
     constexpr subLidIndicator():value_{max_value} {}
     constexpr explicit subLidIndicator(char v):value_{v} {}
     constexpr subLidIndicator(Enum v):value_{v} {}

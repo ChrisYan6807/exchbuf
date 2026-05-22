@@ -514,8 +514,8 @@ enum BaseLiquidityIndicator : char_ebt {
   SelfMatch = 'S'
 }
 enum BookingType : char_ebt {
-  Regular = 0
-  CFD = 1
+  Regular = '0'
+  CFD = '1'
 }
 enum CancelOrigOnReject : char_ebt {
   Leave = 'N'
@@ -553,7 +553,7 @@ enum DisplayIndicator : char_ebt {
 }
 alias DisplayPrice = Price4 
 enum ExecInst : char_ebt {
-  Default = 0
+  Default = '\0'
   MarketPeg = 'P'
   PrimaryPeg = 'R'
   Midpoint = 'M'
@@ -579,8 +579,8 @@ enum ExtExecInst : char_ebt {
 alias FeeCode = str2 
 alias GrossTradeAmt = Price4 
 enum IDSource : char_ebt {
-  ISIN = 4
-  RIC = 5
+  ISIN = '4'
+  RIC = '5'
 }
 alias InvestorID = u32 
 enum InvestorQualifiedRole : uint8_ebt {
@@ -596,14 +596,14 @@ enum LiquidityProvision : char_ebt {
   Yes = 'Y'
 }
 alias LeavesQty = u32 
-enum MatchType : char_ebt {
+enum MatchType : uint8_ebt {
   TradeReporting = 3
 }
 alias MassCancelID = str20 
 alias MassCancelInst = str16 
 alias MaxFloor = u32 
 alias MinQty = u32 
-enum OrderCategory : char_ebt {
+enum OrderCategory : uint8_ebt {
   NotaNegotiatedTrade = 0
   PrivatelyNegotiatedTrade = 3
 }
@@ -629,7 +629,7 @@ alias RiskReset = str8
 alias RoutingInst = str4 
 alias RptTime = u64 
 alias SecondaryOrderID = u64 
-enum SecondaryTrdType : char_ebt {
+enum SecondaryTrdType : uint8_ebt {
   BenchmarkTrade = 64
 }
 alias SecurityExchange = str4 
@@ -639,7 +639,7 @@ alias SettlementDate = u64
 alias SettlementLocation = str2 
 alias SettlementPrice = TradePrice 
 enum SubLiquidityIndicator : char_ebt {
-  NO = 0
+  NO = '\0'
   CboeDarkPoolExecution = 'D'
   RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T'
   TradeAddedHiddenLiquidity = 'H'
@@ -663,24 +663,24 @@ enum TimeInForce : char_ebt {
   GoodForAuction = '8'
 }
 alias Tolerance = u16 
-enum TradeHandlingInstruction : char_ebt {
+enum TradeHandlingInstruction : uint8_ebt {
   TwoPartyReport = 1
   OnePartReportForMatching = 2
 }
 alias TradeID = u64 
 alias TradeLinkID = u8 
-enum TradePriceCondition : char_ebt {
+enum TradePriceCondition : uint8_ebt {
   CumDividend = 0
   ExDividend = 2
   SpecialDividend = 13
 }
-enum TradePubnlishIndicator : char_ebt {
+enum TradePubnlishIndicator : uint8_ebt {
   DoNotPublish = 0
   Publish = 1
   DeferredPublication = 2
 }
 alias TradeReportRefID = str20 
-enum TradeReportTransType : char_ebt {
+enum TradeReportTransType : uint8_ebt {
   New = 0
   Cancel = 1
   Replace = 2
@@ -692,7 +692,7 @@ enum TradeReportType : char_ebt {
 }
 alias TradeReportTypeReturn = u16 
 alias TradeTime = u64 
-enum TradingSessionSubID : char_ebt {
+enum TradingSessionSubID : uint8_ebt {
   ScheduledOpeningAuction = 2
   ScheduledClosingAuction = 4
   ScheduledIntradayAuction = 6
@@ -706,7 +706,7 @@ enum TransactionCategory : char_ebt {
   RegularTrade = 'P'
   DarkTrade = 'D'
 }
-enum TrdSubType : char_ebt {
+enum TrdSubType : uint8_ebt {
   AgencyCrossTrade = 37
 }
 enum VenueType : char_ebt {
@@ -775,7 +775,7 @@ alias DrillThruProtection = u8
 alias CustOrderHandlingInst = u8 
 enum AccountType : char_ebt {
   Customer = '1'
-  Hose = 3
+  Hose = '3'
 }
 enum SIIndicator : char_ebt {
   SI = '5'
@@ -975,7 +975,7 @@ alias CrossInitiator = u8
 alias Subreason = str60 
 
 enum subLidIndicator : char_ebt {
-  NoAdditionalInfo = 0
+  NoAdditionalInfo = '\0'
   CboeDarkPoolExecution = 'D'
   RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T'
   TradeAddedHiddenLiquidity = 'H'

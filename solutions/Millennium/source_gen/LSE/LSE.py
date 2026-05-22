@@ -56,16 +56,16 @@ class PassiveOnlyOrder(int, Enum):
     NO_CONSTRAINT = 0
 
 
-class ExecType(str, Enum):
-    NEW = '0'
-    CANCELLED = '4'
-    REPLACED = '5'
-    REJECTED = '8'
-    SUSPENDED = '9'
-    EXPIRED = 'C'
-    RESTATED = 'D'
-    TRADE = 'F'
-    TRADE_CANCEL = 'H'
+class ExecType(bytes, Enum):
+    NEW = b'0'
+    CANCELLED = b'4'
+    REPLACED = b'5'
+    REJECTED = b'8'
+    SUSPENDED = b'9'
+    EXPIRED = b'C'
+    RESTATED = b'D'
+    TRADE = b'F'
+    TRADE_CANCEL = b'H'
 
 
 class OrdStatus(int, Enum):
@@ -84,10 +84,10 @@ class RestatementReason(int, Enum):
     ORDER_REPLENISHMENT = 100
 
 
-class LiquidityIndicator(str, Enum):
-    ADDED = 'A'
-    REMOVED = 'R'
-    AUCTION = 'C'
+class LiquidityIndicator(bytes, Enum):
+    ADDED = b'A'
+    REMOVED = b'R'
+    AUCTION = b'C'
 
 
 class TypeOfTrade(int, Enum):

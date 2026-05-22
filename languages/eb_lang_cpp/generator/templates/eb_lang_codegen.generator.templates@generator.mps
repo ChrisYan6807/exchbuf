@@ -4737,7 +4737,7 @@
                         <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                         <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                         <node concept="Xl_RD" id="4RVkCZf4EkT" role="37wK5m">
-                          <property role="Xl_RC" value="%sconstexpr int length() const {return sizeof(value_);}\n" />
+                          <property role="Xl_RC" value="%sconstexpr int size() const {return sizeof(value_);}\n" />
                         </node>
                         <node concept="37vLTw" id="4RVkCZf4EkU" role="37wK5m">
                           <ref role="3cqZAo" node="4RVkCZf4Efm" resolve="indent" />
@@ -4987,7 +4987,7 @@
                       <node concept="3clFbF" id="4RVkCZf79tS" role="3cqZAp">
                         <node concept="37vLTI" id="4RVkCZf7bFR" role="3clFbG">
                           <node concept="Xl_RD" id="4RVkCZf7bY_" role="37vLTx">
-                            <property role="Xl_RC" value="str" />
+                            <property role="Xl_RC" value="bytes" />
                           </node>
                           <node concept="37vLTw" id="4RVkCZf79tQ" role="37vLTJ">
                             <ref role="3cqZAo" node="4RVkCZf72uw" resolve="type" />
@@ -5031,7 +5031,7 @@
                                 <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                                 <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                                 <node concept="Xl_RD" id="4RVkCZf7zg8" role="37wK5m">
-                                  <property role="Xl_RC" value="    %s = '%s'\n" />
+                                  <property role="Xl_RC" value="    %s = b'%s'\n" />
                                 </node>
                                 <node concept="2OqwBi" id="4RVkCZf7MnE" role="37wK5m">
                                   <node concept="37vLTw" id="4RVkCZf7JQM" role="2Oq$k0">
@@ -10466,8 +10466,8 @@
                           <ref role="3TsBF5" to="wt0b:4RVkCZeqVh$" resolve="genType" />
                         </node>
                       </node>
-                      <node concept="3cmrfG" id="2D23R1vtkEF" role="3uHU7w">
-                        <property role="3cmrfH" value="1" />
+                      <node concept="3cmrfG" id="7GtGgPUJ6_2" role="3uHU7w">
+                        <property role="3cmrfH" value="2" />
                       </node>
                     </node>
                   </node>
@@ -10880,12 +10880,55 @@
                       </node>
                     </node>
                   </node>
+                  <node concept="3SKdUt" id="2ZkG2EVMhv2" role="3cqZAp">
+                    <node concept="1PaTwC" id="2ZkG2EVMhv3" role="1aUNEU">
+                      <node concept="3oM_SD" id="2ZkG2EVMhv4" role="1PaTwD">
+                        <property role="3oM_SC" value="fixme," />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhve" role="1PaTwD">
+                        <property role="3oM_SC" value="below" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhvm" role="1PaTwD">
+                        <property role="3oM_SC" value="fmt" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhvr" role="1PaTwD">
+                        <property role="3oM_SC" value="is" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhvv" role="1PaTwD">
+                        <property role="3oM_SC" value="for" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhv$" role="1PaTwD">
+                        <property role="3oM_SC" value="len" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhwg" role="1PaTwD">
+                        <property role="3oM_SC" value="field" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhwk" role="1PaTwD">
+                        <property role="3oM_SC" value="is" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhwo" role="1PaTwD">
+                        <property role="3oM_SC" value="in" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhws" role="1PaTwD">
+                        <property role="3oM_SC" value="previous" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhwA" role="1PaTwD">
+                        <property role="3oM_SC" value="layer," />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhwI" role="1PaTwD">
+                        <property role="3oM_SC" value="OUCH5" />
+                      </node>
+                      <node concept="3oM_SD" id="2ZkG2EVMhwP" role="1PaTwD">
+                        <property role="3oM_SC" value="only" />
+                      </node>
+                    </node>
+                  </node>
                   <node concept="3cpWs6" id="O7Z_rP1OxX" role="3cqZAp">
                     <node concept="2YIFZM" id="O7Z_rP1OxY" role="3cqZAk">
                       <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                       <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                       <node concept="Xl_RD" id="O7Z_rP1OxZ" role="37wK5m">
-                        <property role="Xl_RC" value="        StrLenField(\&quot;%s\&quot;, b\&quot;\&quot;, length_from=lambda pkt:pkt.%s - %s)," />
+                        <property role="Xl_RC" value="        StrLenField(\&quot;%s\&quot;, b\&quot;\&quot;, length_from=lambda pkt:pkt.underlayer.%s%s)," />
                       </node>
                       <node concept="2OqwBi" id="O7Z_rP1Oy0" role="37wK5m">
                         <node concept="30H73N" id="O7Z_rP1Oy1" role="2Oq$k0" />
@@ -10893,10 +10936,15 @@
                           <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
                         </node>
                       </node>
-                      <node concept="2OqwBi" id="O7Z_rP1Oy8" role="37wK5m">
-                        <node concept="30H73N" id="O7Z_rP1Oy9" role="2Oq$k0" />
-                        <node concept="3TrEf2" id="O7Z_rPbjs$" role="2OqNvi">
-                          <ref role="3Tt5mk" to="wt0b:4W3c0IHYZDi" resolve="size" />
+                      <node concept="2OqwBi" id="2ZkG2EVMgOa" role="37wK5m">
+                        <node concept="2OqwBi" id="O7Z_rP1Oy8" role="2Oq$k0">
+                          <node concept="30H73N" id="O7Z_rP1Oy9" role="2Oq$k0" />
+                          <node concept="3TrEf2" id="O7Z_rPbjs$" role="2OqNvi">
+                            <ref role="3Tt5mk" to="wt0b:4W3c0IHYZDi" resolve="size" />
+                          </node>
+                        </node>
+                        <node concept="3TrcHB" id="2ZkG2EVMhgO" role="2OqNvi">
+                          <ref role="3TsBF5" to="tpck:h0TrG11" resolve="name" />
                         </node>
                       </node>
                       <node concept="2OqwBi" id="O7Z_rP1TiY" role="37wK5m">
@@ -10942,8 +10990,8 @@
                           <ref role="3TsBF5" to="wt0b:4RVkCZeqVh$" resolve="genType" />
                         </node>
                       </node>
-                      <node concept="3cmrfG" id="2D23R1vg7sv" role="3uHU7w">
-                        <property role="3cmrfH" value="1" />
+                      <node concept="3cmrfG" id="7GtGgPUJ6$X" role="3uHU7w">
+                        <property role="3cmrfH" value="2" />
                       </node>
                     </node>
                   </node>
@@ -10952,7 +11000,7 @@
                       <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                       <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                       <node concept="Xl_RD" id="2D23R1vgbfN" role="37wK5m">
-                        <property role="Xl_RC" value="  %s&lt;size=%s, offset=%s&gt; %s\n" />
+                        <property role="Xl_RC" value="  %s&lt;size=%s, offset=%s&gt; %s" />
                       </node>
                       <node concept="2OqwBi" id="2D23R1vgj6l" role="37wK5m">
                         <node concept="2OqwBi" id="2D23R1vgh5E" role="2Oq$k0">
@@ -11533,7 +11581,7 @@
                         <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                       </node>
                       <node concept="Xl_RD" id="4RVkCZfFg7t" role="33vP2m">
-                        <property role="Xl_RC" value="char* end() {return begin()+length();}" />
+                        <property role="Xl_RC" value="char* end() {return begin()+size();}" />
                       </node>
                     </node>
                   </node>
@@ -11544,7 +11592,7 @@
                         <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                       </node>
                       <node concept="Xl_RD" id="7LRou5sqGTC" role="33vP2m">
-                        <property role="Xl_RC" value="const char* cbegin() const {return reinterpret_cast&lt;char*&gt;(this);}" />
+                        <property role="Xl_RC" value="const char* cbegin() const {return reinterpret_cast&lt;const char*&gt;(this);}" />
                       </node>
                     </node>
                   </node>
@@ -11555,7 +11603,7 @@
                         <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                       </node>
                       <node concept="Xl_RD" id="7LRou5sqGTG" role="33vP2m">
-                        <property role="Xl_RC" value="const char* cend() const {return begin()+length();}" />
+                        <property role="Xl_RC" value="const char* cend() const {return cbegin()+size();}" />
                       </node>
                     </node>
                   </node>
@@ -11570,7 +11618,7 @@
                         <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                         <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                         <node concept="Xl_RD" id="4RVkCZfFg7y" role="37wK5m">
-                          <property role="Xl_RC" value="size_t size() const {return sizeof(%s);}" />
+                          <property role="Xl_RC" value="size_t fixed_size() const {return sizeof(%s);}" />
                         </node>
                         <node concept="2OqwBi" id="4RVkCZfFg7z" role="37wK5m">
                           <node concept="30H73N" id="4RVkCZfFg7$" role="2Oq$k0" />
@@ -11588,7 +11636,7 @@
                         <ref role="3uigEE" to="wyt6:~String" resolve="String" />
                       </node>
                       <node concept="Xl_RD" id="4RVkCZfFg7D" role="33vP2m">
-                        <property role="Xl_RC" value="size_t var_size() const {return size();}" />
+                        <property role="Xl_RC" value="size_t size() const {return fixed_size()" />
                       </node>
                     </node>
                   </node>
@@ -11709,7 +11757,7 @@
                             <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                             <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                             <node concept="Xl_RD" id="4RVkCZfFg8s" role="37wK5m">
-                              <property role="Xl_RC" value="size_t var_size() const {return %s().end()-begin();}" />
+                              <property role="Xl_RC" value="size_t size() const {return %s().end()-begin();}" />
                             </node>
                             <node concept="2OqwBi" id="4RVkCZfFg8t" role="37wK5m">
                               <node concept="37vLTw" id="4RVkCZfFg8u" role="2Oq$k0">

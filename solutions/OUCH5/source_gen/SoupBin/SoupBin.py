@@ -15,17 +15,17 @@ ShortCode = u32;
 
 Price = float_decimal(8, 4, False, True, 0, 0x7735939C, 0x7FFFFFFF)
 
-class PktType(str, Enum):
-    Debug = '+'
-    LoginRequest = 'L'
-    LoginAccepted = 'A'
-    LoginRejected = 'J'
-    LogoutRequest = 'O'
-    ServerHeartbeat = 'H'
-    ClientHeartbeat = 'R'
-    EndOfSession = 'Z'
-    SeqData = 'S'
-    UnSeqData = 'U'
+class PktType(bytes, Enum):
+    Debug = b'+'
+    LoginRequest = b'L'
+    LoginAccepted = b'A'
+    LoginRejected = b'J'
+    LogoutRequest = b'O'
+    ServerHeartbeat = b'H'
+    ClientHeartbeat = b'R'
+    EndOfSession = b'Z'
+    SeqData = b'S'
+    UnSeqData = b'U'
 
 
 class Header(Packet):
@@ -39,8 +39,7 @@ class Header(Packet):
 class Debug(Packet):
     name = 'Debug'
     fields_desc = [
-        StrLenField("text", b"", length_from=lambda pkt:pkt.pkgLength - -1),  @var_str<size=pkgLength, offset=-1> text
-
+        StrLenField("text", b"", length_from=lambda pkt:pkt.underlayer.pkgLength-1),
     ]
 bind_layers(Header, Debug, pkgType=PktType.Debug)
 
@@ -52,9 +51,9 @@ class LoginAccepted(Packet):
     ]
 bind_layers(Header, LoginAccepted, pkgType=PktType.LoginAccepted)
 
-class LoginRejectCode(str, Enum):
-    NotAuthorized = 'A'
-    NotAvailable = 'S'
+class LoginRejectCode(bytes, Enum):
+    NotAuthorized = b'A'
+    NotAvailable = b'S'
 
 
 class LoginRejected(Packet):

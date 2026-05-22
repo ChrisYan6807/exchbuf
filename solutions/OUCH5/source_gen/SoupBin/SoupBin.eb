@@ -33,7 +33,7 @@ message Header :  {
 }
 
 message Debug : Header {
-
+  @var_str<size=pkgLength, offset=-1> text
 }
 
 message LoginAccepted : Header {

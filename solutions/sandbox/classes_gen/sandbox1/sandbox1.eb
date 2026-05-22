@@ -79,11 +79,11 @@ message NewOrder : Head {
   U8 size
   @var_array<type=RptGrp, counter=size> grp
   @fixed_bits<type=U16, nbits=28> bitmem
-
+  @var_str<size=size, offset=2> sss
   U16 plen
   @optional_by_len<type=Entry, presence_length=plen> appendage
   U8 pmap
-
+  @array<type=ClearingFirm, size=2> firm_arr
 }
 
 

@@ -25,24 +25,24 @@ String30 = fixed_length_string(30, '\0', False)
 
 MillenniumPrice = float_decimal(8, 8, True, True, -2**63, 2**63-1, 0)
 
-class MsgType(str, Enum):
-    Heartbeat = '0'
-    Logon = 'A'
-    LogonResponse = 'B'
-    Logout = '5'
-    MissedMessageRequest = 'M'
-    MissedMessageRequestAck = 'N'
-    TransmissionComplete = 'P'
-    Reject = '3'
-    SystemStatus = 'n'
-    NewOrder = 'D'
-    AmendOrder = 'G'
-    CancelOrder = 'F'
-    MassCancelRequest = 'q'
-    ExecutionReport = '8'
-    CancelReject = '9'
-    MassCancelReport = 'r'
-    BusinessReject = 'j'
+class MsgType(bytes, Enum):
+    Heartbeat = b'0'
+    Logon = b'A'
+    LogonResponse = b'B'
+    Logout = b'5'
+    MissedMessageRequest = b'M'
+    MissedMessageRequestAck = b'N'
+    TransmissionComplete = b'P'
+    Reject = b'3'
+    SystemStatus = b'n'
+    NewOrder = b'D'
+    AmendOrder = b'G'
+    CancelOrder = b'F'
+    MassCancelRequest = b'q'
+    ExecutionReport = b'8'
+    CancelReject = b'9'
+    MassCancelReport = b'r'
+    BusinessReject = b'j'
 
 
 class MissedMsgRespType(int, Enum):

@@ -70,7 +70,7 @@ struct AppendixKeyEnum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AppendixKeyEnum& operator=(Enum v) {value_ == v;return *this;}
     constexpr AppendixKeyEnum& operator=(const AppendixKeyEnum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ClearingAccount: return "ClearingAccount";
@@ -142,7 +142,7 @@ struct ClearingAccountType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ClearingAccountType& operator=(Enum v) {value_ == v;return *this;}
     constexpr ClearingAccountType& operator=(const ClearingAccountType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Customer: return "Customer";
@@ -185,7 +185,7 @@ struct CrossType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CrossType& operator=(Enum v) {value_ == v;return *this;}
     constexpr CrossType& operator=(const CrossType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ClosingCross: return "ClosingCross";
@@ -229,7 +229,7 @@ struct DEAIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DEAIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DEAIndicator& operator=(const DEAIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Customer: return "Customer";
@@ -273,7 +273,7 @@ struct Display {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Display& operator=(Enum v) {value_ == v;return *this;}
     constexpr Display& operator=(const Display& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Display: return "Display";
@@ -318,7 +318,7 @@ struct LiqProvInd {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqProvInd& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqProvInd& operator=(const LiqProvInd& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NoLiquidity: return "NoLiquidity";
@@ -363,7 +363,7 @@ struct PegType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PegType& operator=(Enum v) {value_ == v;return *this;}
     constexpr PegType& operator=(const PegType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::MidPoint: return "MidPoint";
@@ -406,7 +406,7 @@ struct STPAuction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr STPAuction& operator=(Enum v) {value_ == v;return *this;}
     constexpr STPAuction& operator=(const STPAuction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::CancelPassiveOrder: return "CancelPassiveOrder";
@@ -447,7 +447,7 @@ struct STPLevel {
     constexpr void set(Enum v) {value_ = v;}
     constexpr STPLevel& operator=(Enum v) {value_ == v;return *this;}
     constexpr STPLevel& operator=(const STPLevel& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::HPIDTrader: return "HPIDTrader";
@@ -490,7 +490,7 @@ struct TimeInForce {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TimeInForce& operator=(Enum v) {value_ == v;return *this;}
     constexpr TimeInForce& operator=(const TimeInForce& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Day: return "Day";
@@ -531,7 +531,7 @@ struct TradingAtClosingPrice {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradingAtClosingPrice& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradingAtClosingPrice& operator=(const TradingAtClosingPrice& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Yes: return "Yes";
@@ -572,7 +572,7 @@ struct OrderCondition {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderCondition& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderCondition& operator=(const OrderCondition& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::MarketMaker: return "MarketMaker";
@@ -613,7 +613,7 @@ struct CustomerOrderCapacity {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CustomerOrderCapacity& operator=(Enum v) {value_ == v;return *this;}
     constexpr CustomerOrderCapacity& operator=(const CustomerOrderCapacity& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Client: return "Client";
@@ -652,7 +652,7 @@ struct TargetStrategy {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TargetStrategy& operator=(Enum v) {value_ == v;return *this;}
     constexpr TargetStrategy& operator=(const TargetStrategy& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::_5to15: return "_5to15";
@@ -694,7 +694,7 @@ struct ConditionalType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ConditionalType& operator=(Enum v) {value_ == v;return *this;}
     constexpr ConditionalType& operator=(const ConditionalType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ConditionalOrder: return "ConditionalOrder";
@@ -746,11 +746,11 @@ struct NewOrderAppendageEntry {
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrderAppendageEntry);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrderAppendageEntry);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderAppendageEntry& msg) {
@@ -783,11 +783,11 @@ struct AmendOrderAppendageEntry {
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AmendOrderAppendageEntry);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AmendOrderAppendageEntry);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AmendOrderAppendageEntry& msg) {
@@ -833,11 +833,11 @@ struct OrderAckAppendageEntry {
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderAckAppendageEntry);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderAckAppendageEntry);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderAckAppendageEntry& msg) {
@@ -871,11 +871,11 @@ struct OrderReplacedAppendageEntry {
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderReplacedAppendageEntry);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderReplacedAppendageEntry);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderReplacedAppendageEntry& msg) {
@@ -896,11 +896,11 @@ struct OrderRestatedAppendageEntry {
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderRestatedAppendageEntry);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderRestatedAppendageEntry);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderRestatedAppendageEntry& msg) {
@@ -936,7 +936,7 @@ struct InMsgType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr InMsgType& operator=(Enum v) {value_ == v;return *this;}
     constexpr InMsgType& operator=(const InMsgType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NewOrder: return "NewOrder";
@@ -991,7 +991,7 @@ struct OutMsgType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OutMsgType& operator=(Enum v) {value_ == v;return *this;}
     constexpr OutMsgType& operator=(const OutMsgType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::SystemEvent: return "SystemEvent";
@@ -1043,7 +1043,7 @@ struct Side {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Side& operator=(Enum v) {value_ == v;return *this;}
     constexpr Side& operator=(const Side& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -1082,7 +1082,7 @@ struct ClientRole {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ClientRole& operator=(Enum v) {value_ == v;return *this;}
     constexpr ClientRole& operator=(const ClientRole& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NONE: return "NONE";
@@ -1122,7 +1122,7 @@ struct IDMRole {
     constexpr void set(Enum v) {value_ = v;}
     constexpr IDMRole& operator=(Enum v) {value_ == v;return *this;}
     constexpr IDMRole& operator=(const IDMRole& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NONE: return "NONE";
@@ -1162,7 +1162,7 @@ struct EDMRole {
     constexpr void set(Enum v) {value_ = v;}
     constexpr EDMRole& operator=(Enum v) {value_ == v;return *this;}
     constexpr EDMRole& operator=(const EDMRole& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NONE: return "NONE";
@@ -1257,7 +1257,7 @@ struct Capacity {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Capacity& operator=(Enum v) {value_ == v;return *this;}
     constexpr Capacity& operator=(const Capacity& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ClientAOTC: return "ClientAOTC";
@@ -1301,7 +1301,7 @@ struct AlgoIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AlgoIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr AlgoIndicator& operator=(const AlgoIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NoAlgo: return "NoAlgo";
@@ -1343,11 +1343,11 @@ struct NewOrder : Header {
         return OptionalByLengthRef<NewOrderAppendageEntry, AppendixKeyEnum>(begin()+size(), appendageLength);
     
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder);}
-    size_t var_size() const {return appendage().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder);}
+    size_t size() const {return appendage().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
@@ -1385,11 +1385,11 @@ struct AmendOrder : Header {
         return OptionalByLengthRef<AmendOrderAppendageEntry, AppendixKeyEnum>(begin()+size(), appendageLength);
     
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AmendOrder);}
-    size_t var_size() const {return appendage().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AmendOrder);}
+    size_t size() const {return appendage().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AmendOrder& msg) {
@@ -1413,11 +1413,11 @@ struct CancelOrder : Header {
     Quantity qty;
     string6 user;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelOrder& msg) {
@@ -1452,7 +1452,7 @@ struct MMOReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MMOReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr MMOReason& operator=(const MMOReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Passive: return "Passive";
@@ -1477,11 +1477,11 @@ struct MMORefreshRequest : Header {
     OrderBook orderBook;
     MMOReason reason{MMOReason::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMORefreshRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMORefreshRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMORefreshRequest& msg) {
@@ -1521,7 +1521,7 @@ struct MMIInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MMIInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr MMIInstruction& operator=(const MMIInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::SO: return "SO";
@@ -1572,7 +1572,7 @@ struct MMIInstructionResponse {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MMIInstructionResponse& operator=(Enum v) {value_ == v;return *this;}
     constexpr MMIInstructionResponse& operator=(const MMIInstructionResponse& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Accepted: return "Accepted";
@@ -1619,7 +1619,7 @@ struct MMIAddOrRemove {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MMIAddOrRemove& operator=(Enum v) {value_ == v;return *this;}
     constexpr MMIAddOrRemove& operator=(const MMIAddOrRemove& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Add: return "Add";
@@ -1646,11 +1646,11 @@ struct MMIRequest : Header {
     Firm firm;
     string6 user;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMIRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMIRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMIRequest& msg) {
@@ -1678,11 +1678,11 @@ struct MMIResponse : Header {
     string6 user;
     MMIInstructionResponse instructionReason{MMIInstructionResponse::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMIResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMIResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMIResponse& msg) {
@@ -1704,11 +1704,11 @@ inline std::ostream& operator<<(std::ostream& os, const MMIResponse& msg) {
 struct AccountQuery : Header {
     InMsgType msgType{InMsgType::AccountQuery};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AccountQuery);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AccountQuery);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AccountQuery& msg) {
@@ -1740,7 +1740,7 @@ struct EventCode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr EventCode& operator=(Enum v) {value_ == v;return *this;}
     constexpr EventCode& operator=(const EventCode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::StartOfDay: return "StartOfDay";
@@ -1763,11 +1763,11 @@ struct SystemEvent : Header {
     TimeStamp timestamp;
     EventCode code{EventCode::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SystemEvent);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SystemEvent);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SystemEvent& msg) {
@@ -1801,11 +1801,11 @@ struct AcceptedOrder : Header {
         return OptionalByLengthRef<OrderAckAppendageEntry, AppendixKeyEnum>(begin()+size(), appendageLength);
     
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AcceptedOrder);}
-    size_t var_size() const {return appendage().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AcceptedOrder);}
+    size_t size() const {return appendage().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AcceptedOrder& msg) {
@@ -1848,11 +1848,11 @@ struct ReplacedOrder : Header {
         return OptionalByLengthRef<OrderAckAppendageEntry, AppendixKeyEnum>(begin()+size(), appendageLength);
     
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ReplacedOrder);}
-    size_t var_size() const {return appendage().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ReplacedOrder);}
+    size_t size() const {return appendage().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ReplacedOrder& msg) {
@@ -1901,7 +1901,7 @@ struct CancelReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CancelReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr CancelReason& operator=(const CancelReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::UserRequestedCancel: return "UserRequestedCancel";
@@ -1932,11 +1932,11 @@ struct CancelledOrder : Header {
     Quantity decrementQty;
     CancelReason reason{CancelReason::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelledOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelledOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelledOrder& msg) {
@@ -1971,7 +1971,7 @@ struct PendingReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PendingReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr PendingReason& operator=(const PendingReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Pending: return "Pending";
@@ -1994,11 +1994,11 @@ struct CancelPendingOrder : Header {
     UserRefNum userRef;
     PendingReason reason{PendingReason::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelPendingOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelPendingOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelPendingOrder& msg) {
@@ -2019,11 +2019,11 @@ struct ReplacePendingOrder : Header {
     UserRefNum userRef;
     PendingReason reason{PendingReason::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ReplacePendingOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ReplacePendingOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ReplacePendingOrder& msg) {
@@ -2062,7 +2062,7 @@ struct LiqFlag {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqFlag& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqFlag& operator=(const LiqFlag& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Continuous: return "Continuous";
@@ -2111,7 +2111,7 @@ struct TradingMode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradingMode& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradingMode& operator=(const TradingMode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::OpeningAuction: return "OpeningAuction";
@@ -2154,7 +2154,7 @@ struct TransactionCategory {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TransactionCategory& operator=(Enum v) {value_ == v;return *this;}
     constexpr TransactionCategory& operator=(const TransactionCategory& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::DarkTrade: return "DarkTrade";
@@ -2192,7 +2192,7 @@ struct TransactionType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TransactionType& operator=(Enum v) {value_ == v;return *this;}
     constexpr TransactionType& operator=(const TransactionType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Algo: return "Algo";
@@ -2229,7 +2229,7 @@ struct LiqReservedBitEnum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqReservedBitEnum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqReservedBitEnum& operator=(const LiqReservedBitEnum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Reserved: return "Reserved";
@@ -2268,7 +2268,7 @@ struct LiqIndBitEnum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqIndBitEnum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqIndBitEnum& operator=(const LiqIndBitEnum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Added: return "Added";
@@ -2308,7 +2308,7 @@ struct LiqInternalizedBitEnum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqInternalizedBitEnum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqInternalizedBitEnum& operator=(const LiqInternalizedBitEnum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NotInternalized: return "NotInternalized";
@@ -2346,7 +2346,7 @@ struct LiqTopOfBookBitEnum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqTopOfBookBitEnum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqTopOfBookBitEnum& operator=(const LiqTopOfBookBitEnum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NotTop: return "NotTop";
@@ -2384,7 +2384,7 @@ struct LiqSelfTradeBitEnum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqSelfTradeBitEnum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqSelfTradeBitEnum& operator=(const LiqSelfTradeBitEnum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NotSelfTrade: return "NotSelfTrade";
@@ -2548,7 +2548,7 @@ struct LastMkt {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LastMkt& operator=(Enum v) {value_ == v;return *this;}
     constexpr LastMkt& operator=(const LastMkt& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::DCSE: return "DCSE";
@@ -2627,11 +2627,11 @@ struct ExecutedOrder : Header {
     LiqAttr liqAttr;
     LastMkt lastMkt{LastMkt::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ExecutedOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ExecutedOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ExecutedOrder& msg) {
@@ -2677,7 +2677,7 @@ struct BrokenReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr BrokenReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr BrokenReason& operator=(const BrokenReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Erroneous: return "Erroneous";
@@ -2707,11 +2707,11 @@ struct BrokenTradeOrder : Header {
     TransactionCategory transCat{TransactionCategory::null};
     TransactionType transType{TransactionType::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(BrokenTradeOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(BrokenTradeOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const BrokenTradeOrder& msg) {
@@ -2737,11 +2737,11 @@ struct RejectedOrder : Header {
     UserRefNum userRef;
     RejectReason reason;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RejectedOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RejectedOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RejectedOrder& msg) {
@@ -2776,7 +2776,7 @@ struct RestatedReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RestatedReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr RestatedReason& operator=(const RestatedReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Refresh: return "Refresh";
@@ -2805,11 +2805,11 @@ struct RestatedOrder : Header {
         return OptionalByLengthRef<OrderRestatedAppendageEntry, AppendixKeyEnum>(begin()+size(), appendageLength);
     
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RestatedOrder);}
-    size_t var_size() const {return appendage().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RestatedOrder);}
+    size_t size() const {return appendage().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RestatedOrder& msg) {
@@ -2830,11 +2830,11 @@ struct AccountQueryResponse : Header {
     TimeStamp timestamp;
     UserRefNum nextUserRef;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AccountQueryResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AccountQueryResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AccountQueryResponse& msg) {
@@ -2854,11 +2854,11 @@ struct GTCCancelledOrder : Header {
     OrderRefNum origOrdRef;
     RejectReason reason;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(GTCCancelledOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(GTCCancelledOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const GTCCancelledOrder& msg) {

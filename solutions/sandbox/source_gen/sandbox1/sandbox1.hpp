@@ -52,7 +52,7 @@ struct E1 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr E1& operator=(Enum v) {value_ == v;return *this;}
     constexpr E1& operator=(const E1& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::F1: return "F1";
@@ -91,7 +91,7 @@ struct E2 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr E2& operator=(Enum v) {value_ == v;return *this;}
     constexpr E2& operator=(const E2& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::F1: return "F1";
@@ -168,7 +168,7 @@ struct MsgType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MsgType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MsgType& operator=(const MsgType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -191,11 +191,11 @@ struct Head {
     MsgLen len;
     MsgType msgType{MsgType::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Head);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Head);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Head& msg) {
@@ -210,11 +210,11 @@ struct RptGrp {
     U8 key;
     str3 value;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RptGrp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RptGrp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RptGrp& msg) {
@@ -247,7 +247,7 @@ struct AppendageType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AppendageType& operator=(Enum v) {value_ == v;return *this;}
     constexpr AppendageType& operator=(const AppendageType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ClearingAccount: return "ClearingAccount";
@@ -281,11 +281,11 @@ struct Entry {
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Entry);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Entry);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Entry& msg) {
@@ -313,11 +313,11 @@ struct NewOrder : Head {
     FloatingRef<U8> pmap() {return FloatingRef<U8>(appendage().end());}
     std::array<ClearingFirm, 2> firm_arr;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder);}
-    size_t var_size() const {return firm_arr().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder);}
+    size_t size() const {return firm_arr().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {

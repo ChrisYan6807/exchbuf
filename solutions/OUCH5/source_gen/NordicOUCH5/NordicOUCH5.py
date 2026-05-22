@@ -48,40 +48,40 @@ class AppendixKeyEnum(int, Enum):
 
 
 ClearingAccount = fixed_length_string(12, '\0', False)
-class ClearingAccountType(str, Enum):
+class ClearingAccountType(bytes, Enum):
     Customer = 1
     Firm = 2
 
 ClearingFirm = fixed_length_string(4, '\0', False)
 ClientRef = fixed_length_string(15, '\0', False)
-class CrossType(str, Enum):
-    ClosingCross = 'C'
-    OpeningCross = 'O'
-    IntradayCross = 'I'
-    HaltCross = 'H'
-    AuctionOnDemand = 'A'
+class CrossType(bytes, Enum):
+    ClosingCross = b'C'
+    OpeningCross = b'O'
+    IntradayCross = b'I'
+    HaltCross = b'H'
+    AuctionOnDemand = b'A'
 
-class DEAIndicator(str, Enum):
+class DEAIndicator(bytes, Enum):
     Customer = 1
     Firm = 2
     Broker = 3
     CustomerOrFirm = 4
     DirectAccess = 5
 
-class Display(str, Enum):
-    Display = 'Y'
-    NonDisplay = 'N'
-    AuctionOnDemand = 'A'
-    Mid = 'M'
-    PureStream = 'S'
+class Display(bytes, Enum):
+    Display = b'Y'
+    NonDisplay = b'N'
+    AuctionOnDemand = b'A'
+    Mid = b'M'
+    PureStream = b'S'
 
 DisplayPrice = Price;
 DisplayQty = Quantity;
 ExpireTime = u16;
 Firm = string4;
-class LiqProvInd(str, Enum):
-    NoLiquidity = 'N'
-    LiquidityProvision = 'Y'
+class LiqProvInd(bytes, Enum):
+    NoLiquidity = b'N'
+    LiquidityProvision = b'Y'
 
 MaxFloor = Quantity;
 MinQty = Quantity;
@@ -89,58 +89,58 @@ OrderReference = string10;
 OrigOrderEntryDate = u32;
 OrigOrderRefNum = u64;
 PegDiff = i32;
-class PegType(str, Enum):
-    MidPoint = 'M'
-    Market = 'P'
-    Primary = 'R'
+class PegType(bytes, Enum):
+    MidPoint = b'M'
+    Market = b'P'
+    Primary = b'R'
 
 RandomReserve = u32;
 SecondaryOrderRefNum = u64;
 class STPAuction(int, Enum):
-    CancelPassiveOrder = '1'
-    CancelAggressiveOrder = '2'
-    CancelBothOrder = '3'
-    CreateTransferTransaction = '4'
+    CancelPassiveOrder = b'1'
+    CancelAggressiveOrder = b'2'
+    CancelBothOrder = b'3'
+    CreateTransferTransaction = b'4'
 
 class STPLevel(int, Enum):
-    HPIDTrader = '1'
-    MPID = '2'
-    SpecifiedTraderGroup = '3'
+    HPIDTrader = b'1'
+    MPID = b'2'
+    SpecifiedTraderGroup = b'3'
 
 STPTraderGroup = string2;
-class TimeInForce(str, Enum):
-    Day = '0'
-    GTC = '1'
-    IOC = '3'
-    GTT = '6'
-    GFA = 'B'
+class TimeInForce(bytes, Enum):
+    Day = b'0'
+    GTC = b'1'
+    IOC = b'3'
+    GTT = b'6'
+    GFA = b'B'
 
-class TradingAtClosingPrice(str, Enum):
-    Yes = 'Y'
-    No = 'N'
+class TradingAtClosingPrice(bytes, Enum):
+    Yes = b'Y'
+    No = b'N'
 
-class OrderCondition(str, Enum):
-    MarketMaker = 'W'
-    MarketMakerOrderRefresh = 'U'
-    TopOfBook = 'P'
-    DarkLitSweep = 'Q'
-    TradeNow = 'T'
+class OrderCondition(bytes, Enum):
+    MarketMaker = b'W'
+    MarketMakerOrderRefresh = b'U'
+    TopOfBook = b'P'
+    DarkLitSweep = b'Q'
+    TradeNow = b'T'
 
 CumulativeQuantity = Quantity;
-class CustomerOrderCapacity(str, Enum):
-    Client = '5'
+class CustomerOrderCapacity(bytes, Enum):
+    Client = b'5'
 
-class TargetStrategy(str, Enum):
-    _5to15 = '0'
-    _5to30 = '1'
-    _100to200 = '5'
-    Custom = 'C'
+class TargetStrategy(bytes, Enum):
+    _5to15 = b'0'
+    _5to30 = b'1'
+    _100to200 = b'5'
+    Custom = b'C'
 
 MinRate = u16;
 MaxRate = u16;
-class ConditionalType(str, Enum):
-    ConditionalOrder = 'C'
-    FirmUpOrder = 'F'
+class ConditionalType(bytes, Enum):
+    ConditionalOrder = b'C'
+    FirmUpOrder = b'F'
 
 FirmUpID = u32;
 
@@ -273,35 +273,35 @@ class OrderRestatedAppendageEntry(Packet):
 
 
 
-class InMsgType(str, Enum):
-    NewOrder = 'O'
-    AmendOrder = 'U'
-    CancelOrder = 'X'
-    AccountQuery = 'Q'
-    MMIRequest = 'M'
+class InMsgType(bytes, Enum):
+    NewOrder = b'O'
+    AmendOrder = b'U'
+    CancelOrder = b'X'
+    AccountQuery = b'Q'
+    MMIRequest = b'M'
 
 
-class OutMsgType(str, Enum):
-    SystemEvent = 'S'
-    AcceptedOrder = 'A'
-    ReplacedOrder = 'U'
-    CancelledOrder = 'C'
-    CancelPendingOrder = 'P'
-    ReplacePendingOrder = 'N'
-    ExecutedOrder = 'E'
-    BrokenTradeOrder = 'B'
-    RejectedOrder = 'J'
-    CancelRejectedOrder = 'I'
-    RestatedOrder = 'T'
-    MMIResponse = 'R'
-    MMORefreshRequest = 'W'
-    AccountQueryResponse = 'Q'
-    GTCCancelledOrder = 'G'
+class OutMsgType(bytes, Enum):
+    SystemEvent = b'S'
+    AcceptedOrder = b'A'
+    ReplacedOrder = b'U'
+    CancelledOrder = b'C'
+    CancelPendingOrder = b'P'
+    ReplacePendingOrder = b'N'
+    ExecutedOrder = b'E'
+    BrokenTradeOrder = b'B'
+    RejectedOrder = b'J'
+    CancelRejectedOrder = b'I'
+    RestatedOrder = b'T'
+    MMIResponse = b'R'
+    MMORefreshRequest = b'W'
+    AccountQueryResponse = b'Q'
+    GTCCancelledOrder = b'G'
 
 
-class Side(str, Enum):
-    Buy = 'B'
-    Sell = 'S'
+class Side(bytes, Enum):
+    Buy = b'B'
+    Sell = b'S'
 
 class ClientRole(int, Enum):
     NONE = 0b00
@@ -328,19 +328,19 @@ class PartyRoleQuanlifier(Packet):
     def extract_padding(self, s):
         return '', s
 
-class Capacity(str, Enum):
-    ClientAOTC = '1'
-    OwnAccountDEAL = '2'
-    MarketMakerDEAL = '3'
-    IssuerHoldingAOTC = '4'
-    IssuePriceStabilizingAOTC = '6'
-    RiskLessPrincipalMTCH = '7'
-    IssuerHoldingDEAL = '8'
-    IssuePriceStabilizingDEAL = '9'
+class Capacity(bytes, Enum):
+    ClientAOTC = b'1'
+    OwnAccountDEAL = b'2'
+    MarketMakerDEAL = b'3'
+    IssuerHoldingAOTC = b'4'
+    IssuePriceStabilizingAOTC = b'6'
+    RiskLessPrincipalMTCH = b'7'
+    IssuerHoldingDEAL = b'8'
+    IssuePriceStabilizingDEAL = b'9'
 
-class AlgoIndicator(str, Enum):
-    NoAlgo = '-'
-    Algo = 'H'
+class AlgoIndicator(bytes, Enum):
+    NoAlgo = b'-'
+    Algo = b'H'
 
 appLen = u16;
 TimeStamp = u64;
@@ -392,9 +392,9 @@ class CancelOrder(Packet):
     ]
 bind_layers(Header, CancelOrder, pkgType=PktType.UnSeqData)
 
-class MMOReason(str, Enum):
-    Passive = 'P'
-    Aggressive = 'A'
+class MMOReason(bytes, Enum):
+    Passive = b'P'
+    Aggressive = b'A'
 
 
 class MMORefreshRequest(Packet):
@@ -408,31 +408,31 @@ class MMORefreshRequest(Packet):
     ]
 bind_layers(Header, MMORefreshRequest, pkgType=PktType.UnSeqData)
 
-class MMIInstruction(str, Enum):
-    SO = '1'
-    BB = '2'
-    KB = '3'
-    SK = '4'
-    UN = '5'
-    KO = '6'
+class MMIInstruction(bytes, Enum):
+    SO = b'1'
+    BB = b'2'
+    KB = b'3'
+    SK = b'4'
+    UN = b'5'
+    KO = b'6'
 
 
-class MMIInstructionResponse(str, Enum):
-    Accepted = 'A'
-    Halted = 'H'
-    InvalidOrderBook = 'S'
-    NasdaqNordicClosed = 'C'
-    FirmNotAuthorized = 'L'
-    InvalidUserID = 'U'
-    NodeCodeAlreadySet = 'E'
-    NodeCodeNotSet = 'F'
-    StopCodeNotActive = 'G'
-    MMIisInProgress = 'B'
+class MMIInstructionResponse(bytes, Enum):
+    Accepted = b'A'
+    Halted = b'H'
+    InvalidOrderBook = b'S'
+    NasdaqNordicClosed = b'C'
+    FirmNotAuthorized = b'L'
+    InvalidUserID = b'U'
+    NodeCodeAlreadySet = b'E'
+    NodeCodeNotSet = b'F'
+    StopCodeNotActive = b'G'
+    MMIisInProgress = b'B'
 
 
-class MMIAddOrRemove(str, Enum):
-    Add = 'A'
-    Remove = 'R'
+class MMIAddOrRemove(bytes, Enum):
+    Add = b'A'
+    Remove = b'R'
 
 
 class MMIRequest(Packet):
@@ -470,9 +470,9 @@ class AccountQuery(Packet):
     ]
 
 
-class EventCode(str, Enum):
-    StartOfDay = 'S'
-    EndOfDay = 'E'
+class EventCode(bytes, Enum):
+    StartOfDay = b'S'
+    EndOfDay = b'E'
 
 
 class SystemEvent(Packet):
@@ -524,15 +524,15 @@ class ReplacedOrder(Packet):
     ]
 bind_layers(Header, ReplacedOrder, pkgType=PktType.SeqData)
 
-class CancelReason(str, Enum):
-    UserRequestedCancel = 'U'
-    IOC = 'I'
-    TimeOut = 'T'
-    Supervisory = 'S'
-    SMP = 'Q'
-    HiddenPegNotLIS = 'L'
-    BadQuote = 'N'
-    State = 'R'
+class CancelReason(bytes, Enum):
+    UserRequestedCancel = b'U'
+    IOC = b'I'
+    TimeOut = b'T'
+    Supervisory = b'S'
+    SMP = b'Q'
+    HiddenPegNotLIS = b'L'
+    BadQuote = b'N'
+    State = b'R'
 
 
 class CancelledOrder(Packet):
@@ -546,8 +546,8 @@ class CancelledOrder(Packet):
     ]
 bind_layers(Header, CancelledOrder, pkgType=PktType.SeqData)
 
-class PendingReason(str, Enum):
-    Pending = 'A'
+class PendingReason(bytes, Enum):
+    Pending = b'A'
 
 
 class CancelPendingOrder(Packet):
@@ -571,32 +571,32 @@ class ReplacePendingOrder(Packet):
     ]
 bind_layers(Header, ReplacePendingOrder, pkgType=PktType.SeqData)
 
-class LiqFlag(str, Enum):
-    Continuous = 'A'
-    Auction = 'C'
-    AOD = 'P'
-    AtClose = 'G'
-    Mid = 'M'
+class LiqFlag(bytes, Enum):
+    Continuous = b'A'
+    Auction = b'C'
+    AOD = b'P'
+    AtClose = b'G'
+    Mid = b'M'
 
 
 MatchNum = u32;
 ContraFirm = string4;
-class TradingMode(str, Enum):
-    OpeningAuction = 'O'
-    ClosingAuction = 'K'
-    IntradayAuction = 'I'
-    UnscheduledAuction = 'U'
-    Conntinuous = '2'
-    AtMarketClose = '3'
-    AOD = 'P'
+class TradingMode(bytes, Enum):
+    OpeningAuction = b'O'
+    ClosingAuction = b'K'
+    IntradayAuction = b'I'
+    UnscheduledAuction = b'U'
+    Conntinuous = b'2'
+    AtMarketClose = b'3'
+    AOD = b'P'
 
-class TransactionCategory(str, Enum):
-    DarkTrade = 'D'
-    NoneApply = '-'
+class TransactionCategory(bytes, Enum):
+    DarkTrade = b'D'
+    NoneApply = b'-'
 
-class TransactionType(str, Enum):
-    Algo = 'H'
-    NoAlgo = '-'
+class TransactionType(bytes, Enum):
+    Algo = b'H'
+    NoAlgo = b'-'
 
 class LiqReservedBitEnum(int, Enum):
     Reserved = 0b00
@@ -702,11 +702,11 @@ class ExecutedOrder(Packet):
     ]
 bind_layers(Header, ExecutedOrder, pkgType=PktType.SeqData)
 
-class BrokenReason(str, Enum):
-    Erroneous = 'E'
-    Consent = 'C'
-    Supervisory = 'S'
-    External = 'X'
+class BrokenReason(bytes, Enum):
+    Erroneous = b'E'
+    Consent = b'C'
+    Supervisory = b'S'
+    External = b'X'
 
 
 class BrokenTradeOrder(Packet):
@@ -735,9 +735,9 @@ class RejectedOrder(Packet):
     ]
 bind_layers(Header, RejectedOrder, pkgType=PktType.SeqData)
 
-class RestatedReason(str, Enum):
-    Refresh = 'R'
-    Update = 'P'
+class RestatedReason(bytes, Enum):
+    Refresh = b'R'
+    Update = b'P'
 
 
 class RestatedOrder(Packet):

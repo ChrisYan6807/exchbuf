@@ -60,17 +60,17 @@ class ApplSeqStatus(int, Enum):
 ApplSeqTradeDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 ApplSubID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 ApplTotalMessageCount = integer_type(LEShortField, 0, 65534, 0xFFFF)
-class ApplUsageOrders(str, Enum):
-    Automated = 'A'
-    Manual = 'M'
-    AutoSelect = 'B'
-    None = 'N'
+class ApplUsageOrders(bytes, Enum):
+    Automated = b'A'
+    Manual = b'M'
+    AutoSelect = b'B'
+    None = b'N'
 
-class ApplUsageQuotes(str, Enum):
-    Automated = 'A'
-    Manual = 'M'
-    AutoSelect = 'B'
-    None = 'N'
+class ApplUsageQuotes(bytes, Enum):
+    Automated = b'A'
+    Manual = b'M'
+    AutoSelect = b'B'
+    None = b'N'
 
 ApplicationSystemName = fixed_length_string(30, '\0', False)
 ApplicationSystemVendor = fixed_length_string(30, '\0', False)
@@ -230,17 +230,17 @@ class ExecRestatementReason(int, Enum):
     QRS_Expiry = 316
     RLP_Order_Quote_Cleanup = 320
 
-class ExecType(str, Enum):
-    New = '0'
-    Canceled = '4'
-    Replaced = '5'
-    Pending_Cancel_e = '6'
-    Suspended = '9'
-    Restated = 'D'
-    Triggered = 'L'
-    Trade = 'F'
-    Pending_New = 'A'
-    Pending_Replace = 'E'
+class ExecType(bytes, Enum):
+    New = b'0'
+    Canceled = b'4'
+    Replaced = b'5'
+    Pending_Cancel_e = b'6'
+    Suspended = b'9'
+    Restated = b'D'
+    Triggered = b'L'
+    Trade = b'F'
+    Pending_New = b'A'
+    Pending_Replace = b'E'
 
 ExecutingTrader = integer_type(LELongField, 1, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 class ExecutingTraderQualifier(int, Enum):
@@ -335,9 +335,9 @@ class LeavesQtyDisclosureInstruction(int, Enum):
     No = 0
     Yes = 1
 
-class ListUpdateAction(str, Enum):
-    Add = 'A'
-    Delete = 'D'
+class ListUpdateAction(bytes, Enum):
+    Add = b'A'
+    Delete = b'D'
 
 LowLimitPrice = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 class MDBookType(int, Enum):
@@ -418,11 +418,11 @@ class MatchingEngineStatus(int, Enum):
 
 MatchingEngineTradeDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 MaturityMonthYear = integer_type(LEIntField, 0, 999912, 0xFFFFFFFF)
-class MessageEventSource(str, Enum):
-    Broadcast_to_Initiator = 'I'
-    Broadcast_to_Approver = 'A'
-    Broadcast_to_Requester = 'R'
-    Broadcast_to_Quote_Submitter = 'Q'
+class MessageEventSource(bytes, Enum):
+    Broadcast_to_Initiator = b'I'
+    Broadcast_to_Approver = b'A'
+    Broadcast_to_Requester = b'R'
+    Broadcast_to_Quote_Submitter = b'Q'
 
 class MidPointType(int, Enum):
     MidPoint = 1
@@ -486,15 +486,15 @@ class OfferPxIsLocked(int, Enum):
     Yes = 1
 
 OfferSize = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-class OrdStatus(str, Enum):
-    New = '0'
-    Partially_filled = '1'
-    Filled = '2'
-    Canceled = '4'
-    Pending_Cancel = '6'
-    Suspended = '9'
-    Pending_New = 'A'
-    Pending_Replace = 'E'
+class OrdStatus(bytes, Enum):
+    New = b'0'
+    Partially_filled = b'1'
+    Filled = b'2'
+    Canceled = b'4'
+    Pending_Cancel = b'6'
+    Suspended = b'9'
+    Pending_New = b'A'
+    Pending_Replace = b'E'
 
 class OrdType(int, Enum):
     Market = 1
@@ -506,9 +506,9 @@ class OrderAttributeLiquidityProvision(int, Enum):
     Y = 1
     N = 0
 
-class OrderCategory(str, Enum):
-    Order = '1'
-    Quote = '2'
+class OrderCategory(bytes, Enum):
+    Order = b'1'
+    Quote = b'2'
 
 OrderEventMatchID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 OrderEventPx = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
@@ -530,9 +530,9 @@ class OrderQtyDisclosureInstruction(int, Enum):
     No = 0
     Yes = 1
 
-class OrderRoutingIndicator(str, Enum):
-    Yes = 'Y'
-    No = 'N'
+class OrderRoutingIndicator(bytes, Enum):
+    Yes = b'Y'
+    No = b'N'
 
 class OrderSide(int, Enum):
     Buy = 1
@@ -622,12 +622,12 @@ PublicKeyLen = integer_type(LEShortField, 0, 814, 0xFFFF)
 class QuoteCancelReason(int, Enum):
     Expired = 5
 
-class QuoteCondition(str, Enum):
-    Active = 'A'
-    Closed = 'B'
-    Suspended = 'z'
-    Expired = '8'
-    Locked = 'E'
+class QuoteCondition(bytes, Enum):
+    Active = b'A'
+    Closed = b'B'
+    Suspended = b'z'
+    Expired = b'8'
+    Locked = b'E'
 
 class QuoteEntryRejectReason(int, Enum):
     Unknown_Security = 1

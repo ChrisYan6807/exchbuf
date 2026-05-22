@@ -16,6 +16,8 @@ primitive v2 = int8_ebt [ min=, max=, null=, little_endian=true ]
 primitive Price3 = FloatDecimal [ min=1, max=2, null=3, size=8, precision=8, signed=true, little_endian=true ]
 primitive Price4 = FloatDecimal [ min=, max=, null=, size=8, precision=8, signed=true, little_endian=true ]
 
+
+
 alias Price = Price3 [ if P3 else Price4 ]
 alias MsgLen = U16 
 
@@ -78,6 +80,8 @@ message NewOrder : Head {
   Price price
   U16 qty
   U8 size
+  @array<type=Price, size=2> pp
+  @var_str<size=size, offset=0> ss
   @var_array<type=RptGrp, counter=size> grp
 }
 

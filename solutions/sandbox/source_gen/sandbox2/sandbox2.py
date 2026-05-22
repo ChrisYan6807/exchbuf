@@ -16,6 +16,8 @@ v2 = integer_type(SignedByteField, -128, 127, 0)
 Price3 = float_decimal(8, 8, True, True, 1, 2, 3)
 Price4 = float_decimal(8, 8, True, True, -2**63, 2**63-1, 0)
 
+
+
 import builtins
 if "P3" in builtins.__dict__ and builtins.P3:
     Price = Price3;
@@ -25,14 +27,14 @@ MsgLen = U16;
 
 priceArray = PacketListField("priceArray", None, Price, count_from=lambda _:3)
 
-class E1(str, Enum):
+class E1(bytes, Enum):
     F1 = 1
-    F2 = 'B'
+    F2 = b'B'
 
 
-class E2(str, Enum):
-    F1 = 'C'
-    F2 = 'D'
+class E2(bytes, Enum):
+    F1 = b'C'
+    F2 = b'D'
 
 
 class BF1(Packet):
@@ -96,6 +98,8 @@ class NewOrder(Packet):
     Price3("price", 3),
     U16("qty", 0),
     FieldLenField("size", 0, fmt="<B", count_of="grp"),
+        PacketListField("pp", [], Price, count_from=lambda _:2),
+        StrLenField("ss", b"", length_from=lambda pkt:pkt.underlayer.size0),
         PacketListField("grp", None, RptGrp, count_from=lambda pkt:pkt.size
     ]
 

@@ -21,6 +21,8 @@ using v2 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric
 using Price3 = LittleEndian<int64_t, 1LL, 2LL, 3LL, 8>;
 using Price4 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 8>;
 
+
+
 #if defined(P3)
     using Price = Price3;
 #else
@@ -52,7 +54,7 @@ struct E1 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr E1& operator=(Enum v) {value_ == v;return *this;}
     constexpr E1& operator=(const E1& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::F1: return "F1";
@@ -91,7 +93,7 @@ struct E2 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr E2& operator=(Enum v) {value_ == v;return *this;}
     constexpr E2& operator=(const E2& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::F1: return "F1";
@@ -169,7 +171,7 @@ struct MsgType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MsgType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MsgType& operator=(const MsgType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -192,11 +194,11 @@ struct Head {
     MsgLen len;
     MsgType msgType{MsgType::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Head);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Head);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Head& msg) {
@@ -211,11 +213,11 @@ struct RptGrp {
     U8 key;
     str3 value;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RptGrp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RptGrp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RptGrp& msg) {
@@ -248,7 +250,7 @@ struct AppendageType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AppendageType& operator=(Enum v) {value_ == v;return *this;}
     constexpr AppendageType& operator=(const AppendageType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ClearingAccount: return "ClearingAccount";
@@ -282,11 +284,11 @@ struct Entry {
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Entry);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Entry);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Entry& msg) {
@@ -301,14 +303,17 @@ struct NewOrder : Head {
     Price price;
     U16 qty;
     U8 size;
-    BlockRef<RptGrp> grp() {return BlockRef<RptGrp>(begin()+size(), size);}
-    BlockRef<RptGrp> grp() const {return BlockRef<RptGrp>(begin()+size(), size);}
+    std::array<Price, 2> pp;
+    std::string_view ss() {return std::string_view(begin()+size(), size.raw_value()0);}
+    std::string_view ss() const {return std::string_view(cbegin()+size(), size.raw_value()0);}
+    BlockRef<RptGrp> grp() {return BlockRef<RptGrp>(ss().end(), size);}
+    BlockRef<RptGrp> grp() const {return BlockRef<RptGrp>(ss().end(), size);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder);}
-    size_t var_size() const {return grp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder);}
+    size_t size() const {return grp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
@@ -316,6 +321,7 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
     os << "price=" << msg.price << ";"
        << "qty=" << msg.qty << ";"
        << "size=" << msg.size << ";"
+       << "pp=" << msg.pp << ";"
        << "grp=" << const_cast<NewOrder&>(msg).grp() << ";"
        << "}";
     return os;

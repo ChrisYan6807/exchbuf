@@ -67,7 +67,7 @@ struct MsgType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MsgType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MsgType& operator=(const MsgType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Heartbeat: return "Heartbeat";
@@ -123,7 +123,7 @@ struct MissedMsgRespType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MissedMsgRespType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MissedMsgRespType& operator=(const MissedMsgRespType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::SUCESSFUL: return "SUCESSFUL";
@@ -165,7 +165,7 @@ struct MissedMsgRptType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MissedMsgRptType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MissedMsgRptType& operator=(const MissedMsgRptType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::DOWNLOAD_COMPLETE: return "DOWNLOAD_COMPLETE";
@@ -208,7 +208,7 @@ struct AppID {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AppID& operator=(Enum v) {value_ == v;return *this;}
     constexpr AppID& operator=(const AppID& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::SYSTEM_SUSPENDED_UNKNOWN_INSTRUMENT: return "SYSTEM_SUSPENDED_UNKNOWN_INSTRUMENT";
@@ -250,7 +250,7 @@ struct AppStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AppStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr AppStatus& operator=(const AppStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::RECOVERY_SERVICE_RESUMED: return "RECOVERY_SERVICE_RESUMED";
@@ -273,11 +273,11 @@ struct MsgHeader {
     Int16 length;
     MsgType msgType{MsgType::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MsgHeader);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MsgHeader);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MsgHeader& msg) {
@@ -295,11 +295,11 @@ struct Logon : MsgHeader {
     String25 newPassword;
     UInt8 messageVersion;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Logon);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Logon);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Logon& msg) {
@@ -317,11 +317,11 @@ struct LogonResponse : MsgHeader {
     Int32 rejectCode;
     String30 passwordExpiryDayCount;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogonResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogonResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonResponse& msg) {
@@ -336,11 +336,11 @@ inline std::ostream& operator<<(std::ostream& os, const LogonResponse& msg) {
 struct Logout : MsgHeader {
     String21 reason;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Logout);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Logout);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
@@ -353,11 +353,11 @@ inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
 #pragma pack(1)
 struct Heartbeat : MsgHeader {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Heartbeat);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Heartbeat);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
@@ -370,11 +370,11 @@ struct MissedMessageRequest : MsgHeader {
     Int8 appID;
     Int32 lastMsgSeqNum;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MissedMessageRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MissedMessageRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MissedMessageRequest& msg) {
@@ -389,11 +389,11 @@ inline std::ostream& operator<<(std::ostream& os, const MissedMessageRequest& ms
 struct MissedMessageRequestAck : MsgHeader {
     MissedMsgRespType responseType{MissedMsgRespType::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MissedMessageRequestAck);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MissedMessageRequestAck);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MissedMessageRequestAck& msg) {
@@ -407,11 +407,11 @@ inline std::ostream& operator<<(std::ostream& os, const MissedMessageRequestAck&
 struct TransmissionComplete : MsgHeader {
     MissedMsgRptType responseType{MissedMsgRptType::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TransmissionComplete);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TransmissionComplete);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TransmissionComplete& msg) {
@@ -428,11 +428,11 @@ struct Reject : MsgHeader {
     Alpha rejectedMessageType;
     String21 clientOrderID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Reject);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Reject);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
@@ -450,11 +450,11 @@ struct SystemStatus : MsgHeader {
     AppID appID{AppID::null};
     AppStatus appStatus{AppStatus::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SystemStatus);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SystemStatus);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SystemStatus& msg) {
@@ -475,11 +475,11 @@ struct BusinessReject : MsgHeader {
     Uint64 transactTime;
     String10 reserved1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(BusinessReject);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(BusinessReject);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const BusinessReject& msg) {

@@ -47,17 +47,17 @@ class ExecInst(int, Enum):
     H_6 = 5
     Q_6 = 6
 
-class ExecType(str, Enum):
-    New = '0'
-    Canceled = '4'
-    Replaced = '5'
-    Pending_Cancel_e = '6'
-    Suspended = '9'
-    Restated = 'D'
-    Triggered = 'L'
-    Trade = 'F'
-    Pending_New = 'A'
-    Pending_Replace = 'E'
+class ExecType(bytes, Enum):
+    New = b'0'
+    Canceled = b'4'
+    Replaced = b'5'
+    Pending_Cancel_e = b'6'
+    Suspended = b'9'
+    Restated = b'D'
+    Triggered = b'L'
+    Trade = b'F'
+    Pending_New = b'A'
+    Pending_Replace = b'E'
 
 ExecutingTrader = integer_type(LELongField, 1, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 class ExecutingTraderQualifier(int, Enum):
@@ -127,15 +127,15 @@ NoAffectedOrders = integer_type(LEShortField, 0, 500, 0xFFFF)
 NoFills = integer_type(ByteField, 0, 100, 0xFF)
 NoPartitions = integer_type(ByteField, 0, 100, 0xFF)
 NoSessions = integer_type(LEShortField, 1, 1000, 0xFFFF)
-class OrdStatus(str, Enum):
-    New = '0'
-    Partially_filled = '1'
-    Filled = '2'
-    Canceled = '4'
-    Pending_Cancel = '6'
-    Suspended = '9'
-    Pending_New = 'A'
-    Pending_Replace = 'E'
+class OrdStatus(bytes, Enum):
+    New = b'0'
+    Partially_filled = b'1'
+    Filled = b'2'
+    Canceled = b'4'
+    Pending_Cancel = b'6'
+    Suspended = b'9'
+    Pending_New = b'A'
+    Pending_Replace = b'E'
 
 class OrdType(int, Enum):
     Market = 1

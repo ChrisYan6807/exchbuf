@@ -54,17 +54,17 @@ class ApplSeqStatus(int, Enum):
 ApplSeqTradeDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 ApplSubID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 ApplTotalMessageCount = integer_type(LEShortField, 0, 65534, 0xFFFF)
-class ApplUsageOrders(str, Enum):
-    Automated = 'A'
-    Manual = 'M'
-    AutoSelect = 'B'
-    None = 'N'
+class ApplUsageOrders(bytes, Enum):
+    Automated = b'A'
+    Manual = b'M'
+    AutoSelect = b'B'
+    None = b'N'
 
-class ApplUsageQuotes(str, Enum):
-    Automated = 'A'
-    Manual = 'M'
-    AutoSelect = 'B'
-    None = 'N'
+class ApplUsageQuotes(bytes, Enum):
+    Automated = b'A'
+    Manual = b'M'
+    AutoSelect = b'B'
+    None = b'N'
 
 ApplicationSystemName = fixed_length_string(30, '\0', False)
 ApplicationSystemVendor = fixed_length_string(30, '\0', False)
@@ -222,15 +222,15 @@ class ExecRestatementReason(int, Enum):
     Cross_Order_Added = 346
     Cross_Order_Cancelled = 347
 
-class ExecType(str, Enum):
-    New = '0'
-    Canceled = '4'
-    Replaced = '5'
-    Pending_Cancel_e = '6'
-    Suspended = '9'
-    Restated = 'D'
-    Triggered = 'L'
-    Trade = 'F'
+class ExecType(bytes, Enum):
+    New = b'0'
+    Canceled = b'4'
+    Replaced = b'5'
+    Pending_Cancel_e = b'6'
+    Suspended = b'9'
+    Restated = b'D'
+    Triggered = b'L'
+    Trade = b'F'
 
 ExecutingTrader = integer_type(LELongField, 1, 18446744073709551614, 0xFFFFFFFFFFFFFFFF)
 class ExecutingTraderQualifier(int, Enum):
@@ -354,9 +354,9 @@ class LegInputSource(int, Enum):
 
 LegLastPx = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 LegLastQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-class LegPositionEffect(str, Enum):
-    Close = 'C'
-    Open = 'O'
+class LegPositionEffect(bytes, Enum):
+    Close = b'C'
+    Open = b'O'
 
 LegPrice = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 LegQty = float_decimal(8, 4, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
@@ -371,9 +371,9 @@ class LegSide(int, Enum):
     Sell = 2
 
 LegSymbol = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
-class ListUpdateAction(str, Enum):
-    Add = 'A'
-    Delete = 'D'
+class ListUpdateAction(bytes, Enum):
+    Add = b'A'
+    Delete = b'D'
 
 LowLimitPrice = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 class MDBookType(int, Enum):
@@ -452,11 +452,11 @@ MatchingEngineTradeDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 MaturityDate = integer_type(LEIntField, 0, 99991231, 0xFFFFFFFF)
 MaturityMonthYear = integer_type(LEIntField, 0, 999912, 0xFFFFFFFF)
 MaximumPrice = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
-class MessageEventSource(str, Enum):
-    Broadcast_to_Initiator = 'I'
-    Broadcast_to_Approver = 'A'
-    Broadcast_to_Requester = 'R'
-    Broadcast_to_Quote_Submitter = 'Q'
+class MessageEventSource(bytes, Enum):
+    Broadcast_to_Initiator = b'I'
+    Broadcast_to_Approver = b'A'
+    Broadcast_to_Requester = b'R'
+    Broadcast_to_Quote_Submitter = b'Q'
 
 MsgSeqNum = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 MsgType = fixed_length_string(3, '\0', False)
@@ -542,13 +542,13 @@ class OptionalEarlyTerminationIndicator(int, Enum):
     No = 0
     Yes = 1
 
-class OrdStatus(str, Enum):
-    New = '0'
-    Partially_filled = '1'
-    Filled = '2'
-    Canceled = '4'
-    Pending_Cancel = '6'
-    Suspended = '9'
+class OrdStatus(bytes, Enum):
+    New = b'0'
+    Partially_filled = b'1'
+    Filled = b'2'
+    Canceled = b'4'
+    Pending_Cancel = b'6'
+    Suspended = b'9'
 
 class OrdType(int, Enum):
     Market = 1
@@ -564,9 +564,9 @@ class OrderAttributeRiskReduction(int, Enum):
     Y = 1
     N = 0
 
-class OrderCategory(str, Enum):
-    Order = '1'
-    Quote = '2'
+class OrderCategory(bytes, Enum):
+    Order = b'1'
+    Quote = b'2'
 
 OrderEventMatchID = integer_type(LEIntField, 0, 4294967294, 0xFFFFFFFF)
 OrderEventPx = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
@@ -588,9 +588,9 @@ class OrderQtyIsLocked(int, Enum):
     No = 0
     Yes = 1
 
-class OrderRoutingIndicator(str, Enum):
-    Yes = 'Y'
-    No = 'N'
+class OrderRoutingIndicator(bytes, Enum):
+    Yes = b'Y'
+    No = b'N'
 
 class OrderSide(int, Enum):
     Buy = 1
@@ -693,9 +693,9 @@ class PartySubIDType(int, Enum):
 Password = fixed_length_string(32, '\0', False)
 PctCount = integer_type(LESignedIntField, -2147483647, 2147483647, 0x80000000)
 PeriodAlias = fixed_length_string(45, '\0', False)
-class PositionEffect(str, Enum):
-    Close = 'C'
-    Open = 'O'
+class PositionEffect(bytes, Enum):
+    Close = b'C'
+    Open = b'O'
 
 Price = float_decimal(8, 8, True, True, -9223372036854775807, 2**63-1, 0x8000000000000000)
 class PriceDisclosureInstruction(int, Enum):
@@ -733,11 +733,11 @@ QuantityScalingFactor = integer_type(LEShortField, 0, 1000, 0xFFFF)
 class QuoteCancelReason(int, Enum):
     Expired = 5
 
-class QuoteCondition(str, Enum):
-    Active = 'A'
-    Closed = 'B'
-    Suspended = 'z'
-    Expired = '8'
+class QuoteCondition(bytes, Enum):
+    Active = b'A'
+    Closed = b'B'
+    Suspended = b'z'
+    Expired = b'8'
 
 class QuoteEntryRejectReason(int, Enum):
     Unknown_Security = 1
@@ -1062,9 +1062,9 @@ class SessionSubMode(int, Enum):
     Sponsored_Access_Trading_session = 4
     Sponsored_Access_Back_Office_session = 5
 
-class SettlMethod(str, Enum):
-    Cash_Settlement = 'C'
-    Physical_Settlement = 'P'
+class SettlMethod(bytes, Enum):
+    Cash_Settlement = b'C'
+    Physical_Settlement = b'P'
 
 class ShowLastDealOnClosure(int, Enum):
     No = 0

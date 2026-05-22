@@ -13,6 +13,9 @@
         <reference id="4493654547886512862" name="type" index="20hb7u" />
         <reference id="349804917068590849" name="opt_type" index="3Ul2UQ" />
       </concept>
+      <concept id="4586680865750544547" name="eb_lang.structure.EBMessageArrayMember" flags="ng" index="awP_h">
+        <property id="4586680865750544549" name="size" index="awP_n" />
+      </concept>
       <concept id="4586680865752963856" name="eb_lang.structure.EBMessagePresenceByEnumMember" flags="ng" index="aVBby">
         <reference id="4586680865752963857" name="presence_val" index="aVBbz" />
         <child id="938998696757460004" name="values" index="3TNS9M" />
@@ -89,6 +92,10 @@
         <property id="1374950686633462403" name="max" index="1foOju" />
         <property id="685487308851322013" name="little_endian" index="1vB4Ie" />
         <property id="80104936667564269" name="signed" index="3RNXZI" />
+      </concept>
+      <concept id="5693447180648184401" name="eb_lang.structure.EBMessageVarStrMember" flags="ng" index="3yYcDq">
+        <property id="5693447180648184404" name="offset" index="3yYcDv" />
+        <reference id="5693447180648184402" name="size" index="3yYcDp" />
       </concept>
       <concept id="6086719741696308508" name="eb_lang.structure.EBMessageMemberVar" flags="ng" index="1BkyD7">
         <reference id="4586680865736090769" name="type" index="bScPz" />
@@ -217,6 +224,12 @@
       </node>
     </node>
     <node concept="2gln9S" id="10wERX4rXpL" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gln9S" id="2ZkG2EVLRdw" role="2gln9U">
+      <property role="TrG5h" value="empty" />
+    </node>
+    <node concept="2gln9S" id="2ZkG2EVLRdx" role="2gln9U">
       <property role="TrG5h" value="empty" />
     </node>
     <node concept="20ngxA" id="10wERX4rXpM" role="2gln9U">
@@ -445,6 +458,16 @@
       <node concept="2gaMiM" id="10wERX4rXqO" role="36JId$">
         <property role="TrG5h" value="size" />
         <ref role="bScPz" node="10wERX4rXpt" resolve="U8" />
+      </node>
+      <node concept="awP_h" id="7GtGgPUKRWN" role="36JId$">
+        <property role="awP_n" value="2" />
+        <property role="TrG5h" value="pp" />
+        <ref role="bScPz" node="10wERX4rXpM" resolve="Price" />
+      </node>
+      <node concept="3yYcDq" id="7GtGgPUUveD" role="36JId$">
+        <property role="3yYcDv" value="0" />
+        <property role="TrG5h" value="ss" />
+        <ref role="3yYcDp" node="10wERX4rXqO" resolve="size" />
       </node>
       <node concept="2gaMiJ" id="10wERX4rXqP" role="36JId$">
         <property role="TrG5h" value="grp" />

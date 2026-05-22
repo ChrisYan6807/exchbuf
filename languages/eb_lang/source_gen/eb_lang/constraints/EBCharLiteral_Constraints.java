@@ -33,7 +33,7 @@ public class EBCharLiteral_Constraints extends BaseConstraintsDescriptor {
       return result;
     }
     private static boolean staticValidateProperty(SNode node, String propertyValue) {
-      return propertyValue.length() == 1;
+      return propertyValue.length() == 1 || propertyValue.matches("\\\\?[0-9]+");
     }
   }
 

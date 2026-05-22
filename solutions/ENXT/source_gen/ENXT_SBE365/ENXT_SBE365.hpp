@@ -126,7 +126,7 @@ struct TemplateIdType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TemplateIdType& operator=(Enum v) {value_ == v;return *this;}
     constexpr TemplateIdType& operator=(const TemplateIdType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NewOrder: return "NewOrder";
@@ -203,11 +203,11 @@ struct MessageHeader {
     uint16 schemaId{0};
     uint16 version{365};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MessageHeader);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MessageHeader);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MessageHeader& msg) {
@@ -224,11 +224,11 @@ struct groupSizeEncoding {
     uint8 blockLength;
     uint8 numInGroup;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(groupSizeEncoding);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(groupSizeEncoding);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const groupSizeEncoding& msg) {
@@ -242,11 +242,11 @@ struct groupSizeEncoding16 {
     uint16 blockLength;
     uint8 numInGroup;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(groupSizeEncoding16);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(groupSizeEncoding16);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const groupSizeEncoding16& msg) {
@@ -284,7 +284,7 @@ struct AccountType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AccountType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr AccountType_enum& operator=(const AccountType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Client: return "Client";
@@ -336,7 +336,7 @@ struct AccountTypeCross_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AccountTypeCross_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr AccountTypeCross_enum& operator=(const AccountTypeCross_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Client: return "Client";
@@ -382,7 +382,7 @@ struct LPRole_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LPRole_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LPRole_enum& operator=(const LPRole_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Liquidity_Provider_or_Market_Maker: return "Liquidity_Provider_or_Market_Maker";
@@ -422,7 +422,7 @@ struct BuyRevisionIndicator_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr BuyRevisionIndicator_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr BuyRevisionIndicator_enum& operator=(const BuyRevisionIndicator_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -508,7 +508,7 @@ struct UserStatus_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr UserStatus_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr UserStatus_enum& operator=(const UserStatus_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Trader_Algo_Suspended: return "Trader_Algo_Suspended";
@@ -598,7 +598,7 @@ struct ClearingInstruction_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ClearingInstruction_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr ClearingInstruction_enum& operator=(const ClearingInstruction_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Process_normally__formerly_Systematic_posting_: return "Process_normally__formerly_Systematic_posting_";
@@ -643,7 +643,7 @@ struct CollarRejectionType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CollarRejectionType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr CollarRejectionType_enum& operator=(const CollarRejectionType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Low_dynamic_collar: return "Low_dynamic_collar";
@@ -685,7 +685,7 @@ struct OrderCategory_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderCategory_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderCategory_enum& operator=(const OrderCategory_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Lit_Order: return "Lit_Order";
@@ -730,7 +730,7 @@ struct CCPID_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CCPID_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr CCPID_enum& operator=(const CCPID_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::LCH_SA: return "LCH_SA";
@@ -774,7 +774,7 @@ struct MessagePriceNotation_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MessagePriceNotation_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr MessagePriceNotation_enum& operator=(const MessagePriceNotation_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Price: return "Price";
@@ -864,7 +864,7 @@ struct StrategyCode_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr StrategyCode_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr StrategyCode_enum& operator=(const StrategyCode_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Jelly_Roll: return "Jelly_Roll";
@@ -958,7 +958,7 @@ struct LogonRejectCode_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LogonRejectCode_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LogonRejectCode_enum& operator=(const LogonRejectCode_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unknown_Connection_Identifier: return "Unknown_Connection_Identifier";
@@ -1012,7 +1012,7 @@ struct DeclarationStatus_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DeclarationStatus_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr DeclarationStatus_enum& operator=(const DeclarationStatus_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New_Waiting_for_Counterparty_Confirmation: return "New_Waiting_for_Counterparty_Confirmation";
@@ -1066,7 +1066,7 @@ struct LogOutReasonCode_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LogOutReasonCode_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LogOutReasonCode_enum& operator=(const LogOutReasonCode_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Regular_Logout: return "Regular_Logout";
@@ -1110,7 +1110,7 @@ struct ActionType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ActionType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr ActionType_enum& operator=(const ActionType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Declaration_Cancellation_Request: return "Declaration_Cancellation_Request";
@@ -1157,7 +1157,7 @@ struct EMM_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr EMM_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr EMM_enum& operator=(const EMM_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Cash_and_Derivative_Central_Order_Book: return "Cash_and_Derivative_Central_Order_Book";
@@ -1203,7 +1203,7 @@ struct RFQType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQType_enum& operator=(const RFQType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Manual_RFQ: return "Manual_RFQ";
@@ -1243,7 +1243,7 @@ struct RFQUpdateType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQUpdateType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQUpdateType_enum& operator=(const RFQUpdateType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -1283,7 +1283,7 @@ struct RecipientType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RecipientType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr RecipientType_enum& operator=(const RecipientType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::RFQ_Issuer: return "RFQ_Issuer";
@@ -1344,7 +1344,7 @@ struct AckType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AckType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr AckType_enum& operator=(const AckType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New_Order_Ack: return "New_Order_Ack";
@@ -1408,7 +1408,7 @@ struct ExecutionPhase_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecutionPhase_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecutionPhase_enum& operator=(const ExecutionPhase_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Continuous_Trading_Phase: return "Continuous_Trading_Phase";
@@ -1456,7 +1456,7 @@ struct AckPhase_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AckPhase_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr AckPhase_enum& operator=(const AckPhase_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Continuous_Trading_Phase: return "Continuous_Trading_Phase";
@@ -1503,7 +1503,7 @@ struct UndisclosedIcebergType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr UndisclosedIcebergType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr UndisclosedIcebergType_enum& operator=(const UndisclosedIcebergType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Limit: return "Limit";
@@ -1544,7 +1544,7 @@ struct OrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderSide_enum& operator=(const OrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -1584,7 +1584,7 @@ struct WholesaleSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr WholesaleSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr WholesaleSide_enum& operator=(const WholesaleSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -1623,7 +1623,7 @@ struct LegSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LegSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LegSide_enum& operator=(const LegSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -1662,7 +1662,7 @@ struct Side_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Side_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr Side_enum& operator=(const Side_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -1710,7 +1710,7 @@ struct OrderType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderType_enum& operator=(const OrderType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Market: return "Market";
@@ -1790,7 +1790,7 @@ struct KillReason_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr KillReason_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr KillReason_enum& operator=(const KillReason_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Order_Cancelled_by_Client: return "Order_Cancelled_by_Client";
@@ -1862,7 +1862,7 @@ struct SellRevisionIndicator_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SellRevisionIndicator_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr SellRevisionIndicator_enum& operator=(const SellRevisionIndicator_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -1904,7 +1904,7 @@ struct TechnicalOrigin_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TechnicalOrigin_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr TechnicalOrigin_enum& operator=(const TechnicalOrigin_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Index_trading_arbitrage: return "Index_trading_arbitrage";
@@ -1952,7 +1952,7 @@ struct TimeInForce_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TimeInForce_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr TimeInForce_enum& operator=(const TimeInForce_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Day: return "Day";
@@ -1999,7 +1999,7 @@ struct TriggeredStopTimeInForce_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TriggeredStopTimeInForce_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr TriggeredStopTimeInForce_enum& operator=(const TriggeredStopTimeInForce_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Day: return "Day";
@@ -2091,7 +2091,7 @@ struct TradeType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeType_enum& operator=(const TradeType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Conventional_Trade: return "Conventional_Trade";
@@ -2181,7 +2181,7 @@ struct ResponseType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ResponseType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr ResponseType_enum& operator=(const ResponseType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Accept: return "Accept";
@@ -2220,7 +2220,7 @@ struct OptionType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OptionType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr OptionType_enum& operator=(const OptionType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Call: return "Call";
@@ -2259,7 +2259,7 @@ struct LegPutOrCall_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LegPutOrCall_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LegPutOrCall_enum& operator=(const LegPutOrCall_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Call: return "Call";
@@ -2299,7 +2299,7 @@ struct TransactionPriceType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TransactionPriceType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr TransactionPriceType_enum& operator=(const TransactionPriceType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Plain_Vanilla_Trade: return "Plain_Vanilla_Trade";
@@ -2343,7 +2343,7 @@ struct PreMatchingType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PreMatchingType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr PreMatchingType_enum& operator=(const PreMatchingType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Not_prematched: return "Not_prematched";
@@ -2385,7 +2385,7 @@ struct InputPriceType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr InputPriceType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr InputPriceType_enum& operator=(const InputPriceType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Valuation_Price: return "Valuation_Price";
@@ -2426,7 +2426,7 @@ struct LPActionCode_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LPActionCode_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LPActionCode_enum& operator=(const LPActionCode_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Knock_In_By_Issuer_KIBI: return "Knock_In_By_Issuer_KIBI";
@@ -2470,7 +2470,7 @@ struct AFQReason_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AFQReason_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr AFQReason_enum& operator=(const AFQReason_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Quote_cancelled_by_the_Liquidity_Provider: return "Quote_cancelled_by_the_Liquidity_Provider";
@@ -2514,7 +2514,7 @@ struct OperationType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OperationType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr OperationType_enum& operator=(const OperationType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Declaration_of_a_trade_outside_the_book: return "Declaration_of_a_trade_outside_the_book";
@@ -2555,7 +2555,7 @@ struct GuaranteeFlag_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr GuaranteeFlag_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr GuaranteeFlag_enum& operator=(const GuaranteeFlag_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Cleared_but_not_Guaranteed: return "Cleared_but_not_Guaranteed";
@@ -2594,7 +2594,7 @@ struct TradingCapacity_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradingCapacity_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradingCapacity_enum& operator=(const TradingCapacity_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Dealing_on_own_account: return "Dealing_on_own_account";
@@ -2634,7 +2634,7 @@ struct TradingCapacityCross_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradingCapacityCross_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradingCapacityCross_enum& operator=(const TradingCapacityCross_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Dealing_on_own_account: return "Dealing_on_own_account";
@@ -2673,7 +2673,7 @@ struct ProtectionType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ProtectionType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr ProtectionType_enum& operator=(const ProtectionType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Delta: return "Delta";
@@ -2712,7 +2712,7 @@ struct RequestType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RequestType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr RequestType_enum& operator=(const RequestType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Set: return "Set";
@@ -2751,7 +2751,7 @@ struct BreachAction_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr BreachAction_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr BreachAction_enum& operator=(const BreachAction_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Ignore: return "Ignore";
@@ -2793,7 +2793,7 @@ struct WholesaleTradeType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr WholesaleTradeType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr WholesaleTradeType_enum& operator=(const WholesaleTradeType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Large_in_Scale_Trade_Formerly_Block_Trade: return "Large_in_Scale_Trade_Formerly_Block_Trade";
@@ -2836,7 +2836,7 @@ struct LegSecurityType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LegSecurityType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr LegSecurityType_enum& operator=(const LegSecurityType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Future: return "Future";
@@ -2875,7 +2875,7 @@ struct OrderActorType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderActorType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderActorType_enum& operator=(const OrderActorType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Initiator: return "Initiator";
@@ -2913,7 +2913,7 @@ struct ExposureSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExposureSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExposureSide_enum& operator=(const ExposureSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -2951,7 +2951,7 @@ struct OrderOrigin_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderOrigin_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderOrigin_enum& operator=(const OrderOrigin_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::COB: return "COB";
@@ -2991,7 +2991,7 @@ struct IOIQuantity_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr IOIQuantity_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr IOIQuantity_enum& operator=(const IOIQuantity_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Small: return "Small";
@@ -3032,7 +3032,7 @@ struct IOIQualityIndication_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr IOIQualityIndication_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr IOIQualityIndication_enum& operator=(const IOIQualityIndication_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::High: return "High";
@@ -3072,7 +3072,7 @@ struct IOISide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr IOISide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr IOISide_enum& operator=(const IOISide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3115,7 +3115,7 @@ struct IOIType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr IOIType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr IOIType_enum& operator=(const IOIType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Ack: return "Ack";
@@ -3158,7 +3158,7 @@ struct WaveForLiquidityIOITransactionType_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr WaveForLiquidityIOITransactionType_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr WaveForLiquidityIOITransactionType_enum& operator=(const WaveForLiquidityIOITransactionType_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -3197,7 +3197,7 @@ struct QuoteRequestOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteRequestOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteRequestOrderSide_enum& operator=(const QuoteRequestOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3235,7 +3235,7 @@ struct RFQNotificationOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQNotificationOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQNotificationOrderSide_enum& operator=(const RFQNotificationOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3273,7 +3273,7 @@ struct RFQMatchingStatusOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQMatchingStatusOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQMatchingStatusOrderSide_enum& operator=(const RFQMatchingStatusOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3311,7 +3311,7 @@ struct FillOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr FillOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr FillOrderSide_enum& operator=(const FillOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3349,7 +3349,7 @@ struct CancelRequestOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CancelRequestOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr CancelRequestOrderSide_enum& operator=(const CancelRequestOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3387,7 +3387,7 @@ struct MassCancelOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MassCancelOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr MassCancelOrderSide_enum& operator=(const MassCancelOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3425,7 +3425,7 @@ struct MassCancelAckOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MassCancelAckOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr MassCancelAckOrderSide_enum& operator=(const MassCancelAckOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3463,7 +3463,7 @@ struct CancelReplaceOrderSide_enum {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CancelReplaceOrderSide_enum& operator=(Enum v) {value_ == v;return *this;}
     constexpr CancelReplaceOrderSide_enum& operator=(const CancelReplaceOrderSide_enum& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3501,7 +3501,7 @@ struct STPRestingOrder {
     constexpr void set(Enum v) {value_ = v;}
     constexpr STPRestingOrder& operator=(Enum v) {value_ == v;return *this;}
     constexpr STPRestingOrder& operator=(const STPRestingOrder& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3539,7 +3539,7 @@ struct STPIncomingOrder {
     constexpr void set(Enum v) {value_ = v;}
     constexpr STPIncomingOrder& operator=(Enum v) {value_ == v;return *this;}
     constexpr STPIncomingOrder& operator=(const STPIncomingOrder& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3577,7 +3577,7 @@ struct DisclosedQuantityRandomization {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DisclosedQuantityRandomization& operator=(Enum v) {value_ == v;return *this;}
     constexpr DisclosedQuantityRandomization& operator=(const DisclosedQuantityRandomization& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3615,7 +3615,7 @@ struct DisabledCancelOnDisconnectIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DisabledCancelOnDisconnectIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DisabledCancelOnDisconnectIndicator& operator=(const DisabledCancelOnDisconnectIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3653,7 +3653,7 @@ struct RFQAnswer {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQAnswer& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQAnswer& operator=(const RFQAnswer& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3691,7 +3691,7 @@ struct RFQConfirmation {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQConfirmation& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQConfirmation& operator=(const RFQConfirmation& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3729,7 +3729,7 @@ struct ConditionalOrder {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ConditionalOrder& operator=(Enum v) {value_ == v;return *this;}
     constexpr ConditionalOrder& operator=(const ConditionalOrder& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3767,7 +3767,7 @@ struct STPBothOrders {
     constexpr void set(Enum v) {value_ = v;}
     constexpr STPBothOrders& operator=(Enum v) {value_ == v;return *this;}
     constexpr STPBothOrders& operator=(const STPBothOrders& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3925,7 +3925,7 @@ struct DarkIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DarkIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DarkIndicator& operator=(const DarkIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3963,7 +3963,7 @@ struct DeferredTradeIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DeferredTradeIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DeferredTradeIndicator& operator=(const DeferredTradeIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4001,7 +4001,7 @@ struct DisplayedOrderInteraction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DisplayedOrderInteraction& operator=(Enum v) {value_ == v;return *this;}
     constexpr DisplayedOrderInteraction& operator=(const DisplayedOrderInteraction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4039,7 +4039,7 @@ struct SweepOrderIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SweepOrderIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr SweepOrderIndicator& operator=(const SweepOrderIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4077,7 +4077,7 @@ struct MinimumQuantityType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MinimumQuantityType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MinimumQuantityType& operator=(const MinimumQuantityType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4115,7 +4115,7 @@ struct DarkSTPIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DarkSTPIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DarkSTPIndicator& operator=(const DarkSTPIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4153,7 +4153,7 @@ struct DarkPassiveOrderIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DarkPassiveOrderIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DarkPassiveOrderIndicator& operator=(const DarkPassiveOrderIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4297,7 +4297,7 @@ struct QueueIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QueueIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr QueueIndicator& operator=(const QueueIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4335,7 +4335,7 @@ struct RequestWithClientOrderID {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RequestWithClientOrderID& operator=(Enum v) {value_ == v;return *this;}
     constexpr RequestWithClientOrderID& operator=(const RequestWithClientOrderID& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4373,7 +4373,7 @@ struct UseOfCrossPartition {
     constexpr void set(Enum v) {value_ = v;}
     constexpr UseOfCrossPartition& operator=(Enum v) {value_ == v;return *this;}
     constexpr UseOfCrossPartition& operator=(const UseOfCrossPartition& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4411,7 +4411,7 @@ struct Internal1 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Internal1& operator=(Enum v) {value_ == v;return *this;}
     constexpr Internal1& operator=(const Internal1& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4449,7 +4449,7 @@ struct Internal2 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Internal2& operator=(Enum v) {value_ == v;return *this;}
     constexpr Internal2& operator=(const Internal2& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4487,7 +4487,7 @@ struct ExecutionUponEntryFlagEnabled {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecutionUponEntryFlagEnabled& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecutionUponEntryFlagEnabled& operator=(const ExecutionUponEntryFlagEnabled& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4525,7 +4525,7 @@ struct ExecutedUponEntryFlag {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecutedUponEntryFlag& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecutedUponEntryFlag& operator=(const ExecutedUponEntryFlag& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4683,7 +4683,7 @@ struct DEAIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DEAIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DEAIndicator& operator=(const DEAIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4721,7 +4721,7 @@ struct InvestmentAlgoIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr InvestmentAlgoIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr InvestmentAlgoIndicator& operator=(const InvestmentAlgoIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4759,7 +4759,7 @@ struct ExecutionAlgoIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecutionAlgoIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecutionAlgoIndicator& operator=(const ExecutionAlgoIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4797,7 +4797,7 @@ struct CommodityDerivativeIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CommodityDerivativeIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr CommodityDerivativeIndicator& operator=(const CommodityDerivativeIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4835,7 +4835,7 @@ struct DeferralIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DeferralIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr DeferralIndicator& operator=(const DeferralIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4873,7 +4873,7 @@ struct FRMARAMPLP {
     constexpr void set(Enum v) {value_ = v;}
     constexpr FRMARAMPLP& operator=(Enum v) {value_ == v;return *this;}
     constexpr FRMARAMPLP& operator=(const FRMARAMPLP& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5003,7 +5003,7 @@ struct FieldActivelyUsed {
     constexpr void set(Enum v) {value_ = v;}
     constexpr FieldActivelyUsed& operator=(Enum v) {value_ == v;return *this;}
     constexpr FieldActivelyUsed& operator=(const FieldActivelyUsed& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5041,7 +5041,7 @@ struct Leg1 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg1& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg1& operator=(const Leg1& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5079,7 +5079,7 @@ struct Leg2 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg2& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg2& operator=(const Leg2& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5117,7 +5117,7 @@ struct Leg3 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg3& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg3& operator=(const Leg3& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5155,7 +5155,7 @@ struct Leg4 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg4& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg4& operator=(const Leg4& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5193,7 +5193,7 @@ struct Leg5 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg5& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg5& operator=(const Leg5& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5231,7 +5231,7 @@ struct Leg6 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg6& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg6& operator=(const Leg6& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5269,7 +5269,7 @@ struct Leg7 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg7& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg7& operator=(const Leg7& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5307,7 +5307,7 @@ struct Leg8 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg8& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg8& operator=(const Leg8& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5345,7 +5345,7 @@ struct Leg9 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Leg9& operator=(Enum v) {value_ == v;return *this;}
     constexpr Leg9& operator=(const Leg9& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5531,7 +5531,7 @@ struct UncrossingTrade {
     constexpr void set(Enum v) {value_ = v;}
     constexpr UncrossingTrade& operator=(Enum v) {value_ == v;return *this;}
     constexpr UncrossingTrade& operator=(const UncrossingTrade& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5569,7 +5569,7 @@ struct FirstTradePrice {
     constexpr void set(Enum v) {value_ = v;}
     constexpr FirstTradePrice& operator=(Enum v) {value_ == v;return *this;}
     constexpr FirstTradePrice& operator=(const FirstTradePrice& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5607,7 +5607,7 @@ struct PassiveOrder {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PassiveOrder& operator=(Enum v) {value_ == v;return *this;}
     constexpr PassiveOrder& operator=(const PassiveOrder& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5645,7 +5645,7 @@ struct AggressiveOrder {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AggressiveOrder& operator=(Enum v) {value_ == v;return *this;}
     constexpr AggressiveOrder& operator=(const AggressiveOrder& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5683,7 +5683,7 @@ struct TradeCreationByMarketOperations {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeCreationByMarketOperations& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeCreationByMarketOperations& operator=(const TradeCreationByMarketOperations& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5721,7 +5721,7 @@ struct NAVTradeExpressedInBps {
     constexpr void set(Enum v) {value_ = v;}
     constexpr NAVTradeExpressedInBps& operator=(Enum v) {value_ == v;return *this;}
     constexpr NAVTradeExpressedInBps& operator=(const NAVTradeExpressedInBps& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5759,7 +5759,7 @@ struct NAVTradeExpressedInPriceCurrency {
     constexpr void set(Enum v) {value_ = v;}
     constexpr NAVTradeExpressedInPriceCurrency& operator=(Enum v) {value_ == v;return *this;}
     constexpr NAVTradeExpressedInPriceCurrency& operator=(const NAVTradeExpressedInPriceCurrency& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5797,7 +5797,7 @@ struct DeferredPublication {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DeferredPublication& operator=(Enum v) {value_ == v;return *this;}
     constexpr DeferredPublication& operator=(const DeferredPublication& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5955,7 +5955,7 @@ struct Session1 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Session1& operator=(Enum v) {value_ == v;return *this;}
     constexpr Session1& operator=(const Session1& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5993,7 +5993,7 @@ struct Session2 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Session2& operator=(Enum v) {value_ == v;return *this;}
     constexpr Session2& operator=(const Session2& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6031,7 +6031,7 @@ struct Session3 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Session3& operator=(Enum v) {value_ == v;return *this;}
     constexpr Session3& operator=(const Session3& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6069,7 +6069,7 @@ struct Session4 {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Session4& operator=(Enum v) {value_ == v;return *this;}
     constexpr Session4& operator=(const Session4& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6171,7 +6171,7 @@ struct LRGS {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LRGS& operator=(Enum v) {value_ == v;return *this;}
     constexpr LRGS& operator=(const LRGS& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6209,7 +6209,7 @@ struct RFPT {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFPT& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFPT& operator=(const RFPT& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6247,7 +6247,7 @@ struct NLIQ {
     constexpr void set(Enum v) {value_ = v;}
     constexpr NLIQ& operator=(Enum v) {value_ == v;return *this;}
     constexpr NLIQ& operator=(const NLIQ& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6285,7 +6285,7 @@ struct OILQ {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OILQ& operator=(Enum v) {value_ == v;return *this;}
     constexpr OILQ& operator=(const OILQ& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6323,7 +6323,7 @@ struct PRIC {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PRIC& operator=(Enum v) {value_ == v;return *this;}
     constexpr PRIC& operator=(const PRIC& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6361,7 +6361,7 @@ struct SIZE {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SIZE& operator=(Enum v) {value_ == v;return *this;}
     constexpr SIZE& operator=(const SIZE& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6399,7 +6399,7 @@ struct ILQD {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ILQD& operator=(Enum v) {value_ == v;return *this;}
     constexpr ILQD& operator=(const ILQD& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6437,7 +6437,7 @@ struct OMF {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OMF& operator=(Enum v) {value_ == v;return *this;}
     constexpr OMF& operator=(const OMF& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6595,7 +6595,7 @@ struct Notification {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Notification& operator=(Enum v) {value_ == v;return *this;}
     constexpr Notification& operator=(const Notification& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6633,7 +6633,7 @@ struct Acknowledgement {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Acknowledgement& operator=(Enum v) {value_ == v;return *this;}
     constexpr Acknowledgement& operator=(const Acknowledgement& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6671,7 +6671,7 @@ struct Pull {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Pull& operator=(Enum v) {value_ == v;return *this;}
     constexpr Pull& operator=(const Pull& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6759,7 +6759,7 @@ struct CallMode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CallMode& operator=(Enum v) {value_ == v;return *this;}
     constexpr CallMode& operator=(const CallMode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6797,7 +6797,7 @@ struct ContinuousMode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ContinuousMode& operator=(Enum v) {value_ == v;return *this;}
     constexpr ContinuousMode& operator=(const ContinuousMode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6871,7 +6871,7 @@ struct EuronextDataDriven {
     constexpr void set(Enum v) {value_ = v;}
     constexpr EuronextDataDriven& operator=(Enum v) {value_ == v;return *this;}
     constexpr EuronextDataDriven& operator=(const EuronextDataDriven& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6909,7 +6909,7 @@ struct InterestLists {
     constexpr void set(Enum v) {value_ = v;}
     constexpr InterestLists& operator=(Enum v) {value_ == v;return *this;}
     constexpr InterestLists& operator=(const InterestLists& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6947,7 +6947,7 @@ struct Holdings {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Holdings& operator=(Enum v) {value_ == v;return *this;}
     constexpr Holdings& operator=(const Holdings& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -6985,7 +6985,7 @@ struct BuySide {
     constexpr void set(Enum v) {value_ = v;}
     constexpr BuySide& operator=(Enum v) {value_ == v;return *this;}
     constexpr BuySide& operator=(const BuySide& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -7023,7 +7023,7 @@ struct SellSide {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SellSide& operator=(Enum v) {value_ == v;return *this;}
     constexpr SellSide& operator=(const SellSide& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -7061,7 +7061,7 @@ struct QualityOfSellSideCounterparty {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QualityOfSellSideCounterparty& operator=(Enum v) {value_ == v;return *this;}
     constexpr QualityOfSellSideCounterparty& operator=(const QualityOfSellSideCounterparty& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -7099,7 +7099,7 @@ struct LocalCommunityOfSpecialistAMS {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LocalCommunityOfSpecialistAMS& operator=(Enum v) {value_ == v;return *this;}
     constexpr LocalCommunityOfSpecialistAMS& operator=(const LocalCommunityOfSpecialistAMS& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -7137,7 +7137,7 @@ struct LocalCommunityOfSpecialistPAR {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LocalCommunityOfSpecialistPAR& operator=(Enum v) {value_ == v;return *this;}
     constexpr LocalCommunityOfSpecialistPAR& operator=(const LocalCommunityOfSpecialistPAR& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -7175,7 +7175,7 @@ struct LocalCommunityOfSpecialistBRU {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LocalCommunityOfSpecialistBRU& operator=(Enum v) {value_ == v;return *this;}
     constexpr LocalCommunityOfSpecialistBRU& operator=(const LocalCommunityOfSpecialistBRU& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -7213,7 +7213,7 @@ struct LocalCommunityOfSpecialistLIS {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LocalCommunityOfSpecialistLIS& operator=(Enum v) {value_ == v;return *this;}
     constexpr LocalCommunityOfSpecialistLIS& operator=(const LocalCommunityOfSpecialistLIS& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -7381,11 +7381,11 @@ ostreamT& operator<<(ostreamT& os, const TargetCounterparties_set& v) {
 struct NewOrder_FreeTextSection {
     char18 freeText;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_FreeTextSection);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_FreeTextSection);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_FreeTextSection& msg) {
@@ -7400,11 +7400,11 @@ struct NewOrder_FreeTextSection_Composite {
     BlockRef<NewOrder_FreeTextSection> data() {return BlockRef<NewOrder_FreeTextSection>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_FreeTextSection> data() const {return BlockRef<NewOrder_FreeTextSection>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_FreeTextSection_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_FreeTextSection_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_FreeTextSection_Composite& msg) {
@@ -7420,11 +7420,11 @@ struct NewOrder_MiFIDShortcodes {
     i32 nonExecutingBrokerShortCode;
     i32 clientIdentificationShortcode;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_MiFIDShortcodes);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_MiFIDShortcodes);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_MiFIDShortcodes& msg) {
@@ -7441,11 +7441,11 @@ struct NewOrder_MiFIDShortcodes_Composite {
     BlockRef<NewOrder_MiFIDShortcodes> data() {return BlockRef<NewOrder_MiFIDShortcodes>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_MiFIDShortcodes> data() const {return BlockRef<NewOrder_MiFIDShortcodes>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_MiFIDShortcodes_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_MiFIDShortcodes_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_MiFIDShortcodes_Composite& msg) {
@@ -7469,11 +7469,11 @@ struct NewOrder_OptionalFields {
     UndisclosedIcebergType_enum undisclosedIcebergType{UndisclosedIcebergType_enum::null};
     TriggeredStopTimeInForce_enum stopTriggeredTimeInForce{TriggeredStopTimeInForce_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_OptionalFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_OptionalFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_OptionalFields& msg) {
@@ -7498,11 +7498,11 @@ struct NewOrder_OptionalFields_Composite {
     BlockRef<NewOrder_OptionalFields> data() {return BlockRef<NewOrder_OptionalFields>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_OptionalFields> data() const {return BlockRef<NewOrder_OptionalFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_OptionalFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_OptionalFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_OptionalFields_Composite& msg) {
@@ -7523,11 +7523,11 @@ struct NewOrder_ClearingFields {
     AccountTypeCross_enum accountTypeCross{AccountTypeCross_enum::null};
     TradingCapacityCross_enum tradingCapacityCross{TradingCapacityCross_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_ClearingFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_ClearingFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_ClearingFields& msg) {
@@ -7549,11 +7549,11 @@ struct NewOrder_ClearingFields_Composite {
     BlockRef<NewOrder_ClearingFields> data() {return BlockRef<NewOrder_ClearingFields>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_ClearingFields> data() const {return BlockRef<NewOrder_ClearingFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_ClearingFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_ClearingFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_ClearingFields_Composite& msg) {
@@ -7566,11 +7566,11 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_ClearingFields_
 #pragma pack(1)
 struct NewOrder_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup1& msg) {os << "}";
@@ -7583,11 +7583,11 @@ struct NewOrder_NotUsedGroup1_Composite {
     BlockRef<NewOrder_NotUsedGroup1> data() {return BlockRef<NewOrder_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_NotUsedGroup1> data() const {return BlockRef<NewOrder_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup1_Composite& msg) {
@@ -7600,11 +7600,11 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup1_C
 #pragma pack(1)
 struct NewOrder_NotUsedGroup2 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_NotUsedGroup2);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_NotUsedGroup2);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup2& msg) {os << "}";
@@ -7617,11 +7617,11 @@ struct NewOrder_NotUsedGroup2_Composite {
     BlockRef<NewOrder_NotUsedGroup2> data() {return BlockRef<NewOrder_NotUsedGroup2>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_NotUsedGroup2> data() const {return BlockRef<NewOrder_NotUsedGroup2>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_NotUsedGroup2_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_NotUsedGroup2_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup2_Composite& msg) {
@@ -7635,11 +7635,11 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_NotUsedGroup2_C
 struct NewOrder_AdditionalInfos {
     char16 longClientID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_AdditionalInfos);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_AdditionalInfos);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_AdditionalInfos& msg) {
@@ -7654,11 +7654,11 @@ struct NewOrder_AdditionalInfos_Composite {
     BlockRef<NewOrder_AdditionalInfos> data() {return BlockRef<NewOrder_AdditionalInfos>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_AdditionalInfos> data() const {return BlockRef<NewOrder_AdditionalInfos>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_AdditionalInfos_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_AdditionalInfos_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_AdditionalInfos_Composite& msg) {
@@ -7672,11 +7672,11 @@ inline std::ostream& operator<<(std::ostream& os, const NewOrder_AdditionalInfos
 struct NewOrder_OptionalIDs {
     u32 lPID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_OptionalIDs);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_OptionalIDs);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_OptionalIDs& msg) {
@@ -7691,11 +7691,11 @@ struct NewOrder_OptionalIDs_Composite {
     BlockRef<NewOrder_OptionalIDs> data() {return BlockRef<NewOrder_OptionalIDs>(begin()+size(), numInGroup);}
     BlockRef<NewOrder_OptionalIDs> data() const {return BlockRef<NewOrder_OptionalIDs>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder_OptionalIDs_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder_OptionalIDs_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder_OptionalIDs_Composite& msg) {
@@ -7737,11 +7737,11 @@ struct NewOrder : MessageHeader {
     FloatingRef<NewOrder_AdditionalInfos_Composite> AdditionalInfos() {return FloatingRef<NewOrder_AdditionalInfos_Composite>(NotUsedGroup2().end());}
     FloatingRef<NewOrder_OptionalIDs_Composite> OptionalIDs() {return FloatingRef<NewOrder_OptionalIDs_Composite>(AdditionalInfos().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder);}
-    size_t var_size() const {return OptionalIDs().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder);}
+    size_t size() const {return OptionalIDs().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
@@ -7784,11 +7784,11 @@ struct Ack_MiFIDFields {
     i32 clientIdentificationShortCode;
     MiFIDIndicators_set miFIDIndicators;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Ack_MiFIDFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Ack_MiFIDFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Ack_MiFIDFields& msg) {
@@ -7805,11 +7805,11 @@ struct Ack_MiFIDFields_Composite {
     BlockRef<Ack_MiFIDFields> data() {return BlockRef<Ack_MiFIDFields>(begin()+size(), numInGroup);}
     BlockRef<Ack_MiFIDFields> data() const {return BlockRef<Ack_MiFIDFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Ack_MiFIDFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Ack_MiFIDFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Ack_MiFIDFields_Composite& msg) {
@@ -7845,11 +7845,11 @@ struct Ack : MessageHeader {
     i64 orderTolerablePrice;
     Ack_MiFIDFields_Composite MiFIDFields;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Ack);}
-    size_t var_size() const {return MiFIDFields().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Ack);}
+    size_t size() const {return MiFIDFields().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Ack& msg) {
@@ -7887,11 +7887,11 @@ struct Fill_OptionalFieldsFill {
     char12 packageID;
     u32 underlyingInstrumentID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_OptionalFieldsFill);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_OptionalFieldsFill);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsFill& msg) {
@@ -7909,11 +7909,11 @@ struct Fill_OptionalFieldsFill_Composite {
     BlockRef<Fill_OptionalFieldsFill> data() {return BlockRef<Fill_OptionalFieldsFill>(begin()+size(), numInGroup);}
     BlockRef<Fill_OptionalFieldsFill> data() const {return BlockRef<Fill_OptionalFieldsFill>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_OptionalFieldsFill_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_OptionalFieldsFill_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsFill_Composite& msg) {
@@ -7932,11 +7932,11 @@ struct Fill_StrategyFields {
     u32 executionID;
     char16 tradeUniqueIdentifier;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_StrategyFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_StrategyFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_StrategyFields& msg) {
@@ -7956,11 +7956,11 @@ struct Fill_StrategyFields_Composite {
     BlockRef<Fill_StrategyFields> data() {return BlockRef<Fill_StrategyFields>(begin()+size(), numInGroup);}
     BlockRef<Fill_StrategyFields> data() const {return BlockRef<Fill_StrategyFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_StrategyFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_StrategyFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_StrategyFields_Composite& msg) {
@@ -7976,11 +7976,11 @@ struct Fill_MiFIDFields {
     i32 clientIdentificationShortCode;
     MiFIDIndicators_set miFIDIndicators;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_MiFIDFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_MiFIDFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_MiFIDFields& msg) {
@@ -7997,11 +7997,11 @@ struct Fill_MiFIDFields_Composite {
     BlockRef<Fill_MiFIDFields> data() {return BlockRef<Fill_MiFIDFields>(begin()+size(), numInGroup);}
     BlockRef<Fill_MiFIDFields> data() const {return BlockRef<Fill_MiFIDFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_MiFIDFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_MiFIDFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_MiFIDFields_Composite& msg) {
@@ -8018,11 +8018,11 @@ struct Fill_OptionalFieldsDerivatives {
     u32 finalSymbolIndex;
     u32 finalExecutionID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_OptionalFieldsDerivatives);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_OptionalFieldsDerivatives);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsDerivatives& msg) {
@@ -8040,11 +8040,11 @@ struct Fill_OptionalFieldsDerivatives_Composite {
     BlockRef<Fill_OptionalFieldsDerivatives> data() {return BlockRef<Fill_OptionalFieldsDerivatives>(begin()+size(), numInGroup);}
     BlockRef<Fill_OptionalFieldsDerivatives> data() const {return BlockRef<Fill_OptionalFieldsDerivatives>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill_OptionalFieldsDerivatives_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill_OptionalFieldsDerivatives_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill_OptionalFieldsDerivatives_Composite& msg) {
@@ -8082,11 +8082,11 @@ struct Fill : MessageHeader {
     FloatingRef<Fill_MiFIDFields_Composite> MiFIDFields() {return FloatingRef<Fill_MiFIDFields_Composite>(StrategyFields().end());}
     FloatingRef<Fill_OptionalFieldsDerivatives_Composite> OptionalFieldsDerivatives() {return FloatingRef<Fill_OptionalFieldsDerivatives_Composite>(MiFIDFields().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Fill);}
-    size_t var_size() const {return OptionalFieldsDerivatives().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Fill);}
+    size_t size() const {return OptionalFieldsDerivatives().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Fill& msg) {
@@ -8125,11 +8125,11 @@ struct Kill_MiFIDFields {
     i32 clientIdentificationShortCode;
     MiFIDIndicators_set miFIDIndicators;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Kill_MiFIDFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Kill_MiFIDFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Kill_MiFIDFields& msg) {
@@ -8146,11 +8146,11 @@ struct Kill_MiFIDFields_Composite {
     BlockRef<Kill_MiFIDFields> data() {return BlockRef<Kill_MiFIDFields>(begin()+size(), numInGroup);}
     BlockRef<Kill_MiFIDFields> data() const {return BlockRef<Kill_MiFIDFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Kill_MiFIDFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Kill_MiFIDFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Kill_MiFIDFields_Composite& msg) {
@@ -8180,11 +8180,11 @@ struct Kill : MessageHeader {
     AckQualifiers_set ackQualifiers;
     Kill_MiFIDFields_Composite MiFIDFields;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Kill);}
-    size_t var_size() const {return MiFIDFields().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Kill);}
+    size_t size() const {return MiFIDFields().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Kill& msg) {
@@ -8213,11 +8213,11 @@ inline std::ostream& operator<<(std::ostream& os, const Kill& msg) {
 struct CancelReplace_FreeTextSection {
     char18 freeText;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_FreeTextSection);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_FreeTextSection);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_FreeTextSection& msg) {
@@ -8232,11 +8232,11 @@ struct CancelReplace_FreeTextSection_Composite {
     BlockRef<CancelReplace_FreeTextSection> data() {return BlockRef<CancelReplace_FreeTextSection>(begin()+size(), numInGroup);}
     BlockRef<CancelReplace_FreeTextSection> data() const {return BlockRef<CancelReplace_FreeTextSection>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_FreeTextSection_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_FreeTextSection_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_FreeTextSection_Composite& msg) {
@@ -8258,11 +8258,11 @@ struct CancelReplace_OptionalFields {
     TriggeredStopTimeInForce_enum stopTriggeredTimeInForce{TriggeredStopTimeInForce_enum::null};
     UndisclosedIcebergType_enum undisclosedIcebergType{UndisclosedIcebergType_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_OptionalFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_OptionalFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_OptionalFields& msg) {
@@ -8285,11 +8285,11 @@ struct CancelReplace_OptionalFields_Composite {
     BlockRef<CancelReplace_OptionalFields> data() {return BlockRef<CancelReplace_OptionalFields>(begin()+size(), numInGroup);}
     BlockRef<CancelReplace_OptionalFields> data() const {return BlockRef<CancelReplace_OptionalFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_OptionalFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_OptionalFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_OptionalFields_Composite& msg) {
@@ -8308,11 +8308,11 @@ struct CancelReplace_ClearingFields {
     OpenClose_set openClose;
     ClearingInstruction_enum clearingInstruction{ClearingInstruction_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_ClearingFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_ClearingFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_ClearingFields& msg) {
@@ -8332,11 +8332,11 @@ struct CancelReplace_ClearingFields_Composite {
     BlockRef<CancelReplace_ClearingFields> data() {return BlockRef<CancelReplace_ClearingFields>(begin()+size(), numInGroup);}
     BlockRef<CancelReplace_ClearingFields> data() const {return BlockRef<CancelReplace_ClearingFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_ClearingFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_ClearingFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_ClearingFields_Composite& msg) {
@@ -8349,11 +8349,11 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_ClearingFi
 #pragma pack(1)
 struct CancelReplace_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGroup1& msg) {os << "}";
@@ -8366,11 +8366,11 @@ struct CancelReplace_NotUsedGroup1_Composite {
     BlockRef<CancelReplace_NotUsedGroup1> data() {return BlockRef<CancelReplace_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<CancelReplace_NotUsedGroup1> data() const {return BlockRef<CancelReplace_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGroup1_Composite& msg) {
@@ -8383,11 +8383,11 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGro
 #pragma pack(1)
 struct CancelReplace_NotUsedGroup2 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_NotUsedGroup2);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_NotUsedGroup2);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGroup2& msg) {os << "}";
@@ -8400,11 +8400,11 @@ struct CancelReplace_NotUsedGroup2_Composite {
     BlockRef<CancelReplace_NotUsedGroup2> data() {return BlockRef<CancelReplace_NotUsedGroup2>(begin()+size(), numInGroup);}
     BlockRef<CancelReplace_NotUsedGroup2> data() const {return BlockRef<CancelReplace_NotUsedGroup2>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_NotUsedGroup2_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_NotUsedGroup2_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGroup2_Composite& msg) {
@@ -8418,11 +8418,11 @@ inline std::ostream& operator<<(std::ostream& os, const CancelReplace_NotUsedGro
 struct CancelReplace_AdditionalInfos {
     char16 longClientID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_AdditionalInfos);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_AdditionalInfos);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_AdditionalInfos& msg) {
@@ -8437,11 +8437,11 @@ struct CancelReplace_AdditionalInfos_Composite {
     BlockRef<CancelReplace_AdditionalInfos> data() {return BlockRef<CancelReplace_AdditionalInfos>(begin()+size(), numInGroup);}
     BlockRef<CancelReplace_AdditionalInfos> data() const {return BlockRef<CancelReplace_AdditionalInfos>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace_AdditionalInfos_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace_AdditionalInfos_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace_AdditionalInfos_Composite& msg) {
@@ -8481,11 +8481,11 @@ struct CancelReplace : MessageHeader {
     FloatingRef<CancelReplace_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<CancelReplace_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
     FloatingRef<CancelReplace_AdditionalInfos_Composite> AdditionalInfos() {return FloatingRef<CancelReplace_AdditionalInfos_Composite>(NotUsedGroup2().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelReplace);}
-    size_t var_size() const {return AdditionalInfos().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelReplace);}
+    size_t size() const {return AdditionalInfos().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelReplace& msg) {
@@ -8525,11 +8525,11 @@ struct Reject_CollarFields {
     CollarRejectionType_enum collarRejType{CollarRejectionType_enum::null};
     i64 breachedCollarPrice;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Reject_CollarFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Reject_CollarFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject_CollarFields& msg) {
@@ -8545,11 +8545,11 @@ struct Reject_CollarFields_Composite {
     BlockRef<Reject_CollarFields> data() {return BlockRef<Reject_CollarFields>(begin()+size(), numInGroup);}
     BlockRef<Reject_CollarFields> data() const {return BlockRef<Reject_CollarFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Reject_CollarFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Reject_CollarFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject_CollarFields_Composite& msg) {
@@ -8565,11 +8565,11 @@ struct Reject_MiFIDFields {
     i32 clientIdentificationShortCode;
     MiFIDIndicators_set miFIDIndicators;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Reject_MiFIDFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Reject_MiFIDFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject_MiFIDFields& msg) {
@@ -8586,11 +8586,11 @@ struct Reject_MiFIDFields_Composite {
     BlockRef<Reject_MiFIDFields> data() {return BlockRef<Reject_MiFIDFields>(begin()+size(), numInGroup);}
     BlockRef<Reject_MiFIDFields> data() const {return BlockRef<Reject_MiFIDFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Reject_MiFIDFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Reject_MiFIDFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject_MiFIDFields_Composite& msg) {
@@ -8622,11 +8622,11 @@ struct Reject : MessageHeader {
     Reject_CollarFields_Composite CollarFields;
     FloatingRef<Reject_MiFIDFields_Composite> MiFIDFields() {return FloatingRef<Reject_MiFIDFields_Composite>(CollarFields().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Reject);}
-    size_t var_size() const {return MiFIDFields().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Reject);}
+    size_t size() const {return MiFIDFields().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
@@ -8659,11 +8659,11 @@ struct Quotes_MiFIDShortcodes {
     i32 nonExecutingBrokerShortCode;
     i32 clientIdentificationShortcode;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Quotes_MiFIDShortcodes);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Quotes_MiFIDShortcodes);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Quotes_MiFIDShortcodes& msg) {
@@ -8680,11 +8680,11 @@ struct Quotes_MiFIDShortcodes_Composite {
     BlockRef<Quotes_MiFIDShortcodes> data() {return BlockRef<Quotes_MiFIDShortcodes>(begin()+size(), numInGroup);}
     BlockRef<Quotes_MiFIDShortcodes> data() const {return BlockRef<Quotes_MiFIDShortcodes>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Quotes_MiFIDShortcodes_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Quotes_MiFIDShortcodes_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Quotes_MiFIDShortcodes_Composite& msg) {
@@ -8704,11 +8704,11 @@ struct Quotes_ClearingDataset {
     ClearingInstruction_enum clearingInstruction{ClearingInstruction_enum::null};
     char18 freeText;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Quotes_ClearingDataset);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Quotes_ClearingDataset);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Quotes_ClearingDataset& msg) {
@@ -8729,11 +8729,11 @@ struct Quotes_ClearingDataset_Composite {
     BlockRef<Quotes_ClearingDataset> data() {return BlockRef<Quotes_ClearingDataset>(begin()+size(), numInGroup);}
     BlockRef<Quotes_ClearingDataset> data() const {return BlockRef<Quotes_ClearingDataset>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Quotes_ClearingDataset_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Quotes_ClearingDataset_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Quotes_ClearingDataset_Composite& msg) {
@@ -8752,11 +8752,11 @@ struct Quotes_QuotesRep {
     u32 symbolIndex;
     EMM_enum eMM{EMM_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Quotes_QuotesRep);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Quotes_QuotesRep);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Quotes_QuotesRep& msg) {
@@ -8776,11 +8776,11 @@ struct Quotes_QuotesRep_Composite {
     BlockRef<Quotes_QuotesRep> data() {return BlockRef<Quotes_QuotesRep>(begin()+size(), numInGroup);}
     BlockRef<Quotes_QuotesRep> data() const {return BlockRef<Quotes_QuotesRep>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Quotes_QuotesRep_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Quotes_QuotesRep_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Quotes_QuotesRep_Composite& msg) {
@@ -8808,11 +8808,11 @@ struct Quotes : MessageHeader {
     FloatingRef<Quotes_ClearingDataset_Composite> ClearingDataset() {return FloatingRef<Quotes_ClearingDataset_Composite>(MiFIDShortcodes().end());}
     FloatingRef<Quotes_QuotesRep_Composite> QuotesRep() {return FloatingRef<Quotes_QuotesRep_Composite>(ClearingDataset().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Quotes);}
-    size_t var_size() const {return QuotesRep().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Quotes);}
+    size_t size() const {return QuotesRep().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Quotes& msg) {
@@ -8846,11 +8846,11 @@ struct QuoteAck_QuoteAcks {
     u16 bidErrorCode;
     u16 offerErrorCode;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteAck_QuoteAcks);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteAck_QuoteAcks);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteAck_QuoteAcks& msg) {
@@ -8872,11 +8872,11 @@ struct QuoteAck_QuoteAcks_Composite {
     BlockRef<QuoteAck_QuoteAcks> data() {return BlockRef<QuoteAck_QuoteAcks>(begin()+size(), numInGroup);}
     BlockRef<QuoteAck_QuoteAcks> data() const {return BlockRef<QuoteAck_QuoteAcks>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteAck_QuoteAcks_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteAck_QuoteAcks_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteAck_QuoteAcks_Composite& msg) {
@@ -8904,11 +8904,11 @@ struct QuoteAck : MessageHeader {
     AckQualifiers_set ackQualifiers;
     QuoteAck_QuoteAcks_Composite QuoteAcks;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteAck);}
-    size_t var_size() const {return QuoteAcks().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteAck);}
+    size_t size() const {return QuoteAcks().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteAck& msg) {
@@ -8935,11 +8935,11 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteAck& msg) {
 struct QuoteRequest_FreeTextSection {
     char18 freeText;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteRequest_FreeTextSection);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteRequest_FreeTextSection);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteRequest_FreeTextSection& msg) {
@@ -8954,11 +8954,11 @@ struct QuoteRequest_FreeTextSection_Composite {
     BlockRef<QuoteRequest_FreeTextSection> data() {return BlockRef<QuoteRequest_FreeTextSection>(begin()+size(), numInGroup);}
     BlockRef<QuoteRequest_FreeTextSection> data() const {return BlockRef<QuoteRequest_FreeTextSection>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteRequest_FreeTextSection_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteRequest_FreeTextSection_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteRequest_FreeTextSection_Composite& msg) {
@@ -8974,11 +8974,11 @@ struct QuoteRequest_RFQOptionalFields {
     unsigned_char minimumNumberOfLPs;
     u16 expirationDelay;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteRequest_RFQOptionalFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteRequest_RFQOptionalFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteRequest_RFQOptionalFields& msg) {
@@ -8995,11 +8995,11 @@ struct QuoteRequest_RFQOptionalFields_Composite {
     BlockRef<QuoteRequest_RFQOptionalFields> data() {return BlockRef<QuoteRequest_RFQOptionalFields>(begin()+size(), numInGroup);}
     BlockRef<QuoteRequest_RFQOptionalFields> data() const {return BlockRef<QuoteRequest_RFQOptionalFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteRequest_RFQOptionalFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteRequest_RFQOptionalFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteRequest_RFQOptionalFields_Composite& msg) {
@@ -9040,11 +9040,11 @@ struct QuoteRequest : MessageHeader {
     QuoteRequest_FreeTextSection_Composite FreeTextSection;
     FloatingRef<QuoteRequest_RFQOptionalFields_Composite> RFQOptionalFields() {return FloatingRef<QuoteRequest_RFQOptionalFields_Composite>(FreeTextSection().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteRequest);}
-    size_t var_size() const {return RFQOptionalFields().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteRequest);}
+    size_t size() const {return RFQOptionalFields().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteRequest& msg) {
@@ -9083,11 +9083,11 @@ inline std::ostream& operator<<(std::ostream& os, const QuoteRequest& msg) {
 #pragma pack(1)
 struct CancelRequest_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelRequest_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelRequest_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGroup1& msg) {os << "}";
@@ -9100,11 +9100,11 @@ struct CancelRequest_NotUsedGroup1_Composite {
     BlockRef<CancelRequest_NotUsedGroup1> data() {return BlockRef<CancelRequest_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<CancelRequest_NotUsedGroup1> data() const {return BlockRef<CancelRequest_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelRequest_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelRequest_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGroup1_Composite& msg) {
@@ -9117,11 +9117,11 @@ inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGro
 #pragma pack(1)
 struct CancelRequest_NotUsedGroup2 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelRequest_NotUsedGroup2);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelRequest_NotUsedGroup2);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGroup2& msg) {os << "}";
@@ -9134,11 +9134,11 @@ struct CancelRequest_NotUsedGroup2_Composite {
     BlockRef<CancelRequest_NotUsedGroup2> data() {return BlockRef<CancelRequest_NotUsedGroup2>(begin()+size(), numInGroup);}
     BlockRef<CancelRequest_NotUsedGroup2> data() const {return BlockRef<CancelRequest_NotUsedGroup2>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelRequest_NotUsedGroup2_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelRequest_NotUsedGroup2_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest_NotUsedGroup2_Composite& msg) {
@@ -9166,11 +9166,11 @@ struct CancelRequest : MessageHeader {
     CancelRequest_NotUsedGroup1_Composite NotUsedGroup1;
     FloatingRef<CancelRequest_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<CancelRequest_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CancelRequest);}
-    size_t var_size() const {return NotUsedGroup2().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CancelRequest);}
+    size_t size() const {return NotUsedGroup2().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelRequest& msg) {
@@ -9196,11 +9196,11 @@ inline std::ostream& operator<<(std::ostream& os, const CancelRequest& msg) {
 #pragma pack(1)
 struct MassCancel_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancel_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancel_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup1& msg) {os << "}";
@@ -9213,11 +9213,11 @@ struct MassCancel_NotUsedGroup1_Composite {
     BlockRef<MassCancel_NotUsedGroup1> data() {return BlockRef<MassCancel_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<MassCancel_NotUsedGroup1> data() const {return BlockRef<MassCancel_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancel_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancel_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup1_Composite& msg) {
@@ -9230,11 +9230,11 @@ inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup1
 #pragma pack(1)
 struct MassCancel_NotUsedGroup2 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancel_NotUsedGroup2);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancel_NotUsedGroup2);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup2& msg) {os << "}";
@@ -9247,11 +9247,11 @@ struct MassCancel_NotUsedGroup2_Composite {
     BlockRef<MassCancel_NotUsedGroup2> data() {return BlockRef<MassCancel_NotUsedGroup2>(begin()+size(), numInGroup);}
     BlockRef<MassCancel_NotUsedGroup2> data() const {return BlockRef<MassCancel_NotUsedGroup2>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancel_NotUsedGroup2_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancel_NotUsedGroup2_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancel_NotUsedGroup2_Composite& msg) {
@@ -9284,11 +9284,11 @@ struct MassCancel : MessageHeader {
     MassCancel_NotUsedGroup1_Composite NotUsedGroup1;
     FloatingRef<MassCancel_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<MassCancel_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancel);}
-    size_t var_size() const {return NotUsedGroup2().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancel);}
+    size_t size() const {return NotUsedGroup2().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancel& msg) {
@@ -9322,11 +9322,11 @@ struct MassCancelAck_MiFIDFields {
     i32 clientIdentificationShortCode;
     MiFIDIndicators_set miFIDIndicators;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancelAck_MiFIDFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancelAck_MiFIDFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancelAck_MiFIDFields& msg) {
@@ -9343,11 +9343,11 @@ struct MassCancelAck_MiFIDFields_Composite {
     BlockRef<MassCancelAck_MiFIDFields> data() {return BlockRef<MassCancelAck_MiFIDFields>(begin()+size(), numInGroup);}
     BlockRef<MassCancelAck_MiFIDFields> data() const {return BlockRef<MassCancelAck_MiFIDFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancelAck_MiFIDFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancelAck_MiFIDFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancelAck_MiFIDFields_Composite& msg) {
@@ -9385,11 +9385,11 @@ struct MassCancelAck : MessageHeader {
     i32 targetExecutionWithinFirmShortCode;
     MassCancelAck_MiFIDFields_Composite MiFIDFields;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassCancelAck);}
-    size_t var_size() const {return MiFIDFields().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassCancelAck);}
+    size_t size() const {return MiFIDFields().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassCancelAck& msg) {
@@ -9436,11 +9436,11 @@ struct OpenOrderRequest : MessageHeader {
     EMM_enum eMM{EMM_enum::null};
     OrderCategory_enum orderCategory{OrderCategory_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OpenOrderRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OpenOrderRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OpenOrderRequest& msg) {
@@ -9471,11 +9471,11 @@ struct OwnershipRequestAck : MessageHeader {
     i32 totalAffectedOrders;
     OrderCategory_enum orderCategory{OrderCategory_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OwnershipRequestAck);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OwnershipRequestAck);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OwnershipRequestAck& msg) {
@@ -9508,11 +9508,11 @@ struct OwnershipRequest : MessageHeader {
     u16 oEPartitionID;
     OrderCategory_enum orderCategory{OrderCategory_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OwnershipRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OwnershipRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OwnershipRequest& msg) {
@@ -9552,11 +9552,11 @@ struct TradeBustNotification : MessageHeader {
     char16 tradeUniqueIdentifier;
     char16 parentTradeUniqueIdentifier;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TradeBustNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TradeBustNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TradeBustNotification& msg) {
@@ -9593,11 +9593,11 @@ struct CollarBreachConfirmation : MessageHeader {
     u64 orderID;
     i64 origClientOrderID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CollarBreachConfirmation);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CollarBreachConfirmation);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CollarBreachConfirmation& msg) {
@@ -9628,11 +9628,11 @@ struct PriceInput : MessageHeader {
     InputPriceType_enum inputPriceType{InputPriceType_enum::null};
     i64 price;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PriceInput);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PriceInput);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PriceInput& msg) {
@@ -9662,11 +9662,11 @@ struct LiquidityProviderCommand : MessageHeader {
     EMM_enum eMM{EMM_enum::null};
     LPActionCode_enum lPActionCode{LPActionCode_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LiquidityProviderCommand);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LiquidityProviderCommand);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LiquidityProviderCommand& msg) {
@@ -9691,11 +9691,11 @@ struct AskForQuote : MessageHeader {
     EMM_enum eMM{EMM_enum::null};
     AFQReason_enum aFQReason{AFQReason_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AskForQuote);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AskForQuote);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AskForQuote& msg) {
@@ -9715,11 +9715,11 @@ struct RequestForExecution : MessageHeader {
     u32 symbolIndex;
     EMM_enum eMM{EMM_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RequestForExecution);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RequestForExecution);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RequestForExecution& msg) {
@@ -9751,11 +9751,11 @@ struct RFQNotification : MessageHeader {
     u64 minOrderQty;
     AccountType_enum accountType{AccountType_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQNotification& msg) {
@@ -9797,11 +9797,11 @@ struct RFQMatchingStatus : MessageHeader {
     unsigned_char numberOfLPs;
     RecipientType_enum recipientType{RecipientType_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQMatchingStatus);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQMatchingStatus);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQMatchingStatus& msg) {
@@ -9837,11 +9837,11 @@ struct RFQLPMatchingStatus : MessageHeader {
     EMM_enum eMM{EMM_enum::null};
     OrderSide_enum orderSide{OrderSide_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQLPMatchingStatus);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQLPMatchingStatus);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQLPMatchingStatus& msg) {
@@ -9863,11 +9863,11 @@ inline std::ostream& operator<<(std::ostream& os, const RFQLPMatchingStatus& msg
 #pragma pack(1)
 struct UserNotification_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserNotification_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserNotification_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserNotification_NotUsedGroup1& msg) {os << "}";
@@ -9880,11 +9880,11 @@ struct UserNotification_NotUsedGroup1_Composite {
     BlockRef<UserNotification_NotUsedGroup1> data() {return BlockRef<UserNotification_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<UserNotification_NotUsedGroup1> data() const {return BlockRef<UserNotification_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserNotification_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserNotification_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserNotification_NotUsedGroup1_Composite& msg) {
@@ -9912,11 +9912,11 @@ struct UserNotification : MessageHeader {
     char3 marketPlace;
     UserNotification_NotUsedGroup1_Composite NotUsedGroup1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserNotification);}
-    size_t var_size() const {return NotUsedGroup1().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserNotification);}
+    size_t size() const {return NotUsedGroup1().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserNotification& msg) {
@@ -9958,11 +9958,11 @@ struct MMSignIn : MessageHeader {
     char18 freeText;
     char16 longClientID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMSignIn);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMSignIn);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMSignIn& msg) {
@@ -10011,11 +10011,11 @@ struct MMSignInAck : MessageHeader {
     char18 freeText;
     char16 longClientID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMSignInAck);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMSignInAck);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMSignInAck& msg) {
@@ -10050,11 +10050,11 @@ struct InstrumentSynchronizationList_InstrumentSynchronizationSection {
     u32 symbolIndex;
     EMM_enum eMM{EMM_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InstrumentSynchronizationList_InstrumentSynchronizationSection);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InstrumentSynchronizationList_InstrumentSynchronizationSection);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InstrumentSynchronizationList_InstrumentSynchronizationSection& msg) {
@@ -10070,11 +10070,11 @@ struct InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite 
     BlockRef<InstrumentSynchronizationList_InstrumentSynchronizationSection> data() {return BlockRef<InstrumentSynchronizationList_InstrumentSynchronizationSection>(begin()+size(), numInGroup);}
     BlockRef<InstrumentSynchronizationList_InstrumentSynchronizationSection> data() const {return BlockRef<InstrumentSynchronizationList_InstrumentSynchronizationSection>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite& msg) {
@@ -10091,11 +10091,11 @@ struct InstrumentSynchronizationList : MessageHeader {
     u16 resynchronizationID;
     InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite InstrumentSynchronizationSection;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InstrumentSynchronizationList);}
-    size_t var_size() const {return InstrumentSynchronizationSection().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InstrumentSynchronizationList);}
+    size_t size() const {return InstrumentSynchronizationSection().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InstrumentSynchronizationList& msg) {
@@ -10114,11 +10114,11 @@ struct SynchronizationTime : MessageHeader {
     u16 resynchronizationID;
     u64 lastBookInTime;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SynchronizationTime);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SynchronizationTime);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SynchronizationTime& msg) {
@@ -10141,11 +10141,11 @@ struct SecurityDefinitionRequest_StrategyLegs {
     char8 legLastTradingDate;
     LegSide_enum legSide{LegSide_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SecurityDefinitionRequest_StrategyLegs);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SecurityDefinitionRequest_StrategyLegs);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionRequest_StrategyLegs& msg) {
@@ -10167,11 +10167,11 @@ struct SecurityDefinitionRequest_StrategyLegs_Composite {
     BlockRef<SecurityDefinitionRequest_StrategyLegs> data() {return BlockRef<SecurityDefinitionRequest_StrategyLegs>(begin()+size(), numInGroup);}
     BlockRef<SecurityDefinitionRequest_StrategyLegs> data() const {return BlockRef<SecurityDefinitionRequest_StrategyLegs>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SecurityDefinitionRequest_StrategyLegs_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SecurityDefinitionRequest_StrategyLegs_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionRequest_StrategyLegs_Composite& msg) {
@@ -10191,11 +10191,11 @@ struct SecurityDefinitionRequest : MessageHeader {
     StrategyCode_enum strategyCode{StrategyCode_enum::null};
     SecurityDefinitionRequest_StrategyLegs_Composite StrategyLegs;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SecurityDefinitionRequest);}
-    size_t var_size() const {return StrategyLegs().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SecurityDefinitionRequest);}
+    size_t size() const {return StrategyLegs().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionRequest& msg) {
@@ -10224,11 +10224,11 @@ struct SecurityDefinitionAck : MessageHeader {
     i64 securityReqID;
     u32 symbolIndex;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SecurityDefinitionAck);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SecurityDefinitionAck);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SecurityDefinitionAck& msg) {
@@ -10253,11 +10253,11 @@ struct MMProtectionRequest_MMPSection {
     u64 protectionThreshold;
     BreachAction_enum breachAction{BreachAction_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMProtectionRequest_MMPSection);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMProtectionRequest_MMPSection);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionRequest_MMPSection& msg) {
@@ -10274,11 +10274,11 @@ struct MMProtectionRequest_MMPSection_Composite {
     BlockRef<MMProtectionRequest_MMPSection> data() {return BlockRef<MMProtectionRequest_MMPSection>(begin()+size(), numInGroup);}
     BlockRef<MMProtectionRequest_MMPSection> data() const {return BlockRef<MMProtectionRequest_MMPSection>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMProtectionRequest_MMPSection_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMProtectionRequest_MMPSection_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionRequest_MMPSection_Composite& msg) {
@@ -10300,11 +10300,11 @@ struct MMProtectionRequest : MessageHeader {
     RequestType_enum requestType{RequestType_enum::null};
     MMProtectionRequest_MMPSection_Composite MMPSection;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMProtectionRequest);}
-    size_t var_size() const {return MMPSection().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMProtectionRequest);}
+    size_t size() const {return MMPSection().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionRequest& msg) {
@@ -10329,11 +10329,11 @@ struct MMProtectionAck_MMPSection2 {
     i64 currentMMPPosition;
     unsigned_char breachStatus;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMProtectionAck_MMPSection2);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMProtectionAck_MMPSection2);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionAck_MMPSection2& msg) {
@@ -10352,11 +10352,11 @@ struct MMProtectionAck_MMPSection2_Composite {
     BlockRef<MMProtectionAck_MMPSection2> data() {return BlockRef<MMProtectionAck_MMPSection2>(begin()+size(), numInGroup);}
     BlockRef<MMProtectionAck_MMPSection2> data() const {return BlockRef<MMProtectionAck_MMPSection2>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMProtectionAck_MMPSection2_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMProtectionAck_MMPSection2_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionAck_MMPSection2_Composite& msg) {
@@ -10384,11 +10384,11 @@ struct MMProtectionAck : MessageHeader {
     MMPExecutionType_set mMPExecutionType;
     MMProtectionAck_MMPSection2_Composite MMPSection2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MMProtectionAck);}
-    size_t var_size() const {return MMPSection2().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MMProtectionAck);}
+    size_t size() const {return MMPSection2().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MMProtectionAck& msg) {
@@ -10424,11 +10424,11 @@ struct NewWholesaleOrder_WholesaleLegsRep {
     LegSecurityType_enum legSecurityType{LegSecurityType_enum::null};
     char8 legLastTradingDate;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewWholesaleOrder_WholesaleLegsRep);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewWholesaleOrder_WholesaleLegsRep);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_WholesaleLegsRep& msg) {
@@ -10452,11 +10452,11 @@ struct NewWholesaleOrder_WholesaleLegsRep_Composite {
     BlockRef<NewWholesaleOrder_WholesaleLegsRep> data() {return BlockRef<NewWholesaleOrder_WholesaleLegsRep>(begin()+size(), numInGroup);}
     BlockRef<NewWholesaleOrder_WholesaleLegsRep> data() const {return BlockRef<NewWholesaleOrder_WholesaleLegsRep>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewWholesaleOrder_WholesaleLegsRep_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewWholesaleOrder_WholesaleLegsRep_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_WholesaleLegsRep_Composite& msg) {
@@ -10484,11 +10484,11 @@ struct NewWholesaleOrder_WholesaleClientRep {
     i32 clientIdentificationShortCode;
     TradingCapacity_enum tradingCapacity{TradingCapacity_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewWholesaleOrder_WholesaleClientRep);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewWholesaleOrder_WholesaleClientRep);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_WholesaleClientRep& msg) {
@@ -10517,11 +10517,11 @@ struct NewWholesaleOrder_WholesaleClientRep_Composite {
     BlockRef<NewWholesaleOrder_WholesaleClientRep> data() {return BlockRef<NewWholesaleOrder_WholesaleClientRep>(begin()+size(), numInGroup);}
     BlockRef<NewWholesaleOrder_WholesaleClientRep> data() const {return BlockRef<NewWholesaleOrder_WholesaleClientRep>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewWholesaleOrder_WholesaleClientRep_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewWholesaleOrder_WholesaleClientRep_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder_WholesaleClientRep_Composite& msg) {
@@ -10551,11 +10551,11 @@ struct NewWholesaleOrder : MessageHeader {
     NewWholesaleOrder_WholesaleLegsRep_Composite WholesaleLegsRep;
     FloatingRef<NewWholesaleOrder_WholesaleClientRep_Composite> WholesaleClientRep() {return FloatingRef<NewWholesaleOrder_WholesaleClientRep_Composite>(WholesaleLegsRep().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewWholesaleOrder);}
-    size_t var_size() const {return WholesaleClientRep().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewWholesaleOrder);}
+    size_t size() const {return WholesaleClientRep().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewWholesaleOrder& msg) {
@@ -10588,11 +10588,11 @@ struct WholesaleOrderAck_WholesaleAckLegsRep {
     LegSide_enum legSide{LegSide_enum::null};
     u16 legErrorCode;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(WholesaleOrderAck_WholesaleAckLegsRep);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(WholesaleOrderAck_WholesaleAckLegsRep);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_WholesaleAckLegsRep& msg) {
@@ -10611,11 +10611,11 @@ struct WholesaleOrderAck_WholesaleAckLegsRep_Composite {
     BlockRef<WholesaleOrderAck_WholesaleAckLegsRep> data() {return BlockRef<WholesaleOrderAck_WholesaleAckLegsRep>(begin()+size(), numInGroup);}
     BlockRef<WholesaleOrderAck_WholesaleAckLegsRep> data() const {return BlockRef<WholesaleOrderAck_WholesaleAckLegsRep>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(WholesaleOrderAck_WholesaleAckLegsRep_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(WholesaleOrderAck_WholesaleAckLegsRep_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_WholesaleAckLegsRep_Composite& msg) {
@@ -10634,11 +10634,11 @@ struct WholesaleOrderAck_WholesaleAckClearingRep {
     i32 clientIdentificationShortCode;
     u16 nonExecutingClientID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(WholesaleOrderAck_WholesaleAckClearingRep);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(WholesaleOrderAck_WholesaleAckClearingRep);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_WholesaleAckClearingRep& msg) {
@@ -10658,11 +10658,11 @@ struct WholesaleOrderAck_WholesaleAckClearingRep_Composite {
     BlockRef<WholesaleOrderAck_WholesaleAckClearingRep> data() {return BlockRef<WholesaleOrderAck_WholesaleAckClearingRep>(begin()+size(), numInGroup);}
     BlockRef<WholesaleOrderAck_WholesaleAckClearingRep> data() const {return BlockRef<WholesaleOrderAck_WholesaleAckClearingRep>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(WholesaleOrderAck_WholesaleAckClearingRep_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(WholesaleOrderAck_WholesaleAckClearingRep_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck_WholesaleAckClearingRep_Composite& msg) {
@@ -10700,11 +10700,11 @@ struct WholesaleOrderAck : MessageHeader {
     WholesaleOrderAck_WholesaleAckLegsRep_Composite WholesaleAckLegsRep;
     FloatingRef<WholesaleOrderAck_WholesaleAckClearingRep_Composite> WholesaleAckClearingRep() {return FloatingRef<WholesaleOrderAck_WholesaleAckClearingRep_Composite>(WholesaleAckLegsRep().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(WholesaleOrderAck);}
-    size_t var_size() const {return WholesaleAckClearingRep().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(WholesaleOrderAck);}
+    size_t size() const {return WholesaleAckClearingRep().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const WholesaleOrderAck& msg) {
@@ -10750,11 +10750,11 @@ struct RequestForImpliedExecution : MessageHeader {
     i32 clientIdentificationShortCode;
     MiFIDIndicators_set miFIDIndicators;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RequestForImpliedExecution);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RequestForImpliedExecution);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RequestForImpliedExecution& msg) {
@@ -10776,11 +10776,11 @@ inline std::ostream& operator<<(std::ostream& os, const RequestForImpliedExecuti
 struct CrossOrder_FreeTextSection {
     char18 freeText;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_FreeTextSection);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_FreeTextSection);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_FreeTextSection& msg) {
@@ -10795,11 +10795,11 @@ struct CrossOrder_FreeTextSection_Composite {
     BlockRef<CrossOrder_FreeTextSection> data() {return BlockRef<CrossOrder_FreeTextSection>(begin()+size(), numInGroup);}
     BlockRef<CrossOrder_FreeTextSection> data() const {return BlockRef<CrossOrder_FreeTextSection>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_FreeTextSection_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_FreeTextSection_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_FreeTextSection_Composite& msg) {
@@ -10815,11 +10815,11 @@ struct CrossOrder_MiFIDShortcodes {
     i32 nonExecutingBrokerShortCode;
     i32 clientIdentificationShortcode;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_MiFIDShortcodes);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_MiFIDShortcodes);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_MiFIDShortcodes& msg) {
@@ -10836,11 +10836,11 @@ struct CrossOrder_MiFIDShortcodes_Composite {
     BlockRef<CrossOrder_MiFIDShortcodes> data() {return BlockRef<CrossOrder_MiFIDShortcodes>(begin()+size(), numInGroup);}
     BlockRef<CrossOrder_MiFIDShortcodes> data() const {return BlockRef<CrossOrder_MiFIDShortcodes>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_MiFIDShortcodes_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_MiFIDShortcodes_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_MiFIDShortcodes_Composite& msg) {
@@ -10861,11 +10861,11 @@ struct CrossOrder_ClearingFieldsX {
     AccountType_enum accountType{AccountType_enum::null};
     TradingCapacity_enum tradingCapacity{TradingCapacity_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_ClearingFieldsX);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_ClearingFieldsX);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_ClearingFieldsX& msg) {
@@ -10887,11 +10887,11 @@ struct CrossOrder_ClearingFieldsX_Composite {
     BlockRef<CrossOrder_ClearingFieldsX> data() {return BlockRef<CrossOrder_ClearingFieldsX>(begin()+size(), numInGroup);}
     BlockRef<CrossOrder_ClearingFieldsX> data() const {return BlockRef<CrossOrder_ClearingFieldsX>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_ClearingFieldsX_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_ClearingFieldsX_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_ClearingFieldsX_Composite& msg) {
@@ -10907,11 +10907,11 @@ struct CrossOrder_StrategyFields {
     u64 legLastQty;
     u32 legInstrumentID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_StrategyFields);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_StrategyFields);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_StrategyFields& msg) {
@@ -10928,11 +10928,11 @@ struct CrossOrder_StrategyFields_Composite {
     BlockRef<CrossOrder_StrategyFields> data() {return BlockRef<CrossOrder_StrategyFields>(begin()+size(), numInGroup);}
     BlockRef<CrossOrder_StrategyFields> data() const {return BlockRef<CrossOrder_StrategyFields>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder_StrategyFields_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder_StrategyFields_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder_StrategyFields_Composite& msg) {
@@ -10965,11 +10965,11 @@ struct CrossOrder : MessageHeader {
     FloatingRef<CrossOrder_ClearingFieldsX_Composite> ClearingFieldsX() {return FloatingRef<CrossOrder_ClearingFieldsX_Composite>(MiFIDShortcodes().end());}
     FloatingRef<CrossOrder_StrategyFields_Composite> StrategyFields() {return FloatingRef<CrossOrder_StrategyFields_Composite>(ClearingFieldsX().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossOrder);}
-    size_t var_size() const {return StrategyFields().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossOrder);}
+    size_t size() const {return StrategyFields().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossOrder& msg) {
@@ -11005,11 +11005,11 @@ struct RFQAudit_RFQCounterparts {
     DarkExecutionInstruction_set darkExecutionInstruction;
     u64 minimumOrderQuantity;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQAudit_RFQCounterparts);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQAudit_RFQCounterparts);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQAudit_RFQCounterparts& msg) {
@@ -11028,11 +11028,11 @@ struct RFQAudit_RFQCounterparts_Composite {
     BlockRef<RFQAudit_RFQCounterparts> data() {return BlockRef<RFQAudit_RFQCounterparts>(begin()+size(), numInGroup);}
     BlockRef<RFQAudit_RFQCounterparts> data() const {return BlockRef<RFQAudit_RFQCounterparts>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQAudit_RFQCounterparts_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQAudit_RFQCounterparts_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQAudit_RFQCounterparts_Composite& msg) {
@@ -11055,11 +11055,11 @@ struct RFQAudit : MessageHeader {
     EMM_enum eMM{EMM_enum::null};
     RFQAudit_RFQCounterparts_Composite RFQCounterparts;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQAudit);}
-    size_t var_size() const {return RFQCounterparts().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQAudit);}
+    size_t size() const {return RFQCounterparts().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQAudit& msg) {
@@ -11093,11 +11093,11 @@ struct WaveForLiquidity : MessageHeader {
     IOIQuantity_enum iOIQuantity{IOIQuantity_enum::null};
     IOIQualityIndication_enum iOIQualityIndication{IOIQualityIndication_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(WaveForLiquidity);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(WaveForLiquidity);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const WaveForLiquidity& msg) {
@@ -11141,11 +11141,11 @@ struct WaveForLiquidityNotification : MessageHeader {
     IOIQualityIndication_enum iOIQualityIndication{IOIQualityIndication_enum::null};
     u16 errorCode;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(WaveForLiquidityNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(WaveForLiquidityNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const WaveForLiquidityNotification& msg) {
@@ -11180,11 +11180,11 @@ struct ClearBook : MessageHeader {
     u32 symbolIndex;
     EMM_enum eMM{EMM_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ClearBook);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ClearBook);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ClearBook& msg) {
@@ -11204,11 +11204,11 @@ struct Logon : MessageHeader {
     char8 softwareProvider;
     unsigned_char queueingIndicator;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Logon);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Logon);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Logon& msg) {
@@ -11226,11 +11226,11 @@ struct LogonAck : MessageHeader {
     char8 exchangeID;
     u32 lastClMsgSeqNum;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogonAck);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogonAck);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonAck& msg) {
@@ -11247,11 +11247,11 @@ struct LogonReject : MessageHeader {
     u32 lastClMsgSeqNum;
     u32 lastMsgSeqNum;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogonReject);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogonReject);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonReject& msg) {
@@ -11267,11 +11267,11 @@ inline std::ostream& operator<<(std::ostream& os, const LogonReject& msg) {
 struct Logout : MessageHeader {
     LogOutReasonCode_enum logOutReasonCode{LogOutReasonCode_enum::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Logout);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Logout);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
@@ -11283,11 +11283,11 @@ inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
 #pragma pack(1)
 struct Heartbeat : MessageHeader {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Heartbeat);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Heartbeat);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
@@ -11297,11 +11297,11 @@ inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
 #pragma pack(1)
 struct TestRequest : MessageHeader {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TestRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TestRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TestRequest& msg) {
@@ -11316,11 +11316,11 @@ struct TechnicalReject : MessageHeader {
     u16 errorCode;
     u16 rejectedMessageID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TechnicalReject);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TechnicalReject);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TechnicalReject& msg) {
@@ -11336,11 +11336,11 @@ inline std::ostream& operator<<(std::ostream& os, const TechnicalReject& msg) {
 #pragma pack(1)
 struct DeclarationEntry_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntry_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntry_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry_NotUsedGroup1& msg) {os << "}";
@@ -11353,11 +11353,11 @@ struct DeclarationEntry_NotUsedGroup1_Composite {
     BlockRef<DeclarationEntry_NotUsedGroup1> data() {return BlockRef<DeclarationEntry_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<DeclarationEntry_NotUsedGroup1> data() const {return BlockRef<DeclarationEntry_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntry_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntry_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry_NotUsedGroup1_Composite& msg) {
@@ -11407,11 +11407,11 @@ struct DeclarationEntry : MessageHeader {
     i32 clientIdentificationShortCodeCross;
     DeclarationEntry_NotUsedGroup1_Composite NotUsedGroup1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntry);}
-    size_t var_size() const {return NotUsedGroup1().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntry);}
+    size_t size() const {return NotUsedGroup1().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry& msg) {
@@ -11459,11 +11459,11 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntry& msg) {
 #pragma pack(1)
 struct DeclarationEntryAck_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntryAck_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntryAck_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck_NotUsedGroup1& msg) {os << "}";
@@ -11476,11 +11476,11 @@ struct DeclarationEntryAck_NotUsedGroup1_Composite {
     BlockRef<DeclarationEntryAck_NotUsedGroup1> data() {return BlockRef<DeclarationEntryAck_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<DeclarationEntryAck_NotUsedGroup1> data() const {return BlockRef<DeclarationEntryAck_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntryAck_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntryAck_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck_NotUsedGroup1_Composite& msg) {
@@ -11504,11 +11504,11 @@ struct DeclarationEntryAck : MessageHeader {
     WaiverIndicator_set waiverIndicator;
     DeclarationEntryAck_NotUsedGroup1_Composite NotUsedGroup1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntryAck);}
-    size_t var_size() const {return NotUsedGroup1().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntryAck);}
+    size_t size() const {return NotUsedGroup1().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck& msg) {
@@ -11530,11 +11530,11 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryAck& msg
 #pragma pack(1)
 struct DeclarationNotice_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationNotice_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationNotice_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUsedGroup1& msg) {os << "}";
@@ -11547,11 +11547,11 @@ struct DeclarationNotice_NotUsedGroup1_Composite {
     BlockRef<DeclarationNotice_NotUsedGroup1> data() {return BlockRef<DeclarationNotice_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<DeclarationNotice_NotUsedGroup1> data() const {return BlockRef<DeclarationNotice_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationNotice_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationNotice_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUsedGroup1_Composite& msg) {
@@ -11564,11 +11564,11 @@ inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUse
 #pragma pack(1)
 struct DeclarationNotice_NotUsedGroup2 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationNotice_NotUsedGroup2);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationNotice_NotUsedGroup2);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUsedGroup2& msg) {os << "}";
@@ -11581,11 +11581,11 @@ struct DeclarationNotice_NotUsedGroup2_Composite {
     BlockRef<DeclarationNotice_NotUsedGroup2> data() {return BlockRef<DeclarationNotice_NotUsedGroup2>(begin()+size(), numInGroup);}
     BlockRef<DeclarationNotice_NotUsedGroup2> data() const {return BlockRef<DeclarationNotice_NotUsedGroup2>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationNotice_NotUsedGroup2_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationNotice_NotUsedGroup2_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice_NotUsedGroup2_Composite& msg) {
@@ -11639,11 +11639,11 @@ struct DeclarationNotice : MessageHeader {
     DeclarationNotice_NotUsedGroup1_Composite NotUsedGroup1;
     FloatingRef<DeclarationNotice_NotUsedGroup2_Composite> NotUsedGroup2() {return FloatingRef<DeclarationNotice_NotUsedGroup2_Composite>(NotUsedGroup1().end());}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationNotice);}
-    size_t var_size() const {return NotUsedGroup2().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationNotice);}
+    size_t size() const {return NotUsedGroup2().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationNotice& msg) {
@@ -11704,11 +11704,11 @@ struct DeclarationCancelAndRefusal : MessageHeader {
     ActionType_enum actionType{ActionType_enum::null};
     char16 tradeUniqueIdentifier;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationCancelAndRefusal);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationCancelAndRefusal);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationCancelAndRefusal& msg) {
@@ -11736,11 +11736,11 @@ struct FundPriceInput : MessageHeader {
     i64 price;
     unsigned_char bypassIndicator;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(FundPriceInput);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(FundPriceInput);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const FundPriceInput& msg) {
@@ -11766,11 +11766,11 @@ struct FundPriceInputAck : MessageHeader {
     i64 price;
     unsigned_char bypassIndicator;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(FundPriceInputAck);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(FundPriceInputAck);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const FundPriceInputAck& msg) {
@@ -11788,11 +11788,11 @@ inline std::ostream& operator<<(std::ostream& os, const FundPriceInputAck& msg) 
 #pragma pack(1)
 struct DeclarationEntryReject_NotUsedGroup1 {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntryReject_NotUsedGroup1);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntryReject_NotUsedGroup1);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryReject_NotUsedGroup1& msg) {os << "}";
@@ -11805,11 +11805,11 @@ struct DeclarationEntryReject_NotUsedGroup1_Composite {
     BlockRef<DeclarationEntryReject_NotUsedGroup1> data() {return BlockRef<DeclarationEntryReject_NotUsedGroup1>(begin()+size(), numInGroup);}
     BlockRef<DeclarationEntryReject_NotUsedGroup1> data() const {return BlockRef<DeclarationEntryReject_NotUsedGroup1>(begin()+size(), numInGroup);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntryReject_NotUsedGroup1_Composite);}
-    size_t var_size() const {return data().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntryReject_NotUsedGroup1_Composite);}
+    size_t size() const {return data().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryReject_NotUsedGroup1_Composite& msg) {
@@ -11833,11 +11833,11 @@ struct DeclarationEntryReject : MessageHeader {
     u16 rejectedMessageID;
     DeclarationEntryReject_NotUsedGroup1_Composite NotUsedGroup1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeclarationEntryReject);}
-    size_t var_size() const {return NotUsedGroup1().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeclarationEntryReject);}
+    size_t size() const {return NotUsedGroup1().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeclarationEntryReject& msg) {

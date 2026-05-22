@@ -16,6 +16,7 @@ import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
@@ -57,6 +58,13 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
     return SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
   }
   /*package*/ static String fmtPyDefault_id7hSmxNQ3d9n(@NotNull SNode __thisNode__) {
+    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37)) {
+      if (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO))) {
+        return SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), PROPS.name$MnvL) + "." + SPropertyOperations.getString(ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), LINKS.values$_zmn)).first(), PROPS.name$MnvL);
+      } else {
+        return SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), PROPS.name$MnvL) + "." + SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
+      }
+    }
     return SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
   }
 
@@ -109,10 +117,14 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
   public SAbstractConcept getConcept() {
     return CONCEPT;
   }
+  private static boolean isEmptyString(String str) {
+    return str == null || str.isEmpty();
+  }
 
   private static final class LINKS {
     /*package*/ static final SReferenceLink type$zO4N = MetaAdapterFactory.getReferenceLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, 0x3fa729f23447e491L, "type");
     /*package*/ static final SContainmentLink type$zVeR = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, 0x726a4e86e2416a07L, "type");
+    /*package*/ static final SContainmentLink values$_zmn = MetaAdapterFactory.getContainmentLink(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, 0x726a4e86e23f3d24L, "values");
   }
 
   private static final class CONCEPTS {

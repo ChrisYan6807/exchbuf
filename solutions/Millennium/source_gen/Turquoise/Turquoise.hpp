@@ -31,7 +31,7 @@ struct OrderType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderType& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderType& operator=(const OrderType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::MAKKET: return "MAKKET";
@@ -73,7 +73,7 @@ struct TimeInForce {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TimeInForce& operator=(Enum v) {value_ == v;return *this;}
     constexpr TimeInForce& operator=(const TimeInForce& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::DAY: return "DAY";
@@ -115,7 +115,7 @@ struct Side {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Side& operator=(Enum v) {value_ == v;return *this;}
     constexpr Side& operator=(const Side& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::BUY: return "BUY";
@@ -155,7 +155,7 @@ struct OrderCapacity {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderCapacity& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderCapacity& operator=(const OrderCapacity& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::MTCH: return "MTCH";
@@ -195,7 +195,7 @@ struct AutoCancel {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AutoCancel& operator=(Enum v) {value_ == v;return *this;}
     constexpr AutoCancel& operator=(const AutoCancel& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::DO_NOT_CANCEL: return "DO_NOT_CANCEL";
@@ -237,7 +237,7 @@ struct OrderSubType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderSubType& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderSubType& operator=(const OrderSubType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ORDER: return "ORDER";
@@ -279,7 +279,7 @@ struct Anonymity {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Anonymity& operator=(Enum v) {value_ == v;return *this;}
     constexpr Anonymity& operator=(const Anonymity& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ANONYMOUS: return "ANONYMOUS";
@@ -317,7 +317,7 @@ struct PassiveOnlyOrder {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PassiveOnlyOrder& operator=(Enum v) {value_ == v;return *this;}
     constexpr PassiveOnlyOrder& operator=(const PassiveOnlyOrder& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NO_CONSTRAINT: return "NO_CONSTRAINT";
@@ -362,7 +362,7 @@ struct ExecType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecType& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecType& operator=(const ExecType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NEW: return "NEW";
@@ -412,7 +412,7 @@ struct OrdStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrdStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrdStatus& operator=(const OrdStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NEW: return "NEW";
@@ -456,7 +456,7 @@ struct RestatementReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RestatementReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr RestatementReason& operator=(const RestatementReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::REPRICED: return "REPRICED";
@@ -499,7 +499,7 @@ struct LiquidityIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiquidityIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiquidityIndicator& operator=(const LiquidityIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ADDED: return "ADDED";
@@ -542,7 +542,7 @@ struct TypeOfTrade {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TypeOfTrade& operator=(Enum v) {value_ == v;return *this;}
     constexpr TypeOfTrade& operator=(const TypeOfTrade& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::VISIBLE: return "VISIBLE";
@@ -584,7 +584,7 @@ struct TargetBook {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TargetBook& operator=(Enum v) {value_ == v;return *this;}
     constexpr TargetBook& operator=(const TargetBook& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::TRQM: return "TRQM";
@@ -628,7 +628,7 @@ struct ExecInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecInstruction& operator=(const ExecInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::USER_LEVEL_DEFAULT: return "USER_LEVEL_DEFAULT";
@@ -670,7 +670,7 @@ struct ClearingAccount {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ClearingAccount& operator=(Enum v) {value_ == v;return *this;}
     constexpr ClearingAccount& operator=(const ClearingAccount& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::CLIENT: return "CLIENT";
@@ -709,7 +709,7 @@ struct DEA {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DEA& operator=(Enum v) {value_ == v;return *this;}
     constexpr DEA& operator=(const DEA& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -748,7 +748,7 @@ struct LiqProv {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LiqProv& operator=(Enum v) {value_ == v;return *this;}
     constexpr LiqProv& operator=(const LiqProv& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -787,7 +787,7 @@ struct Algo {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Algo& operator=(Enum v) {value_ == v;return *this;}
     constexpr Algo& operator=(const Algo& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -880,7 +880,7 @@ struct ClientIDType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ClientIDType& operator=(Enum v) {value_ == v;return *this;}
     constexpr ClientIDType& operator=(const ClientIDType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::None: return "None";
@@ -923,7 +923,7 @@ struct IDMT {
     constexpr void set(Enum v) {value_ = v;}
     constexpr IDMT& operator=(Enum v) {value_ == v;return *this;}
     constexpr IDMT& operator=(const IDMT& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::None: return "None";
@@ -966,7 +966,7 @@ struct EDMT {
     constexpr void set(Enum v) {value_ = v;}
     constexpr EDMT& operator=(Enum v) {value_ == v;return *this;}
     constexpr EDMT& operator=(const EDMT& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::None: return "None";
@@ -1059,7 +1059,7 @@ struct OwnerType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OwnerType& operator=(Enum v) {value_ == v;return *this;}
     constexpr OwnerType& operator=(const OwnerType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NonRetail: return "NonRetail";
@@ -1102,7 +1102,7 @@ struct LastMkt {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LastMkt& operator=(Enum v) {value_ == v;return *this;}
     constexpr LastMkt& operator=(const LastMkt& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::TRQX: return "TRQX";
@@ -1147,7 +1147,7 @@ struct PegPriceType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PegPriceType& operator=(Enum v) {value_ == v;return *this;}
     constexpr PegPriceType& operator=(const PegPriceType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Default: return "Default";
@@ -1188,7 +1188,7 @@ struct Dummy {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Dummy& operator=(Enum v) {value_ == v;return *this;}
     constexpr Dummy& operator=(const Dummy& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NA: return "NA";
@@ -1226,7 +1226,7 @@ struct NETW {
     constexpr void set(Enum v) {value_ = v;}
     constexpr NETW& operator=(Enum v) {value_ == v;return *this;}
     constexpr NETW& operator=(const NETW& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -1265,7 +1265,7 @@ struct RFPT {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFPT& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFPT& operator=(const RFPT& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -1390,11 +1390,11 @@ struct NewOrder : MsgHeader {
     MiFIDFlags mifidFlags;
     PartyRoleQualifiers partyRoleQualifiers;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrder);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrder);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrder& msg) {
@@ -1469,11 +1469,11 @@ struct ExecutionReport : MsgHeader {
     WaiverFlags2 waiverFlags2;
     String21 reserved3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ExecutionReport);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ExecutionReport);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ExecutionReport& msg) {

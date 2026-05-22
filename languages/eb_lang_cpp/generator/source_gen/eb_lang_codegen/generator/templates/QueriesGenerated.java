@@ -341,7 +341,7 @@ public class QueriesGenerated extends QueryProviderBase {
     body += String.format("%sconstexpr %s& operator=(const %s& rhs) = default;\n", indent, SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
 
 
-    body += String.format("%sconstexpr int length() const {return sizeof(value_);}\n", indent);
+    body += String.format("%sconstexpr int size() const {return sizeof(value_);}\n", indent);
 
     {
       String view_list = new String("");
@@ -365,13 +365,13 @@ public class QueriesGenerated extends QueryProviderBase {
 
     String type = new String("int");
     if (SConceptOperations.conceptAlias(SNodeOperations.getConcept(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl))) == "char_ebt") {
-      type = "str";
+      type = "bytes";
     }
 
     String body = String.format("class %s(%s, Enum):\n", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), type);
     for (SNode p : SLinkOperations.getChildren(_context.getNode(), LINKS.values$_zmn)) {
       if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(p, LINKS.value$_yQp), CONCEPTS.EBCharLiteral$iB)) {
-        body += String.format("    %s = '%s'\n", SPropertyOperations.getString(p, PROPS.name$MnvL), SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(p, LINKS.value$_yQp), CONCEPTS.EBCharLiteral$iB), PROPS.value$zter));
+        body += String.format("    %s = b'%s'\n", SPropertyOperations.getString(p, PROPS.name$MnvL), SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(p, LINKS.value$_yQp), CONCEPTS.EBCharLiteral$iB), PROPS.value$zter));
       } else {
         body += String.format("    %s = %s\n", SPropertyOperations.getString(p, PROPS.name$MnvL), SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(p, LINKS.value$_yQp), CONCEPTS.EBNumberLiteral$i8), PROPS.value$zter));
       }
@@ -782,7 +782,7 @@ public class QueriesGenerated extends QueryProviderBase {
     return String.format("        PacketListField(\"%s\", [], %s, count_from=lambda _:%s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.size$E0Ao));
   }
   public static Object propertyMacro_GetValue_0_47(final PropertyMacroContext _context) {
-    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
       return "";
     }
 
@@ -810,13 +810,14 @@ public class QueriesGenerated extends QueryProviderBase {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
       return "";
     }
-    return String.format("        StrLenField(\"%s\", b\"\", length_from=lambda pkt:pkt.%s - %s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getString(_context.getNode(), PROPS.offset$7HLp));
+    // fixme, below fmt is for len field is in previous layer, OUCH5 only
+    return String.format("        StrLenField(\"%s\", b\"\", length_from=lambda pkt:pkt.underlayer.%s%s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.offset$7HLp));
   }
   public static Object propertyMacro_GetValue_0_50(final PropertyMacroContext _context) {
-    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
+    if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {
       return "";
     }
-    return String.format("  %s<size=%s, offset=%s> %s\n", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getString(_context.getNode(), PROPS.offset$7HLp), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+    return String.format("  %s<size=%s, offset=%s> %s", SConceptOperations.conceptAlias(SNodeOperations.getConcept(_context.getNode())), SLinkOperations.getTarget(_context.getNode(), LINKS.size$7Hjn), SPropertyOperations.getString(_context.getNode(), PROPS.offset$7HLp), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
 
   }
   public static Object propertyMacro_GetValue_0_51(final PropertyMacroContext _context) {
@@ -864,12 +865,12 @@ public class QueriesGenerated extends QueryProviderBase {
     }
 
     String begin = "char* begin() {return reinterpret_cast<char*>(this);}";
-    String end = "char* end() {return begin()+length();}";
-    String cbegin = "const char* cbegin() const {return reinterpret_cast<char*>(this);}";
-    String cend = "const char* cend() const {return begin()+length();}";
+    String end = "char* end() {return begin()+size();}";
+    String cbegin = "const char* cbegin() const {return reinterpret_cast<const char*>(this);}";
+    String cend = "const char* cend() const {return cbegin()+size();}";
 
-    String size = String.format("size_t size() const {return sizeof(%s);}", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
-    String length = "size_t var_size() const {return size();}";
+    String size = String.format("size_t fixed_size() const {return sizeof(%s);}", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
+    String length = "size_t size() const {return fixed_size()";
 
     if ((boolean) EBMessage__BehaviorDescriptor.isNotFixedLength_id4Xeby11878t.invoke(_context.getNode())) {
       // the last member must be a variable length member
@@ -878,7 +879,7 @@ public class QueriesGenerated extends QueryProviderBase {
         last = ((SNode) SNodeOperations.getPrevSibling(last));
       }
       SNode last_var = (SNode) last;
-      length = String.format("size_t var_size() const {return %s().end()-begin();}", SPropertyOperations.getString(last_var, PROPS.name$MnvL));
+      length = String.format("size_t size() const {return %s().end()-begin();}", SPropertyOperations.getString(last_var, PROPS.name$MnvL));
 
     }
 

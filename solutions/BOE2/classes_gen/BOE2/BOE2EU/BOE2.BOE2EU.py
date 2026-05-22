@@ -151,16 +151,16 @@ class ReplayComplete(Packet):
     ]
 bind_layers(Header, ReplayComplete, msgType=MsgType.ReplayComplete)
 
-class LoginResponseStatus(str, Enum):
-    LoginAccepted = 'A'
-    NotAuthorized = 'N'
-    SessionIsDisabled = 'D'
-    SessionInUse = 'B'
-    InvalidSession = 'S'
-    SequenceAheadInLoginMessage = 'Q'
-    InvalidUnitGivenInLoginMessage = 'I'
-    InvalidReturnBiteInLoginMessage = 'F'
-    InvalidLoginRequestMessageStructure = 'M'
+class LoginResponseStatus(bytes, Enum):
+    LoginAccepted = b'A'
+    NotAuthorized = b'N'
+    SessionIsDisabled = b'D'
+    SessionInUse = b'B'
+    InvalidSession = b'S'
+    SequenceAheadInLoginMessage = b'Q'
+    InvalidUnitGivenInLoginMessage = b'I'
+    InvalidReturnBiteInLoginMessage = b'F'
+    InvalidLoginRequestMessageStructure = b'M'
 
 
 class LoginResponseV2(Packet):
@@ -177,11 +177,11 @@ class LoginResponseV2(Packet):
     ]
 
 
-class LogoutReason(str, Enum):
-    UserRequested = 'U'
-    EndOfDay = 'E'
-    Administrative = 'A'
-    ProtocolViolation = '!'
+class LogoutReason(bytes, Enum):
+    UserRequested = b'U'
+    EndOfDay = b'E'
+    Administrative = b'A'
+    ProtocolViolation = b'!'
 
 
 class Logout(Packet):
@@ -195,12 +195,12 @@ class Logout(Packet):
     ]
 
 
-class Side(str, Enum):
-    Buy = '1'
-    Sell = '2'
-    SellShort = '5'
-    SellShortExempt = '6'
-    SellUndisclosed = 'H'
+class Side(bytes, Enum):
+    Buy = b'1'
+    Sell = b'2'
+    SellShort = b'5'
+    SellShortExempt = b'6'
+    SellUndisclosed = b'H'
 
 
 class NewOrderBit1(int, Enum):
@@ -545,36 +545,36 @@ class OrderAckBit18(int, Enum):
 
 
 Account = str16;
-class AlgorithmicIndicator(str, Enum):
-    NoAlgo = 'N'
-    Algo = 'Y'
+class AlgorithmicIndicator(bytes, Enum):
+    NoAlgo = b'N'
+    Algo = b'Y'
 
-class BaseLiquidityIndicator(str, Enum):
-    Added = 'A'
-    Removed = 'R'
-    Routed = 'X'
-    Auction = 'C'
-    SelfMatch = 'S'
+class BaseLiquidityIndicator(bytes, Enum):
+    Added = b'A'
+    Removed = b'R'
+    Routed = b'X'
+    Auction = b'C'
+    SelfMatch = b'S'
 
-class BookingType(str, Enum):
-    Regular = 0
-    CFD = 1
+class BookingType(bytes, Enum):
+    Regular = b'0'
+    CFD = b'1'
 
-class CancelOrigOnReject(str, Enum):
-    Leave = 'N'
-    Cacel = 'Y'
+class CancelOrigOnReject(bytes, Enum):
+    Leave = b'N'
+    Cacel = b'Y'
 
-class Capacity(str, Enum):
-    Agency = 'A'
-    Principal = 'P'
-    RisklessPrincipal = 'R'
+class Capacity(bytes, Enum):
+    Agency = b'A'
+    Principal = b'P'
+    RisklessPrincipal = b'R'
 
-class CentralCounterParty(str, Enum):
-    EuroCCP = 'E'
-    LCHLtd = 'L'
-    LCHSA = 'S'
-    SIX = 'X'
-    NONE = 'N'
+class CentralCounterParty(bytes, Enum):
+    EuroCCP = b'E'
+    LCHLtd = b'L'
+    LCHSA = b'S'
+    SIX = b'X'
+    NONE = b'N'
 
 ClearingAccount = str8;
 ClearingFirm = str8;
@@ -586,27 +586,27 @@ class ClientQualifiedRole(int, Enum):
 
 CorrectedSize = u32;
 Currency = str3;
-class DeferralReason(str, Enum):
-    NoReason = '-'
-    LRGS = '6'
+class DeferralReason(bytes, Enum):
+    NoReason = b'-'
+    LRGS = b'6'
 
-class DisplayIndicator(str, Enum):
-    Displayed = 'X'
-    Invisible = 'I'
+class DisplayIndicator(bytes, Enum):
+    Displayed = b'X'
+    Invisible = b'I'
 
 DisplayPrice = Price4;
-class ExecInst(str, Enum):
-    Default = 0
-    MarketPeg = 'P'
-    PrimaryPeg = 'R'
-    Midpoint = 'M'
-    AlternateMidpoint = 'L'
-    GuardedMidpoint = 'G'
+class ExecInst(bytes, Enum):
+    Default = b'\0'
+    MarketPeg = b'P'
+    PrimaryPeg = b'R'
+    Midpoint = b'M'
+    AlternateMidpoint = b'L'
+    GuardedMidpoint = b'G'
 
-class ExecutionMethod(str, Enum):
-    Automated = 'A'
-    Manual = 'M'
-    Unspecified = 'U'
+class ExecutionMethod(bytes, Enum):
+    Automated = b'A'
+    Manual = b'M'
+    Unspecified = b'U'
 
 ExecutorID = u32;
 class ExecutorQualifiedRole(int, Enum):
@@ -615,15 +615,15 @@ class ExecutorQualifiedRole(int, Enum):
     Person = 24
 
 ExpirTime = u64;
-class ExtExecInst(str, Enum):
-    NONE = 'N'
-    AlOrNONE = 'G'
+class ExtExecInst(bytes, Enum):
+    NONE = b'N'
+    AlOrNONE = b'G'
 
 FeeCode = str2;
 GrossTradeAmt = Price4;
-class IDSource(str, Enum):
-    ISIN = 4
-    RIC = 5
+class IDSource(bytes, Enum):
+    ISIN = b'4'
+    RIC = b'5'
 
 InvestorID = u32;
 class InvestorQualifiedRole(int, Enum):
@@ -634,45 +634,45 @@ LargeSize = u64;
 LastMkt = str8;
 LastPx = Price4;
 LastShares = u32;
-class LiquidityProvision(str, Enum):
-    No = 'N'
-    Yes = 'Y'
+class LiquidityProvision(bytes, Enum):
+    No = b'N'
+    Yes = b'Y'
 
 LeavesQty = u32;
-class MatchType(str, Enum):
+class MatchType(int, Enum):
     TradeReporting = 3
 
 MassCancelID = str20;
 MassCancelInst = str16;
 MaxFloor = u32;
 MinQty = u32;
-class OrderCategory(str, Enum):
+class OrderCategory(int, Enum):
     NotaNegotiatedTrade = 0
     PrivatelyNegotiatedTrade = 3
 
-class OrderOrigination(str, Enum):
-    DEA = '5'
-    NonDEA = '0'
+class OrderOrigination(bytes, Enum):
+    DEA = b'5'
+    NonDEA = b'0'
 
 OrderQty = u32;
-class OrdType(str, Enum):
-    Market = '1'
-    Limit = '2'
-    Pegged = 'P'
+class OrdType(bytes, Enum):
+    Market = b'1'
+    Limit = b'2'
+    Pegged = b'P'
 
 OrigClOrdID = str20;
 PegDifference = Price4;
 PreventParticipantMatch = str3;
-class PriceFormation(str, Enum):
-    PRIC = '3'
-    NPFT = 'T'
+class PriceFormation(bytes, Enum):
+    PRIC = b'3'
+    NPFT = b'T'
 
 ReportTime = u64;
 RiskReset = str8;
 RoutingInst = str4;
 RptTime = u64;
 SecondaryOrderID = u64;
-class SecondaryTrdType(str, Enum):
+class SecondaryTrdType(int, Enum):
     BenchmarkTrade = 64
 
 SecurityExchange = str4;
@@ -681,61 +681,61 @@ SettlementCurrentcy = str3;
 SettlementDate = u64;
 SettlementLocation = str2;
 SettlementPrice = TradePrice;
-class SubLiquidityIndicator(str, Enum):
-    NO = 0
-    CboeDarkPoolExecution = 'D'
-    RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T'
-    TradeAddedHiddenLiquidity = 'H'
-    TradeAddedHiddenLiquidityThatWasPriceImproved = 'I'
-    AddLiquidityFromHiddenReserveOrder = 'K'
-    PeriodicAuction = 'P'
-    CboeClosingCross = 'C'
-    LiquidityALPSSBBO = 'S'
+class SubLiquidityIndicator(bytes, Enum):
+    NO = b'\0'
+    CboeDarkPoolExecution = b'D'
+    RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = b'T'
+    TradeAddedHiddenLiquidity = b'H'
+    TradeAddedHiddenLiquidityThatWasPriceImproved = b'I'
+    AddLiquidityFromHiddenReserveOrder = b'K'
+    PeriodicAuction = b'P'
+    CboeClosingCross = b'C'
+    LiquidityALPSSBBO = b'S'
 
 Symbol = str8;
 // fixme, check SymbolSfx definition
 SymbolSfx = str2;
 
-class TimeInForce(str, Enum):
-    Day = '0'
-    GTC = '1'
-    AtTheOpen = '2'
-    IOC = '3'
-    GTD = '6'
-    AtTheClose = '7'
-    GoodForAuction = '8'
+class TimeInForce(bytes, Enum):
+    Day = b'0'
+    GTC = b'1'
+    AtTheOpen = b'2'
+    IOC = b'3'
+    GTD = b'6'
+    AtTheClose = b'7'
+    GoodForAuction = b'8'
 
 Tolerance = u16;
-class TradeHandlingInstruction(str, Enum):
+class TradeHandlingInstruction(int, Enum):
     TwoPartyReport = 1
     OnePartReportForMatching = 2
 
 TradeID = u64;
 TradeLinkID = u8;
-class TradePriceCondition(str, Enum):
+class TradePriceCondition(int, Enum):
     CumDividend = 0
     ExDividend = 2
     SpecialDividend = 13
 
-class TradePubnlishIndicator(str, Enum):
+class TradePubnlishIndicator(int, Enum):
     DoNotPublish = 0
     Publish = 1
     DeferredPublication = 2
 
 TradeReportRefID = str20;
-class TradeReportTransType(str, Enum):
+class TradeReportTransType(int, Enum):
     New = 0
     Cancel = 1
     Replace = 2
     Release = 3
 
-class TradeReportType(str, Enum):
+class TradeReportType(bytes, Enum):
     Submit = 0
     TradeReportCancel = 6
 
 TradeReportTypeReturn = u16;
 TradeTime = u64;
-class TradingSessionSubID(str, Enum):
+class TradingSessionSubID(int, Enum):
     ScheduledOpeningAuction = 2
     ScheduledClosingAuction = 4
     ScheduledIntradayAuction = 6
@@ -745,40 +745,40 @@ class TradingSessionSubID(str, Enum):
     PostTrading = 5
     OutOfMainSessionTrading = 10
 
-class TransactionCategory(str, Enum):
-    RegularTrade = 'P'
-    DarkTrade = 'D'
+class TransactionCategory(bytes, Enum):
+    RegularTrade = b'P'
+    DarkTrade = b'D'
 
-class TrdSubType(str, Enum):
+class TrdSubType(int, Enum):
     AgencyCrossTrade = 37
 
-class VenueType(str, Enum):
-    OffBook = 'O'
+class VenueType(bytes, Enum):
+    OffBook = b'O'
 
-class WaiverType(str, Enum):
-    NoWaiverType = '-'
-    NLIQ = '0'
-    OILQ = '1'
-    PRIC = '2'
-    RFPT = '3'
-    ILQD = '4'
-    SIZE = '5'
-    ILQDandSIZE = 'B'
-    OrderManagementFacility = 'A'
+class WaiverType(bytes, Enum):
+    NoWaiverType = b'-'
+    NLIQ = b'0'
+    OILQ = b'1'
+    PRIC = b'2'
+    RFPT = b'3'
+    ILQD = b'4'
+    SIZE = b'5'
+    ILQDandSIZE = b'B'
+    OrderManagementFacility = b'A'
     LargeInScal = 9
 
 WorkingPrice = Price4;
 AllocQty = u32;
 AuctionID = u64;
-class AutoMatch(str, Enum):
+class AutoMatch(bytes, Enum):
     Disabled = 0
     Market = 1
     Limit = 2
 
-class OpenClose(str, Enum):
-    Open = 'O'
-    Close = 'C'
-    NONE = 'N'
+class OpenClose(bytes, Enum):
+    Open = b'O'
+    Close = b'C'
+    NONE = b'N'
 
 
 // fixme, to be reviewed later
@@ -816,13 +816,13 @@ TradingSessionID = u32;
 CrossTradeFlag = u8;
 DrillThruProtection = u8;
 CustOrderHandlingInst = u8;
-class AccountType(str, Enum):
-    Customer = '1'
-    Hose = 3
+class AccountType(bytes, Enum):
+    Customer = b'1'
+    Hose = b'3'
 
-class SIIndicator(str, Enum):
-    SI = '5'
-    NonSI = '0'
+class SIIndicator(bytes, Enum):
+    SI = b'5'
+    NonSI = b'0'
 
 // cancel order
 MassCancelLockout = u8;
@@ -967,10 +967,10 @@ class ModifyOrderV2(Packet):
     ]
 bind_layers(Header, ModifyOrderV2, msgType=MsgType.ModifyOrderV2)
 
-class MultilegReportingType(str, Enum):
-    SimpleInstrument = '1'
-    IndividualLeg = '2'
-    Spread = '3'
+class MultilegReportingType(bytes, Enum):
+    SimpleInstrument = b'1'
+    IndividualLeg = b'2'
+    Spread = b'3'
 
 
 // not defined types
@@ -1026,13 +1026,13 @@ ExecLegCFICode = u8;
 CrossInitiator = u8;
 Subreason = str60;
 
-class subLidIndicator(str, Enum):
-    NoAdditionalInfo = 0
-    CboeDarkPoolExecution = 'D'
-    RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = 'T'
-    TradeAddedHiddenLiquidity = 'H'
-    TradeAddedHiddenLiquidityThatWasPriceImproved = 'i'
-    PeriodicAuction = 'P'
+class subLidIndicator(bytes, Enum):
+    NoAdditionalInfo = b'\0'
+    CboeDarkPoolExecution = b'D'
+    RemovedLiquidityFromTheCboeDarkPoolByIOCOrder = b'T'
+    TradeAddedHiddenLiquidity = b'H'
+    TradeAddedHiddenLiquidityThatWasPriceImproved = b'i'
+    PeriodicAuction = b'P'
 
 
 class OrderRespOptGrp(Packet):
@@ -1124,7 +1124,7 @@ class OrderRespOptGrp(Packet):
         ConditionalField(u8("marketingFeeCode", 0), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.MarketingFeeCode)),
         ConditionalField(str10("targetPartyID", ""), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.TargetPartyID)),
         ConditionalField(u64("auctionID", 0), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.AuctionID)),
-        ConditionalField(CharEnumField("orderCat", OrderCategory.PrivatelyNegotiatedTrade, OrderCategory), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.OrderCategory)),
+        ConditionalField(ByteEnumField("orderCat", OrderCategory.PrivatelyNegotiatedTrade, OrderCategory), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.OrderCategory)),
         ConditionalField(CharEnumField("LiqProv", LiquidityProvision.Yes, LiquidityProvision), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.LiquidityProvision)),
         ConditionalField(u32("cmtaNumber", 0), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.CmtaNumber)),
         ConditionalField(u8("crossType", 0), lambda pkt:pkt.bit9 and (pkt.bit9 & OrderAckBit9.CrossType)),
@@ -1173,7 +1173,7 @@ class OrderRespOptGrp(Packet):
         ConditionalField(u32("equityPartyID", 0), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.EquityPartyID)),
         ConditionalField(u8("equityNBBOProtect", 0), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.EquityNBBOProtect)),
         ConditionalField(str20("massCancelID", ""), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.MassCancelID)),
-        ConditionalField(CharEnumField("tradePubInd", TradePubnlishIndicator.DeferredPublication, TradePubnlishIndicator), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.TradePublishInd)),
+        ConditionalField(ByteEnumField("tradePubInd", TradePubnlishIndicator.DeferredPublication, TradePubnlishIndicator), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.TradePublishInd)),
         ConditionalField(u64("reportTime", 0), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.ReportTime)),
         ConditionalField(u8("legSymbolSfx", 0), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.LegSymbolSfx)),
         ConditionalField(u8("clientidAttr", 0), lambda pkt:pkt.bit15 and (pkt.bit15 & OrderAckBit15.ClientIDAttr)),
@@ -1209,32 +1209,32 @@ class OrderAckV2(Packet):
     ]
 bind_layers(Header, OrderAckV2, msgType=MsgType.OrderAcknowledgementV2)
 
-class ReasonCode(str, Enum):
-    Admin = 'A'
-    DuplicateIdentifier = 'D'
-    Halted = 'H'
-    IncorrectDataCenter = 'I'
-    TooLateToCancel = 'J'
-    OrderRateThresholdExceeded = 'K'
-    PriceExceedsCrossRange = 'L'
-    LiquidityAvailableExceedsOrderSize = 'M'
-    RanOutOfLiquidityToExecuteAgainst = 'N'
-    ClOrdIDDoesntMatchaKnownOrder = 'O'
-    CantModifyAnOrderThatIsPendingFill = 'P'
-    WaitingForFirstTrade = 'Q'
-    UserRequested = 'U'
-    WouldWash = 'Y'
-    AddLiquidityOnlyOrderWouldRemove = 'W'
-    OrderExpired = 'X'
-    SymbolNotSupported = 'Y'
-    UnforeseenReason = 'Z'
-    CancelledOnHitSmallRemainder = 'j'
-    MarketAccessRiskLimitExceeded = 'm'
-    MaxOpenOrdersCountExceeded = 'o'
-    RiskManagementSymbolLevel = 's'
-    CrossedMarket = 'x'
-    OrderReceivedByCboeDuringReplay = 'y'
-    RegQuoteDifferentToRoomQuote = '1'
+class ReasonCode(bytes, Enum):
+    Admin = b'A'
+    DuplicateIdentifier = b'D'
+    Halted = b'H'
+    IncorrectDataCenter = b'I'
+    TooLateToCancel = b'J'
+    OrderRateThresholdExceeded = b'K'
+    PriceExceedsCrossRange = b'L'
+    LiquidityAvailableExceedsOrderSize = b'M'
+    RanOutOfLiquidityToExecuteAgainst = b'N'
+    ClOrdIDDoesntMatchaKnownOrder = b'O'
+    CantModifyAnOrderThatIsPendingFill = b'P'
+    WaitingForFirstTrade = b'Q'
+    UserRequested = b'U'
+    WouldWash = b'Y'
+    AddLiquidityOnlyOrderWouldRemove = b'W'
+    OrderExpired = b'X'
+    SymbolNotSupported = b'Y'
+    UnforeseenReason = b'Z'
+    CancelledOnHitSmallRemainder = b'j'
+    MarketAccessRiskLimitExceeded = b'm'
+    MaxOpenOrdersCountExceeded = b'o'
+    RiskManagementSymbolLevel = b's'
+    CrossedMarket = b'x'
+    OrderReceivedByCboeDuringReplay = b'y'
+    RegQuoteDifferentToRoomQuote = b'1'
 
 
 class OrderRejectedV2(Packet):
@@ -1272,11 +1272,11 @@ class OrderModifiedV2(Packet):
     ]
 bind_layers(Header, OrderModifiedV2, msgType=MsgType.OrderModifiedV2)
 
-class LiqIndicator(str, Enum):
-    Added = 'A'
-    Removed = 'R'
-    Routed = 'X'
-    Auction = 'C'
+class LiqIndicator(bytes, Enum):
+    Added = b'A'
+    Removed = b'R'
+    Routed = b'X'
+    Auction = b'C'
 
 
 class OrderExecutionV2(Packet):

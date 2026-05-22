@@ -2637,13 +2637,13 @@
       <node concept="2glnej" id="1Wrrlab18MX" role="2glne$" />
       <node concept="2glner" id="1Wrrlab18MT" role="2glney">
         <property role="TrG5h" value="Regular" />
-        <node concept="2glneh" id="25jvKnMI6Gh" role="2glneA">
+        <node concept="2glneu" id="1kt8NvdVi7F" role="2glneA">
           <property role="3yTNel" value="0" />
         </node>
       </node>
       <node concept="2glner" id="1Wrrlab18N4" role="2glney">
         <property role="TrG5h" value="CFD" />
-        <node concept="2glneh" id="25jvKnMI6Gk" role="2glneA">
+        <node concept="2glneu" id="1kt8NvdVi7I" role="2glneA">
           <property role="3yTNel" value="1" />
         </node>
       </node>
@@ -2803,8 +2803,8 @@
       <node concept="2glnej" id="1Wrrlab18Pt" role="2glne$" />
       <node concept="2glner" id="1Wrrlab18Pp" role="2glney">
         <property role="TrG5h" value="Default" />
-        <node concept="2glneh" id="25jvKnMI6Ha" role="2glneA">
-          <property role="3yTNel" value="0" />
+        <node concept="2glneu" id="1kt8NvdLn8m" role="2glneA">
+          <property role="3yTNel" value="\0" />
         </node>
       </node>
       <node concept="2glner" id="1Wrrlab18Py" role="2glney">
@@ -2919,13 +2919,13 @@
       <node concept="2glnej" id="1Wrrlab18Rk" role="2glne$" />
       <node concept="2glner" id="1Wrrlab18Rg" role="2glney">
         <property role="TrG5h" value="ISIN" />
-        <node concept="2glneh" id="25jvKnMI6HO" role="2glneA">
+        <node concept="2glneu" id="1kt8NvdVi7L" role="2glneA">
           <property role="3yTNel" value="4" />
         </node>
       </node>
       <node concept="2glner" id="1Wrrlab18Rp" role="2glney">
         <property role="TrG5h" value="RIC" />
-        <node concept="2glneh" id="25jvKnMI6HR" role="2glneA">
+        <node concept="2glneu" id="1kt8NvdVi7O" role="2glneA">
           <property role="3yTNel" value="5" />
         </node>
       </node>
@@ -2988,7 +2988,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18S$" role="2gln9U">
       <property role="TrG5h" value="MatchType" />
-      <node concept="2glnej" id="1Wrrlab18SG" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi7P" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18SC" role="2glney">
         <property role="TrG5h" value="TradeReporting" />
         <node concept="2glneh" id="25jvKnMI6I6" role="2glneA">
@@ -3014,7 +3016,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18SY" role="2gln9U">
       <property role="TrG5h" value="OrderCategory" />
-      <node concept="2glnej" id="1Wrrlab18T6" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi7R" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18T2" role="2glney">
         <property role="TrG5h" value="NotaNegotiatedTrade" />
         <node concept="2glneh" id="25jvKnMI6I9" role="2glneA">
@@ -3120,7 +3124,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18UU" role="2gln9U">
       <property role="TrG5h" value="SecondaryTrdType" />
-      <node concept="2glnej" id="1Wrrlab18V2" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi7T" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18UY" role="2glney">
         <property role="TrG5h" value="BenchmarkTrade" />
         <node concept="2glneh" id="25jvKnMI6I$" role="2glneA">
@@ -3157,8 +3163,8 @@
       <node concept="2glnej" id="1Wrrlab18Vy" role="2glne$" />
       <node concept="2glner" id="1Wrrlab18Vu" role="2glney">
         <property role="TrG5h" value="NO" />
-        <node concept="2glneh" id="25jvKnMI6IB" role="2glneA">
-          <property role="3yTNel" value="0" />
+        <node concept="2glneu" id="1kt8NvdVi7X" role="2glneA">
+          <property role="3yTNel" value="\0" />
         </node>
       </node>
       <node concept="2glner" id="1Wrrlab18VB" role="2glney">
@@ -3277,7 +3283,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18Xa" role="2gln9U">
       <property role="TrG5h" value="TradeHandlingInstruction" />
-      <node concept="2glnej" id="1Wrrlab18Xi" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi7Y" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18Xe" role="2glney">
         <property role="TrG5h" value="TwoPartyReport" />
         <node concept="2glneh" id="25jvKnMI6Jn" role="2glneA">
@@ -3301,7 +3309,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18Xz" role="2gln9U">
       <property role="TrG5h" value="TradePriceCondition" />
-      <node concept="2glnej" id="1Wrrlab18XF" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi80" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18XB" role="2glney">
         <property role="TrG5h" value="CumDividend" />
         <node concept="2glneh" id="25jvKnMI6Jt" role="2glneA">
@@ -3323,7 +3333,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18XV" role="2gln9U">
       <property role="TrG5h" value="TradePubnlishIndicator" />
-      <node concept="2glnej" id="1Wrrlab18Y3" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi82" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18XZ" role="2glney">
         <property role="TrG5h" value="DoNotPublish" />
         <node concept="2glneh" id="25jvKnMI6JA" role="2glneA">
@@ -3349,7 +3361,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18Yw" role="2gln9U">
       <property role="TrG5h" value="TradeReportTransType" />
-      <node concept="2glnej" id="1Wrrlab18YC" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi84" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18Y$" role="2glney">
         <property role="TrG5h" value="New" />
         <node concept="2glneh" id="25jvKnMI6JJ" role="2glneA">
@@ -3401,7 +3415,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab18Zl" role="2gln9U">
       <property role="TrG5h" value="TradingSessionSubID" />
-      <node concept="2glnej" id="1Wrrlab18Zt" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi86" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab18Z$" role="2glney">
         <property role="TrG5h" value="ScheduledOpeningAuction" />
         <node concept="2glneh" id="25jvKnMI6K1" role="2glneA">
@@ -3469,7 +3485,9 @@
     </node>
     <node concept="2glneb" id="1Wrrlab190p" role="2gln9U">
       <property role="TrG5h" value="TrdSubType" />
-      <node concept="2glnej" id="1Wrrlab190x" role="2glne$" />
+      <node concept="2gaQCM" id="1kt8NvdVi88" role="2glne$">
+        <property role="0cOFY" value="true" />
+      </node>
       <node concept="2glner" id="1Wrrlab190t" role="2glney">
         <property role="TrG5h" value="AgencyCrossTrade" />
         <node concept="2glneh" id="25jvKnMI6Kx" role="2glneA">
@@ -3761,7 +3779,7 @@
       </node>
       <node concept="2glner" id="1Wrrlab194o" role="2glney">
         <property role="TrG5h" value="Hose" />
-        <node concept="2glneh" id="25jvKnMI6Lr" role="2glneA">
+        <node concept="2glneu" id="1kt8NvdVi8c" role="2glneA">
           <property role="3yTNel" value="3" />
         </node>
       </node>
@@ -4869,8 +4887,8 @@
       <node concept="2glnej" id="6qXzstiBlZ4" role="2glne$" />
       <node concept="2glner" id="6qXzstiBlZ0" role="2glney">
         <property role="TrG5h" value="NoAdditionalInfo" />
-        <node concept="2glneh" id="25jvKnMI6LJ" role="2glneA">
-          <property role="3yTNel" value="0" />
+        <node concept="2glneu" id="1kt8NvdVi8f" role="2glneA">
+          <property role="3yTNel" value="\0" />
         </node>
       </node>
       <node concept="2glner" id="6qXzstiBlZ9" role="2glney">

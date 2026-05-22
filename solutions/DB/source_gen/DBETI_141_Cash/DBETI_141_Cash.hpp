@@ -45,7 +45,7 @@ struct AllocMethod {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AllocMethod& operator=(Enum v) {value_ == v;return *this;}
     constexpr AllocMethod& operator=(const AllocMethod& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Automatic_Random: return "Automatic_Random";
@@ -97,7 +97,7 @@ struct ApplID {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ApplID& operator=(Enum v) {value_ == v;return *this;}
     constexpr ApplID& operator=(const ApplID& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Trade: return "Trade";
@@ -143,7 +143,7 @@ struct ApplIDStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ApplIDStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr ApplIDStatus& operator=(const ApplIDStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Outbound_conversion_error: return "Outbound_conversion_error";
@@ -181,7 +181,7 @@ struct ApplResendFlag {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ApplResendFlag& operator=(Enum v) {value_ == v;return *this;}
     constexpr ApplResendFlag& operator=(const ApplResendFlag& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::False: return "False";
@@ -219,7 +219,7 @@ struct ApplSeqIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ApplSeqIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr ApplSeqIndicator& operator=(const ApplSeqIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No_Recovery_Required: return "No_Recovery_Required";
@@ -258,7 +258,7 @@ struct ApplSeqStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ApplSeqStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr ApplSeqStatus& operator=(const ApplSeqStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -301,7 +301,7 @@ struct ApplUsageOrders {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ApplUsageOrders& operator=(Enum v) {value_ == v;return *this;}
     constexpr ApplUsageOrders& operator=(const ApplUsageOrders& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Automated: return "Automated";
@@ -343,7 +343,7 @@ struct ApplUsageQuotes {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ApplUsageQuotes& operator=(Enum v) {value_ == v;return *this;}
     constexpr ApplUsageQuotes& operator=(const ApplUsageQuotes& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Automated: return "Automated";
@@ -394,7 +394,7 @@ struct AutoExecType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr AutoExecType& operator=(Enum v) {value_ == v;return *this;}
     constexpr AutoExecType& operator=(const AutoExecType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::MidPointBBO: return "MidPointBBO";
@@ -433,7 +433,7 @@ struct BBOSetting {
     constexpr void set(Enum v) {value_ = v;}
     constexpr BBOSetting& operator=(Enum v) {value_ == v;return *this;}
     constexpr BBOSetting& operator=(const BBOSetting& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Yes: return "Yes";
@@ -476,7 +476,7 @@ struct BidPxIsLocked {
     constexpr void set(Enum v) {value_ = v;}
     constexpr BidPxIsLocked& operator=(Enum v) {value_ == v;return *this;}
     constexpr BidPxIsLocked& operator=(const BidPxIsLocked& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -520,7 +520,7 @@ struct ClearingInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ClearingInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr ClearingInstruction& operator=(const ClearingInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Bilateral_netting_only: return "Bilateral_netting_only";
@@ -562,7 +562,7 @@ struct CrossMatchInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CrossMatchInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr CrossMatchInstruction& operator=(const CrossMatchInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Cancel_aggressive: return "Cancel_aggressive";
@@ -602,7 +602,7 @@ struct CrossedIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr CrossedIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr CrossedIndicator& operator=(const CrossedIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No_crossing: return "No_crossing";
@@ -649,7 +649,7 @@ struct DeleteReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DeleteReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr DeleteReason& operator=(const DeleteReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No_special_reason: return "No_special_reason";
@@ -693,7 +693,7 @@ struct DeliveryType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr DeliveryType& operator=(Enum v) {value_ == v;return *this;}
     constexpr DeliveryType& operator=(const DeliveryType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::AKV: return "AKV";
@@ -755,7 +755,7 @@ struct EventType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr EventType& operator=(Enum v) {value_ == v;return *this;}
     constexpr EventType& operator=(const EventType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Redemption: return "Redemption";
@@ -810,7 +810,7 @@ struct ExecInst {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecInst& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecInst& operator=(const ExecInst& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::H: return "H";
@@ -902,7 +902,7 @@ struct ExecRestatementReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecRestatementReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecRestatementReason& operator=(const ExecRestatementReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Corporate_Action: return "Corporate_Action";
@@ -999,7 +999,7 @@ struct ExecType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecType& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecType& operator=(const ExecType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -1046,7 +1046,7 @@ struct ExecutingTraderQualifier {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ExecutingTraderQualifier& operator=(Enum v) {value_ == v;return *this;}
     constexpr ExecutingTraderQualifier& operator=(const ExecutingTraderQualifier& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Algo: return "Algo";
@@ -1097,7 +1097,7 @@ struct FillLiquidityInd {
     constexpr void set(Enum v) {value_ = v;}
     constexpr FillLiquidityInd& operator=(Enum v) {value_ == v;return *this;}
     constexpr FillLiquidityInd& operator=(const FillLiquidityInd& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Added_Liquidity: return "Added_Liquidity";
@@ -1152,7 +1152,7 @@ struct GatewayStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr GatewayStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr GatewayStatus& operator=(const GatewayStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Standby: return "Standby";
@@ -1195,7 +1195,7 @@ struct ImpliedMarketIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ImpliedMarketIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr ImpliedMarketIndicator& operator=(const ImpliedMarketIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Not_implied: return "Not_implied";
@@ -1239,7 +1239,7 @@ struct LastCouponDeviationIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LastCouponDeviationIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr LastCouponDeviationIndicator& operator=(const LastCouponDeviationIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::None: return "None";
@@ -1283,7 +1283,7 @@ struct LastFragment {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LastFragment& operator=(Enum v) {value_ == v;return *this;}
     constexpr LastFragment& operator=(const LastFragment& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Not_Last_Message: return "Not_Last_Message";
@@ -1332,7 +1332,7 @@ struct LastMkt {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LastMkt& operator=(Enum v) {value_ == v;return *this;}
     constexpr LastMkt& operator=(const LastMkt& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::XETR: return "XETR";
@@ -1382,7 +1382,7 @@ struct LastPxDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LastPxDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr LastPxDisclosureInstruction& operator=(const LastPxDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -1421,7 +1421,7 @@ struct LastQtyDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LastQtyDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr LastQtyDisclosureInstruction& operator=(const LastQtyDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -1462,7 +1462,7 @@ struct LeavesQtyDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LeavesQtyDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr LeavesQtyDisclosureInstruction& operator=(const LeavesQtyDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -1500,7 +1500,7 @@ struct ListUpdateAction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ListUpdateAction& operator=(Enum v) {value_ == v;return *this;}
     constexpr ListUpdateAction& operator=(const ListUpdateAction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Add: return "Add";
@@ -1539,7 +1539,7 @@ struct MDBookType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MDBookType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MDBookType& operator=(const MDBookType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::TopOfBook: return "TopOfBook";
@@ -1576,7 +1576,7 @@ struct MDSubBookType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MDSubBookType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MDSubBookType& operator=(const MDSubBookType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::VolumeWeightedAverage: return "VolumeWeightedAverage";
@@ -1624,7 +1624,7 @@ struct MarketID {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MarketID& operator=(Enum v) {value_ == v;return *this;}
     constexpr MarketID& operator=(const MarketID& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::XETR: return "XETR";
@@ -1691,7 +1691,7 @@ struct MassActionReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MassActionReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr MassActionReason& operator=(const MassActionReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No_Special_Reason: return "No_Special_Reason";
@@ -1748,7 +1748,7 @@ struct MassActionType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MassActionType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MassActionType& operator=(const MassActionType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Suspend_quotes: return "Suspend_quotes";
@@ -1793,7 +1793,7 @@ struct MatchSubType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MatchSubType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MatchSubType& operator=(const MatchSubType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Opening_Auction: return "Opening_Auction";
@@ -1843,7 +1843,7 @@ struct MatchType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MatchType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MatchType& operator=(const MatchType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Confirmed_Trade_Report: return "Confirmed_Trade_Report";
@@ -1889,7 +1889,7 @@ struct MatchingEngineStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MatchingEngineStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr MatchingEngineStatus& operator=(const MatchingEngineStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -1931,7 +1931,7 @@ struct MessageEventSource {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MessageEventSource& operator=(Enum v) {value_ == v;return *this;}
     constexpr MessageEventSource& operator=(const MessageEventSource& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Broadcast_to_Initiator: return "Broadcast_to_Initiator";
@@ -1971,7 +1971,7 @@ struct MidPointType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr MidPointType& operator=(Enum v) {value_ == v;return *this;}
     constexpr MidPointType& operator=(const MidPointType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::MidPoint: return "MidPoint";
@@ -2015,7 +2015,7 @@ struct NewsRtmServiceStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr NewsRtmServiceStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr NewsRtmServiceStatus& operator=(const NewsRtmServiceStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -2087,7 +2087,7 @@ struct NumberOfRespDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr NumberOfRespDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr NumberOfRespDisclosureInstruction& operator=(const NumberOfRespDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -2130,7 +2130,7 @@ struct OfferPxIsLocked {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OfferPxIsLocked& operator=(Enum v) {value_ == v;return *this;}
     constexpr OfferPxIsLocked& operator=(const OfferPxIsLocked& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -2175,7 +2175,7 @@ struct OrdStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrdStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrdStatus& operator=(const OrdStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::New: return "New";
@@ -2221,7 +2221,7 @@ struct OrdType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrdType& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrdType& operator=(const OrdType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Market: return "Market";
@@ -2261,7 +2261,7 @@ struct OrderAttributeLiquidityProvision {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderAttributeLiquidityProvision& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderAttributeLiquidityProvision& operator=(const OrderAttributeLiquidityProvision& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Y: return "Y";
@@ -2299,7 +2299,7 @@ struct OrderCategory {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderCategory& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderCategory& operator=(const OrderCategory& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Order: return "Order";
@@ -2339,7 +2339,7 @@ struct OrderEventReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderEventReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderEventReason& operator=(const OrderEventReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::SMP: return "SMP";
@@ -2375,7 +2375,7 @@ struct OrderEventType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderEventType& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderEventType& operator=(const OrderEventType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Pending_requests_discarded: return "Pending_requests_discarded";
@@ -2414,7 +2414,7 @@ struct OrderOrigination {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderOrigination& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderOrigination& operator=(const OrderOrigination& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Direct_access_customer: return "Direct_access_customer";
@@ -2453,7 +2453,7 @@ struct OrderQtyDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderQtyDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderQtyDisclosureInstruction& operator=(const OrderQtyDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -2491,7 +2491,7 @@ struct OrderRoutingIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderRoutingIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderRoutingIndicator& operator=(const OrderRoutingIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Yes: return "Yes";
@@ -2529,7 +2529,7 @@ struct OrderSide {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OrderSide& operator=(Enum v) {value_ == v;return *this;}
     constexpr OrderSide& operator=(const OrderSide& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -2570,7 +2570,7 @@ struct OwnershipIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr OwnershipIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr OwnershipIndicator& operator=(const OwnershipIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No_Change_of_Ownership: return "No_Change_of_Ownership";
@@ -2624,7 +2624,7 @@ struct PartyActionType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PartyActionType& operator=(Enum v) {value_ == v;return *this;}
     constexpr PartyActionType& operator=(const PartyActionType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Halt_Trading: return "Halt_Trading";
@@ -2668,7 +2668,7 @@ struct PartyDetailRoleQualifier {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PartyDetailRoleQualifier& operator=(Enum v) {value_ == v;return *this;}
     constexpr PartyDetailRoleQualifier& operator=(const PartyDetailRoleQualifier& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Trader: return "Trader";
@@ -2707,7 +2707,7 @@ struct PartyDetailStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PartyDetailStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr PartyDetailStatus& operator=(const PartyDetailStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Active: return "Active";
@@ -2751,7 +2751,7 @@ struct PartyIDEnteringFirm {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PartyIDEnteringFirm& operator=(Enum v) {value_ == v;return *this;}
     constexpr PartyIDEnteringFirm& operator=(const PartyIDEnteringFirm& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Participant: return "Participant";
@@ -2791,7 +2791,7 @@ struct PartyIDOriginationMarket {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PartyIDOriginationMarket& operator=(Enum v) {value_ == v;return *this;}
     constexpr PartyIDOriginationMarket& operator=(const PartyIDOriginationMarket& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::XKFE: return "XKFE";
@@ -2831,7 +2831,7 @@ struct PartyIdInvestmentDecisionMakerQualifier {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PartyIdInvestmentDecisionMakerQualifier& operator=(Enum v) {value_ == v;return *this;}
     constexpr PartyIdInvestmentDecisionMakerQualifier& operator=(const PartyIdInvestmentDecisionMakerQualifier& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Algo: return "Algo";
@@ -2876,7 +2876,7 @@ struct PriceDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PriceDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr PriceDisclosureInstruction& operator=(const PriceDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -2914,7 +2914,7 @@ struct PriceValidityCheckType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PriceValidityCheckType& operator=(Enum v) {value_ == v;return *this;}
     constexpr PriceValidityCheckType& operator=(const PriceValidityCheckType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::None: return "None";
@@ -2953,7 +2953,7 @@ struct QuoteCancelReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteCancelReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteCancelReason& operator=(const QuoteCancelReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Expired: return "Expired";
@@ -2993,7 +2993,7 @@ struct QuoteCondition {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteCondition& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteCondition& operator=(const QuoteCondition& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Active: return "Active";
@@ -3076,7 +3076,7 @@ struct QuoteEntryRejectReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteEntryRejectReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteEntryRejectReason& operator=(const QuoteEntryRejectReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unknown_Security: return "Unknown_Security";
@@ -3158,7 +3158,7 @@ struct QuoteEntryStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteEntryStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteEntryStatus& operator=(const QuoteEntryStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Accepted: return "Accepted";
@@ -3200,7 +3200,7 @@ struct QuoteEventLiquidityInd {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteEventLiquidityInd& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteEventLiquidityInd& operator=(const QuoteEventLiquidityInd& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Added_Liquidity: return "Added_Liquidity";
@@ -3248,7 +3248,7 @@ struct QuoteEventReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteEventReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteEventReason& operator=(const QuoteEventReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Pending_cancellation_executed: return "Pending_cancellation_executed";
@@ -3292,7 +3292,7 @@ struct QuoteEventSide {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteEventSide& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteEventSide& operator=(const QuoteEventSide& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -3332,7 +3332,7 @@ struct QuoteEventType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteEventType& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteEventType& operator=(const QuoteEventType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Removed_quote_side: return "Removed_quote_side";
@@ -3373,7 +3373,7 @@ struct QuoteInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteInstruction& operator=(const QuoteInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Do_Not_Quote: return "Do_Not_Quote";
@@ -3419,7 +3419,7 @@ struct QuoteRequestRejectReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteRequestRejectReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteRequestRejectReason& operator=(const QuoteRequestRejectReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Exchange_closed: return "Exchange_closed";
@@ -3464,7 +3464,7 @@ struct QuoteSizeType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteSizeType& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteSizeType& operator=(const QuoteSizeType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::TotalSize: return "TotalSize";
@@ -3506,7 +3506,7 @@ struct QuoteType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuoteType& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuoteType& operator=(const QuoteType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Indicative: return "Indicative";
@@ -3548,7 +3548,7 @@ struct QuotingFrequency {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuotingFrequency& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuotingFrequency& operator=(const QuotingFrequency& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::HF: return "HF";
@@ -3589,7 +3589,7 @@ struct QuotingStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr QuotingStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr QuotingStatus& operator=(const QuotingStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Open_Active: return "Open_Active";
@@ -3635,7 +3635,7 @@ struct RFQPublishIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQPublishIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQPublishIndicator& operator=(const RFQPublishIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Market_Data: return "Market_Data";
@@ -3678,7 +3678,7 @@ struct RFQRequesterDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RFQRequesterDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr RFQRequesterDisclosureInstruction& operator=(const RFQRequesterDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3725,7 +3725,7 @@ struct RefApplID {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RefApplID& operator=(Enum v) {value_ == v;return *this;}
     constexpr RefApplID& operator=(const RefApplID& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Trade: return "Trade";
@@ -3775,7 +3775,7 @@ struct RefinancingEligibilityIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RefinancingEligibilityIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr RefinancingEligibilityIndicator& operator=(const RefinancingEligibilityIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3819,7 +3819,7 @@ struct RequestingPartyIDEnteringFirm {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RequestingPartyIDEnteringFirm& operator=(Enum v) {value_ == v;return *this;}
     constexpr RequestingPartyIDEnteringFirm& operator=(const RequestingPartyIDEnteringFirm& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Participant: return "Participant";
@@ -3856,7 +3856,7 @@ struct RequestingPartyIDExecutingSystem {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RequestingPartyIDExecutingSystem& operator=(Enum v) {value_ == v;return *this;}
     constexpr RequestingPartyIDExecutingSystem& operator=(const RequestingPartyIDExecutingSystem& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::T7: return "T7";
@@ -3895,7 +3895,7 @@ struct RespondentType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RespondentType& operator=(Enum v) {value_ == v;return *this;}
     constexpr RespondentType& operator=(const RespondentType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Specified_market_participants: return "Specified_market_participants";
@@ -3935,7 +3935,7 @@ struct ReversalIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ReversalIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr ReversalIndicator& operator=(const ReversalIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -3974,7 +3974,7 @@ struct RiskControlRtmServiceStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RiskControlRtmServiceStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr RiskControlRtmServiceStatus& operator=(const RiskControlRtmServiceStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -4013,7 +4013,7 @@ struct RiskLimitAction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RiskLimitAction& operator=(Enum v) {value_ == v;return *this;}
     constexpr RiskLimitAction& operator=(const RiskLimitAction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::QueueInbound: return "QueueInbound";
@@ -4058,7 +4058,7 @@ struct RiskLimitRequestingPartyRole {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RiskLimitRequestingPartyRole& operator=(Enum v) {value_ == v;return *this;}
     constexpr RiskLimitRequestingPartyRole& operator=(const RiskLimitRequestingPartyRole& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Clearing_firm: return "Clearing_firm";
@@ -4097,7 +4097,7 @@ struct RiskLimitType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RiskLimitType& operator=(Enum v) {value_ == v;return *this;}
     constexpr RiskLimitType& operator=(const RiskLimitType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Long_limit: return "Long_limit";
@@ -4135,7 +4135,7 @@ struct RiskLimitViolationIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RiskLimitViolationIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr RiskLimitViolationIndicator& operator=(const RiskLimitViolationIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4192,7 +4192,7 @@ struct RootPartyIDInvestmentDecisionMakerQualifier {
     constexpr void set(Enum v) {value_ = v;}
     constexpr RootPartyIDInvestmentDecisionMakerQualifier& operator=(Enum v) {value_ == v;return *this;}
     constexpr RootPartyIDInvestmentDecisionMakerQualifier& operator=(const RootPartyIDInvestmentDecisionMakerQualifier& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Algo: return "Algo";
@@ -4237,7 +4237,7 @@ struct SecondaryGatewayStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SecondaryGatewayStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr SecondaryGatewayStatus& operator=(const SecondaryGatewayStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Standby: return "Standby";
@@ -4281,7 +4281,7 @@ struct SecurityStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SecurityStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr SecurityStatus& operator=(const SecurityStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Knocked_out: return "Knocked_out";
@@ -4322,7 +4322,7 @@ struct SecurityTradingEvent {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SecurityTradingEvent& operator=(Enum v) {value_ == v;return *this;}
     constexpr SecurityTradingEvent& operator=(const SecurityTradingEvent& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Instrument_State_Change: return "Instrument_State_Change";
@@ -4361,7 +4361,7 @@ struct SecurityTradingStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SecurityTradingStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr SecurityTradingStatus& operator=(const SecurityTradingStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Market_Imbalance_Buy: return "Market_Imbalance_Buy";
@@ -4399,7 +4399,7 @@ struct SelectiveRequestForQuoteRtmServiceStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SelectiveRequestForQuoteRtmServiceStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr SelectiveRequestForQuoteRtmServiceStatus& operator=(const SelectiveRequestForQuoteRtmServiceStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -4437,7 +4437,7 @@ struct SelectiveRequestForQuoteServiceStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SelectiveRequestForQuoteServiceStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr SelectiveRequestForQuoteServiceStatus& operator=(const SelectiveRequestForQuoteServiceStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -4481,7 +4481,7 @@ struct SessionMode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SessionMode& operator=(Enum v) {value_ == v;return *this;}
     constexpr SessionMode& operator=(const SessionMode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ETI_HF: return "ETI_HF";
@@ -4554,7 +4554,7 @@ struct SessionRejectReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SessionRejectReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr SessionRejectReason& operator=(const SessionRejectReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Required_Tag_Missing: return "Required_Tag_Missing";
@@ -4625,7 +4625,7 @@ struct SessionStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SessionStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr SessionStatus& operator=(const SessionStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Active: return "Active";
@@ -4663,7 +4663,7 @@ struct SessionSubMode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SessionSubMode& operator=(Enum v) {value_ == v;return *this;}
     constexpr SessionSubMode& operator=(const SessionSubMode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Regular_trading_session: return "Regular_trading_session";
@@ -4705,7 +4705,7 @@ struct Side {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Side& operator=(Enum v) {value_ == v;return *this;}
     constexpr Side& operator=(const Side& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Buy: return "Buy";
@@ -4743,7 +4743,7 @@ struct SideDisclosureInstruction {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SideDisclosureInstruction& operator=(Enum v) {value_ == v;return *this;}
     constexpr SideDisclosureInstruction& operator=(const SideDisclosureInstruction& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4782,7 +4782,7 @@ struct SideIsLocked {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SideIsLocked& operator=(Enum v) {value_ == v;return *this;}
     constexpr SideIsLocked& operator=(const SideIsLocked& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -4823,7 +4823,7 @@ struct SideLiquidityInd {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SideLiquidityInd& operator=(Enum v) {value_ == v;return *this;}
     constexpr SideLiquidityInd& operator=(const SideLiquidityInd& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Added_Liquidity: return "Added_Liquidity";
@@ -4864,7 +4864,7 @@ struct SoldOutIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr SoldOutIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr SoldOutIndicator& operator=(const SoldOutIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Revert_sold_out: return "Revert_sold_out";
@@ -4903,7 +4903,7 @@ struct StopPxIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr StopPxIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr StopPxIndicator& operator=(const StopPxIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Do_not_overwrite: return "Do_not_overwrite";
@@ -4942,7 +4942,7 @@ struct T7EntryServiceRtmStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr T7EntryServiceRtmStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr T7EntryServiceRtmStatus& operator=(const T7EntryServiceRtmStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -4981,7 +4981,7 @@ struct T7EntryServiceStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr T7EntryServiceStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr T7EntryServiceStatus& operator=(const T7EntryServiceStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -5034,7 +5034,7 @@ struct TimeInForce {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TimeInForce& operator=(Enum v) {value_ == v;return *this;}
     constexpr TimeInForce& operator=(const TimeInForce& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Day: return "Day";
@@ -5079,7 +5079,7 @@ struct TradSesEvent {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradSesEvent& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradSesEvent& operator=(const TradSesEvent& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Start_of_Service: return "Start_of_Service";
@@ -5123,7 +5123,7 @@ struct TradSesMode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradSesMode& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradSesMode& operator=(const TradSesMode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Testing: return "Testing";
@@ -5167,7 +5167,7 @@ struct TradeAllocStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeAllocStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeAllocStatus& operator=(const TradeAllocStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Pending: return "Pending";
@@ -5208,7 +5208,7 @@ struct TradeAtCloseOptIn {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeAtCloseOptIn& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeAtCloseOptIn& operator=(const TradeAtCloseOptIn& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No: return "No";
@@ -5248,7 +5248,7 @@ struct TradeManagerStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeManagerStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeManagerStatus& operator=(const TradeManagerStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Unavailable: return "Unavailable";
@@ -5288,7 +5288,7 @@ struct TradePlatform {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradePlatform& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradePlatform& operator=(const TradePlatform& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Off_Book: return "Off_Book";
@@ -5328,7 +5328,7 @@ struct TradePublishIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradePublishIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradePublishIndicator& operator=(const TradePublishIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Do_Not_Publish_Trade: return "Do_Not_Publish_Trade";
@@ -5376,7 +5376,7 @@ struct TradeReportType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradeReportType& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradeReportType& operator=(const TradeReportType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Submit: return "Submit";
@@ -5425,7 +5425,7 @@ struct TradingCapacity {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradingCapacity& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradingCapacity& operator=(const TradingCapacity& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Customer: return "Customer";
@@ -5475,7 +5475,7 @@ struct TradingSessionSubID {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TradingSessionSubID& operator=(Enum v) {value_ == v;return *this;}
     constexpr TradingSessionSubID& operator=(const TradingSessionSubID& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Opening_auction: return "Opening_auction";
@@ -5527,7 +5527,7 @@ struct TransactionCostCode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TransactionCostCode& operator=(Enum v) {value_ == v;return *this;}
     constexpr TransactionCostCode& operator=(const TransactionCostCode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::No_additional_cost: return "No_additional_cost";
@@ -5569,7 +5569,7 @@ struct TransactionDelayIndicator {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TransactionDelayIndicator& operator=(Enum v) {value_ == v;return *this;}
     constexpr TransactionDelayIndicator& operator=(const TransactionDelayIndicator& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Not_delayed: return "Not_delayed";
@@ -5607,7 +5607,7 @@ struct TransferReason {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TransferReason& operator=(Enum v) {value_ == v;return *this;}
     constexpr TransferReason& operator=(const TransferReason& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Owner: return "Owner";
@@ -5655,7 +5655,7 @@ struct TrdRptStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TrdRptStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr TrdRptStatus& operator=(const TrdRptStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Accepted: return "Accepted";
@@ -5698,7 +5698,7 @@ struct TrdType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TrdType& operator=(Enum v) {value_ == v;return *this;}
     constexpr TrdType& operator=(const TrdType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::OTC: return "OTC";
@@ -5738,7 +5738,7 @@ struct Triggered {
     constexpr void set(Enum v) {value_ = v;}
     constexpr Triggered& operator=(Enum v) {value_ == v;return *this;}
     constexpr Triggered& operator=(const Triggered& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Not_triggered: return "Not_triggered";
@@ -5778,7 +5778,7 @@ struct UserStatus {
     constexpr void set(Enum v) {value_ = v;}
     constexpr UserStatus& operator=(Enum v) {value_ == v;return *this;}
     constexpr UserStatus& operator=(const UserStatus& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::User_forced_logout: return "User_forced_logout";
@@ -5819,7 +5819,7 @@ struct ValueCheckTypeMinLotSize {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ValueCheckTypeMinLotSize& operator=(Enum v) {value_ == v;return *this;}
     constexpr ValueCheckTypeMinLotSize& operator=(const ValueCheckTypeMinLotSize& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Do_not_check: return "Do_not_check";
@@ -5857,7 +5857,7 @@ struct ValueCheckTypeQuantity {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ValueCheckTypeQuantity& operator=(Enum v) {value_ == v;return *this;}
     constexpr ValueCheckTypeQuantity& operator=(const ValueCheckTypeQuantity& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Do_not_check: return "Do_not_check";
@@ -5895,7 +5895,7 @@ struct ValueCheckTypeValue {
     constexpr void set(Enum v) {value_ = v;}
     constexpr ValueCheckTypeValue& operator=(Enum v) {value_ == v;return *this;}
     constexpr ValueCheckTypeValue& operator=(const ValueCheckTypeValue& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Do_not_check: return "Do_not_check";
@@ -6068,7 +6068,7 @@ struct TemplateID {
     constexpr void set(Enum v) {value_ = v;}
     constexpr TemplateID& operator=(Enum v) {value_ == v;return *this;}
     constexpr TemplateID& operator=(const TemplateID& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::ApproveTESTradeRequest: return "ApproveTESTradeRequest";
@@ -6222,11 +6222,11 @@ struct AffectedOrdGrpComp {
     AffectedOrderID affectedOrderID;
     AffectedOrigClOrdID affectedOrigClOrdID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AffectedOrdGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AffectedOrdGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AffectedOrdGrpComp& msg) {
@@ -6240,11 +6240,11 @@ struct AffectedOrderRequestsGrpComp {
     AffectedOrderRequestID affectedOrderRequestID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(AffectedOrderRequestsGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(AffectedOrderRequestsGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const AffectedOrderRequestsGrpComp& msg) {
@@ -6261,11 +6261,11 @@ struct EnrichmentRulesGrpComp {
     FreeText4 freeText4;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(EnrichmentRulesGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(EnrichmentRulesGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const EnrichmentRulesGrpComp& msg) {
@@ -6286,11 +6286,11 @@ struct FillsGrpComp {
     FillLiquidityInd fillLiquidityInd{FillLiquidityInd::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(FillsGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(FillsGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const FillsGrpComp& msg) {
@@ -6310,11 +6310,11 @@ struct MessageHeaderInComp {
     NetworkMsgID networkMsgID;
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MessageHeaderInComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MessageHeaderInComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MessageHeaderInComp& msg) {
@@ -6331,11 +6331,11 @@ struct MessageHeaderOutComp {
     TemplateID templateID{TemplateID::null};
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MessageHeaderOutComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MessageHeaderOutComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MessageHeaderOutComp& msg) {
@@ -6353,11 +6353,11 @@ struct NRBCHeaderComp {
     LastFragment lastFragment{LastFragment::null};
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NRBCHeaderComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NRBCHeaderComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NRBCHeaderComp& msg) {
@@ -6380,11 +6380,11 @@ struct NRResponseHeaderMEComp {
     LastFragment lastFragment{LastFragment::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NRResponseHeaderMEComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NRResponseHeaderMEComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NRResponseHeaderMEComp& msg) {
@@ -6404,11 +6404,11 @@ struct NotAffectedOrdersGrpComp {
     NotAffectedOrderID notAffectedOrderID;
     NotAffOrigClOrdID notAffOrigClOrdID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NotAffectedOrdersGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NotAffectedOrdersGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NotAffectedOrdersGrpComp& msg) {
@@ -6421,11 +6421,11 @@ inline std::ostream& operator<<(std::ostream& os, const NotAffectedOrdersGrpComp
 struct NotAffectedSecuritiesGrpComp {
     NotAffectedSecurityID notAffectedSecurityID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NotAffectedSecuritiesGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NotAffectedSecuritiesGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NotAffectedSecuritiesGrpComp& msg) {
@@ -6437,11 +6437,11 @@ inline std::ostream& operator<<(std::ostream& os, const NotAffectedSecuritiesGrp
 struct NotifHeaderComp {
     SendingTime sendingTime;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NotifHeaderComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NotifHeaderComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NotifHeaderComp& msg) {
@@ -6459,11 +6459,11 @@ struct OrderBookItemGrpComp {
     MDSubBookType mDSubBookType{MDSubBookType::null};
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderBookItemGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderBookItemGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderBookItemGrpComp& msg) {
@@ -6485,11 +6485,11 @@ struct OrderEventGrpComp {
     OrderEventReason orderEventReason{OrderEventReason::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderEventGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderEventGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderEventGrpComp& msg) {
@@ -6510,11 +6510,11 @@ struct PartyDetailsGrpComp {
     PartyDetailDeskID partyDetailDeskID;
     Pad1 pad1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PartyDetailsGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PartyDetailsGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PartyDetailsGrpComp& msg) {
@@ -6536,11 +6536,11 @@ struct QuoteEntryAckGrpComp {
     Side side{Side::null};
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteEntryAckGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteEntryAckGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteEntryAckGrpComp& msg) {
@@ -6561,11 +6561,11 @@ struct QuoteEntryGrpComp {
     OfferPx offerPx;
     OfferSize offerSize;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteEntryGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteEntryGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteEntryGrpComp& msg) {
@@ -6592,11 +6592,11 @@ struct QuoteEventGrpComp {
     QuoteEventReason quoteEventReason{QuoteEventReason::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteEventGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteEventGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteEventGrpComp& msg) {
@@ -6626,11 +6626,11 @@ struct RBCHeaderComp {
     LastFragment lastFragment{LastFragment::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RBCHeaderComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RBCHeaderComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RBCHeaderComp& msg) {
@@ -6658,11 +6658,11 @@ struct RBCHeaderMEComp {
     LastFragment lastFragment{LastFragment::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RBCHeaderMEComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RBCHeaderMEComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RBCHeaderMEComp& msg) {
@@ -6684,11 +6684,11 @@ struct RequestHeaderComp {
     MsgSeqNum msgSeqNum;
     SenderSubID senderSubID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RequestHeaderComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RequestHeaderComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RequestHeaderComp& msg) {
@@ -6704,11 +6704,11 @@ struct ResponseHeaderComp {
     MsgSeqNum msgSeqNum;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ResponseHeaderComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ResponseHeaderComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ResponseHeaderComp& msg) {
@@ -6732,11 +6732,11 @@ struct ResponseHeaderMEComp {
     ApplMsgID applMsgID;
     LastFragment lastFragment{LastFragment::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ResponseHeaderMEComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ResponseHeaderMEComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ResponseHeaderMEComp& msg) {
@@ -6759,11 +6759,11 @@ struct RiskLimitAmountGrpComp {
     RiskLimitType riskLimitType{RiskLimitType::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RiskLimitAmountGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RiskLimitAmountGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RiskLimitAmountGrpComp& msg) {
@@ -6785,11 +6785,11 @@ struct RiskLimitsRptGrpComp {
     RiskLimitGroup riskLimitGroup;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RiskLimitsRptGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RiskLimitsRptGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RiskLimitsRptGrpComp& msg) {
@@ -6812,11 +6812,11 @@ struct SRQSHitQuoteGrpComp {
     Side side{Side::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SRQSHitQuoteGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SRQSHitQuoteGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSHitQuoteGrpComp& msg) {
@@ -6847,11 +6847,11 @@ struct SRQSQuoteEntryGrpComp {
     PartyEnteringTrader partyEnteringTrader;
     Pad1 pad1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SRQSQuoteEntryGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SRQSQuoteEntryGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteEntryGrpComp& msg) {
@@ -6879,11 +6879,11 @@ inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteEntryGrpComp& m
 struct SRQSQuoteGrpComp {
     QuoteID quoteID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SRQSQuoteGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SRQSQuoteGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSQuoteGrpComp& msg) {
@@ -6901,11 +6901,11 @@ struct SRQSTargetPartyTrdGrpComp {
     TargetPartyEnteringTrader targetPartyEnteringTrader;
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SRQSTargetPartyTrdGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SRQSTargetPartyTrdGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SRQSTargetPartyTrdGrpComp& msg) {
@@ -6926,11 +6926,11 @@ struct SecurityStatusEventGrpComp {
     EventType eventType{EventType::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SecurityStatusEventGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SecurityStatusEventGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SecurityStatusEventGrpComp& msg) {
@@ -6948,11 +6948,11 @@ struct SessionsGrpComp {
     SessionSubMode sessionSubMode{SessionSubMode::null};
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SessionsGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SessionsGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SessionsGrpComp& msg) {
@@ -6973,11 +6973,11 @@ struct SideAllocGrpComp {
     PartyExecutingTrader partyExecutingTrader;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SideAllocGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SideAllocGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SideAllocGrpComp& msg) {
@@ -7002,11 +7002,11 @@ struct SideAllocGrpBCComp {
     TradeAllocStatus tradeAllocStatus{TradeAllocStatus::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SideAllocGrpBCComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SideAllocGrpBCComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SideAllocGrpBCComp& msg) {
@@ -7032,11 +7032,11 @@ struct SideAllocOTCGrpComp {
     FreeText4 freeText4;
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SideAllocOTCGrpComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SideAllocOTCGrpComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SideAllocOTCGrpComp& msg) {
@@ -7058,11 +7058,11 @@ struct XetraEnLightTargetPartiesComp {
     TargetPartyExecutingTrader targetPartyExecutingTrader;
     Pad1 pad1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightTargetPartiesComp);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightTargetPartiesComp);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightTargetPartiesComp& msg) {
@@ -7103,11 +7103,11 @@ struct ApproveTESTradeRequest {
     FreeText4 freeText4;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ApproveTESTradeRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ApproveTESTradeRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ApproveTESTradeRequest& msg) {
@@ -7153,11 +7153,11 @@ struct BroadcastErrorNotification {
     BlockRef<VarText> varText() {return BlockRef<VarText>(begin()+size(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(begin()+size(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(BroadcastErrorNotification);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(BroadcastErrorNotification);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const BroadcastErrorNotification& msg) {
@@ -7181,11 +7181,11 @@ struct CrossRequest {
     MarketSegmentID marketSegmentID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossRequest& msg) {
@@ -7204,11 +7204,11 @@ struct CrossRequestResponse {
     NRResponseHeaderMEComp nRResponseHeaderME;
     ExecID execID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(CrossRequestResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(CrossRequestResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CrossRequestResponse& msg) {
@@ -7244,11 +7244,11 @@ struct DeleteAllOrderBroadcast {
     BlockRef<AffectedOrderRequestsGrpComp> affectedOrderRequestsGrp() {return BlockRef<AffectedOrderRequestsGrpComp>(affectedOrdGrp().end(), noAffectedOrderRequests);}
     BlockRef<AffectedOrderRequestsGrpComp> affectedOrderRequestsGrp() const {return BlockRef<AffectedOrderRequestsGrpComp>(affectedOrdGrp().end(), noAffectedOrderRequests);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllOrderBroadcast);}
-    size_t var_size() const {return affectedOrderRequestsGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllOrderBroadcast);}
+    size_t size() const {return affectedOrderRequestsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderBroadcast& msg) {
@@ -7281,11 +7281,11 @@ struct DeleteAllOrderNRResponse {
     NRResponseHeaderMEComp nRResponseHeaderME;
     MassActionReportID massActionReportID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllOrderNRResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllOrderNRResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderNRResponse& msg) {
@@ -7306,11 +7306,11 @@ struct DeleteAllOrderQuoteEventBroadcast {
     ExecInst execInst{ExecInst::null};
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllOrderQuoteEventBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllOrderQuoteEventBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderQuoteEventBroadcast& msg) {
@@ -7341,11 +7341,11 @@ struct DeleteAllOrderRequest {
     PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier{PartyIdInvestmentDecisionMakerQualifier::null};
     ExecutingTraderQualifier executingTraderQualifier{ExecutingTraderQualifier::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllOrderRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllOrderRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderRequest& msg) {
@@ -7381,11 +7381,11 @@ struct DeleteAllOrderResponse {
     BlockRef<AffectedOrderRequestsGrpComp> affectedOrderRequestsGrp() {return BlockRef<AffectedOrderRequestsGrpComp>(affectedOrdGrp().end(), noAffectedOrderRequests);}
     BlockRef<AffectedOrderRequestsGrpComp> affectedOrderRequestsGrp() const {return BlockRef<AffectedOrderRequestsGrpComp>(affectedOrdGrp().end(), noAffectedOrderRequests);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllOrderResponse);}
-    size_t var_size() const {return affectedOrderRequestsGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllOrderResponse);}
+    size_t size() const {return affectedOrderRequestsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllOrderResponse& msg) {
@@ -7420,11 +7420,11 @@ struct DeleteAllQuoteBroadcast {
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() const {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllQuoteBroadcast);}
-    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllQuoteBroadcast);}
+    size_t size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteBroadcast& msg) {
@@ -7457,11 +7457,11 @@ struct DeleteAllQuoteRequest {
     ExecutingTraderQualifier executingTraderQualifier{ExecutingTraderQualifier::null};
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllQuoteRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllQuoteRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteRequest& msg) {
@@ -7487,11 +7487,11 @@ struct DeleteAllQuoteResponse {
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() const {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteAllQuoteResponse);}
-    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteAllQuoteResponse);}
+    size_t size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteAllQuoteResponse& msg) {
@@ -7531,11 +7531,11 @@ struct DeleteOrderBroadcast {
     PartyEnteringTrader partyEnteringTrader;
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteOrderBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteOrderBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderBroadcast& msg) {
@@ -7584,11 +7584,11 @@ struct DeleteOrderNRResponse {
     TransactionDelayIndicator transactionDelayIndicator{TransactionDelayIndicator::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteOrderNRResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteOrderNRResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderNRResponse& msg) {
@@ -7628,11 +7628,11 @@ struct DeleteOrderResponse {
     TransactionDelayIndicator transactionDelayIndicator{TransactionDelayIndicator::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteOrderResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteOrderResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderResponse& msg) {
@@ -7674,11 +7674,11 @@ struct DeleteOrderSingleRequest {
     PartyExecutingTrader partyExecutingTrader;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteOrderSingleRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteOrderSingleRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteOrderSingleRequest& msg) {
@@ -7714,11 +7714,11 @@ struct DeleteTESTradeRequest {
     TradeReportID tradeReportID;
     Pad5 pad5;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(DeleteTESTradeRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(DeleteTESTradeRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const DeleteTESTradeRequest& msg) {
@@ -7754,11 +7754,11 @@ struct EnterTESTradeRequest {
     BlockRef<SideAllocGrpComp> sideAllocGrp() {return BlockRef<SideAllocGrpComp>(begin()+size(), noSideAllocs);}
     BlockRef<SideAllocGrpComp> sideAllocGrp() const {return BlockRef<SideAllocGrpComp>(begin()+size(), noSideAllocs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(EnterTESTradeRequest);}
-    size_t var_size() const {return sideAllocGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(EnterTESTradeRequest);}
+    size_t size() const {return sideAllocGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const EnterTESTradeRequest& msg) {
@@ -7834,11 +7834,11 @@ struct ExtendedDeletionReport {
     Triggered triggered{Triggered::null};
     Pad1 pad1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ExtendedDeletionReport);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ExtendedDeletionReport);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ExtendedDeletionReport& msg) {
@@ -7903,11 +7903,11 @@ struct ForcedLogoutNotification {
     BlockRef<VarText> varText() {return BlockRef<VarText>(begin()+size(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(begin()+size(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ForcedLogoutNotification);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ForcedLogoutNotification);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ForcedLogoutNotification& msg) {
@@ -7928,11 +7928,11 @@ struct ForcedUserLogoutNotification {
     BlockRef<VarText> varText() {return BlockRef<VarText>(begin()+size(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(begin()+size(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ForcedUserLogoutNotification);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ForcedUserLogoutNotification);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ForcedUserLogoutNotification& msg) {
@@ -7949,11 +7949,11 @@ inline std::ostream& operator<<(std::ostream& os, const ForcedUserLogoutNotifica
 struct Heartbeat {
     MessageHeaderInComp messageHeaderIn;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Heartbeat);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Heartbeat);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Heartbeat& msg) {
@@ -7966,11 +7966,11 @@ struct HeartbeatNotification {
     MessageHeaderOutComp messageHeaderOut;
     NotifHeaderComp notifHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(HeartbeatNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(HeartbeatNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const HeartbeatNotification& msg) {
@@ -7985,11 +7985,11 @@ struct InquireEnrichmentRuleIDListRequest {
     RequestHeaderComp requestHeader;
     LastEntityProcessed lastEntityProcessed;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InquireEnrichmentRuleIDListRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InquireEnrichmentRuleIDListRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireEnrichmentRuleIDListRequest& msg) {
@@ -8009,11 +8009,11 @@ struct InquireEnrichmentRuleIDListResponse {
     BlockRef<EnrichmentRulesGrpComp> enrichmentRulesGrp() {return BlockRef<EnrichmentRulesGrpComp>(begin()+size(), noEnrichmentRules);}
     BlockRef<EnrichmentRulesGrpComp> enrichmentRulesGrp() const {return BlockRef<EnrichmentRulesGrpComp>(begin()+size(), noEnrichmentRules);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InquireEnrichmentRuleIDListResponse);}
-    size_t var_size() const {return enrichmentRulesGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InquireEnrichmentRuleIDListResponse);}
+    size_t size() const {return enrichmentRulesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireEnrichmentRuleIDListResponse& msg) {
@@ -8035,11 +8035,11 @@ struct InquirePreTradeRiskLimitsRequest {
     RiskLimitGroup riskLimitGroup;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InquirePreTradeRiskLimitsRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InquirePreTradeRiskLimitsRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquirePreTradeRiskLimitsRequest& msg) {
@@ -8057,11 +8057,11 @@ struct InquireSessionListRequest {
     MessageHeaderInComp messageHeaderIn;
     RequestHeaderComp requestHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InquireSessionListRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InquireSessionListRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireSessionListRequest& msg) {
@@ -8079,11 +8079,11 @@ struct InquireSessionListResponse {
     BlockRef<SessionsGrpComp> sessionsGrp() {return BlockRef<SessionsGrpComp>(begin()+size(), noSessions);}
     BlockRef<SessionsGrpComp> sessionsGrp() const {return BlockRef<SessionsGrpComp>(begin()+size(), noSessions);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InquireSessionListResponse);}
-    size_t var_size() const {return sessionsGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InquireSessionListResponse);}
+    size_t size() const {return sessionsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireSessionListResponse& msg) {
@@ -8101,11 +8101,11 @@ struct InquireUserRequest {
     RequestHeaderComp requestHeader;
     LastEntityProcessed lastEntityProcessed;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InquireUserRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InquireUserRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireUserRequest& msg) {
@@ -8125,11 +8125,11 @@ struct InquireUserResponse {
     BlockRef<PartyDetailsGrpComp> partyDetailsGrp() {return BlockRef<PartyDetailsGrpComp>(begin()+size(), noPartyDetails);}
     BlockRef<PartyDetailsGrpComp> partyDetailsGrp() const {return BlockRef<PartyDetailsGrpComp>(begin()+size(), noPartyDetails);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(InquireUserResponse);}
-    size_t var_size() const {return partyDetailsGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(InquireUserResponse);}
+    size_t size() const {return partyDetailsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const InquireUserResponse& msg) {
@@ -8158,11 +8158,11 @@ struct IssuerNotification {
     EventType eventType{EventType::null};
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(IssuerNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(IssuerNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const IssuerNotification& msg) {
@@ -8196,11 +8196,11 @@ struct IssuerSecurityStateChangeRequest {
     BlockRef<SecurityStatusEventGrpComp> securityStatusEventGrp() {return BlockRef<SecurityStatusEventGrpComp>(begin()+size(), noEvents);}
     BlockRef<SecurityStatusEventGrpComp> securityStatusEventGrp() const {return BlockRef<SecurityStatusEventGrpComp>(begin()+size(), noEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(IssuerSecurityStateChangeRequest);}
-    size_t var_size() const {return securityStatusEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(IssuerSecurityStateChangeRequest);}
+    size_t size() const {return securityStatusEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const IssuerSecurityStateChangeRequest& msg) {
@@ -8223,11 +8223,11 @@ struct IssuerSecurityStateChangeResponse {
     NRResponseHeaderMEComp nRResponseHeaderME;
     SecurityStatusReportID securityStatusReportID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(IssuerSecurityStateChangeResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(IssuerSecurityStateChangeResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const IssuerSecurityStateChangeResponse& msg) {
@@ -8247,11 +8247,11 @@ struct LegalNotificationBroadcast {
     BlockRef<VarText> varText() {return BlockRef<VarText>(begin()+size(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(begin()+size(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LegalNotificationBroadcast);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LegalNotificationBroadcast);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LegalNotificationBroadcast& msg) {
@@ -8283,11 +8283,11 @@ struct LogonRequest {
     ApplicationSystemVendor applicationSystemVendor;
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogonRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogonRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonRequest& msg) {
@@ -8329,11 +8329,11 @@ struct LogonRequestEncrypted {
     ApplicationSystemVendor applicationSystemVendor;
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogonRequestEncrypted);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogonRequestEncrypted);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonRequestEncrypted& msg) {
@@ -8375,11 +8375,11 @@ struct LogonResponse {
     BlockRef<PublicKey> publicKey() {return BlockRef<PublicKey>(begin()+size(), publicKeyLen);}
     BlockRef<PublicKey> publicKey() const {return BlockRef<PublicKey>(begin()+size(), publicKeyLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogonResponse);}
-    size_t var_size() const {return publicKey().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogonResponse);}
+    size_t size() const {return publicKey().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogonResponse& msg) {
@@ -8406,11 +8406,11 @@ struct LogoutRequest {
     MessageHeaderInComp messageHeaderIn;
     RequestHeaderComp requestHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogoutRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogoutRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogoutRequest& msg) {
@@ -8424,11 +8424,11 @@ struct LogoutResponse {
     MessageHeaderOutComp messageHeaderOut;
     ResponseHeaderComp responseHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogoutResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(LogoutResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogoutResponse& msg) {
@@ -8462,11 +8462,11 @@ struct MassQuoteRequest {
     BlockRef<QuoteEntryGrpComp> quoteEntryGrp() {return BlockRef<QuoteEntryGrpComp>(begin()+size(), noQuoteEntries);}
     BlockRef<QuoteEntryGrpComp> quoteEntryGrp() const {return BlockRef<QuoteEntryGrpComp>(begin()+size(), noQuoteEntries);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassQuoteRequest);}
-    size_t var_size() const {return quoteEntryGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassQuoteRequest);}
+    size_t size() const {return quoteEntryGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassQuoteRequest& msg) {
@@ -8506,11 +8506,11 @@ struct MassQuoteResponse {
     BlockRef<QuoteEntryAckGrpComp> quoteEntryAckGrp() {return BlockRef<QuoteEntryAckGrpComp>(begin()+size(), noQuoteSideEntries);}
     BlockRef<QuoteEntryAckGrpComp> quoteEntryAckGrp() const {return BlockRef<QuoteEntryAckGrpComp>(begin()+size(), noQuoteSideEntries);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(MassQuoteResponse);}
-    size_t var_size() const {return quoteEntryAckGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(MassQuoteResponse);}
+    size_t size() const {return quoteEntryAckGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const MassQuoteResponse& msg) {
@@ -8552,11 +8552,11 @@ struct ModifyOrderNRResponse {
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     BlockRef<OrderEventGrpComp> orderEventGrp() const {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ModifyOrderNRResponse);}
-    size_t var_size() const {return orderEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ModifyOrderNRResponse);}
+    size_t size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderNRResponse& msg) {
@@ -8640,11 +8640,11 @@ struct ModifyOrderRequest {
     CheckSumCorrection checkSumCorrection;
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ModifyOrderRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ModifyOrderRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderRequest& msg) {
@@ -8730,11 +8730,11 @@ struct ModifyOrderResponse {
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     BlockRef<OrderEventGrpComp> orderEventGrp() const {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ModifyOrderResponse);}
-    size_t var_size() const {return orderEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ModifyOrderResponse);}
+    size_t size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderResponse& msg) {
@@ -8799,11 +8799,11 @@ struct ModifyOrderShortRequest {
     CheckSumCorrection checkSumCorrection;
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ModifyOrderShortRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ModifyOrderShortRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderShortRequest& msg) {
@@ -8861,11 +8861,11 @@ struct ModifyTESTradeRequest {
     BlockRef<SideAllocGrpComp> sideAllocGrp() {return BlockRef<SideAllocGrpComp>(begin()+size(), noSideAllocs);}
     BlockRef<SideAllocGrpComp> sideAllocGrp() const {return BlockRef<SideAllocGrpComp>(begin()+size(), noSideAllocs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ModifyTESTradeRequest);}
-    size_t var_size() const {return sideAllocGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ModifyTESTradeRequest);}
+    size_t size() const {return sideAllocGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyTESTradeRequest& msg) {
@@ -8911,11 +8911,11 @@ struct NewOrderNRResponse {
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     BlockRef<OrderEventGrpComp> orderEventGrp() const {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrderNRResponse);}
-    size_t var_size() const {return orderEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrderNRResponse);}
+    size_t size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderNRResponse& msg) {
@@ -8993,11 +8993,11 @@ struct NewOrderRequest {
     CheckSumCorrection checkSumCorrection;
     Pad2_1 pad2_1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrderRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrderRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderRequest& msg) {
@@ -9078,11 +9078,11 @@ struct NewOrderResponse {
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     BlockRef<OrderEventGrpComp> orderEventGrp() const {return BlockRef<OrderEventGrpComp>(begin()+size(), noOrderEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrderResponse);}
-    size_t var_size() const {return orderEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrderResponse);}
+    size_t size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderResponse& msg) {
@@ -9143,11 +9143,11 @@ struct NewOrderShortRequest {
     CheckSumCorrection checkSumCorrection;
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewOrderShortRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewOrderShortRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderShortRequest& msg) {
@@ -9194,11 +9194,11 @@ struct NewsBroadcast {
     BlockRef<VarText> varText() {return BlockRef<VarText>(begin()+size(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(begin()+size(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(NewsBroadcast);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(NewsBroadcast);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewsBroadcast& msg) {
@@ -9218,11 +9218,11 @@ struct OTCResponse {
     OTCExecID oTCExecID;
     TradeReportID tradeReportID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OTCResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OTCResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OTCResponse& msg) {
@@ -9264,11 +9264,11 @@ struct OTCUploadBroadcast {
     BlockRef<SideAllocOTCGrpComp> sideAllocOTCGrp() {return BlockRef<SideAllocOTCGrpComp>(begin()+size(), noSideOTCAllocs);}
     BlockRef<SideAllocOTCGrpComp> sideAllocOTCGrp() const {return BlockRef<SideAllocOTCGrpComp>(begin()+size(), noSideOTCAllocs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OTCUploadBroadcast);}
-    size_t var_size() const {return sideAllocOTCGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OTCUploadBroadcast);}
+    size_t size() const {return sideAllocOTCGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OTCUploadBroadcast& msg) {
@@ -9325,11 +9325,11 @@ struct OTCUploadRequest {
     BlockRef<SideAllocOTCGrpComp> sideAllocOTCGrp() {return BlockRef<SideAllocOTCGrpComp>(begin()+size(), noSideOTCAllocs);}
     BlockRef<SideAllocOTCGrpComp> sideAllocOTCGrp() const {return BlockRef<SideAllocOTCGrpComp>(begin()+size(), noSideOTCAllocs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OTCUploadRequest);}
-    size_t var_size() const {return sideAllocOTCGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OTCUploadRequest);}
+    size_t size() const {return sideAllocOTCGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OTCUploadRequest& msg) {
@@ -9387,11 +9387,11 @@ struct OrderExecNotification {
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(fillsGrp().end(), noOrderEvents);}
     BlockRef<OrderEventGrpComp> orderEventGrp() const {return BlockRef<OrderEventGrpComp>(fillsGrp().end(), noOrderEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderExecNotification);}
-    size_t var_size() const {return orderEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderExecNotification);}
+    size_t size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderExecNotification& msg) {
@@ -9492,11 +9492,11 @@ struct OrderExecReportBroadcast {
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(fillsGrp().end(), noOrderEvents);}
     BlockRef<OrderEventGrpComp> orderEventGrp() const {return BlockRef<OrderEventGrpComp>(fillsGrp().end(), noOrderEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderExecReportBroadcast);}
-    size_t var_size() const {return orderEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderExecReportBroadcast);}
+    size_t size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderExecReportBroadcast& msg) {
@@ -9599,11 +9599,11 @@ struct OrderExecResponse {
     BlockRef<OrderEventGrpComp> orderEventGrp() {return BlockRef<OrderEventGrpComp>(fillsGrp().end(), noOrderEvents);}
     BlockRef<OrderEventGrpComp> orderEventGrp() const {return BlockRef<OrderEventGrpComp>(fillsGrp().end(), noOrderEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(OrderExecResponse);}
-    size_t var_size() const {return orderEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(OrderExecResponse);}
+    size_t size() const {return orderEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderExecResponse& msg) {
@@ -9653,11 +9653,11 @@ struct PartyActionReport {
     PartyActionType partyActionType{PartyActionType::null};
     RequestingPartyIDEnteringFirm requestingPartyIDEnteringFirm{RequestingPartyIDEnteringFirm::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PartyActionReport);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PartyActionReport);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PartyActionReport& msg) {
@@ -9690,11 +9690,11 @@ struct PartyEntitlementsUpdateReport {
     PartyDetailStatus partyDetailStatus{PartyDetailStatus::null};
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PartyEntitlementsUpdateReport);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PartyEntitlementsUpdateReport);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PartyEntitlementsUpdateReport& msg) {
@@ -9720,11 +9720,11 @@ struct PingRequest {
     PartitionID partitionID;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PingRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PingRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PingRequest& msg) {
@@ -9741,11 +9741,11 @@ struct PingResponse {
     NRResponseHeaderMEComp nRResponseHeaderME;
     TransactTime transactTime;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PingResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PingResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PingResponse& msg) {
@@ -9768,11 +9768,11 @@ struct PreTradeRiskLimitResponse {
     BlockRef<RiskLimitsRptGrpComp> riskLimitsRptGrp() {return BlockRef<RiskLimitsRptGrpComp>(begin()+size(), noRiskLimits);}
     BlockRef<RiskLimitsRptGrpComp> riskLimitsRptGrp() const {return BlockRef<RiskLimitsRptGrpComp>(begin()+size(), noRiskLimits);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PreTradeRiskLimitResponse);}
-    size_t var_size() const {return riskLimitsRptGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PreTradeRiskLimitResponse);}
+    size_t size() const {return riskLimitsRptGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PreTradeRiskLimitResponse& msg) {
@@ -9801,11 +9801,11 @@ struct PreTradeRiskLimitsDefinitionRequest {
     BlockRef<RiskLimitAmountGrpComp> riskLimitAmountGrp() {return BlockRef<RiskLimitAmountGrpComp>(begin()+size(), noRiskLimitAmount);}
     BlockRef<RiskLimitAmountGrpComp> riskLimitAmountGrp() const {return BlockRef<RiskLimitAmountGrpComp>(begin()+size(), noRiskLimitAmount);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(PreTradeRiskLimitsDefinitionRequest);}
-    size_t var_size() const {return riskLimitAmountGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(PreTradeRiskLimitsDefinitionRequest);}
+    size_t size() const {return riskLimitAmountGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const PreTradeRiskLimitsDefinitionRequest& msg) {
@@ -9836,11 +9836,11 @@ struct QuoteActivationNotification {
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() const {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteActivationNotification);}
-    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteActivationNotification);}
+    size_t size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteActivationNotification& msg) {
@@ -9871,11 +9871,11 @@ struct QuoteActivationRequest {
     ExecutingTraderQualifier executingTraderQualifier{ExecutingTraderQualifier::null};
     Pad5 pad5;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteActivationRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteActivationRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteActivationRequest& msg) {
@@ -9902,11 +9902,11 @@ struct QuoteActivationResponse {
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     BlockRef<NotAffectedSecuritiesGrpComp> notAffectedSecuritiesGrp() const {return BlockRef<NotAffectedSecuritiesGrpComp>(begin()+size(), noNotAffectedSecurities);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteActivationResponse);}
-    size_t var_size() const {return notAffectedSecuritiesGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteActivationResponse);}
+    size_t size() const {return notAffectedSecuritiesGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteActivationResponse& msg) {
@@ -9930,11 +9930,11 @@ struct QuoteExecutionReport {
     BlockRef<QuoteEventGrpComp> quoteEventGrp() {return BlockRef<QuoteEventGrpComp>(begin()+size(), noQuoteEvents);}
     BlockRef<QuoteEventGrpComp> quoteEventGrp() const {return BlockRef<QuoteEventGrpComp>(begin()+size(), noQuoteEvents);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(QuoteExecutionReport);}
-    size_t var_size() const {return quoteEventGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(QuoteExecutionReport);}
+    size_t size() const {return quoteEventGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const QuoteExecutionReport& msg) {
@@ -9960,11 +9960,11 @@ struct RFQBroadcast {
     PartyExecutingFirm partyExecutingFirm;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQBroadcast& msg) {
@@ -9992,11 +9992,11 @@ struct RFQRejectNotification {
     PartyExecutingFirm partyExecutingFirm;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQRejectNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQRejectNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQRejectNotification& msg) {
@@ -10023,11 +10023,11 @@ struct RFQRejectRequest {
     PartyExecutingFirm partyExecutingFirm;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQRejectRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQRejectRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQRejectRequest& msg) {
@@ -10057,11 +10057,11 @@ struct RFQReplyNotification {
     PartyExecutingFirm partyExecutingFirm;
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQReplyNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQReplyNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQReplyNotification& msg) {
@@ -10094,11 +10094,11 @@ struct RFQReplyRequest {
     PartyExecutingFirm partyExecutingFirm;
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQReplyRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQReplyRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQReplyRequest& msg) {
@@ -10122,11 +10122,11 @@ struct RFQReplyResponse {
     NRResponseHeaderMEComp nRResponseHeaderME;
     TransactTime transactTime;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQReplyResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQReplyResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQReplyResponse& msg) {
@@ -10149,11 +10149,11 @@ struct RFQRequest {
     Side side{Side::null};
     Pad1 pad1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQRequest& msg) {
@@ -10176,11 +10176,11 @@ struct RFQResponse {
     NRResponseHeaderMEComp nRResponseHeaderME;
     ExecID execID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQResponse& msg) {
@@ -10203,11 +10203,11 @@ struct RFQSpecialistIssuerBroadcast {
     PartyExecutingFirm partyExecutingFirm;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RFQSpecialistIssuerBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RFQSpecialistIssuerBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RFQSpecialistIssuerBroadcast& msg) {
@@ -10234,11 +10234,11 @@ struct Reject {
     BlockRef<VarText> varText() {return BlockRef<VarText>(begin()+size(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(begin()+size(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Reject);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(Reject);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Reject& msg) {
@@ -10262,11 +10262,11 @@ struct RetransmitMEMessageRequest {
     ApplEndMsgID applEndMsgID;
     Pad1 pad1;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RetransmitMEMessageRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RetransmitMEMessageRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitMEMessageRequest& msg) {
@@ -10290,11 +10290,11 @@ struct RetransmitMEMessageResponse {
     RefApplLastMsgID refApplLastMsgID;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RetransmitMEMessageResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RetransmitMEMessageResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitMEMessageResponse& msg) {
@@ -10317,11 +10317,11 @@ struct RetransmitRequest {
     RefApplID refApplID{RefApplID::null};
     Pad5 pad5;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RetransmitRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RetransmitRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitRequest& msg) {
@@ -10344,11 +10344,11 @@ struct RetransmitResponse {
     ApplTotalMessageCount applTotalMessageCount;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(RetransmitResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(RetransmitResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const RetransmitResponse& msg) {
@@ -10370,11 +10370,11 @@ struct ReverseTESTradeRequest {
     TESExecID tESExecID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ReverseTESTradeRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ReverseTESTradeRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ReverseTESTradeRequest& msg) {
@@ -10404,11 +10404,11 @@ struct ServiceAvailabilityBroadcast {
     T7EntryServiceRtmStatus t7EntryServiceRtmStatus{T7EntryServiceRtmStatus::null};
     Pad5 pad5;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ServiceAvailabilityBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ServiceAvailabilityBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ServiceAvailabilityBroadcast& msg) {
@@ -10439,11 +10439,11 @@ struct ServiceAvailabilityMarketBroadcast {
     NewsRtmServiceStatus newsRtmServiceStatus{NewsRtmServiceStatus::null};
     RiskControlRtmServiceStatus riskControlRtmServiceStatus{RiskControlRtmServiceStatus::null};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ServiceAvailabilityMarketBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ServiceAvailabilityMarketBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ServiceAvailabilityMarketBroadcast& msg) {
@@ -10487,11 +10487,11 @@ struct SingleQuoteRequest {
     FreeText4 freeText4;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SingleQuoteRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SingleQuoteRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SingleQuoteRequest& msg) {
@@ -10542,11 +10542,11 @@ struct SpecialistDeleteAllOrderBroadcast {
     BlockRef<NotAffectedOrdersGrpComp> notAffectedOrdersGrp() {return BlockRef<NotAffectedOrdersGrpComp>(affectedOrdGrp().end(), noNotAffectedOrders);}
     BlockRef<NotAffectedOrdersGrpComp> notAffectedOrdersGrp() const {return BlockRef<NotAffectedOrdersGrpComp>(affectedOrdGrp().end(), noNotAffectedOrders);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SpecialistDeleteAllOrderBroadcast);}
-    size_t var_size() const {return notAffectedOrdersGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SpecialistDeleteAllOrderBroadcast);}
+    size_t size() const {return notAffectedOrdersGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistDeleteAllOrderBroadcast& msg) {
@@ -10575,11 +10575,11 @@ struct SpecialistInstrumentEventNotification {
     EventType eventType{EventType::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SpecialistInstrumentEventNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SpecialistInstrumentEventNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistInstrumentEventNotification& msg) {
@@ -10643,11 +10643,11 @@ struct SpecialistOrderBookNotification {
     BlockRef<FillsGrpComp> fillsGrp() {return BlockRef<FillsGrpComp>(begin()+size(), noFills);}
     BlockRef<FillsGrpComp> fillsGrp() const {return BlockRef<FillsGrpComp>(begin()+size(), noFills);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SpecialistOrderBookNotification);}
-    size_t var_size() const {return fillsGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SpecialistOrderBookNotification);}
+    size_t size() const {return fillsGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistOrderBookNotification& msg) {
@@ -10709,11 +10709,11 @@ struct SpecialistSecurityStateChangeRequest {
     EventType eventType{EventType::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SpecialistSecurityStateChangeRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SpecialistSecurityStateChangeRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistSecurityStateChangeRequest& msg) {
@@ -10732,11 +10732,11 @@ struct SpecialistSecurityStateChangeResponse {
     NRResponseHeaderMEComp nRResponseHeaderME;
     SecurityStatusReportID securityStatusReportID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SpecialistSecurityStateChangeResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SpecialistSecurityStateChangeResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SpecialistSecurityStateChangeResponse& msg) {
@@ -10754,11 +10754,11 @@ struct StatusBroadcast {
     TradSesEvent tradSesEvent{TradSesEvent::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(StatusBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(StatusBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const StatusBroadcast& msg) {
@@ -10778,11 +10778,11 @@ struct SubscribeRequest {
     RefApplID refApplID{RefApplID::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SubscribeRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SubscribeRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SubscribeRequest& msg) {
@@ -10801,11 +10801,11 @@ struct SubscribeResponse {
     ApplSubID applSubID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(SubscribeResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(SubscribeResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SubscribeResponse& msg) {
@@ -10857,11 +10857,11 @@ struct TESApproveBroadcast {
     BlockRef<VarText> varText() {return BlockRef<VarText>(begin()+size(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(begin()+size(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESApproveBroadcast);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESApproveBroadcast);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESApproveBroadcast& msg) {
@@ -10935,11 +10935,11 @@ struct TESBroadcast {
     BlockRef<VarText> varText() {return BlockRef<VarText>(sideAllocGrpBC().end(), varTextLen);}
     BlockRef<VarText> varText() const {return BlockRef<VarText>(sideAllocGrpBC().end(), varTextLen);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESBroadcast);}
-    size_t var_size() const {return varText().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESBroadcast);}
+    size_t size() const {return varText().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESBroadcast& msg) {
@@ -10987,11 +10987,11 @@ struct TESDeleteBroadcast {
     TradeReportID tradeReportID;
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESDeleteBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESDeleteBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESDeleteBroadcast& msg) {
@@ -11027,11 +11027,11 @@ struct TESExecutionBroadcast {
     MessageEventSource messageEventSource{MessageEventSource::null};
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESExecutionBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESExecutionBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESExecutionBroadcast& msg) {
@@ -11058,11 +11058,11 @@ struct TESResponse {
     TESExecID tESExecID;
     TradeReportID tradeReportID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESResponse& msg) {
@@ -11083,11 +11083,11 @@ struct TESReversalBroadcast {
     TESExecID tESExecID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESReversalBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESReversalBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESReversalBroadcast& msg) {
@@ -11176,11 +11176,11 @@ struct TESTradeBroadcast {
     TradeReportID tradeReportID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESTradeBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESTradeBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESTradeBroadcast& msg) {
@@ -11267,11 +11267,11 @@ struct TESTradingSessionStatusBroadcast {
     TradSesEvent tradSesEvent{TradSesEvent::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TESTradingSessionStatusBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TESTradingSessionStatusBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TESTradingSessionStatusBroadcast& msg) {
@@ -11290,11 +11290,11 @@ struct TMTradingSessionStatusBroadcast {
     TradSesEvent tradSesEvent{TradSesEvent::null};
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TMTradingSessionStatusBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TMTradingSessionStatusBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TMTradingSessionStatusBroadcast& msg) {
@@ -11313,11 +11313,11 @@ struct ThrottleUpdateNotification {
     ThrottleNoMsgs throttleNoMsgs;
     ThrottleDisconnectLimit throttleDisconnectLimit;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ThrottleUpdateNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(ThrottleUpdateNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ThrottleUpdateNotification& msg) {
@@ -11411,11 +11411,11 @@ struct TradeBroadcast {
     RootPartyIDExecutionVenue rootPartyIDExecutionVenue;
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TradeBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TradeBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TradeBroadcast& msg) {
@@ -11511,11 +11511,11 @@ struct TradingSessionStatusBroadcast {
     RefApplLastMsgID refApplLastMsgID;
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TradingSessionStatusBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TradingSessionStatusBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TradingSessionStatusBroadcast& msg) {
@@ -11549,11 +11549,11 @@ struct TrailingStopUpdateNotification {
     FIXClOrdID fIXClOrdID;
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(TrailingStopUpdateNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(TrailingStopUpdateNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const TrailingStopUpdateNotification& msg) {
@@ -11584,11 +11584,11 @@ struct UnsubscribeRequest {
     RefApplSubID refApplSubID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UnsubscribeRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UnsubscribeRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UnsubscribeRequest& msg) {
@@ -11604,11 +11604,11 @@ struct UnsubscribeResponse {
     MessageHeaderOutComp messageHeaderOut;
     ResponseHeaderComp responseHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UnsubscribeResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UnsubscribeResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UnsubscribeResponse& msg) {
@@ -11625,11 +11625,11 @@ struct UserLoginRequest {
     Password password;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserLoginRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserLoginRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLoginRequest& msg) {
@@ -11648,11 +11648,11 @@ struct UserLoginRequestEncrypted {
     Username username;
     EncryptedPassword encryptedPassword;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserLoginRequestEncrypted);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserLoginRequestEncrypted);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLoginRequestEncrypted& msg) {
@@ -11668,11 +11668,11 @@ struct UserLoginResponse {
     MessageHeaderOutComp messageHeaderOut;
     ResponseHeaderComp responseHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserLoginResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserLoginResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLoginResponse& msg) {
@@ -11688,11 +11688,11 @@ struct UserLogoutRequest {
     Username username;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserLogoutRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserLogoutRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLogoutRequest& msg) {
@@ -11708,11 +11708,11 @@ struct UserLogoutResponse {
     MessageHeaderOutComp messageHeaderOut;
     ResponseHeaderComp responseHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(UserLogoutResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(UserLogoutResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UserLogoutResponse& msg) {
@@ -11760,11 +11760,11 @@ struct XetraEnLightCreateDealNotification {
     BlockRef<OrderBookItemGrpComp> orderBookItemGrp() {return BlockRef<OrderBookItemGrpComp>(begin()+size(), noOrderBookItems);}
     BlockRef<OrderBookItemGrpComp> orderBookItemGrp() const {return BlockRef<OrderBookItemGrpComp>(begin()+size(), noOrderBookItems);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightCreateDealNotification);}
-    size_t var_size() const {return orderBookItemGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightCreateDealNotification);}
+    size_t size() const {return orderBookItemGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightCreateDealNotification& msg) {
@@ -11819,11 +11819,11 @@ struct XetraEnLightDealResponse {
     FirmNegotiationID firmNegotiationID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightDealResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightDealResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDealResponse& msg) {
@@ -11852,11 +11852,11 @@ struct XetraEnLightDealStatusNotification {
     TrdRptStatus trdRptStatus{TrdRptStatus::null};
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightDealStatusNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightDealStatusNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDealStatusNotification& msg) {
@@ -11879,11 +11879,11 @@ struct XetraEnLightDeleteAllQuoteNotification {
     TargetPartyIDSessionID targetPartyIDSessionID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightDeleteAllQuoteNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightDeleteAllQuoteNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDeleteAllQuoteNotification& msg) {
@@ -11901,11 +11901,11 @@ struct XetraEnLightDeleteAllQuoteRequest {
     TargetPartyIDSessionID targetPartyIDSessionID;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightDeleteAllQuoteRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightDeleteAllQuoteRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightDeleteAllQuoteRequest& msg) {
@@ -11944,11 +11944,11 @@ struct XetraEnLightEnterQuoteRequest {
     FreeText4 freeText4;
     Pad6 pad6;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightEnterQuoteRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightEnterQuoteRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightEnterQuoteRequest& msg) {
@@ -12008,11 +12008,11 @@ struct XetraEnLightHitQuoteRequest {
     FreeText2 freeText2;
     FreeText4 freeText4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightHitQuoteRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightHitQuoteRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightHitQuoteRequest& msg) {
@@ -12067,11 +12067,11 @@ struct XetraEnLightNegotiationNotification {
     FreeText5 freeText5;
     Pad5 pad5;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightNegotiationNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightNegotiationNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightNegotiationNotification& msg) {
@@ -12148,11 +12148,11 @@ struct XetraEnLightNegotiationRequesterNotification {
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() const {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightNegotiationRequesterNotification);}
-    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightNegotiationRequesterNotification);}
+    size_t size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightNegotiationRequesterNotification& msg) {
@@ -12215,11 +12215,11 @@ struct XetraEnLightNegotiationStatusNotification {
     FirmNegotiationID firmNegotiationID;
     Pad7 pad7;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightNegotiationStatusNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightNegotiationStatusNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightNegotiationStatusNotification& msg) {
@@ -12260,11 +12260,11 @@ struct XetraEnLightOpenNegotiationNotification {
     FirmNegotiationID firmNegotiationID;
     FreeText5 freeText5;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightOpenNegotiationNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightOpenNegotiationNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightOpenNegotiationNotification& msg) {
@@ -12340,11 +12340,11 @@ struct XetraEnLightOpenNegotiationRequest {
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() const {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightOpenNegotiationRequest);}
-    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightOpenNegotiationRequest);}
+    size_t size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightOpenNegotiationRequest& msg) {
@@ -12445,11 +12445,11 @@ struct XetraEnLightOpenNegotiationRequesterNotification {
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() const {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightOpenNegotiationRequesterNotification);}
-    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightOpenNegotiationRequesterNotification);}
+    size_t size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightOpenNegotiationRequesterNotification& msg) {
@@ -12532,11 +12532,11 @@ struct XetraEnLightQuoteNotification {
     FreeText4 freeText4;
     Pad2 pad2;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightQuoteNotification);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightQuoteNotification);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteNotification& msg) {
@@ -12580,11 +12580,11 @@ struct XetraEnLightQuoteRequesterNotification {
     BlockRef<SRQSQuoteEntryGrpComp> sRQSQuoteEntryGrp() {return BlockRef<SRQSQuoteEntryGrpComp>(begin()+size(), noQuoteEntries);}
     BlockRef<SRQSQuoteEntryGrpComp> sRQSQuoteEntryGrp() const {return BlockRef<SRQSQuoteEntryGrpComp>(begin()+size(), noQuoteEntries);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightQuoteRequesterNotification);}
-    size_t var_size() const {return sRQSQuoteEntryGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightQuoteRequesterNotification);}
+    size_t size() const {return sRQSQuoteEntryGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteRequesterNotification& msg) {
@@ -12608,11 +12608,11 @@ struct XetraEnLightQuoteResponse {
     NegotiationID negotiationID;
     QuoteReqID quoteReqID;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightQuoteResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightQuoteResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteResponse& msg) {
@@ -12634,11 +12634,11 @@ struct XetraEnLightQuoteSnapshotNotification {
     BlockRef<SRQSQuoteEntryGrpComp> sRQSQuoteEntryGrp() {return BlockRef<SRQSQuoteEntryGrpComp>(begin()+size(), noQuoteEntries);}
     BlockRef<SRQSQuoteEntryGrpComp> sRQSQuoteEntryGrp() const {return BlockRef<SRQSQuoteEntryGrpComp>(begin()+size(), noQuoteEntries);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightQuoteSnapshotNotification);}
-    size_t var_size() const {return sRQSQuoteEntryGrp().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightQuoteSnapshotNotification);}
+    size_t size() const {return sRQSQuoteEntryGrp().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteSnapshotNotification& msg) {
@@ -12656,11 +12656,11 @@ struct XetraEnLightQuoteSnapshotRequest {
     MessageHeaderInComp messageHeaderIn;
     RequestHeaderComp requestHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightQuoteSnapshotRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightQuoteSnapshotRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuoteSnapshotRequest& msg) {
@@ -12680,11 +12680,11 @@ struct XetraEnLightQuotingStatusRequest {
     PartyExecutingTrader partyExecutingTrader;
     Pad4 pad4;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightQuotingStatusRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightQuotingStatusRequest);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightQuotingStatusRequest& msg) {
@@ -12704,11 +12704,11 @@ struct XetraEnLightResponse {
     MessageHeaderOutComp messageHeaderOut;
     ResponseHeaderComp responseHeader;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightResponse);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightResponse);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightResponse& msg) {
@@ -12725,11 +12725,11 @@ struct XetraEnLightStatusBroadcast {
     TradSesEvent tradSesEvent{TradSesEvent::null};
     Pad3 pad3;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightStatusBroadcast);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightStatusBroadcast);}
+    size_t size() const {return fixed_size()
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightStatusBroadcast& msg) {
@@ -12782,11 +12782,11 @@ struct XetraEnLightUpdateNegotiationRequest {
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     BlockRef<XetraEnLightTargetPartiesComp> xetraEnLightTargetParties() const {return BlockRef<XetraEnLightTargetPartiesComp>(begin()+size(), noTargetPartyIDs);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(XetraEnLightUpdateNegotiationRequest);}
-    size_t var_size() const {return xetraEnLightTargetParties().end()-begin();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    size_t fixed_size() const {return sizeof(XetraEnLightUpdateNegotiationRequest);}
+    size_t size() const {return xetraEnLightTargetParties().end()-begin();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const XetraEnLightUpdateNegotiationRequest& msg) {
