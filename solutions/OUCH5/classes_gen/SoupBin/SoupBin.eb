@@ -3,10 +3,10 @@ primitive u8 = uint8_ebt [ min=, max=, null=, little_endian=false ]
 primitive i8 = char_ebt [ min=, max=, null=, little_endian=false ]
 primitive u16 = uint16_ebt [ min=, max=, null=, little_endian=false ]
 primitive u32 = uint32_ebt [ min=, max=, null=, little_endian=false ]
-primitive string6 = FixedLengthString [ length=6, padding=' ', left_padding=true ]
-primitive string10 = FixedLengthString [ length=10, padding=' ', left_padding=true ]
-primitive string10lp = FixedLengthString [ length=10, padding=' ', left_padding=false ]
-primitive string20lp = FixedLengthString [ length=10, padding=' ', left_padding=false ]
+primitive string6 = FixedLengthString [ length=6, padding=' ', right_padded=true ]
+primitive string10 = FixedLengthString [ length=10, padding=' ', right_padded=true ]
+primitive string10lp = FixedLengthString [ length=10, padding=' ', right_padded=false ]
+primitive string20lp = FixedLengthString [ length=20, padding=' ', right_padded=false ]
 
 alias UserRefNum = u32 
 alias Quantity = u32 
@@ -30,16 +30,16 @@ enum PktType : char_ebt {
 message Header :  {
   u16 pkgLength
   PktType pkgType
-}
+} [ size = , link_base:  =  ]
 
 message Debug : Header {
-  @var_str<size=pkgLength, offset=-1> text
-}
+  @var_str<size=pkgLength, offset=1> text
+} [ size = , link_base: pkgType = Debug ]
 
 message LoginAccepted : Header {
   string10 session
   string20lp seqNum
-}
+} [ size = , link_base: pkgType = LoginAccepted ]
 
 enum LoginRejectCode : char_ebt {
   NotAuthorized = 'A'
@@ -48,26 +48,26 @@ enum LoginRejectCode : char_ebt {
 
 message LoginRejected : Header {
   LoginRejectCode code
-}
+} [ size = , link_base: pkgType = LoginRejected ]
 
 message ServerHeartbeat : Header {
-}
+} [ size = , link_base: pkgType = ServerHeartbeat ]
 
 message ClientHeartbeat : Header {
-}
+} [ size = , link_base: pkgType = ClientHeartbeat ]
 
 message EndOfSession : Header {
-}
+} [ size = , link_base: pkgType = EndOfSession ]
 
 message LoginRequest : Header {
   string6 username
   string10 password
   string10lp session
   string20lp seqNum
-}
+} [ size = , link_base: pkgType = LoginRequest ]
 
 message LogoutRequest : Header {
-}
+} [ size = , link_base: pkgType = LogoutRequest ]
 
 
 

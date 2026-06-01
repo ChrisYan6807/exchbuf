@@ -4,8 +4,8 @@ primitive u64 = uint64_ebt [ min=, max=, null=, little_endian=false ]
 primitive i32 = int32_ebt [ min=, max=, null=, little_endian=false ]
 primitive i16 = int16_ebt [ min=, max=, null=, little_endian=false ]
 
-primitive string4 = FixedLengthString [ length=4, padding=' ', left_padding=true ]
-primitive string2 = FixedLengthString [ length=2, padding=' ', left_padding=true ]
+primitive string4 = FixedLengthString [ length=4, padding=' ', right_padded=true ]
+primitive string2 = FixedLengthString [ length=2, padding=' ', right_padded=true ]
 
 
 
@@ -46,13 +46,13 @@ enum AppendixKeyEnum : uint8_ebt {
   FirmUpID = 34
 }
 
-primitive ClearingAccount = FixedLengthString [ length=12, padding='\0', left_padding=false ]
+primitive ClearingAccount = FixedLengthString [ length=12, padding='\0', right_padded=false ]
 enum ClearingAccountType : char_ebt {
-  Customer = 1
-  Firm = 2
+  Customer = '1'
+  Firm = '2'
 }
-primitive ClearingFirm = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive ClientRef = FixedLengthString [ length=15, padding='\0', left_padding=false ]
+primitive ClearingFirm = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive ClientRef = FixedLengthString [ length=15, padding='\0', right_padded=false ]
 enum CrossType : char_ebt {
   ClosingCross = 'C'
   OpeningCross = 'O'
@@ -61,11 +61,11 @@ enum CrossType : char_ebt {
   AuctionOnDemand = 'A'
 }
 enum DEAIndicator : char_ebt {
-  Customer = 1
-  Firm = 2
-  Broker = 3
-  CustomerOrFirm = 4
-  DirectAccess = 5
+  Customer = '1'
+  Firm = '2'
+  Broker = '3'
+  CustomerOrFirm = '4'
+  DirectAccess = '5'
 }
 enum Display : char_ebt {
   Display = 'Y'
@@ -173,7 +173,7 @@ message NewOrderAppendageEntry :  {
     type: TimeInForce, enum_value: TimeInForce
     type: TradingAtClosingPrice, enum_value: TradingAtClosingPrice
   }
-}
+} [ size = , link_base:  =  ]
 
 message AmendOrderAppendageEntry :  {
   i8 length
@@ -194,7 +194,7 @@ message AmendOrderAppendageEntry :  {
     type: RandomReserve, enum_value: RandomReserve
     type: TimeInForce, enum_value: TimeInForce
   }
-}
+} [ size = , link_base:  =  ]
 
 message OrderAckAppendageEntry :  {
   i8 length
@@ -228,7 +228,7 @@ message OrderAckAppendageEntry :  {
     type: TimeInForce, enum_value: TimeInForce
     type: TradingAtClosingPrice, enum_value: TradingAtClosingPrice
   }
-}
+} [ size = , link_base:  =  ]
 
 message OrderReplacedAppendageEntry :  {
   i8 length
@@ -250,7 +250,7 @@ message OrderReplacedAppendageEntry :  {
     type: RandomReserve, enum_value: RandomReserve
     type: TimeInForce, enum_value: TimeInForce
   }
-}
+} [ size = , link_base:  =  ]
 message OrderRestatedAppendageEntry :  {
   i8 length
   AppendixKeyEnum tag
@@ -259,7 +259,7 @@ message OrderRestatedAppendageEntry :  {
     type: DisplayQty, enum_value: DisplayQuantity
     type: SecondaryOrderRefNum, enum_value: SecondaryOrderRefNum
   }
-}
+} [ size = , link_base:  =  ]
 
 
 enum InMsgType : char_ebt {
@@ -348,7 +348,7 @@ message NewOrder : Header {
   AlgoIndicator algoIndicator
   u16 appendageLength
   @optional_by_len<type=NewOrderAppendageEntry, presence_length=appendageLength> appendage
-}
+} [ size = , link_base: pkgType = UnSeqData ]
 
 message AmendOrder : Header {
   InMsgType msgType
@@ -359,14 +359,14 @@ message AmendOrder : Header {
   string6 user
   u16 appendageLength
   @optional_by_len<type=AmendOrderAppendageEntry, presence_length=appendageLength> appendage
-}
+} [ size = , link_base: pkgType = UnSeqData ]
 
 message CancelOrder : Header {
   InMsgType msgType
   UserRefNum origUserRef
   Quantity qty
   string6 user
-}
+} [ size = , link_base: pkgType = UnSeqData ]
 
 enum MMOReason : char_ebt {
   Passive = 'P'
@@ -379,7 +379,7 @@ message MMORefreshRequest : Header {
   Firm firm
   OrderBook orderBook
   MMOReason reason
-}
+} [ size = , link_base: pkgType = UnSeqData ]
 
 enum MMIInstruction : char_ebt {
   SO = '1'
@@ -416,7 +416,7 @@ message MMIRequest : Header {
   MMIAddOrRemove addOrRemove
   Firm firm
   string6 user
-}
+} [ size = , link_base: pkgType = UnSeqData ]
 
 message MMIResponse : Header {
   OutMsgType msgType
@@ -428,11 +428,11 @@ message MMIResponse : Header {
   Firm firm
   string6 user
   MMIInstructionResponse instructionReason
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 message AccountQuery : Header {
   InMsgType msgType
-}
+} [ size = , link_base:  =  ]
 
 enum EventCode : char_ebt {
   StartOfDay = 'S'
@@ -443,7 +443,7 @@ message SystemEvent : Header {
   OutMsgType msgType
   TimeStamp timestamp
   EventCode code
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 message AcceptedOrder : Header {
   OutMsgType msgType
@@ -462,7 +462,7 @@ message AcceptedOrder : Header {
   AlgoIndicator algoIndicator
   u16 appendageLength
   @optional_by_len<type=OrderAckAppendageEntry, presence_length=appendageLength> appendage
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 message ReplacedOrder : Header {
   OutMsgType msgType
@@ -477,7 +477,7 @@ message ReplacedOrder : Header {
   string6 user
   u16 appendageLength
   @optional_by_len<type=OrderAckAppendageEntry, presence_length=appendageLength> appendage
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 enum CancelReason : char_ebt {
   UserRequestedCancel = 'U'
@@ -496,7 +496,7 @@ message CancelledOrder : Header {
   UserRefNum userRef
   Quantity decrementQty
   CancelReason reason
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 enum PendingReason : char_ebt {
   Pending = 'A'
@@ -507,7 +507,7 @@ message CancelPendingOrder : Header {
   TimeStamp timestamp
   UserRefNum userRef
   PendingReason reason
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 message ReplacePendingOrder : Header {
   OutMsgType msgType
@@ -515,7 +515,7 @@ message ReplacePendingOrder : Header {
   UserRefNum origUserRef
   UserRefNum userRef
   PendingReason reason
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 enum LiqFlag : char_ebt {
   Continuous = 'A'
@@ -640,7 +640,7 @@ message ExecutedOrder : Header {
   TransactionType transType
   LiqAttr liqAttr
   LastMkt lastMkt
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 enum BrokenReason : char_ebt {
   Erroneous = 'E'
@@ -658,7 +658,7 @@ message BrokenTradeOrder : Header {
   TradingMode tradingMode
   TransactionCategory transCat
   TransactionType transType
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 alias RejectReason = i16 
 
@@ -667,7 +667,7 @@ message RejectedOrder : Header {
   TimeStamp timestamp
   UserRefNum userRef
   RejectReason reason
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 enum RestatedReason : char_ebt {
   Refresh = 'R'
@@ -681,13 +681,13 @@ message RestatedOrder : Header {
   RestatedReason reason
   u16 appendageLength
   @optional_by_len<type=OrderRestatedAppendageEntry, presence_length=appendageLength> appendage
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 message AccountQueryResponse : Header {
   OutMsgType msgType
   TimeStamp timestamp
   UserRefNum nextUserRef
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 message GTCCancelledOrder : Header {
   OutMsgType msgType
@@ -695,7 +695,7 @@ message GTCCancelledOrder : Header {
   OrigOrderEntryDate entryDate
   OrderRefNum origOrdRef
   RejectReason reason
-}
+} [ size = , link_base: pkgType = SeqData ]
 
 
 

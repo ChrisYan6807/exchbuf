@@ -11,16 +11,16 @@ primitive UInt32 = uint32_ebt [ min=, max=, null=, little_endian=false ]
 primitive Int32 = int32_ebt [ min=, max=, null=, little_endian=false ]
 primitive Uint64 = uint64_ebt [ min=, max=, null=, little_endian=false ]
 
-primitive String1 = FixedLengthString [ length=1, padding='\0', left_padding=false ]
-primitive String8 = FixedLengthString [ length=8, padding='\0', left_padding=false ]
-primitive String10 = FixedLengthString [ length=10, padding='\0', left_padding=false ]
-primitive String11 = FixedLengthString [ length=11, padding='\0', left_padding=false ]
-primitive String12 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive String16 = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive String20 = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive String21 = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive String25 = FixedLengthString [ length=25, padding='\0', left_padding=false ]
-primitive String30 = FixedLengthString [ length=30, padding='\0', left_padding=false ]
+primitive String1 = FixedLengthString [ length=1, padding='\0', right_padded=false ]
+primitive String8 = FixedLengthString [ length=8, padding='\0', right_padded=false ]
+primitive String10 = FixedLengthString [ length=10, padding='\0', right_padded=false ]
+primitive String11 = FixedLengthString [ length=11, padding='\0', right_padded=false ]
+primitive String12 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive String16 = FixedLengthString [ length=16, padding='\0', right_padded=false ]
+primitive String20 = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive String21 = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive String25 = FixedLengthString [ length=25, padding='\0', right_padded=false ]
+primitive String30 = FixedLengthString [ length=30, padding='\0', right_padded=false ]
 
 primitive MillenniumPrice = FloatDecimal [ min=, max=, null=, size=8, precision=8, signed=true, little_endian=true ]
 
@@ -74,51 +74,51 @@ message MsgHeader :  {
   Int8 startOfMsg
   Int16 length
   MsgType msgType
-}
+} [ size = , link_base:  =  ]
 
 message Logon : MsgHeader {
   String25 userName
   String25 password
   String25 newPassword
   UInt8 messageVersion
-}
+} [ size = , link_base: msgType = Logon ]
 
 message LogonResponse : MsgHeader {
   Int32 rejectCode
   String30 passwordExpiryDayCount
-}
+} [ size = , link_base:  =  ]
 
 message Logout : MsgHeader {
   String21 reason
-}
+} [ size = , link_base:  =  ]
 
 message Heartbeat : MsgHeader {
-}
+} [ size = , link_base:  =  ]
 
 message MissedMessageRequest : MsgHeader {
   Int8 appID
   Int32 lastMsgSeqNum
-}
+} [ size = , link_base:  =  ]
 
 message MissedMessageRequestAck : MsgHeader {
   MissedMsgRespType responseType
-}
+} [ size = , link_base:  =  ]
 
 message TransmissionComplete : MsgHeader {
   MissedMsgRptType responseType
-}
+} [ size = , link_base:  =  ]
 
 message Reject : MsgHeader {
   Int32 rejectCode
   String30 rejectReason
   Alpha rejectedMessageType
   String21 clientOrderID
-}
+} [ size = , link_base:  =  ]
 
 message SystemStatus : MsgHeader {
   AppID appID
   AppStatus appStatus
-}
+} [ size = , link_base:  =  ]
 
 message BusinessReject : MsgHeader {
   AppID appID
@@ -128,7 +128,7 @@ message BusinessReject : MsgHeader {
   String12 orderID
   Uint64 transactTime
   String10 reserved1
-}
+} [ size = , link_base:  =  ]
 
 
 

@@ -361,10 +361,11 @@ import org.jetbrains.mps.openapi.language.SConcept;
     editorCell.addEditorCell(createConstant_6());
     editorCell.addEditorCell(createProperty_2());
     editorCell.addEditorCell(createConstant_7());
-    editorCell.addEditorCell(createRefCell_1());
     editorCell.addEditorCell(createConstant_8());
-    editorCell.addEditorCell(createRefCell_2());
+    editorCell.addEditorCell(createRefCell_1());
     editorCell.addEditorCell(createConstant_9());
+    editorCell.addEditorCell(createRefCell_2());
+    editorCell.addEditorCell(createConstant_10());
     return editorCell;
   }
   private EditorCell createConstant_4() {
@@ -407,8 +408,17 @@ import org.jetbrains.mps.openapi.language.SConcept;
     }
   }
   private EditorCell createConstant_7() {
-    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "base field:");
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, ",");
     editorCell.setCellId("Constant_nakin5_e0a7a");
+    Style style = new StyleImpl();
+    style.set(StyleAttributes.PUNCTUATION_LEFT, true);
+    editorCell.getStyle().putAll(style);
+    editorCell.setDefaultText("");
+    return editorCell;
+  }
+  private EditorCell createConstant_8() {
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "link_base:");
+    editorCell.setCellId("Constant_nakin5_f0a7a");
     editorCell.setDefaultText("");
     return editorCell;
   }
@@ -483,9 +493,9 @@ import org.jetbrains.mps.openapi.language.SConcept;
       }
     }
   }
-  private EditorCell createConstant_8() {
+  private EditorCell createConstant_9() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "=");
-    editorCell.setCellId("Constant_nakin5_g0a7a");
+    editorCell.setCellId("Constant_nakin5_h0a7a");
     editorCell.setDefaultText("");
     return editorCell;
   }
@@ -560,9 +570,9 @@ import org.jetbrains.mps.openapi.language.SConcept;
       }
     }
   }
-  private EditorCell createConstant_9() {
+  private EditorCell createConstant_10() {
     EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "]");
-    editorCell.setCellId("Constant_nakin5_i0a7a");
+    editorCell.setCellId("Constant_nakin5_j0a7a");
     editorCell.setDefaultText("");
     return editorCell;
   }

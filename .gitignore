@@ -4,3 +4,4 @@ Pipfile
 Pipfile.lock
 FIX42.xml
 .idea
+classes_gen

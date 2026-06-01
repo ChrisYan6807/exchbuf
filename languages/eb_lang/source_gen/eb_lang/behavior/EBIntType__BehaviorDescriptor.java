@@ -89,20 +89,7 @@ public final class EBIntType__BehaviorDescriptor extends BaseBHDescriptor {
       }
     }
 
-    String pf = "";
-    if (((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 8) {
-      if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-        pf = "L";
-      } else {
-        pf = "UL";
-      }
-    } else if (((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) == 1) {
-      if (((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__))) {
-        pf = "";
-      } else {
-        pf = "_u8";
-      }
-    }
+    String pf = "_" + ((((boolean) EBIntType__BehaviorDescriptor.signed_id7qxjCwPtAaQ.invoke(__thisNode__)) ? "i" : "u")) + Integer.toString(((int) EBIntType__BehaviorDescriptor.size_id7qxjCwPtApr.invoke(__thisNode__)) * 8);
 
     String rtv = "";
     boolean inWord = false;

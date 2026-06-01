@@ -6,14 +6,14 @@ primitive u16 = uint16_ebt [ min=, max=, null=, little_endian=true ]
 primitive i32 = int32_ebt [ min=, max=, null=, little_endian=true ]
 primitive u32 = uint32_ebt [ min=, max=, null=, little_endian=true ]
 primitive u64 = uint64_ebt [ min=, max=, null=, little_endian=true ]
-primitive str2 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive str3 = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive str4 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive str8 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive str10 = FixedLengthString [ length=10, padding='\0', left_padding=false ]
-primitive str16 = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive str20 = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive str60 = FixedLengthString [ length=60, padding='\0', left_padding=false ]
+primitive str2 = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive str3 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive str4 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive str8 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive str10 = FixedLengthString [ length=10, padding='\0', right_padded=false ]
+primitive str16 = FixedLengthString [ length=16, padding='\0', right_padded=false ]
+primitive str20 = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive str60 = FixedLengthString [ length=60, padding='\0', right_padded=false ]
 
 primitive Price4 = FloatDecimal [ min=, max=, null=, size=8, precision=4, signed=true, little_endian=true ]
 primitive Price6 = FloatDecimal [ min=, max=, null=, size=8, precision=6, signed=true, little_endian=true ]
@@ -57,28 +57,28 @@ message Header :  {
   MsgType msgType
   u8 matchingUnit
   u32 seqNum
-}
+} [ size = , link_base:  =  ]
 
 message SeqNumUnit :  {
   u8 unitNum
   u32 unitSeq
-}
+} [ size = , link_base:  =  ]
 
 message BitfieldsUnit :  {
   u8 bit
-}
+} [ size = , link_base:  =  ]
 
 message UnitSeqParaGrp :  {
   u8 noUnspecifiedUnitReplay
   u8 numUnits
   @var_array<type=SeqNumUnit, counter=numUnits> seqGrp
-}
+} [ size = , link_base:  =  ]
 
 message ReturnBitFieldsParaGrp :  {
   MsgType msgType
   u8 numReturnBitfields
   @var_array<type=BitfieldsUnit, counter=numReturnBitfields> returnBitfieldGrp
-}
+} [ size = , link_base:  =  ]
 
 enum ParaGrpType : uint8_ebt {
   UnitSeq = 0x80
@@ -92,7 +92,7 @@ message ParaGrp :  {
     type: UnitSeqParaGrp, enum_value: UnitSeq
     type: ReturnBitFieldsParaGrp, enum_value: ReturnBitfields
   }
-}
+} [ size = , link_base:  =  ]
 
 message LoginRequestsV2 : Header {
   str8 subID
@@ -100,19 +100,19 @@ message LoginRequestsV2 : Header {
   str10 password
   u8 numParaGrp
   @var_array<type=ParaGrp, counter=numParaGrp> paraGrps
-}
+} [ size = , link_base: msgType = LoginRequestV2 ]
 
 message LogoutRequest : Header {
-}
+} [ size = , link_base: msgType = LogoutRequest ]
 
 message ClientHeartbeat : Header {
-}
+} [ size = , link_base: msgType = ClientHeartbeat ]
 
 message ServerHeartbeat : Header {
-}
+} [ size = , link_base: msgType = ServerHeartbeat ]
 
 message ReplayComplete : Header {
-}
+} [ size = , link_base: msgType = ReplayComplete ]
 
 enum LoginResponseStatus : char_ebt {
   LoginAccepted = 'A'
@@ -135,7 +135,7 @@ message LoginResponseV2 : Header {
   @var_array<type=SeqNumUnit, counter=numUnites> seqNumUnits
   u8 numParaGrp
   @var_array<type=ParaGrp, counter=numParaGrp> paraGrps
-}
+} [ size = , link_base:  =  ]
 
 enum LogoutReason : char_ebt {
   UserRequested = 'U'
@@ -150,7 +150,7 @@ message Logout : Header {
   u32 lastRcvSeqNum
   u8 numUnits
   @var_array<type=SeqNumUnit, counter=numUnits> seqNumUnits
-}
+} [ size = , link_base:  =  ]
 
 enum Side : char_ebt {
   Buy = '1'
@@ -722,7 +722,9 @@ enum WaiverType : char_ebt {
   SIZE = '5'
   ILQDandSIZE = 'B'
   OrderManagementFacility = 'A'
-  LargeInScal = 9
+  NETW = '8'
+  NTLS = 'c'
+  LargeInScal = '9'
 }
 alias WorkingPrice = Price4 
 alias AllocQty = u32 
@@ -872,7 +874,7 @@ message NewOrderV2 : Header {
   @optional_by_bit<type=AccountType, presence_value=bit9, enum=NewOrderBit9, mask=AccountType> accountType
   @optional_by_bit<type=CrossTradeFlag, presence_value=bit9, enum=NewOrderBit9, mask=CrossTradeFlag> crossTradeFlag
   @optional_by_bit<type=DrillThruProtection, presence_value=bit9, enum=NewOrderBit9, mask=DrillThruProtection> drillThruprotection
-}
+} [ size = , link_base: msgType = NewOrderV2 ]
 
 message CancelOrderV2 : Header {
   str20 origClOrdID
@@ -888,7 +890,7 @@ message CancelOrderV2 : Header {
   @optional_by_bit<type=ManualOrderIndicator, presence_value=bit1, enum=CancelOrderBit1, mask=ManualOrderIndicator> manualOrdInd
   @optional_by_bit<type=OperatorID, presence_value=bit1, enum=CancelOrderBit1, mask=OperatorID> opID
   @optional_by_bit<type=MassCancelInst, presence_value=bit2, enum=CancelOrderBit2, mask=MassCancelInst> massCancelInst
-}
+} [ size = , link_base: msgType = CancelOrderV2 ]
 
 message ModifyOrderV2 : Header {
   str20 clOrdID
@@ -913,7 +915,7 @@ message ModifyOrderV2 : Header {
   @optional_by_bit<type=FrequentTraderID, presence_value=bit2, enum=ModifyOrderBit2, mask=FrequentTraderID> freqTraderID
   @optional_by_bit<type=CustOrderHandlingInst, presence_value=bit2, enum=ModifyOrderBit2, mask=CustOrderHandlingInst> custOrdHandlingInst
   @optional_by_bit<type=Reserved, presence_value=bit2, enum=ModifyOrderBit2, mask=Reserved> reserved2
-}
+} [ size = , link_base: msgType = ModifyOrderV2 ]
 
 enum MultilegReportingType : char_ebt {
   SimpleInstrument = '1'
@@ -1142,14 +1144,14 @@ message OrderRespOptGrp :  {
   @optional_by_bit<type=AccountType, presence_value=bit18, enum=OrderAckBit18, mask=AccountType> accountType
   @optional_by_bit<type=CrossInitiator, presence_value=bit18, enum=OrderAckBit18, mask=CrossInitiator> crossInit
   @optional_by_bit<type=Subreason, presence_value=bit18, enum=OrderAckBit18, mask=Subreason> subReason
-}
+} [ size = , link_base:  =  ]
 
 message OrderAckV2 : Header {
   u64 transactionTime
   str20 clOrdID
   u8 reserved
   OrderRespOptGrp optGrp
-}
+} [ size = , link_base: msgType = OrderAcknowledgementV2 ]
 
 enum ReasonCode : char_ebt {
   Admin = 'A'
@@ -1186,7 +1188,7 @@ message OrderRejectedV2 : Header {
   str60 text
   u8 reserved
   OrderRespOptGrp optGrp
-}
+} [ size = , link_base: msgType = OrderRejectedV2 ]
 
 message OrderCancelledV2 : Header {
   u64 transTime
@@ -1195,7 +1197,7 @@ message OrderCancelledV2 : Header {
   str60 text
   u8 reserved
   OrderRespOptGrp optGrp
-}
+} [ size = , link_base: msgType = OrderCancelledV2 ]
 
 message OrderModifiedV2 : Header {
   u64 transTime
@@ -1203,7 +1205,7 @@ message OrderModifiedV2 : Header {
   u64 orderID
   u8 reserved
   OrderRespOptGrp optGrp
-}
+} [ size = , link_base: msgType = OrderModifiedV2 ]
 
 enum LiqIndicator : char_ebt {
   Added = 'A'
@@ -1224,7 +1226,7 @@ message OrderExecutionV2 : Header {
   str4 contraBroker
   u8 reserved
   OrderRespOptGrp optGrp
-}
+} [ size = , link_base: msgType = OrderExecutionV2 ]
 
 
 

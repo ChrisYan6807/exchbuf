@@ -661,52 +661,52 @@ enum TradingSessionEvent : uint8_ebt {
   StartOfTradingSessionMIC = 3
   EndOfTradingSessionMIC = 4
 }
-primitive Account = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive ParticipantCode = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive Token = FixedLengthString [ length=8, padding='\0', left_padding=false ]
-primitive Memo = FixedLengthString [ length=18, padding='\0', left_padding=false ]
-primitive InterestedParty = FixedLengthString [ length=8, padding='\0', left_padding=false ]
-primitive ClientOrderId = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive MicCode = FixedLengthString [ length=4, padding='\0', left_padding=false ]
+primitive Account = FixedLengthString [ length=16, padding='\0', right_padded=false ]
+primitive ParticipantCode = FixedLengthString [ length=16, padding='\0', right_padded=false ]
+primitive Token = FixedLengthString [ length=8, padding='\0', right_padded=false ]
+primitive Memo = FixedLengthString [ length=18, padding='\0', right_padded=false ]
+primitive InterestedParty = FixedLengthString [ length=8, padding='\0', right_padded=false ]
+primitive ClientOrderId = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive MicCode = FixedLengthString [ length=4, padding='\0', right_padded=false ]
 message Header :  {
   MsgLength length
   MsgType msgType
   SeqNum seqNum
   Timestamp timestamp
   Timestamp sourceTimestamp
-}
+} [ size = , link_base:  =  ]
 message MifidField :  {
   ShortCode shortCode
   PartyRoleQualifier qualifier
-}
+} [ size = , link_base:  =  ]
 message MifidFields :  {
   MifidField client
   MifidField executingTrader
   MifidField investmentDecisionMaker
-}
-primitive ClearingCode = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+} [ size = , link_base:  =  ]
+primitive ClearingCode = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 message ConnectionClose : Header {
   ConnectionCloseReason reason
-}
+} [ size = , link_base: msgType = ConnectionClose ]
 message Heartbeat : Header {
-}
+} [ size = , link_base: msgType = Heartbeat ]
 message Login : Header {
   MsgVersion version
   Token token
   ConnectionId connectionId
   SeqNum nextExpectedSeqNum
   SeqNum lastSentSeqNum
-}
+} [ size = , link_base: msgType = Login ]
 message LoginResponse : Header {
   LoginResult result
   SeqNum nextExpectedSeqNum
   SeqNum lastReplaySeqNum
   SessionId sessionId
-}
+} [ size = , link_base: msgType = LoginResponse ]
 message Logout : Header {
-}
+} [ size = , link_base: msgType = Logout ]
 message LogoutResponse : Header {
-}
+} [ size = , link_base: msgType = LogoutResponse ]
 message OrderAdd : Header {
   STPId stpId
   ElementId instrumentId
@@ -730,7 +730,7 @@ message OrderAdd : Header {
   ExecInst execInst
   u8 feeStructureId
   InterestedParty interestedParty
-}
+} [ size = , link_base: msgType = OrderAdd ]
 message OrderAddResponse : Header {
   OrderId orderId
   PublicOrderId publicOrderId
@@ -740,19 +740,19 @@ message OrderAddResponse : Header {
   OrderRejectionReason reason
   ExecTypeReason execTypeReason
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderAddResponse ]
 message OrderCancel : Header {
   OrderId orderId
   MifidFields mifidFields
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderCancel ]
 message OrderCancelResponse : Header {
   OrderId orderId
   OrderStatus status
   OrderRejectionReason reason
   ExecTypeReason execTypeReason
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderCancelResponse ]
 message OrderModify : Header {
   OrderId orderId
   Price price
@@ -762,7 +762,7 @@ message OrderModify : Header {
   Timestamp expire
   MifidFields mifidFields
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderModify ]
 message OrderModifyResponse : Header {
   OrderId orderId
   Quantity filled
@@ -770,7 +770,7 @@ message OrderModifyResponse : Header {
   PriorityFlag priorityFlag
   OrderRejectionReason reason
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderModifyResponse ]
 message OrderMassCancel : Header {
   MassCancelRequestType massCancelRequestType
   TargetPartyRole targetPartyRole
@@ -779,7 +779,7 @@ message OrderMassCancel : Header {
   ElementId instrumentId
   MifidField executingTrader
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderMassCancel ]
 message OrderMassCancelResponse : Header {
   u64 totalAffectedOrders
   MassCancelRequestType massCancelRequestType
@@ -789,10 +789,10 @@ message OrderMassCancelResponse : Header {
   ElementId marketSegmentId
   MassCancelRejectionReason reason
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderMassCancelResponse ]
 message Test : Header {
   Timestamp targetTimestamp
-}
+} [ size = , link_base: msgType = Test ]
 message OrderExecute : Header {
   ElementId instrumentId
   OrderId orderId
@@ -804,11 +804,11 @@ message OrderExecute : Header {
   Currency currency
   OrderSide side
   ClientOrderId clientOrderId
-}
+} [ size = , link_base: msgType = OrderExecute ]
 message Reject : Header {
   SeqNum refSeqNum
   RejectReason rejectReason
-}
+} [ size = , link_base: msgType = Reject ]
 message TcrParty :  {
   OrderFlags flags
   MifidFields mifidFields
@@ -820,12 +820,12 @@ message TcrParty :  {
   u8 feeStructureId
   InterestedParty interestedParty
   Memo memo
-}
-primitive TradeReportId = FixedLengthString [ length=21, padding='\0', left_padding=false ]
-primitive TradeReportRefID = FixedLengthString [ length=21, padding='\0', left_padding=false ]
+} [ size = , link_base:  =  ]
+primitive TradeReportId = FixedLengthString [ length=21, padding='\0', right_padded=false ]
+primitive TradeReportRefID = FixedLengthString [ length=21, padding='\0', right_padded=false ]
 message TradeBust : Header {
   TradeId tradeId
-}
+} [ size = , link_base: msgType = TradeBust ]
 message TradeCaptureReportSingle : Header {
   ElementId instrumentId
   TradeReportId tradeReportId
@@ -843,7 +843,7 @@ message TradeCaptureReportSingle : Header {
   OrderSide side
   ParticipantCode counterpartyCode
   TcrParty tcrParty
-}
+} [ size = , link_base: msgType = TradeCaptureReportSingle ]
 message TradeCaptureReportDual : Header {
   ElementId instrumentId
   TradeReportId tradeReportId
@@ -860,7 +860,7 @@ message TradeCaptureReportDual : Header {
   Date settlementDate
   TcrParty tcrPartyBuy
   TcrParty tcrPartySell
-}
+} [ size = , link_base: msgType = TradeCaptureReportDual ]
 message TradeCaptureReportResponse : Header {
   ElementId instrumentId
   TradeId tradeId
@@ -868,28 +868,28 @@ message TradeCaptureReportResponse : Header {
   OrderId secondaryTradeReportId
   TcrStatus status
   TcrRejectionReason reason
-}
-primitive ScenarioName = FixedLengthString [ length=200, padding='\0', left_padding=false ]
+} [ size = , link_base: msgType = TradeCaptureReportResponse ]
+primitive ScenarioName = FixedLengthString [ length=200, padding='\0', right_padded=false ]
 message GapFill : Header {
-}
+} [ size = , link_base: msgType = GapFill ]
 message TestEvent : Header {
   ScenarioName scenarioName
   EventType eventType
-}
+} [ size = , link_base: msgType = TestEvent ]
 message QuoteOrder :  {
   Price price
   Quantity quantity
-}
+} [ size = , link_base:  =  ]
 message Quote :  {
   ElementId instrumentId
   QuoteOrder bid
   QuoteOrder ask
-}
+} [ size = , link_base:  =  ]
 array<type=Quote, size=30> QuotesArray
 message Quotes :  {
   u8 count
   QuotesArray items
-}
+} [ size = , link_base:  =  ]
 message MassQuote : Header {
   STPId stpId
   Capacity capacity
@@ -904,39 +904,39 @@ message MassQuote : Header {
   u8 feeStructureId
   InterestedParty interestedParty
   ClientOrderId quoteId
-}
+} [ size = , link_base: msgType = MassQuote ]
 message QuoteOrderResponse :  {
   ElementId instrumentId
   OrderId bidOrderId
   OrderId askOrderId
   OrderStatus status
   OrderRejectionReason reason
-}
+} [ size = , link_base:  =  ]
 array<type=QuoteOrderResponse, size=30> QuoteOrderResponseArray
 message QuoteOrderResponses :  {
   u8 count
   QuoteOrderResponseArray items
-}
+} [ size = , link_base:  =  ]
 message MassQuoteResponse : Header {
   OrderId massQuoteId
   QuoteOrderResponses responses
   MassQuoteStatus status
   MassQuoteRejectionReason reason
   u8 feeStructureId
-}
+} [ size = , link_base: msgType = MassQuoteResponse ]
 message MarketMakerCommand : Header {
   ElementId instrumentId
   CommandAction action
-}
+} [ size = , link_base: msgType = MarketMakerCommand ]
 message MarketMakerCommandResponse : Header {
   u32 refId
   CommandResult result
   CommandRejectionCode rejectionCode
-}
+} [ size = , link_base: msgType = MarketMakerCommandResponse ]
 message RequestForExecution : Header {
   ElementId instrumentId
   RequestForExecutionReason reason
-}
+} [ size = , link_base: msgType = RequestForExecution ]
 message BidOfferUpdate : Header {
   ElementId instrumentId
   BidOfferUpdateType updateType
@@ -944,11 +944,11 @@ message BidOfferUpdate : Header {
   Quantity totalOfferSize
   u32 bidOrders
   u32 offerOrders
-}
+} [ size = , link_base: msgType = BidOfferUpdate ]
 message TradingSessionStatus : Header {
   MicCode marketId
   Date date
   TradingSessionEvent tradingSessionEvent
-}
+} [ size = , link_base: msgType = TradingSessionStatus ]
 
 

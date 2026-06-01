@@ -132,30 +132,30 @@ bitfield MiFIDFlags : uint8_ebt {
 
 
 enum ClientIDType : uint8_ebt {
-  None = 0
+  NONE = 0
   Firm = 1
   Algo = 2
   Person = 3
 }
 
 enum IDMT : uint8_ebt {
-  None = 0
+  NONE = 0
   Firm = 1
   Algo = 2
   Person = 3
 }
 
 enum EDMT : uint8_ebt {
-  None = 0
+  NONE = 0
   Firm = 1
   Algo = 2
   Person = 3
 }
 
 bitfield PartyRoleQualifiers : uint8_ebt {
-  enum = ClientIDType, default = None, length = 2
-  enum = IDMT, default = None, length = 2
-  enum = EDMT, default = None, length = 2
+  enum = ClientIDType, default = NONE, length = 2
+  enum = IDMT, default = NONE, length = 2
+  enum = EDMT, default = NONE, length = 2
 }
 
 
@@ -216,7 +216,7 @@ message NewOrder : MsgHeader {
   UInt32 executingTrader
   Int32 Offset
   String16 reserved
-}
+} [ size = , link_base:  =  ]
 
 message ExecutionReport : MsgHeader {
   AppID appId
@@ -248,7 +248,7 @@ message ExecutionReport : MsgHeader {
   Alpha reserved4
   String12 publicOrderId
   Int32 minimumQty
-}
+} [ size = , link_base:  =  ]
 
 
 

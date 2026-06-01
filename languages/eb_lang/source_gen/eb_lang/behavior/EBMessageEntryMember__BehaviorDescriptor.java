@@ -53,7 +53,11 @@ public final class EBMessageEntryMember__BehaviorDescriptor extends BaseBHDescri
         return fmted;
       }
     } else if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37)) {
-      return SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), PROPS.name$MnvL) + "::" + SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
+      if (isEmptyString(SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO))) {
+        return SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), PROPS.name$MnvL) + "::" + SPropertyOperations.getString(ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), LINKS.values$_zmn)).first(), PROPS.name$MnvL);
+      } else {
+        return SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(__thisNode__, LINKS.type$zO4N), CONCEPTS.EBEnum$37), PROPS.name$MnvL) + "::" + SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
+      }
     }
     return SPropertyOperations.getString(__thisNode__, PROPS.default$w7ZO);
   }

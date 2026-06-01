@@ -4,14 +4,15 @@
 
 namespace BOE2EU {
 using namespace EB::common;
+using EB::common::operator<<;
 
-using i8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0>;
+using i8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8>;
 using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using i16 = LittleEndian<int16_t, std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max(), 0>;
-using u16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using i32 = LittleEndian<int32_t, std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max(), 0>;
-using u32 = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
-using u64 = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0UL>;
+using i16 = LittleEndian<int16_t, std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max(), 0_i16>;
+using u16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0_u16>;
+using i32 = LittleEndian<int32_t, std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max(), 0_i32>;
+using u32 = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0_u32>;
+using u64 = LittleEndian<uint64_t, std::numeric_limits<uint64_t>::min(), std::numeric_limits<uint64_t>::max(), 0_u64>;
 using str2 = FixedLengthString<2, '\0', false>;
 using str3 = FixedLengthString<3, '\0', false>;
 using str4 = FixedLengthString<4, '\0', false>;
@@ -62,8 +63,7 @@ struct MsgType {
         QuoteRejectV2 = 0x40,
         ParticipantSuspendResponse = 0x50,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "MsgType";}
+    static constexpr const char* name() {return "MsgType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0x37), static_cast<uint8_t>(0x02), static_cast<uint8_t>(0x03), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x3A), static_cast<uint8_t>(0x3D), static_cast<uint8_t>(0x3E), static_cast<uint8_t>(0x4F), static_cast<uint8_t>(0x24), static_cast<uint8_t>(0x08), static_cast<uint8_t>(0x09), static_cast<uint8_t>(0x13), static_cast<uint8_t>(0x25), static_cast<uint8_t>(0x26), static_cast<uint8_t>(0x27), static_cast<uint8_t>(0x29), static_cast<uint8_t>(0x2A), static_cast<uint8_t>(0x2B), static_cast<uint8_t>(0x2C), static_cast<uint8_t>(0x2D), static_cast<uint8_t>(0x3F), static_cast<uint8_t>(0x40), static_cast<uint8_t>(0x50), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0x37), static_cast<uint8_t>(0x02), static_cast<uint8_t>(0x03), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x38), static_cast<uint8_t>(0x3A), static_cast<uint8_t>(0x3D), static_cast<uint8_t>(0x3E), static_cast<uint8_t>(0x4F), static_cast<uint8_t>(0x24), static_cast<uint8_t>(0x08), static_cast<uint8_t>(0x09), static_cast<uint8_t>(0x13), static_cast<uint8_t>(0x25), static_cast<uint8_t>(0x26), static_cast<uint8_t>(0x27), static_cast<uint8_t>(0x29), static_cast<uint8_t>(0x2A), static_cast<uint8_t>(0x2B), static_cast<uint8_t>(0x2C), static_cast<uint8_t>(0x2D), static_cast<uint8_t>(0x3F), static_cast<uint8_t>(0x40), static_cast<uint8_t>(0x50), });
     constexpr MsgType():value_{max_value} {}
@@ -119,20 +119,23 @@ inline ostreamT& operator<<(ostreamT& os, const MsgType& v){
 
 #pragma pack(1)
 struct Header {
-    u16 startOfMesssage{0xBABA};
+    u16 startOfMesssage{0xBABA_u16};
     u16 messageLength;
-    MsgType msgType{MsgType::null};
+    MsgType msgType{MsgType::LoginRequestV2};
     u8 matchingUnit{0_u8};
     u32 seqNum;
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(Header);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(Header);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const Header*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Header& msg) {
+    os << "Header{";
     os << "startOfMesssage=" << msg.startOfMesssage << ";"
        << "messageLength=" << msg.messageLength << ";"
        << "msgType=" << msg.msgType << ";"
@@ -150,11 +153,14 @@ struct SeqNumUnit {
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(SeqNumUnit);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(SeqNumUnit);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const SeqNumUnit*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const SeqNumUnit& msg) {
+    os << "SeqNumUnit{";
     os << "unitNum=" << msg.unitNum << ";"
        << "unitSeq=" << msg.unitSeq << ";"
        << "}";
@@ -168,11 +174,14 @@ struct BitfieldsUnit {
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(BitfieldsUnit);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(BitfieldsUnit);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const BitfieldsUnit*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const BitfieldsUnit& msg) {
+    os << "BitfieldsUnit{";
     os << "bit=" << msg.bit << ";"
        << "}";
     return os;
@@ -182,17 +191,20 @@ inline std::ostream& operator<<(std::ostream& os, const BitfieldsUnit& msg) {
 struct UnitSeqParaGrp {
     u8 noUnspecifiedUnitReplay;
     u8 numUnits;
-    BlockRef<SeqNumUnit> seqGrp() {return BlockRef<SeqNumUnit>(begin()+size(), numUnits);}
-    BlockRef<SeqNumUnit> seqGrp() const {return BlockRef<SeqNumUnit>(begin()+size(), numUnits);}
+    BlockRef<SeqNumUnit> seqGrp() {return BlockRef<SeqNumUnit>(begin()+fixed_size(), numUnits);}
+    BlockRef<SeqNumUnit> seqGrp() const {return BlockRef<SeqNumUnit>(cbegin()+fixed_size(), numUnits);}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(UnitSeqParaGrp);}
-    size_t size() const {return seqGrp().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(UnitSeqParaGrp);}
+    size_t size() {return seqGrp().end()-begin();}
+    size_t size() const {return seqGrp().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const UnitSeqParaGrp*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const UnitSeqParaGrp& msg) {
+    os << "UnitSeqParaGrp{";
     os << "noUnspecifiedUnitReplay=" << msg.noUnspecifiedUnitReplay << ";"
        << "numUnits=" << msg.numUnits << ";"
        << "seqGrp=" << const_cast<UnitSeqParaGrp&>(msg).seqGrp() << ";"
@@ -202,19 +214,22 @@ inline std::ostream& operator<<(std::ostream& os, const UnitSeqParaGrp& msg) {
 
 #pragma pack(1)
 struct ReturnBitFieldsParaGrp {
-    MsgType msgType{MsgType::null};
+    MsgType msgType{MsgType::LoginRequestV2};
     u8 numReturnBitfields;
-    BlockRef<BitfieldsUnit> returnBitfieldGrp() {return BlockRef<BitfieldsUnit>(begin()+size(), numReturnBitfields);}
-    BlockRef<BitfieldsUnit> returnBitfieldGrp() const {return BlockRef<BitfieldsUnit>(begin()+size(), numReturnBitfields);}
+    BlockRef<BitfieldsUnit> returnBitfieldGrp() {return BlockRef<BitfieldsUnit>(begin()+fixed_size(), numReturnBitfields);}
+    BlockRef<BitfieldsUnit> returnBitfieldGrp() const {return BlockRef<BitfieldsUnit>(cbegin()+fixed_size(), numReturnBitfields);}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(ReturnBitFieldsParaGrp);}
-    size_t size() const {return returnBitfieldGrp().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(ReturnBitFieldsParaGrp);}
+    size_t size() {return returnBitfieldGrp().end()-begin();}
+    size_t size() const {return returnBitfieldGrp().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ReturnBitFieldsParaGrp*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ReturnBitFieldsParaGrp& msg) {
+    os << "ReturnBitFieldsParaGrp{";
     os << "msgType=" << msg.msgType << ";"
        << "numReturnBitfields=" << msg.numReturnBitfields << ";"
        << "returnBitfieldGrp=" << const_cast<ReturnBitFieldsParaGrp&>(msg).returnBitfieldGrp() << ";"
@@ -228,8 +243,7 @@ struct ParaGrpType {
         UnitSeq = 0x80,
         ReturnBitfields = 0x81,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ParaGrpType";}
+    static constexpr const char* name() {return "ParaGrpType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0x80), static_cast<uint8_t>(0x81), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0x80), static_cast<uint8_t>(0x81), });
     constexpr ParaGrpType():value_{max_value} {}
@@ -264,24 +278,33 @@ inline ostreamT& operator<<(ostreamT& os, const ParaGrpType& v){
 #pragma pack(1)
 struct ParaGrp {
     u16 length;
-    ParaGrpType paraGrpType{ParaGrpType::null};
+    ParaGrpType paraGrpType{ParaGrpType::UnitSeq};
     auto grpValue() {
-        return OptionalByEnumRef<ParaGrpType, TypeByEnum<typename UnitSeqParaGrp, typename ParaGrpType, auto ParaGrpType::UnitSeq>,
-                                   TypeByEnum<typename ReturnBitFieldsParaGrp, typename ParaGrpType, auto ParaGrpType::ReturnBitfields>
-                          >(begin()+size(), paraGrpType);
+        return OptionalByEnumRef<ParaGrpType, TypeByEnum<UnitSeqParaGrp, ParaGrpType, ParaGrpType::UnitSeq>,
+                                   TypeByEnum<ReturnBitFieldsParaGrp, ParaGrpType, ParaGrpType::ReturnBitfields>
+                          >(begin()+fixed_size(), paraGrpType);
+    }
+    auto grpValue() const {
+        return OptionalByEnumRef<ParaGrpType, TypeByEnum<UnitSeqParaGrp, ParaGrpType, ParaGrpType::UnitSeq>,
+                                   TypeByEnum<ReturnBitFieldsParaGrp, ParaGrpType, ParaGrpType::ReturnBitfields>
+                          >(cbegin()+fixed_size(), paraGrpType);
     }
 
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(ParaGrp);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(ParaGrp);}
+    size_t size() {return grpValue().end()-begin();}
+    size_t size() const {return grpValue().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ParaGrp*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ParaGrp& msg) {
+    os << "ParaGrp{";
     os << "length=" << msg.length << ";"
        << "paraGrpType=" << msg.paraGrpType << ";"
+       << "grpValue=" << const_cast<ParaGrp&>(msg).grpValue() << ";"
        << "}";
     return os;
 }
@@ -292,17 +315,20 @@ struct LoginRequestsV2 : Header {
     str8 username;
     str10 password;
     u8 numParaGrp;
-    BlockRef<ParaGrp> paraGrps() {return BlockRef<ParaGrp>(begin()+size(), numParaGrp);}
-    BlockRef<ParaGrp> paraGrps() const {return BlockRef<ParaGrp>(begin()+size(), numParaGrp);}
+    BlockRef<ParaGrp> paraGrps() {return BlockRef<ParaGrp>(begin()+fixed_size(), numParaGrp);}
+    BlockRef<ParaGrp> paraGrps() const {return BlockRef<ParaGrp>(cbegin()+fixed_size(), numParaGrp);}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(LoginRequestsV2);}
-    size_t size() const {return paraGrps().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(LoginRequestsV2);}
+    size_t size() {return paraGrps().end()-begin();}
+    size_t size() const {return paraGrps().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const LoginRequestsV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LoginRequestsV2& msg) {
+    os << "LoginRequestsV2{";
     os << static_cast<const Header&>(msg);
     os << "subID=" << msg.subID << ";"
        << "username=" << msg.username << ";"
@@ -319,12 +345,16 @@ struct LogoutRequest : Header {
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(LogoutRequest);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(LogoutRequest);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const LogoutRequest*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogoutRequest& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "LogoutRequest{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 
@@ -334,12 +364,16 @@ struct ClientHeartbeat : Header {
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(ClientHeartbeat);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(ClientHeartbeat);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ClientHeartbeat*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ClientHeartbeat& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "ClientHeartbeat{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 
@@ -349,12 +383,16 @@ struct ServerHeartbeat : Header {
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(ServerHeartbeat);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(ServerHeartbeat);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ServerHeartbeat*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ServerHeartbeat& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "ServerHeartbeat{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 
@@ -364,12 +402,16 @@ struct ReplayComplete : Header {
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(ReplayComplete);}
-    size_t size() const {return fixed_size()
+    static constexpr size_t fixed_size() noexcept {return sizeof(ReplayComplete);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ReplayComplete*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ReplayComplete& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "ReplayComplete{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 
@@ -386,8 +428,7 @@ struct LoginResponseStatus {
         InvalidReturnBiteInLoginMessage = 'F',
         InvalidLoginRequestMessageStructure = 'M',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "LoginResponseStatus";}
+    static constexpr const char* name() {return "LoginResponseStatus";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('N'), static_cast<char>('D'), static_cast<char>('B'), static_cast<char>('S'), static_cast<char>('Q'), static_cast<char>('I'), static_cast<char>('F'), static_cast<char>('M'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('N'), static_cast<char>('D'), static_cast<char>('B'), static_cast<char>('S'), static_cast<char>('Q'), static_cast<char>('I'), static_cast<char>('F'), static_cast<char>('M'), });
     constexpr LoginResponseStatus():value_{max_value} {}
@@ -428,25 +469,29 @@ inline ostreamT& operator<<(ostreamT& os, const LoginResponseStatus& v){
 
 #pragma pack(1)
 struct LoginResponseV2 : Header {
-    LoginResponseStatus status{LoginResponseStatus::null};
+    LoginResponseStatus status{LoginResponseStatus::LoginAccepted};
     str60 text;
     u8 noUnspecifiedUnitReplay;
     u32 lastRcvSeqNum;
     u8 numUnites;
-    BlockRef<SeqNumUnit> seqNumUnits() {return BlockRef<SeqNumUnit>(begin()+size(), numUnites);}
-    BlockRef<SeqNumUnit> seqNumUnits() const {return BlockRef<SeqNumUnit>(begin()+size(), numUnites);}
+    BlockRef<SeqNumUnit> seqNumUnits() {return BlockRef<SeqNumUnit>(begin()+fixed_size(), numUnites);}
+    BlockRef<SeqNumUnit> seqNumUnits() const {return BlockRef<SeqNumUnit>(cbegin()+fixed_size(), numUnites);}
     FloatingRef<u8> numParaGrp() {return FloatingRef<u8>(seqNumUnits().end());}
-    BlockRef<ParaGrp> paraGrps() {return BlockRef<ParaGrp>(begin()+size(), numParaGrp);}
-    BlockRef<ParaGrp> paraGrps() const {return BlockRef<ParaGrp>(begin()+size(), numParaGrp);}
+    FloatingRef<u8> numParaGrp() const {return FloatingRef<u8>(seqNumUnits().cend());}
+    BlockRef<ParaGrp> paraGrps() {return BlockRef<ParaGrp>(numParaGrp().end(), numParaGrp());}
+    BlockRef<ParaGrp> paraGrps() const {return BlockRef<ParaGrp>(numParaGrp().cend(), numParaGrp());}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(LoginResponseV2);}
-    size_t size() const {return paraGrps().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(LoginResponseV2);}
+    size_t size() {return paraGrps().end()-begin();}
+    size_t size() const {return paraGrps().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const LoginResponseV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LoginResponseV2& msg) {
+    os << "LoginResponseV2{";
     os << static_cast<const Header&>(msg);
     os << "status=" << msg.status << ";"
        << "text=" << msg.text << ";"
@@ -454,7 +499,7 @@ inline std::ostream& operator<<(std::ostream& os, const LoginResponseV2& msg) {
        << "lastRcvSeqNum=" << msg.lastRcvSeqNum << ";"
        << "numUnites=" << msg.numUnites << ";"
        << "seqNumUnits=" << const_cast<LoginResponseV2&>(msg).seqNumUnits() << ";"
-       << "numParaGrp=" << msg.numParaGrp << ";"
+       << "numParaGrp=" << const_cast<LoginResponseV2&>(msg).numParaGrp() << ";"
        << "paraGrps=" << const_cast<LoginResponseV2&>(msg).paraGrps() << ";"
        << "}";
     return os;
@@ -468,8 +513,7 @@ struct LogoutReason {
         Administrative = 'A',
         ProtocolViolation = '!',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "LogoutReason";}
+    static constexpr const char* name() {return "LogoutReason";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('U'), static_cast<char>('E'), static_cast<char>('A'), static_cast<char>('!'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('U'), static_cast<char>('E'), static_cast<char>('A'), static_cast<char>('!'), });
     constexpr LogoutReason():value_{max_value} {}
@@ -505,21 +549,24 @@ inline ostreamT& operator<<(ostreamT& os, const LogoutReason& v){
 
 #pragma pack(1)
 struct Logout : Header {
-    LogoutReason reason{LogoutReason::null};
+    LogoutReason reason{LogoutReason::UserRequested};
     str60 text;
     u32 lastRcvSeqNum;
     u8 numUnits;
-    BlockRef<SeqNumUnit> seqNumUnits() {return BlockRef<SeqNumUnit>(begin()+size(), numUnits);}
-    BlockRef<SeqNumUnit> seqNumUnits() const {return BlockRef<SeqNumUnit>(begin()+size(), numUnits);}
+    BlockRef<SeqNumUnit> seqNumUnits() {return BlockRef<SeqNumUnit>(begin()+fixed_size(), numUnits);}
+    BlockRef<SeqNumUnit> seqNumUnits() const {return BlockRef<SeqNumUnit>(cbegin()+fixed_size(), numUnits);}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(Logout);}
-    size_t size() const {return seqNumUnits().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(Logout);}
+    size_t size() {return seqNumUnits().end()-begin();}
+    size_t size() const {return seqNumUnits().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const Logout*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Logout& msg) {
+    os << "Logout{";
     os << static_cast<const Header&>(msg);
     os << "reason=" << msg.reason << ";"
        << "text=" << msg.text << ";"
@@ -539,8 +586,7 @@ struct Side {
         SellShortExempt = '6',
         SellUndisclosed = 'H',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "Side";}
+    static constexpr const char* name() {return "Side";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('5'), static_cast<char>('6'), static_cast<char>('H'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('5'), static_cast<char>('6'), static_cast<char>('H'), });
     constexpr Side():value_{max_value} {}
@@ -588,8 +634,7 @@ struct NewOrderBit1 {
         MinQty = 64,
         MaxFloor = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit1";}
+    static constexpr const char* name() {return "NewOrderBit1";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit1():value_{max_value} {}
@@ -641,8 +686,7 @@ struct NewOrderBit2 {
         Capacity = 64,
         RoutingInst = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit2";}
+    static constexpr const char* name() {return "NewOrderBit2";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit2():value_{max_value} {}
@@ -694,8 +738,7 @@ struct NewOrderBit3 {
         LocateRequired = 64,
         ExpireTime = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit3";}
+    static constexpr const char* name() {return "NewOrderBit3";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit3():value_{max_value} {}
@@ -747,8 +790,7 @@ struct NewOrderBit4 {
         TargetPartyID = 64,
         LiquidityProvision = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit4";}
+    static constexpr const char* name() {return "NewOrderBit4";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit4():value_{max_value} {}
@@ -800,8 +842,7 @@ struct NewOrderBit5 {
         ExecutorID = 64,
         OrderOrigination = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit5";}
+    static constexpr const char* name() {return "NewOrderBit5";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit5():value_{max_value} {}
@@ -853,8 +894,7 @@ struct NewOrderBit6 {
         AuctionID = 64,
         RoutingFirmID = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit6";}
+    static constexpr const char* name() {return "NewOrderBit6";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit6():value_{max_value} {}
@@ -906,8 +946,7 @@ struct NewOrderBit7 {
         ManualOrderIndicator = 64,
         OperatorID = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit7";}
+    static constexpr const char* name() {return "NewOrderBit7";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit7():value_{max_value} {}
@@ -959,8 +998,7 @@ struct NewOrderBit8 {
         FloorDestination = 64,
         FloorRoutingInst = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit8";}
+    static constexpr const char* name() {return "NewOrderBit8";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit8():value_{max_value} {}
@@ -1012,8 +1050,7 @@ struct NewOrderBit9 {
         CrossTradeFlag = 64,
         DrillThruProtection = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "NewOrderBit9";}
+    static constexpr const char* name() {return "NewOrderBit9";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr NewOrderBit9():value_{max_value} {}
@@ -1065,8 +1102,7 @@ struct CancelOrderBit1 {
         ManualOrderIndicator = 64,
         OperatorID = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "CancelOrderBit1";}
+    static constexpr const char* name() {return "CancelOrderBit1";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr CancelOrderBit1():value_{max_value} {}
@@ -1111,8 +1147,7 @@ struct CancelOrderBit2 {
         NONE = 0,
         MassCancelInst = 1,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "CancelOrderBit2";}
+    static constexpr const char* name() {return "CancelOrderBit2";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), });
     constexpr CancelOrderBit2():value_{max_value} {}
@@ -1156,8 +1191,7 @@ struct ModifyOrderBit1 {
         ExecInst = 64,
         Side = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ModifyOrderBit1";}
+    static constexpr const char* name() {return "ModifyOrderBit1";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr ModifyOrderBit1():value_{max_value} {}
@@ -1207,8 +1241,7 @@ struct ModifyOrderBit2 {
         CustOrderHandlingInst = 64,
         Reserved = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ModifyOrderBit2";}
+    static constexpr const char* name() {return "ModifyOrderBit2";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr ModifyOrderBit2():value_{max_value} {}
@@ -1259,8 +1292,7 @@ struct OrderAckBit1 {
         MinQty = 64,
         MaxRemovePct = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit1";}
+    static constexpr const char* name() {return "OrderAckBit1";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit1():value_{max_value} {}
@@ -1311,8 +1343,7 @@ struct OrderAckBit2 {
         Capacity = 64,
         ContraTrader = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit2";}
+    static constexpr const char* name() {return "OrderAckBit2";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit2():value_{max_value} {}
@@ -1363,8 +1394,7 @@ struct OrderAckBit3 {
         OrderQty = 64,
         PreventMatch = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit3";}
+    static constexpr const char* name() {return "OrderAckBit3";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit3():value_{max_value} {}
@@ -1415,8 +1445,7 @@ struct OrderAckBit4 {
         PartyID = 64,
         AccessFee = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit4";}
+    static constexpr const char* name() {return "OrderAckBit4";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit4():value_{max_value} {}
@@ -1467,8 +1496,7 @@ struct OrderAckBit5 {
         BaseLiquidityIndicator = 64,
         ExpireTime = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit5";}
+    static constexpr const char* name() {return "OrderAckBit5";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit5():value_{max_value} {}
@@ -1519,8 +1547,7 @@ struct OrderAckBit6 {
         BulkRejectReasons = 64,
         PartyRole = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit6";}
+    static constexpr const char* name() {return "OrderAckBit6";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit6():value_{max_value} {}
@@ -1571,8 +1598,7 @@ struct OrderAckBit7 {
         LargeSize = 64,
         LastMkt = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit7";}
+    static constexpr const char* name() {return "OrderAckBit7";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit7():value_{max_value} {}
@@ -1623,8 +1649,7 @@ struct OrderAckBit8 {
         ExDestination = 64,
         TradeReportRefID = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit8";}
+    static constexpr const char* name() {return "OrderAckBit8";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit8():value_{max_value} {}
@@ -1675,8 +1700,7 @@ struct OrderAckBit9 {
         CrossType = 64,
         CrossPrioritiozation = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit9";}
+    static constexpr const char* name() {return "OrderAckBit9";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit9():value_{max_value} {}
@@ -1727,8 +1751,7 @@ struct OrderAckBit10 {
         PriceFormation = 64,
         ClientQualifiedRole = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit10";}
+    static constexpr const char* name() {return "OrderAckBit10";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit10():value_{max_value} {}
@@ -1779,8 +1802,7 @@ struct OrderAckBit11 {
         InvestorQualifiedRole = 64,
         ExecutorQualifiedRole = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit11";}
+    static constexpr const char* name() {return "OrderAckBit11";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit11():value_{max_value} {}
@@ -1831,8 +1853,7 @@ struct OrderAckBit12 {
         ClearingSymbol = 64,
         ClearingOptionalData = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit12";}
+    static constexpr const char* name() {return "OrderAckBit12";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit12():value_{max_value} {}
@@ -1883,8 +1904,7 @@ struct OrderAckBit13 {
         DrillThruProtection = 64,
         MultilegReportingType = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit13";}
+    static constexpr const char* name() {return "OrderAckBit13";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit13():value_{max_value} {}
@@ -1935,8 +1955,7 @@ struct OrderAckBit14 {
         Username = 64,
         UserStatus = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit14";}
+    static constexpr const char* name() {return "OrderAckBit14";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit14():value_{max_value} {}
@@ -1987,8 +2006,7 @@ struct OrderAckBit15 {
         LegSymbolSfx = 64,
         ClientIDAttr = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit15";}
+    static constexpr const char* name() {return "OrderAckBit15";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit15():value_{max_value} {}
@@ -2039,8 +2057,7 @@ struct OrderAckBit16 {
         MultiClassSpread = 64,
         OrderOrigin = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit16";}
+    static constexpr const char* name() {return "OrderAckBit16";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit16():value_{max_value} {}
@@ -2091,8 +2108,7 @@ struct OrderAckBit17 {
         ExecLegCFICode = 64,
         CustOrderHandlingInst = 128,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit17";}
+    static constexpr const char* name() {return "OrderAckBit17";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(8), static_cast<uint8_t>(16), static_cast<uint8_t>(32), static_cast<uint8_t>(64), static_cast<uint8_t>(128), });
     constexpr OrderAckBit17():value_{max_value} {}
@@ -2138,8 +2154,7 @@ struct OrderAckBit18 {
         CrossInitiator = 2,
         Subreason = 4,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderAckBit18";}
+    static constexpr const char* name() {return "OrderAckBit18";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(4), });
     constexpr OrderAckBit18():value_{max_value} {}
@@ -2180,8 +2195,7 @@ struct AlgorithmicIndicator {
         NoAlgo = 'N',
         Algo = 'Y',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "AlgorithmicIndicator";}
+    static constexpr const char* name() {return "AlgorithmicIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('N'), static_cast<char>('Y'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('N'), static_cast<char>('Y'), });
     constexpr AlgorithmicIndicator():value_{max_value} {}
@@ -2221,8 +2235,7 @@ struct BaseLiquidityIndicator {
         Auction = 'C',
         SelfMatch = 'S',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "BaseLiquidityIndicator";}
+    static constexpr const char* name() {return "BaseLiquidityIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('R'), static_cast<char>('X'), static_cast<char>('C'), static_cast<char>('S'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('R'), static_cast<char>('X'), static_cast<char>('C'), static_cast<char>('S'), });
     constexpr BaseLiquidityIndicator():value_{max_value} {}
@@ -2262,8 +2275,7 @@ struct BookingType {
         Regular = '0',
         CFD = '1',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "BookingType";}
+    static constexpr const char* name() {return "BookingType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('0'), static_cast<char>('1'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('0'), static_cast<char>('1'), });
     constexpr BookingType():value_{max_value} {}
@@ -2300,8 +2312,7 @@ struct CancelOrigOnReject {
         Leave = 'N',
         Cacel = 'Y',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "CancelOrigOnReject";}
+    static constexpr const char* name() {return "CancelOrigOnReject";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('N'), static_cast<char>('Y'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('N'), static_cast<char>('Y'), });
     constexpr CancelOrigOnReject():value_{max_value} {}
@@ -2339,8 +2350,7 @@ struct Capacity {
         Principal = 'P',
         RisklessPrincipal = 'R',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "Capacity";}
+    static constexpr const char* name() {return "Capacity";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('P'), static_cast<char>('R'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('P'), static_cast<char>('R'), });
     constexpr Capacity():value_{max_value} {}
@@ -2381,8 +2391,7 @@ struct CentralCounterParty {
         SIX = 'X',
         NONE = 'N',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "CentralCounterParty";}
+    static constexpr const char* name() {return "CentralCounterParty";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('E'), static_cast<char>('L'), static_cast<char>('S'), static_cast<char>('X'), static_cast<char>('N'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('E'), static_cast<char>('L'), static_cast<char>('S'), static_cast<char>('X'), static_cast<char>('N'), });
     constexpr CentralCounterParty():value_{max_value} {}
@@ -2426,8 +2435,7 @@ struct ClientQualifiedRole {
         LEI = 23,
         Person = 24,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ClientQualifiedRole";}
+    static constexpr const char* name() {return "ClientQualifiedRole";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(23), static_cast<uint8_t>(24), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(23), static_cast<uint8_t>(24), });
     constexpr ClientQualifiedRole():value_{max_value} {}
@@ -2467,8 +2475,7 @@ struct DeferralReason {
         NoReason = '-',
         LRGS = '6',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "DeferralReason";}
+    static constexpr const char* name() {return "DeferralReason";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('-'), static_cast<char>('6'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('-'), static_cast<char>('6'), });
     constexpr DeferralReason():value_{max_value} {}
@@ -2505,8 +2512,7 @@ struct DisplayIndicator {
         Displayed = 'X',
         Invisible = 'I',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "DisplayIndicator";}
+    static constexpr const char* name() {return "DisplayIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('X'), static_cast<char>('I'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('X'), static_cast<char>('I'), });
     constexpr DisplayIndicator():value_{max_value} {}
@@ -2548,8 +2554,7 @@ struct ExecInst {
         AlternateMidpoint = 'L',
         GuardedMidpoint = 'G',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ExecInst";}
+    static constexpr const char* name() {return "ExecInst";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('\0'), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('\0'), static_cast<char>('P'), static_cast<char>('R'), static_cast<char>('M'), static_cast<char>('L'), static_cast<char>('G'), });
     constexpr ExecInst():value_{max_value} {}
@@ -2591,8 +2596,7 @@ struct ExecutionMethod {
         Manual = 'M',
         Unspecified = 'U',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ExecutionMethod";}
+    static constexpr const char* name() {return "ExecutionMethod";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('M'), static_cast<char>('U'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('M'), static_cast<char>('U'), });
     constexpr ExecutionMethod():value_{max_value} {}
@@ -2632,8 +2636,7 @@ struct ExecutorQualifiedRole {
         Algo = 22,
         Person = 24,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ExecutorQualifiedRole";}
+    static constexpr const char* name() {return "ExecutorQualifiedRole";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(22), static_cast<uint8_t>(24), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(22), static_cast<uint8_t>(24), });
     constexpr ExecutorQualifiedRole():value_{max_value} {}
@@ -2672,8 +2675,7 @@ struct ExtExecInst {
         NONE = 'N',
         AlOrNONE = 'G',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ExtExecInst";}
+    static constexpr const char* name() {return "ExtExecInst";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('N'), static_cast<char>('G'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('N'), static_cast<char>('G'), });
     constexpr ExtExecInst():value_{max_value} {}
@@ -2712,8 +2714,7 @@ struct IDSource {
         ISIN = '4',
         RIC = '5',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "IDSource";}
+    static constexpr const char* name() {return "IDSource";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('4'), static_cast<char>('5'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('4'), static_cast<char>('5'), });
     constexpr IDSource():value_{max_value} {}
@@ -2751,8 +2752,7 @@ struct InvestorQualifiedRole {
         Algo = 22,
         Person = 24,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "InvestorQualifiedRole";}
+    static constexpr const char* name() {return "InvestorQualifiedRole";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(22), static_cast<uint8_t>(24), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(22), static_cast<uint8_t>(24), });
     constexpr InvestorQualifiedRole():value_{max_value} {}
@@ -2793,8 +2793,7 @@ struct LiquidityProvision {
         No = 'N',
         Yes = 'Y',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "LiquidityProvision";}
+    static constexpr const char* name() {return "LiquidityProvision";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('N'), static_cast<char>('Y'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('N'), static_cast<char>('Y'), });
     constexpr LiquidityProvision():value_{max_value} {}
@@ -2831,8 +2830,7 @@ struct MatchType {
     enum Enum : value_type {
         TradeReporting = 3,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "MatchType";}
+    static constexpr const char* name() {return "MatchType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(3), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(3), });
     constexpr MatchType():value_{max_value} {}
@@ -2872,8 +2870,7 @@ struct OrderCategory {
         NotaNegotiatedTrade = 0,
         PrivatelyNegotiatedTrade = 3,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderCategory";}
+    static constexpr const char* name() {return "OrderCategory";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(3), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(3), });
     constexpr OrderCategory():value_{max_value} {}
@@ -2910,8 +2907,7 @@ struct OrderOrigination {
         DEA = '5',
         NonDEA = '0',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrderOrigination";}
+    static constexpr const char* name() {return "OrderOrigination";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('5'), static_cast<char>('0'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('5'), static_cast<char>('0'), });
     constexpr OrderOrigination():value_{max_value} {}
@@ -2950,8 +2946,7 @@ struct OrdType {
         Limit = '2',
         Pegged = 'P',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OrdType";}
+    static constexpr const char* name() {return "OrdType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('P'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('P'), });
     constexpr OrdType():value_{max_value} {}
@@ -2992,8 +2987,7 @@ struct PriceFormation {
         PRIC = '3',
         NPFT = 'T',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "PriceFormation";}
+    static constexpr const char* name() {return "PriceFormation";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('3'), static_cast<char>('T'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('3'), static_cast<char>('T'), });
     constexpr PriceFormation():value_{max_value} {}
@@ -3034,8 +3028,7 @@ struct SecondaryTrdType {
     enum Enum : value_type {
         BenchmarkTrade = 64,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "SecondaryTrdType";}
+    static constexpr const char* name() {return "SecondaryTrdType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(64), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(64), });
     constexpr SecondaryTrdType():value_{max_value} {}
@@ -3084,8 +3077,7 @@ struct SubLiquidityIndicator {
         CboeClosingCross = 'C',
         LiquidityALPSSBBO = 'S',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "SubLiquidityIndicator";}
+    static constexpr const char* name() {return "SubLiquidityIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('K'), static_cast<char>('P'), static_cast<char>('C'), static_cast<char>('S'), });
     constexpr SubLiquidityIndicator():value_{max_value} {}
@@ -3124,7 +3116,7 @@ inline ostreamT& operator<<(ostreamT& os, const SubLiquidityIndicator& v){
     return os;
 }
 using Symbol = str8;
-//fixme, check SymbolSfx definition
+// fixme, check SymbolSfx definition
 using SymbolSfx = str2;
 
 struct TimeInForce {
@@ -3138,8 +3130,7 @@ struct TimeInForce {
         AtTheClose = '7',
         GoodForAuction = '8',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TimeInForce";}
+    static constexpr const char* name() {return "TimeInForce";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('6'), static_cast<char>('7'), static_cast<char>('8'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('6'), static_cast<char>('7'), static_cast<char>('8'), });
     constexpr TimeInForce():value_{max_value} {}
@@ -3182,8 +3173,7 @@ struct TradeHandlingInstruction {
         TwoPartyReport = 1,
         OnePartReportForMatching = 2,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TradeHandlingInstruction";}
+    static constexpr const char* name() {return "TradeHandlingInstruction";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
     constexpr TradeHandlingInstruction():value_{max_value} {}
@@ -3223,8 +3213,7 @@ struct TradePriceCondition {
         ExDividend = 2,
         SpecialDividend = 13,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TradePriceCondition";}
+    static constexpr const char* name() {return "TradePriceCondition";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(2), static_cast<uint8_t>(13), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(2), static_cast<uint8_t>(13), });
     constexpr TradePriceCondition():value_{max_value} {}
@@ -3263,8 +3252,7 @@ struct TradePubnlishIndicator {
         Publish = 1,
         DeferredPublication = 2,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TradePubnlishIndicator";}
+    static constexpr const char* name() {return "TradePubnlishIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), });
     constexpr TradePubnlishIndicator():value_{max_value} {}
@@ -3305,8 +3293,7 @@ struct TradeReportTransType {
         Replace = 2,
         Release = 3,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TradeReportTransType";}
+    static constexpr const char* name() {return "TradeReportTransType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(3), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(0), static_cast<uint8_t>(1), static_cast<uint8_t>(2), static_cast<uint8_t>(3), });
     constexpr TradeReportTransType():value_{max_value} {}
@@ -3345,8 +3332,7 @@ struct TradeReportType {
         Submit = 0,
         TradeReportCancel = 6,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TradeReportType";}
+    static constexpr const char* name() {return "TradeReportType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>(6), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>(6), });
     constexpr TradeReportType():value_{max_value} {}
@@ -3391,8 +3377,7 @@ struct TradingSessionSubID {
         PostTrading = 5,
         OutOfMainSessionTrading = 10,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TradingSessionSubID";}
+    static constexpr const char* name() {return "TradingSessionSubID";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(6), static_cast<uint8_t>(8), static_cast<uint8_t>(9), static_cast<uint8_t>(3), static_cast<uint8_t>(5), static_cast<uint8_t>(10), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(2), static_cast<uint8_t>(4), static_cast<uint8_t>(6), static_cast<uint8_t>(8), static_cast<uint8_t>(9), static_cast<uint8_t>(3), static_cast<uint8_t>(5), static_cast<uint8_t>(10), });
     constexpr TradingSessionSubID():value_{max_value} {}
@@ -3435,8 +3420,7 @@ struct TransactionCategory {
         RegularTrade = 'P',
         DarkTrade = 'D',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TransactionCategory";}
+    static constexpr const char* name() {return "TransactionCategory";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('P'), static_cast<char>('D'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('P'), static_cast<char>('D'), });
     constexpr TransactionCategory():value_{max_value} {}
@@ -3472,8 +3456,7 @@ struct TrdSubType {
     enum Enum : value_type {
         AgencyCrossTrade = 37,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "TrdSubType";}
+    static constexpr const char* name() {return "TrdSubType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<uint8_t>(37), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<uint8_t>(37), });
     constexpr TrdSubType():value_{max_value} {}
@@ -3508,8 +3491,7 @@ struct VenueType {
     enum Enum : value_type {
         OffBook = 'O',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "VenueType";}
+    static constexpr const char* name() {return "VenueType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('O'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('O'), });
     constexpr VenueType():value_{max_value} {}
@@ -3551,12 +3533,13 @@ struct WaiverType {
         SIZE = '5',
         ILQDandSIZE = 'B',
         OrderManagementFacility = 'A',
-        LargeInScal = 9,
+        NETW = '8',
+        NTLS = 'c',
+        LargeInScal = '9',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "WaiverType";}
-    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>(9), });
-    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>(9), });
+    static constexpr const char* name() {return "WaiverType";}
+    static constexpr value_type min_value = std::min<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>('8'), static_cast<char>('c'), static_cast<char>('9'), });
+    static constexpr value_type max_value = std::max<value_type>({static_cast<char>('-'), static_cast<char>('0'), static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), static_cast<char>('4'), static_cast<char>('5'), static_cast<char>('B'), static_cast<char>('A'), static_cast<char>('8'), static_cast<char>('c'), static_cast<char>('9'), });
     constexpr WaiverType():value_{max_value} {}
     constexpr explicit WaiverType(char v):value_{v} {}
     constexpr WaiverType(Enum v):value_{v} {}
@@ -3581,6 +3564,8 @@ struct WaiverType {
             case Enum::SIZE: return "SIZE";
             case Enum::ILQDandSIZE: return "ILQDandSIZE";
             case Enum::OrderManagementFacility: return "OrderManagementFacility";
+            case Enum::NETW: return "NETW";
+            case Enum::NTLS: return "NTLS";
             case Enum::LargeInScal: return "LargeInScal";
         }
         return "";
@@ -3603,8 +3588,7 @@ struct AutoMatch {
         Market = 1,
         Limit = 2,
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "AutoMatch";}
+    static constexpr const char* name() {return "AutoMatch";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>(0), static_cast<char>(1), static_cast<char>(2), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>(0), static_cast<char>(1), static_cast<char>(2), });
     constexpr AutoMatch():value_{max_value} {}
@@ -3643,8 +3627,7 @@ struct OpenClose {
         Close = 'C',
         NONE = 'N',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "OpenClose";}
+    static constexpr const char* name() {return "OpenClose";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('O'), static_cast<char>('C'), static_cast<char>('N'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('O'), static_cast<char>('C'), static_cast<char>('N'), });
     constexpr OpenClose():value_{max_value} {}
@@ -3677,7 +3660,7 @@ inline ostreamT& operator<<(ostreamT& os, const OpenClose& v){
     return os;
 }
 
-//fixme, to be reviewed later
+// fixme, to be reviewed later
 using Reserved = u8;
 using MaxRemovePct = u8;
 using DiscretionAmount = u64;
@@ -3718,8 +3701,7 @@ struct AccountType {
         Customer = '1',
         Hose = '3',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "AccountType";}
+    static constexpr const char* name() {return "AccountType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>('3'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>('3'), });
     constexpr AccountType():value_{max_value} {}
@@ -3756,8 +3738,7 @@ struct SIIndicator {
         SI = '5',
         NonSI = '0',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "SIIndicator";}
+    static constexpr const char* name() {return "SIIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('5'), static_cast<char>('0'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('5'), static_cast<char>('0'), });
     constexpr SIIndicator():value_{max_value} {}
@@ -3788,7 +3769,7 @@ inline ostreamT& operator<<(ostreamT& os, const SIIndicator& v){
     os << v.view();
     return os;
 }
-//cancel order
+// cancel order
 using MassCancelLockout = u8;
 using MassCancel = u8;
 using Underlying = u8;
@@ -3796,342 +3777,669 @@ using Underlying = u8;
 #pragma pack(1)
 struct NewOrderV2 : Header {
     str20 clOrdID;
-    Side side{Side::null};
+    Side side{Side::Buy};
     u32 qty;
     u8 numBitFields;
     auto bit1() {
         auto pred = [this](){return numBitFields>=1;};
-        return OptionalByUnaryPredRef<NewOrderBit1, decltype(pred)>(begin()+size(), pred);
+        return OptionalByUnaryPredRef<NewOrderBit1, decltype(pred)>(begin()+fixed_size(), pred);
+    }
+    auto bit1() const {
+        auto pred = [this](){return numBitFields>=1;};
+        return OptionalByUnaryPredRef<NewOrderBit1, decltype(pred)>(cbegin()+fixed_size(), pred);
     }
     auto bit2() {
         auto pred = [this](){return numBitFields>=2;};
         return OptionalByUnaryPredRef<NewOrderBit2, decltype(pred)>(bit1().end(), pred);
     }
+    auto bit2() const {
+        auto pred = [this](){return numBitFields>=2;};
+        return OptionalByUnaryPredRef<NewOrderBit2, decltype(pred)>(bit1().cend(), pred);
+    }
     auto bit3() {
         auto pred = [this](){return numBitFields>=3;};
         return OptionalByUnaryPredRef<NewOrderBit3, decltype(pred)>(bit2().end(), pred);
+    }
+    auto bit3() const {
+        auto pred = [this](){return numBitFields>=3;};
+        return OptionalByUnaryPredRef<NewOrderBit3, decltype(pred)>(bit2().cend(), pred);
     }
     auto bit4() {
         auto pred = [this](){return numBitFields>=4;};
         return OptionalByUnaryPredRef<NewOrderBit4, decltype(pred)>(bit3().end(), pred);
     }
+    auto bit4() const {
+        auto pred = [this](){return numBitFields>=4;};
+        return OptionalByUnaryPredRef<NewOrderBit4, decltype(pred)>(bit3().cend(), pred);
+    }
     auto bit5() {
         auto pred = [this](){return numBitFields>=5;};
         return OptionalByUnaryPredRef<NewOrderBit5, decltype(pred)>(bit4().end(), pred);
+    }
+    auto bit5() const {
+        auto pred = [this](){return numBitFields>=5;};
+        return OptionalByUnaryPredRef<NewOrderBit5, decltype(pred)>(bit4().cend(), pred);
     }
     auto bit6() {
         auto pred = [this](){return numBitFields>=6;};
         return OptionalByUnaryPredRef<NewOrderBit6, decltype(pred)>(bit5().end(), pred);
     }
+    auto bit6() const {
+        auto pred = [this](){return numBitFields>=6;};
+        return OptionalByUnaryPredRef<NewOrderBit6, decltype(pred)>(bit5().cend(), pred);
+    }
     auto bit7() {
         auto pred = [this](){return numBitFields>=7;};
         return OptionalByUnaryPredRef<NewOrderBit7, decltype(pred)>(bit6().end(), pred);
+    }
+    auto bit7() const {
+        auto pred = [this](){return numBitFields>=7;};
+        return OptionalByUnaryPredRef<NewOrderBit7, decltype(pred)>(bit6().cend(), pred);
     }
     auto bit8() {
         auto pred = [this](){return numBitFields>=8;};
         return OptionalByUnaryPredRef<NewOrderBit8, decltype(pred)>(bit7().end(), pred);
     }
+    auto bit8() const {
+        auto pred = [this](){return numBitFields>=8;};
+        return OptionalByUnaryPredRef<NewOrderBit8, decltype(pred)>(bit7().cend(), pred);
+    }
     auto bit9() {
         auto pred = [this](){return numBitFields>=9;};
         return OptionalByUnaryPredRef<NewOrderBit9, decltype(pred)>(bit8().end(), pred);
     }
+    auto bit9() const {
+        auto pred = [this](){return numBitFields>=9;};
+        return OptionalByUnaryPredRef<NewOrderBit9, decltype(pred)>(bit8().cend(), pred);
+    }
     auto clearingFirm() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::ClearingFirm != 0;};
-        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(ClearingFirm().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(bit9().end(), pred);
+    }
+    auto clearingFirm() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(bit9().cend(), pred);
     }
     auto clearingAccount() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::ClearingAccount != 0;};
-        return OptionalByUnaryPredRef<ClearingAccount, decltype(pred)>(ClearingAccount().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::ClearingAccount != 0;};
+        return OptionalByUnaryPredRef<ClearingAccount, decltype(pred)>(clearingFirm().end(), pred);
+    }
+    auto clearingAccount() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::ClearingAccount != 0;};
+        return OptionalByUnaryPredRef<ClearingAccount, decltype(pred)>(clearingFirm().cend(), pred);
     }
     auto price() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::Price != 0;};
-        return OptionalByUnaryPredRef<Price4, decltype(pred)>(Price().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::Price != 0;};
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(clearingAccount().end(), pred);
+    }
+    auto price() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::Price != 0;};
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(clearingAccount().cend(), pred);
     }
     auto execInst() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::ExecInst != 0;};
-        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(ExecInst().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::ExecInst != 0;};
+        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(price().end(), pred);
+    }
+    auto execInst() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::ExecInst != 0;};
+        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(price().cend(), pred);
     }
     auto ordType() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::OrdType != 0;};
-        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(OrdType().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::OrdType != 0;};
+        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(execInst().end(), pred);
+    }
+    auto ordType() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::OrdType != 0;};
+        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(execInst().cend(), pred);
     }
     auto tif() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::TimeInForce != 0;};
-        return OptionalByUnaryPredRef<TimeInForce, decltype(pred)>(TimeInForce().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::TimeInForce != 0;};
+        return OptionalByUnaryPredRef<TimeInForce, decltype(pred)>(ordType().end(), pred);
+    }
+    auto tif() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::TimeInForce != 0;};
+        return OptionalByUnaryPredRef<TimeInForce, decltype(pred)>(ordType().cend(), pred);
     }
     auto minQty() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::MinQty != 0;};
-        return OptionalByUnaryPredRef<MinQty, decltype(pred)>(MinQty().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::MinQty != 0;};
+        return OptionalByUnaryPredRef<MinQty, decltype(pred)>(tif().end(), pred);
+    }
+    auto minQty() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::MinQty != 0;};
+        return OptionalByUnaryPredRef<MinQty, decltype(pred)>(tif().cend(), pred);
     }
     auto maxFloor() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & NewOrderBit1::MaxFloor != 0;};
-        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(MaxFloor().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::MaxFloor != 0;};
+        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(minQty().end(), pred);
+    }
+    auto maxFloor() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & NewOrderBit1::MaxFloor != 0;};
+        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(minQty().cend(), pred);
     }
     auto symbol() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::Symbol != 0;};
-        return OptionalByUnaryPredRef<Symbol, decltype(pred)>(Symbol().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::Symbol != 0;};
+        return OptionalByUnaryPredRef<Symbol, decltype(pred)>(maxFloor().end(), pred);
+    }
+    auto symbol() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::Symbol != 0;};
+        return OptionalByUnaryPredRef<Symbol, decltype(pred)>(maxFloor().cend(), pred);
     }
     auto symbolSfx() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::SymbolSfx != 0;};
-        return OptionalByUnaryPredRef<SymbolSfx, decltype(pred)>(SymbolSfx().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::SymbolSfx != 0;};
+        return OptionalByUnaryPredRef<SymbolSfx, decltype(pred)>(symbol().end(), pred);
+    }
+    auto symbolSfx() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::SymbolSfx != 0;};
+        return OptionalByUnaryPredRef<SymbolSfx, decltype(pred)>(symbol().cend(), pred);
     }
     auto currency() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::Currency != 0;};
-        return OptionalByUnaryPredRef<Currency, decltype(pred)>(Currency().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::Currency != 0;};
+        return OptionalByUnaryPredRef<Currency, decltype(pred)>(symbolSfx().end(), pred);
+    }
+    auto currency() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::Currency != 0;};
+        return OptionalByUnaryPredRef<Currency, decltype(pred)>(symbolSfx().cend(), pred);
     }
     auto idSource() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::IDSource != 0;};
-        return OptionalByUnaryPredRef<IDSource, decltype(pred)>(IDSource().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::IDSource != 0;};
+        return OptionalByUnaryPredRef<IDSource, decltype(pred)>(currency().end(), pred);
+    }
+    auto idSource() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::IDSource != 0;};
+        return OptionalByUnaryPredRef<IDSource, decltype(pred)>(currency().cend(), pred);
     }
     auto securityID() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::SecurityID != 0;};
-        return OptionalByUnaryPredRef<SecurityID, decltype(pred)>(SecurityID().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::SecurityID != 0;};
+        return OptionalByUnaryPredRef<SecurityID, decltype(pred)>(idSource().end(), pred);
+    }
+    auto securityID() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::SecurityID != 0;};
+        return OptionalByUnaryPredRef<SecurityID, decltype(pred)>(idSource().cend(), pred);
     }
     auto securityExchange() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::SecurityExchange != 0;};
-        return OptionalByUnaryPredRef<SecurityExchange, decltype(pred)>(SecurityExchange().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::SecurityExchange != 0;};
+        return OptionalByUnaryPredRef<SecurityExchange, decltype(pred)>(securityID().end(), pred);
+    }
+    auto securityExchange() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::SecurityExchange != 0;};
+        return OptionalByUnaryPredRef<SecurityExchange, decltype(pred)>(securityID().cend(), pred);
     }
     auto capacity() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::Capacity != 0;};
-        return OptionalByUnaryPredRef<Capacity, decltype(pred)>(Capacity().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::Capacity != 0;};
+        return OptionalByUnaryPredRef<Capacity, decltype(pred)>(securityExchange().end(), pred);
+    }
+    auto capacity() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::Capacity != 0;};
+        return OptionalByUnaryPredRef<Capacity, decltype(pred)>(securityExchange().cend(), pred);
     }
     auto routingInst() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & NewOrderBit2::RoutingInst != 0;};
-        return OptionalByUnaryPredRef<RoutingInst, decltype(pred)>(RoutingInst().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::RoutingInst != 0;};
+        return OptionalByUnaryPredRef<RoutingInst, decltype(pred)>(capacity().end(), pred);
+    }
+    auto routingInst() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & NewOrderBit2::RoutingInst != 0;};
+        return OptionalByUnaryPredRef<RoutingInst, decltype(pred)>(capacity().cend(), pred);
     }
     auto account() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::Account != 0;};
-        return OptionalByUnaryPredRef<Account, decltype(pred)>(Account().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::Account != 0;};
+        return OptionalByUnaryPredRef<Account, decltype(pred)>(routingInst().end(), pred);
+    }
+    auto account() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::Account != 0;};
+        return OptionalByUnaryPredRef<Account, decltype(pred)>(routingInst().cend(), pred);
     }
     auto displayInd() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::DisplayIndicator != 0;};
-        return OptionalByUnaryPredRef<DisplayIndicator, decltype(pred)>(DisplayIndicator().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::DisplayIndicator != 0;};
+        return OptionalByUnaryPredRef<DisplayIndicator, decltype(pred)>(account().end(), pred);
+    }
+    auto displayInd() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::DisplayIndicator != 0;};
+        return OptionalByUnaryPredRef<DisplayIndicator, decltype(pred)>(account().cend(), pred);
     }
     auto maxRemovePct() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::MaxRemovePct != 0;};
-        return OptionalByUnaryPredRef<MaxRemovePct, decltype(pred)>(MaxRemovePct().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::MaxRemovePct != 0;};
+        return OptionalByUnaryPredRef<MaxRemovePct, decltype(pred)>(displayInd().end(), pred);
+    }
+    auto maxRemovePct() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::MaxRemovePct != 0;};
+        return OptionalByUnaryPredRef<MaxRemovePct, decltype(pred)>(displayInd().cend(), pred);
     }
     auto discretionAmount() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::DiscretionAmount != 0;};
-        return OptionalByUnaryPredRef<DiscretionAmount, decltype(pred)>(DiscretionAmount().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::DiscretionAmount != 0;};
+        return OptionalByUnaryPredRef<DiscretionAmount, decltype(pred)>(maxRemovePct().end(), pred);
+    }
+    auto discretionAmount() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::DiscretionAmount != 0;};
+        return OptionalByUnaryPredRef<DiscretionAmount, decltype(pred)>(maxRemovePct().cend(), pred);
     }
     auto pegDiff() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::PegDiff != 0;};
-        return OptionalByUnaryPredRef<PegDifference, decltype(pred)>(PegDiff().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::PegDiff != 0;};
+        return OptionalByUnaryPredRef<PegDifference, decltype(pred)>(discretionAmount().end(), pred);
+    }
+    auto pegDiff() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::PegDiff != 0;};
+        return OptionalByUnaryPredRef<PegDifference, decltype(pred)>(discretionAmount().cend(), pred);
     }
     auto preventMatch() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::PreventMatch != 0;};
-        return OptionalByUnaryPredRef<PreventParticipantMatch, decltype(pred)>(PreventMatch().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::PreventMatch != 0;};
+        return OptionalByUnaryPredRef<PreventParticipantMatch, decltype(pred)>(pegDiff().end(), pred);
+    }
+    auto preventMatch() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::PreventMatch != 0;};
+        return OptionalByUnaryPredRef<PreventParticipantMatch, decltype(pred)>(pegDiff().cend(), pred);
     }
     auto locateRequired() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::LocateRequired != 0;};
-        return OptionalByUnaryPredRef<LocateRequired, decltype(pred)>(LocateRequired().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::LocateRequired != 0;};
+        return OptionalByUnaryPredRef<LocateRequired, decltype(pred)>(preventMatch().end(), pred);
+    }
+    auto locateRequired() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::LocateRequired != 0;};
+        return OptionalByUnaryPredRef<LocateRequired, decltype(pred)>(preventMatch().cend(), pred);
     }
     auto expireTime() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & NewOrderBit3::ExpireTime != 0;};
-        return OptionalByUnaryPredRef<ExpirTime, decltype(pred)>(ExpireTime().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::ExpireTime != 0;};
+        return OptionalByUnaryPredRef<ExpirTime, decltype(pred)>(locateRequired().end(), pred);
+    }
+    auto expireTime() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & NewOrderBit3::ExpireTime != 0;};
+        return OptionalByUnaryPredRef<ExpirTime, decltype(pred)>(locateRequired().cend(), pred);
     }
     auto maturityDate() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::MaturityDate != 0;};
-        return OptionalByUnaryPredRef<MaturityDate, decltype(pred)>(MaturityDate().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::MaturityDate != 0;};
+        return OptionalByUnaryPredRef<MaturityDate, decltype(pred)>(expireTime().end(), pred);
+    }
+    auto maturityDate() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::MaturityDate != 0;};
+        return OptionalByUnaryPredRef<MaturityDate, decltype(pred)>(expireTime().cend(), pred);
     }
     auto strikePrice() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::StrikePrice != 0;};
-        return OptionalByUnaryPredRef<StrikePrice, decltype(pred)>(StrikePrice().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::StrikePrice != 0;};
+        return OptionalByUnaryPredRef<StrikePrice, decltype(pred)>(maturityDate().end(), pred);
+    }
+    auto strikePrice() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::StrikePrice != 0;};
+        return OptionalByUnaryPredRef<StrikePrice, decltype(pred)>(maturityDate().cend(), pred);
     }
     auto putOrCall() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::PutOrCall != 0;};
-        return OptionalByUnaryPredRef<PutOrCall, decltype(pred)>(PutOrCall().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::PutOrCall != 0;};
+        return OptionalByUnaryPredRef<PutOrCall, decltype(pred)>(strikePrice().end(), pred);
+    }
+    auto putOrCall() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::PutOrCall != 0;};
+        return OptionalByUnaryPredRef<PutOrCall, decltype(pred)>(strikePrice().cend(), pred);
     }
     auto riskReset() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::RiskReset != 0;};
-        return OptionalByUnaryPredRef<RiskReset, decltype(pred)>(RiskReset().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::RiskReset != 0;};
+        return OptionalByUnaryPredRef<RiskReset, decltype(pred)>(putOrCall().end(), pred);
+    }
+    auto riskReset() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::RiskReset != 0;};
+        return OptionalByUnaryPredRef<RiskReset, decltype(pred)>(putOrCall().cend(), pred);
     }
     auto openClose() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::OpenClose != 0;};
-        return OptionalByUnaryPredRef<OpenClose, decltype(pred)>(OpenClose().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::OpenClose != 0;};
+        return OptionalByUnaryPredRef<OpenClose, decltype(pred)>(riskReset().end(), pred);
+    }
+    auto openClose() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::OpenClose != 0;};
+        return OptionalByUnaryPredRef<OpenClose, decltype(pred)>(riskReset().cend(), pred);
     }
     auto cmtaNumber() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::CMTANumber != 0;};
-        return OptionalByUnaryPredRef<CMTANumber, decltype(pred)>(CMTANumber().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::CMTANumber != 0;};
+        return OptionalByUnaryPredRef<CMTANumber, decltype(pred)>(openClose().end(), pred);
+    }
+    auto cmtaNumber() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::CMTANumber != 0;};
+        return OptionalByUnaryPredRef<CMTANumber, decltype(pred)>(openClose().cend(), pred);
     }
     auto targetPartyID() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::TargetPartyID != 0;};
-        return OptionalByUnaryPredRef<TargetPartyID, decltype(pred)>(TargetPartyID().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::TargetPartyID != 0;};
+        return OptionalByUnaryPredRef<TargetPartyID, decltype(pred)>(cmtaNumber().end(), pred);
+    }
+    auto targetPartyID() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::TargetPartyID != 0;};
+        return OptionalByUnaryPredRef<TargetPartyID, decltype(pred)>(cmtaNumber().cend(), pred);
     }
     auto liqProv() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & NewOrderBit4::LiquidityProvision != 0;};
-        return OptionalByUnaryPredRef<LiquidityProvision, decltype(pred)>(LiquidityProvision().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::LiquidityProvision != 0;};
+        return OptionalByUnaryPredRef<LiquidityProvision, decltype(pred)>(targetPartyID().end(), pred);
+    }
+    auto liqProv() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & NewOrderBit4::LiquidityProvision != 0;};
+        return OptionalByUnaryPredRef<LiquidityProvision, decltype(pred)>(targetPartyID().cend(), pred);
     }
     auto reserved() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::Reserved != 0;};
-        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(Reserved().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::Reserved != 0;};
+        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(liqProv().end(), pred);
+    }
+    auto reserved() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::Reserved != 0;};
+        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(liqProv().cend(), pred);
     }
     auto attrQuote() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::AttributedQuote != 0;};
-        return OptionalByUnaryPredRef<AttributedQuote, decltype(pred)>(AttributedQuote().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::AttributedQuote != 0;};
+        return OptionalByUnaryPredRef<AttributedQuote, decltype(pred)>(reserved().end(), pred);
+    }
+    auto attrQuote() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::AttributedQuote != 0;};
+        return OptionalByUnaryPredRef<AttributedQuote, decltype(pred)>(reserved().cend(), pred);
     }
     auto bookingType() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::BookingType != 0;};
-        return OptionalByUnaryPredRef<BookingType, decltype(pred)>(BookingType().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::BookingType != 0;};
+        return OptionalByUnaryPredRef<BookingType, decltype(pred)>(attrQuote().end(), pred);
+    }
+    auto bookingType() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::BookingType != 0;};
+        return OptionalByUnaryPredRef<BookingType, decltype(pred)>(attrQuote().cend(), pred);
     }
     auto extExecInst() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::ExtExecInst != 0;};
-        return OptionalByUnaryPredRef<ExtExecInst, decltype(pred)>(ExtExecInst().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::ExtExecInst != 0;};
+        return OptionalByUnaryPredRef<ExtExecInst, decltype(pred)>(bookingType().end(), pred);
+    }
+    auto extExecInst() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::ExtExecInst != 0;};
+        return OptionalByUnaryPredRef<ExtExecInst, decltype(pred)>(bookingType().cend(), pred);
     }
     auto clientID() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::ClientID != 0;};
-        return OptionalByUnaryPredRef<ClientID, decltype(pred)>(ClientID().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::ClientID != 0;};
+        return OptionalByUnaryPredRef<ClientID, decltype(pred)>(extExecInst().end(), pred);
+    }
+    auto clientID() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::ClientID != 0;};
+        return OptionalByUnaryPredRef<ClientID, decltype(pred)>(extExecInst().cend(), pred);
     }
     auto investorID() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::InvestorID != 0;};
-        return OptionalByUnaryPredRef<InvestorID, decltype(pred)>(InvestorID().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::InvestorID != 0;};
+        return OptionalByUnaryPredRef<InvestorID, decltype(pred)>(clientID().end(), pred);
+    }
+    auto investorID() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::InvestorID != 0;};
+        return OptionalByUnaryPredRef<InvestorID, decltype(pred)>(clientID().cend(), pred);
     }
     auto executorID() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::ExecutorID != 0;};
-        return OptionalByUnaryPredRef<ExecutorID, decltype(pred)>(ExecutorID().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::ExecutorID != 0;};
+        return OptionalByUnaryPredRef<ExecutorID, decltype(pred)>(investorID().end(), pred);
+    }
+    auto executorID() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::ExecutorID != 0;};
+        return OptionalByUnaryPredRef<ExecutorID, decltype(pred)>(investorID().cend(), pred);
     }
     auto orderOrigination() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & NewOrderBit5::OrderOrigination != 0;};
-        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(OrderOrigination().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::OrderOrigination != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(executorID().end(), pred);
+    }
+    auto orderOrigination() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & NewOrderBit5::OrderOrigination != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(executorID().cend(), pred);
     }
     auto displayRange() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::DisplayRange != 0;};
-        return OptionalByUnaryPredRef<DisplayRange, decltype(pred)>(DisplayRange().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::DisplayRange != 0;};
+        return OptionalByUnaryPredRef<DisplayRange, decltype(pred)>(orderOrigination().end(), pred);
+    }
+    auto displayRange() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::DisplayRange != 0;};
+        return OptionalByUnaryPredRef<DisplayRange, decltype(pred)>(orderOrigination().cend(), pred);
     }
     auto stopPx() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::StopPx != 0;};
-        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(StopPx().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::StopPx != 0;};
+        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(displayRange().end(), pred);
+    }
+    auto stopPx() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::StopPx != 0;};
+        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(displayRange().cend(), pred);
     }
     auto routeStrat() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::RouteStrategy != 0;};
-        return OptionalByUnaryPredRef<RouteStrategy, decltype(pred)>(RouteStrategy().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::RouteStrategy != 0;};
+        return OptionalByUnaryPredRef<RouteStrategy, decltype(pred)>(stopPx().end(), pred);
+    }
+    auto routeStrat() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::RouteStrategy != 0;};
+        return OptionalByUnaryPredRef<RouteStrategy, decltype(pred)>(stopPx().cend(), pred);
     }
     auto routeDeliveryMethod() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::RouteDeliveryMethod != 0;};
-        return OptionalByUnaryPredRef<RouteDeliveryMethod, decltype(pred)>(RouteDeliveryMethod().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::RouteDeliveryMethod != 0;};
+        return OptionalByUnaryPredRef<RouteDeliveryMethod, decltype(pred)>(routeStrat().end(), pred);
+    }
+    auto routeDeliveryMethod() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::RouteDeliveryMethod != 0;};
+        return OptionalByUnaryPredRef<RouteDeliveryMethod, decltype(pred)>(routeStrat().cend(), pred);
     }
     auto exDest() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::ExDestination != 0;};
-        return OptionalByUnaryPredRef<ExDestination, decltype(pred)>(ExDestination().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::ExDestination != 0;};
+        return OptionalByUnaryPredRef<ExDestination, decltype(pred)>(routeDeliveryMethod().end(), pred);
+    }
+    auto exDest() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::ExDestination != 0;};
+        return OptionalByUnaryPredRef<ExDestination, decltype(pred)>(routeDeliveryMethod().cend(), pred);
     }
     auto echoText() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::EchoText != 0;};
-        return OptionalByUnaryPredRef<EchoText, decltype(pred)>(EchoText().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::EchoText != 0;};
+        return OptionalByUnaryPredRef<EchoText, decltype(pred)>(exDest().end(), pred);
+    }
+    auto echoText() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::EchoText != 0;};
+        return OptionalByUnaryPredRef<EchoText, decltype(pred)>(exDest().cend(), pred);
     }
     auto auctionID() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::AuctionID != 0;};
-        return OptionalByUnaryPredRef<AuctionID, decltype(pred)>(AuctionID().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::AuctionID != 0;};
+        return OptionalByUnaryPredRef<AuctionID, decltype(pred)>(echoText().end(), pred);
+    }
+    auto auctionID() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::AuctionID != 0;};
+        return OptionalByUnaryPredRef<AuctionID, decltype(pred)>(echoText().cend(), pred);
     }
     auto routingFirmID() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & NewOrderBit6::RoutingFirmID != 0;};
-        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(RoutingFirmID().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(auctionID().end(), pred);
+    }
+    auto routingFirmID() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & NewOrderBit6::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(auctionID().cend(), pred);
     }
     auto algoInd() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::AlgoInd != 0;};
-        return OptionalByUnaryPredRef<AlgorithmicIndicator, decltype(pred)>(AlgoInd().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::AlgoInd != 0;};
+        return OptionalByUnaryPredRef<AlgorithmicIndicator, decltype(pred)>(routingFirmID().end(), pred);
+    }
+    auto algoInd() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::AlgoInd != 0;};
+        return OptionalByUnaryPredRef<AlgorithmicIndicator, decltype(pred)>(routingFirmID().cend(), pred);
     }
     auto customGrpID() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::CustomGrpID != 0;};
-        return OptionalByUnaryPredRef<CustomGroupID, decltype(pred)>(CustomGrpID().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::CustomGrpID != 0;};
+        return OptionalByUnaryPredRef<CustomGroupID, decltype(pred)>(algoInd().end(), pred);
+    }
+    auto customGrpID() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::CustomGrpID != 0;};
+        return OptionalByUnaryPredRef<CustomGroupID, decltype(pred)>(algoInd().cend(), pred);
     }
     auto clientQualiRole() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::ClientQualifiedRole != 0;};
-        return OptionalByUnaryPredRef<ClientQualifiedRole, decltype(pred)>(ClientQualifiedRole().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::ClientQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<ClientQualifiedRole, decltype(pred)>(customGrpID().end(), pred);
+    }
+    auto clientQualiRole() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::ClientQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<ClientQualifiedRole, decltype(pred)>(customGrpID().cend(), pred);
     }
     auto IDMRole() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::InvestorQualifiedRole != 0;};
-        return OptionalByUnaryPredRef<InvestorQualifiedRole, decltype(pred)>(InvestorQualifiedRole().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::InvestorQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<InvestorQualifiedRole, decltype(pred)>(clientQualiRole().end(), pred);
+    }
+    auto IDMRole() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::InvestorQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<InvestorQualifiedRole, decltype(pred)>(clientQualiRole().cend(), pred);
     }
     auto EDMRole() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::ExecutorQuanlifiedRole != 0;};
-        return OptionalByUnaryPredRef<ExecutorQualifiedRole, decltype(pred)>(ExecutorQuanlifiedRole().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::ExecutorQuanlifiedRole != 0;};
+        return OptionalByUnaryPredRef<ExecutorQualifiedRole, decltype(pred)>(IDMRole().end(), pred);
+    }
+    auto EDMRole() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::ExecutorQuanlifiedRole != 0;};
+        return OptionalByUnaryPredRef<ExecutorQualifiedRole, decltype(pred)>(IDMRole().cend(), pred);
     }
     auto ctiCode() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::CtiCode != 0;};
-        return OptionalByUnaryPredRef<CtiCode, decltype(pred)>(CtiCode().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::CtiCode != 0;};
+        return OptionalByUnaryPredRef<CtiCode, decltype(pred)>(EDMRole().end(), pred);
+    }
+    auto ctiCode() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::CtiCode != 0;};
+        return OptionalByUnaryPredRef<CtiCode, decltype(pred)>(EDMRole().cend(), pred);
     }
     auto manualOrdInd() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::ManualOrderIndicator != 0;};
-        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ManualOrderIndicator().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ctiCode().end(), pred);
+    }
+    auto manualOrdInd() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ctiCode().cend(), pred);
     }
     auto operatorID() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & NewOrderBit7::OperatorID != 0;};
-        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(OperatorID().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().end(), pred);
+    }
+    auto operatorID() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & NewOrderBit7::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().cend(), pred);
     }
     auto quotRoomID() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::QuoteRoomID != 0;};
-        return OptionalByUnaryPredRef<QuoteRoomID, decltype(pred)>(QuoteRoomID().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::QuoteRoomID != 0;};
+        return OptionalByUnaryPredRef<QuoteRoomID, decltype(pred)>(operatorID().end(), pred);
+    }
+    auto quotRoomID() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::QuoteRoomID != 0;};
+        return OptionalByUnaryPredRef<QuoteRoomID, decltype(pred)>(operatorID().cend(), pred);
     }
     auto siInd() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::SIIndicator != 0;};
-        return OptionalByUnaryPredRef<SIIndicator, decltype(pred)>(SIIndicator().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::SIIndicator != 0;};
+        return OptionalByUnaryPredRef<SIIndicator, decltype(pred)>(quotRoomID().end(), pred);
+    }
+    auto siInd() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::SIIndicator != 0;};
+        return OptionalByUnaryPredRef<SIIndicator, decltype(pred)>(quotRoomID().cend(), pred);
     }
     auto clearingOptData() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::ClearingOptionalData != 0;};
-        return OptionalByUnaryPredRef<ClearingOptionalData, decltype(pred)>(ClearingOptionalData().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::ClearingOptionalData != 0;};
+        return OptionalByUnaryPredRef<ClearingOptionalData, decltype(pred)>(siInd().end(), pred);
+    }
+    auto clearingOptData() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::ClearingOptionalData != 0;};
+        return OptionalByUnaryPredRef<ClearingOptionalData, decltype(pred)>(siInd().cend(), pred);
     }
     auto clientIDAttr() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::ClientIDAttr != 0;};
-        return OptionalByUnaryPredRef<ClientIDAttr, decltype(pred)>(ClientIDAttr().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::ClientIDAttr != 0;};
+        return OptionalByUnaryPredRef<ClientIDAttr, decltype(pred)>(clearingOptData().end(), pred);
+    }
+    auto clientIDAttr() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::ClientIDAttr != 0;};
+        return OptionalByUnaryPredRef<ClientIDAttr, decltype(pred)>(clearingOptData().cend(), pred);
     }
     auto freqTraderID() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::FrequentTraderID != 0;};
-        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(FrequentTraderID().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::FrequentTraderID != 0;};
+        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(clientIDAttr().end(), pred);
+    }
+    auto freqTraderID() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::FrequentTraderID != 0;};
+        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(clientIDAttr().cend(), pred);
     }
     auto compression() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::Compression != 0;};
-        return OptionalByUnaryPredRef<Compression, decltype(pred)>(Compression().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::Compression != 0;};
+        return OptionalByUnaryPredRef<Compression, decltype(pred)>(freqTraderID().end(), pred);
+    }
+    auto compression() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::Compression != 0;};
+        return OptionalByUnaryPredRef<Compression, decltype(pred)>(freqTraderID().cend(), pred);
     }
     auto floorDest() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::FloorDestination != 0;};
-        return OptionalByUnaryPredRef<FloorDestination, decltype(pred)>(FloorDestination().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::FloorDestination != 0;};
+        return OptionalByUnaryPredRef<FloorDestination, decltype(pred)>(compression().end(), pred);
+    }
+    auto floorDest() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::FloorDestination != 0;};
+        return OptionalByUnaryPredRef<FloorDestination, decltype(pred)>(compression().cend(), pred);
     }
     auto floorRoutingInst() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & NewOrderBit8::FloorRoutingInst != 0;};
-        return OptionalByUnaryPredRef<FloorRoutingInst, decltype(pred)>(FloorRoutingInst().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::FloorRoutingInst != 0;};
+        return OptionalByUnaryPredRef<FloorRoutingInst, decltype(pred)>(floorDest().end(), pred);
+    }
+    auto floorRoutingInst() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & NewOrderBit8::FloorRoutingInst != 0;};
+        return OptionalByUnaryPredRef<FloorRoutingInst, decltype(pred)>(floorDest().cend(), pred);
     }
     auto ordOrig() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::OrderOrigin != 0;};
-        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(OrderOrigin().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::OrderOrigin != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(floorRoutingInst().end(), pred);
+    }
+    auto ordOrig() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::OrderOrigin != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(floorRoutingInst().cend(), pred);
     }
     auto ors() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::ORS != 0;};
-        return OptionalByUnaryPredRef<ORS, decltype(pred)>(ORS().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::ORS != 0;};
+        return OptionalByUnaryPredRef<ORS, decltype(pred)>(ordOrig().end(), pred);
+    }
+    auto ors() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::ORS != 0;};
+        return OptionalByUnaryPredRef<ORS, decltype(pred)>(ordOrig().cend(), pred);
     }
     auto priceType() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::PriceType != 0;};
-        return OptionalByUnaryPredRef<PriceType, decltype(pred)>(PriceType().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::PriceType != 0;};
+        return OptionalByUnaryPredRef<PriceType, decltype(pred)>(ors().end(), pred);
+    }
+    auto priceType() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::PriceType != 0;};
+        return OptionalByUnaryPredRef<PriceType, decltype(pred)>(ors().cend(), pred);
     }
     auto tradingSessionID() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::TradingSessionID != 0;};
-        return OptionalByUnaryPredRef<TradingSessionID, decltype(pred)>(TradingSessionID().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::TradingSessionID != 0;};
+        return OptionalByUnaryPredRef<TradingSessionID, decltype(pred)>(priceType().end(), pred);
+    }
+    auto tradingSessionID() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::TradingSessionID != 0;};
+        return OptionalByUnaryPredRef<TradingSessionID, decltype(pred)>(priceType().cend(), pred);
     }
     auto custOrdHandlingInst() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::CustOrderHandlingInst != 0;};
-        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(CustOrderHandlingInst().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::CustOrderHandlingInst != 0;};
+        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(tradingSessionID().end(), pred);
+    }
+    auto custOrdHandlingInst() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::CustOrderHandlingInst != 0;};
+        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(tradingSessionID().cend(), pred);
     }
     auto accountType() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::AccountType != 0;};
-        return OptionalByUnaryPredRef<AccountType, decltype(pred)>(AccountType().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::AccountType != 0;};
+        return OptionalByUnaryPredRef<AccountType, decltype(pred)>(custOrdHandlingInst().end(), pred);
+    }
+    auto accountType() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::AccountType != 0;};
+        return OptionalByUnaryPredRef<AccountType, decltype(pred)>(custOrdHandlingInst().cend(), pred);
     }
     auto crossTradeFlag() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::CrossTradeFlag != 0;};
-        return OptionalByUnaryPredRef<CrossTradeFlag, decltype(pred)>(CrossTradeFlag().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::CrossTradeFlag != 0;};
+        return OptionalByUnaryPredRef<CrossTradeFlag, decltype(pred)>(accountType().end(), pred);
+    }
+    auto crossTradeFlag() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::CrossTradeFlag != 0;};
+        return OptionalByUnaryPredRef<CrossTradeFlag, decltype(pred)>(accountType().cend(), pred);
     }
     auto drillThruprotection() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & NewOrderBit9::DrillThruProtection != 0;};
-        return OptionalByUnaryPredRef<DrillThruProtection, decltype(pred)>(DrillThruProtection().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::DrillThruProtection != 0;};
+        return OptionalByUnaryPredRef<DrillThruProtection, decltype(pred)>(crossTradeFlag().end(), pred);
+    }
+    auto drillThruprotection() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & NewOrderBit9::DrillThruProtection != 0;};
+        return OptionalByUnaryPredRef<DrillThruProtection, decltype(pred)>(crossTradeFlag().cend(), pred);
     }
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(NewOrderV2);}
-    size_t size() const {return drillThruprotection().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(NewOrderV2);}
+    size_t size() {return drillThruprotection().end()-begin();}
+    size_t size() const {return drillThruprotection().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const NewOrderV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const NewOrderV2& msg) {
+    os << "NewOrderV2{";
     os << static_cast<const Header&>(msg);
     os << "clOrdID=" << msg.clOrdID << ";"
        << "side=" << msg.side << ";"
@@ -4228,57 +4536,104 @@ struct CancelOrderV2 : Header {
     u8 numBitFields;
     auto bit1() {
         auto pred = [this](){return numBitFields>=1;};
-        return OptionalByUnaryPredRef<CancelOrderBit1, decltype(pred)>(begin()+size(), pred);
+        return OptionalByUnaryPredRef<CancelOrderBit1, decltype(pred)>(begin()+fixed_size(), pred);
+    }
+    auto bit1() const {
+        auto pred = [this](){return numBitFields>=1;};
+        return OptionalByUnaryPredRef<CancelOrderBit1, decltype(pred)>(cbegin()+fixed_size(), pred);
     }
     auto bit2() {
         auto pred = [this](){return numBitFields>=2;};
         return OptionalByUnaryPredRef<CancelOrderBit1, decltype(pred)>(bit1().end(), pred);
     }
+    auto bit2() const {
+        auto pred = [this](){return numBitFields>=2;};
+        return OptionalByUnaryPredRef<CancelOrderBit1, decltype(pred)>(bit1().cend(), pred);
+    }
     auto clearingFirm() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::ClearingFirm != 0;};
-        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(ClearingFirm().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(bit2().end(), pred);
+    }
+    auto clearingFirm() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(bit2().cend(), pred);
     }
     auto masscancelLockout() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::MassCancelLockout != 0;};
-        return OptionalByUnaryPredRef<MassCancelLockout, decltype(pred)>(MassCancelLockout().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::MassCancelLockout != 0;};
+        return OptionalByUnaryPredRef<MassCancelLockout, decltype(pred)>(clearingFirm().end(), pred);
+    }
+    auto masscancelLockout() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::MassCancelLockout != 0;};
+        return OptionalByUnaryPredRef<MassCancelLockout, decltype(pred)>(clearingFirm().cend(), pred);
     }
     auto massCancel() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::MassCancel != 0;};
-        return OptionalByUnaryPredRef<MassCancel, decltype(pred)>(MassCancel().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::MassCancel != 0;};
+        return OptionalByUnaryPredRef<MassCancel, decltype(pred)>(masscancelLockout().end(), pred);
+    }
+    auto massCancel() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::MassCancel != 0;};
+        return OptionalByUnaryPredRef<MassCancel, decltype(pred)>(masscancelLockout().cend(), pred);
     }
     auto underlying() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::UnderLying != 0;};
-        return OptionalByUnaryPredRef<Underlying, decltype(pred)>(UnderLying().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::UnderLying != 0;};
+        return OptionalByUnaryPredRef<Underlying, decltype(pred)>(massCancel().end(), pred);
+    }
+    auto underlying() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::UnderLying != 0;};
+        return OptionalByUnaryPredRef<Underlying, decltype(pred)>(massCancel().cend(), pred);
     }
     auto massCancelID() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::MassCancelID != 0;};
-        return OptionalByUnaryPredRef<MassCancelID, decltype(pred)>(MassCancelID().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::MassCancelID != 0;};
+        return OptionalByUnaryPredRef<MassCancelID, decltype(pred)>(underlying().end(), pred);
+    }
+    auto massCancelID() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::MassCancelID != 0;};
+        return OptionalByUnaryPredRef<MassCancelID, decltype(pred)>(underlying().cend(), pred);
     }
     auto routingFirmID() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::RoutingFirmID != 0;};
-        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(RoutingFirmID().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(massCancelID().end(), pred);
+    }
+    auto routingFirmID() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(massCancelID().cend(), pred);
     }
     auto manualOrdInd() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::ManualOrderIndicator != 0;};
-        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ManualOrderIndicator().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(routingFirmID().end(), pred);
+    }
+    auto manualOrdInd() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(routingFirmID().cend(), pred);
     }
     auto opID() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & CancelOrderBit1::OperatorID != 0;};
-        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(OperatorID().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().end(), pred);
+    }
+    auto opID() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & CancelOrderBit1::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().cend(), pred);
     }
     auto massCancelInst() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & CancelOrderBit2::MassCancelInst != 0;};
-        return OptionalByUnaryPredRef<MassCancelInst, decltype(pred)>(MassCancelInst().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & CancelOrderBit2::MassCancelInst != 0;};
+        return OptionalByUnaryPredRef<MassCancelInst, decltype(pred)>(opID().end(), pred);
+    }
+    auto massCancelInst() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & CancelOrderBit2::MassCancelInst != 0;};
+        return OptionalByUnaryPredRef<MassCancelInst, decltype(pred)>(opID().cend(), pred);
     }
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(CancelOrderV2);}
-    size_t size() const {return massCancelInst().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(CancelOrderV2);}
+    size_t size() {return massCancelInst().end()-begin();}
+    size_t size() const {return massCancelInst().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const CancelOrderV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const CancelOrderV2& msg) {
+    os << "CancelOrderV2{";
     os << static_cast<const Header&>(msg);
     os << "origClOrdID=" << msg.origClOrdID << ";"
        << "numBitFields=" << msg.numBitFields << ";"
@@ -4305,85 +4660,160 @@ struct ModifyOrderV2 : Header {
     u8 numBitFields;
     auto bit1() {
         auto pred = [this](){return numBitFields>=1;};
-        return OptionalByUnaryPredRef<ModifyOrderBit1, decltype(pred)>(begin()+size(), pred);
+        return OptionalByUnaryPredRef<ModifyOrderBit1, decltype(pred)>(begin()+fixed_size(), pred);
+    }
+    auto bit1() const {
+        auto pred = [this](){return numBitFields>=1;};
+        return OptionalByUnaryPredRef<ModifyOrderBit1, decltype(pred)>(cbegin()+fixed_size(), pred);
     }
     auto bit2() {
         auto pred = [this](){return numBitFields>=2;};
         return OptionalByUnaryPredRef<ModifyOrderBit2, decltype(pred)>(bit1().end(), pred);
     }
+    auto bit2() const {
+        auto pred = [this](){return numBitFields>=2;};
+        return OptionalByUnaryPredRef<ModifyOrderBit2, decltype(pred)>(bit1().cend(), pred);
+    }
     auto clearingFirm() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::ClearingFirm != 0;};
-        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(ClearingFirm().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(bit2().end(), pred);
+    }
+    auto clearingFirm() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(bit2().cend(), pred);
     }
     auto reserved1() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::Reserved != 0;};
-        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(Reserved().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::Reserved != 0;};
+        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(clearingFirm().end(), pred);
+    }
+    auto reserved1() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::Reserved != 0;};
+        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(clearingFirm().cend(), pred);
     }
     auto ordQty() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::OrderQty != 0;};
-        return OptionalByUnaryPredRef<OrderQty, decltype(pred)>(OrderQty().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::OrderQty != 0;};
+        return OptionalByUnaryPredRef<OrderQty, decltype(pred)>(reserved1().end(), pred);
+    }
+    auto ordQty() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::OrderQty != 0;};
+        return OptionalByUnaryPredRef<OrderQty, decltype(pred)>(reserved1().cend(), pred);
     }
     auto price() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::Price != 0;};
-        return OptionalByUnaryPredRef<Price4, decltype(pred)>(Price().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::Price != 0;};
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(ordQty().end(), pred);
+    }
+    auto price() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::Price != 0;};
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(ordQty().cend(), pred);
     }
     auto ordType() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::OrdType != 0;};
-        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(OrdType().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::OrdType != 0;};
+        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(price().end(), pred);
+    }
+    auto ordType() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::OrdType != 0;};
+        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(price().cend(), pred);
     }
     auto cancelOrigOnReject() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::CancelOrigOnReject != 0;};
-        return OptionalByUnaryPredRef<CancelOrigOnReject, decltype(pred)>(CancelOrigOnReject().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::CancelOrigOnReject != 0;};
+        return OptionalByUnaryPredRef<CancelOrigOnReject, decltype(pred)>(ordType().end(), pred);
+    }
+    auto cancelOrigOnReject() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::CancelOrigOnReject != 0;};
+        return OptionalByUnaryPredRef<CancelOrigOnReject, decltype(pred)>(ordType().cend(), pred);
     }
     auto execInst() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::ExecInst != 0;};
-        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(ExecInst().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::ExecInst != 0;};
+        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(cancelOrigOnReject().end(), pred);
+    }
+    auto execInst() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::ExecInst != 0;};
+        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(cancelOrigOnReject().cend(), pred);
     }
     auto side() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & ModifyOrderBit1::Side != 0;};
-        return OptionalByUnaryPredRef<Side, decltype(pred)>(Side().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::Side != 0;};
+        return OptionalByUnaryPredRef<Side, decltype(pred)>(execInst().end(), pred);
+    }
+    auto side() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & ModifyOrderBit1::Side != 0;};
+        return OptionalByUnaryPredRef<Side, decltype(pred)>(execInst().cend(), pred);
     }
     auto maxFloor() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::MaxFloor != 0;};
-        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(MaxFloor().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::MaxFloor != 0;};
+        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(side().end(), pred);
+    }
+    auto maxFloor() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::MaxFloor != 0;};
+        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(side().cend(), pred);
     }
     auto stopPx() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::StopPx != 0;};
-        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(StopPx().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::StopPx != 0;};
+        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(maxFloor().end(), pred);
+    }
+    auto stopPx() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::StopPx != 0;};
+        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(maxFloor().cend(), pred);
     }
     auto routingFirmID() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::RoutingFirmID != 0;};
-        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(RoutingFirmID().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(stopPx().end(), pred);
+    }
+    auto routingFirmID() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(stopPx().cend(), pred);
     }
     auto manualOrdInd() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::ManualOrderIndicator != 0;};
-        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ManualOrderIndicator().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(routingFirmID().end(), pred);
+    }
+    auto manualOrdInd() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(routingFirmID().cend(), pred);
     }
     auto opID() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::OperatorID != 0;};
-        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(OperatorID().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().end(), pred);
+    }
+    auto opID() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().cend(), pred);
     }
     auto freqTraderID() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::FrequentTraderID != 0;};
-        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(FrequentTraderID().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::FrequentTraderID != 0;};
+        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(opID().end(), pred);
+    }
+    auto freqTraderID() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::FrequentTraderID != 0;};
+        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(opID().cend(), pred);
     }
     auto custOrdHandlingInst() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::CustOrderHandlingInst != 0;};
-        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(CustOrderHandlingInst().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::CustOrderHandlingInst != 0;};
+        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(freqTraderID().end(), pred);
+    }
+    auto custOrdHandlingInst() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::CustOrderHandlingInst != 0;};
+        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(freqTraderID().cend(), pred);
     }
     auto reserved2() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & ModifyOrderBit2::Reserved != 0;};
-        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(Reserved().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::Reserved != 0;};
+        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(custOrdHandlingInst().end(), pred);
+    }
+    auto reserved2() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & ModifyOrderBit2::Reserved != 0;};
+        return OptionalByUnaryPredRef<Reserved, decltype(pred)>(custOrdHandlingInst().cend(), pred);
     }
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(ModifyOrderV2);}
-    size_t size() const {return reserved2().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(ModifyOrderV2);}
+    size_t size() {return reserved2().end()-begin();}
+    size_t size() const {return reserved2().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ModifyOrderV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ModifyOrderV2& msg) {
+    os << "ModifyOrderV2{";
     os << static_cast<const Header&>(msg);
     os << "clOrdID=" << msg.clOrdID << ";"
        << "orderID=" << msg.orderID << ";"
@@ -4418,8 +4848,7 @@ struct MultilegReportingType {
         IndividualLeg = '2',
         Spread = '3',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "MultilegReportingType";}
+    static constexpr const char* name() {return "MultilegReportingType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('1'), static_cast<char>('2'), static_cast<char>('3'), });
     constexpr MultilegReportingType():value_{max_value} {}
@@ -4452,7 +4881,7 @@ inline ostreamT& operator<<(ostreamT& os, const MultilegReportingType& v){
     return os;
 }
 
-//not defined types
+// not defined types
 using ContraTrader = u32;
 using ClOrdIDBatch = u32;
 using PartyID = u32;
@@ -4515,8 +4944,7 @@ struct subLidIndicator {
         TradeAddedHiddenLiquidityThatWasPriceImproved = 'i',
         PeriodicAuction = 'P',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "subLidIndicator";}
+    static constexpr const char* name() {return "subLidIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('i'), static_cast<char>('P'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('\0'), static_cast<char>('D'), static_cast<char>('T'), static_cast<char>('H'), static_cast<char>('i'), static_cast<char>('P'), });
     constexpr subLidIndicator():value_{max_value} {}
@@ -4557,641 +4985,1272 @@ struct OrderRespOptGrp {
     u8 numReturnBitFields;
     auto bit1() {
         auto pred = [this](){return numReturnBitFields>=1;};
-        return OptionalByUnaryPredRef<OrderAckBit1, decltype(pred)>(begin()+size(), pred);
+        return OptionalByUnaryPredRef<OrderAckBit1, decltype(pred)>(begin()+fixed_size(), pred);
+    }
+    auto bit1() const {
+        auto pred = [this](){return numReturnBitFields>=1;};
+        return OptionalByUnaryPredRef<OrderAckBit1, decltype(pred)>(cbegin()+fixed_size(), pred);
     }
     auto bit2() {
         auto pred = [this](){return numReturnBitFields>=2;};
         return OptionalByUnaryPredRef<OrderAckBit2, decltype(pred)>(bit1().end(), pred);
     }
+    auto bit2() const {
+        auto pred = [this](){return numReturnBitFields>=2;};
+        return OptionalByUnaryPredRef<OrderAckBit2, decltype(pred)>(bit1().cend(), pred);
+    }
     auto bit3() {
         auto pred = [this](){return numReturnBitFields>=3;};
         return OptionalByUnaryPredRef<OrderAckBit3, decltype(pred)>(bit2().end(), pred);
+    }
+    auto bit3() const {
+        auto pred = [this](){return numReturnBitFields>=3;};
+        return OptionalByUnaryPredRef<OrderAckBit3, decltype(pred)>(bit2().cend(), pred);
     }
     auto bit4() {
         auto pred = [this](){return numReturnBitFields>=4;};
         return OptionalByUnaryPredRef<OrderAckBit4, decltype(pred)>(bit3().end(), pred);
     }
+    auto bit4() const {
+        auto pred = [this](){return numReturnBitFields>=4;};
+        return OptionalByUnaryPredRef<OrderAckBit4, decltype(pred)>(bit3().cend(), pred);
+    }
     auto bit5() {
         auto pred = [this](){return numReturnBitFields>=5;};
         return OptionalByUnaryPredRef<OrderAckBit5, decltype(pred)>(bit4().end(), pred);
+    }
+    auto bit5() const {
+        auto pred = [this](){return numReturnBitFields>=5;};
+        return OptionalByUnaryPredRef<OrderAckBit5, decltype(pred)>(bit4().cend(), pred);
     }
     auto bit6() {
         auto pred = [this](){return numReturnBitFields>=6;};
         return OptionalByUnaryPredRef<OrderAckBit6, decltype(pred)>(bit5().end(), pred);
     }
+    auto bit6() const {
+        auto pred = [this](){return numReturnBitFields>=6;};
+        return OptionalByUnaryPredRef<OrderAckBit6, decltype(pred)>(bit5().cend(), pred);
+    }
     auto bit7() {
         auto pred = [this](){return numReturnBitFields>=7;};
         return OptionalByUnaryPredRef<OrderAckBit7, decltype(pred)>(bit6().end(), pred);
+    }
+    auto bit7() const {
+        auto pred = [this](){return numReturnBitFields>=7;};
+        return OptionalByUnaryPredRef<OrderAckBit7, decltype(pred)>(bit6().cend(), pred);
     }
     auto bit8() {
         auto pred = [this](){return numReturnBitFields>=8;};
         return OptionalByUnaryPredRef<OrderAckBit8, decltype(pred)>(bit7().end(), pred);
     }
+    auto bit8() const {
+        auto pred = [this](){return numReturnBitFields>=8;};
+        return OptionalByUnaryPredRef<OrderAckBit8, decltype(pred)>(bit7().cend(), pred);
+    }
     auto bit9() {
         auto pred = [this](){return numReturnBitFields>=9;};
         return OptionalByUnaryPredRef<OrderAckBit9, decltype(pred)>(bit8().end(), pred);
+    }
+    auto bit9() const {
+        auto pred = [this](){return numReturnBitFields>=9;};
+        return OptionalByUnaryPredRef<OrderAckBit9, decltype(pred)>(bit8().cend(), pred);
     }
     auto bit10() {
         auto pred = [this](){return numReturnBitFields>=10;};
         return OptionalByUnaryPredRef<OrderAckBit10, decltype(pred)>(bit9().end(), pred);
     }
+    auto bit10() const {
+        auto pred = [this](){return numReturnBitFields>=10;};
+        return OptionalByUnaryPredRef<OrderAckBit10, decltype(pred)>(bit9().cend(), pred);
+    }
     auto bit11() {
         auto pred = [this](){return numReturnBitFields>=11;};
         return OptionalByUnaryPredRef<OrderAckBit11, decltype(pred)>(bit10().end(), pred);
+    }
+    auto bit11() const {
+        auto pred = [this](){return numReturnBitFields>=11;};
+        return OptionalByUnaryPredRef<OrderAckBit11, decltype(pred)>(bit10().cend(), pred);
     }
     auto bit12() {
         auto pred = [this](){return numReturnBitFields>=12;};
         return OptionalByUnaryPredRef<OrderAckBit12, decltype(pred)>(bit11().end(), pred);
     }
+    auto bit12() const {
+        auto pred = [this](){return numReturnBitFields>=12;};
+        return OptionalByUnaryPredRef<OrderAckBit12, decltype(pred)>(bit11().cend(), pred);
+    }
     auto bit13() {
         auto pred = [this](){return numReturnBitFields>=13;};
         return OptionalByUnaryPredRef<OrderAckBit13, decltype(pred)>(bit12().end(), pred);
+    }
+    auto bit13() const {
+        auto pred = [this](){return numReturnBitFields>=13;};
+        return OptionalByUnaryPredRef<OrderAckBit13, decltype(pred)>(bit12().cend(), pred);
     }
     auto bit14() {
         auto pred = [this](){return numReturnBitFields>=14;};
         return OptionalByUnaryPredRef<OrderAckBit14, decltype(pred)>(bit13().end(), pred);
     }
+    auto bit14() const {
+        auto pred = [this](){return numReturnBitFields>=14;};
+        return OptionalByUnaryPredRef<OrderAckBit14, decltype(pred)>(bit13().cend(), pred);
+    }
     auto bit15() {
         auto pred = [this](){return numReturnBitFields>=15;};
         return OptionalByUnaryPredRef<OrderAckBit15, decltype(pred)>(bit14().end(), pred);
+    }
+    auto bit15() const {
+        auto pred = [this](){return numReturnBitFields>=15;};
+        return OptionalByUnaryPredRef<OrderAckBit15, decltype(pred)>(bit14().cend(), pred);
     }
     auto bit16() {
         auto pred = [this](){return numReturnBitFields>=16;};
         return OptionalByUnaryPredRef<OrderAckBit16, decltype(pred)>(bit15().end(), pred);
     }
+    auto bit16() const {
+        auto pred = [this](){return numReturnBitFields>=16;};
+        return OptionalByUnaryPredRef<OrderAckBit16, decltype(pred)>(bit15().cend(), pred);
+    }
     auto bit17() {
         auto pred = [this](){return numReturnBitFields>=17;};
         return OptionalByUnaryPredRef<OrderAckBit17, decltype(pred)>(bit16().end(), pred);
+    }
+    auto bit17() const {
+        auto pred = [this](){return numReturnBitFields>=17;};
+        return OptionalByUnaryPredRef<OrderAckBit17, decltype(pred)>(bit16().cend(), pred);
     }
     auto bit18() {
         auto pred = [this](){return numReturnBitFields>=18;};
         return OptionalByUnaryPredRef<OrderAckBit18, decltype(pred)>(bit17().end(), pred);
     }
+    auto bit18() const {
+        auto pred = [this](){return numReturnBitFields>=18;};
+        return OptionalByUnaryPredRef<OrderAckBit18, decltype(pred)>(bit17().cend(), pred);
+    }
     auto side() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::Side != 0;};
-        return OptionalByUnaryPredRef<Side, decltype(pred)>(Side().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::Side != 0;};
+        return OptionalByUnaryPredRef<Side, decltype(pred)>(bit18().end(), pred);
+    }
+    auto side() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::Side != 0;};
+        return OptionalByUnaryPredRef<Side, decltype(pred)>(bit18().cend(), pred);
     }
     auto pegDiff() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::PegDiff != 0;};
-        return OptionalByUnaryPredRef<PegDifference, decltype(pred)>(PegDiff().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::PegDiff != 0;};
+        return OptionalByUnaryPredRef<PegDifference, decltype(pred)>(side().end(), pred);
+    }
+    auto pegDiff() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::PegDiff != 0;};
+        return OptionalByUnaryPredRef<PegDifference, decltype(pred)>(side().cend(), pred);
     }
     auto price() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::Price != 0;};
-        return OptionalByUnaryPredRef<Price4, decltype(pred)>(Price().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::Price != 0;};
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(pegDiff().end(), pred);
+    }
+    auto price() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::Price != 0;};
+        return OptionalByUnaryPredRef<Price4, decltype(pred)>(pegDiff().cend(), pred);
     }
     auto execInst() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::ExecInst != 0;};
-        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(ExecInst().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::ExecInst != 0;};
+        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(price().end(), pred);
+    }
+    auto execInst() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::ExecInst != 0;};
+        return OptionalByUnaryPredRef<ExecInst, decltype(pred)>(price().cend(), pred);
     }
     auto ordType() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::OrdType != 0;};
-        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(OrdType().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::OrdType != 0;};
+        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(execInst().end(), pred);
+    }
+    auto ordType() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::OrdType != 0;};
+        return OptionalByUnaryPredRef<OrdType, decltype(pred)>(execInst().cend(), pred);
     }
     auto tif() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::TimeInForce != 0;};
-        return OptionalByUnaryPredRef<TimeInForce, decltype(pred)>(TimeInForce().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::TimeInForce != 0;};
+        return OptionalByUnaryPredRef<TimeInForce, decltype(pred)>(ordType().end(), pred);
+    }
+    auto tif() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::TimeInForce != 0;};
+        return OptionalByUnaryPredRef<TimeInForce, decltype(pred)>(ordType().cend(), pred);
     }
     auto minQty() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::MinQty != 0;};
-        return OptionalByUnaryPredRef<MinQty, decltype(pred)>(MinQty().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::MinQty != 0;};
+        return OptionalByUnaryPredRef<MinQty, decltype(pred)>(tif().end(), pred);
+    }
+    auto minQty() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::MinQty != 0;};
+        return OptionalByUnaryPredRef<MinQty, decltype(pred)>(tif().cend(), pred);
     }
     auto maxRemovePct() {
-        auto pred = [this](){auto& p=bit1(); return p && p.value() & OrderAckBit1::MaxRemovePct != 0;};
-        return OptionalByUnaryPredRef<MaxRemovePct, decltype(pred)>(MaxRemovePct().end(), pred);
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::MaxRemovePct != 0;};
+        return OptionalByUnaryPredRef<MaxRemovePct, decltype(pred)>(minQty().end(), pred);
+    }
+    auto maxRemovePct() const {
+        auto pred = [this](){auto p=bit1(); return p && p.value() & OrderAckBit1::MaxRemovePct != 0;};
+        return OptionalByUnaryPredRef<MaxRemovePct, decltype(pred)>(minQty().cend(), pred);
     }
     auto symbol() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::Symbol != 0;};
-        return OptionalByUnaryPredRef<Symbol, decltype(pred)>(Symbol().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::Symbol != 0;};
+        return OptionalByUnaryPredRef<Symbol, decltype(pred)>(maxRemovePct().end(), pred);
+    }
+    auto symbol() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::Symbol != 0;};
+        return OptionalByUnaryPredRef<Symbol, decltype(pred)>(maxRemovePct().cend(), pred);
     }
     auto symbolSfx() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::SymbolSfx != 0;};
-        return OptionalByUnaryPredRef<SymbolSfx, decltype(pred)>(SymbolSfx().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::SymbolSfx != 0;};
+        return OptionalByUnaryPredRef<SymbolSfx, decltype(pred)>(symbol().end(), pred);
+    }
+    auto symbolSfx() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::SymbolSfx != 0;};
+        return OptionalByUnaryPredRef<SymbolSfx, decltype(pred)>(symbol().cend(), pred);
     }
     auto currency() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::Currency != 0;};
-        return OptionalByUnaryPredRef<Currency, decltype(pred)>(Currency().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::Currency != 0;};
+        return OptionalByUnaryPredRef<Currency, decltype(pred)>(symbolSfx().end(), pred);
+    }
+    auto currency() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::Currency != 0;};
+        return OptionalByUnaryPredRef<Currency, decltype(pred)>(symbolSfx().cend(), pred);
     }
     auto idSource() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::IDSource != 0;};
-        return OptionalByUnaryPredRef<IDSource, decltype(pred)>(IDSource().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::IDSource != 0;};
+        return OptionalByUnaryPredRef<IDSource, decltype(pred)>(currency().end(), pred);
+    }
+    auto idSource() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::IDSource != 0;};
+        return OptionalByUnaryPredRef<IDSource, decltype(pred)>(currency().cend(), pred);
     }
     auto securityID() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::SecurityID != 0;};
-        return OptionalByUnaryPredRef<SecurityID, decltype(pred)>(SecurityID().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::SecurityID != 0;};
+        return OptionalByUnaryPredRef<SecurityID, decltype(pred)>(idSource().end(), pred);
+    }
+    auto securityID() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::SecurityID != 0;};
+        return OptionalByUnaryPredRef<SecurityID, decltype(pred)>(idSource().cend(), pred);
     }
     auto securityExchange() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::SecurityExchange != 0;};
-        return OptionalByUnaryPredRef<SecurityExchange, decltype(pred)>(SecurityExchange().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::SecurityExchange != 0;};
+        return OptionalByUnaryPredRef<SecurityExchange, decltype(pred)>(securityID().end(), pred);
+    }
+    auto securityExchange() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::SecurityExchange != 0;};
+        return OptionalByUnaryPredRef<SecurityExchange, decltype(pred)>(securityID().cend(), pred);
     }
     auto capacity() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::Capacity != 0;};
-        return OptionalByUnaryPredRef<Capacity, decltype(pred)>(Capacity().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::Capacity != 0;};
+        return OptionalByUnaryPredRef<Capacity, decltype(pred)>(securityExchange().end(), pred);
+    }
+    auto capacity() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::Capacity != 0;};
+        return OptionalByUnaryPredRef<Capacity, decltype(pred)>(securityExchange().cend(), pred);
     }
     auto contraTrader() {
-        auto pred = [this](){auto& p=bit2(); return p && p.value() & OrderAckBit2::ContraTrader != 0;};
-        return OptionalByUnaryPredRef<ContraTrader, decltype(pred)>(ContraTrader().end(), pred);
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::ContraTrader != 0;};
+        return OptionalByUnaryPredRef<ContraTrader, decltype(pred)>(capacity().end(), pred);
+    }
+    auto contraTrader() const {
+        auto pred = [this](){auto p=bit2(); return p && p.value() & OrderAckBit2::ContraTrader != 0;};
+        return OptionalByUnaryPredRef<ContraTrader, decltype(pred)>(capacity().cend(), pred);
     }
     auto account() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::Account != 0;};
-        return OptionalByUnaryPredRef<Account, decltype(pred)>(Account().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::Account != 0;};
+        return OptionalByUnaryPredRef<Account, decltype(pred)>(contraTrader().end(), pred);
+    }
+    auto account() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::Account != 0;};
+        return OptionalByUnaryPredRef<Account, decltype(pred)>(contraTrader().cend(), pred);
     }
     auto clearingFirm() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::ClearingFirm != 0;};
-        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(ClearingFirm().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(account().end(), pred);
+    }
+    auto clearingFirm() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::ClearingFirm != 0;};
+        return OptionalByUnaryPredRef<ClearingFirm, decltype(pred)>(account().cend(), pred);
     }
     auto clearingAccount() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::ClearingAccount != 0;};
-        return OptionalByUnaryPredRef<ClearingAccount, decltype(pred)>(ClearingAccount().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::ClearingAccount != 0;};
+        return OptionalByUnaryPredRef<ClearingAccount, decltype(pred)>(clearingFirm().end(), pred);
+    }
+    auto clearingAccount() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::ClearingAccount != 0;};
+        return OptionalByUnaryPredRef<ClearingAccount, decltype(pred)>(clearingFirm().cend(), pred);
     }
     auto displayInd() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::DisplayIndicator != 0;};
-        return OptionalByUnaryPredRef<DisplayIndicator, decltype(pred)>(DisplayIndicator().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::DisplayIndicator != 0;};
+        return OptionalByUnaryPredRef<DisplayIndicator, decltype(pred)>(clearingAccount().end(), pred);
+    }
+    auto displayInd() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::DisplayIndicator != 0;};
+        return OptionalByUnaryPredRef<DisplayIndicator, decltype(pred)>(clearingAccount().cend(), pred);
     }
     auto maxFloor() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::MaxFloor != 0;};
-        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(MaxFloor().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::MaxFloor != 0;};
+        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(displayInd().end(), pred);
+    }
+    auto maxFloor() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::MaxFloor != 0;};
+        return OptionalByUnaryPredRef<MaxFloor, decltype(pred)>(displayInd().cend(), pred);
     }
     auto discretionAmount() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::DiscretionAmount != 0;};
-        return OptionalByUnaryPredRef<DiscretionAmount, decltype(pred)>(DiscretionAmount().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::DiscretionAmount != 0;};
+        return OptionalByUnaryPredRef<DiscretionAmount, decltype(pred)>(maxFloor().end(), pred);
+    }
+    auto discretionAmount() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::DiscretionAmount != 0;};
+        return OptionalByUnaryPredRef<DiscretionAmount, decltype(pred)>(maxFloor().cend(), pred);
     }
     auto orderQty() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::OrderQty != 0;};
-        return OptionalByUnaryPredRef<OrderQty, decltype(pred)>(OrderQty().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::OrderQty != 0;};
+        return OptionalByUnaryPredRef<OrderQty, decltype(pred)>(discretionAmount().end(), pred);
+    }
+    auto orderQty() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::OrderQty != 0;};
+        return OptionalByUnaryPredRef<OrderQty, decltype(pred)>(discretionAmount().cend(), pred);
     }
     auto preventMatch() {
-        auto pred = [this](){auto& p=bit3(); return p && p.value() & OrderAckBit3::PreventMatch != 0;};
-        return OptionalByUnaryPredRef<PreventParticipantMatch, decltype(pred)>(PreventMatch().end(), pred);
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::PreventMatch != 0;};
+        return OptionalByUnaryPredRef<PreventParticipantMatch, decltype(pred)>(orderQty().end(), pred);
+    }
+    auto preventMatch() const {
+        auto pred = [this](){auto p=bit3(); return p && p.value() & OrderAckBit3::PreventMatch != 0;};
+        return OptionalByUnaryPredRef<PreventParticipantMatch, decltype(pred)>(orderQty().cend(), pred);
     }
     auto maturityDate() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::MaturityDate != 0;};
-        return OptionalByUnaryPredRef<MaturityDate, decltype(pred)>(MaturityDate().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::MaturityDate != 0;};
+        return OptionalByUnaryPredRef<MaturityDate, decltype(pred)>(preventMatch().end(), pred);
+    }
+    auto maturityDate() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::MaturityDate != 0;};
+        return OptionalByUnaryPredRef<MaturityDate, decltype(pred)>(preventMatch().cend(), pred);
     }
     auto strikePrice() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::StrikePrice != 0;};
-        return OptionalByUnaryPredRef<StrikePrice, decltype(pred)>(StrikePrice().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::StrikePrice != 0;};
+        return OptionalByUnaryPredRef<StrikePrice, decltype(pred)>(maturityDate().end(), pred);
+    }
+    auto strikePrice() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::StrikePrice != 0;};
+        return OptionalByUnaryPredRef<StrikePrice, decltype(pred)>(maturityDate().cend(), pred);
     }
     auto putOrCall() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::PutOrCall != 0;};
-        return OptionalByUnaryPredRef<PutOrCall, decltype(pred)>(PutOrCall().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::PutOrCall != 0;};
+        return OptionalByUnaryPredRef<PutOrCall, decltype(pred)>(strikePrice().end(), pred);
+    }
+    auto putOrCall() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::PutOrCall != 0;};
+        return OptionalByUnaryPredRef<PutOrCall, decltype(pred)>(strikePrice().cend(), pred);
     }
     auto openClose() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::OpenClose != 0;};
-        return OptionalByUnaryPredRef<OpenClose, decltype(pred)>(OpenClose().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::OpenClose != 0;};
+        return OptionalByUnaryPredRef<OpenClose, decltype(pred)>(putOrCall().end(), pred);
+    }
+    auto openClose() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::OpenClose != 0;};
+        return OptionalByUnaryPredRef<OpenClose, decltype(pred)>(putOrCall().cend(), pred);
     }
     auto clOrdIDBatch() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::ClOrdIDBatch != 0;};
-        return OptionalByUnaryPredRef<ClOrdIDBatch, decltype(pred)>(ClOrdIDBatch().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::ClOrdIDBatch != 0;};
+        return OptionalByUnaryPredRef<ClOrdIDBatch, decltype(pred)>(openClose().end(), pred);
+    }
+    auto clOrdIDBatch() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::ClOrdIDBatch != 0;};
+        return OptionalByUnaryPredRef<ClOrdIDBatch, decltype(pred)>(openClose().cend(), pred);
     }
     auto correctedSize() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::CorrectedSize != 0;};
-        return OptionalByUnaryPredRef<CorrectedSize, decltype(pred)>(CorrectedSize().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::CorrectedSize != 0;};
+        return OptionalByUnaryPredRef<CorrectedSize, decltype(pred)>(clOrdIDBatch().end(), pred);
+    }
+    auto correctedSize() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::CorrectedSize != 0;};
+        return OptionalByUnaryPredRef<CorrectedSize, decltype(pred)>(clOrdIDBatch().cend(), pred);
     }
     auto partyID() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::PartyID != 0;};
-        return OptionalByUnaryPredRef<PartyID, decltype(pred)>(PartyID().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::PartyID != 0;};
+        return OptionalByUnaryPredRef<PartyID, decltype(pred)>(correctedSize().end(), pred);
+    }
+    auto partyID() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::PartyID != 0;};
+        return OptionalByUnaryPredRef<PartyID, decltype(pred)>(correctedSize().cend(), pred);
     }
     auto accessFee() {
-        auto pred = [this](){auto& p=bit4(); return p && p.value() & OrderAckBit4::AccessFee != 0;};
-        return OptionalByUnaryPredRef<AccessFee, decltype(pred)>(AccessFee().end(), pred);
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::AccessFee != 0;};
+        return OptionalByUnaryPredRef<AccessFee, decltype(pred)>(partyID().end(), pred);
+    }
+    auto accessFee() const {
+        auto pred = [this](){auto p=bit4(); return p && p.value() & OrderAckBit4::AccessFee != 0;};
+        return OptionalByUnaryPredRef<AccessFee, decltype(pred)>(partyID().cend(), pred);
     }
     auto origClOrdID() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::OrigClOrdID != 0;};
-        return OptionalByUnaryPredRef<OrigClOrdID, decltype(pred)>(OrigClOrdID().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::OrigClOrdID != 0;};
+        return OptionalByUnaryPredRef<OrigClOrdID, decltype(pred)>(accessFee().end(), pred);
+    }
+    auto origClOrdID() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::OrigClOrdID != 0;};
+        return OptionalByUnaryPredRef<OrigClOrdID, decltype(pred)>(accessFee().cend(), pred);
     }
     auto leavesQty() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::LeavesQty != 0;};
-        return OptionalByUnaryPredRef<LeavesQty, decltype(pred)>(LeavesQty().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::LeavesQty != 0;};
+        return OptionalByUnaryPredRef<LeavesQty, decltype(pred)>(origClOrdID().end(), pred);
+    }
+    auto leavesQty() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::LeavesQty != 0;};
+        return OptionalByUnaryPredRef<LeavesQty, decltype(pred)>(origClOrdID().cend(), pred);
     }
     auto lastShares() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::LastShares != 0;};
-        return OptionalByUnaryPredRef<LastShares, decltype(pred)>(LastShares().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::LastShares != 0;};
+        return OptionalByUnaryPredRef<LastShares, decltype(pred)>(leavesQty().end(), pred);
+    }
+    auto lastShares() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::LastShares != 0;};
+        return OptionalByUnaryPredRef<LastShares, decltype(pred)>(leavesQty().cend(), pred);
     }
     auto lastPx() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::LastPx != 0;};
-        return OptionalByUnaryPredRef<LastPx, decltype(pred)>(LastPx().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::LastPx != 0;};
+        return OptionalByUnaryPredRef<LastPx, decltype(pred)>(lastShares().end(), pred);
+    }
+    auto lastPx() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::LastPx != 0;};
+        return OptionalByUnaryPredRef<LastPx, decltype(pred)>(lastShares().cend(), pred);
     }
     auto displayPx() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::DisplayPrice != 0;};
-        return OptionalByUnaryPredRef<DisplayPrice, decltype(pred)>(DisplayPrice().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::DisplayPrice != 0;};
+        return OptionalByUnaryPredRef<DisplayPrice, decltype(pred)>(lastPx().end(), pred);
+    }
+    auto displayPx() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::DisplayPrice != 0;};
+        return OptionalByUnaryPredRef<DisplayPrice, decltype(pred)>(lastPx().cend(), pred);
     }
     auto workingPx() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::WorkingPrice != 0;};
-        return OptionalByUnaryPredRef<WorkingPrice, decltype(pred)>(WorkingPrice().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::WorkingPrice != 0;};
+        return OptionalByUnaryPredRef<WorkingPrice, decltype(pred)>(displayPx().end(), pred);
+    }
+    auto workingPx() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::WorkingPrice != 0;};
+        return OptionalByUnaryPredRef<WorkingPrice, decltype(pred)>(displayPx().cend(), pred);
     }
     auto baseLiqInd() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::BaseLiquidityIndicator != 0;};
-        return OptionalByUnaryPredRef<BaseLiquidityIndicator, decltype(pred)>(BaseLiquidityIndicator().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::BaseLiquidityIndicator != 0;};
+        return OptionalByUnaryPredRef<BaseLiquidityIndicator, decltype(pred)>(workingPx().end(), pred);
+    }
+    auto baseLiqInd() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::BaseLiquidityIndicator != 0;};
+        return OptionalByUnaryPredRef<BaseLiquidityIndicator, decltype(pred)>(workingPx().cend(), pred);
     }
     auto expireTime() {
-        auto pred = [this](){auto& p=bit5(); return p && p.value() & OrderAckBit5::ExpireTime != 0;};
-        return OptionalByUnaryPredRef<ExpirTime, decltype(pred)>(ExpireTime().end(), pred);
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::ExpireTime != 0;};
+        return OptionalByUnaryPredRef<ExpirTime, decltype(pred)>(baseLiqInd().end(), pred);
+    }
+    auto expireTime() const {
+        auto pred = [this](){auto p=bit5(); return p && p.value() & OrderAckBit5::ExpireTime != 0;};
+        return OptionalByUnaryPredRef<ExpirTime, decltype(pred)>(baseLiqInd().cend(), pred);
     }
     auto secondaryOrderID() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::SecondaryOrderID != 0;};
-        return OptionalByUnaryPredRef<SecondaryOrderID, decltype(pred)>(SecondaryOrderID().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::SecondaryOrderID != 0;};
+        return OptionalByUnaryPredRef<SecondaryOrderID, decltype(pred)>(expireTime().end(), pred);
+    }
+    auto secondaryOrderID() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::SecondaryOrderID != 0;};
+        return OptionalByUnaryPredRef<SecondaryOrderID, decltype(pred)>(expireTime().cend(), pred);
     }
     auto ccp() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::CCP != 0;};
-        return OptionalByUnaryPredRef<CCP, decltype(pred)>(CCP().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::CCP != 0;};
+        return OptionalByUnaryPredRef<CCP, decltype(pred)>(secondaryOrderID().end(), pred);
+    }
+    auto ccp() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::CCP != 0;};
+        return OptionalByUnaryPredRef<CCP, decltype(pred)>(secondaryOrderID().cend(), pred);
     }
     auto contraCapacity() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::ContraCapacity != 0;};
-        return OptionalByUnaryPredRef<ContraCapacity, decltype(pred)>(ContraCapacity().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::ContraCapacity != 0;};
+        return OptionalByUnaryPredRef<ContraCapacity, decltype(pred)>(ccp().end(), pred);
+    }
+    auto contraCapacity() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::ContraCapacity != 0;};
+        return OptionalByUnaryPredRef<ContraCapacity, decltype(pred)>(ccp().cend(), pred);
     }
     auto attrQuote() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::AttributeQuote != 0;};
-        return OptionalByUnaryPredRef<AttributedQuote, decltype(pred)>(AttributeQuote().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::AttributeQuote != 0;};
+        return OptionalByUnaryPredRef<AttributedQuote, decltype(pred)>(contraCapacity().end(), pred);
+    }
+    auto attrQuote() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::AttributeQuote != 0;};
+        return OptionalByUnaryPredRef<AttributedQuote, decltype(pred)>(contraCapacity().cend(), pred);
     }
     auto extExecInst() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::ExtExecInst != 0;};
-        return OptionalByUnaryPredRef<ExtExecInst, decltype(pred)>(ExtExecInst().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::ExtExecInst != 0;};
+        return OptionalByUnaryPredRef<ExtExecInst, decltype(pred)>(attrQuote().end(), pred);
+    }
+    auto extExecInst() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::ExtExecInst != 0;};
+        return OptionalByUnaryPredRef<ExtExecInst, decltype(pred)>(attrQuote().cend(), pred);
     }
     auto bulkOrdIDs() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::BulkOrderIDs != 0;};
-        return OptionalByUnaryPredRef<BulkOrderIDs, decltype(pred)>(BulkOrderIDs().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::BulkOrderIDs != 0;};
+        return OptionalByUnaryPredRef<BulkOrderIDs, decltype(pred)>(extExecInst().end(), pred);
+    }
+    auto bulkOrdIDs() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::BulkOrderIDs != 0;};
+        return OptionalByUnaryPredRef<BulkOrderIDs, decltype(pred)>(extExecInst().cend(), pred);
     }
     auto bulkRejReason() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::BulkRejectReasons != 0;};
-        return OptionalByUnaryPredRef<BulkRejectReasons, decltype(pred)>(BulkRejectReasons().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::BulkRejectReasons != 0;};
+        return OptionalByUnaryPredRef<BulkRejectReasons, decltype(pred)>(bulkOrdIDs().end(), pred);
+    }
+    auto bulkRejReason() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::BulkRejectReasons != 0;};
+        return OptionalByUnaryPredRef<BulkRejectReasons, decltype(pred)>(bulkOrdIDs().cend(), pred);
     }
     auto partyRole() {
-        auto pred = [this](){auto& p=bit6(); return p && p.value() & OrderAckBit6::PartyRole != 0;};
-        return OptionalByUnaryPredRef<PartyRole, decltype(pred)>(PartyRole().end(), pred);
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::PartyRole != 0;};
+        return OptionalByUnaryPredRef<PartyRole, decltype(pred)>(bulkRejReason().end(), pred);
+    }
+    auto partyRole() const {
+        auto pred = [this](){auto p=bit6(); return p && p.value() & OrderAckBit6::PartyRole != 0;};
+        return OptionalByUnaryPredRef<PartyRole, decltype(pred)>(bulkRejReason().cend(), pred);
     }
     auto subliqInd() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::SubLiquidityIndicator != 0;};
-        return OptionalByUnaryPredRef<subLidIndicator, decltype(pred)>(SubLiquidityIndicator().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::SubLiquidityIndicator != 0;};
+        return OptionalByUnaryPredRef<subLidIndicator, decltype(pred)>(partyRole().end(), pred);
+    }
+    auto subliqInd() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::SubLiquidityIndicator != 0;};
+        return OptionalByUnaryPredRef<subLidIndicator, decltype(pred)>(partyRole().cend(), pred);
     }
     auto tradeRptTypeReturn() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::TradeReportTypeReturn != 0;};
-        return OptionalByUnaryPredRef<TradeReportTypeReturn, decltype(pred)>(TradeReportTypeReturn().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::TradeReportTypeReturn != 0;};
+        return OptionalByUnaryPredRef<TradeReportTypeReturn, decltype(pred)>(subliqInd().end(), pred);
+    }
+    auto tradeRptTypeReturn() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::TradeReportTypeReturn != 0;};
+        return OptionalByUnaryPredRef<TradeReportTypeReturn, decltype(pred)>(subliqInd().cend(), pred);
     }
     auto tradepubIndReturn() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::TradePublishIndReturn != 0;};
-        return OptionalByUnaryPredRef<TradePublishIndReturn, decltype(pred)>(TradePublishIndReturn().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::TradePublishIndReturn != 0;};
+        return OptionalByUnaryPredRef<TradePublishIndReturn, decltype(pred)>(tradeRptTypeReturn().end(), pred);
+    }
+    auto tradepubIndReturn() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::TradePublishIndReturn != 0;};
+        return OptionalByUnaryPredRef<TradePublishIndReturn, decltype(pred)>(tradeRptTypeReturn().cend(), pred);
     }
     auto text() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::Text != 0;};
-        return OptionalByUnaryPredRef<Text, decltype(pred)>(Text().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::Text != 0;};
+        return OptionalByUnaryPredRef<Text, decltype(pred)>(tradepubIndReturn().end(), pred);
+    }
+    auto text() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::Text != 0;};
+        return OptionalByUnaryPredRef<Text, decltype(pred)>(tradepubIndReturn().cend(), pred);
     }
     auto bid() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::Bid != 0;};
-        return OptionalByUnaryPredRef<Bid, decltype(pred)>(Bid().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::Bid != 0;};
+        return OptionalByUnaryPredRef<Bid, decltype(pred)>(text().end(), pred);
+    }
+    auto bid() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::Bid != 0;};
+        return OptionalByUnaryPredRef<Bid, decltype(pred)>(text().cend(), pred);
     }
     auto offer() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::Offer != 0;};
-        return OptionalByUnaryPredRef<Offer, decltype(pred)>(Offer().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::Offer != 0;};
+        return OptionalByUnaryPredRef<Offer, decltype(pred)>(bid().end(), pred);
+    }
+    auto offer() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::Offer != 0;};
+        return OptionalByUnaryPredRef<Offer, decltype(pred)>(bid().cend(), pred);
     }
     auto largeSize() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::LargeSize != 0;};
-        return OptionalByUnaryPredRef<LargeSize, decltype(pred)>(LargeSize().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::LargeSize != 0;};
+        return OptionalByUnaryPredRef<LargeSize, decltype(pred)>(offer().end(), pred);
+    }
+    auto largeSize() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::LargeSize != 0;};
+        return OptionalByUnaryPredRef<LargeSize, decltype(pred)>(offer().cend(), pred);
     }
     auto lastMkt() {
-        auto pred = [this](){auto& p=bit7(); return p && p.value() & OrderAckBit7::LastMkt != 0;};
-        return OptionalByUnaryPredRef<LastMkt, decltype(pred)>(LastMkt().end(), pred);
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::LastMkt != 0;};
+        return OptionalByUnaryPredRef<LastMkt, decltype(pred)>(largeSize().end(), pred);
+    }
+    auto lastMkt() const {
+        auto pred = [this](){auto p=bit7(); return p && p.value() & OrderAckBit7::LastMkt != 0;};
+        return OptionalByUnaryPredRef<LastMkt, decltype(pred)>(largeSize().cend(), pred);
     }
     auto feeCode() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::FeeCode != 0;};
-        return OptionalByUnaryPredRef<FeeCode, decltype(pred)>(FeeCode().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::FeeCode != 0;};
+        return OptionalByUnaryPredRef<FeeCode, decltype(pred)>(lastMkt().end(), pred);
+    }
+    auto feeCode() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::FeeCode != 0;};
+        return OptionalByUnaryPredRef<FeeCode, decltype(pred)>(lastMkt().cend(), pred);
     }
     auto echoText() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::EchoText != 0;};
-        return OptionalByUnaryPredRef<EchoText, decltype(pred)>(EchoText().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::EchoText != 0;};
+        return OptionalByUnaryPredRef<EchoText, decltype(pred)>(feeCode().end(), pred);
+    }
+    auto echoText() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::EchoText != 0;};
+        return OptionalByUnaryPredRef<EchoText, decltype(pred)>(feeCode().cend(), pred);
     }
     auto stopPx() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::StopPx != 0;};
-        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(StopPx().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::StopPx != 0;};
+        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(echoText().end(), pred);
+    }
+    auto stopPx() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::StopPx != 0;};
+        return OptionalByUnaryPredRef<StopPx, decltype(pred)>(echoText().cend(), pred);
     }
     auto routingInst() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::RoutingInst != 0;};
-        return OptionalByUnaryPredRef<RoutingInst, decltype(pred)>(RoutingInst().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::RoutingInst != 0;};
+        return OptionalByUnaryPredRef<RoutingInst, decltype(pred)>(stopPx().end(), pred);
+    }
+    auto routingInst() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::RoutingInst != 0;};
+        return OptionalByUnaryPredRef<RoutingInst, decltype(pred)>(stopPx().cend(), pred);
     }
     auto routeStrategy() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::RouteStrategy != 0;};
-        return OptionalByUnaryPredRef<RouteStrategy, decltype(pred)>(RouteStrategy().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::RouteStrategy != 0;};
+        return OptionalByUnaryPredRef<RouteStrategy, decltype(pred)>(routingInst().end(), pred);
+    }
+    auto routeStrategy() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::RouteStrategy != 0;};
+        return OptionalByUnaryPredRef<RouteStrategy, decltype(pred)>(routingInst().cend(), pred);
     }
     auto routeDeliveryMethod() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::RouteDeliveryMethod != 0;};
-        return OptionalByUnaryPredRef<RouteDeliveryMethod, decltype(pred)>(RouteDeliveryMethod().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::RouteDeliveryMethod != 0;};
+        return OptionalByUnaryPredRef<RouteDeliveryMethod, decltype(pred)>(routeStrategy().end(), pred);
+    }
+    auto routeDeliveryMethod() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::RouteDeliveryMethod != 0;};
+        return OptionalByUnaryPredRef<RouteDeliveryMethod, decltype(pred)>(routeStrategy().cend(), pred);
     }
     auto exDestination() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::ExDestination != 0;};
-        return OptionalByUnaryPredRef<ExDestination, decltype(pred)>(ExDestination().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::ExDestination != 0;};
+        return OptionalByUnaryPredRef<ExDestination, decltype(pred)>(routeDeliveryMethod().end(), pred);
+    }
+    auto exDestination() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::ExDestination != 0;};
+        return OptionalByUnaryPredRef<ExDestination, decltype(pred)>(routeDeliveryMethod().cend(), pred);
     }
     auto tradeRptRefID() {
-        auto pred = [this](){auto& p=bit8(); return p && p.value() & OrderAckBit8::TradeReportRefID != 0;};
-        return OptionalByUnaryPredRef<TradeReportRefID, decltype(pred)>(TradeReportRefID().end(), pred);
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::TradeReportRefID != 0;};
+        return OptionalByUnaryPredRef<TradeReportRefID, decltype(pred)>(exDestination().end(), pred);
+    }
+    auto tradeRptRefID() const {
+        auto pred = [this](){auto p=bit8(); return p && p.value() & OrderAckBit8::TradeReportRefID != 0;};
+        return OptionalByUnaryPredRef<TradeReportRefID, decltype(pred)>(exDestination().cend(), pred);
     }
     auto marketingFeeCode() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::MarketingFeeCode != 0;};
-        return OptionalByUnaryPredRef<MarketingFeeCode, decltype(pred)>(MarketingFeeCode().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::MarketingFeeCode != 0;};
+        return OptionalByUnaryPredRef<MarketingFeeCode, decltype(pred)>(tradeRptRefID().end(), pred);
+    }
+    auto marketingFeeCode() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::MarketingFeeCode != 0;};
+        return OptionalByUnaryPredRef<MarketingFeeCode, decltype(pred)>(tradeRptRefID().cend(), pred);
     }
     auto targetPartyID() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::TargetPartyID != 0;};
-        return OptionalByUnaryPredRef<TargetPartyID, decltype(pred)>(TargetPartyID().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::TargetPartyID != 0;};
+        return OptionalByUnaryPredRef<TargetPartyID, decltype(pred)>(marketingFeeCode().end(), pred);
+    }
+    auto targetPartyID() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::TargetPartyID != 0;};
+        return OptionalByUnaryPredRef<TargetPartyID, decltype(pred)>(marketingFeeCode().cend(), pred);
     }
     auto auctionID() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::AuctionID != 0;};
-        return OptionalByUnaryPredRef<AuctionID, decltype(pred)>(AuctionID().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::AuctionID != 0;};
+        return OptionalByUnaryPredRef<AuctionID, decltype(pred)>(targetPartyID().end(), pred);
+    }
+    auto auctionID() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::AuctionID != 0;};
+        return OptionalByUnaryPredRef<AuctionID, decltype(pred)>(targetPartyID().cend(), pred);
     }
     auto orderCat() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::OrderCategory != 0;};
-        return OptionalByUnaryPredRef<OrderCategory, decltype(pred)>(OrderCategory().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::OrderCategory != 0;};
+        return OptionalByUnaryPredRef<OrderCategory, decltype(pred)>(auctionID().end(), pred);
+    }
+    auto orderCat() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::OrderCategory != 0;};
+        return OptionalByUnaryPredRef<OrderCategory, decltype(pred)>(auctionID().cend(), pred);
     }
     auto LiqProv() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::LiquidityProvision != 0;};
-        return OptionalByUnaryPredRef<LiquidityProvision, decltype(pred)>(LiquidityProvision().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::LiquidityProvision != 0;};
+        return OptionalByUnaryPredRef<LiquidityProvision, decltype(pred)>(orderCat().end(), pred);
+    }
+    auto LiqProv() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::LiquidityProvision != 0;};
+        return OptionalByUnaryPredRef<LiquidityProvision, decltype(pred)>(orderCat().cend(), pred);
     }
     auto cmtaNumber() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::CmtaNumber != 0;};
-        return OptionalByUnaryPredRef<CMTANumber, decltype(pred)>(CmtaNumber().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::CmtaNumber != 0;};
+        return OptionalByUnaryPredRef<CMTANumber, decltype(pred)>(LiqProv().end(), pred);
+    }
+    auto cmtaNumber() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::CmtaNumber != 0;};
+        return OptionalByUnaryPredRef<CMTANumber, decltype(pred)>(LiqProv().cend(), pred);
     }
     auto crossType() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::CrossType != 0;};
-        return OptionalByUnaryPredRef<CrossType, decltype(pred)>(CrossType().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::CrossType != 0;};
+        return OptionalByUnaryPredRef<CrossType, decltype(pred)>(cmtaNumber().end(), pred);
+    }
+    auto crossType() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::CrossType != 0;};
+        return OptionalByUnaryPredRef<CrossType, decltype(pred)>(cmtaNumber().cend(), pred);
     }
     auto crossPriori() {
-        auto pred = [this](){auto& p=bit9(); return p && p.value() & OrderAckBit9::CrossPrioritiozation != 0;};
-        return OptionalByUnaryPredRef<CrossPrioritization, decltype(pred)>(CrossPrioritiozation().end(), pred);
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::CrossPrioritiozation != 0;};
+        return OptionalByUnaryPredRef<CrossPrioritization, decltype(pred)>(crossType().end(), pred);
+    }
+    auto crossPriori() const {
+        auto pred = [this](){auto p=bit9(); return p && p.value() & OrderAckBit9::CrossPrioritiozation != 0;};
+        return OptionalByUnaryPredRef<CrossPrioritization, decltype(pred)>(crossType().cend(), pred);
     }
     auto crossID() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::CrossID != 0;};
-        return OptionalByUnaryPredRef<CrossID, decltype(pred)>(CrossID().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::CrossID != 0;};
+        return OptionalByUnaryPredRef<CrossID, decltype(pred)>(crossPriori().end(), pred);
+    }
+    auto crossID() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::CrossID != 0;};
+        return OptionalByUnaryPredRef<CrossID, decltype(pred)>(crossPriori().cend(), pred);
     }
     auto allocQty() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::AllocQty != 0;};
-        return OptionalByUnaryPredRef<AllocQty, decltype(pred)>(AllocQty().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::AllocQty != 0;};
+        return OptionalByUnaryPredRef<AllocQty, decltype(pred)>(crossID().end(), pred);
+    }
+    auto allocQty() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::AllocQty != 0;};
+        return OptionalByUnaryPredRef<AllocQty, decltype(pred)>(crossID().cend(), pred);
     }
     auto giveupFirmID() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::GiveUpFirmID != 0;};
-        return OptionalByUnaryPredRef<GiveUpFirmID, decltype(pred)>(GiveUpFirmID().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::GiveUpFirmID != 0;};
+        return OptionalByUnaryPredRef<GiveUpFirmID, decltype(pred)>(allocQty().end(), pred);
+    }
+    auto giveupFirmID() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::GiveUpFirmID != 0;};
+        return OptionalByUnaryPredRef<GiveUpFirmID, decltype(pred)>(allocQty().cend(), pred);
     }
     auto routingFirmID() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::RoutingFirmID != 0;};
-        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(RoutingFirmID().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(giveupFirmID().end(), pred);
+    }
+    auto routingFirmID() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::RoutingFirmID != 0;};
+        return OptionalByUnaryPredRef<RoutingFirmID, decltype(pred)>(giveupFirmID().cend(), pred);
     }
     auto waiverType() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::WaiverType != 0;};
-        return OptionalByUnaryPredRef<WaiverType, decltype(pred)>(WaiverType().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::WaiverType != 0;};
+        return OptionalByUnaryPredRef<WaiverType, decltype(pred)>(routingFirmID().end(), pred);
+    }
+    auto waiverType() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::WaiverType != 0;};
+        return OptionalByUnaryPredRef<WaiverType, decltype(pred)>(routingFirmID().cend(), pred);
     }
     auto crossExclusionInd() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::CrossExclusionIndicator != 0;};
-        return OptionalByUnaryPredRef<CrossExclusionIndicator, decltype(pred)>(CrossExclusionIndicator().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::CrossExclusionIndicator != 0;};
+        return OptionalByUnaryPredRef<CrossExclusionIndicator, decltype(pred)>(waiverType().end(), pred);
+    }
+    auto crossExclusionInd() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::CrossExclusionIndicator != 0;};
+        return OptionalByUnaryPredRef<CrossExclusionIndicator, decltype(pred)>(waiverType().cend(), pred);
     }
     auto priceFormation() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::PriceFormation != 0;};
-        return OptionalByUnaryPredRef<PriceFormation, decltype(pred)>(PriceFormation().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::PriceFormation != 0;};
+        return OptionalByUnaryPredRef<PriceFormation, decltype(pred)>(crossExclusionInd().end(), pred);
+    }
+    auto priceFormation() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::PriceFormation != 0;};
+        return OptionalByUnaryPredRef<PriceFormation, decltype(pred)>(crossExclusionInd().cend(), pred);
     }
     auto clientQualiRole() {
-        auto pred = [this](){auto& p=bit10(); return p && p.value() & OrderAckBit10::ClientQualifiedRole != 0;};
-        return OptionalByUnaryPredRef<ClientQualifiedRole, decltype(pred)>(ClientQualifiedRole().end(), pred);
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::ClientQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<ClientQualifiedRole, decltype(pred)>(priceFormation().end(), pred);
+    }
+    auto clientQualiRole() const {
+        auto pred = [this](){auto p=bit10(); return p && p.value() & OrderAckBit10::ClientQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<ClientQualifiedRole, decltype(pred)>(priceFormation().cend(), pred);
     }
     auto clientID() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::ClientID != 0;};
-        return OptionalByUnaryPredRef<ClientID, decltype(pred)>(ClientID().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::ClientID != 0;};
+        return OptionalByUnaryPredRef<ClientID, decltype(pred)>(clientQualiRole().end(), pred);
+    }
+    auto clientID() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::ClientID != 0;};
+        return OptionalByUnaryPredRef<ClientID, decltype(pred)>(clientQualiRole().cend(), pred);
     }
     auto IDM() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::InvestorID != 0;};
-        return OptionalByUnaryPredRef<InvestorID, decltype(pred)>(InvestorID().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::InvestorID != 0;};
+        return OptionalByUnaryPredRef<InvestorID, decltype(pred)>(clientID().end(), pred);
+    }
+    auto IDM() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::InvestorID != 0;};
+        return OptionalByUnaryPredRef<InvestorID, decltype(pred)>(clientID().cend(), pred);
     }
     auto EDM() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::ExecutorID != 0;};
-        return OptionalByUnaryPredRef<ExecutorID, decltype(pred)>(ExecutorID().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::ExecutorID != 0;};
+        return OptionalByUnaryPredRef<ExecutorID, decltype(pred)>(IDM().end(), pred);
+    }
+    auto EDM() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::ExecutorID != 0;};
+        return OptionalByUnaryPredRef<ExecutorID, decltype(pred)>(IDM().cend(), pred);
     }
     auto OrdOrig() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::OrderOrigination != 0;};
-        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(OrderOrigination().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::OrderOrigination != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(EDM().end(), pred);
+    }
+    auto OrdOrig() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::OrderOrigination != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(EDM().cend(), pred);
     }
     auto AlgoInd() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::AlgorithmicIndicator != 0;};
-        return OptionalByUnaryPredRef<AlgorithmicIndicator, decltype(pred)>(AlgorithmicIndicator().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::AlgorithmicIndicator != 0;};
+        return OptionalByUnaryPredRef<AlgorithmicIndicator, decltype(pred)>(OrdOrig().end(), pred);
+    }
+    auto AlgoInd() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::AlgorithmicIndicator != 0;};
+        return OptionalByUnaryPredRef<AlgorithmicIndicator, decltype(pred)>(OrdOrig().cend(), pred);
     }
     auto deferralReason() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::DeferralReason != 0;};
-        return OptionalByUnaryPredRef<DeferralReason, decltype(pred)>(DeferralReason().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::DeferralReason != 0;};
+        return OptionalByUnaryPredRef<DeferralReason, decltype(pred)>(AlgoInd().end(), pred);
+    }
+    auto deferralReason() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::DeferralReason != 0;};
+        return OptionalByUnaryPredRef<DeferralReason, decltype(pred)>(AlgoInd().cend(), pred);
     }
     auto InvestorQualiRole() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::InvestorQualifiedRole != 0;};
-        return OptionalByUnaryPredRef<InvestorQualifiedRole, decltype(pred)>(InvestorQualifiedRole().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::InvestorQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<InvestorQualifiedRole, decltype(pred)>(deferralReason().end(), pred);
+    }
+    auto InvestorQualiRole() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::InvestorQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<InvestorQualifiedRole, decltype(pred)>(deferralReason().cend(), pred);
     }
     auto ExcutorQualifiRole() {
-        auto pred = [this](){auto& p=bit11(); return p && p.value() & OrderAckBit11::ExecutorQualifiedRole != 0;};
-        return OptionalByUnaryPredRef<ExecutorQualifiedRole, decltype(pred)>(ExecutorQualifiedRole().end(), pred);
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::ExecutorQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<ExecutorQualifiedRole, decltype(pred)>(InvestorQualiRole().end(), pred);
+    }
+    auto ExcutorQualifiRole() const {
+        auto pred = [this](){auto p=bit11(); return p && p.value() & OrderAckBit11::ExecutorQualifiedRole != 0;};
+        return OptionalByUnaryPredRef<ExecutorQualifiedRole, decltype(pred)>(InvestorQualiRole().cend(), pred);
     }
     auto ctiCode() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::CtiCode != 0;};
-        return OptionalByUnaryPredRef<CtiCode, decltype(pred)>(CtiCode().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::CtiCode != 0;};
+        return OptionalByUnaryPredRef<CtiCode, decltype(pred)>(ExcutorQualifiRole().end(), pred);
+    }
+    auto ctiCode() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::CtiCode != 0;};
+        return OptionalByUnaryPredRef<CtiCode, decltype(pred)>(ExcutorQualifiRole().cend(), pred);
     }
     auto manualOrdInd() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::ManualOrderIndicator != 0;};
-        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ManualOrderIndicator().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ctiCode().end(), pred);
+    }
+    auto manualOrdInd() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ManualOrderIndicator != 0;};
+        return OptionalByUnaryPredRef<ManualOrderIndicator, decltype(pred)>(ctiCode().cend(), pred);
     }
     auto opID() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::OperatorID != 0;};
-        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(OperatorID().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().end(), pred);
+    }
+    auto opID() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::OperatorID != 0;};
+        return OptionalByUnaryPredRef<OperatorID, decltype(pred)>(manualOrdInd().cend(), pred);
     }
     auto tradeDate() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::TradeDate != 0;};
-        return OptionalByUnaryPredRef<TradeDate, decltype(pred)>(TradeDate().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::TradeDate != 0;};
+        return OptionalByUnaryPredRef<TradeDate, decltype(pred)>(opID().end(), pred);
+    }
+    auto tradeDate() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::TradeDate != 0;};
+        return OptionalByUnaryPredRef<TradeDate, decltype(pred)>(opID().cend(), pred);
     }
     auto clearingPrice() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::ClearingPrice != 0;};
-        return OptionalByUnaryPredRef<ClearingPrice, decltype(pred)>(ClearingPrice().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingPrice != 0;};
+        return OptionalByUnaryPredRef<ClearingPrice, decltype(pred)>(tradeDate().end(), pred);
+    }
+    auto clearingPrice() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingPrice != 0;};
+        return OptionalByUnaryPredRef<ClearingPrice, decltype(pred)>(tradeDate().cend(), pred);
     }
     auto clearingSize() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::ClearingSize != 0;};
-        return OptionalByUnaryPredRef<ClearingSize, decltype(pred)>(ClearingSize().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingSize != 0;};
+        return OptionalByUnaryPredRef<ClearingSize, decltype(pred)>(clearingPrice().end(), pred);
+    }
+    auto clearingSize() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingSize != 0;};
+        return OptionalByUnaryPredRef<ClearingSize, decltype(pred)>(clearingPrice().cend(), pred);
     }
     auto clearingSymbol() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::ClearingSymbol != 0;};
-        return OptionalByUnaryPredRef<ClearingSymbol, decltype(pred)>(ClearingSymbol().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingSymbol != 0;};
+        return OptionalByUnaryPredRef<ClearingSymbol, decltype(pred)>(clearingSize().end(), pred);
+    }
+    auto clearingSymbol() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingSymbol != 0;};
+        return OptionalByUnaryPredRef<ClearingSymbol, decltype(pred)>(clearingSize().cend(), pred);
     }
     auto clearingOptData() {
-        auto pred = [this](){auto& p=bit12(); return p && p.value() & OrderAckBit12::ClearingOptionalData != 0;};
-        return OptionalByUnaryPredRef<ClearingOptionalData, decltype(pred)>(ClearingOptionalData().end(), pred);
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingOptionalData != 0;};
+        return OptionalByUnaryPredRef<ClearingOptionalData, decltype(pred)>(clearingSymbol().end(), pred);
+    }
+    auto clearingOptData() const {
+        auto pred = [this](){auto p=bit12(); return p && p.value() & OrderAckBit12::ClearingOptionalData != 0;};
+        return OptionalByUnaryPredRef<ClearingOptionalData, decltype(pred)>(clearingSymbol().cend(), pred);
     }
     auto cumQty() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::CumQty != 0;};
-        return OptionalByUnaryPredRef<CumQty, decltype(pred)>(CumQty().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::CumQty != 0;};
+        return OptionalByUnaryPredRef<CumQty, decltype(pred)>(clearingOptData().end(), pred);
+    }
+    auto cumQty() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::CumQty != 0;};
+        return OptionalByUnaryPredRef<CumQty, decltype(pred)>(clearingOptData().cend(), pred);
     }
     auto dayOrderQty() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::DayOrderQty != 0;};
-        return OptionalByUnaryPredRef<DayOrderQty, decltype(pred)>(DayOrderQty().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DayOrderQty != 0;};
+        return OptionalByUnaryPredRef<DayOrderQty, decltype(pred)>(cumQty().end(), pred);
+    }
+    auto dayOrderQty() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DayOrderQty != 0;};
+        return OptionalByUnaryPredRef<DayOrderQty, decltype(pred)>(cumQty().cend(), pred);
     }
     auto dayCumQty() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::DayCumQty != 0;};
-        return OptionalByUnaryPredRef<DayCumQty, decltype(pred)>(DayCumQty().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DayCumQty != 0;};
+        return OptionalByUnaryPredRef<DayCumQty, decltype(pred)>(dayOrderQty().end(), pred);
+    }
+    auto dayCumQty() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DayCumQty != 0;};
+        return OptionalByUnaryPredRef<DayCumQty, decltype(pred)>(dayOrderQty().cend(), pred);
     }
     auto avgPx() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::AvgPx != 0;};
-        return OptionalByUnaryPredRef<AvgPx, decltype(pred)>(AvgPx().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::AvgPx != 0;};
+        return OptionalByUnaryPredRef<AvgPx, decltype(pred)>(dayCumQty().end(), pred);
+    }
+    auto avgPx() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::AvgPx != 0;};
+        return OptionalByUnaryPredRef<AvgPx, decltype(pred)>(dayCumQty().cend(), pred);
     }
     auto dayAvgPx() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::DayAvgPx != 0;};
-        return OptionalByUnaryPredRef<DayAvgPx, decltype(pred)>(DayAvgPx().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DayAvgPx != 0;};
+        return OptionalByUnaryPredRef<DayAvgPx, decltype(pred)>(avgPx().end(), pred);
+    }
+    auto dayAvgPx() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DayAvgPx != 0;};
+        return OptionalByUnaryPredRef<DayAvgPx, decltype(pred)>(avgPx().cend(), pred);
     }
     auto pendingStatus() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::PendingStatus != 0;};
-        return OptionalByUnaryPredRef<PendingStatus, decltype(pred)>(PendingStatus().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::PendingStatus != 0;};
+        return OptionalByUnaryPredRef<PendingStatus, decltype(pred)>(dayAvgPx().end(), pred);
+    }
+    auto pendingStatus() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::PendingStatus != 0;};
+        return OptionalByUnaryPredRef<PendingStatus, decltype(pred)>(dayAvgPx().cend(), pred);
     }
     auto drillthruProtection() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::DrillThruProtection != 0;};
-        return OptionalByUnaryPredRef<DrillThruProtection, decltype(pred)>(DrillThruProtection().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DrillThruProtection != 0;};
+        return OptionalByUnaryPredRef<DrillThruProtection, decltype(pred)>(pendingStatus().end(), pred);
+    }
+    auto drillthruProtection() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::DrillThruProtection != 0;};
+        return OptionalByUnaryPredRef<DrillThruProtection, decltype(pred)>(pendingStatus().cend(), pred);
     }
     auto multilegRptType() {
-        auto pred = [this](){auto& p=bit13(); return p && p.value() & OrderAckBit13::MultilegReportingType != 0;};
-        return OptionalByUnaryPredRef<MultilegReportingType, decltype(pred)>(MultilegReportingType().end(), pred);
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::MultilegReportingType != 0;};
+        return OptionalByUnaryPredRef<MultilegReportingType, decltype(pred)>(drillthruProtection().end(), pred);
+    }
+    auto multilegRptType() const {
+        auto pred = [this](){auto p=bit13(); return p && p.value() & OrderAckBit13::MultilegReportingType != 0;};
+        return OptionalByUnaryPredRef<MultilegReportingType, decltype(pred)>(drillthruProtection().cend(), pred);
     }
     auto legCFICode() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::LegCFICode != 0;};
-        return OptionalByUnaryPredRef<LegCFICode, decltype(pred)>(LegCFICode().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::LegCFICode != 0;};
+        return OptionalByUnaryPredRef<LegCFICode, decltype(pred)>(multilegRptType().end(), pred);
+    }
+    auto legCFICode() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::LegCFICode != 0;};
+        return OptionalByUnaryPredRef<LegCFICode, decltype(pred)>(multilegRptType().cend(), pred);
     }
     auto legMaturityDate() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::LegMaturityDate != 0;};
-        return OptionalByUnaryPredRef<LegMaturityDate, decltype(pred)>(LegMaturityDate().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::LegMaturityDate != 0;};
+        return OptionalByUnaryPredRef<LegMaturityDate, decltype(pred)>(legCFICode().end(), pred);
+    }
+    auto legMaturityDate() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::LegMaturityDate != 0;};
+        return OptionalByUnaryPredRef<LegMaturityDate, decltype(pred)>(legCFICode().cend(), pred);
     }
     auto legStrikePx() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::LegStrikePrice != 0;};
-        return OptionalByUnaryPredRef<LegStrikePrice, decltype(pred)>(LegStrikePrice().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::LegStrikePrice != 0;};
+        return OptionalByUnaryPredRef<LegStrikePrice, decltype(pred)>(legMaturityDate().end(), pred);
+    }
+    auto legStrikePx() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::LegStrikePrice != 0;};
+        return OptionalByUnaryPredRef<LegStrikePrice, decltype(pred)>(legMaturityDate().cend(), pred);
     }
     auto quoteRoomID() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::QuoteRoomID != 0;};
-        return OptionalByUnaryPredRef<QuoteRoomID, decltype(pred)>(QuoteRoomID().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::QuoteRoomID != 0;};
+        return OptionalByUnaryPredRef<QuoteRoomID, decltype(pred)>(legStrikePx().end(), pred);
+    }
+    auto quoteRoomID() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::QuoteRoomID != 0;};
+        return OptionalByUnaryPredRef<QuoteRoomID, decltype(pred)>(legStrikePx().cend(), pred);
     }
     auto secExecID() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::SecondaryExecID != 0;};
-        return OptionalByUnaryPredRef<SecondaryExecID, decltype(pred)>(SecondaryExecID().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::SecondaryExecID != 0;};
+        return OptionalByUnaryPredRef<SecondaryExecID, decltype(pred)>(quoteRoomID().end(), pred);
+    }
+    auto secExecID() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::SecondaryExecID != 0;};
+        return OptionalByUnaryPredRef<SecondaryExecID, decltype(pred)>(quoteRoomID().cend(), pred);
     }
     auto userRequestID() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::UserRequestID != 0;};
-        return OptionalByUnaryPredRef<UserRequestID, decltype(pred)>(UserRequestID().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::UserRequestID != 0;};
+        return OptionalByUnaryPredRef<UserRequestID, decltype(pred)>(secExecID().end(), pred);
+    }
+    auto userRequestID() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::UserRequestID != 0;};
+        return OptionalByUnaryPredRef<UserRequestID, decltype(pred)>(secExecID().cend(), pred);
     }
     auto username() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::Username != 0;};
-        return OptionalByUnaryPredRef<UserName, decltype(pred)>(Username().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::Username != 0;};
+        return OptionalByUnaryPredRef<UserName, decltype(pred)>(userRequestID().end(), pred);
+    }
+    auto username() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::Username != 0;};
+        return OptionalByUnaryPredRef<UserName, decltype(pred)>(userRequestID().cend(), pred);
     }
     auto userStatus() {
-        auto pred = [this](){auto& p=bit14(); return p && p.value() & OrderAckBit14::UserStatus != 0;};
-        return OptionalByUnaryPredRef<UserStatus, decltype(pred)>(UserStatus().end(), pred);
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::UserStatus != 0;};
+        return OptionalByUnaryPredRef<UserStatus, decltype(pred)>(username().end(), pred);
+    }
+    auto userStatus() const {
+        auto pred = [this](){auto p=bit14(); return p && p.value() & OrderAckBit14::UserStatus != 0;};
+        return OptionalByUnaryPredRef<UserStatus, decltype(pred)>(username().cend(), pred);
     }
     auto tradeRptInd() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::TradeReportingIndicator != 0;};
-        return OptionalByUnaryPredRef<TradeReportingIndicator, decltype(pred)>(TradeReportingIndicator().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::TradeReportingIndicator != 0;};
+        return OptionalByUnaryPredRef<TradeReportingIndicator, decltype(pred)>(userStatus().end(), pred);
+    }
+    auto tradeRptInd() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::TradeReportingIndicator != 0;};
+        return OptionalByUnaryPredRef<TradeReportingIndicator, decltype(pred)>(userStatus().cend(), pred);
     }
     auto equityPartyID() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::EquityPartyID != 0;};
-        return OptionalByUnaryPredRef<EquityPartyID, decltype(pred)>(EquityPartyID().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::EquityPartyID != 0;};
+        return OptionalByUnaryPredRef<EquityPartyID, decltype(pred)>(tradeRptInd().end(), pred);
+    }
+    auto equityPartyID() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::EquityPartyID != 0;};
+        return OptionalByUnaryPredRef<EquityPartyID, decltype(pred)>(tradeRptInd().cend(), pred);
     }
     auto equityNBBOProtect() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::EquityNBBOProtect != 0;};
-        return OptionalByUnaryPredRef<EquityNBBOProtect, decltype(pred)>(EquityNBBOProtect().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::EquityNBBOProtect != 0;};
+        return OptionalByUnaryPredRef<EquityNBBOProtect, decltype(pred)>(equityPartyID().end(), pred);
+    }
+    auto equityNBBOProtect() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::EquityNBBOProtect != 0;};
+        return OptionalByUnaryPredRef<EquityNBBOProtect, decltype(pred)>(equityPartyID().cend(), pred);
     }
     auto massCancelID() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::MassCancelID != 0;};
-        return OptionalByUnaryPredRef<MassCancelID, decltype(pred)>(MassCancelID().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::MassCancelID != 0;};
+        return OptionalByUnaryPredRef<MassCancelID, decltype(pred)>(equityNBBOProtect().end(), pred);
+    }
+    auto massCancelID() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::MassCancelID != 0;};
+        return OptionalByUnaryPredRef<MassCancelID, decltype(pred)>(equityNBBOProtect().cend(), pred);
     }
     auto tradePubInd() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::TradePublishInd != 0;};
-        return OptionalByUnaryPredRef<TradePubnlishIndicator, decltype(pred)>(TradePublishInd().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::TradePublishInd != 0;};
+        return OptionalByUnaryPredRef<TradePubnlishIndicator, decltype(pred)>(massCancelID().end(), pred);
+    }
+    auto tradePubInd() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::TradePublishInd != 0;};
+        return OptionalByUnaryPredRef<TradePubnlishIndicator, decltype(pred)>(massCancelID().cend(), pred);
     }
     auto reportTime() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::ReportTime != 0;};
-        return OptionalByUnaryPredRef<ReportTime, decltype(pred)>(ReportTime().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::ReportTime != 0;};
+        return OptionalByUnaryPredRef<ReportTime, decltype(pred)>(tradePubInd().end(), pred);
+    }
+    auto reportTime() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::ReportTime != 0;};
+        return OptionalByUnaryPredRef<ReportTime, decltype(pred)>(tradePubInd().cend(), pred);
     }
     auto legSymbolSfx() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::LegSymbolSfx != 0;};
-        return OptionalByUnaryPredRef<LegSymbolSfx, decltype(pred)>(LegSymbolSfx().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::LegSymbolSfx != 0;};
+        return OptionalByUnaryPredRef<LegSymbolSfx, decltype(pred)>(reportTime().end(), pred);
+    }
+    auto legSymbolSfx() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::LegSymbolSfx != 0;};
+        return OptionalByUnaryPredRef<LegSymbolSfx, decltype(pred)>(reportTime().cend(), pred);
     }
     auto clientidAttr() {
-        auto pred = [this](){auto& p=bit15(); return p && p.value() & OrderAckBit15::ClientIDAttr != 0;};
-        return OptionalByUnaryPredRef<ClientIDAttr, decltype(pred)>(ClientIDAttr().end(), pred);
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::ClientIDAttr != 0;};
+        return OptionalByUnaryPredRef<ClientIDAttr, decltype(pred)>(legSymbolSfx().end(), pred);
+    }
+    auto clientidAttr() const {
+        auto pred = [this](){auto p=bit15(); return p && p.value() & OrderAckBit15::ClientIDAttr != 0;};
+        return OptionalByUnaryPredRef<ClientIDAttr, decltype(pred)>(legSymbolSfx().cend(), pred);
     }
     auto freqTraderID() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::FrequentTraderID != 0;};
-        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(FrequentTraderID().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::FrequentTraderID != 0;};
+        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(clientidAttr().end(), pred);
+    }
+    auto freqTraderID() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::FrequentTraderID != 0;};
+        return OptionalByUnaryPredRef<FrequentTraderID, decltype(pred)>(clientidAttr().cend(), pred);
     }
     auto sessEligibility() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::SessionEligibility != 0;};
-        return OptionalByUnaryPredRef<SessionEligibility, decltype(pred)>(SessionEligibility().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::SessionEligibility != 0;};
+        return OptionalByUnaryPredRef<SessionEligibility, decltype(pred)>(freqTraderID().end(), pred);
+    }
+    auto sessEligibility() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::SessionEligibility != 0;};
+        return OptionalByUnaryPredRef<SessionEligibility, decltype(pred)>(freqTraderID().cend(), pred);
     }
     auto comboOrder() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::ComboOrder != 0;};
-        return OptionalByUnaryPredRef<ComboOrder, decltype(pred)>(ComboOrder().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::ComboOrder != 0;};
+        return OptionalByUnaryPredRef<ComboOrder, decltype(pred)>(sessEligibility().end(), pred);
+    }
+    auto comboOrder() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::ComboOrder != 0;};
+        return OptionalByUnaryPredRef<ComboOrder, decltype(pred)>(sessEligibility().cend(), pred);
     }
     auto compression() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::Compression != 0;};
-        return OptionalByUnaryPredRef<Compression, decltype(pred)>(Compression().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::Compression != 0;};
+        return OptionalByUnaryPredRef<Compression, decltype(pred)>(comboOrder().end(), pred);
+    }
+    auto compression() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::Compression != 0;};
+        return OptionalByUnaryPredRef<Compression, decltype(pred)>(comboOrder().cend(), pred);
     }
     auto floorDest() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::FloorDestination != 0;};
-        return OptionalByUnaryPredRef<FloorDestination, decltype(pred)>(FloorDestination().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::FloorDestination != 0;};
+        return OptionalByUnaryPredRef<FloorDestination, decltype(pred)>(compression().end(), pred);
+    }
+    auto floorDest() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::FloorDestination != 0;};
+        return OptionalByUnaryPredRef<FloorDestination, decltype(pred)>(compression().cend(), pred);
     }
     auto floorRoutingInst() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::FloorRoutingInst != 0;};
-        return OptionalByUnaryPredRef<FloorRoutingInst, decltype(pred)>(FloorRoutingInst().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::FloorRoutingInst != 0;};
+        return OptionalByUnaryPredRef<FloorRoutingInst, decltype(pred)>(floorDest().end(), pred);
+    }
+    auto floorRoutingInst() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::FloorRoutingInst != 0;};
+        return OptionalByUnaryPredRef<FloorRoutingInst, decltype(pred)>(floorDest().cend(), pred);
     }
     auto multiClassSpread() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::MultiClassSpread != 0;};
-        return OptionalByUnaryPredRef<MultiClassSpread, decltype(pred)>(MultiClassSpread().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::MultiClassSpread != 0;};
+        return OptionalByUnaryPredRef<MultiClassSpread, decltype(pred)>(floorRoutingInst().end(), pred);
+    }
+    auto multiClassSpread() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::MultiClassSpread != 0;};
+        return OptionalByUnaryPredRef<MultiClassSpread, decltype(pred)>(floorRoutingInst().cend(), pred);
     }
     auto ordOrig() {
-        auto pred = [this](){auto& p=bit16(); return p && p.value() & OrderAckBit16::OrderOrigin != 0;};
-        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(OrderOrigin().end(), pred);
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::OrderOrigin != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(multiClassSpread().end(), pred);
+    }
+    auto ordOrig() const {
+        auto pred = [this](){auto p=bit16(); return p && p.value() & OrderAckBit16::OrderOrigin != 0;};
+        return OptionalByUnaryPredRef<OrderOrigination, decltype(pred)>(multiClassSpread().cend(), pred);
     }
     auto priceType() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::PriceType != 0;};
-        return OptionalByUnaryPredRef<PriceType, decltype(pred)>(PriceType().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::PriceType != 0;};
+        return OptionalByUnaryPredRef<PriceType, decltype(pred)>(ordOrig().end(), pred);
+    }
+    auto priceType() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::PriceType != 0;};
+        return OptionalByUnaryPredRef<PriceType, decltype(pred)>(ordOrig().cend(), pred);
     }
     auto strategyID() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::StrategyID != 0;};
-        return OptionalByUnaryPredRef<StrategyID, decltype(pred)>(StrategyID().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::StrategyID != 0;};
+        return OptionalByUnaryPredRef<StrategyID, decltype(pred)>(priceType().end(), pred);
+    }
+    auto strategyID() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::StrategyID != 0;};
+        return OptionalByUnaryPredRef<StrategyID, decltype(pred)>(priceType().cend(), pred);
     }
     auto tradingSessID() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::TradingSessionID != 0;};
-        return OptionalByUnaryPredRef<TradingSessionID, decltype(pred)>(TradingSessionID().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::TradingSessionID != 0;};
+        return OptionalByUnaryPredRef<TradingSessionID, decltype(pred)>(strategyID().end(), pred);
+    }
+    auto tradingSessID() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::TradingSessionID != 0;};
+        return OptionalByUnaryPredRef<TradingSessionID, decltype(pred)>(strategyID().cend(), pred);
     }
     auto tradeThroughAlertType() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::TradeThroughAlertType != 0;};
-        return OptionalByUnaryPredRef<TradeThroughAlertType, decltype(pred)>(TradeThroughAlertType().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::TradeThroughAlertType != 0;};
+        return OptionalByUnaryPredRef<TradeThroughAlertType, decltype(pred)>(tradingSessID().end(), pred);
+    }
+    auto tradeThroughAlertType() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::TradeThroughAlertType != 0;};
+        return OptionalByUnaryPredRef<TradeThroughAlertType, decltype(pred)>(tradingSessID().cend(), pred);
     }
     auto senderLocID() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::SenderLocationID != 0;};
-        return OptionalByUnaryPredRef<SenderLocationID, decltype(pred)>(SenderLocationID().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::SenderLocationID != 0;};
+        return OptionalByUnaryPredRef<SenderLocationID, decltype(pred)>(tradeThroughAlertType().end(), pred);
+    }
+    auto senderLocID() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::SenderLocationID != 0;};
+        return OptionalByUnaryPredRef<SenderLocationID, decltype(pred)>(tradeThroughAlertType().cend(), pred);
     }
     auto floorTraderAcronym() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::FloorTraderAcronym != 0;};
-        return OptionalByUnaryPredRef<FloorTraderAcronym, decltype(pred)>(FloorTraderAcronym().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::FloorTraderAcronym != 0;};
+        return OptionalByUnaryPredRef<FloorTraderAcronym, decltype(pred)>(senderLocID().end(), pred);
+    }
+    auto floorTraderAcronym() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::FloorTraderAcronym != 0;};
+        return OptionalByUnaryPredRef<FloorTraderAcronym, decltype(pred)>(senderLocID().cend(), pred);
     }
     auto execlegCFICode() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::ExecLegCFICode != 0;};
-        return OptionalByUnaryPredRef<ExecLegCFICode, decltype(pred)>(ExecLegCFICode().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::ExecLegCFICode != 0;};
+        return OptionalByUnaryPredRef<ExecLegCFICode, decltype(pred)>(floorTraderAcronym().end(), pred);
+    }
+    auto execlegCFICode() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::ExecLegCFICode != 0;};
+        return OptionalByUnaryPredRef<ExecLegCFICode, decltype(pred)>(floorTraderAcronym().cend(), pred);
     }
     auto custHandlingInst() {
-        auto pred = [this](){auto& p=bit17(); return p && p.value() & OrderAckBit17::CustOrderHandlingInst != 0;};
-        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(CustOrderHandlingInst().end(), pred);
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::CustOrderHandlingInst != 0;};
+        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(execlegCFICode().end(), pred);
+    }
+    auto custHandlingInst() const {
+        auto pred = [this](){auto p=bit17(); return p && p.value() & OrderAckBit17::CustOrderHandlingInst != 0;};
+        return OptionalByUnaryPredRef<CustOrderHandlingInst, decltype(pred)>(execlegCFICode().cend(), pred);
     }
     auto accountType() {
-        auto pred = [this](){auto& p=bit18(); return p && p.value() & OrderAckBit18::AccountType != 0;};
-        return OptionalByUnaryPredRef<AccountType, decltype(pred)>(AccountType().end(), pred);
+        auto pred = [this](){auto p=bit18(); return p && p.value() & OrderAckBit18::AccountType != 0;};
+        return OptionalByUnaryPredRef<AccountType, decltype(pred)>(custHandlingInst().end(), pred);
+    }
+    auto accountType() const {
+        auto pred = [this](){auto p=bit18(); return p && p.value() & OrderAckBit18::AccountType != 0;};
+        return OptionalByUnaryPredRef<AccountType, decltype(pred)>(custHandlingInst().cend(), pred);
     }
     auto crossInit() {
-        auto pred = [this](){auto& p=bit18(); return p && p.value() & OrderAckBit18::CrossInitiator != 0;};
-        return OptionalByUnaryPredRef<CrossInitiator, decltype(pred)>(CrossInitiator().end(), pred);
+        auto pred = [this](){auto p=bit18(); return p && p.value() & OrderAckBit18::CrossInitiator != 0;};
+        return OptionalByUnaryPredRef<CrossInitiator, decltype(pred)>(accountType().end(), pred);
+    }
+    auto crossInit() const {
+        auto pred = [this](){auto p=bit18(); return p && p.value() & OrderAckBit18::CrossInitiator != 0;};
+        return OptionalByUnaryPredRef<CrossInitiator, decltype(pred)>(accountType().cend(), pred);
     }
     auto subReason() {
-        auto pred = [this](){auto& p=bit18(); return p && p.value() & OrderAckBit18::Subreason != 0;};
-        return OptionalByUnaryPredRef<Subreason, decltype(pred)>(Subreason().end(), pred);
+        auto pred = [this](){auto p=bit18(); return p && p.value() & OrderAckBit18::Subreason != 0;};
+        return OptionalByUnaryPredRef<Subreason, decltype(pred)>(crossInit().end(), pred);
+    }
+    auto subReason() const {
+        auto pred = [this](){auto p=bit18(); return p && p.value() & OrderAckBit18::Subreason != 0;};
+        return OptionalByUnaryPredRef<Subreason, decltype(pred)>(crossInit().cend(), pred);
     }
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(OrderRespOptGrp);}
-    size_t size() const {return subReason().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(OrderRespOptGrp);}
+    size_t size() {return subReason().end()-begin();}
+    size_t size() const {return subReason().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const OrderRespOptGrp*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderRespOptGrp& msg) {
+    os << "OrderRespOptGrp{";
     os << "numReturnBitFields=" << msg.numReturnBitFields << ";"
        << "bit1=" << const_cast<OrderRespOptGrp&>(msg).bit1() << ";"
        << "bit2=" << const_cast<OrderRespOptGrp&>(msg).bit2() << ";"
@@ -5359,21 +6418,25 @@ struct OrderAckV2 : Header {
     u64 transactionTime;
     str20 clOrdID;
     u8 reserved;
-    OrderRespOptGrp optGrp;
+    FloatingRef<OrderRespOptGrp> optGrp() {return FloatingRef<OrderRespOptGrp>(begin() + fixed_size());}
+    FloatingRef<OrderRespOptGrp> optGrp() const {return FloatingRef<OrderRespOptGrp>(cbegin() + fixed_size());}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(OrderAckV2);}
-    size_t size() const {return optGrp().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(OrderAckV2);}
+    size_t size() {return optGrp().end()-begin();}
+    size_t size() const {return optGrp().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const OrderAckV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderAckV2& msg) {
+    os << "OrderAckV2{";
     os << static_cast<const Header&>(msg);
     os << "transactionTime=" << msg.transactionTime << ";"
        << "clOrdID=" << msg.clOrdID << ";"
        << "reserved=" << msg.reserved << ";"
-       << "optGrp=" << msg.optGrp << ";"
+       << "optGrp=" << const_cast<OrderAckV2&>(msg).optGrp() << ";"
        << "}";
     return os;
 }
@@ -5407,8 +6470,7 @@ struct ReasonCode {
         OrderReceivedByCboeDuringReplay = 'y',
         RegQuoteDifferentToRoomQuote = '1',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "ReasonCode";}
+    static constexpr const char* name() {return "ReasonCode";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('D'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('J'), static_cast<char>('K'), static_cast<char>('L'), static_cast<char>('M'), static_cast<char>('N'), static_cast<char>('O'), static_cast<char>('P'), static_cast<char>('Q'), static_cast<char>('U'), static_cast<char>('Y'), static_cast<char>('W'), static_cast<char>('X'), static_cast<char>('Y'), static_cast<char>('Z'), static_cast<char>('j'), static_cast<char>('m'), static_cast<char>('o'), static_cast<char>('s'), static_cast<char>('x'), static_cast<char>('y'), static_cast<char>('1'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('D'), static_cast<char>('H'), static_cast<char>('I'), static_cast<char>('J'), static_cast<char>('K'), static_cast<char>('L'), static_cast<char>('M'), static_cast<char>('N'), static_cast<char>('O'), static_cast<char>('P'), static_cast<char>('Q'), static_cast<char>('U'), static_cast<char>('Y'), static_cast<char>('W'), static_cast<char>('X'), static_cast<char>('Y'), static_cast<char>('Z'), static_cast<char>('j'), static_cast<char>('m'), static_cast<char>('o'), static_cast<char>('s'), static_cast<char>('x'), static_cast<char>('y'), static_cast<char>('1'), });
     constexpr ReasonCode():value_{max_value} {}
@@ -5467,26 +6529,30 @@ inline ostreamT& operator<<(ostreamT& os, const ReasonCode& v){
 struct OrderRejectedV2 : Header {
     u64 transTime;
     str20 clOrdID;
-    ReasonCode code{ReasonCode::null};
+    ReasonCode code{ReasonCode::Admin};
     str60 text;
     u8 reserved;
-    OrderRespOptGrp optGrp;
+    FloatingRef<OrderRespOptGrp> optGrp() {return FloatingRef<OrderRespOptGrp>(begin() + fixed_size());}
+    FloatingRef<OrderRespOptGrp> optGrp() const {return FloatingRef<OrderRespOptGrp>(cbegin() + fixed_size());}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(OrderRejectedV2);}
-    size_t size() const {return optGrp().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(OrderRejectedV2);}
+    size_t size() {return optGrp().end()-begin();}
+    size_t size() const {return optGrp().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const OrderRejectedV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderRejectedV2& msg) {
+    os << "OrderRejectedV2{";
     os << static_cast<const Header&>(msg);
     os << "transTime=" << msg.transTime << ";"
        << "clOrdID=" << msg.clOrdID << ";"
        << "code=" << msg.code << ";"
        << "text=" << msg.text << ";"
        << "reserved=" << msg.reserved << ";"
-       << "optGrp=" << msg.optGrp << ";"
+       << "optGrp=" << const_cast<OrderRejectedV2&>(msg).optGrp() << ";"
        << "}";
     return os;
 }
@@ -5495,26 +6561,30 @@ inline std::ostream& operator<<(std::ostream& os, const OrderRejectedV2& msg) {
 struct OrderCancelledV2 : Header {
     u64 transTime;
     str20 clOrdID;
-    ReasonCode code{ReasonCode::null};
+    ReasonCode code{ReasonCode::Admin};
     str60 text;
     u8 reserved;
-    OrderRespOptGrp optGrp;
+    FloatingRef<OrderRespOptGrp> optGrp() {return FloatingRef<OrderRespOptGrp>(begin() + fixed_size());}
+    FloatingRef<OrderRespOptGrp> optGrp() const {return FloatingRef<OrderRespOptGrp>(cbegin() + fixed_size());}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(OrderCancelledV2);}
-    size_t size() const {return optGrp().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(OrderCancelledV2);}
+    size_t size() {return optGrp().end()-begin();}
+    size_t size() const {return optGrp().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const OrderCancelledV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderCancelledV2& msg) {
+    os << "OrderCancelledV2{";
     os << static_cast<const Header&>(msg);
     os << "transTime=" << msg.transTime << ";"
        << "clOrdID=" << msg.clOrdID << ";"
        << "code=" << msg.code << ";"
        << "text=" << msg.text << ";"
        << "reserved=" << msg.reserved << ";"
-       << "optGrp=" << msg.optGrp << ";"
+       << "optGrp=" << const_cast<OrderCancelledV2&>(msg).optGrp() << ";"
        << "}";
     return os;
 }
@@ -5525,22 +6595,26 @@ struct OrderModifiedV2 : Header {
     str20 clOrdID;
     u64 orderID;
     u8 reserved;
-    OrderRespOptGrp optGrp;
+    FloatingRef<OrderRespOptGrp> optGrp() {return FloatingRef<OrderRespOptGrp>(begin() + fixed_size());}
+    FloatingRef<OrderRespOptGrp> optGrp() const {return FloatingRef<OrderRespOptGrp>(cbegin() + fixed_size());}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(OrderModifiedV2);}
-    size_t size() const {return optGrp().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(OrderModifiedV2);}
+    size_t size() {return optGrp().end()-begin();}
+    size_t size() const {return optGrp().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const OrderModifiedV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderModifiedV2& msg) {
+    os << "OrderModifiedV2{";
     os << static_cast<const Header&>(msg);
     os << "transTime=" << msg.transTime << ";"
        << "clOrdID=" << msg.clOrdID << ";"
        << "orderID=" << msg.orderID << ";"
        << "reserved=" << msg.reserved << ";"
-       << "optGrp=" << msg.optGrp << ";"
+       << "optGrp=" << const_cast<OrderModifiedV2&>(msg).optGrp() << ";"
        << "}";
     return os;
 }
@@ -5553,8 +6627,7 @@ struct LiqIndicator {
         Routed = 'X',
         Auction = 'C',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "LiqIndicator";}
+    static constexpr const char* name() {return "LiqIndicator";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('R'), static_cast<char>('X'), static_cast<char>('C'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('R'), static_cast<char>('X'), static_cast<char>('C'), });
     constexpr LiqIndicator():value_{max_value} {}
@@ -5596,20 +6669,24 @@ struct OrderExecutionV2 : Header {
     u32 lastShares;
     Price4 lastPx;
     u32 leavesQty;
-    LiqIndicator liqInd{LiqIndicator::null};
-    SubLiquidityIndicator subLiqInd{SubLiquidityIndicator::null};
+    LiqIndicator liqInd{LiqIndicator::Added};
+    SubLiquidityIndicator subLiqInd{SubLiquidityIndicator::NO};
     str4 contraBroker;
     u8 reserved;
-    OrderRespOptGrp optGrp;
+    FloatingRef<OrderRespOptGrp> optGrp() {return FloatingRef<OrderRespOptGrp>(begin() + fixed_size());}
+    FloatingRef<OrderRespOptGrp> optGrp() const {return FloatingRef<OrderRespOptGrp>(cbegin() + fixed_size());}
     char* begin() {return reinterpret_cast<char*>(this);}
     const char* cbegin() const {return reinterpret_cast<const char*>(this);}
     char* end() {return begin()+size();}
     const char* cend() const {return cbegin()+size();}
-    size_t fixed_size() const {return sizeof(OrderExecutionV2);}
-    size_t size() const {return optGrp().end()-begin();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(OrderExecutionV2);}
+    size_t size() {return optGrp().end()-begin();}
+    size_t size() const {return optGrp().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const OrderExecutionV2*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const OrderExecutionV2& msg) {
+    os << "OrderExecutionV2{";
     os << static_cast<const Header&>(msg);
     os << "transTime=" << msg.transTime << ";"
        << "clOrdID=" << msg.clOrdID << ";"
@@ -5621,7 +6698,7 @@ inline std::ostream& operator<<(std::ostream& os, const OrderExecutionV2& msg) {
        << "subLiqInd=" << msg.subLiqInd << ";"
        << "contraBroker=" << msg.contraBroker << ";"
        << "reserved=" << msg.reserved << ";"
-       << "optGrp=" << msg.optGrp << ";"
+       << "optGrp=" << const_cast<OrderExecutionV2&>(msg).optGrp() << ";"
        << "}";
     return os;
 }

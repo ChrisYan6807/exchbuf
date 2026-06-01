@@ -456,7 +456,7 @@
         <ref role="bScPz" node="10wERX4rXpv" resolve="U16" />
       </node>
       <node concept="2gaMiM" id="10wERX4rXqO" role="36JId$">
-        <property role="TrG5h" value="size" />
+        <property role="TrG5h" value="sz" />
         <ref role="bScPz" node="10wERX4rXpt" resolve="U8" />
       </node>
       <node concept="awP_h" id="7GtGgPUKRWN" role="36JId$">
@@ -467,12 +467,12 @@
       <node concept="3yYcDq" id="7GtGgPUUveD" role="36JId$">
         <property role="3yYcDv" value="0" />
         <property role="TrG5h" value="ss" />
-        <ref role="3yYcDp" node="10wERX4rXqO" resolve="size" />
+        <ref role="3yYcDp" node="10wERX4rXqO" resolve="sz" />
       </node>
       <node concept="2gaMiJ" id="10wERX4rXqP" role="36JId$">
         <property role="TrG5h" value="grp" />
         <ref role="bScPz" node="10wERX4rXqo" resolve="RptGrp" />
-        <ref role="3Pf6aa" node="10wERX4rXqO" resolve="size" />
+        <ref role="3Pf6aa" node="10wERX4rXqO" resolve="sz" />
       </node>
     </node>
   </node>

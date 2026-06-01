@@ -33,7 +33,7 @@ public final class EBFixedLenghString__BehaviorDescriptor extends BaseBHDescript
   }
 
   /*package*/ static String eb_string_id7cjtpqhs3YN(@NotNull SNode __thisNode__) {
-    return String.format("FixedLengthString [ length=%s, padding=%s, left_padding=%s ]", SPropertyOperations.getInteger(__thisNode__, PROPS.length$ZIZR), SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT), SPropertyOperations.getBoolean(__thisNode__, PROPS.right_padded$eGux));
+    return String.format("FixedLengthString [ length=%s, padding=%s, right_padded=%s ]", SPropertyOperations.getInteger(__thisNode__, PROPS.length$ZIZR), SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT), SPropertyOperations.getBoolean(__thisNode__, PROPS.right_padded$eGux));
   }
   /*package*/ static String getPadding_idzaARBRtBbI(@NotNull SNode __thisNode__) {
     return SPropertyOperations.getString(__thisNode__, PROPS.padding$ZJtT);

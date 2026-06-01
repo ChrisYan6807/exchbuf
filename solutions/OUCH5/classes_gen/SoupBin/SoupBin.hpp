@@ -4,15 +4,16 @@
 
 namespace SoupBin {
 using namespace EB::common;
+using EB::common::operator<<;
 
 using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using i8 = LittleEndian<char, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0>;
-using u16 = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0>;
-using u32 = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0>;
+using i8 = LittleEndian<char, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8>;
+using u16 = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0_u16>;
+using u32 = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0_u32>;
 using string6 = FixedLengthString<6, ' ', true>;
 using string10 = FixedLengthString<10, ' ', true>;
 using string10lp = FixedLengthString<10, ' ', false>;
-using string20lp = FixedLengthString<10, ' ', false>;
+using string20lp = FixedLengthString<20, ' ', false>;
 
 using UserRefNum = u32;
 using Quantity = u32;
@@ -34,8 +35,7 @@ struct PktType {
         SeqData = 'S',
         UnSeqData = 'U',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "PktType";}
+    static constexpr const char* name() {return "PktType";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('+'), static_cast<char>('L'), static_cast<char>('A'), static_cast<char>('J'), static_cast<char>('O'), static_cast<char>('H'), static_cast<char>('R'), static_cast<char>('Z'), static_cast<char>('S'), static_cast<char>('U'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('+'), static_cast<char>('L'), static_cast<char>('A'), static_cast<char>('J'), static_cast<char>('O'), static_cast<char>('H'), static_cast<char>('R'), static_cast<char>('Z'), static_cast<char>('S'), static_cast<char>('U'), });
     constexpr PktType():value_{max_value} {}
@@ -50,7 +50,7 @@ struct PktType {
     constexpr void set(Enum v) {value_ = v;}
     constexpr PktType& operator=(Enum v) {value_ == v;return *this;}
     constexpr PktType& operator=(const PktType& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::Debug: return "Debug";
@@ -78,16 +78,19 @@ inline ostreamT& operator<<(ostreamT& os, const PktType& v){
 #pragma pack(1)
 struct Header {
     u16 pkgLength;
-    PktType pkgType{PktType::null};
+    PktType pkgType{PktType::Debug};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Header);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(Header);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const Header*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Header& msg) {
+    os << "Header{";
     os << "pkgLength=" << msg.pkgLength << ";"
        << "pkgType=" << msg.pkgType << ";"
        << "}";
@@ -96,19 +99,23 @@ inline std::ostream& operator<<(std::ostream& os, const Header& msg) {
 
 #pragma pack(1)
 struct Debug : Header {
-    std::string_view text() {return std::string_view(begin()+size(), pkgLength.raw_value()-1);}
-    std::string_view text() const {return std::string_view(cbegin()+size(), pkgLength.raw_value()-1);}
+    std::string_view text() {return std::string_view(begin()+fixed_size(), pkgLength.raw_value()-1);}
+    std::string_view text() const {return std::string_view(cbegin()+fixed_size(), pkgLength.raw_value()-1);}
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(Debug);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(Debug);}
+    size_t size() {return text().end()-begin();}
+    size_t size() const {return text().cend()-cbegin();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const Debug*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const Debug& msg) {
+    os << "Debug{";
     os << static_cast<const Header&>(msg);
-    os << "}";
+    os << "text=" << const_cast<Debug&>(msg).text() << ";"
+       << "}";
     return os;
 }
 
@@ -117,14 +124,17 @@ struct LoginAccepted : Header {
     string10 session;
     string20lp seqNum;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LoginAccepted);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(LoginAccepted);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const LoginAccepted*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LoginAccepted& msg) {
+    os << "LoginAccepted{";
     os << static_cast<const Header&>(msg);
     os << "session=" << msg.session << ";"
        << "seqNum=" << msg.seqNum << ";"
@@ -138,8 +148,7 @@ struct LoginRejectCode {
         NotAuthorized = 'A',
         NotAvailable = 'S',
     };
-    static constexpr size_t size = 1;
-    static constexpr char* name() {return "LoginRejectCode";}
+    static constexpr const char* name() {return "LoginRejectCode";}
     static constexpr value_type min_value = std::min<value_type>({static_cast<char>('A'), static_cast<char>('S'), });
     static constexpr value_type max_value = std::max<value_type>({static_cast<char>('A'), static_cast<char>('S'), });
     constexpr LoginRejectCode():value_{max_value} {}
@@ -154,7 +163,7 @@ struct LoginRejectCode {
     constexpr void set(Enum v) {value_ = v;}
     constexpr LoginRejectCode& operator=(Enum v) {value_ == v;return *this;}
     constexpr LoginRejectCode& operator=(const LoginRejectCode& rhs) = default;
-    constexpr int length() const {return sizeof(value_);}
+    constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
         switch(value_) {
             case Enum::NotAuthorized: return "NotAuthorized";
@@ -173,16 +182,19 @@ inline ostreamT& operator<<(ostreamT& os, const LoginRejectCode& v){
 
 #pragma pack(1)
 struct LoginRejected : Header {
-    LoginRejectCode code{LoginRejectCode::null};
+    LoginRejectCode code{LoginRejectCode::NotAuthorized};
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LoginRejected);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(LoginRejected);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const LoginRejected*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LoginRejected& msg) {
+    os << "LoginRejected{";
     os << static_cast<const Header&>(msg);
     os << "code=" << msg.code << ";"
        << "}";
@@ -192,45 +204,57 @@ inline std::ostream& operator<<(std::ostream& os, const LoginRejected& msg) {
 #pragma pack(1)
 struct ServerHeartbeat : Header {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ServerHeartbeat);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(ServerHeartbeat);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ServerHeartbeat*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ServerHeartbeat& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "ServerHeartbeat{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 
 #pragma pack(1)
 struct ClientHeartbeat : Header {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(ClientHeartbeat);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(ClientHeartbeat);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const ClientHeartbeat*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const ClientHeartbeat& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "ClientHeartbeat{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 
 #pragma pack(1)
 struct EndOfSession : Header {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(EndOfSession);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(EndOfSession);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const EndOfSession*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const EndOfSession& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "EndOfSession{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 
@@ -241,14 +265,17 @@ struct LoginRequest : Header {
     string10lp session;
     string20lp seqNum;
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LoginRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(LoginRequest);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const LoginRequest*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LoginRequest& msg) {
+    os << "LoginRequest{";
     os << static_cast<const Header&>(msg);
     os << "username=" << msg.username << ";"
        << "password=" << msg.password << ";"
@@ -261,15 +288,19 @@ inline std::ostream& operator<<(std::ostream& os, const LoginRequest& msg) {
 #pragma pack(1)
 struct LogoutRequest : Header {
     char* begin() {return reinterpret_cast<char*>(this);}
-    const char* cbegin() const {return reinterpret_cast<char*>(this);}
-    char* end() {return begin()+length();}
-    const char* cend() const {return begin()+length();}
-    size_t size() const {return sizeof(LogoutRequest);}
-    size_t var_size() const {return size();}
+    const char* cbegin() const {return reinterpret_cast<const char*>(this);}
+    char* end() {return begin()+size();}
+    const char* cend() const {return cbegin()+size();}
+    static constexpr size_t fixed_size() noexcept {return sizeof(LogoutRequest);}
+    size_t size() {return fixed_size();}
+    size_t size() const {return fixed_size();}
+    static size_t wire_size(const char* p) {return reinterpret_cast<const LogoutRequest*>(p)->size();}
 };
 #pragma pack()
 inline std::ostream& operator<<(std::ostream& os, const LogoutRequest& msg) {
-    os << static_cast<const Header&>(msg);os << "}";
+    os << "LogoutRequest{";
+    os << static_cast<const Header&>(msg);
+    os << "}";
     return os;
 }
 

@@ -3,24 +3,24 @@
 
 @cpp inline std::string eti_DerivativesAppVersionID = "14.1";
 @python eti_DerivativesAppVersionID = "14.1"
-primitive CurrencyType = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive ISIN = FixedLengthString [ length=12, padding='\0', left_padding=false ]
+primitive CurrencyType = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive ISIN = FixedLengthString [ length=12, padding='\0', right_padded=false ]
 primitive LocalMktDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
 primitive LocalMonthYearCod = uint32_ebt [ min=0, max=999912, null=0xFFFFFFFF, little_endian=true ]
 primitive PriceType = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive Qty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive SeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive UTCTimestamp = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
-primitive Account = FixedLengthString [ length=2, padding='\0', left_padding=false ]
+primitive Account = FixedLengthString [ length=2, padding='\0', right_padded=false ]
 primitive ActivationDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
 primitive AffectedOrderID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive AffectedOrderRequestID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive AffectedOrigClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive AllocID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive AllocQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive ApplBegMsgID = FixedLengthString [ length=16, padding='\0', left_padding=false ]
+primitive ApplBegMsgID = FixedLengthString [ length=16, padding='\0', right_padded=false ]
 primitive ApplBegSeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
-primitive ApplEndMsgID = FixedLengthString [ length=16, padding='\0', left_padding=false ]
+primitive ApplEndMsgID = FixedLengthString [ length=16, padding='\0', right_padded=false ]
 primitive ApplEndSeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 enum ApplID : uint8_ebt {
   Trade = 1
@@ -37,7 +37,7 @@ enum ApplID : uint8_ebt {
 enum ApplIDStatus : uint32_ebt {
   Outbound_conversion_error = 105
 }
-primitive ApplMsgID = FixedLengthString [ length=16, padding='\0', left_padding=false ]
+primitive ApplMsgID = FixedLengthString [ length=16, padding='\0', right_padded=false ]
 enum ApplResendFlag : uint8_ebt {
   False = 0
   True = 1
@@ -66,19 +66,19 @@ enum ApplUsageQuotes : char_ebt {
   AutoSelect = 'B'
   None = 'N'
 }
-primitive ApplicationSystemName = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive ApplicationSystemVendor = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive ApplicationSystemVersion = FixedLengthString [ length=30, padding='\0', left_padding=false ]
+primitive ApplicationSystemName = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive ApplicationSystemVendor = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive ApplicationSystemVersion = FixedLengthString [ length=30, padding='\0', right_padded=false ]
 primitive AutoApprovalRuleID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 enum BasketAnonymity : uint8_ebt {
   No = 0
   Yes = 1
 }
 primitive BasketExecID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive BasketPartyContraFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
+primitive BasketPartyContraFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
 primitive BasketProfileID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive BasketSideTradeReportID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive BasketTradeReportText = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+primitive BasketSideTradeReportID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive BasketTradeReportText = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 enum BasketTradeReportType : uint8_ebt {
   Submit = 0
   Addendum = 4
@@ -98,7 +98,7 @@ enum BidPxIsLocked : uint8_ebt {
 }
 primitive BidSize = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive BodyLen = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive ChargeID = FixedLengthString [ length=132, padding='\0', left_padding=false ]
+primitive ChargeID = FixedLengthString [ length=132, padding='\0', right_padded=false ]
 enum ChargeIDDisclosureInstruction : uint8_ebt {
   No = 0
   Yes = 1
@@ -107,7 +107,7 @@ primitive CheckSumCorrection = uint16_ebt [ min=0, max=65534, null=0xFFFF, littl
 primitive ClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive ClearingTradePrice = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive ClearingTradeQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive ComplianceText = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+primitive ComplianceText = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 primitive ContractDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
 primitive CrossID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, little_endian=true ]
 enum CrossMatchInstruction : uint8_ebt {
@@ -133,11 +133,11 @@ enum CrossedIndicator : uint8_ebt {
   Cross_rejected = 1
 }
 primitive CumQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive CustOrderHandlingInst = FixedLengthString [ length=1, padding='\0', left_padding=false ]
+primitive CustOrderHandlingInst = FixedLengthString [ length=1, padding='\0', right_padded=false ]
 primitive CxlQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive CxlSize = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive DefaultCstmApplVerID = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive DefaultCstmApplVerSubID = FixedLengthString [ length=5, padding='\0', left_padding=false ]
+primitive DefaultCstmApplVerID = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive DefaultCstmApplVerSubID = FixedLengthString [ length=5, padding='\0', right_padded=false ]
 enum DeleteReason : uint8_ebt {
   No_special_reason = 100
   TAS_Change = 101
@@ -151,7 +151,7 @@ enum DeleteReason : uint8_ebt {
   Amendment_User_Cancelled = 109
 }
 primitive Delta = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive DisplayNameAlias = FixedLengthString [ length=190, padding='\0', left_padding=false ]
+primitive DisplayNameAlias = FixedLengthString [ length=190, padding='\0', right_padded=false ]
 enum EffectOnBasket : uint8_ebt {
   Add_Volume = 1
   Remove_Volume = 2
@@ -160,7 +160,7 @@ primitive EffectiveTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xF
 enum EnableCustomCommodityStrip : uint8_ebt {
   Yes = 1
 }
-primitive EncryptedPassword = FixedLengthString [ length=684, padding='\0', left_padding=false ]
+primitive EncryptedPassword = FixedLengthString [ length=684, padding='\0', right_padded=false ]
 enum EnlightRFQAvgRespRateRanking : uint8_ebt {
   Low = 1
   Medium = 2
@@ -244,11 +244,11 @@ enum ExerciseStyle : uint8_ebt {
 primitive ExpireDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
 primitive ExpireTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive ExposureDuration = int64_ebt [ min=-9223372036854775807, max=9223372036854775807, null=0x8000000000000000, little_endian=true ]
-primitive FIXClOrdID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive FIXEngineName = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive FIXEngineVendor = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive FIXEngineVersion = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive FeeIdntCode = FixedLengthString [ length=15, padding='\0', left_padding=false ]
+primitive FIXClOrdID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive FIXEngineName = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive FIXEngineVendor = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive FIXEngineVersion = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive FeeIdntCode = FixedLengthString [ length=15, padding='\0', right_padded=false ]
 primitive FillExecID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, little_endian=true ]
 enum FillLiquidityInd : uint8_ebt {
   Added_Liquidity = 1
@@ -262,12 +262,12 @@ primitive FillMatchID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, lit
 primitive FillPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive FillQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive FillRefID = uint8_ebt [ min=1, max=100, null=0xFF, little_endian=true ]
-primitive FirmNegotiationID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive FirmTradeID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive FreeText1 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive FreeText2 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive FreeText3 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive FreeText5 = FixedLengthString [ length=132, padding='\0', left_padding=false ]
+primitive FirmNegotiationID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive FirmTradeID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive FreeText1 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive FreeText2 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive FreeText3 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive FreeText5 = FixedLengthString [ length=132, padding='\0', right_padded=false ]
 enum FreeText5DisclosureInstruction : uint8_ebt {
   No = 0
   Yes = 1
@@ -278,7 +278,7 @@ enum GatewayStatus : uint8_ebt {
   Active = 1
 }
 primitive GatewaySubID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive Headline = FixedLengthString [ length=256, padding='\0', left_padding=false ]
+primitive Headline = FixedLengthString [ length=256, padding='\0', right_padded=false ]
 primitive HeartBtInt = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 enum HedgeType : uint8_ebt {
   Duration_Hedge = 0
@@ -310,13 +310,13 @@ enum InstrAttribType : uint8_ebt {
   Swap_Customer_2 = 103
   Cash_Basket_Reference = 104
 }
-primitive InstrAttribValue = FixedLengthString [ length=32, padding='\0', left_padding=false ]
+primitive InstrAttribValue = FixedLengthString [ length=32, padding='\0', right_padded=false ]
 primitive InstrmtMatchSideID = uint8_ebt [ min=0, max=199, null=0xFF, little_endian=true ]
 enum InventoryCheckType : uint8_ebt {
   Do_not_check = 0
   Check = 1
 }
-primitive LastEntityProcessed = FixedLengthString [ length=16, padding='\0', left_padding=false ]
+primitive LastEntityProcessed = FixedLengthString [ length=16, padding='\0', right_padded=false ]
 enum LastFragment : uint8_ebt {
   Not_Last_Message = 0
   Last_Message = 1
@@ -343,7 +343,7 @@ enum LeavesQtyDisclosureInstruction : uint8_ebt {
   No = 0
   Yes = 1
 }
-primitive LegAccount = FixedLengthString [ length=2, padding='\0', left_padding=false ]
+primitive LegAccount = FixedLengthString [ length=2, padding='\0', right_padded=false ]
 primitive LegClearingTradePrice = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive LegExecID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, little_endian=true ]
 enum LegInputSource : uint8_ebt {
@@ -459,7 +459,7 @@ enum MessageEventSource : char_ebt {
   Broadcast_to_Quote_Submitter = 'Q'
 }
 primitive MsgSeqNum = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive MsgType = FixedLengthString [ length=3, padding='\0', left_padding=false ]
+primitive MsgType = FixedLengthString [ length=3, padding='\0', right_padded=false ]
 enum MultiLegReportingType : uint8_ebt {
   Single_security = 1
   Individual_leg_of_a_multileg_security = 2
@@ -475,7 +475,7 @@ enum MultilegPriceModel : uint8_ebt {
 primitive NegotiationID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive NegotiationStartTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive NettingCoefficient = FloatDecimal [ min=00000, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive NetworkMsgID = FixedLengthString [ length=8, padding='\0', left_padding=false ]
+primitive NetworkMsgID = FixedLengthString [ length=8, padding='\0', right_padded=false ]
 enum NewsRtmServiceStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
@@ -605,31 +605,31 @@ enum OwnershipIndicator : uint8_ebt {
   Change_to_Executing_Trader = 1
 }
 primitive PackageID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive Pad1 = FixedLengthString [ length=1, padding='\0', left_padding=false ]
-primitive Pad1_1 = FixedLengthString [ length=1, padding='\0', left_padding=false ]
-primitive Pad1_3 = FixedLengthString [ length=1, padding='\0', left_padding=false ]
-primitive Pad2 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive Pad2_1 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive Pad2_2 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive Pad2_3 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive Pad3 = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive Pad3_2 = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive Pad3_3 = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive Pad4 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive Pad4_1 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive Pad4_2 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive Pad5 = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive Pad6 = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive Pad6_2 = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive Pad7 = FixedLengthString [ length=7, padding='\0', left_padding=false ]
+primitive Pad1 = FixedLengthString [ length=1, padding='\0', right_padded=false ]
+primitive Pad1_1 = FixedLengthString [ length=1, padding='\0', right_padded=false ]
+primitive Pad1_3 = FixedLengthString [ length=1, padding='\0', right_padded=false ]
+primitive Pad2 = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive Pad2_1 = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive Pad2_2 = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive Pad2_3 = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive Pad3 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive Pad3_2 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive Pad3_3 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive Pad4 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive Pad4_1 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive Pad4_2 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive Pad5 = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive Pad6 = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive Pad6_2 = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive Pad7 = FixedLengthString [ length=7, padding='\0', right_padded=false ]
 primitive PartitionID = uint16_ebt [ min=0, max=65534, null=0xFFFF, little_endian=true ]
 enum PartyActionType : uint8_ebt {
   Halt_Trading = 1
   Reinstate = 2
 }
-primitive PartyDetailDeskID = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive PartyDetailExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive PartyDetailExecutingUnit = FixedLengthString [ length=5, padding='\0', left_padding=false ]
+primitive PartyDetailDeskID = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive PartyDetailExecutingTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive PartyDetailExecutingUnit = FixedLengthString [ length=5, padding='\0', right_padded=false ]
 primitive PartyDetailIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive PartyDetailIDExecutingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 enum PartyDetailRoleQualifier : uint8_ebt {
@@ -646,12 +646,12 @@ enum PartyDetailStatusInformation : uint8_ebt {
   TRR_THRESHOLD_TOO_BIG = 1
   BLOCK_ALL_ANONYMOUS = 2
 }
-primitive PartyEndClientIdentification = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive PartyEnteringTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive PartyExecutingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive PartyExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive PartyExecutingUnit = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive PartyIDBeneficiary = FixedLengthString [ length=9, padding='\0', left_padding=false ]
+primitive PartyEndClientIdentification = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive PartyEnteringTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive PartyExecutingFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive PartyExecutingTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive PartyExecutingUnit = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive PartyIDBeneficiary = FixedLengthString [ length=9, padding='\0', right_padded=false ]
 primitive PartyIDClientID = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 enum PartyIDEnteringFirm : uint8_ebt {
   Participant = 1
@@ -660,12 +660,12 @@ enum PartyIDEnteringFirm : uint8_ebt {
 primitive PartyIDEnteringTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive PartyIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive PartyIDExecutingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive PartyIDLocationID = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive PartyIDOrderOriginationFirm = FixedLengthString [ length=7, padding='\0', left_padding=false ]
+primitive PartyIDLocationID = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive PartyIDOrderOriginationFirm = FixedLengthString [ length=7, padding='\0', right_padded=false ]
 enum PartyIDOriginationMarket : uint8_ebt {
   XKFE = 1
 }
-primitive PartyIDPositionAccount = FixedLengthString [ length=32, padding='\0', left_padding=false ]
+primitive PartyIDPositionAccount = FixedLengthString [ length=32, padding='\0', right_padded=false ]
 primitive PartyIDSessionID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 enum PartyIDSettlementLocation : uint8_ebt {
   Clearstrem_Banking_Frankfurt = 1
@@ -674,7 +674,7 @@ enum PartyIDSettlementLocation : uint8_ebt {
   Euroclear = 4
 }
 primitive PartyIDSponsoredAccessUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive PartyIDTakeUpTradingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
+primitive PartyIDTakeUpTradingFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
 primitive PartyIdInvestmentDecisionMaker = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 enum PartyIdInvestmentDecisionMakerQualifier : uint8_ebt {
   Algo = 22
@@ -684,15 +684,15 @@ enum PartyOrderOriginationDisclosureInstruction : uint8_ebt {
   No = 0
   Yes = 1
 }
-primitive PartyOrderOriginationTrader = FixedLengthString [ length=132, padding='\0', left_padding=false ]
-primitive PartySponsoredAccessUnit = FixedLengthString [ length=30, padding='\0', left_padding=false ]
+primitive PartyOrderOriginationTrader = FixedLengthString [ length=132, padding='\0', right_padded=false ]
+primitive PartySponsoredAccessUnit = FixedLengthString [ length=30, padding='\0', right_padded=false ]
 enum PartySubIDType : uint16_ebt {
   Buyer = 14001
   Seller = 14002
 }
-primitive Password = FixedLengthString [ length=32, padding='\0', left_padding=false ]
+primitive Password = FixedLengthString [ length=32, padding='\0', right_padded=false ]
 primitive PctCount = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, little_endian=true ]
-primitive PeriodAlias = FixedLengthString [ length=45, padding='\0', left_padding=false ]
+primitive PeriodAlias = FixedLengthString [ length=45, padding='\0', right_padded=false ]
 enum PositionEffect : char_ebt {
   Close = 'C'
   Open = 'O'
@@ -723,7 +723,7 @@ enum ProductComplex : uint8_ebt {
   non_standard_volatility_strategy = 13
   total_return_future_strategy = 14
 }
-primitive PublicKey = FixedLengthString [ length=814, padding='\0', left_padding=false ]
+primitive PublicKey = FixedLengthString [ length=814, padding='\0', right_padded=false ]
 primitive PublicKeyLen = uint16_ebt [ min=0, max=814, null=0xFFFF, little_endian=true ]
 enum PutOrCall : uint8_ebt {
   Put = 0
@@ -815,7 +815,7 @@ enum QuoteInstruction : uint8_ebt {
 }
 primitive QuoteMsgID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive QuoteRefPrice = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
-primitive QuoteReqID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+primitive QuoteReqID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 primitive QuoteResponseID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 enum QuoteSizeType : uint8_ebt {
   TotalSize = 1
@@ -851,10 +851,10 @@ enum RefApplID : uint8_ebt {
   SRQS_Maintenance = 9
   Service_Availability_Market = 10
 }
-primitive RefApplLastMsgID = FixedLengthString [ length=16, padding='\0', left_padding=false ]
+primitive RefApplLastMsgID = FixedLengthString [ length=16, padding='\0', right_padded=false ]
 primitive RefApplLastSeqNum = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive RefApplSubID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive RegulatoryTradeID = FixedLengthString [ length=52, padding='\0', left_padding=false ]
+primitive RegulatoryTradeID = FixedLengthString [ length=52, padding='\0', right_padded=false ]
 primitive RelatedClosePrice = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=6, signed=true, little_endian=true ]
 primitive RelatedMarketSegmentID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, little_endian=true ]
 enum RelatedProductComplex : uint8_ebt {
@@ -879,8 +879,8 @@ primitive RelatedTradeQuantity = FloatDecimal [ min=-9223372036854775807, max=, 
 primitive RemainingRiskAllowanceBaseLong = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive RemainingRiskAllowanceBaseShort = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive RequestTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
-primitive RequestingPartyClearingFirm = FixedLengthString [ length=9, padding='\0', left_padding=false ]
-primitive RequestingPartyEnteringFirm = FixedLengthString [ length=9, padding='\0', left_padding=false ]
+primitive RequestingPartyClearingFirm = FixedLengthString [ length=9, padding='\0', right_padded=false ]
+primitive RequestingPartyEnteringFirm = FixedLengthString [ length=9, padding='\0', right_padded=false ]
 enum RequestingPartyIDEnteringFirm : uint8_ebt {
   Participant = 1
   MarketSupervision = 2
@@ -913,7 +913,7 @@ enum ReversalIndicator : uint8_ebt {
   Yes = 1
 }
 primitive ReversalInitiationTime = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
-primitive ReversalReasonText = FixedLengthString [ length=132, padding='\0', left_padding=false ]
+primitive ReversalReasonText = FixedLengthString [ length=132, padding='\0', right_padded=false ]
 enum RiskControlRtmServiceStatus : uint8_ebt {
   Unavailable = 0
   Available = 1
@@ -923,7 +923,7 @@ enum RiskLimitAction : uint8_ebt {
   Reject = 2
   Warning = 4
 }
-primitive RiskLimitGroup = FixedLengthString [ length=3, padding='\0', left_padding=false ]
+primitive RiskLimitGroup = FixedLengthString [ length=3, padding='\0', right_padded=false ]
 enum RiskLimitGroupStatus : uint8_ebt {
   Active = 0
   Suspend = 1
@@ -955,28 +955,28 @@ enum RiskLimitViolationIndicator : uint8_ebt {
   No = 0
   Yes = 1
 }
-primitive RootPartyClearingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive RootPartyClearingOrganization = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive RootPartyContraFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive RootPartyContraTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive RootPartyEnteringTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive RootPartyExecutingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive RootPartyExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive RootPartyIDBeneficiary = FixedLengthString [ length=9, padding='\0', left_padding=false ]
+primitive RootPartyClearingFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive RootPartyClearingOrganization = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive RootPartyContraFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive RootPartyContraTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive RootPartyEnteringTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive RootPartyExecutingFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive RootPartyExecutingTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive RootPartyIDBeneficiary = FixedLengthString [ length=9, padding='\0', right_padded=false ]
 primitive RootPartyIDClearingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive RootPartyIDClientID = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive RootPartyIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive RootPartyIDExecutingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive RootPartyIDExecutionVenue = FixedLengthString [ length=4, padding='\0', left_padding=false ]
+primitive RootPartyIDExecutionVenue = FixedLengthString [ length=4, padding='\0', right_padded=false ]
 primitive RootPartyIDInvestmentDecisionMaker = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 enum RootPartyIDInvestmentDecisionMakerQualifier : uint8_ebt {
   Algo = 22
   Human = 24
 }
-primitive RootPartyIDOrderOriginationFirm = FixedLengthString [ length=7, padding='\0', left_padding=false ]
-primitive RootPartyIDPositionAccount = FixedLengthString [ length=32, padding='\0', left_padding=false ]
+primitive RootPartyIDOrderOriginationFirm = FixedLengthString [ length=7, padding='\0', right_padded=false ]
+primitive RootPartyIDPositionAccount = FixedLengthString [ length=32, padding='\0', right_padded=false ]
 primitive RootPartyIDSessionID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive RootPartyIDTakeUpTradingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
+primitive RootPartyIDTakeUpTradingFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
 enum RootPartySubIDType : uint16_ebt {
   Buyer = 4001
   Seller = 4002
@@ -1074,7 +1074,7 @@ enum Side : uint8_ebt {
   Buy = 1
   Sell = 2
 }
-primitive SideComplianceText = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+primitive SideComplianceText = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 enum SideDisclosureInstruction : uint8_ebt {
   No = 0
   Yes = 1
@@ -1121,13 +1121,13 @@ enum T7EntryServiceStatus : uint8_ebt {
 primitive T7EntryServiceTradeDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
 primitive TESEnrichmentRuleID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive TESExecID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive TargetPartyEnteringTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive TargetPartyExecutingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive TargetPartyExecutingTrader = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive TargetPartyIDDeskID = FixedLengthString [ length=3, padding='\0', left_padding=false ]
+primitive TargetPartyEnteringTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive TargetPartyExecutingFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive TargetPartyExecutingTrader = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive TargetPartyIDDeskID = FixedLengthString [ length=3, padding='\0', right_padded=false ]
 primitive TargetPartyIDExecutingTrader = uint32_ebt [ min=0, max=2147483647, null=0xFFFFFFFF, little_endian=true ]
 primitive TargetPartyIDSessionID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive Text = FixedLengthString [ length=12, padding='\0', left_padding=false ]
+primitive Text = FixedLengthString [ length=12, padding='\0', right_padded=false ]
 primitive ThrottleDisconnectLimit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive ThrottleNoMsgs = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive ThrottleTimeInterval = int64_ebt [ min=-9223372036854775807, max=9223372036854775807, null=0x8000000000000000, little_endian=true ]
@@ -1184,8 +1184,8 @@ enum TradePublishIndicator : uint8_ebt {
   Deferred_Publication = 2
   Published = 3
 }
-primitive TradeReportID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive TradeReportText = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+primitive TradeReportID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive TradeReportText = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 enum TradeReportType : uint8_ebt {
   Submit = 0
   Alleged = 1
@@ -1262,19 +1262,19 @@ enum Triggered : uint8_ebt {
   Triggered_Stop = 1
   Triggered_OCO = 2
 }
-primitive UnderlyingCurrency = FixedLengthString [ length=3, padding='\0', left_padding=false ]
+primitive UnderlyingCurrency = FixedLengthString [ length=3, padding='\0', right_padded=false ]
 primitive UnderlyingDeltaPercentage = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive UnderlyingEffectiveDeltaPercentage = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive UnderlyingIssuer = FixedLengthString [ length=30, padding='\0', left_padding=false ]
+primitive UnderlyingIssuer = FixedLengthString [ length=30, padding='\0', right_padded=false ]
 primitive UnderlyingMaturityDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
 primitive UnderlyingPriceStipValue = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive UnderlyingPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive UnderlyingQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive UnderlyingSecurityDesc = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive UnderlyingSecurityID = FixedLengthString [ length=12, padding='\0', left_padding=false ]
+primitive UnderlyingSecurityDesc = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive UnderlyingSecurityID = FixedLengthString [ length=12, padding='\0', right_padded=false ]
 primitive UnderlyingSettlementDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
-primitive UnderlyingStipType = FixedLengthString [ length=7, padding='\0', left_padding=false ]
-primitive UnderlyingStipValue = FixedLengthString [ length=32, padding='\0', left_padding=false ]
+primitive UnderlyingStipType = FixedLengthString [ length=7, padding='\0', right_padded=false ]
+primitive UnderlyingStipValue = FixedLengthString [ length=32, padding='\0', right_padded=false ]
 enum UserStatus : uint8_ebt {
   User_forced_logout = 7
   User_stopped = 10
@@ -1294,7 +1294,7 @@ enum ValueCheckTypeValue : uint8_ebt {
   Do_not_check = 0
   Check = 1
 }
-primitive VarText = FixedLengthString [ length=2000, padding='\0', left_padding=false ]
+primitive VarText = FixedLengthString [ length=2000, padding='\0', right_padded=false ]
 primitive VarTextLen = uint16_ebt [ min=0, max=2000, null=0xFFFF, little_endian=true ]
 primitive Vega = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 enum TemplateID : int16_ebt {
@@ -1453,21 +1453,21 @@ enum TemplateID : int16_ebt {
 message AffectedOrderRequestsGrpComp :  {
   AffectedOrderRequestID affectedOrderRequestID
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message BasketExecGrpComp :  {
   PackageID packageID
   SideMarketSegmentID sideMarketSegmentID
   AllocID allocID
   SideTrdSubTyp sideTrdSubTyp
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message BasketRootPartyGrpComp :  {
   RootPartySubIDType rootPartySubIDType
   RootPartyContraFirm rootPartyContraFirm
   RootPartyContraTrader rootPartyContraTrader
   BasketSideTradeReportID basketSideTradeReportID
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message BasketSideAllocExtBCGrpComp :  {
   AllocQty allocQty
   SecurityID securityID
@@ -1500,7 +1500,7 @@ message BasketSideAllocExtBCGrpComp :  {
   CustOrderHandlingInst custOrderHandlingInst
   ComplianceText complianceText
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message BasketSideAllocExtGrpComp :  {
   AllocQty allocQty
   PartyIDClientID partyIDClientID
@@ -1531,7 +1531,7 @@ message BasketSideAllocExtGrpComp :  {
   CustOrderHandlingInst custOrderHandlingInst
   ComplianceText complianceText
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message BasketSideAllocGrpComp :  {
   AllocQty allocQty
   IndividualAllocID individualAllocID
@@ -1542,14 +1542,14 @@ message BasketSideAllocGrpComp :  {
   PartyExecutingFirm partyExecutingFirm
   PartyExecutingTrader partyExecutingTrader
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message CrossRequestAckSideGrpComp :  {
   OrderID orderID
   ClOrdID clOrdID
   InputSource inputSource
   Side side
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message CrossRequestSideGrpComp :  {
   ClOrdID clOrdID
   PartyIDClientID partyIDClientID
@@ -1581,7 +1581,7 @@ message CrossRequestSideGrpComp :  {
   PartyIDLocationID partyIDLocationID
   PartyEndClientIdentification partyEndClientIdentification
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message EnrichmentRulesGrpComp :  {
   PartyIDSponsoredAccessUnit partyIDSponsoredAccessUnit
   EnrichmentRuleID enrichmentRuleID
@@ -1596,7 +1596,7 @@ message EnrichmentRulesGrpComp :  {
   FreeText2 freeText2
   FreeText3 freeText3
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message FillsGrpComp :  {
   FillPx fillPx
   FillQty fillQty
@@ -1604,7 +1604,7 @@ message FillsGrpComp :  {
   FillExecID fillExecID
   FillLiquidityInd fillLiquidityInd
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message InstrmntLegExecGrpComp :  {
   LegSecurityID legSecurityID
   LegLastPx legLastPx
@@ -1613,7 +1613,7 @@ message InstrmntLegExecGrpComp :  {
   LegSide legSide
   FillRefID fillRefID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message InstrmtLegGrpComp :  {
   LegSecurityID legSecurityID
   LegPrice legPrice
@@ -1622,7 +1622,7 @@ message InstrmtLegGrpComp :  {
   LegSide legSide
   LegSecurityType legSecurityType
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message InstrmtMatchSideGrpComp :  {
   SecurityID securityID
   LastPx lastPx
@@ -1638,22 +1638,22 @@ message InstrmtMatchSideGrpComp :  {
   EffectOnBasket effectOnBasket
   TradeReportText tradeReportText
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message InstrumentAttributeGrpComp :  {
   InstrAttribType instrAttribType
   InstrAttribValue instrAttribValue
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message InstrumentEventGrpComp :  {
   EventDate eventDate
   EventType eventType
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message LegOrdGrpComp :  {
   LegAccount legAccount
   LegPositionEffect legPositionEffect
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message MMParameterGrpComp :  {
   ExposureDuration exposureDuration
   CumQty cumQty
@@ -1663,25 +1663,25 @@ message MMParameterGrpComp :  {
   TargetPartyIDSessionID targetPartyIDSessionID
   MMRiskLimitActionType mMRiskLimitActionType
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message MessageHeaderInComp :  {
   BodyLen bodyLen
   TemplateID templateID
   NetworkMsgID networkMsgID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message MessageHeaderOutComp :  {
   BodyLen bodyLen
   TemplateID templateID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message NRBCHeaderComp :  {
   SendingTime sendingTime
   ApplSubID applSubID
   ApplID applID
   LastFragment lastFragment
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message NRResponseHeaderMEComp :  {
   RequestTime requestTime
   TrdRegTSTimeIn trdRegTSTimeIn
@@ -1691,7 +1691,7 @@ message NRResponseHeaderMEComp :  {
   MsgSeqNum msgSeqNum
   LastFragment lastFragment
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message NewBasketDataBCGrpComp :  {
   TransactTime transactTime
   BasketTrdMatchID basketTrdMatchID
@@ -1702,14 +1702,14 @@ message NewBasketDataBCGrpComp :  {
   TradeReportID tradeReportID
   BasketTradeReportText basketTradeReportText
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message NewBasketDataGrpComp :  {
   TradeReportID tradeReportID
   MaturityMonthYear maturityMonthYear
   BasketTradeReportType basketTradeReportType
   BasketTradeReportText basketTradeReportText
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message NewBasketInstrmtMatchSideGrpComp :  {
   SecurityID securityID
   LastPx lastPx
@@ -1725,7 +1725,7 @@ message NewBasketInstrmtMatchSideGrpComp :  {
   EffectOnBasket effectOnBasket
   TradeReportText tradeReportText
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message NewBasketSideAllocGrpComp :  {
   AllocQty allocQty
   IndividualAllocID individualAllocID
@@ -1737,17 +1737,17 @@ message NewBasketSideAllocGrpComp :  {
   PartyExecutingFirm partyExecutingFirm
   PartyExecutingTrader partyExecutingTrader
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message NotAffectedOrdersGrpComp :  {
   NotAffectedOrderID notAffectedOrderID
   NotAffOrigClOrdID notAffOrigClOrdID
-}
+} [ size = , link_base:  =  ]
 message NotAffectedSecuritiesGrpComp :  {
   NotAffectedSecurityID notAffectedSecurityID
-}
+} [ size = , link_base:  =  ]
 message NotifHeaderComp :  {
   SendingTime sendingTime
-}
+} [ size = , link_base:  =  ]
 message OldBasketDataBCGrpComp :  {
   TransactTime transactTime
   BasketTrdMatchID basketTrdMatchID
@@ -1758,7 +1758,7 @@ message OldBasketDataBCGrpComp :  {
   TradeReportID tradeReportID
   BasketTradeReportText basketTradeReportText
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message OldBasketDataGrpComp :  {
   BasketTrdMatchID basketTrdMatchID
   BasketExecID basketExecID
@@ -1767,7 +1767,7 @@ message OldBasketDataGrpComp :  {
   BasketTradeReportType basketTradeReportType
   BasketTradeReportText basketTradeReportText
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message OldBasketInstrmtMatchSideGrpComp :  {
   SecurityID securityID
   LastPx lastPx
@@ -1783,7 +1783,7 @@ message OldBasketInstrmtMatchSideGrpComp :  {
   EffectOnBasket effectOnBasket
   TradeReportText tradeReportText
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message OldBasketSideAllocGrpComp :  {
   AllocQty allocQty
   IndividualAllocID individualAllocID
@@ -1795,7 +1795,7 @@ message OldBasketSideAllocGrpComp :  {
   PartyExecutingFirm partyExecutingFirm
   PartyExecutingTrader partyExecutingTrader
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message OrderBookItemGrpComp :  {
   SecurityID securityID
   BestBidPx bestBidPx
@@ -1805,7 +1805,7 @@ message OrderBookItemGrpComp :  {
   MDBookType mDBookType
   MDSubBookType mDSubBookType
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message OrderEntryGrpComp :  {
   Price price
   OrderQty orderQty
@@ -1815,14 +1815,14 @@ message OrderEntryGrpComp :  {
   Side side
   ProductComplex productComplex
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message OrderEventGrpComp :  {
   OrderEventPx orderEventPx
   OrderEventQty orderEventQty
   OrderEventMatchID orderEventMatchID
   OrderEventReason orderEventReason
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message PartyDetailsGrpComp :  {
   PartyDetailIDExecutingTrader partyDetailIDExecutingTrader
   PartyIDSponsoredAccessUnit partyIDSponsoredAccessUnit
@@ -1832,7 +1832,7 @@ message PartyDetailsGrpComp :  {
   PartyDetailDeskID partyDetailDeskID
   PartySponsoredAccessUnit partySponsoredAccessUnit
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message QuotReqLegsGrpComp :  {
   LegSecurityID legSecurityID
   LegRatioQty legRatioQty
@@ -1840,7 +1840,7 @@ message QuotReqLegsGrpComp :  {
   LegSecurityType legSecurityType
   LegSide legSide
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message QuoteEntryAckGrpComp :  {
   SecurityID securityID
   CxlSize cxlSize
@@ -1848,14 +1848,14 @@ message QuoteEntryAckGrpComp :  {
   QuoteEntryStatus quoteEntryStatus
   Side side
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message QuoteEntryGrpComp :  {
   SecurityID securityID
   BidPx bidPx
   BidSize bidSize
   OfferPx offerPx
   OfferSize offerSize
-}
+} [ size = , link_base:  =  ]
 message QuoteEventGrpComp :  {
   SecurityID securityID
   QuoteEventPx quoteEventPx
@@ -1868,7 +1868,7 @@ message QuoteEventGrpComp :  {
   QuoteEventLiquidityInd quoteEventLiquidityInd
   QuoteEventReason quoteEventReason
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message QuoteLegExecGrpComp :  {
   LegSecurityID legSecurityID
   LegLastPx legLastPx
@@ -1877,7 +1877,7 @@ message QuoteLegExecGrpComp :  {
   LegSide legSide
   NoQuoteEventsIndex noQuoteEventsIndex
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message RBCHeaderComp :  {
   SendingTime sendingTime
   ApplSeqNum applSeqNum
@@ -1887,7 +1887,7 @@ message RBCHeaderComp :  {
   ApplID applID
   LastFragment lastFragment
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message RBCHeaderMEComp :  {
   TrdRegTSTimeOut trdRegTSTimeOut
   NotificationIn notificationIn
@@ -1899,29 +1899,29 @@ message RBCHeaderMEComp :  {
   ApplResendFlag applResendFlag
   LastFragment lastFragment
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message RRAUpdateBasePartyAckGrpComp :  {
   PartyDetailExecutingUnit partyDetailExecutingUnit
   Pad1 pad1
   RiskLimitResult riskLimitResult
-}
+} [ size = , link_base:  =  ]
 message RRAUpdateBasePartyGrpComp :  {
   RemainingRiskAllowanceBaseLong remainingRiskAllowanceBaseLong
   RemainingRiskAllowanceBaseShort remainingRiskAllowanceBaseShort
   RiskLimitID riskLimitID
   PartyDetailExecutingUnit partyDetailExecutingUnit
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message RequestHeaderComp :  {
   MsgSeqNum msgSeqNum
   SenderSubID senderSubID
-}
+} [ size = , link_base:  =  ]
 message ResponseHeaderComp :  {
   RequestTime requestTime
   SendingTime sendingTime
   MsgSeqNum msgSeqNum
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message ResponseHeaderMEComp :  {
   RequestTime requestTime
   TrdRegTSTimeIn trdRegTSTimeIn
@@ -1933,12 +1933,12 @@ message ResponseHeaderMEComp :  {
   ApplID applID
   ApplMsgID applMsgID
   LastFragment lastFragment
-}
+} [ size = , link_base:  =  ]
 message RiskLimitQtyGrpComp :  {
   RiskLimitQty riskLimitQty
   RiskLimitType riskLimitType
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message RiskLimitsRptGrpComp :  {
   RiskLimitQty riskLimitQty
   RiskLimitOpenQty riskLimitOpenQty
@@ -1951,13 +1951,13 @@ message RiskLimitsRptGrpComp :  {
   RiskLimitGroupStatus riskLimitGroupStatus
   RiskLimitGroup riskLimitGroup
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message SRQSHitQuoteGrpComp :  {
   OrderQty orderQty
   QuoteID quoteID
   Side side
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message SRQSQuoteEntryGrpComp :  {
   TransactTime transactTime
   ExpireTime expireTime
@@ -1978,10 +1978,10 @@ message SRQSQuoteEntryGrpComp :  {
   PartyExecutingTrader partyExecutingTrader
   PartyEnteringTrader partyEnteringTrader
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message SRQSQuoteGrpComp :  {
   QuoteID quoteID
-}
+} [ size = , link_base:  =  ]
 message SRQSTargetPartyTrdGrpComp :  {
   SideLastQty sideLastQty
   QuoteID quoteID
@@ -1990,14 +1990,14 @@ message SRQSTargetPartyTrdGrpComp :  {
   TargetPartyExecutingTrader targetPartyExecutingTrader
   TargetPartyEnteringTrader targetPartyEnteringTrader
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message SessionsGrpComp :  {
   PartyIDSessionID partyIDSessionID
   PartyIDSponsoredAccessUnit partyIDSponsoredAccessUnit
   SessionMode sessionMode
   SessionSubMode sessionSubMode
   PartySponsoredAccessUnit partySponsoredAccessUnit
-}
+} [ size = , link_base:  =  ]
 message SideAllocExtGrpComp :  {
   AllocQty allocQty
   PartyIDClientID partyIDClientID
@@ -2030,7 +2030,7 @@ message SideAllocExtGrpComp :  {
   ComplianceText complianceText
   PartyEndClientIdentification partyEndClientIdentification
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message SideAllocGrpComp :  {
   AllocQty allocQty
   IndividualAllocID individualAllocID
@@ -2039,7 +2039,7 @@ message SideAllocGrpComp :  {
   PartyExecutingFirm partyExecutingFirm
   PartyExecutingTrader partyExecutingTrader
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message SideAllocGrpBCComp :  {
   AllocQty allocQty
   ReversalApprovalTime reversalApprovalTime
@@ -2050,18 +2050,18 @@ message SideAllocGrpBCComp :  {
   Side side
   TradeAllocStatus tradeAllocStatus
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message SideCrossLegGrpComp :  {
   LegInputSource legInputSource
   LegPositionEffect legPositionEffect
   LegAccount legAccount
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message SmartPartyDetailGrpComp :  {
   PartyDetailExecutingUnit partyDetailExecutingUnit
   PartyDetailExecutingTrader partyDetailExecutingTrader
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message TargetPartiesComp :  {
   TargetPartyIDExecutingTrader targetPartyIDExecutingTrader
   SideDisclosureInstruction sideDisclosureInstruction
@@ -2078,21 +2078,21 @@ message TargetPartiesComp :  {
   PartyDetailStatus partyDetailStatus
   PartyDetailStatusInformation partyDetailStatusInformation
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message TrdClearingPriceLegGrpComp :  {
   LegSecurityID legSecurityID
   LegClearingTradePrice legClearingTradePrice
-}
+} [ size = , link_base:  =  ]
 message TrdInstrmntLegGrpComp :  {
   LegSecurityID legSecurityID
   LegPrice legPrice
   LegQty legQty
-}
+} [ size = , link_base:  =  ]
 message UnderlyingStipGrpComp :  {
   UnderlyingStipValue underlyingStipValue
   UnderlyingStipType underlyingStipType
   Pad1 pad1
-}
+} [ size = , link_base:  =  ]
 message AddComplexInstrumentRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2109,7 +2109,7 @@ message AddComplexInstrumentRequest :  {
   PeriodAlias periodAlias
   Pad3 pad3
   @var_array<type=InstrmtLegGrpComp, counter=noLegOnbooks> instrmtLegGrp
-}
+} [ size = , link_base:  =  ]
 message AddComplexInstrumentResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -2129,7 +2129,7 @@ message AddComplexInstrumentResponse :  {
   NoLegOnbooks noLegOnbooks
   Pad6 pad6
   @var_array<type=InstrmtLegGrpComp, counter=noLegOnbooks> instrmtLegGrp
-}
+} [ size = , link_base:  =  ]
 message AddFlexibleInstrumentRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2143,7 +2143,7 @@ message AddFlexibleInstrumentRequest :  {
   ExerciseStyle exerciseStyle
   ComplianceText complianceText
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message AddFlexibleInstrumentResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -2159,7 +2159,7 @@ message AddFlexibleInstrumentResponse :  {
   PutOrCall putOrCall
   ExerciseStyle exerciseStyle
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message AddScaledSimpleInstrumentRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2170,7 +2170,7 @@ message AddScaledSimpleInstrumentRequest :  {
   DisplayNameAlias displayNameAlias
   PeriodAlias periodAlias
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message AddScaledSimpleInstrumentResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -2184,7 +2184,7 @@ message AddScaledSimpleInstrumentResponse :  {
   ImpliedMarketIndicator impliedMarketIndicator
   ProductComplex productComplex
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message AmendBasketTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2204,7 +2204,7 @@ message AmendBasketTradeRequest :  {
   @var_array<type=BasketRootPartyGrpComp, counter=noBasketRootPartyGrps> basketRootPartyGrp
   @var_array<type=InstrmtMatchSideGrpComp, counter=noInstrmtMatchSides> instrmtMatchSideGrp
   @var_array<type=BasketSideAllocGrpComp, counter=noBasketSideAlloc> basketSideAllocGrp
-}
+} [ size = , link_base:  =  ]
 message ApproveBasketTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2220,7 +2220,7 @@ message ApproveBasketTradeRequest :  {
   BasketSideTradeReportID basketSideTradeReportID
   Pad5 pad5
   @var_array<type=BasketSideAllocExtGrpComp, counter=noBasketSideAlloc> basketSideAllocExtGrp
-}
+} [ size = , link_base:  =  ]
 message ApproveReverseTESTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2232,7 +2232,7 @@ message ApproveReverseTESTradeRequest :  {
   TrdType trdType
   TradeReportID tradeReportID
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message ApproveTESTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2271,7 +2271,7 @@ message ApproveTESTradeRequest :  {
   ComplianceText complianceText
   PartyEndClientIdentification partyEndClientIdentification
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message BasketApproveBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -2295,7 +2295,7 @@ message BasketApproveBroadcast :  {
   Pad4 pad4
   @var_array<type=BasketRootPartyGrpComp, counter=noBasketRootPartyGrps> basketRootPartyGrp
   @var_array<type=BasketSideAllocExtBCGrpComp, counter=noBasketSideAlloc> basketSideAllocExtBCGrp
-}
+} [ size = , link_base:  =  ]
 message BasketBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -2320,7 +2320,7 @@ message BasketBroadcast :  {
   @var_array<type=BasketRootPartyGrpComp, counter=noBasketRootPartyGrpsBC> basketRootPartyGrp
   @var_array<type=InstrmtMatchSideGrpComp, counter=noInstrmtMatchSides> instrmtMatchSideGrp
   @var_array<type=BasketSideAllocGrpComp, counter=noBasketSideAlloc> basketSideAllocGrp
-}
+} [ size = , link_base:  =  ]
 message BasketDeleteBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -2334,7 +2334,7 @@ message BasketDeleteBroadcast :  {
   MessageEventSource messageEventSource
   TradeReportID tradeReportID
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message BasketExecutionBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -2352,13 +2352,13 @@ message BasketExecutionBroadcast :  {
   BasketSideTradeReportID basketSideTradeReportID
   Pad2 pad2
   @var_array<type=BasketExecGrpComp, counter=noInstrmtMatchSides> basketExecGrp
-}
+} [ size = , link_base:  =  ]
 message BasketResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
   BasketExecID basketExecID
   TradeReportID tradeReportID
-}
+} [ size = , link_base:  =  ]
 message BasketRollBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -2383,7 +2383,7 @@ message BasketRollBroadcast :  {
   @var_array<type=NewBasketInstrmtMatchSideGrpComp, counter=noNewBasketInstrmtMatchSides> newBasketInstrmtMatchSideGrp
   @var_array<type=OldBasketSideAllocGrpComp, counter=noOldBasketSideAlloc> oldBasketSideAllocGrp
   @var_array<type=NewBasketSideAllocGrpComp, counter=noNewBasketSideAlloc> newBasketSideAllocGrp
-}
+} [ size = , link_base:  =  ]
 message BasketRollRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2405,7 +2405,7 @@ message BasketRollRequest :  {
   @var_array<type=NewBasketInstrmtMatchSideGrpComp, counter=noNewBasketInstrmtMatchSides> newBasketInstrmtMatchSideGrp
   @var_array<type=OldBasketSideAllocGrpComp, counter=noOldBasketSideAlloc> oldBasketSideAllocGrp
   @var_array<type=NewBasketSideAllocGrpComp, counter=noNewBasketSideAlloc> newBasketSideAllocGrp
-}
+} [ size = , link_base:  =  ]
 message BroadcastErrorNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
@@ -2415,7 +2415,7 @@ message BroadcastErrorNotification :  {
   RefApplID refApplID
   SessionStatus sessionStatus
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message CLIPDeletionNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -2432,7 +2432,7 @@ message CLIPDeletionNotification :  {
   OrdStatus ordStatus
   ExecType execType
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message CLIPExecutionNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -2456,7 +2456,7 @@ message CLIPExecutionNotification :  {
   Pad2 pad2
   @var_array<type=FillsGrpComp, counter=noFills> fillsGrp
   @var_array<type=InstrmntLegExecGrpComp, counter=noLegExecs> instrmntLegExecGrp
-}
+} [ size = , link_base:  =  ]
 message CLIPResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -2468,7 +2468,7 @@ message CLIPResponse :  {
   ImpliedCheckPriceIndicator impliedCheckPriceIndicator
   Pad6 pad6
   @var_array<type=CrossRequestAckSideGrpComp, counter=noSides> crossRequestAckSideGrp
-}
+} [ size = , link_base:  =  ]
 message CrossRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2476,12 +2476,12 @@ message CrossRequest :  {
   OrderQty orderQty
   MarketSegmentID marketSegmentID
   ComplianceText complianceText
-}
+} [ size = , link_base:  =  ]
 message CrossRequestResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   ExecID execID
-}
+} [ size = , link_base:  =  ]
 message DeleteAllOrderBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -2500,12 +2500,12 @@ message DeleteAllOrderBroadcast :  {
   Side side
   @var_array<type=NotAffectedOrdersGrpComp, counter=noNotAffectedOrders> notAffectedOrdersGrp
   @var_array<type=AffectedOrderRequestsGrpComp, counter=noAffectedOrderRequests> affectedOrderRequestsGrp
-}
+} [ size = , link_base:  =  ]
 message DeleteAllOrderNRResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   MassActionReportID massActionReportID
-}
+} [ size = , link_base:  =  ]
 message DeleteAllOrderQuoteEventBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -2515,7 +2515,7 @@ message DeleteAllOrderQuoteEventBroadcast :  {
   MassActionReason massActionReason
   ExecInst execInst
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message DeleteAllOrderRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2530,7 +2530,7 @@ message DeleteAllOrderRequest :  {
   OrderOrigination orderOrigination
   PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
   ExecutingTraderQualifier executingTraderQualifier
-}
+} [ size = , link_base:  =  ]
 message DeleteAllOrderResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderMEComp responseHeaderME
@@ -2540,7 +2540,7 @@ message DeleteAllOrderResponse :  {
   Pad4 pad4
   @var_array<type=NotAffectedOrdersGrpComp, counter=noNotAffectedOrders> notAffectedOrdersGrp
   @var_array<type=AffectedOrderRequestsGrpComp, counter=noAffectedOrderRequests> affectedOrderRequestsGrp
-}
+} [ size = , link_base:  =  ]
 message DeleteAllQuoteBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -2556,7 +2556,7 @@ message DeleteAllQuoteBroadcast :  {
   TargetPartyIDDeskID targetPartyIDDeskID
   Pad1 pad1
   @var_array<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
-}
+} [ size = , link_base:  =  ]
 message DeleteAllQuoteRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2567,7 +2567,7 @@ message DeleteAllQuoteRequest :  {
   PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
   ExecutingTraderQualifier executingTraderQualifier
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message DeleteAllQuoteResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -2575,7 +2575,7 @@ message DeleteAllQuoteResponse :  {
   NoNotAffectedSecurities noNotAffectedSecurities
   Pad6 pad6
   @var_array<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
-}
+} [ size = , link_base:  =  ]
 message DeleteBasketTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2586,7 +2586,7 @@ message DeleteBasketTradeRequest :  {
   TradeReportType tradeReportType
   TradeReportID tradeReportID
   Pad1 pad1
-}
+} [ size = , link_base:  =  ]
 message DeleteCLIPRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2600,7 +2600,7 @@ message DeleteCLIPRequest :  {
   ExecutingTraderQualifier executingTraderQualifier
   PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message DeleteOrderBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -2622,7 +2622,7 @@ message DeleteOrderBroadcast :  {
   Side side
   FIXClOrdID fIXClOrdID
   Pad1 pad1
-}
+} [ size = , link_base:  =  ]
 message DeleteOrderNRResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -2639,7 +2639,7 @@ message DeleteOrderNRResponse :  {
   ProductComplex productComplex
   TransactionDelayIndicator transactionDelayIndicator
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message DeleteOrderRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2657,7 +2657,7 @@ message DeleteOrderRequest :  {
   FIXClOrdID fIXClOrdID
   ComplianceText complianceText
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message DeleteOrderResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderMEComp responseHeaderME
@@ -2674,7 +2674,7 @@ message DeleteOrderResponse :  {
   ProductComplex productComplex
   TransactionDelayIndicator transactionDelayIndicator
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message DeleteTESTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2686,7 +2686,7 @@ message DeleteTESTradeRequest :  {
   TradeReportType tradeReportType
   TradeReportID tradeReportID
   Pad1 pad1
-}
+} [ size = , link_base:  =  ]
 message EnterBasketTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2707,7 +2707,7 @@ message EnterBasketTradeRequest :  {
   @var_array<type=BasketRootPartyGrpComp, counter=noBasketRootPartyGrps> basketRootPartyGrp
   @var_array<type=InstrmtMatchSideGrpComp, counter=noInstrmtMatchSides> instrmtMatchSideGrp
   @var_array<type=BasketSideAllocGrpComp, counter=noBasketSideAlloc> basketSideAllocGrp
-}
+} [ size = , link_base:  =  ]
 message EnterCLIPRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2732,7 +2732,7 @@ message EnterCLIPRequest :  {
   Pad7 pad7
   @var_array<type=CrossRequestSideGrpComp, counter=noSides> crossRequestSideGrp
   @var_array<type=SideCrossLegGrpComp, counter=noCrossLegs> sideCrossLegGrp
-}
+} [ size = , link_base:  =  ]
 message EnterTESTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2772,13 +2772,13 @@ message EnterTESTradeRequest :  {
   @var_array<type=InstrumentEventGrpComp, counter=noEvents> instrumentEventGrp
   @var_array<type=InstrumentAttributeGrpComp, counter=noInstrAttrib> instrumentAttributeGrp
   @var_array<type=UnderlyingStipGrpComp, counter=noUnderlyingStips> underlyingStipGrp
-}
+} [ size = , link_base:  =  ]
 message ForcedLogoutNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
   VarTextLen varTextLen
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message ForcedUserLogoutNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
@@ -2786,19 +2786,19 @@ message ForcedUserLogoutNotification :  {
   VarTextLen varTextLen
   UserStatus userStatus
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message Heartbeat :  {
   MessageHeaderInComp messageHeaderIn
-}
+} [ size = , link_base:  =  ]
 message HeartbeatNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
-}
+} [ size = , link_base:  =  ]
 message InquireEnrichmentRuleIDListRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   LastEntityProcessed lastEntityProcessed
-}
+} [ size = , link_base:  =  ]
 message InquireEnrichmentRuleIDListResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -2806,13 +2806,13 @@ message InquireEnrichmentRuleIDListResponse :  {
   NoEnrichmentRules noEnrichmentRules
   Pad6 pad6
   @var_array<type=EnrichmentRulesGrpComp, counter=noEnrichmentRules> enrichmentRulesGrp
-}
+} [ size = , link_base:  =  ]
 message InquireMMParameterRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   MarketSegmentID marketSegmentID
   TargetPartyIDSessionID targetPartyIDSessionID
-}
+} [ size = , link_base:  =  ]
 message InquireMMParameterResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -2821,20 +2821,20 @@ message InquireMMParameterResponse :  {
   NoMMParameters noMMParameters
   Pad3 pad3
   @var_array<type=MMParameterGrpComp, counter=noMMParameters> mMParameterGrp
-}
+} [ size = , link_base:  =  ]
 message InquireMarginBasedRiskLimitRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   PartitionID partitionID
   PartyDetailExecutingUnit partyDetailExecutingUnit
   Pad1 pad1
-}
+} [ size = , link_base:  =  ]
 message InquireMarginBasedRiskLimitResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   MarginBasedRiskLimitLong marginBasedRiskLimitLong
   MarginBasedRiskLimitShort marginBasedRiskLimitShort
-}
+} [ size = , link_base:  =  ]
 message InquirePreTradeRiskLimitsRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2843,23 +2843,23 @@ message InquirePreTradeRiskLimitsRequest :  {
   PartyExecutingUnit partyExecutingUnit
   RiskLimitGroup riskLimitGroup
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message InquireSessionListRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
-}
+} [ size = , link_base:  =  ]
 message InquireSessionListResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
   NoSessions noSessions
   Pad6 pad6
   @var_array<type=SessionsGrpComp, counter=noSessions> sessionsGrp
-}
+} [ size = , link_base:  =  ]
 message InquireUserRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   LastEntityProcessed lastEntityProcessed
-}
+} [ size = , link_base:  =  ]
 message InquireUserResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -2867,7 +2867,7 @@ message InquireUserResponse :  {
   NoPartyDetails noPartyDetails
   Pad6 pad6
   @var_array<type=PartyDetailsGrpComp, counter=noPartyDetails> partyDetailsGrp
-}
+} [ size = , link_base:  =  ]
 message LegalNotificationBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -2875,7 +2875,7 @@ message LegalNotificationBroadcast :  {
   VarTextLen varTextLen
   UserStatus userStatus
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message LogonRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2893,7 +2893,7 @@ message LogonRequest :  {
   ApplicationSystemVersion applicationSystemVersion
   ApplicationSystemVendor applicationSystemVendor
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message LogonRequestEncrypted :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2911,7 +2911,7 @@ message LogonRequestEncrypted :  {
   ApplicationSystemVersion applicationSystemVersion
   ApplicationSystemVendor applicationSystemVendor
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message LogonResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -2928,15 +2928,15 @@ message LogonResponse :  {
   DefaultCstmApplVerSubID defaultCstmApplVerSubID
   PartitionID partitionID
   @var_array<type=PublicKey, counter=publicKeyLen> publicKey
-}
+} [ size = , link_base:  =  ]
 message LogoutRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
-}
+} [ size = , link_base:  =  ]
 message LogoutResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
-}
+} [ size = , link_base:  =  ]
 message MMParameterDefinitionRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2949,12 +2949,12 @@ message MMParameterDefinitionRequest :  {
   MarketSegmentID marketSegmentID
   TargetPartyIDSessionID targetPartyIDSessionID
   PctCount pctCount
-}
+} [ size = , link_base:  =  ]
 message MMParameterDefinitionResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   ExecID execID
-}
+} [ size = , link_base:  =  ]
 message MassOrder :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -2987,14 +2987,14 @@ message MassOrder :  {
   NoOrderEntries noOrderEntries
   Pad7 pad7
   @var_array<type=OrderEntryGrpComp, counter=noOrderEntries> orderEntryGrp
-}
+} [ size = , link_base:  =  ]
 message MassOrderAck :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   MassOrderRequestID massOrderRequestID
   MassOrderReportID massOrderReportID
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message MassQuoteRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3016,7 +3016,7 @@ message MassQuoteRequest :  {
   ExecutingTraderQualifier executingTraderQualifier
   Pad4 pad4
   @var_array<type=QuoteEntryGrpComp, counter=noQuoteEntries> quoteEntryGrp
-}
+} [ size = , link_base:  =  ]
 message MassQuoteResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -3026,7 +3026,7 @@ message MassQuoteResponse :  {
   NoQuoteSideEntries noQuoteSideEntries
   Pad3 pad3
   @var_array<type=QuoteEntryAckGrpComp, counter=noQuoteSideEntries> quoteEntryAckGrp
-}
+} [ size = , link_base:  =  ]
 message ModifyBasketTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3046,7 +3046,7 @@ message ModifyBasketTradeRequest :  {
   @var_array<type=BasketRootPartyGrpComp, counter=noBasketRootPartyGrps> basketRootPartyGrp
   @var_array<type=InstrmtMatchSideGrpComp, counter=noInstrmtMatchSides> instrmtMatchSideGrp
   @var_array<type=BasketSideAllocGrpComp, counter=noBasketSideAlloc> basketSideAllocGrp
-}
+} [ size = , link_base:  =  ]
 message ModifyOrderNRResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -3068,7 +3068,7 @@ message ModifyOrderNRResponse :  {
   NoOrderEvents noOrderEvents
   Pad7 pad7
   @var_array<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
-}
+} [ size = , link_base:  =  ]
 message ModifyOrderRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3124,7 +3124,7 @@ message ModifyOrderRequest :  {
   CheckSumCorrection checkSumCorrection
   Pad2_3 pad2_3
   @var_array<type=LegOrdGrpComp, counter=noLegOnbooks> legOrdGrp
-}
+} [ size = , link_base:  =  ]
 message ModifyOrderResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderMEComp responseHeaderME
@@ -3147,7 +3147,7 @@ message ModifyOrderResponse :  {
   NoOrderEvents noOrderEvents
   Pad7 pad7
   @var_array<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
-}
+} [ size = , link_base:  =  ]
 message ModifyOrderShortRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3183,7 +3183,7 @@ message ModifyOrderShortRequest :  {
   Pad1_1 pad1_1
   CheckSumCorrection checkSumCorrection
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message ModifyTESTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3205,7 +3205,7 @@ message ModifyTESTradeRequest :  {
   Pad1 pad1
   @var_array<type=SideAllocGrpComp, counter=noSideAllocs> sideAllocGrp
   @var_array<type=TrdInstrmntLegGrpComp, counter=noLegs> trdInstrmntLegGrp
-}
+} [ size = , link_base:  =  ]
 message NewOrderNRResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -3225,7 +3225,7 @@ message NewOrderNRResponse :  {
   NoOrderEvents noOrderEvents
   Pad7 pad7
   @var_array<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
-}
+} [ size = , link_base:  =  ]
 message NewOrderRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3277,7 +3277,7 @@ message NewOrderRequest :  {
   CheckSumCorrection checkSumCorrection
   Pad2_3 pad2_3
   @var_array<type=LegOrdGrpComp, counter=noLegOnbooks> legOrdGrp
-}
+} [ size = , link_base:  =  ]
 message NewOrderResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderMEComp responseHeaderME
@@ -3299,7 +3299,7 @@ message NewOrderResponse :  {
   NoOrderEvents noOrderEvents
   Pad7 pad7
   @var_array<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
-}
+} [ size = , link_base:  =  ]
 message NewOrderShortRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3334,7 +3334,7 @@ message NewOrderShortRequest :  {
   Pad1_1 pad1_1
   CheckSumCorrection checkSumCorrection
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message NewsBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3342,7 +3342,7 @@ message NewsBroadcast :  {
   VarTextLen varTextLen
   Headline headline
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message OrderExecNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -3370,7 +3370,7 @@ message OrderExecNotification :  {
   @var_array<type=FillsGrpComp, counter=noFills> fillsGrp
   @var_array<type=InstrmntLegExecGrpComp, counter=noLegExecs> instrmntLegExecGrp
   @var_array<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
-}
+} [ size = , link_base:  =  ]
 message OrderExecReportBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -3432,7 +3432,7 @@ message OrderExecReportBroadcast :  {
   @var_array<type=FillsGrpComp, counter=noFills> fillsGrp
   @var_array<type=InstrmntLegExecGrpComp, counter=noLegExecs> instrmntLegExecGrp
   @var_array<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
-}
+} [ size = , link_base:  =  ]
 message OrderExecResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderMEComp responseHeaderME
@@ -3462,7 +3462,7 @@ message OrderExecResponse :  {
   @var_array<type=FillsGrpComp, counter=noFills> fillsGrp
   @var_array<type=InstrmntLegExecGrpComp, counter=noLegExecs> instrmntLegExecGrp
   @var_array<type=OrderEventGrpComp, counter=noOrderEvents> orderEventGrp
-}
+} [ size = , link_base:  =  ]
 message PartyActionReport :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3475,7 +3475,7 @@ message PartyActionReport :  {
   MarketID marketID
   PartyActionType partyActionType
   RequestingPartyIDEnteringFirm requestingPartyIDEnteringFirm
-}
+} [ size = , link_base:  =  ]
 message PartyEntitlementsUpdateReport :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3489,18 +3489,18 @@ message PartyEntitlementsUpdateReport :  {
   RequestingPartyClearingFirm requestingPartyClearingFirm
   PartyDetailStatus partyDetailStatus
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message PingRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   PartitionID partitionID
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message PingResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   TransactTime transactTime
-}
+} [ size = , link_base:  =  ]
 message PreTradeRiskLimitResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -3512,7 +3512,7 @@ message PreTradeRiskLimitResponse :  {
   PartyDetailExecutingUnit partyDetailExecutingUnit
   Pad4 pad4
   @var_array<type=RiskLimitsRptGrpComp, counter=noRiskLimits> riskLimitsRptGrp
-}
+} [ size = , link_base:  =  ]
 message PreTradeRiskLimitsDefinitionRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3525,7 +3525,7 @@ message PreTradeRiskLimitsDefinitionRequest :  {
   RiskLimitGroup riskLimitGroup
   PartyDetailExecutingUnit partyDetailExecutingUnit
   @var_array<type=RiskLimitQtyGrpComp, counter=noRiskLimitsQty> riskLimitQtyGrp
-}
+} [ size = , link_base:  =  ]
 message QuoteActivationNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -3539,7 +3539,7 @@ message QuoteActivationNotification :  {
   MassActionReason massActionReason
   Pad2 pad2
   @var_array<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
-}
+} [ size = , link_base:  =  ]
 message QuoteActivationRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3552,7 +3552,7 @@ message QuoteActivationRequest :  {
   PartyIdInvestmentDecisionMakerQualifier partyIdInvestmentDecisionMakerQualifier
   ExecutingTraderQualifier executingTraderQualifier
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message QuoteActivationResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -3560,7 +3560,7 @@ message QuoteActivationResponse :  {
   NoNotAffectedSecurities noNotAffectedSecurities
   Pad6 pad6
   @var_array<type=NotAffectedSecuritiesGrpComp, counter=noNotAffectedSecurities> notAffectedSecuritiesGrp
-}
+} [ size = , link_base:  =  ]
 message QuoteExecutionReport :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -3571,7 +3571,7 @@ message QuoteExecutionReport :  {
   Pad1 pad1
   @var_array<type=QuoteEventGrpComp, counter=noQuoteEvents> quoteEventGrp
   @var_array<type=QuoteLegExecGrpComp, counter=noLegExecs> quoteLegExecGrp
-}
+} [ size = , link_base:  =  ]
 message RFQRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3581,12 +3581,12 @@ message RFQRequest :  {
   Side side
   ComplianceText complianceText
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message RFQResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   ExecID execID
-}
+} [ size = , link_base:  =  ]
 message Reject :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
@@ -3594,7 +3594,7 @@ message Reject :  {
   VarTextLen varTextLen
   SessionStatus sessionStatus
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message RetransmitMEMessageRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3604,7 +3604,7 @@ message RetransmitMEMessageRequest :  {
   ApplBegMsgID applBegMsgID
   ApplEndMsgID applEndMsgID
   Pad1 pad1
-}
+} [ size = , link_base:  =  ]
 message RetransmitMEMessageResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -3612,7 +3612,7 @@ message RetransmitMEMessageResponse :  {
   ApplEndMsgID applEndMsgID
   RefApplLastMsgID refApplLastMsgID
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message RetransmitRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3621,7 +3621,7 @@ message RetransmitRequest :  {
   PartitionID partitionID
   RefApplID refApplID
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message RetransmitResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -3629,7 +3629,7 @@ message RetransmitResponse :  {
   RefApplLastSeqNum refApplLastSeqNum
   ApplTotalMessageCount applTotalMessageCount
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message ReverseTESTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3641,7 +3641,7 @@ message ReverseTESTradeRequest :  {
   TradeReportID tradeReportID
   ReversalReasonText reversalReasonText
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message RiskNotificationBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3656,7 +3656,7 @@ message RiskNotificationBroadcast :  {
   RequestingPartyEnteringFirm requestingPartyEnteringFirm
   RequestingPartyClearingFirm requestingPartyClearingFirm
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message SRQSCreateDealNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3703,7 +3703,7 @@ message SRQSCreateDealNotification :  {
   Pad3 pad3
   @var_array<type=OrderBookItemGrpComp, counter=noOrderBookItems> orderBookItemGrp
   @var_array<type=SRQSTargetPartyTrdGrpComp, counter=noSRQSTargetPartyTrdGrps> sRQSTargetPartyTrdGrp
-}
+} [ size = , link_base:  =  ]
 message SRQSDealNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3740,7 +3740,7 @@ message SRQSDealNotification :  {
   PartyIDTakeUpTradingFirm partyIDTakeUpTradingFirm
   Pad1 pad1
   @var_array<type=SRQSTargetPartyTrdGrpComp, counter=noSRQSTargetPartyTrdGrps> sRQSTargetPartyTrdGrp
-}
+} [ size = , link_base:  =  ]
 message SRQSDealResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -3753,7 +3753,7 @@ message SRQSDealResponse :  {
   FirmNegotiationID firmNegotiationID
   Pad3 pad3
   @var_array<type=SRQSQuoteGrpComp, counter=noSRQSQuoteGrps> sRQSQuoteGrp
-}
+} [ size = , link_base:  =  ]
 message SRQSEnterQuoteRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3789,7 +3789,7 @@ message SRQSEnterQuoteRequest :  {
   ComplianceText complianceText
   PartyIDTakeUpTradingFirm partyIDTakeUpTradingFirm
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message SRQSHitQuoteRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3828,7 +3828,7 @@ message SRQSHitQuoteRequest :  {
   PartyEndClientIdentification partyEndClientIdentification
   Pad6 pad6
   @var_array<type=SRQSHitQuoteGrpComp, counter=noSRQSQuoteGrps> sRQSHitQuoteGrp
-}
+} [ size = , link_base:  =  ]
 message SRQSInquireSmartRespondentRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -3837,7 +3837,7 @@ message SRQSInquireSmartRespondentRequest :  {
   EnlightRFQAvgRespTimeRanking enlightRFQAvgRespTimeRanking
   EnlightRFQAvgRespRateRanking enlightRFQAvgRespRateRanking
   TradeToQuoteRatioRanking tradeToQuoteRatioRanking
-}
+} [ size = , link_base:  =  ]
 message SRQSInquireSmartRespondentResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -3845,7 +3845,7 @@ message SRQSInquireSmartRespondentResponse :  {
   NoPartyDetails noPartyDetails
   Pad2 pad2
   @var_array<type=SmartPartyDetailGrpComp, counter=noPartyDetails> smartPartyDetailGrp
-}
+} [ size = , link_base:  =  ]
 message SRQSNegotiationNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3879,7 +3879,7 @@ message SRQSNegotiationNotification :  {
   PartyOrderOriginationTrader partyOrderOriginationTrader
   ChargeID chargeID
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message SRQSNegotiationRequesterNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3916,7 +3916,7 @@ message SRQSNegotiationRequesterNotification :  {
   ChargeID chargeID
   Pad6 pad6
   @var_array<type=TargetPartiesComp, counter=noTargetPartyIDs> targetParties
-}
+} [ size = , link_base:  =  ]
 message SRQSNegotiationStatusNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3926,7 +3926,7 @@ message SRQSNegotiationStatusNotification :  {
   QuoteCondition quoteCondition
   FirmNegotiationID firmNegotiationID
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message SRQSOpenNegotiationNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -3967,7 +3967,7 @@ message SRQSOpenNegotiationNotification :  {
   ChargeID chargeID
   Pad2 pad2
   @var_array<type=QuotReqLegsGrpComp, counter=noLegs> quotReqLegsGrp
-}
+} [ size = , link_base:  =  ]
 message SRQSOpenNegotiationRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -4004,7 +4004,7 @@ message SRQSOpenNegotiationRequest :  {
   Pad6 pad6
   @var_array<type=QuotReqLegsGrpComp, counter=noLegs> quotReqLegsGrp
   @var_array<type=TargetPartiesComp, counter=noTargetPartyIDs> targetParties
-}
+} [ size = , link_base:  =  ]
 message SRQSOpenNegotiationRequesterNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4047,7 +4047,7 @@ message SRQSOpenNegotiationRequesterNotification :  {
   ChargeID chargeID
   @var_array<type=QuotReqLegsGrpComp, counter=noLegs> quotReqLegsGrp
   @var_array<type=TargetPartiesComp, counter=noTargetPartyIDs> targetParties
-}
+} [ size = , link_base:  =  ]
 message SRQSQuoteNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4084,14 +4084,14 @@ message SRQSQuoteNotification :  {
   PartyIDLocationID partyIDLocationID
   ComplianceText complianceText
   PartyIDTakeUpTradingFirm partyIDTakeUpTradingFirm
-}
+} [ size = , link_base:  =  ]
 message SRQSQuoteResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
   QuoteID quoteID
   NegotiationID negotiationID
   QuoteReqID quoteReqID
-}
+} [ size = , link_base:  =  ]
 message SRQSQuoteSnapshotNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4099,11 +4099,11 @@ message SRQSQuoteSnapshotNotification :  {
   MessageEventSource messageEventSource
   Pad6 pad6
   @var_array<type=SRQSQuoteEntryGrpComp, counter=noQuoteEntries> sRQSQuoteEntryGrp
-}
+} [ size = , link_base:  =  ]
 message SRQSQuoteSnapshotRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
-}
+} [ size = , link_base:  =  ]
 message SRQSQuotingStatusRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -4113,18 +4113,18 @@ message SRQSQuotingStatusRequest :  {
   PartyExecutingFirm partyExecutingFirm
   PartyExecutingTrader partyExecutingTrader
   FreeText5 freeText5
-}
+} [ size = , link_base:  =  ]
 message SRQSResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
-}
+} [ size = , link_base:  =  ]
 message SRQSStatusBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
   TradeDate tradeDate
   TradSesEvent tradSesEvent
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message SRQSUpdateDealStatusRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -4140,7 +4140,7 @@ message SRQSUpdateDealStatusRequest :  {
   PartyExecutingTrader partyExecutingTrader
   FreeText5 freeText5
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message SRQSUpdateNegotiationRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -4166,7 +4166,7 @@ message SRQSUpdateNegotiationRequest :  {
   PartyOrderOriginationTrader partyOrderOriginationTrader
   ChargeID chargeID
   @var_array<type=TargetPartiesComp, counter=noTargetPartyIDs> targetParties
-}
+} [ size = , link_base:  =  ]
 message ServiceAvailabilityBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   NRBCHeaderComp nRBCHeader
@@ -4182,7 +4182,7 @@ message ServiceAvailabilityBroadcast :  {
   T7EntryServiceStatus t7EntryServiceStatus
   T7EntryServiceRtmStatus t7EntryServiceRtmStatus
   Pad5 pad5
-}
+} [ size = , link_base:  =  ]
 message ServiceAvailabilityMarketBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   NRBCHeaderComp nRBCHeader
@@ -4191,27 +4191,27 @@ message ServiceAvailabilityMarketBroadcast :  {
   SelectiveRequestForQuoteRtmServiceStatus selectiveRequestForQuoteRtmServiceStatus
   NewsRtmServiceStatus newsRtmServiceStatus
   RiskControlRtmServiceStatus riskControlRtmServiceStatus
-}
+} [ size = , link_base:  =  ]
 message StatusBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
   TradeDate tradeDate
   TradSesEvent tradSesEvent
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message SubscribeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   SubscriptionScope subscriptionScope
   RefApplID refApplID
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message SubscribeResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
   ApplSubID applSubID
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message TESApproveBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4280,7 +4280,7 @@ message TESApproveBroadcast :  {
   @var_array<type=InstrumentAttributeGrpComp, counter=noInstrAttrib> instrumentAttributeGrp
   @var_array<type=UnderlyingStipGrpComp, counter=noUnderlyingStips> underlyingStipGrp
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message TESBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4331,7 +4331,7 @@ message TESBroadcast :  {
   @var_array<type=InstrumentAttributeGrpComp, counter=noInstrAttrib> instrumentAttributeGrp
   @var_array<type=UnderlyingStipGrpComp, counter=noUnderlyingStips> underlyingStipGrp
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message TESDeleteBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4346,7 +4346,7 @@ message TESDeleteBroadcast :  {
   MessageEventSource messageEventSource
   TradeReportID tradeReportID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message TESExecutionBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4361,13 +4361,13 @@ message TESExecutionBroadcast :  {
   TrdRptStatus trdRptStatus
   MessageEventSource messageEventSource
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message TESResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
   TESExecID tESExecID
   TradeReportID tradeReportID
-}
+} [ size = , link_base:  =  ]
 message TESReversalBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4384,7 +4384,7 @@ message TESReversalBroadcast :  {
   ReversalReasonText reversalReasonText
   Pad3 pad3
   @var_array<type=SideAllocGrpBCComp, counter=noSideAllocs> sideAllocGrpBC
-}
+} [ size = , link_base:  =  ]
 message TESTradeBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4459,14 +4459,14 @@ message TESTradeBroadcast :  {
   BasketSideTradeReportID basketSideTradeReportID
   FeeIdntCode feeIdntCode
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message TESTradingSessionStatusBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
   TradeDate tradeDate
   TradSesEvent tradSesEvent
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message TESUploadBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4513,20 +4513,20 @@ message TESUploadBroadcast :  {
   @var_array<type=InstrumentEventGrpComp, counter=noEvents> instrumentEventGrp
   @var_array<type=InstrumentAttributeGrpComp, counter=noInstrAttrib> instrumentAttributeGrp
   @var_array<type=UnderlyingStipGrpComp, counter=noUnderlyingStips> underlyingStipGrp
-}
+} [ size = , link_base:  =  ]
 message TMTradingSessionStatusBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
   TradSesEvent tradSesEvent
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message ThrottleUpdateNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
   ThrottleTimeInterval throttleTimeInterval
   ThrottleNoMsgs throttleNoMsgs
   ThrottleDisconnectLimit throttleDisconnectLimit
-}
+} [ size = , link_base:  =  ]
 message TradeBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -4598,7 +4598,7 @@ message TradeBroadcast :  {
   RootPartyIDExecutionVenue rootPartyIDExecutionVenue
   FeeIdntCode feeIdntCode
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message TradingSessionStatusBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderMEComp rBCHeaderME
@@ -4607,17 +4607,17 @@ message TradingSessionStatusBroadcast :  {
   TradSesEvent tradSesEvent
   RefApplLastMsgID refApplLastMsgID
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message UnsubscribeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   RefApplSubID refApplSubID
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message UnsubscribeResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
-}
+} [ size = , link_base:  =  ]
 message UpdateRemainingRiskAllowanceBaseRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -4625,14 +4625,14 @@ message UpdateRemainingRiskAllowanceBaseRequest :  {
   NoPartyRiskLimits noPartyRiskLimits
   Pad4 pad4
   @var_array<type=RRAUpdateBasePartyGrpComp, counter=noPartyRiskLimits> rRAUpdateBasePartyGrp
-}
+} [ size = , link_base:  =  ]
 message UpdateRemainingRiskAllowanceBaseResponse :  {
   MessageHeaderOutComp messageHeaderOut
   NRResponseHeaderMEComp nRResponseHeaderME
   NoPartyRiskLimits noPartyRiskLimits
   Pad6 pad6
   @var_array<type=RRAUpdateBasePartyAckGrpComp, counter=noPartyRiskLimits> rRAUpdateBasePartyAckGrp
-}
+} [ size = , link_base:  =  ]
 message UploadTESTradeRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -4675,33 +4675,33 @@ message UploadTESTradeRequest :  {
   @var_array<type=InstrumentEventGrpComp, counter=noEvents> instrumentEventGrp
   @var_array<type=InstrumentAttributeGrpComp, counter=noInstrAttrib> instrumentAttributeGrp
   @var_array<type=UnderlyingStipGrpComp, counter=noUnderlyingStips> underlyingStipGrp
-}
+} [ size = , link_base:  =  ]
 message UserLoginRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   Username username
   Password password
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message UserLoginRequestEncrypted :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   Username username
   EncryptedPassword encryptedPassword
-}
+} [ size = , link_base:  =  ]
 message UserLoginResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
-}
+} [ size = , link_base:  =  ]
 message UserLogoutRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
   Username username
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message UserLogoutResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
-}
+} [ size = , link_base:  =  ]
 
 

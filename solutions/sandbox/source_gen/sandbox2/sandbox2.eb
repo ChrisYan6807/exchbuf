@@ -6,8 +6,8 @@
 
 primitive U8 = uint8_ebt [ min=, max=, null=, little_endian=true ]
 primitive U16 = uint16_ebt [ min=, max=, null=, little_endian=true ]
-primitive str3 = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive str10 = FixedLengthString [ length=10, padding='\0', left_padding=false ]
+primitive str3 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive str10 = FixedLengthString [ length=10, padding='\0', right_padded=false ]
 primitive v = FloatDecimal [ min=, max=, null=, size=8, precision=8, signed=true, little_endian=true ]
 primitive v1 = char_ebt [ min=, max=, null=, little_endian=true ]
 
@@ -49,12 +49,12 @@ enum MsgType : int16_ebt {
 message Head :  {
   MsgLen len
   MsgType msgType
-}
+} [ size = , link_base:  =  ]
 
 message RptGrp :  {
   U8 key
   str3 value
-}
+} [ size = , link_base:  =  ]
 
 enum AppendageType : int8_ebt {
   ClearingAccount = 1
@@ -74,15 +74,15 @@ message Entry :  {
     type: ClearingAccountType, enum_value: ClearingAccountType
     type: ClearingFirm, enum_value: ClearingFirm
   }
-}
+} [ size = , link_base:  =  ]
 
 message NewOrder : Head {
   Price price
   U16 qty
-  U8 size
+  U8 sz
   @array<type=Price, size=2> pp
-  @var_str<size=size, offset=0> ss
-  @var_array<type=RptGrp, counter=size> grp
-}
+  @var_str<size=sz, offset=0> ss
+  @var_array<type=RptGrp, counter=sz> grp
+} [ size = , link_base:  =  ]
 
 

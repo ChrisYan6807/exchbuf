@@ -3,16 +3,16 @@
 
 @cpp inline std::string edci_CashAppVersionID = "14.1";
 @python edci_CashAppVersionID = "14.1"
-primitive CurrencyType = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive ISIN = FixedLengthString [ length=12, padding='\0', left_padding=false ]
+primitive CurrencyType = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive ISIN = FixedLengthString [ length=12, padding='\0', right_padded=false ]
 primitive LocalMktDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
 primitive LocalMonthYearCod = uint32_ebt [ min=0, max=999912, null=0xFFFFFFFF, little_endian=true ]
 primitive PriceType = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive Qty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive UTCTimestamp = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive AffectedClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
-primitive AffectedFIXClOrdID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive AffectedFIXOrigClOrdID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+primitive AffectedFIXClOrdID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive AffectedFIXOrigClOrdID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 primitive AffectedOrderID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive AffectedOrigClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 enum ApplID : uint8_ebt {
@@ -35,10 +35,10 @@ enum CrossedIndicator : uint8_ebt {
   Cross_rejected = 1
 }
 primitive CumQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive CustOrderHandlingInst = FixedLengthString [ length=1, padding='\0', left_padding=false ]
+primitive CustOrderHandlingInst = FixedLengthString [ length=1, padding='\0', right_padded=false ]
 primitive CxlQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive DefaultCstmApplVerID = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive DefaultCstmApplVerSubID = FixedLengthString [ length=5, padding='\0', left_padding=false ]
+primitive DefaultCstmApplVerID = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive DefaultCstmApplVerSubID = FixedLengthString [ length=5, padding='\0', right_padded=false ]
 primitive DisplayQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive ExecID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 enum ExecInst : uint8_ebt {
@@ -65,8 +65,8 @@ enum ExecutingTraderQualifier : uint8_ebt {
   Human = 24
 }
 primitive ExpireDate = uint32_ebt [ min=0, max=99991231, null=0xFFFFFFFF, little_endian=true ]
-primitive FIXClOrdID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive FIXOrigClOrdID = FixedLengthString [ length=20, padding='\0', left_padding=false ]
+primitive FIXClOrdID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive FIXOrigClOrdID = FixedLengthString [ length=20, padding='\0', right_padded=false ]
 primitive FillExecID = int32_ebt [ min=-2147483647, max=2147483647, null=0x80000000, little_endian=true ]
 enum FillLiquidityInd : uint8_ebt {
   Added_Liquidity = 1
@@ -81,9 +81,9 @@ enum FillLiquidityInd : uint8_ebt {
 primitive FillMatchID = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive FillPx = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive FillQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
-primitive FreeText1 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive FreeText2 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive FreeText4 = FixedLengthString [ length=16, padding='\0', left_padding=false ]
+primitive FreeText1 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive FreeText2 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive FreeText4 = FixedLengthString [ length=16, padding='\0', right_padded=false ]
 primitive HeartBtInt = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 enum LastFragment : uint8_ebt {
   Not_Last_Message = 0
@@ -122,7 +122,7 @@ enum MidPointType : uint8_ebt {
 }
 primitive MinQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive MsgSeqNum = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
-primitive MsgType = FixedLengthString [ length=3, padding='\0', left_padding=false ]
+primitive MsgType = FixedLengthString [ length=3, padding='\0', right_padded=false ]
 primitive NoAffectedOrders = uint16_ebt [ min=0, max=500, null=0xFFFF, little_endian=true ]
 primitive NoFills = uint8_ebt [ min=0, max=100, null=0xFF, little_endian=true ]
 primitive NoPartitions = uint8_ebt [ min=0, max=100, null=0xFF, little_endian=true ]
@@ -151,17 +151,17 @@ enum OrderOrigination : uint8_ebt {
 }
 primitive OrderQty = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive OrigClOrdID = uint64_ebt [ min=0, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
-primitive Pad2 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive Pad3 = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive Pad4 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive Pad4_1 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive Pad4_2 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive Pad4_3 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive Pad5 = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive Pad6 = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive Pad7 = FixedLengthString [ length=7, padding='\0', left_padding=false ]
+primitive Pad2 = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive Pad3 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive Pad4 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive Pad4_1 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive Pad4_2 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive Pad4_3 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive Pad5 = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive Pad6 = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive Pad7 = FixedLengthString [ length=7, padding='\0', right_padded=false ]
 primitive PartitionID = uint16_ebt [ min=0, max=65534, null=0xFFFF, little_endian=true ]
-primitive PartyExecutingFirm = FixedLengthString [ length=5, padding='\0', left_padding=false ]
+primitive PartyExecutingFirm = FixedLengthString [ length=5, padding='\0', right_padded=false ]
 primitive PartyIDClientID = uint64_ebt [ min=1, max=18446744073709551614, null=0xFFFFFFFFFFFFFFFF, little_endian=true ]
 primitive PartyIDExecutingTrader = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
 primitive PartyIDExecutingUnit = uint32_ebt [ min=0, max=4294967294, null=0xFFFFFFFF, little_endian=true ]
@@ -172,8 +172,8 @@ enum PartyIdInvestmentDecisionMakerQualifier : uint8_ebt {
   Algo = 22
   Human = 24
 }
-primitive PartySponsoredAccessUnit = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive Password = FixedLengthString [ length=32, padding='\0', left_padding=false ]
+primitive PartySponsoredAccessUnit = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive Password = FixedLengthString [ length=32, padding='\0', right_padded=false ]
 primitive PegOffsetValueAbs = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
 primitive PegOffsetValuePct = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=4, signed=true, little_endian=true ]
 primitive Price = FloatDecimal [ min=-9223372036854775807, max=, null=0x8000000000000000, size=8, precision=8, signed=true, little_endian=true ]
@@ -269,7 +269,7 @@ enum Triggered : uint8_ebt {
   Triggered_Stop = 1
   Triggered_OCO = 2
 }
-primitive VarText = FixedLengthString [ length=2000, padding='\0', left_padding=false ]
+primitive VarText = FixedLengthString [ length=2000, padding='\0', right_padded=false ]
 primitive VarTextLen = uint16_ebt [ min=0, max=2000, null=0xFFFF, little_endian=true ]
 enum TemplateID : int16_ebt {
   DeleteOrderBroadcast = 10902
@@ -300,7 +300,7 @@ message AffectedOrdGrpComp :  {
   AffectedFIXClOrdID affectedFIXClOrdID
   AffectedFIXOrigClOrdID affectedFIXOrigClOrdID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message FillsGrpComp :  {
   FillPx fillPx
   FillQty fillQty
@@ -308,42 +308,42 @@ message FillsGrpComp :  {
   FillExecID fillExecID
   FillLiquidityInd fillLiquidityInd
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message MessageHeaderInComp :  {
   BodyLen bodyLen
   TemplateID templateID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message MessageHeaderOutComp :  {
   BodyLen bodyLen
   TemplateID templateID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message NotifHeaderComp :  {
   SendingTime sendingTime
-}
+} [ size = , link_base:  =  ]
 message PartitionGrpComp :  {
   PartitionID partitionID
   Pad6 pad6
-}
+} [ size = , link_base:  =  ]
 message RBCHeaderComp :  {
   SendingTime sendingTime
   PartyIDExecutingUnit partyIDExecutingUnit
   PartitionID partitionID
   ApplID applID
   LastFragment lastFragment
-}
+} [ size = , link_base:  =  ]
 message RequestHeaderComp :  {
   MsgSeqNum msgSeqNum
   Pad4 pad4
-}
+} [ size = , link_base:  =  ]
 message ResponseHeaderComp :  {
   RequestTime requestTime
   SendingTime sendingTime
   MsgSeqNum msgSeqNum
   LastFragment lastFragment
   Pad3 pad3
-}
+} [ size = , link_base:  =  ]
 message SessionsGrpComp :  {
   PartyIDSessionID partyIDSessionID
   PartyIDExecutingUnit partyIDExecutingUnit
@@ -351,7 +351,7 @@ message SessionsGrpComp :  {
   SessionMode sessionMode
   PartyExecutingFirm partyExecutingFirm
   PartySponsoredAccessUnit partySponsoredAccessUnit
-}
+} [ size = , link_base:  =  ]
 message DeleteOrderBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -360,20 +360,20 @@ message DeleteOrderBroadcast :  {
   NoAffectedOrders noAffectedOrders
   Pad2 pad2
   @var_array<type=AffectedOrdGrpComp, counter=noAffectedOrders> affectedOrdGrp
-}
+} [ size = , link_base:  =  ]
 message ForcedLogoutNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
   VarTextLen varTextLen
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message Heartbeat :  {
   MessageHeaderInComp messageHeaderIn
-}
+} [ size = , link_base:  =  ]
 message HeartbeatNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
-}
+} [ size = , link_base:  =  ]
 message LogonRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
@@ -382,7 +382,7 @@ message LogonRequest :  {
   DefaultCstmApplVerID defaultCstmApplVerID
   Password password
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message LogonResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -393,15 +393,15 @@ message LogonResponse :  {
   DefaultCstmApplVerID defaultCstmApplVerID
   DefaultCstmApplVerSubID defaultCstmApplVerSubID
   Pad2 pad2
-}
+} [ size = , link_base:  =  ]
 message LogoutRequest :  {
   MessageHeaderInComp messageHeaderIn
   RequestHeaderComp requestHeader
-}
+} [ size = , link_base:  =  ]
 message LogoutResponse :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
-}
+} [ size = , link_base:  =  ]
 message OrderExecReportBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -458,14 +458,14 @@ message OrderExecReportBroadcast :  {
   FIXOrigClOrdID fIXOrigClOrdID
   Pad7 pad7
   @var_array<type=FillsGrpComp, counter=noFills> fillsGrp
-}
+} [ size = , link_base:  =  ]
 message PartitionListNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
   NoPartitions noPartitions
   Pad7 pad7
   @var_array<type=PartitionGrpComp, counter=noPartitions> partitionGrp
-}
+} [ size = , link_base:  =  ]
 message Reject :  {
   MessageHeaderOutComp messageHeaderOut
   ResponseHeaderComp responseHeader
@@ -473,14 +473,14 @@ message Reject :  {
   VarTextLen varTextLen
   SessionStatus sessionStatus
   @var_array<type=VarText, counter=varTextLen> varText
-}
+} [ size = , link_base:  =  ]
 message SessionListNotification :  {
   MessageHeaderOutComp messageHeaderOut
   NotifHeaderComp notifHeader
   NoSessions noSessions
   Pad6 pad6
   @var_array<type=SessionsGrpComp, counter=noSessions> sessionsGrp
-}
+} [ size = , link_base:  =  ]
 message SessionStatusBroadcast :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -488,7 +488,7 @@ message SessionStatusBroadcast :  {
   MarketSegmentID marketSegmentID
   TradSesEvent tradSesEvent
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 message TrailingStopUpdateNotification :  {
   MessageHeaderOutComp messageHeaderOut
   RBCHeaderComp rBCHeader
@@ -505,6 +505,6 @@ message TrailingStopUpdateNotification :  {
   FIXClOrdID fIXClOrdID
   FIXOrigClOrdID fIXOrigClOrdID
   Pad7 pad7
-}
+} [ size = , link_base:  =  ]
 
 

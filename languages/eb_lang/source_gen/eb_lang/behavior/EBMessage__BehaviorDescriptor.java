@@ -51,6 +51,13 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
       }
     }
 
+    for (SNode m : Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(__thisNode__, LINKS.content$vVwC), CONCEPTS.EBMessageMemberVarNoType$TI))) {
+      if ((boolean) EBMessageMember__BehaviorDescriptor.isNotFixedLength_id2D23R1vLKti.invoke(m)) {
+        return true;
+      }
+    }
+
+
     return false;
   }
 
@@ -112,5 +119,6 @@ public final class EBMessage__BehaviorDescriptor extends BaseBHDescriptor {
 
   private static final class CONCEPTS {
     /*package*/ static final SConcept EBMessageMemberVar$_K = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x54785f5b332a751cL, "eb_lang.structure.EBMessageMemberVar");
+    /*package*/ static final SConcept EBMessageMemberVarNoType$TI = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x2a420f705fa9e8eaL, "eb_lang.structure.EBMessageMemberVarNoType");
   }
 }

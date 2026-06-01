@@ -121,7 +121,7 @@
       <property role="TrG5h" value="string20lp" />
       <node concept="2gaQCN" id="2D23R1weeFS" role="2gaMi1">
         <property role="2gaQCY" value="' '" />
-        <property role="2gaQCK" value="10" />
+        <property role="2gaQCK" value="20" />
       </node>
     </node>
     <node concept="2gln9S" id="2D23R1weeFQ" role="2gln9U">
@@ -244,7 +244,7 @@
       <ref role="by8j6" node="O7Z_rQ4rVp" resolve="pkgType" />
       <ref role="by8j7" node="4W3c0IHYXzu" resolve="Debug" />
       <node concept="3yYcDq" id="2D23R1wlj2z" role="36JId$">
-        <property role="3yYcDv" value="-1" />
+        <property role="3yYcDv" value="1" />
         <property role="TrG5h" value="text" />
         <ref role="3yYcDp" node="O7Z_rQ4rVo" resolve="pkgLength" />
       </node>
@@ -348,11 +348,11 @@
         <ref role="bScPz" node="O7Z_rQ4rUH" resolve="string10" />
       </node>
       <node concept="2gaMiM" id="4W3c0IJeWtP" role="36JId$">
-        <property role="TrG5h" value="session" />
+        <property role="TrG5h" value="requestedSession" />
         <ref role="bScPz" node="2D23R1weeFO" resolve="string10lp" />
       </node>
       <node concept="2gaMiM" id="4W3c0IJeWtQ" role="36JId$">
-        <property role="TrG5h" value="seqNum" />
+        <property role="TrG5h" value="requestedSeqNum" />
         <ref role="bScPz" node="2D23R1weeFR" resolve="string20lp" />
       </node>
     </node>

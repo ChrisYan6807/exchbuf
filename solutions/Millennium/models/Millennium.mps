@@ -13,6 +13,9 @@
         <child id="8244488409083636231" name="type" index="2gaMi1" />
       </concept>
       <concept id="8244488409083636262" name="eb_lang.structure.EBMessage" flags="ng" index="2gaMiw">
+        <property id="6362636135990793682" name="size" index="2SxKC8" />
+        <reference id="4586680865734503732" name="base_link_type" index="by8j6" />
+        <reference id="4586680865734503733" name="base_link_value" index="by8j7" />
         <reference id="2293153050483516742" name="base" index="2yvCZa" />
         <child id="8888019748028577210" name="content" index="36JId$" />
       </concept>
@@ -423,7 +426,10 @@
     <node concept="2gln9S" id="3SNypnb2Bgw" role="2gln9U" />
     <node concept="2gaMiw" id="2XMfzqE3m89" role="2gln9U">
       <property role="TrG5h" value="Logon" />
+      <property role="2SxKC8" value="" />
       <ref role="2yvCZa" node="2XMfzqE3m7Z" resolve="MsgHeader" />
+      <ref role="by8j6" node="2XMfzqE3m85" resolve="msgType" />
+      <ref role="by8j7" node="3SNypnb2AF7" resolve="Logon" />
       <node concept="2gaMiM" id="2XMfzqE3m8b" role="36JId$">
         <property role="TrG5h" value="userName" />
         <ref role="bScPz" node="zaARBR_iCh" resolve="String25" />

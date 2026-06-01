@@ -13,20 +13,37 @@ import java.util.List;
 import java.util.Arrays;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.mps.openapi.model.SNode;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
 import jetbrains.mps.core.aspects.behaviour.api.SConstructor;
 import org.jetbrains.annotations.Nullable;
 import jetbrains.mps.core.aspects.behaviour.api.BHMethodNotFoundException;
+import org.jetbrains.mps.openapi.language.SConcept;
 
 public final class EBMessageMember__BehaviorDescriptor extends BaseBHDescriptor {
   private static final SAbstractConcept CONCEPT = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, "eb_lang.structure.EBMessageMember");
 
   public static final SMethod<Boolean> isNotFixedLength_id2D23R1vLKti = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLength").modifiers(12, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(3045013273373509458L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
+  public static final SMethod<Boolean> isNotFixedLenMember_id_KNfA4Q0le = new SMethodBuilder<Boolean>(new SJavaCompoundTypeImpl(Boolean.TYPE)).name("isNotFixedLenMember").modifiers(0, AccessPrivileges.PUBLIC).concept(CONCEPT).baseMethodId(680268915780617550L).languageId(0xab3adc203eb4cc03L, 0x59242254602f42f3L).build2();
 
-  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isNotFixedLength_id2D23R1vLKti);
+  private static final List<SMethod<?>> BH_METHODS = Arrays.<SMethod<?>>asList(isNotFixedLength_id2D23R1vLKti, isNotFixedLenMember_id_KNfA4Q0le);
 
   private static void ___init___(@NotNull SNode __thisNode__) {
   }
 
+  /*package*/ static boolean isNotFixedLenMember_id_KNfA4Q0le(@NotNull SNode __thisNode__) {
+    if (((boolean) EBMessageMember__BehaviorDescriptor.isNotFixedLength_id2D23R1vLKti.invoke(__thisNode__))) {
+      return true;
+    }
+    SNode pre_node = SNodeOperations.cast(SNodeOperations.getPrevSibling(__thisNode__), CONCEPTS.EBMessageMember$R);
+    while ((pre_node != null)) {
+      if ((boolean) EBMessageMember__BehaviorDescriptor.isNotFixedLength_id2D23R1vLKti.invoke(pre_node)) {
+        return true;
+      }
+      pre_node = SNodeOperations.cast(SNodeOperations.getPrevSibling(pre_node), CONCEPTS.EBMessageMember$R);
+    }
+
+    return false;
+  }
 
   /*package*/ EBMessageMember__BehaviorDescriptor() {
   }
@@ -43,6 +60,8 @@ public final class EBMessageMember__BehaviorDescriptor extends BaseBHDescriptor 
       throw new BHMethodNotFoundException(this, method);
     }
     switch (methodIndex) {
+      case 1:
+        return (T) ((Boolean) isNotFixedLenMember_id_KNfA4Q0le(node));
       default:
         throw new BHMethodNotFoundException(this, method);
     }
@@ -70,5 +89,9 @@ public final class EBMessageMember__BehaviorDescriptor extends BaseBHDescriptor 
   @Override
   public SAbstractConcept getConcept() {
     return CONCEPT;
+  }
+
+  private static final class CONCEPTS {
+    /*package*/ static final SConcept EBMessageMember$R = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a2aL, "eb_lang.structure.EBMessageMember");
   }
 }

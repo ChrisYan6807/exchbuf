@@ -429,13 +429,13 @@
         <ref role="bScPz" node="4nIu8bHFhNQ" resolve="U16" />
       </node>
       <node concept="2gaMiM" id="2D23R1v258o" role="36JId$">
-        <property role="TrG5h" value="size" />
+        <property role="TrG5h" value="sz" />
         <ref role="bScPz" node="4nIu8bHFhNL" resolve="U8" />
       </node>
       <node concept="2gaMiJ" id="2D23R1v258r" role="36JId$">
         <property role="TrG5h" value="grp" />
         <ref role="bScPz" node="2D23R1v258v" resolve="RptGrp" />
-        <ref role="3Pf6aa" node="2D23R1v258o" resolve="size" />
+        <ref role="3Pf6aa" node="2D23R1v258o" resolve="sz" />
       </node>
       <node concept="b_j0e" id="2D23R1v4y18" role="36JId$">
         <property role="b_j0d" value="28" />
@@ -445,7 +445,7 @@
       <node concept="3yYcDq" id="2D23R1vBfrU" role="36JId$">
         <property role="3yYcDv" value="2" />
         <property role="TrG5h" value="sss" />
-        <ref role="3yYcDp" node="2D23R1v258o" resolve="size" />
+        <ref role="3yYcDp" node="2D23R1v258o" resolve="sz" />
       </node>
       <node concept="2gaMiM" id="2D23R1v5TUr" role="36JId$">
         <property role="TrG5h" value="plen" />

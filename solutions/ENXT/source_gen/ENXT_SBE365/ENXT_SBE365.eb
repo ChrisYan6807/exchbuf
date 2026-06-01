@@ -8,8 +8,8 @@ primitive uint16 = uint16_ebt [ min=, max=, null=, little_endian=true ]
 primitive int16 = int16_ebt [ min=, max=, null=, little_endian=true ]
 primitive uint32 = uint32_ebt [ min=, max=, null=, little_endian=true ]
 primitive int32 = int32_ebt [ min=, max=, null=, little_endian=true ]
-primitive uint64 = uint32_ebt [ min=, max=, null=, little_endian=true ]
-primitive int64 = int32_ebt [ min=, max=, null=, little_endian=true ]
+primitive uint64 = uint64_ebt [ min=, max=, null=, little_endian=true ]
+primitive int64 = int64_ebt [ min=, max=, null=, little_endian=true ]
 
 primitive unsigned_char = uint8_ebt [ min=0, max=254, null=255, little_endian=true ]
 primitive i8 = int8_ebt [ min=-127, max=127, null=-128, little_endian=true ]
@@ -19,32 +19,32 @@ primitive u64 = uint64_ebt [ min=0, max=18446744073709551614, null=1844674407370
 primitive i32 = int32_ebt [ min=-2147483647, max=2147483647, null=-2147483648, little_endian=true ]
 primitive i64 = int64_ebt [ min=-9223372036854775807, max=9223372036854775807, null=-9223372036854775808, little_endian=true ]
 primitive char1 = char_ebt [ min=, max=, null=, little_endian=true ]
-primitive char2 = FixedLengthString [ length=2, padding='\0', left_padding=false ]
-primitive char3 = FixedLengthString [ length=3, padding='\0', left_padding=false ]
-primitive char4 = FixedLengthString [ length=4, padding='\0', left_padding=false ]
-primitive char5 = FixedLengthString [ length=5, padding='\0', left_padding=false ]
-primitive char6 = FixedLengthString [ length=6, padding='\0', left_padding=false ]
-primitive char7 = FixedLengthString [ length=7, padding='\0', left_padding=false ]
-primitive char8 = FixedLengthString [ length=8, padding='\0', left_padding=false ]
-primitive char10 = FixedLengthString [ length=10, padding='\0', left_padding=false ]
-primitive char11 = FixedLengthString [ length=11, padding='\0', left_padding=false ]
-primitive char12 = FixedLengthString [ length=12, padding='\0', left_padding=false ]
-primitive char13 = FixedLengthString [ length=13, padding='\0', left_padding=false ]
-primitive char15 = FixedLengthString [ length=15, padding='\0', left_padding=false ]
-primitive char16 = FixedLengthString [ length=16, padding='\0', left_padding=false ]
-primitive char18 = FixedLengthString [ length=18, padding='\0', left_padding=false ]
-primitive char20 = FixedLengthString [ length=20, padding='\0', left_padding=false ]
-primitive char24 = FixedLengthString [ length=24, padding='\0', left_padding=false ]
-primitive char25 = FixedLengthString [ length=25, padding='\0', left_padding=false ]
-primitive char27 = FixedLengthString [ length=27, padding='\0', left_padding=false ]
-primitive char30 = FixedLengthString [ length=30, padding='\0', left_padding=false ]
-primitive char32 = FixedLengthString [ length=32, padding='\0', left_padding=false ]
-primitive char50 = FixedLengthString [ length=50, padding='\0', left_padding=false ]
-primitive char52 = FixedLengthString [ length=52, padding='\0', left_padding=false ]
-primitive char60 = FixedLengthString [ length=60, padding='\0', left_padding=false ]
-primitive char100 = FixedLengthString [ length=100, padding='\0', left_padding=false ]
-primitive char102 = FixedLengthString [ length=102, padding='\0', left_padding=false ]
-primitive char250 = FixedLengthString [ length=250, padding='\0', left_padding=false ]
+primitive char2 = FixedLengthString [ length=2, padding='\0', right_padded=false ]
+primitive char3 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive char4 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive char5 = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive char6 = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive char7 = FixedLengthString [ length=7, padding='\0', right_padded=false ]
+primitive char8 = FixedLengthString [ length=8, padding='\0', right_padded=false ]
+primitive char10 = FixedLengthString [ length=10, padding='\0', right_padded=false ]
+primitive char11 = FixedLengthString [ length=11, padding='\0', right_padded=false ]
+primitive char12 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive char13 = FixedLengthString [ length=13, padding='\0', right_padded=false ]
+primitive char15 = FixedLengthString [ length=15, padding='\0', right_padded=false ]
+primitive char16 = FixedLengthString [ length=16, padding='\0', right_padded=false ]
+primitive char18 = FixedLengthString [ length=18, padding='\0', right_padded=false ]
+primitive char20 = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive char24 = FixedLengthString [ length=24, padding='\0', right_padded=false ]
+primitive char25 = FixedLengthString [ length=25, padding='\0', right_padded=false ]
+primitive char27 = FixedLengthString [ length=27, padding='\0', right_padded=false ]
+primitive char30 = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive char32 = FixedLengthString [ length=32, padding='\0', right_padded=false ]
+primitive char50 = FixedLengthString [ length=50, padding='\0', right_padded=false ]
+primitive char52 = FixedLengthString [ length=52, padding='\0', right_padded=false ]
+primitive char60 = FixedLengthString [ length=60, padding='\0', right_padded=false ]
+primitive char100 = FixedLengthString [ length=100, padding='\0', right_padded=false ]
+primitive char102 = FixedLengthString [ length=102, padding='\0', right_padded=false ]
+primitive char250 = FixedLengthString [ length=250, padding='\0', right_padded=false ]
 enum TemplateIdType : int16_ebt {
   NewOrder = 1
   Ack = 3
@@ -108,15 +108,15 @@ message MessageHeader :  {
   TemplateIdType templateId
   uint16 schemaId
   uint16 version
-}
+} [ size = , link_base:  =  ]
 message groupSizeEncoding :  {
   uint8 blockLength
   uint8 numInGroup
-}
+} [ size = , link_base:  =  ]
 message groupSizeEncoding16 :  {
   uint16 blockLength
   uint8 numInGroup
-}
+} [ size = , link_base:  =  ]
 enum AccountType_enum : uint8_ebt {
   Client = 1
   House = 2
@@ -1125,22 +1125,22 @@ bitfield TargetCounterparties_set : uint16_ebt {
 
 message NewOrder_FreeTextSection :  {
   char18 freeText
-}
+} [ size = , link_base:  =  ]
 message NewOrder_FreeTextSection_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_FreeTextSection, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder_MiFIDShortcodes :  {
   i32 investmentDecisionWFirmShortCode
   i32 nonExecutingBrokerShortCode
   i32 clientIdentificationShortcode
-}
+} [ size = , link_base:  =  ]
 message NewOrder_MiFIDShortcodes_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_MiFIDShortcodes, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder_OptionalFields :  {
   i64 stopPx
   i64 undisclosedPrice
@@ -1153,12 +1153,12 @@ message NewOrder_OptionalFields :  {
   TradingSessionValidity_set tradingSession
   UndisclosedIcebergType_enum undisclosedIcebergType
   TriggeredStopTimeInForce_enum stopTriggeredTimeInForce
-}
+} [ size = , link_base:  =  ]
 message NewOrder_OptionalFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_OptionalFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder_ClearingFields :  {
   char8 clearingFirmID
   char8 clientID
@@ -1168,42 +1168,42 @@ message NewOrder_ClearingFields :  {
   ClearingInstruction_enum clearingInstruction
   AccountTypeCross_enum accountTypeCross
   TradingCapacityCross_enum tradingCapacityCross
-}
+} [ size = , link_base:  =  ]
 message NewOrder_ClearingFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_ClearingFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message NewOrder_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder_NotUsedGroup2 :  {
-}
+} [ size = , link_base:  =  ]
 message NewOrder_NotUsedGroup2_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_NotUsedGroup2, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder_AdditionalInfos :  {
   char16 longClientID
-}
+} [ size = , link_base:  =  ]
 message NewOrder_AdditionalInfos_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_AdditionalInfos, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder_OptionalIDs :  {
   u32 lPID
-}
+} [ size = , link_base:  =  ]
 message NewOrder_OptionalIDs_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewOrder_OptionalIDs, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewOrder : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1234,17 +1234,17 @@ message NewOrder : MessageHeader {
   NewOrder_NotUsedGroup2_Composite NotUsedGroup2
   NewOrder_AdditionalInfos_Composite AdditionalInfos
   NewOrder_OptionalIDs_Composite OptionalIDs
-}
+} [ size = , link_base: templateId = NewOrder ]
 message Ack_MiFIDFields :  {
   i32 executionWithinFirmShortCode
   i32 clientIdentificationShortCode
   MiFIDIndicators_set miFIDIndicators
-}
+} [ size = , link_base:  =  ]
 message Ack_MiFIDFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Ack_MiFIDFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Ack : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1269,18 +1269,18 @@ message Ack : MessageHeader {
   AckQualifiers_set ackQualifiers
   i64 orderTolerablePrice
   Ack_MiFIDFields_Composite MiFIDFields
-}
+} [ size = , link_base: templateId = Ack ]
 message Fill_OptionalFieldsFill :  {
   char8 counterpartFirmID
   i64 otherLegLastPx
   char12 packageID
   u32 underlyingInstrumentID
-}
+} [ size = , link_base:  =  ]
 message Fill_OptionalFieldsFill_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Fill_OptionalFieldsFill, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Fill_StrategyFields :  {
   i64 legLastPx
   u64 legLastQty
@@ -1288,33 +1288,33 @@ message Fill_StrategyFields :  {
   LegSide_enum legSide
   u32 executionID
   char16 tradeUniqueIdentifier
-}
+} [ size = , link_base:  =  ]
 message Fill_StrategyFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Fill_StrategyFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Fill_MiFIDFields :  {
   i32 executionWithinFirmShortCode
   i32 clientIdentificationShortCode
   MiFIDIndicators_set miFIDIndicators
-}
+} [ size = , link_base:  =  ]
 message Fill_MiFIDFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Fill_MiFIDFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Fill_OptionalFieldsDerivatives :  {
   i64 evaluatedPrice
   MessagePriceNotation_enum messagePriceNotation
   u32 finalSymbolIndex
   u32 finalExecutionID
-}
+} [ size = , link_base:  =  ]
 message Fill_OptionalFieldsDerivatives_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Fill_OptionalFieldsDerivatives, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Fill : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1341,17 +1341,17 @@ message Fill : MessageHeader {
   Fill_StrategyFields_Composite StrategyFields
   Fill_MiFIDFields_Composite MiFIDFields
   Fill_OptionalFieldsDerivatives_Composite OptionalFieldsDerivatives
-}
+} [ size = , link_base: templateId = Fill ]
 message Kill_MiFIDFields :  {
   i32 executionWithinFirmShortCode
   i32 clientIdentificationShortCode
   MiFIDIndicators_set miFIDIndicators
-}
+} [ size = , link_base:  =  ]
 message Kill_MiFIDFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Kill_MiFIDFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Kill : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1370,15 +1370,15 @@ message Kill : MessageHeader {
   KillReason_enum killReason
   AckQualifiers_set ackQualifiers
   Kill_MiFIDFields_Composite MiFIDFields
-}
+} [ size = , link_base: templateId = Kill ]
 message CancelReplace_FreeTextSection :  {
   char18 freeText
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_FreeTextSection_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelReplace_FreeTextSection, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_OptionalFields :  {
   i64 stopPx
   i8 pegOffset
@@ -1389,12 +1389,12 @@ message CancelReplace_OptionalFields :  {
   TradingSessionValidity_set tradingSession
   TriggeredStopTimeInForce_enum stopTriggeredTimeInForce
   UndisclosedIcebergType_enum undisclosedIcebergType
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_OptionalFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelReplace_OptionalFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_ClearingFields :  {
   char8 clearingFirmID
   char8 clientID
@@ -1402,34 +1402,34 @@ message CancelReplace_ClearingFields :  {
   TechnicalOrigin_enum technicalOrigin
   OpenClose_set openClose
   ClearingInstruction_enum clearingInstruction
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_ClearingFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelReplace_ClearingFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelReplace_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_NotUsedGroup2 :  {
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_NotUsedGroup2_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelReplace_NotUsedGroup2, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_AdditionalInfos :  {
   char16 longClientID
-}
+} [ size = , link_base:  =  ]
 message CancelReplace_AdditionalInfos_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelReplace_AdditionalInfos, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelReplace : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1458,26 +1458,26 @@ message CancelReplace : MessageHeader {
   CancelReplace_NotUsedGroup1_Composite NotUsedGroup1
   CancelReplace_NotUsedGroup2_Composite NotUsedGroup2
   CancelReplace_AdditionalInfos_Composite AdditionalInfos
-}
+} [ size = , link_base: templateId = CancelReplace ]
 message Reject_CollarFields :  {
   CollarRejectionType_enum collarRejType
   i64 breachedCollarPrice
-}
+} [ size = , link_base:  =  ]
 message Reject_CollarFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Reject_CollarFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Reject_MiFIDFields :  {
   i32 executionWithinFirmShortCode
   i32 clientIdentificationShortCode
   MiFIDIndicators_set miFIDIndicators
-}
+} [ size = , link_base:  =  ]
 message Reject_MiFIDFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Reject_MiFIDFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Reject : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1498,17 +1498,17 @@ message Reject : MessageHeader {
   AckQualifiers_set ackQualifiers
   Reject_CollarFields_Composite CollarFields
   Reject_MiFIDFields_Composite MiFIDFields
-}
+} [ size = , link_base: templateId = Reject ]
 message Quotes_MiFIDShortcodes :  {
   i32 investmentDecisionWFirmShortCode
   i32 nonExecutingBrokerShortCode
   i32 clientIdentificationShortcode
-}
+} [ size = , link_base:  =  ]
 message Quotes_MiFIDShortcodes_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Quotes_MiFIDShortcodes, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Quotes_ClearingDataset :  {
   char8 clearingFirmID
   char8 clientID
@@ -1517,12 +1517,12 @@ message Quotes_ClearingDataset :  {
   OpenClose_set openClose
   ClearingInstruction_enum clearingInstruction
   char18 freeText
-}
+} [ size = , link_base:  =  ]
 message Quotes_ClearingDataset_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Quotes_ClearingDataset, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Quotes_QuotesRep :  {
   u64 bidSize
   i64 bidPx
@@ -1530,12 +1530,12 @@ message Quotes_QuotesRep :  {
   i64 offerPx
   u32 symbolIndex
   EMM_enum eMM
-}
+} [ size = , link_base:  =  ]
 message Quotes_QuotesRep_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=Quotes_QuotesRep, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message Quotes : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1552,7 +1552,7 @@ message Quotes : MessageHeader {
   Quotes_MiFIDShortcodes_Composite MiFIDShortcodes
   Quotes_ClearingDataset_Composite ClearingDataset
   Quotes_QuotesRep_Composite QuotesRep
-}
+} [ size = , link_base: templateId = Quotes ]
 message QuoteAck_QuoteAcks :  {
   u64 bidOrderID
   u64 offerOrderID
@@ -1562,12 +1562,12 @@ message QuoteAck_QuoteAcks :  {
   SellRevisionIndicator_enum sellRevisionFlag
   u16 bidErrorCode
   u16 offerErrorCode
-}
+} [ size = , link_base:  =  ]
 message QuoteAck_QuoteAcks_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=QuoteAck_QuoteAcks, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message QuoteAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1584,25 +1584,25 @@ message QuoteAck : MessageHeader {
   i32 executionWithinFirmShortCode
   AckQualifiers_set ackQualifiers
   QuoteAck_QuoteAcks_Composite QuoteAcks
-}
+} [ size = , link_base: templateId = QuoteAck ]
 message QuoteRequest_FreeTextSection :  {
   char18 freeText
-}
+} [ size = , link_base:  =  ]
 message QuoteRequest_FreeTextSection_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=QuoteRequest_FreeTextSection, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message QuoteRequest_RFQOptionalFields :  {
   i64 limitMatchingPrice
   unsigned_char minimumNumberOfLPs
   u16 expirationDelay
-}
+} [ size = , link_base:  =  ]
 message QuoteRequest_RFQOptionalFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=QuoteRequest_RFQOptionalFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message QuoteRequest : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1632,21 +1632,21 @@ message QuoteRequest : MessageHeader {
   RFQType_enum rFQType
   QuoteRequest_FreeTextSection_Composite FreeTextSection
   QuoteRequest_RFQOptionalFields_Composite RFQOptionalFields
-}
+} [ size = , link_base: templateId = QuoteRequest ]
 message CancelRequest_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message CancelRequest_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelRequest_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelRequest_NotUsedGroup2 :  {
-}
+} [ size = , link_base:  =  ]
 message CancelRequest_NotUsedGroup2_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CancelRequest_NotUsedGroup2, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CancelRequest : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1663,21 +1663,21 @@ message CancelRequest : MessageHeader {
   OrderCategory_enum orderCategory
   CancelRequest_NotUsedGroup1_Composite NotUsedGroup1
   CancelRequest_NotUsedGroup2_Composite NotUsedGroup2
-}
+} [ size = , link_base: templateId = CancelRequest ]
 message MassCancel_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message MassCancel_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=MassCancel_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message MassCancel_NotUsedGroup2 :  {
-}
+} [ size = , link_base:  =  ]
 message MassCancel_NotUsedGroup2_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=MassCancel_NotUsedGroup2, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message MassCancel : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1699,17 +1699,17 @@ message MassCancel : MessageHeader {
   i32 targetExecutionWithinFirmShortCode
   MassCancel_NotUsedGroup1_Composite NotUsedGroup1
   MassCancel_NotUsedGroup2_Composite NotUsedGroup2
-}
+} [ size = , link_base: templateId = MassCancel ]
 message MassCancelAck_MiFIDFields :  {
   i32 executionWithinFirmShortCode
   i32 clientIdentificationShortCode
   MiFIDIndicators_set miFIDIndicators
-}
+} [ size = , link_base:  =  ]
 message MassCancelAck_MiFIDFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=MassCancelAck_MiFIDFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message MassCancelAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1736,7 +1736,7 @@ message MassCancelAck : MessageHeader {
   AckQualifiers_set ackQualifiers
   i32 targetExecutionWithinFirmShortCode
   MassCancelAck_MiFIDFields_Composite MiFIDFields
-}
+} [ size = , link_base: templateId = MassCancelAck ]
 message OpenOrderRequest : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1749,7 +1749,7 @@ message OpenOrderRequest : MessageHeader {
   u32 symbolIndex
   EMM_enum eMM
   OrderCategory_enum orderCategory
-}
+} [ size = , link_base: templateId = OpenOrderRequest ]
 message OwnershipRequestAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1760,7 +1760,7 @@ message OwnershipRequestAck : MessageHeader {
   u16 oEPartitionID
   i32 totalAffectedOrders
   OrderCategory_enum orderCategory
-}
+} [ size = , link_base: templateId = OwnershipRequestAck ]
 message OwnershipRequest : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1775,7 +1775,7 @@ message OwnershipRequest : MessageHeader {
   u32 logicalAccessID
   u16 oEPartitionID
   OrderCategory_enum orderCategory
-}
+} [ size = , link_base: templateId = OwnershipRequest ]
 message TradeBustNotification : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1793,7 +1793,7 @@ message TradeBustNotification : MessageHeader {
   u32 parentSymbolIndex
   char16 tradeUniqueIdentifier
   char16 parentTradeUniqueIdentifier
-}
+} [ size = , link_base: templateId = TradeBustNotification ]
 message CollarBreachConfirmation : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1805,7 +1805,7 @@ message CollarBreachConfirmation : MessageHeader {
   EMM_enum eMM
   u64 orderID
   i64 origClientOrderID
-}
+} [ size = , link_base: templateId = CollarBreachConfirmation ]
 message PriceInput : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1817,7 +1817,7 @@ message PriceInput : MessageHeader {
   EMM_enum eMM
   InputPriceType_enum inputPriceType
   i64 price
-}
+} [ size = , link_base: templateId = PriceInput ]
 message LiquidityProviderCommand : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1828,20 +1828,20 @@ message LiquidityProviderCommand : MessageHeader {
   u32 symbolIndex
   EMM_enum eMM
   LPActionCode_enum lPActionCode
-}
+} [ size = , link_base: templateId = LiquidityProviderCommand ]
 message AskForQuote : MessageHeader {
   u32 msgSeqNum
   char8 firmID
   u32 symbolIndex
   EMM_enum eMM
   AFQReason_enum aFQReason
-}
+} [ size = , link_base: templateId = AskForQuote ]
 message RequestForExecution : MessageHeader {
   u32 msgSeqNum
   char8 firmID
   u32 symbolIndex
   EMM_enum eMM
-}
+} [ size = , link_base: templateId = RequestForExecution ]
 message RFQNotification : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1860,7 +1860,7 @@ message RFQNotification : MessageHeader {
   DarkExecutionInstruction_set darkExecutionInstruction
   u64 minOrderQty
   AccountType_enum accountType
-}
+} [ size = , link_base: templateId = RFQNotification ]
 message RFQMatchingStatus : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1876,7 +1876,7 @@ message RFQMatchingStatus : MessageHeader {
   RFQMatchingStatusOrderSide_enum orderSide
   unsigned_char numberOfLPs
   RecipientType_enum recipientType
-}
+} [ size = , link_base: templateId = RFQMatchingStatus ]
 message RFQLPMatchingStatus : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1889,14 +1889,14 @@ message RFQLPMatchingStatus : MessageHeader {
   u32 symbolIndex
   EMM_enum eMM
   OrderSide_enum orderSide
-}
+} [ size = , link_base: templateId = RFQLPMatchingStatus ]
 message UserNotification_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message UserNotification_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=UserNotification_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message UserNotification : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1913,7 +1913,7 @@ message UserNotification : MessageHeader {
   EMM_enum eMM
   char3 marketPlace
   UserNotification_NotUsedGroup1_Composite NotUsedGroup1
-}
+} [ size = , link_base: templateId = UserNotification ]
 message MMSignIn : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -1931,7 +1931,7 @@ message MMSignIn : MessageHeader {
   ClearingInstruction_enum clearingInstruction
   char18 freeText
   char16 longClientID
-}
+} [ size = , link_base: templateId = MMSignIn ]
 message MMSignInAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -1955,28 +1955,28 @@ message MMSignInAck : MessageHeader {
   ClearingInstruction_enum clearingInstruction
   char18 freeText
   char16 longClientID
-}
+} [ size = , link_base: templateId = MMSignInAck ]
 message InstrumentSynchronizationList_InstrumentSynchronizationSection :  {
   u32 symbolIndex
   EMM_enum eMM
-}
+} [ size = , link_base:  =  ]
 message InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=InstrumentSynchronizationList_InstrumentSynchronizationSection, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message InstrumentSynchronizationList : MessageHeader {
   u32 msgSeqNum
   u64 oEGOUTToMember
   u16 resynchronizationID
   InstrumentSynchronizationList_InstrumentSynchronizationSection_Composite InstrumentSynchronizationSection
-}
+} [ size = , link_base: templateId = InstrumentSynchronizationList ]
 message SynchronizationTime : MessageHeader {
   u32 msgSeqNum
   u64 oEGOUTToMember
   u16 resynchronizationID
   u64 lastBookInTime
-}
+} [ size = , link_base: templateId = SynchronizationTime ]
 message SecurityDefinitionRequest_StrategyLegs :  {
   u32 legSymbolIndex
   u32 legRatio
@@ -1986,12 +1986,12 @@ message SecurityDefinitionRequest_StrategyLegs :  {
   i64 legStrikePrice
   char8 legLastTradingDate
   LegSide_enum legSide
-}
+} [ size = , link_base:  =  ]
 message SecurityDefinitionRequest_StrategyLegs_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=SecurityDefinitionRequest_StrategyLegs, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message SecurityDefinitionRequest : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2000,7 +2000,7 @@ message SecurityDefinitionRequest : MessageHeader {
   u32 contractSymbolIndex
   StrategyCode_enum strategyCode
   SecurityDefinitionRequest_StrategyLegs_Composite StrategyLegs
-}
+} [ size = , link_base: templateId = SecurityDefinitionRequest ]
 message SecurityDefinitionAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2013,17 +2013,17 @@ message SecurityDefinitionAck : MessageHeader {
   u64 oEGOUTToMember
   i64 securityReqID
   u32 symbolIndex
-}
+} [ size = , link_base: templateId = SecurityDefinitionAck ]
 message MMProtectionRequest_MMPSection :  {
   ProtectionType_enum protectionType
   u64 protectionThreshold
   BreachAction_enum breachAction
-}
+} [ size = , link_base:  =  ]
 message MMProtectionRequest_MMPSection_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=MMProtectionRequest_MMPSection, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message MMProtectionRequest : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2034,19 +2034,19 @@ message MMProtectionRequest : MessageHeader {
   EMM_enum eMM
   RequestType_enum requestType
   MMProtectionRequest_MMPSection_Composite MMPSection
-}
+} [ size = , link_base: templateId = MMProtectionRequest ]
 message MMProtectionAck_MMPSection2 :  {
   ProtectionType_enum protectionType
   u64 protectionThreshold
   BreachAction_enum breachAction
   i64 currentMMPPosition
   unsigned_char breachStatus
-}
+} [ size = , link_base:  =  ]
 message MMProtectionAck_MMPSection2_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=MMProtectionAck_MMPSection2, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message MMProtectionAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2063,7 +2063,7 @@ message MMProtectionAck : MessageHeader {
   EMM_enum eMM
   MMPExecutionType_set mMPExecutionType
   MMProtectionAck_MMPSection2_Composite MMPSection2
-}
+} [ size = , link_base: templateId = MMProtectionAck ]
 message NewWholesaleOrder_WholesaleLegsRep :  {
   u32 legSymbolIndex
   i64 legPrice
@@ -2075,12 +2075,12 @@ message NewWholesaleOrder_WholesaleLegsRep :  {
   LegPutOrCall_enum legPutOrCall
   LegSecurityType_enum legSecurityType
   char8 legLastTradingDate
-}
+} [ size = , link_base:  =  ]
 message NewWholesaleOrder_WholesaleLegsRep_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewWholesaleOrder_WholesaleLegsRep, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewWholesaleOrder_WholesaleClientRep :  {
   u32 symbolIndex
   Side_enum side
@@ -2097,12 +2097,12 @@ message NewWholesaleOrder_WholesaleClientRep :  {
   i32 nonExecutingBrokerShortCode
   i32 clientIdentificationShortCode
   TradingCapacity_enum tradingCapacity
-}
+} [ size = , link_base:  =  ]
 message NewWholesaleOrder_WholesaleClientRep_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=NewWholesaleOrder_WholesaleClientRep, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message NewWholesaleOrder : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2121,19 +2121,19 @@ message NewWholesaleOrder : MessageHeader {
   MessagePriceNotation_enum messagePriceNotation
   NewWholesaleOrder_WholesaleLegsRep_Composite WholesaleLegsRep
   NewWholesaleOrder_WholesaleClientRep_Composite WholesaleClientRep
-}
+} [ size = , link_base: templateId = NewWholesaleOrder ]
 message WholesaleOrderAck_WholesaleAckLegsRep :  {
   u32 legSymbolIndex
   u64 legBidOrderID
   u64 legOfferOrderID
   LegSide_enum legSide
   u16 legErrorCode
-}
+} [ size = , link_base:  =  ]
 message WholesaleOrderAck_WholesaleAckLegsRep_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=WholesaleOrderAck_WholesaleAckLegsRep, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message WholesaleOrderAck_WholesaleAckClearingRep :  {
   u32 symbolIndex
   Side_enum side
@@ -2141,12 +2141,12 @@ message WholesaleOrderAck_WholesaleAckClearingRep :  {
   i32 nonExecutingBrokerShortCode
   i32 clientIdentificationShortCode
   u16 nonExecutingClientID
-}
+} [ size = , link_base:  =  ]
 message WholesaleOrderAck_WholesaleAckClearingRep_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=WholesaleOrderAck_WholesaleAckClearingRep, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message WholesaleOrderAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2173,7 +2173,7 @@ message WholesaleOrderAck : MessageHeader {
   AckQualifiers_set ackQualifiers
   WholesaleOrderAck_WholesaleAckLegsRep_Composite WholesaleAckLegsRep
   WholesaleOrderAck_WholesaleAckClearingRep_Composite WholesaleAckClearingRep
-}
+} [ size = , link_base: templateId = WholesaleOrderAck ]
 message RequestForImpliedExecution : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2185,25 +2185,25 @@ message RequestForImpliedExecution : MessageHeader {
   i32 executionWithinFirmShortCode
   i32 clientIdentificationShortCode
   MiFIDIndicators_set miFIDIndicators
-}
+} [ size = , link_base: templateId = RequestForImpliedExecution ]
 message CrossOrder_FreeTextSection :  {
   char18 freeText
-}
+} [ size = , link_base:  =  ]
 message CrossOrder_FreeTextSection_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CrossOrder_FreeTextSection, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CrossOrder_MiFIDShortcodes :  {
   i32 investmentDecisionWFirmShortCode
   i32 nonExecutingBrokerShortCode
   i32 clientIdentificationShortcode
-}
+} [ size = , link_base:  =  ]
 message CrossOrder_MiFIDShortcodes_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CrossOrder_MiFIDShortcodes, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CrossOrder_ClearingFieldsX :  {
   char8 clearingFirmID
   char16 longClientID
@@ -2213,22 +2213,22 @@ message CrossOrder_ClearingFieldsX :  {
   ClearingInstruction_enum clearingInstruction
   AccountType_enum accountType
   TradingCapacity_enum tradingCapacity
-}
+} [ size = , link_base:  =  ]
 message CrossOrder_ClearingFieldsX_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CrossOrder_ClearingFieldsX, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CrossOrder_StrategyFields :  {
   i64 legLastPx
   u64 legLastQty
   u32 legInstrumentID
-}
+} [ size = , link_base:  =  ]
 message CrossOrder_StrategyFields_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=CrossOrder_StrategyFields, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message CrossOrder : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2250,19 +2250,19 @@ message CrossOrder : MessageHeader {
   CrossOrder_MiFIDShortcodes_Composite MiFIDShortcodes
   CrossOrder_ClearingFieldsX_Composite ClearingFieldsX
   CrossOrder_StrategyFields_Composite StrategyFields
-}
+} [ size = , link_base: templateId = CrossOrder ]
 message RFQAudit_RFQCounterparts :  {
   OrderOrigin_enum orderOrigin
   i64 orderPrice
   u64 lastTradedQuantity
   DarkExecutionInstruction_set darkExecutionInstruction
   u64 minimumOrderQuantity
-}
+} [ size = , link_base:  =  ]
 message RFQAudit_RFQCounterparts_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=RFQAudit_RFQCounterparts, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message RFQAudit : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2274,7 +2274,7 @@ message RFQAudit : MessageHeader {
   u32 symbolIndex
   EMM_enum eMM
   RFQAudit_RFQCounterparts_Composite RFQCounterparts
-}
+} [ size = , link_base: templateId = RFQAudit ]
 message WaveForLiquidity : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2289,7 +2289,7 @@ message WaveForLiquidity : MessageHeader {
   u64 orderQuantity
   IOIQuantity_enum iOIQuantity
   IOIQualityIndication_enum iOIQualityIndication
-}
+} [ size = , link_base: templateId = WaveForLiquidity ]
 message WaveForLiquidityNotification : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2311,51 +2311,51 @@ message WaveForLiquidityNotification : MessageHeader {
   IOIQuantity_enum iOIQuantity
   IOIQualityIndication_enum iOIQualityIndication
   u16 errorCode
-}
+} [ size = , link_base: templateId = WaveForLiquidityNotification ]
 message ClearBook : MessageHeader {
   u32 msgSeqNum
   u64 oEGOUTToMember
   u32 symbolIndex
   EMM_enum eMM
-}
+} [ size = , link_base: templateId = ClearBook ]
 message Logon : MessageHeader {
   u32 logicalAccessID
   u16 oEPartitionID
   u32 lastMsgSeqNum
   char8 softwareProvider
   unsigned_char queueingIndicator
-}
+} [ size = , link_base: templateId = Logon ]
 message LogonAck : MessageHeader {
   char8 exchangeID
   u32 lastClMsgSeqNum
-}
+} [ size = , link_base: templateId = LogonAck ]
 message LogonReject : MessageHeader {
   char8 exchangeID
   LogonRejectCode_enum logonRejectCode
   u32 lastClMsgSeqNum
   u32 lastMsgSeqNum
-}
+} [ size = , link_base: templateId = LogonReject ]
 message Logout : MessageHeader {
   LogOutReasonCode_enum logOutReasonCode
-}
+} [ size = , link_base: templateId = Logout ]
 message Heartbeat : MessageHeader {
-}
+} [ size = , link_base: templateId = Heartbeat ]
 message TestRequest : MessageHeader {
-}
+} [ size = , link_base: templateId = TestRequest ]
 message TechnicalReject : MessageHeader {
   u64 oEGOUTToMember
   u32 rejectedClientMessageSequenceNumber
   unsigned_char rejectedMessage
   u16 errorCode
   u16 rejectedMessageID
-}
+} [ size = , link_base: templateId = TechnicalReject ]
 message DeclarationEntry_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message DeclarationEntry_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=DeclarationEntry_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message DeclarationEntry : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2394,14 +2394,14 @@ message DeclarationEntry : MessageHeader {
   i32 investmentDecisionWFirmShortCode
   i32 clientIdentificationShortCodeCross
   DeclarationEntry_NotUsedGroup1_Composite NotUsedGroup1
-}
+} [ size = , link_base: templateId = DeclarationEntry ]
 message DeclarationEntryAck_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message DeclarationEntryAck_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=DeclarationEntryAck_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message DeclarationEntryAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2414,21 +2414,21 @@ message DeclarationEntryAck : MessageHeader {
   PreMatchingType_enum preMatchingType
   WaiverIndicator_set waiverIndicator
   DeclarationEntryAck_NotUsedGroup1_Composite NotUsedGroup1
-}
+} [ size = , link_base: templateId = DeclarationEntryAck ]
 message DeclarationNotice_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message DeclarationNotice_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=DeclarationNotice_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message DeclarationNotice_NotUsedGroup2 :  {
-}
+} [ size = , link_base:  =  ]
 message DeclarationNotice_NotUsedGroup2_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=DeclarationNotice_NotUsedGroup2, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message DeclarationNotice : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2471,7 +2471,7 @@ message DeclarationNotice : MessageHeader {
   char16 tradeUniqueIdentifier
   DeclarationNotice_NotUsedGroup1_Composite NotUsedGroup1
   DeclarationNotice_NotUsedGroup2_Composite NotUsedGroup2
-}
+} [ size = , link_base: templateId = DeclarationNotice ]
 message DeclarationCancelAndRefusal : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2482,7 +2482,7 @@ message DeclarationCancelAndRefusal : MessageHeader {
   u64 declarationID
   ActionType_enum actionType
   char16 tradeUniqueIdentifier
-}
+} [ size = , link_base: templateId = DeclarationCancelAndRefusal ]
 message FundPriceInput : MessageHeader {
   u32 clMsgSeqNum
   char8 firmID
@@ -2492,7 +2492,7 @@ message FundPriceInput : MessageHeader {
   EMM_enum eMM
   i64 price
   unsigned_char bypassIndicator
-}
+} [ size = , link_base: templateId = FundPriceInput ]
 message FundPriceInputAck : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2501,14 +2501,14 @@ message FundPriceInputAck : MessageHeader {
   EMM_enum eMM
   i64 price
   unsigned_char bypassIndicator
-}
+} [ size = , link_base: templateId = FundPriceInputAck ]
 message DeclarationEntryReject_NotUsedGroup1 :  {
-}
+} [ size = , link_base:  =  ]
 message DeclarationEntryReject_NotUsedGroup1_Composite :  {
   int8 blockLength
   int8 numInGroup
   @var_array<type=DeclarationEntryReject_NotUsedGroup1, counter=numInGroup> data
-}
+} [ size = , link_base:  =  ]
 message DeclarationEntryReject : MessageHeader {
   u32 msgSeqNum
   char8 firmID
@@ -2521,6 +2521,6 @@ message DeclarationEntryReject : MessageHeader {
   unsigned_char rejectedMessage
   u16 rejectedMessageID
   DeclarationEntryReject_NotUsedGroup1_Composite NotUsedGroup1
-}
+} [ size = , link_base: templateId = DeclarationEntryReject ]
 
 
