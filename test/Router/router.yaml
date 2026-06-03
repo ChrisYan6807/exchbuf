@@ -1,0 +1,65 @@
+# Debug Router config — mirrors the clients/exchanges shape used by
+# /ms/dist/etscfg/.../or_cashprimary_pxm1.yaml, trimmed to what the
+# Router actually reads.
+
+binlog_path: router.blog
+
+# Outbound order throttle (rate-limit NewOrders Router -> exchange), per exchange.
+# Disabled by default; only has effect when the Router is built with
+# -DROUTER_ENABLE_THROTTLE (see test/Router/build.sh --throttle). When enabled,
+# at most `messages` orders are forwarded per `interval_ms` window; excess orders
+# are rejected back to the client with FIX tag 58 "throttle reject".
+throttle:
+  enabled:     false
+  messages:    5
+  interval_ms: 1000
+
+clients:
+  - name:     client
+    protocol: StringFIX42TCP
+    port:     6666
+
+# An exchange may have multiple `sessions`; new orders are routed among them by
+# `routingStrategy` (RoundRobin [default] / Ordered / OrderedWithThrottle /
+# RoundRobinGrouped). Secondary messages (cancel/replace) are sticky to the
+# session their order was first sent to. Per-session options:
+#   throttleId      sessions sharing an id share one throttle (combined rate)
+#   roundRobinGroup ascending group id for the RoundRobinGrouped strategy
+exchanges:
+  - name:        WARSAW_WATS
+    protocol:    WARSAW_WATS
+    destination: WARSAW          # client order tag 100 == this -> route here
+    routingStrategy: RoundRobin  # optional; RoundRobin is the default
+    sessions:
+      - name:    WATS-MSESE-1
+        address: 127.0.0.1:7002
+        options:
+          token: token123
+          connectionId: 12345
+          heartbeatIntervalSec: 4
+          # throttleId: 1         # optional; share a throttle across sessions
+
+  - name:        NASDAQOUCHEU
+    protocol:    NASDAQ_OUCH_EU_SoupBinTCP
+    destination: NOREX
+    sessions:
+      - name:    NORDIC-MSESE-1
+        address: 127.0.0.1:7003
+        options:
+          username: user01
+          password: pwd01
+          heartbeatIntervalSec: 1
+
+  - name:        LME
+    protocol:    LMEFix
+    destination: LME
+    sessions:
+      - name:    LME-1
+        address: 127.0.0.1:7001
+        options:
+          senderCompId: ROUTER
+          targetCompId: LMEX
+          password: dbg-pass
+          newPassword: ""
+          heartbeatIntervalSec: 30
+

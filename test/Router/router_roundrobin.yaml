@@ -1,0 +1,31 @@
+# Router config for the multi-session round-robin test (test/roundrobin_test.py).
+# One LME exchange with TWO sessions and the RoundRobin routing strategy: new
+# orders are distributed across the sessions in turn (order 1 -> session 1,
+# order 2 -> session 2, order 3 -> session 1, ...).
+
+binlog_path: router.blog
+
+clients:
+  - name:     client
+    protocol: StringFIX42TCP
+    port:     6666
+
+exchanges:
+  - name:        LME
+    protocol:    LMEFix
+    destination: LME
+    routingStrategy: RoundRobin   # distribute orders across the sessions
+    sessions:
+      - name:    LME-1
+        address: 127.0.0.1:7001
+        options:
+          senderCompId: ROUTER
+          targetCompId: LMEX
+          heartbeatIntervalSec: 30
+      - name:    LME-2
+        address: 127.0.0.1:7004
+        options:
+          senderCompId: ROUTER
+          targetCompId: LMEX
+          heartbeatIntervalSec: 30
+

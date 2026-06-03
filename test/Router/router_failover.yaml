@@ -1,0 +1,31 @@
+# Router config for the multi-session failover test (test/failover_test.py).
+# One LME exchange with TWO sessions and the Ordered routing strategy: new
+# orders prefer the first (primary) session and fail over to the second when the
+# primary is down.
+
+binlog_path: router.blog
+
+clients:
+  - name:     client
+    protocol: StringFIX42TCP
+    port:     6666
+
+exchanges:
+  - name:        LME
+    protocol:    LMEFix
+    destination: LME
+    routingStrategy: Ordered      # prefer primary; fail over to secondary
+    sessions:
+      - name:    LME-primary
+        address: 127.0.0.1:7001
+        options:
+          senderCompId: ROUTER
+          targetCompId: LMEX
+          heartbeatIntervalSec: 30
+      - name:    LME-secondary
+        address: 127.0.0.1:7004
+        options:
+          senderCompId: ROUTER
+          targetCompId: LMEX
+          heartbeatIntervalSec: 30
+

@@ -1,0 +1,440 @@
+# Hand-authored from Production_Aquis_ATP_Technical_Specification_v4.2.pdf
+// Aquis Exchange -- Aquis Trading Protocol (ATP), version 4.2 (0x0402)
+# 1-byte packing, little-endian. Every message carries the 7-byte MessageHeader.
+
+# ---------------------------------------------------------------------------
+# Primitive data types (section 3.1)
+# ---------------------------------------------------------------------------
+primitive u8 = uint8_ebt [ min=, max=, null=, little_endian=true ]
+primitive u16 = uint16_ebt [ min=, max=, null=, little_endian=true ]
+primitive u32 = uint32_ebt [ min=, max=, null=, little_endian=true ]
+primitive u64 = uint64_ebt [ min=, max=, null=, little_endian=true ]
+primitive s64 = int64_ebt [ min=, max=, null=, little_endian=true ]
+# Price: u64 with 5 implied decimal places (e.g. 1462500 == 14.625)
+primitive Price = FloatDecimal [ min=, max=, null=, size=8, precision=5, signed=true, little_endian=true ]
+# Time: u64 nanoseconds since the Unix epoch
+primitive Time = uint64_ebt [ min=, max=, null=, little_endian=true ]
+
+# Fixed-length ascii strings (left justified, zero padded)
+primitive char16 = FixedLengthString [ length=16, padding='\0', right_padded=false ]
+primitive char32 = FixedLengthString [ length=32, padding='\0', right_padded=false ]
+primitive char50 = FixedLengthString [ length=50, padding='\0', right_padded=false ]
+
+# ---------------------------------------------------------------------------
+# Enumerations
+# ---------------------------------------------------------------------------
+
+# Message type discriminator carried in the header (used by link_base)
+enum MsgType : uint8_ebt {
+  Heartbeat = 0
+  Login = 1
+  LoginResponse = 2
+  LogoutRequest = 3
+  Logout = 4
+  OrderAdd = 5
+  OrderAddResponse = 6
+  OrderCancel = 7
+  OrderCancelResponse = 8
+  OrderModify = 9
+  OrderModifyResponse = 10
+  Trade = 11
+  TradeBust = 12
+  TradeCapture = 17
+  TradeCaptureResponse = 18
+  OrderAddExtended = 21
+  OrderModifyExtended = 22
+  IcebergRefresh = 23
+  IOIAdd = 27
+  IOIInvite = 28
+  IOIFirmup = 29
+}
+
+enum OrderType : uint8_ebt {
+  Limit = 1
+  AuctionOnDemandLimit = 2
+  AuctionOnDemandMidPegged = 3
+  AuctionOnDemandNearTouchPegged = 4
+  MarketAtClose = 6
+  PostOnlyCancelReplace = 8
+  PostOnly = 9
+  RestrictedPOCR = 10
+  RestrictedPostOnly = 11
+  NonDisplayAMP = 12
+  AquisVWAPMatch = 17
+  TargetedAquisVWAPMatch = 18
+  AquisSmartMid = 19
+}
+
+enum TimeInForce : uint8_ebt {
+  Day = 1
+  FillOrKill = 2
+  ImmediateOrCancel = 3
+  GoodForAuction = 9
+}
+
+enum Side : uint8_ebt {
+  Buy = 1
+  Sell = 2
+}
+
+enum OrderCapacity : uint8_ebt {
+  AOTC = 1
+  DEAL = 2
+  MTCH = 3
+}
+
+enum LoginResultCode : uint8_ebt {
+  Success = 0
+  AlreadyLoggedIn = 1
+  SequenceNumberError = 2
+  UnsupportedProtocol = 3
+  FailedAuthentication = 4
+  UnknownSourceNetwork = 5
+}
+
+enum LogoutReason : uint8_ebt {
+  UserRequested = 0
+  Admin = 1
+  Disconnect = 2
+  EndOfDay = 3
+  InactivityTimeout = 4
+  ProtocolError = 5
+  SequenceNumberError = 6
+}
+
+enum TradeCaptureType : uint8_ebt {
+  LISCross = 1
+  LISCrossNoClearing = 2
+  VWAPBenchmarkCross = 3
+  VWAPBenchmarkCrossNoClearing = 4
+  TWAPBenchmarkCross = 5
+  TWAPBenchmarkCrossNoClearing = 6
+}
+
+enum LiquidityIndicator : uint8_ebt {
+  AddedLiquidity = 1
+  RemovedLiquidity = 2
+  RemovedLiquidityHidden = 3
+  AuctionMaC = 4
+  AuctionAoD = 6
+}
+
+enum OptimXUniverse : uint8_ebt {
+  Off = 0
+  ShowAllOptimXClients = 1
+  ShowCurrentBrokerClientsOnly = 2
+}
+
+# The codes below are packed into the single-byte `status` field of the
+# response messages: top 3 bits = OrderStatus, low 5 bits = a reason code.
+enum OrderStatus : uint8_ebt {
+  PendingNew = 1
+  Acknowledged = 2
+  Cancelled = 3
+  Rejected = 4
+  Filled = 5
+  Modified = 6
+}
+
+enum ModificationReason : uint8_ebt {
+  ModificationAccepted = 1
+  OrderCancelledQuantityToZero = 2
+}
+
+enum CancelReason : uint8_ebt {
+  MemberRequest = 1
+  AquisForcedCancel = 2
+  MarketClose = 3
+  Expired = 4
+  Aborted = 6
+  SelfTradePrevention = 7
+  CancelOnDisconnect = 8
+  PostOnlyCancel = 9
+  CancelResidualQuantity = 10
+  PostOnlyCancelResting = 11
+  MinimumRestingValue = 12
+  CancelPending = 14
+  LimitExceeded = 17
+  CounterpartyCancel = 18
+  Unsuccessful = 19
+  Technical = 20
+}
+
+enum RejectReason : uint8_ebt {
+  NotAuthorisedToTrade = 1
+  InvalidQuantity = 2
+  InvalidPrice = 3
+  UnknownSecurity = 4
+  PriceDoesNotConformToTick = 5
+  InvalidOrderType = 6
+  InvalidSide = 7
+  InvalidOrderCapacity = 8
+  MarketIsClosed = 9
+  Halted = 10
+  Suspended = 11
+  InvalidTimeInForce = 12
+  OrderNotFoundOrNotOpen = 13
+  FailedPriceRangeCheck = 15
+  InvalidClearingAccount = 16
+  NotSupported = 17
+  MaxValueExceeded = 18
+  AuctionEnded = 19
+  DropFeedDown = 20
+  TechnicalReject = 21
+  StockRestricted = 23
+  MinimumConsideration = 24
+  PendingAuction = 25
+  Invalid = 27
+  BadDate = 29
+  Duplicate = 30
+  RejectInternal = 31
+}
+
+# ---------------------------------------------------------------------------
+# Message header (section 3.2.1) -- prepended to every message
+# ---------------------------------------------------------------------------
+message MessageHeader :  {
+  u16 length
+  MsgType msgType
+  u32 msgSeqNo
+} [ size = , link_base:  =  ]
+
+# ---------------------------------------------------------------------------
+# Session level messages (section 3.3)
+# ---------------------------------------------------------------------------
+message Login : MessageHeader {
+  u16 protocolVersion
+  char16 senderID
+  char16 password
+  u16 inactivityTimeout
+  u32 atpSeqNo
+} [ size = , link_base: msgType = Login ]
+
+message LoginResponse : MessageHeader {
+  LoginResultCode resultCode
+  u32 clientSeqNo
+} [ size = , link_base: msgType = LoginResponse ]
+
+message Heartbeat : MessageHeader {
+} [ size = , link_base: msgType = Heartbeat ]
+
+message LogoutRequest : MessageHeader {
+} [ size = , link_base: msgType = LogoutRequest ]
+
+message Logout : MessageHeader {
+  LogoutReason reasonCode
+  char32 reasonText
+} [ size = , link_base: msgType = Logout ]
+
+# ---------------------------------------------------------------------------
+# Business messages (section 3.4)
+# ---------------------------------------------------------------------------
+message OrderAdd : MessageHeader {
+  u16 securityID
+  OrderType orderType
+  TimeInForce timeInForce
+  Side side
+  u32 quantity
+  Price price
+  OrderCapacity orderCapacity
+  u8 account
+  u64 userTag
+  u8 flags
+  u8 tableSelect1
+  u32 shortCode1
+  u8 tableSelect2
+  u32 shortCode2
+  u8 tableSelect3
+  u32 shortCode3
+} [ size = , link_base: msgType = OrderAdd ]
+
+message OrderAddExtended : MessageHeader {
+  u16 securityID
+  OrderType orderType
+  TimeInForce timeInForce
+  Side side
+  u32 quantity
+  Price price
+  OrderCapacity orderCapacity
+  u8 account
+  u64 userTag
+  u8 flags
+  u8 tableSelect1
+  u32 shortCode1
+  u8 tableSelect2
+  u32 shortCode2
+  u8 tableSelect3
+  u32 shortCode3
+  u32 displayQuantity
+  u32 minQty
+  u8 routingFlags
+  u64 reserved1
+  u64 designatedOrderId
+  u16 reserved2
+  s64 pegDifference
+} [ size = , link_base: msgType = OrderAddExtended ]
+
+message OrderCancel : MessageHeader {
+  u32 orderRef
+  u64 userTag
+  u8 flags
+  u8 tableSelect1
+  u32 shortCode1
+  u8 tableSelect2
+  u32 shortCode2
+  u8 tableSelect3
+  u32 shortCode3
+} [ size = , link_base: msgType = OrderCancel ]
+
+message OrderModify : MessageHeader {
+  u32 orderRef
+  Price price
+  u32 quantity
+  u64 userTag
+  u8 flags
+  u8 tableSelect1
+  u32 shortCode1
+  u8 tableSelect2
+  u32 shortCode2
+  u8 tableSelect3
+  u32 shortCode3
+  OrderCapacity orderCapacity
+} [ size = , link_base: msgType = OrderModify ]
+
+message OrderModifyExtended : MessageHeader {
+  u32 orderRef
+  Price price
+  u32 quantity
+  u64 userTag
+  u8 flags
+  u8 tableSelect1
+  u32 shortCode1
+  u8 tableSelect2
+  u32 shortCode2
+  u8 tableSelect3
+  u32 shortCode3
+  OrderCapacity orderCapacity
+  u32 displayQuantity
+  u32 minQty
+  u64 reserved
+} [ size = , link_base: msgType = OrderModifyExtended ]
+
+message OrderAddResponse : MessageHeader {
+  u32 orderRef
+  u32 marketDataID
+  u8 status
+  u32 tradedQuantity
+  Time timestamp
+  u64 userTag
+  u8 flags
+  u16 reserved
+} [ size = , link_base: msgType = OrderAddResponse ]
+
+message OrderCancelResponse : MessageHeader {
+  u32 orderRef
+  u32 requestRef
+  u8 status
+  Time timestamp
+  u64 userTag
+  u16 reserved
+} [ size = , link_base: msgType = OrderCancelResponse ]
+
+message OrderModifyResponse : MessageHeader {
+  u32 orderRef
+  u32 requestRef
+  u8 status
+  Time timestamp
+  u64 userTag
+  u8 flags
+  u16 reserved
+} [ size = , link_base: msgType = OrderModifyResponse ]
+
+message IcebergRefresh : MessageHeader {
+  u32 orderRef
+  u32 origAqxOrdId
+  u32 newAqxOrdId
+  u32 quantity
+} [ size = , link_base: msgType = IcebergRefresh ]
+
+message TradeCapture : MessageHeader {
+  u32 quantity
+  Price price
+  u32 securityID
+  TradeCaptureType tradeCaptureType
+  u8 flags
+  u8 account
+  u64 userTag
+} [ size = , link_base: msgType = TradeCapture ]
+
+message TradeCaptureResponse : MessageHeader {
+  u8 status
+  u32 tradeRef
+  u32 requestRef
+  u64 userTag
+  u16 reserved
+} [ size = , link_base: msgType = TradeCaptureResponse ]
+
+message Trade : MessageHeader {
+  u32 orderRef
+  u32 quantity
+  Price price
+  Side side
+  u32 tradeRef
+  u8 ccpCode
+  LiquidityIndicator liqIndicator
+  u16 securityID
+  Time timestamp
+  u64 userTag
+  u8 flags
+} [ size = , link_base: msgType = Trade ]
+
+message TradeBust : MessageHeader {
+  u32 orderRef
+  u32 quantity
+  Price price
+  Side side
+  u32 tradeRef
+  Time timestamp
+} [ size = , link_base: msgType = TradeBust ]
+
+message IOIAdd : MessageHeader {
+  u16 securityID
+  OrderType orderType
+  TimeInForce timeInForce
+  Side side
+  u32 quantity
+  Price price
+  OrderCapacity orderCapacity
+  u8 account
+  u64 userTag
+  u8 flags
+  u8 tableSelect1
+  u32 shortCode1
+  u8 tableSelect2
+  u32 shortCode2
+  u8 tableSelect3
+  u32 shortCode3
+  u32 minQty
+  u8 restrictionFlags
+  OptimXUniverse optimXUniverse
+  char50 blotterBlacklist
+} [ size = , link_base: msgType = IOIAdd ]
+
+message IOIInvite : MessageHeader {
+  u32 orderRef
+  Price price
+  u32 quantity
+  u32 minQty
+  Time timestamp
+  u64 userTag
+} [ size = , link_base: msgType = IOIInvite ]
+
+message IOIFirmup : MessageHeader {
+  u32 orderRef
+  Price price
+  u32 quantity
+  u32 minQty
+  u64 userTag
+  TimeInForce timeInForce
+} [ size = , link_base: msgType = IOIFirmup ]
+

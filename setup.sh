@@ -12,9 +12,10 @@ pushd $tmp_dir
 #}
 
 git clone https://github.com/quickfix/quickfix.git && {
-    /usr/bin/cp -f quickfix/spec/FIX42.xml $script_dir/debug_terminal/ebtest/data/
+    /usr/bin/cp -f quickfix/spec/FIX42.xml $script_dir/test/ebtest/data/
 }
 
 popd
 /usr/bin/rm -rf $tmp_dir
+
 

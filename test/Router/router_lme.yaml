@@ -1,0 +1,22 @@
+# Router config for the LME multi-leg fill test (test/lme_multileg_test.py).
+# A single LME exchange/session; the test injects a multi-leg fill from the sim.
+
+binlog_path: router.blog
+
+clients:
+  - name:     client
+    protocol: StringFIX42TCP
+    port:     6666
+
+exchanges:
+  - name:        LME
+    protocol:    LMEFix
+    destination: LME
+    sessions:
+      - name:    LME-1
+        address: 127.0.0.1:7001
+        options:
+          senderCompId: ROUTER
+          targetCompId: LMEX
+          heartbeatIntervalSec: 30
+
