@@ -19,24 +19,24 @@ while getopts ":hse" arg; do
 done
 
 (($EXEC==1)) && {
-    xhost +
-    podman exec -it exchbuf bash
+    #xhost +
+    sudo podman exec -it exchbuf bash
     exit 0
 }
 
 (($STOP==1)) && {
-    podman stop exchbuf
+    sudo podman stop exchbuf
     exit 0
 }
 
 root_dir=$(cd $(dirname ${0:-$PWD})/..;pwd)
 
-# Bind mounts use the ":z" SELinux relabel so rootless podman can read them on
-# SELinux-enforcing hosts. The repo is mounted at /exchbuf.
-podman run --rm -d \
-    -v /tmp/.x11:/tmp/.x11:z \
-    -v /tmp/:/host_tmp:z \
-    -v "$root_dir":/exchbuf:z \
-    -e DISPLAY=$DISPLAY -e GDK_SCALE -e GDK_DPI_SCALE \
-    --net=host --name exchbuf -t exchbuf_img /bin/bash
+sudo podman run --rm -d \
+    -v /tmp/:/host_tmp \
+    --net=host --name exchbuf -t localhost/exchbuf /bin/bash
+
+#podman run --rm -d \
+#    -v /tmp/:/host_tmp \
+#    -v "$root_dir":/exchbuf \
+#    --net=pasta --name exchbuf -t exchbuf_img /bin/bash
 

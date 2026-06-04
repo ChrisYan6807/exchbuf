@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(CMAKE_CXX_COMPILER /ms/dist/mstk/PROJ/rhdevtoolset/12.1-rhel7-0/bin/g++)
+set(CMAKE_CXX_COMPILER /usr/bin/g++)
 
 project(Router CXX)
 
@@ -22,17 +22,16 @@ include_directories(
 include_directories(${PROJECT_SOURCE_DIR})
 
 # Binlog
-set(BINLOG_INSTALL ${PROJECT_SOURCE_DIR}/../../dep/install)
+set(BINLOG_INSTALL ${PROJECT_SOURCE_DIR}/../../dep/binlog-main/build/install)
 include_directories(${BINLOG_INSTALL}/include)
 set(BINLOG_LIB ${BINLOG_INSTALL}/lib/libbinlog.a)
 
 # Boost — Asio is header-only since 1.66; we only consume headers.
-include_directories(/ms/dist/fsf/PROJ/boost/1.88.0-2/exec/include)
+include_directories(/usr/include)
 
 # yaml-cpp (static)
-set(YAMLCPP_PREFIX /ms/dist/fsf/PROJ/yaml-cpp/0.7.0-3/.exec/x86_64.linux.2.6.glibc.2.17)
-include_directories(${YAMLCPP_PREFIX}/include)
-set(YAMLCPP_LIB ${YAMLCPP_PREFIX}/lib/libyaml-cpp.a)
+include_directories(/usr/include/yaml-cpp)
+set(YAMLCPP_LIB /usr/lib/x86_64-linux-gnu/libyaml-cpp.a)
 
 # Single translation unit — everything else is header-only.
 add_executable(Router main.cpp)

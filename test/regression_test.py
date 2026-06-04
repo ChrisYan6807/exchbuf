@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/python3/bin/python3
 """Automated Router regression test (no interactive shell).
 
 Brings up the same environment as debug_terminal.py -- the exchange-side

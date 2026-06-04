@@ -76,7 +76,7 @@ struct MsgType {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr MsgType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr MsgType& operator=(Enum v) {value_ = v;return *this;}
     constexpr MsgType& operator=(const MsgType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -256,7 +256,7 @@ struct ParaGrpType {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ParaGrpType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ParaGrpType& operator=(Enum v) {value_ = v;return *this;}
     constexpr ParaGrpType& operator=(const ParaGrpType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -441,7 +441,7 @@ struct LoginResponseStatus {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr LoginResponseStatus& operator=(Enum v) {value_ == v;return *this;}
+    constexpr LoginResponseStatus& operator=(Enum v) {value_ = v;return *this;}
     constexpr LoginResponseStatus& operator=(const LoginResponseStatus& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -526,7 +526,7 @@ struct LogoutReason {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr LogoutReason& operator=(Enum v) {value_ == v;return *this;}
+    constexpr LogoutReason& operator=(Enum v) {value_ = v;return *this;}
     constexpr LogoutReason& operator=(const LogoutReason& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -599,7 +599,7 @@ struct Side {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr Side& operator=(Enum v) {value_ == v;return *this;}
+    constexpr Side& operator=(Enum v) {value_ = v;return *this;}
     constexpr Side& operator=(const Side& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -647,7 +647,7 @@ struct NewOrderBit1 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit1& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit1& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit1& operator=(const NewOrderBit1& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -699,7 +699,7 @@ struct NewOrderBit2 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit2& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit2& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit2& operator=(const NewOrderBit2& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -751,7 +751,7 @@ struct NewOrderBit3 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit3& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit3& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit3& operator=(const NewOrderBit3& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -803,7 +803,7 @@ struct NewOrderBit4 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit4& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit4& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit4& operator=(const NewOrderBit4& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -855,7 +855,7 @@ struct NewOrderBit5 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit5& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit5& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit5& operator=(const NewOrderBit5& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -907,7 +907,7 @@ struct NewOrderBit6 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit6& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit6& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit6& operator=(const NewOrderBit6& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -959,7 +959,7 @@ struct NewOrderBit7 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit7& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit7& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit7& operator=(const NewOrderBit7& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1011,7 +1011,7 @@ struct NewOrderBit8 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit8& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit8& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit8& operator=(const NewOrderBit8& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1063,7 +1063,7 @@ struct NewOrderBit9 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr NewOrderBit9& operator=(Enum v) {value_ == v;return *this;}
+    constexpr NewOrderBit9& operator=(Enum v) {value_ = v;return *this;}
     constexpr NewOrderBit9& operator=(const NewOrderBit9& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1115,7 +1115,7 @@ struct CancelOrderBit1 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr CancelOrderBit1& operator=(Enum v) {value_ == v;return *this;}
+    constexpr CancelOrderBit1& operator=(Enum v) {value_ = v;return *this;}
     constexpr CancelOrderBit1& operator=(const CancelOrderBit1& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1160,7 +1160,7 @@ struct CancelOrderBit2 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr CancelOrderBit2& operator=(Enum v) {value_ == v;return *this;}
+    constexpr CancelOrderBit2& operator=(Enum v) {value_ = v;return *this;}
     constexpr CancelOrderBit2& operator=(const CancelOrderBit2& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1204,7 +1204,7 @@ struct ModifyOrderBit1 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ModifyOrderBit1& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ModifyOrderBit1& operator=(Enum v) {value_ = v;return *this;}
     constexpr ModifyOrderBit1& operator=(const ModifyOrderBit1& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1254,7 +1254,7 @@ struct ModifyOrderBit2 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ModifyOrderBit2& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ModifyOrderBit2& operator=(Enum v) {value_ = v;return *this;}
     constexpr ModifyOrderBit2& operator=(const ModifyOrderBit2& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1305,7 +1305,7 @@ struct OrderAckBit1 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit1& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit1& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit1& operator=(const OrderAckBit1& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1356,7 +1356,7 @@ struct OrderAckBit2 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit2& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit2& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit2& operator=(const OrderAckBit2& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1407,7 +1407,7 @@ struct OrderAckBit3 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit3& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit3& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit3& operator=(const OrderAckBit3& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1458,7 +1458,7 @@ struct OrderAckBit4 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit4& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit4& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit4& operator=(const OrderAckBit4& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1509,7 +1509,7 @@ struct OrderAckBit5 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit5& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit5& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit5& operator=(const OrderAckBit5& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1560,7 +1560,7 @@ struct OrderAckBit6 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit6& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit6& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit6& operator=(const OrderAckBit6& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1611,7 +1611,7 @@ struct OrderAckBit7 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit7& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit7& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit7& operator=(const OrderAckBit7& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1662,7 +1662,7 @@ struct OrderAckBit8 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit8& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit8& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit8& operator=(const OrderAckBit8& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1713,7 +1713,7 @@ struct OrderAckBit9 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit9& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit9& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit9& operator=(const OrderAckBit9& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1764,7 +1764,7 @@ struct OrderAckBit10 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit10& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit10& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit10& operator=(const OrderAckBit10& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1815,7 +1815,7 @@ struct OrderAckBit11 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit11& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit11& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit11& operator=(const OrderAckBit11& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1866,7 +1866,7 @@ struct OrderAckBit12 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit12& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit12& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit12& operator=(const OrderAckBit12& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1917,7 +1917,7 @@ struct OrderAckBit13 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit13& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit13& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit13& operator=(const OrderAckBit13& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -1968,7 +1968,7 @@ struct OrderAckBit14 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit14& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit14& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit14& operator=(const OrderAckBit14& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2019,7 +2019,7 @@ struct OrderAckBit15 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit15& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit15& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit15& operator=(const OrderAckBit15& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2070,7 +2070,7 @@ struct OrderAckBit16 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit16& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit16& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit16& operator=(const OrderAckBit16& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2121,7 +2121,7 @@ struct OrderAckBit17 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit17& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit17& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit17& operator=(const OrderAckBit17& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2167,7 +2167,7 @@ struct OrderAckBit18 {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderAckBit18& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderAckBit18& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderAckBit18& operator=(const OrderAckBit18& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2208,7 +2208,7 @@ struct AlgorithmicIndicator {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr AlgorithmicIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr AlgorithmicIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr AlgorithmicIndicator& operator=(const AlgorithmicIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2248,7 +2248,7 @@ struct BaseLiquidityIndicator {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr BaseLiquidityIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr BaseLiquidityIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr BaseLiquidityIndicator& operator=(const BaseLiquidityIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2288,7 +2288,7 @@ struct BookingType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr BookingType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr BookingType& operator=(Enum v) {value_ = v;return *this;}
     constexpr BookingType& operator=(const BookingType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2325,7 +2325,7 @@ struct CancelOrigOnReject {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr CancelOrigOnReject& operator=(Enum v) {value_ == v;return *this;}
+    constexpr CancelOrigOnReject& operator=(Enum v) {value_ = v;return *this;}
     constexpr CancelOrigOnReject& operator=(const CancelOrigOnReject& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2363,7 +2363,7 @@ struct Capacity {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr Capacity& operator=(Enum v) {value_ == v;return *this;}
+    constexpr Capacity& operator=(Enum v) {value_ = v;return *this;}
     constexpr Capacity& operator=(const Capacity& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2404,7 +2404,7 @@ struct CentralCounterParty {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr CentralCounterParty& operator=(Enum v) {value_ == v;return *this;}
+    constexpr CentralCounterParty& operator=(Enum v) {value_ = v;return *this;}
     constexpr CentralCounterParty& operator=(const CentralCounterParty& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2448,7 +2448,7 @@ struct ClientQualifiedRole {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ClientQualifiedRole& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ClientQualifiedRole& operator=(Enum v) {value_ = v;return *this;}
     constexpr ClientQualifiedRole& operator=(const ClientQualifiedRole& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2488,7 +2488,7 @@ struct DeferralReason {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr DeferralReason& operator=(Enum v) {value_ == v;return *this;}
+    constexpr DeferralReason& operator=(Enum v) {value_ = v;return *this;}
     constexpr DeferralReason& operator=(const DeferralReason& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2525,7 +2525,7 @@ struct DisplayIndicator {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr DisplayIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr DisplayIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr DisplayIndicator& operator=(const DisplayIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2567,7 +2567,7 @@ struct ExecInst {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ExecInst& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ExecInst& operator=(Enum v) {value_ = v;return *this;}
     constexpr ExecInst& operator=(const ExecInst& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2609,7 +2609,7 @@ struct ExecutionMethod {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ExecutionMethod& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ExecutionMethod& operator=(Enum v) {value_ = v;return *this;}
     constexpr ExecutionMethod& operator=(const ExecutionMethod& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2649,7 +2649,7 @@ struct ExecutorQualifiedRole {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ExecutorQualifiedRole& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ExecutorQualifiedRole& operator=(Enum v) {value_ = v;return *this;}
     constexpr ExecutorQualifiedRole& operator=(const ExecutorQualifiedRole& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2688,7 +2688,7 @@ struct ExtExecInst {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ExtExecInst& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ExtExecInst& operator=(Enum v) {value_ = v;return *this;}
     constexpr ExtExecInst& operator=(const ExtExecInst& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2727,7 +2727,7 @@ struct IDSource {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr IDSource& operator=(Enum v) {value_ == v;return *this;}
+    constexpr IDSource& operator=(Enum v) {value_ = v;return *this;}
     constexpr IDSource& operator=(const IDSource& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2765,7 +2765,7 @@ struct InvestorQualifiedRole {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr InvestorQualifiedRole& operator=(Enum v) {value_ == v;return *this;}
+    constexpr InvestorQualifiedRole& operator=(Enum v) {value_ = v;return *this;}
     constexpr InvestorQualifiedRole& operator=(const InvestorQualifiedRole& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2806,7 +2806,7 @@ struct LiquidityProvision {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr LiquidityProvision& operator=(Enum v) {value_ == v;return *this;}
+    constexpr LiquidityProvision& operator=(Enum v) {value_ = v;return *this;}
     constexpr LiquidityProvision& operator=(const LiquidityProvision& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2843,7 +2843,7 @@ struct MatchType {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr MatchType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr MatchType& operator=(Enum v) {value_ = v;return *this;}
     constexpr MatchType& operator=(const MatchType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2883,7 +2883,7 @@ struct OrderCategory {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderCategory& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderCategory& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderCategory& operator=(const OrderCategory& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2920,7 +2920,7 @@ struct OrderOrigination {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrderOrigination& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrderOrigination& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrderOrigination& operator=(const OrderOrigination& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -2959,7 +2959,7 @@ struct OrdType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OrdType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OrdType& operator=(Enum v) {value_ = v;return *this;}
     constexpr OrdType& operator=(const OrdType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3000,7 +3000,7 @@ struct PriceFormation {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr PriceFormation& operator=(Enum v) {value_ == v;return *this;}
+    constexpr PriceFormation& operator=(Enum v) {value_ = v;return *this;}
     constexpr PriceFormation& operator=(const PriceFormation& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3041,7 +3041,7 @@ struct SecondaryTrdType {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr SecondaryTrdType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr SecondaryTrdType& operator=(Enum v) {value_ = v;return *this;}
     constexpr SecondaryTrdType& operator=(const SecondaryTrdType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3090,7 +3090,7 @@ struct SubLiquidityIndicator {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr SubLiquidityIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr SubLiquidityIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr SubLiquidityIndicator& operator=(const SubLiquidityIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3143,7 +3143,7 @@ struct TimeInForce {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TimeInForce& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TimeInForce& operator=(Enum v) {value_ = v;return *this;}
     constexpr TimeInForce& operator=(const TimeInForce& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3186,7 +3186,7 @@ struct TradeHandlingInstruction {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TradeHandlingInstruction& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TradeHandlingInstruction& operator=(Enum v) {value_ = v;return *this;}
     constexpr TradeHandlingInstruction& operator=(const TradeHandlingInstruction& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3226,7 +3226,7 @@ struct TradePriceCondition {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TradePriceCondition& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TradePriceCondition& operator=(Enum v) {value_ = v;return *this;}
     constexpr TradePriceCondition& operator=(const TradePriceCondition& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3265,7 +3265,7 @@ struct TradePubnlishIndicator {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TradePubnlishIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TradePubnlishIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr TradePubnlishIndicator& operator=(const TradePubnlishIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3306,7 +3306,7 @@ struct TradeReportTransType {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TradeReportTransType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TradeReportTransType& operator=(Enum v) {value_ = v;return *this;}
     constexpr TradeReportTransType& operator=(const TradeReportTransType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3345,7 +3345,7 @@ struct TradeReportType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TradeReportType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TradeReportType& operator=(Enum v) {value_ = v;return *this;}
     constexpr TradeReportType& operator=(const TradeReportType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3390,7 +3390,7 @@ struct TradingSessionSubID {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TradingSessionSubID& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TradingSessionSubID& operator=(Enum v) {value_ = v;return *this;}
     constexpr TradingSessionSubID& operator=(const TradingSessionSubID& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3433,7 +3433,7 @@ struct TransactionCategory {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TransactionCategory& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TransactionCategory& operator=(Enum v) {value_ = v;return *this;}
     constexpr TransactionCategory& operator=(const TransactionCategory& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3469,7 +3469,7 @@ struct TrdSubType {
     constexpr uint8_t raw_value() const {return static_cast<uint8_t>(value_);}
     constexpr void raw_value(uint8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr TrdSubType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr TrdSubType& operator=(Enum v) {value_ = v;return *this;}
     constexpr TrdSubType& operator=(const TrdSubType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3504,7 +3504,7 @@ struct VenueType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr VenueType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr VenueType& operator=(Enum v) {value_ = v;return *this;}
     constexpr VenueType& operator=(const VenueType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3547,7 +3547,7 @@ struct WaiverType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr WaiverType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr WaiverType& operator=(Enum v) {value_ = v;return *this;}
     constexpr WaiverType& operator=(const WaiverType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3595,7 +3595,7 @@ struct AutoMatch {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr AutoMatch& operator=(Enum v) {value_ == v;return *this;}
+    constexpr AutoMatch& operator=(Enum v) {value_ = v;return *this;}
     constexpr AutoMatch& operator=(const AutoMatch& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3634,7 +3634,7 @@ struct OpenClose {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr OpenClose& operator=(Enum v) {value_ == v;return *this;}
+    constexpr OpenClose& operator=(Enum v) {value_ = v;return *this;}
     constexpr OpenClose& operator=(const OpenClose& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3708,7 +3708,7 @@ struct AccountType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr AccountType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr AccountType& operator=(Enum v) {value_ = v;return *this;}
     constexpr AccountType& operator=(const AccountType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -3745,7 +3745,7 @@ struct SIIndicator {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr SIIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr SIIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr SIIndicator& operator=(const SIIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -4855,7 +4855,7 @@ struct MultilegReportingType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr MultilegReportingType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr MultilegReportingType& operator=(Enum v) {value_ = v;return *this;}
     constexpr MultilegReportingType& operator=(const MultilegReportingType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -4951,7 +4951,7 @@ struct subLidIndicator {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr subLidIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr subLidIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr subLidIndicator& operator=(const subLidIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -6477,7 +6477,7 @@ struct ReasonCode {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr ReasonCode& operator=(Enum v) {value_ == v;return *this;}
+    constexpr ReasonCode& operator=(Enum v) {value_ = v;return *this;}
     constexpr ReasonCode& operator=(const ReasonCode& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -6634,7 +6634,7 @@ struct LiqIndicator {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr LiqIndicator& operator=(Enum v) {value_ == v;return *this;}
+    constexpr LiqIndicator& operator=(Enum v) {value_ = v;return *this;}
     constexpr LiqIndicator& operator=(const LiqIndicator& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {

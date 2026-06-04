@@ -20,8 +20,8 @@ set -euo pipefail
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"   # test/Router
 BUILD_DIR="$SRC_DIR/build"
 
-CMAKE="${EXCHBUF_CMAKE:-/ms/dist/kde/PROJ/cmake/3.26.4/exec/bin/cmake}"
-CXX="${EXCHBUF_CXX:-/ms/dist/mstk/PROJ/rhdevtoolset/12.1-rhel7-0/bin/g++}"
+CMAKE="${EXCHBUF_CMAKE:-/usr/bin/cmake}"
+CXX="${EXCHBUF_CXX:-/usr/bin/g++}"
 JOBS="$( (command -v nproc >/dev/null && nproc) || echo 6)"
 
 clean=0

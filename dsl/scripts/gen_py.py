@@ -1,4 +1,4 @@
-#!/v/campus/ln/cs/ets/yanchr/venv/3.10.11/bin/python
+#!/usr/bin/env python
 """Generate Python (Scapy-based) .py from a .eb file.
 
 Usage:  gen_py.py <file.eb> [module_name]

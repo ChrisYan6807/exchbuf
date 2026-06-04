@@ -1,7 +1,3 @@
-# Debug Router config — mirrors the clients/exchanges shape used by
-# /ms/dist/etscfg/.../or_cashprimary_pxm1.yaml, trimmed to what the
-# Router actually reads.
-
 binlog_path: router.blog
 
 # Outbound order throttle (rate-limit NewOrders Router -> exchange), per exchange.

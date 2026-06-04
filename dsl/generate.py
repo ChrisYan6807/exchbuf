@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/python3/bin/python3
 """Generate C++/Python/pybind11 artifacts from exchbuf .eb files.
 
 The .eb sources live in dsl/eb/. For each input .eb (default: every
@@ -55,15 +55,15 @@ PHASES = [
     ("gen_pybind", GEN_PYBIND_PY, PYBIND_SRC, "{name}_pybind.cpp"),
 ]
 
-CMAKE = os.environ.get("EXCHBUF_CMAKE", "/ms/dist/kde/PROJ/cmake/3.26.4/exec/bin/cmake")
-CXX = os.environ.get("EXCHBUF_CXX", "/ms/dist/mstk/PROJ/rhdevtoolset/12.1-rhel7-0/bin/g++")
+CMAKE = os.environ.get("EXCHBUF_CMAKE", "/usr/bin/cmake")
+CXX = os.environ.get("EXCHBUF_CXX", "/usr/bin/g++")
 BUILD_PYTHON = os.environ.get(
-    "EXCHBUF_BUILD_PYTHON", "/ms/dist/python/PROJ/core/3.10.11-0/exec/bin/python3.10"
+    "EXCHBUF_BUILD_PYTHON", "/opt/python3/bin/python3"
 )
 # The .eb generators need `lark`. When generate.py is launched as ./generate.py
 # its shebang `python` may lack lark (e.g. the dist core python), so don't just
 # trust sys.executable -- pick the first interpreter that can import lark.
-VENV_PYTHON = "/v/campus/ln/cs/ets/yanchr/venv/3.10.11c/bin/python"  # project venv (CLAUDE.md)
+VENV_PYTHON = "/opt/python3/bin/python3"  # project venv (CLAUDE.md)
 
 
 def _has_lark(py):

@@ -306,4 +306,3 @@ PYBIND11_MODULE(SoupBin_pb, m) {
 
 }
 
-

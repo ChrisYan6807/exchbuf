@@ -40,12 +40,11 @@ endif()
 
 find_package(Python COMPONENTS Interpreter Development REQUIRED)
 
-# pybind11 3.0.4 at /ms/dist/fsf/PROJ/pybind11/3.0.4/ ships headers only — no
 # CMake config — so we wire it up manually rather than via find_package().
 # Override -DPYBIND11_INCLUDE_DIR=... on the cmake line if pybind11 lives
 # elsewhere.
 if(NOT DEFINED PYBIND11_INCLUDE_DIR)
-    set(PYBIND11_INCLUDE_DIR /ms/dist/fsf/PROJ/pybind11/3.0.4/include
+    set(PYBIND11_INCLUDE_DIR /usr/include/
         CACHE PATH "pybind11 header directory")
 endif()
 if(NOT EXISTS ${PYBIND11_INCLUDE_DIR}/pybind11/pybind11.h)

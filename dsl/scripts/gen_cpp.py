@@ -1,4 +1,4 @@
-#!/v/campus/ln/cs/ets/yanchr/venv/3.10.11/bin/python
+#!/usr/bin/env python
 """Generate C++ .hpp from a .eb file.
 
 Usage:  gen_cpp.py <file.eb> [module_name]
@@ -606,7 +606,7 @@ class CppGen:
         self.emit(f'    constexpr {cpp_t} raw_value() const {{return static_cast<{cpp_t}>(value_);}}')
         self.emit(f'    constexpr void raw_value({cpp_t} v) {{value_ = Enum(v);}}')
         self.emit(f'    constexpr void set(Enum v) {{value_ = v;}}')
-        self.emit(f'    constexpr {name}& operator=(Enum v) {{value_ == v;return *this;}}')
+        self.emit(f'    constexpr {name}& operator=(Enum v) {{value_ = v;return *this;}}')
         self.emit(f'    constexpr {name}& operator=(const {name}& rhs) = default;')
         self.emit(f'    constexpr int size() const {{return sizeof(value_);}}')
         self.emit(f'    constexpr const std::string_view view() const {{')

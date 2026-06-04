@@ -63,36 +63,9 @@ For SBE protocol, [simple-binary-encoding](https://github.com/real-logic/simple-
 + Euronext SBE [SBE 338](https://connect2.euronext.com/sites/default/files/it-documentation/Optiq%20Files%20-%20Interface%20Specification%20-%20Euronext%20Cash%20and%20Derivatives%20Markets%20-%20External%20-%20v5.38.0_0.pdf)
 + Millennium LSE
 + Millennium Turquoise
++ Nordic OUCH5
++ Warsaw WATS
 
-
-## Building dependencies (`dep/`)
-
-External dependencies are extracted under `dep/<name>/` and built/installed into `dep/install/` so the rest of the project can pick them up via `-DCMAKE_PREFIX_PATH=$(pwd)/dep/install`.
-
-#### binlog ([github.com/morganstanley/binlog](https://github.com/morganstanley/binlog))
-
-High-performance structured binary log library. Header-only logging + a compiled reader binary (`bread`) + a library for programmatic log reading (`libbinlog.a`).
-
-**Prerequisites:**
-- GCC with C++14 support (verified with `/ms/dist/mstk/PROJ/rhdevtoolset/14.0-rhel9-2/bin/g++` — GCC 14.2.1).
-- CMake ≥ 3.1.
-- Boost 1.64+ headers (optional but enables additional logging-type adapters and tests). Verified with `/ms/dist/fsf/PROJ/boost/1.88.0-2/exec`.
-- pthreads (system).
-
-**Build & install:**
-
-```sh
-cd dep/binlog/binlog-main
-mkdir -p Release && cd Release
-CXX=/ms/dist/mstk/PROJ/rhdevtoolset/14.0-rhel9-2/bin/g++ \
-cmake -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_INSTALL_PREFIX=$(cd ../../.. && pwd)/install \
-      -DBOOST_ROOT=/ms/dist/fsf/PROJ/boost/1.88.0-2/exec \
-      ..
-make -j
-make install
-ctest          # optional — expects 2/2 passed (UnitTest + IntegrationTest)
-```
 
 **Installed layout:**
 
@@ -131,16 +104,6 @@ target_link_libraries(YourApp binlog::headers)
 | `test/` | the Router app (`test/Router/`) and the testplan harnesses |
 | `MPS/` | the JetBrains MPS project (languages + solutions) |
 
-#### Toolchain
-
-The PATH `cmake`/`python` are too old; use the project ones (all overridable via env):
-
-```sh
-VENV_PY=/v/campus/ln/cs/ets/yanchr/venv/3.10.11c/bin/python        # runs the generators (has lark)
-CMAKE=/ms/dist/kde/PROJ/cmake/3.26.4/exec/bin/cmake                # EXCHBUF_CMAKE
-GXX=/ms/dist/mstk/PROJ/rhdevtoolset/12.1-rhel7-0/bin/g++           # EXCHBUF_CXX
-BUILD_PY=/ms/dist/python/PROJ/core/3.10.11-0/exec/bin/python3.10   # EXCHBUF_BUILD_PYTHON (pybind dev headers)
-```
 
 #### 1. Generate code + build the pybind11 modules
 

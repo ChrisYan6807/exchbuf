@@ -4649,7 +4649,7 @@
                         <ref role="37wK5l" to="wyt6:~String.format(java.lang.String,java.lang.Object...)" resolve="format" />
                         <ref role="1Pybhc" to="wyt6:~String" resolve="String" />
                         <node concept="Xl_RD" id="7LRou5rhjLF" role="37wK5m">
-                          <property role="Xl_RC" value="%sconstexpr %s&amp; operator=(Enum v) {value_ == v;return *this;}\n" />
+                          <property role="Xl_RC" value="%sconstexpr %s&amp; operator=(Enum v) {value_ = v;return *this;}\n" />
                         </node>
                         <node concept="37vLTw" id="7LRou5rhjLG" role="37wK5m">
                           <ref role="3cqZAo" node="4RVkCZf4Efm" resolve="indent" />

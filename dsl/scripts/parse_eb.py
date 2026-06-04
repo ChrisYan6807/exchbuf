@@ -1,4 +1,4 @@
-#!/v/campus/ln/cs/ets/yanchr/venv/3.10.11/bin/python
+#!/usr/bin/env python
 """Parse an exchbuf .eb file and print its AST."""
 
 import sys

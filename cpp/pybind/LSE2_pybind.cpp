@@ -1720,4 +1720,3 @@ PYBIND11_MODULE(LSE2_pb, m) {
 
 }
 
-

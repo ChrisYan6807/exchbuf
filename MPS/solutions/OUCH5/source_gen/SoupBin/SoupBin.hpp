@@ -48,7 +48,7 @@ struct PktType {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr PktType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr PktType& operator=(Enum v) {value_ = v;return *this;}
     constexpr PktType& operator=(const PktType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -161,7 +161,7 @@ struct LoginRejectCode {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr LoginRejectCode& operator=(Enum v) {value_ == v;return *this;}
+    constexpr LoginRejectCode& operator=(Enum v) {value_ = v;return *this;}
     constexpr LoginRejectCode& operator=(const LoginRejectCode& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {

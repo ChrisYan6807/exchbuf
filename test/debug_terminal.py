@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/python3/bin/python3
 """Interactive testplan terminal for the Router.
 
 Brings up the exchange-side simulator (SimServer), launches the Router app

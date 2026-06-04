@@ -1761,4 +1761,3 @@ PYBIND11_MODULE(NordicOUCH5_pb, m) {
 
 }
 
-

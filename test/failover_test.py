@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/python3/bin/python3
 """Multi-session failover test for the Router.
 
 One LME exchange is configured (router_failover.yaml) with TWO sessions and the

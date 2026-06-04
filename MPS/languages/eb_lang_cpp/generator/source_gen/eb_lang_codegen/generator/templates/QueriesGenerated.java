@@ -335,7 +335,7 @@ public class QueriesGenerated extends QueryProviderBase {
     body += String.format("%sconstexpr void raw_value(%s v) {value_ = Enum(v);}\n", indent, EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl)));
     body += String.format("%sconstexpr void set(Enum v) {value_ = v;}\n", indent, EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl)));
 
-    body += String.format("%sconstexpr %s& operator=(Enum v) {value_ == v;return *this;}\n", indent, SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl)));
+    body += String.format("%sconstexpr %s& operator=(Enum v) {value_ = v;return *this;}\n", indent, SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SLinkOperations.getTarget(_context.getNode(), LINKS.type$_ySl)));
     body += String.format("%sconstexpr %s& operator=(const %s& rhs) = default;\n", indent, SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL));
 
 

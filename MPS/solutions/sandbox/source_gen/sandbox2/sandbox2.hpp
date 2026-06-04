@@ -52,7 +52,7 @@ struct E1 {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr E1& operator=(Enum v) {value_ == v;return *this;}
+    constexpr E1& operator=(Enum v) {value_ = v;return *this;}
     constexpr E1& operator=(const E1& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -90,7 +90,7 @@ struct E2 {
     constexpr char raw_value() const {return static_cast<char>(value_);}
     constexpr void raw_value(char v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr E2& operator=(Enum v) {value_ == v;return *this;}
+    constexpr E2& operator=(Enum v) {value_ = v;return *this;}
     constexpr E2& operator=(const E2& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -168,7 +168,7 @@ struct MsgType {
     constexpr int16_t raw_value() const {return static_cast<int16_t>(value_);}
     constexpr void raw_value(int16_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr MsgType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr MsgType& operator=(Enum v) {value_ = v;return *this;}
     constexpr MsgType& operator=(const MsgType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {
@@ -252,7 +252,7 @@ struct AppendageType {
     constexpr int8_t raw_value() const {return static_cast<int8_t>(value_);}
     constexpr void raw_value(int8_t v) {value_ = Enum(v);}
     constexpr void set(Enum v) {value_ = v;}
-    constexpr AppendageType& operator=(Enum v) {value_ == v;return *this;}
+    constexpr AppendageType& operator=(Enum v) {value_ = v;return *this;}
     constexpr AppendageType& operator=(const AppendageType& rhs) = default;
     constexpr int size() const {return sizeof(value_);}
     constexpr const std::string_view view() const {

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/python3/bin/python3
 """Multi-session round-robin distribution test for the Router.
 
 One LME exchange (router_roundrobin.yaml) with TWO sessions and the RoundRobin
