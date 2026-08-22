@@ -8,7 +8,7 @@ namespace WATS201 {
 using namespace EB::common;
 using EB::common::operator<<;
 
-using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8, 0, true>;
 using u16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0_u16>;
 using u32 = LittleEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0_u32>;
 using i64 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0_i64>;

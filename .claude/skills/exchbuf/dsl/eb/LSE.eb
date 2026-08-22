@@ -1,0 +1,573 @@
+# Hand-authored from LSE MIT203 Native Trading Gateway, issue 21.0.
+@include Millennium
+// Lse2
+
+enum OrderType : uint8_ebt {
+  MARKET = 1
+  LIMIT = 2
+  STOP = 3
+  STOP_LIMIT = 4
+}
+
+enum TimeInForce : uint8_ebt {
+  DAY = 0
+  IOC = 3
+  FOK = 4
+  OPG = 5
+  GTD = 6
+  GTT = 8
+  ATC = 10
+  CPX = 12
+  GFA = 50
+  GFX = 51
+  GFS = 52
+  AVD = 54
+  AVC = 55
+}
+
+enum Side : uint8_ebt {
+  NONE = 0
+  BUY = 1
+  SELL = 2
+}
+
+enum OrderCapacity : uint8_ebt {
+  MTCH = 1
+  DEAL = 2
+  AOTC = 3
+}
+
+enum AutoCancel : uint8_ebt {
+  DO_NOT_CANCEL = 0
+  CHECK_SYSTEM_CONFIGURATION = 1
+}
+
+enum OrderSubType : uint8_ebt {
+  ORDER = 0
+  PEGGED_ORDER = 5
+  RANDOM_PEAK_SIZE = 51
+  OFFSET = 55
+}
+
+# Distinct value domain used only by Order Mass Cancel Request's Order Sub Type field
+# (MIT203 p.56: 0=Order, 3=Quote) -- not the same domain as the New Order OrderSubType above.
+enum MassCancelOrderSubType : uint8_ebt {
+  ORDER = 0
+  QUOTE = 3
+}
+
+enum Anonymity : uint8_ebt {
+  ANONYMOUS = 0
+  NAMED = 1
+}
+
+enum PassiveOnlyOrder : uint8_ebt {
+  NO_CONSTRAINT = 0
+  NEW_OR_JOIN_BBO = 1
+  WITHIN_ONE_PRICE_POINT = 2
+  WITHIN_TWO_PRICE_POINTS = 3
+  NO_MATCH_VISIBLE_CONTRA = 99
+  SET_NEW_VISIBLE_BBO = 100
+}
+
+enum ClearingAccount : uint8_ebt {
+  CLIENT = 1
+  HOUSE = 3
+}
+
+enum PeggedExecInst : uint8_ebt {
+  DEFAULT = 0
+  PERMITTED = 1
+  NOT_PERMITTED = 2
+}
+
+enum OwnerType : uint8_ebt {
+  DEFAULT = 0
+  RETAIL_INVESTOR = 1
+  RETAIL_LIQUIDITY_PROVIDER = 2
+}
+
+enum ExecType : char_ebt {
+  NEW = '0'
+  CANCELLED = '4'
+  REPLACED = '5'
+  REJECTED = '8'
+  SUSPENDED = '9'
+  EXPIRED = 'C'
+  RESTATED = 'D'
+  TRADE = 'F'
+  TRADE_CANCEL = 'H'
+}
+
+enum OrdStatus : uint8_ebt {
+  NEW = 0
+  PARTIALLY_FILLED = 1
+  FILLED = 2
+  CANCELLED = 4
+  EXPIRED = 6
+  REJECTED = 8
+  SUSPENDED = 9
+}
+
+enum RestatementReason : uint8_ebt {
+  REPRICED = 3
+  MARKET_OPTION = 8
+  ORDER_REPLENISHMENT = 100
+}
+
+enum LiquidityIndicator : char_ebt {
+  ADDED = 'A'
+  REMOVED = 'R'
+  AUCTION = 'C'
+}
+
+enum TypeOfTrade : uint8_ebt {
+  VISIBLE = 0
+  HIDDEN = 1
+  NOT_SPECIFIED = 2
+}
+
+enum LastMkt : uint8_ebt {
+  XLON = 21
+  XLOM = 22
+  AIMX = 23
+  XPVT = 24
+  XLOX = 25
+}
+
+enum MassCancelRequestType : uint8_ebt {
+  ALL_FIRM_ORDERS_OF_INSTRUMENT = 3
+  ALL_FIRM_ORDERS_OF_SEGMENT = 4
+  ALL_ORDERS_BY_TRADER = 7
+  ALL_FIRM_ORDERS = 8
+  ALL_ORDERS_OF_INSTRUMENT_BY_TRADER = 9
+  ALL_ORDERS_OF_SEGMENT_BY_TRADER = 15
+  ALL_ORDERS_BY_TRADER_IN_GROUP = 56
+  ALL_FIRM_ORDERS_OF_INSTRUMENT_IN_GROUP = 57
+  ALL_FIRM_ORDERS_IN_GROUP = 58
+}
+
+enum MassCancelResponse : uint8_ebt {
+  REJECTED = 0
+  ACCEPTED = 7
+}
+
+enum OrderBook : uint8_ebt {
+  RFQ_TRADES = 11
+}
+
+enum ContraOrderBook : uint8_ebt {
+  REGULAR = 1
+}
+
+enum PrivateQuote : uint8_ebt {
+  PRIVATE_QUOTE = 2
+}
+
+enum QuoteRequestType : uint8_ebt {
+  MANUAL = 0
+  AUTOMATIC = 1
+  MANUAL_NAMED = 2
+  MANUAL_ANONYMOUS = 3
+  AUTOMATIC_NAMED = 4
+  AUTOMATIC_ANONYMOUS = 5
+}
+
+enum RFQDiscloseSide : uint8_ebt {
+  DO_NOT_DISCLOSE = 0
+  DISCLOSE = 1
+}
+
+enum AutoRFQExecStrategy : uint8_ebt {
+  SUB_LIS_AUCTION = 1
+  LIS_WINNER_TAKES_ALL = 4
+}
+
+enum QuoteStatus : uint8_ebt {
+  ACCEPTED = 1
+  REJECTED = 2
+}
+
+enum QuoteAckStatus : uint8_ebt {
+  ACCEPTED = 1
+  REJECTED = 2
+}
+
+enum QuoteRespType : uint8_ebt {
+  HIT_LIFT = 1
+  EXPIRED = 3
+  END_TRADE = 7
+  TIMED_OUT = 8
+  CANCELLED = 11
+  REPLACE = 100
+  EXECUTABLE = 101
+  MAKE_RFQ_QUOTES_PUBLIC = 102
+}
+
+# MiFID flags bit-field (offset bit0..bit2; bit3-7 reserved)
+enum DEA : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+enum LiqProv : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+enum Algo : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+bitfield MiFIDFlags : uint8_ebt {
+  enum = DEA, default = No, length = 1
+  enum = LiqProv, default = No, length = 1
+  enum = Algo, default = No, length = 1
+}
+
+# Party role qualifiers: three 2-bit fields (Client ID / Investor / Executing Trader)
+enum ClientIDType : uint8_ebt {
+  NONE = 0
+  Firm = 1
+  Algo = 2
+  Person = 3
+}
+enum IDMT : uint8_ebt {
+  NONE = 0
+  Firm = 1
+  Algo = 2
+  Person = 3
+}
+enum EDMT : uint8_ebt {
+  NONE = 0
+  Firm = 1
+  Algo = 2
+  Person = 3
+}
+bitfield PartyRoleQualifiers : uint8_ebt {
+  enum = ClientIDType, default = NONE, length = 2
+  enum = IDMT, default = NONE, length = 2
+  enum = EDMT, default = NONE, length = 2
+}
+
+# Waiver / post-trade flags: bit1 = CLSE, bit3 = ILQD, bit5 = RFPT
+enum Pad : uint8_ebt {
+  NA = 0
+}
+enum CLSE : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+enum ILQD : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+enum RFPT : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+bitfield WaiverFlags : uint8_ebt {
+  enum = Pad, default = NA, length = 1
+  enum = CLSE, default = No, length = 1
+  enum = Pad, default = NA, length = 1
+  enum = ILQD, default = No, length = 1
+  enum = Pad, default = NA, length = 1
+  enum = RFPT, default = No, length = 1
+  enum = Pad, default = NA, length = 2
+}
+
+message NewOrder : MsgHeader {
+  String20 clientOrderID
+  String11 traderID
+  String10 account
+  ClearingAccount clearingAccount
+  Int32 instrumentID
+  MiFIDFlags mifidFlags
+  PartyRoleQualifiers partyRoleQualifiers
+  OrderType orderType
+  TimeInForce tif
+  UInt32 expireDateTime
+  Side side
+  Int32 orderQty
+  Int32 displayQty
+  MillenniumPrice limitPrice
+  OrderCapacity capacity
+  AutoCancel autoCancel
+  OrderSubType orderSubType
+  Anonymity anonymity
+  MillenniumPrice stopPrice
+  PassiveOnlyOrder passiveOnlyOrder
+  UInt32 clientID
+  UInt32 investmentDecisionMaker
+  UInt8 groupID
+  Int32 minimumQuantity
+  UInt32 executingTrader
+  Int32 offset
+  PeggedExecInst peggedExecInst
+  OwnerType ownerType
+  String14 reserved
+} [ size = , link_base: msgType = NewOrder ]
+
+message NewQuote : MsgHeader {
+  String20 clientOrderID
+  String11 traderID
+  ClearingAccount clearingAccount
+  Int32 instrumentID
+  MillenniumPrice bidPrice
+  Int32 bidSize
+  MillenniumPrice askPrice
+  Int32 askSize
+  OrderCapacity capacity
+  AutoCancel autoCancel
+  UInt32 clientID
+  UInt32 investmentDecisionMaker
+  UInt32 executingTrader
+  MiFIDFlags mifidFlags
+  PartyRoleQualifiers partyRoleQualifiers
+  PeggedExecInst peggedExecInst
+} [ size = , link_base: msgType = NewQuote ]
+
+message OrderCancelReplaceRequest : MsgHeader {
+  String20 clientOrderID
+  String20 originalClientOrderID
+  String12 orderID
+  Int32 instrumentID
+  UInt8 groupID
+  Int8 reserved2
+  UInt32 expireDateTime
+  Int32 orderQty
+  Int32 displayQty
+  MillenniumPrice limitPrice
+  String10 account
+  Int8 reserved3
+  Int8 side
+  MillenniumPrice stopPrice
+  Int8 passiveOnlyOrder
+  Int32 offset
+  String5 reserved
+  Int32 minimumQuantity
+} [ size = , link_base: msgType = OrderCancelReplaceRequest ]
+
+message OrderCancelRequest : MsgHeader {
+  String20 clientOrderID
+  String20 originalClientOrderID
+  String12 orderID
+  Int32 instrumentID
+  Int8 reserved1
+  Int8 reserved2
+  Side side
+  String10 rfqID
+} [ size = , link_base: msgType = OrderCancelRequest ]
+
+message OrderMassCancelRequest : MsgHeader {
+  String20 clientOrderID
+  MassCancelRequestType massCancelRequestType
+  Int32 instrumentID
+  Int8 reserved1
+  UInt8 groupID
+  String4 segment
+  MassCancelOrderSubType orderSubType
+  String10 reserved
+} [ size = , link_base: msgType = OrderMassCancelRequest ]
+
+message ExecutionReport : MsgHeader {
+  AppID appID
+  Int32 sequenceNo
+  String12 executionID
+  String20 clientOrderID
+  String12 orderID
+  ExecType execType
+  String12 executionReportRefID
+  OrdStatus ordStatus
+  Int32 orderRejectCode
+  MillenniumPrice executedPrice
+  Int32 executedQty
+  Int32 leavesQty
+  WaiverFlags waiverFlags
+  Int32 displayQty
+  Int32 instrumentID
+  RestatementReason restatementReason
+  PeggedExecInst peggedExecInst
+  Int8 side
+  OwnerType ownerType
+  String7 reserved2
+  String11 counterparty
+  LiquidityIndicator tradeLiquidityIndicator
+  Uint64 tradeMatchID
+  Uint64 transactTime
+  LastMkt lastMarket
+  TypeOfTrade typeOfTrade
+  OrderCapacity capacity
+  Alpha reserved4
+  String12 publicOrderID
+  Int32 minimumQuantity
+} [ size = , link_base: msgType = ExecutionReport ]
+
+message OrderCancelReject : MsgHeader {
+  AppID appID
+  Int32 sequenceNo
+  String20 clientOrderID
+  String12 orderID
+  Int32 cancelRejectReason
+  Uint64 transactTime
+  String10 rfqID
+} [ size = , link_base: msgType = OrderCancelReject ]
+
+message OrderMassCancelReport : MsgHeader {
+  AppID appID
+  Int32 sequenceNo
+  String20 clientOrderID
+  MassCancelResponse massCancelResponse
+  Int32 massCancelRejectReason
+  Int32 reserved1
+  Uint64 transactTime
+  String10 reserved2
+} [ size = , link_base: msgType = OrderMassCancelReport ]
+
+message QuoteRequest : MsgHeader {
+  UInt8 partitionID
+  Int32 sequenceNumber
+  String10 quoteReqID
+  OrderBook orderBook
+  PrivateQuote privateQuote
+  Int32 instrumentID
+  Side side
+  Int32 orderQuantity
+  UInt32 expireTime
+  String60 marketMakers
+  String11 contraTrader
+  String11 contraFirm
+  String10 rfqID
+  UInt32 clientID
+  UInt32 investmentDecisionMaker
+  UInt32 executingTrader
+  MiFIDFlags mifidFlags
+  PartyRoleQualifiers partyRoleQualifiers
+  QuoteRequestType quoteRequestType
+  MillenniumPrice price
+  UInt8 rfqExecutionDelay
+  UInt8 rfqMinQuotes
+  ClearingAccount accountType
+  OrderCapacity orderCapacity
+  RFQDiscloseSide rfqDiscloseSide
+  UInt32 expireTimeMilliseconds
+  AutoRFQExecStrategy autoRFQExecStrategy
+  UInt8 numOfCompetitors
+  UInt8 marketMakerRank
+  String23 reserved
+} [ size = , link_base: msgType = QuoteRequest ]
+
+message QuoteStatusReport : MsgHeader {
+  UInt8 partitionID
+  Int32 sequenceNumber
+  String20 quoteMsgID
+  String10 quoteReqID
+  QuoteStatus quoteStatus
+  Int32 rejectCode
+  OrderBook orderBook
+  String60 marketMakers
+  String10 rfqID
+  UInt32 expireTime
+  String12 bidID
+  String12 offerID
+  UInt32 expireTimeMilliseconds
+} [ size = , link_base: msgType = QuoteStatusReport ]
+
+message QuoteRequestReject : MsgHeader {
+  UInt8 partitionID
+  Int32 sequenceNumber
+  String10 quoteReqID
+  Int32 rejectCode
+  OrderBook orderBook
+  Int32 instrumentID
+  Side side
+  Int32 orderQuantity
+  String60 marketMakers
+  String11 contraTrader
+  String10 rfqID
+} [ size = , link_base: msgType = QuoteRequestReject ]
+
+message RFQQuote : MsgHeader {
+  UInt8 partitionID
+  Int32 sequenceNumber
+  String20 quoteMsgID
+  String10 rfqID
+  Int32 instrumentID
+  MillenniumPrice bidPrice
+  Int32 bidQuantity
+  MillenniumPrice offerPrice
+  Int32 offerQuantity
+  AutoCancel autoCancel
+  String11 marketMaker
+  String11 marketMakerFirm
+  String12 bidID
+  String12 offerID
+  OrderCapacity capacity
+  ClearingAccount clearingAccount
+  UInt32 clientID
+  UInt32 investmentDecisionMaker
+  UInt32 executingTrader
+  MiFIDFlags mifidFlags
+  PartyRoleQualifiers partyRoleQualifiers
+  String16 reserved
+} [ size = , link_base: msgType = RFQQuote ]
+
+message QuoteAck : MsgHeader {
+  UInt8 partitionID
+  Int32 sequenceNumber
+  String20 quoteMsgID
+  String10 rfqID
+  String12 bidID
+  String12 offerID
+  QuoteAckStatus quoteAckStatus
+  Int32 rejectCode
+  OrderBook orderBook
+} [ size = , link_base: msgType = QuoteAck ]
+
+message QuoteResponse : MsgHeader {
+  UInt8 partitionID
+  Int32 sequenceNumber
+  String20 quoteMsgID
+  String10 rfqID
+  QuoteRespType quoteRespType
+  Int32 instrumentID
+  Side side
+  Int32 orderQuantity
+  MillenniumPrice limitPrice
+  OrderBook orderBook
+  String12 bidID
+  String12 offerID
+  OrderCapacity capacity
+  ClearingAccount clearingAccount
+  Uint64 reserved
+} [ size = , link_base: msgType = QuoteResponse ]
+
+message RFQExecutionReport : MsgHeader {
+  UInt8 partitionID
+  Int32 sequenceNumber
+  String12 executionID
+  String10 rfqID
+  String12 orderID
+  ExecType executionType
+  Uint64 tradeMatchID
+  Side side
+  Int32 executedQuantity
+  MillenniumPrice executedPrice
+  Uint64 transactTime
+  MillenniumPrice reserved2
+  MillenniumPrice reserved3
+  OrdStatus orderStatus
+  Int32 leavesQuantity
+  Int32 instrumentID
+  MillenniumPrice reserved4
+  MillenniumPrice reserved5
+  String11 contraFirm
+  OrderCapacity capacity
+  ClearingAccount clearingAccount
+  UInt8 waiverFlags
+  String12 executionReportRefID
+  ContraOrderBook contraOrderBook
+  MillenniumPrice avgPx
+  LastMkt lastMarket
+  String7 reserved
+} [ size = , link_base: msgType = RFQExecutionReport ]
+
+

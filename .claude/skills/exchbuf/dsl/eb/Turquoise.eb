@@ -1,0 +1,403 @@
+# Hand-authored from Turquoise TQ301 Trading Gateway, issue 6.1.0.
+@include Millennium
+// Turquoise2
+
+enum OrderType : uint8_ebt {
+  MARKET = 1
+  LIMIT = 2
+}
+
+enum TimeInForce : uint8_ebt {
+  DAY = 0
+  IOC = 3
+  FOK = 4
+  GTT = 8
+  GFA = 9
+}
+
+enum Side : uint8_ebt {
+  BUY = 1
+  SELL = 2
+}
+
+enum OrderCapacity : uint8_ebt {
+  MTCH = 1
+  DEAL = 2
+  AOTC = 3
+}
+
+enum AutoCancel : uint8_ebt {
+  DO_NOT_CANCEL = 0
+  CHECK_SYSTEM_CONFIGURATION = 1
+}
+
+enum OrderSubType : uint8_ebt {
+  ORDER = 0
+  BI = 1
+  ORDER_BDN = 3
+  PEGGED_ORDER = 5
+  RANDOM_PEAK_SIZE = 51
+}
+
+enum OwnerType : uint8_ebt {
+  NON_RETAIL = 0
+  RETAIL = 1
+  RETAIL_LP = 2
+}
+
+enum TargetBook : uint8_ebt {
+  TURQUOISE_DARK = 0
+  TURQUOISE_LIT = 1
+  DARK_LIT_SWEEP = 3
+  PERIODIC_AUCTIONS = 4
+}
+
+enum ExecInstruction : uint8_ebt {
+  USER_LEVEL_DEFAULT = 0
+  DARK_UNCROSS_ONLY = 1
+  CONTINUOUS_ONLY = 2
+  CONTINUOUS_AND_DARK_UNCROSS = 5
+  DARK_UNCROSS_THEN_CONTINUOUS = 6
+}
+
+enum PegPriceType : uint8_ebt {
+  DEFAULT = 0
+  CLOSING_PRICE = 1
+  MIDPOINT = 2
+  BEST_BID = 10
+  BEST_OFFER = 11
+}
+
+enum PassiveOnlyOrder : uint8_ebt {
+  NO_CONSTRAINT = 0
+  NEW_OR_JOIN_BBO = 1
+  JOIN_OR_WITHIN_ONE = 2
+  WITHIN_TWO = 3
+  BI_OPT_OUT = 50
+  ACCEPT_ONLY_IF_PASSIVE = 99
+  SET_NEW_BBO = 100
+}
+
+enum ClearingAccount : uint8_ebt {
+  CLIENT = 1
+  HOUSE = 3
+}
+
+enum ExecType : char_ebt {
+  NEW = '0'
+  CANCELLED = '4'
+  REPLACED = '5'
+  PENDING_CANCEL = '6'
+  REJECTED = '8'
+  EXPIRED = 'C'
+  RESTATED = 'D'
+  TRADE = 'F'
+  TRADE_CANCEL = 'H'
+  TRIGGERED = 'L'
+}
+
+enum OrdStatus : uint8_ebt {
+  NEW = 0
+  PARTIALLY_FILLED = 1
+  FILLED = 2
+  CANCELLED = 4
+  EXPIRED = 6
+  REJECTED = 8
+  PENDING_CANCEL = 13
+}
+
+enum LiquidityIndicator : char_ebt {
+  ADDED = 'A'
+  REMOVED = 'R'
+  DARK_UNCROSS = 'C'
+  BLOCK_DISCOVERY = 'S'
+  BTF_TRADE = 'B'
+}
+
+enum TypeOfTrade : uint8_ebt {
+  VISIBLE = 0
+  HIDDEN = 1
+  NOT_SPECIFIED = 2
+}
+
+enum LastMkt : uint8_ebt {
+  TRQX = 1
+  TRQM = 2
+  TRQA = 3
+  TQEX = 5
+  TQEM = 6
+  TQEA = 7
+}
+
+enum MassCancelRequestType : uint8_ebt {
+  ALL_FIRM_ORDERS_OF_INSTRUMENT = 3
+  ALL_FIRM_ORDERS_OF_SEGMENT = 4
+  ALL_ORDERS_BY_COMPID = 7
+  ALL_FIRM_ORDERS = 8
+  ALL_ORDERS_OF_INSTRUMENT_BY_COMPID = 9
+  ALL_ORDERS_OF_SEGMENT_BY_COMPID = 15
+}
+
+enum MassCancelResponse : uint8_ebt {
+  REJECTED = 0
+  ACCEPTED = 7
+}
+
+enum CrossType : uint8_ebt {
+  INTERNAL_BTF = 6
+  COMMITTED_BTF = 8
+}
+
+enum PartyRole : uint8_ebt {
+  EXECUTING_FIRM = 1
+  COUNTERPARTY_FIRM = 17
+}
+
+# MiFID flags bit-field
+enum DEA : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+enum LiqProv : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+enum Algo : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+bitfield MiFIDFlags : uint8_ebt {
+  enum = DEA, default = No, length = 1
+  enum = LiqProv, default = No, length = 1
+  enum = Algo, default = No, length = 1
+}
+
+enum ClientIDType : uint8_ebt {
+  NONE = 0
+  Firm = 1
+  Algo = 2
+  Person = 3
+}
+enum IDMT : uint8_ebt {
+  NONE = 0
+  Firm = 1
+  Algo = 2
+  Person = 3
+}
+enum EDMT : uint8_ebt {
+  NONE = 0
+  Firm = 1
+  Algo = 2
+  Person = 3
+}
+bitfield PartyRoleQualifiers : uint8_ebt {
+  enum = ClientIDType, default = NONE, length = 2
+  enum = IDMT, default = NONE, length = 2
+  enum = EDMT, default = NONE, length = 2
+}
+
+# Waiver flags: bit5 = RFPT
+enum Pad : uint8_ebt {
+  NA = 0
+}
+enum RFPT : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+bitfield WaiverFlags : uint8_ebt {
+  enum = Pad, default = NA, length = 5
+  enum = RFPT, default = No, length = 1
+}
+
+# Waiver flags 2: bit0 = PRIC (pre-trade), bit1 = NETW
+enum PRIC : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+enum NETW : uint8_ebt {
+  No = 0
+  Yes = 1
+}
+bitfield WaiverFlags2 : uint8_ebt {
+  enum = PRIC, default = No, length = 1
+  enum = NETW, default = No, length = 1
+}
+
+message NewOrder : MsgHeader {
+  String20 clientOrderID
+  String11 traderID
+  String10 account
+  ClearingAccount clearingAccount
+  String8 mtfCommonSymbol
+  OrderType orderType
+  TimeInForce tif
+  UInt32 expireDateTime
+  Side side
+  Int32 orderQty
+  Int32 displayQty
+  MillenniumPrice limitPrice
+  OrderCapacity capacity
+  AutoCancel autoCancel
+  OrderSubType orderSubType
+  OwnerType ownerType
+  MillenniumPrice reserved2
+  TargetBook targetBook
+  ExecInstruction execInstruction
+  Int32 minimumQuantity
+  Int8 reserved3
+  Int8 reserved4
+  PegPriceType pegPriceType
+  PassiveOnlyOrder passiveOnlyOrder
+  String12 clOrdLinkID
+  UInt32 clientID
+  UInt32 investmentDecisionMaker
+  UInt32 executingWithinFirm
+  MiFIDFlags mifidFlags
+  PartyRoleQualifiers partyRoleQualifiers
+} [ size = , link_base: msgType = NewOrder ]
+
+message OrderCancelReplaceRequest : MsgHeader {
+  String20 clientOrderID
+  String20 originalClientOrderID
+  String12 orderID
+  String8 commonSymbol
+  UInt32 expireDateTime
+  Int32 orderQty
+  Int32 displayQty
+  MillenniumPrice limitPrice
+  String10 account
+  Int8 reserved
+  Side side
+  MillenniumPrice reserved1
+  TargetBook targetBook
+  ExecInstruction execInstruction
+  Int32 minQty
+  PassiveOnlyOrder passiveOnlyOrder
+  String3 reserved2
+} [ size = , link_base: msgType = OrderCancelReplaceRequest ]
+
+message OrderCancelRequest : MsgHeader {
+  String20 clientOrderID
+  String20 originalClientOrderID
+  String12 orderID
+  String8 commonSymbol
+  Side side
+  TargetBook targetBook
+  String10 reserved1
+} [ size = , link_base: msgType = OrderCancelRequest ]
+
+message OrderMassCancelRequest : MsgHeader {
+  String20 clientOrderID
+  MassCancelRequestType massCancelType
+  String8 commonSymbol
+  String4 segment
+  Int8 reserved1
+  TargetBook targetBook
+  String9 reserved2
+} [ size = , link_base: msgType = OrderMassCancelRequest ]
+
+message NewCross : MsgHeader {
+  String20 crossID
+  CrossType crossType
+  String20 buySideClOrdID
+  OrderCapacity buySideOrderCapacity
+  ClearingAccount buySideClearingAccount
+  Int32 buySideOrderQuantity
+  String4 reserved1
+  String11 buySideFirmID
+  PartyRole buySidePartyRole
+  MiFIDFlags buyMifidFlags
+  UInt32 buyClientID
+  UInt32 buyInvestmentDecisionMaker
+  UInt32 buyExecutingTrader
+  PartyRoleQualifiers buyPartyRoleQualifiers
+  String20 sellSideClOrdID
+  OrderCapacity sellSideOrderCapacity
+  ClearingAccount sellSideClearingAccount
+  Int32 sellSideOrderQuantity
+  String4 reserved2
+  String11 sellSideFirmID
+  PartyRole sellSidePartyRole
+  MiFIDFlags sellMifidFlags
+  UInt32 sellClientID
+  UInt32 sellInvestmentDecisionMaker
+  UInt32 sellExecutingTrader
+  PartyRoleQualifiers sellPartyRoleQualifiers
+  String8 mtfCommonSymbol
+  MillenniumPrice price
+  OrderType orderType
+  TimeInForce tif
+} [ size = , link_base: msgType = NewCross ]
+
+message CrossCancelRequest : MsgHeader {
+  String20 crossID
+  String20 originalCrossID
+  CrossType crossType
+  String20 buySideOriginalClOrdID
+  Int32 buySideOrderQuantity
+  String4 reserved1
+  String20 sellSideOriginalClOrdID
+  Int32 sellSideOrderQuantity
+  String4 reserved2
+  String8 mtfCommonSymbol
+  String20 clientOrderID
+} [ size = , link_base: msgType = CrossCancelRequest ]
+
+message ExecutionReport : MsgHeader {
+  AppID appID
+  Int32 sequenceNo
+  String12 executionID
+  String20 clientOrderID
+  String12 orderID
+  ExecType execType
+  String12 executionReportRefID
+  OrdStatus ordStatus
+  Int32 orderRejectCode
+  MillenniumPrice executedPrice
+  Int32 executedQty
+  Int32 leavesQty
+  WaiverFlags waiverFlags
+  Int32 displayQty
+  String8 commonSymbol
+  Side side
+  Uint64 secondaryOrderID
+  String11 counterparty
+  LiquidityIndicator tradeLiquidityIndicator
+  Uint64 tradeMatchID
+  Uint64 transactTime
+  TargetBook targetBook
+  TypeOfTrade typeOfTrade
+  OrderCapacity capacity
+  Alpha reserved2
+  String12 publicOrderID
+  Int32 minimumQuantity
+  Int8 reputationalScore
+  LastMkt lastMarket
+  PegPriceType pegPriceType
+  OwnerType ownerType
+  WaiverFlags2 waiverFlags2
+  String20 reserved3
+} [ size = , link_base: msgType = ExecutionReport ]
+
+message OrderCancelReject : MsgHeader {
+  AppID appID
+  Int32 sequenceNo
+  String20 clientOrderID
+  String12 orderID
+  Int32 cancelRejectReason
+  Uint64 transactTime
+  String10 reserved1
+} [ size = , link_base: msgType = OrderCancelReject ]
+
+message OrderMassCancelReport : MsgHeader {
+  AppID appID
+  Int32 sequenceNo
+  String20 clientOrderID
+  MassCancelResponse massCancelResponse
+  Int32 massCancelRejectReason
+  String4 reserved1
+  Uint64 transactTime
+  String10 reserved2
+} [ size = , link_base: msgType = OrderMassCancelReport ]
+
+

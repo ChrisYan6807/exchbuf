@@ -6,7 +6,7 @@ namespace sandbox3 {
 using namespace EB::common;
 using EB::common::operator<<;
 
-using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8, 0, true>;
 
 #pragma pack(1)
 struct E1 {

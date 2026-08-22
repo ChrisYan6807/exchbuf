@@ -144,7 +144,7 @@ enum ConditionalType : char_ebt {
 alias FirmUpID = u32 
 
 message NewOrderAppendageEntry :  {
-  i8 length
+  u8 length
   AppendixKeyEnum tag
   @optional_by_enum value with_presence_value tag {
     type: ClearingAccount, enum_value: ClearingAccount

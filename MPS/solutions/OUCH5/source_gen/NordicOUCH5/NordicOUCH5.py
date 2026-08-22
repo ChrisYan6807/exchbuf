@@ -148,7 +148,7 @@ FirmUpID = u32;
 class NewOrderAppendageEntry(Packet):
     name = 'NewOrderAppendageEntry'
     fields_desc = [
-    i8("length", 0),
+    u8("length", 0),
     ByteEnumField("tag", AppendixKeyEnum.ClearingAccount, AppendixKeyEnum),
         ConditionalField(ClearingAccount("clearingAccount", ""), lambda pkt:pkt.tag == AppendixKeyEnum.ClearingAccount),
         ConditionalField(CharEnumField("clearingAccountType", ClearingAccountType.Firm, ClearingAccountType), lambda pkt:pkt.tag == AppendixKeyEnum.ClearingAccountType),

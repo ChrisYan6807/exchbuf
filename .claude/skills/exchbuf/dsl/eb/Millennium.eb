@@ -1,0 +1,159 @@
+# Hand-authored from the Millennium-platform native gateway specs
+# (LSE MIT203 issue 21.0 + Turquoise TQ301 issue 6.1.0). Shared session/admin base.
+// Millennium2
+
+primitive Alpha = char_ebt [ min=, max=, null=, little_endian=true ]
+primitive UInt8 = uint8_ebt [ min=, max=, null=, little_endian=true ]
+primitive Int8 = int8_ebt [ min=, max=, null=, little_endian=true ]
+primitive UInt16 = uint16_ebt [ min=, max=, null=, little_endian=true ]
+primitive Int16 = int16_ebt [ min=, max=, null=, little_endian=true ]
+primitive UInt32 = uint32_ebt [ min=, max=, null=, little_endian=true ]
+primitive Int32 = int32_ebt [ min=, max=, null=, little_endian=true ]
+primitive Uint64 = uint64_ebt [ min=, max=, null=, little_endian=true ]
+
+primitive String1 = FixedLengthString [ length=1, padding='\0', right_padded=false ]
+primitive String3 = FixedLengthString [ length=3, padding='\0', right_padded=false ]
+primitive String4 = FixedLengthString [ length=4, padding='\0', right_padded=false ]
+primitive String5 = FixedLengthString [ length=5, padding='\0', right_padded=false ]
+primitive String6 = FixedLengthString [ length=6, padding='\0', right_padded=false ]
+primitive String7 = FixedLengthString [ length=7, padding='\0', right_padded=false ]
+primitive String8 = FixedLengthString [ length=8, padding='\0', right_padded=false ]
+primitive String9 = FixedLengthString [ length=9, padding='\0', right_padded=false ]
+primitive String10 = FixedLengthString [ length=10, padding='\0', right_padded=false ]
+primitive String11 = FixedLengthString [ length=11, padding='\0', right_padded=false ]
+primitive String12 = FixedLengthString [ length=12, padding='\0', right_padded=false ]
+primitive String14 = FixedLengthString [ length=14, padding='\0', right_padded=false ]
+primitive String16 = FixedLengthString [ length=16, padding='\0', right_padded=false ]
+primitive String20 = FixedLengthString [ length=20, padding='\0', right_padded=false ]
+primitive String21 = FixedLengthString [ length=21, padding='\0', right_padded=false ]
+primitive String23 = FixedLengthString [ length=23, padding='\0', right_padded=false ]
+primitive String25 = FixedLengthString [ length=25, padding='\0', right_padded=false ]
+primitive String30 = FixedLengthString [ length=30, padding='\0', right_padded=false ]
+primitive String60 = FixedLengthString [ length=60, padding='\0', right_padded=false ]
+
+primitive MillenniumPrice = FloatDecimal [ min=, max=, null=, size=8, precision=8, signed=true, little_endian=true ]
+
+# Union of message-type codes used by the LSE and Turquoise application layers.
+enum MsgType : char_ebt {
+  Heartbeat = '0'
+  Logon = 'A'
+  LogonResponse = 'B'
+  Logout = '5'
+  MissedMessageRequest = 'M'
+  MissedMessageRequestAck = 'N'
+  MissedMessageReport = 'P'
+  Reject = '3'
+  SystemStatus = 'n'
+  NewOrder = 'D'
+  OrderCancelReplaceRequest = 'G'
+  OrderCancelRequest = 'F'
+  OrderMassCancelRequest = 'q'
+  ExecutionReport = '8'
+  OrderCancelReject = '9'
+  OrderMassCancelReport = 'r'
+  BusinessReject = 'j'
+  NewQuote = 'S'
+  QuoteRequest = 'a'
+  QuoteRequestReject = 'b'
+  QuoteStatusReport = 'c'
+  RFQQuote = 'd'
+  QuoteAck = 'e'
+  QuoteResponse = 'f'
+  RFQExecutionReport = 'g'
+  NewCross = 'C'
+  CrossCancelRequest = 'H'
+}
+
+enum MissedMsgRespType : uint8_ebt {
+  SUCCESSFUL = 0
+  RECOVERY_REQUEST_LIMIT_REACHED = 1
+  INVALID_APPID = 2
+  SERVICE_UNAVAILABLE = 3
+}
+
+# Service Unavailable is coded differently by the two exchanges: LSE MIT203 (0=Download
+# Complete, 1=Message limit reached, 3=Service Unavailable) vs Turquoise TQ301 (0/1 as
+# above, 2=Service Unavailable). Both wire values are kept as distinct members so either
+# exchange's byte decodes to a valid, unambiguous name.
+enum MissedMsgRptType : uint8_ebt {
+  DOWNLOAD_COMPLETE = 0
+  MESSAGE_LIMIT_REACHED = 1
+  SERVICE_UNAVAILABLE_TQ = 2
+  SERVICE_UNAVAILABLE = 3
+}
+
+enum AppID : uint8_ebt {
+  SYSTEM_SUSPENDED_UNKNOWN_INSTRUMENT = 0
+  PARTITION1 = 1
+  PARTITION2 = 2
+  PARTITION3 = 3
+  PARTITION4 = 4
+}
+
+enum AppStatus : uint8_ebt {
+  RECOVERY_SERVICE_RESUMED = 1
+  RECOVERY_SERVICE_NOT_AVAILABLE = 2
+  REALTIME_SERVICE_NON_AVAILABILITY = 3
+}
+
+message MsgHeader :  {
+  Int8 startOfMsg [ default=2 ]
+  Int16 length
+  MsgType msgType
+} [ size = 4, link_base:  =  ]
+
+message Logon : MsgHeader {
+  String25 userName
+  String25 password
+  String25 newPassword
+  UInt8 messageVersion
+} [ size = , link_base: msgType = Logon ]
+
+message LogonResponse : MsgHeader {
+  Int32 rejectCode
+  String30 passwordExpiryDayCount
+} [ size = , link_base: msgType = LogonResponse ]
+
+message Logout : MsgHeader {
+  String20 reason
+} [ size = , link_base: msgType = Logout ]
+
+message Heartbeat : MsgHeader {
+} [ size = , link_base: msgType = Heartbeat ]
+
+message MissedMessageRequest : MsgHeader {
+  Int8 appID
+  Int32 lastMsgSeqNum
+} [ size = , link_base: msgType = MissedMessageRequest ]
+
+message MissedMessageRequestAck : MsgHeader {
+  MissedMsgRespType responseType
+} [ size = , link_base: msgType = MissedMessageRequestAck ]
+
+message MissedMessageReport : MsgHeader {
+  MissedMsgRptType responseType
+} [ size = , link_base: msgType = MissedMessageReport ]
+
+message Reject : MsgHeader {
+  Int32 rejectCode
+  String30 rejectReason
+  Alpha rejectedMessageType
+  String20 clientOrderID
+} [ size = , link_base: msgType = Reject ]
+
+message SystemStatus : MsgHeader {
+  AppID appID
+  AppStatus appStatus
+} [ size = , link_base: msgType = SystemStatus ]
+
+message BusinessReject : MsgHeader {
+  AppID appID
+  Int32 sequenceNo
+  Int32 rejectCode
+  String20 clientOrderID
+  String12 orderID
+  Uint64 transactTime
+  String10 reserved1
+} [ size = , link_base: msgType = BusinessReject ]
+
+

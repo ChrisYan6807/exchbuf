@@ -521,7 +521,12 @@ public class QueriesGenerated extends QueryProviderBase {
       return "";
     }
 
-    return String.format("    %s %s : %d;", EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp));
+    if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), CONCEPTS.EBEnum$37)) {
+      return String.format("    %s %s : %d;", EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), CONCEPTS.EBEnum$37), LINKS.type$_ySl), CONCEPTS.EBIntType$ej)), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp));
+    } else {
+      return String.format("    %s %s : %d;", EBIntType__BehaviorDescriptor.cppName_id9WwCMYBSZJ.invoke(SNodeOperations.cast(SLinkOperations.getTarget(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)), SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp));
+    }
+
   }
   public static Object propertyMacro_GetValue_0_31(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 1) {
@@ -530,10 +535,10 @@ public class QueriesGenerated extends QueryProviderBase {
 
     if (SNodeOperations.isInstanceOf(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), CONCEPTS.EBEnum$37)) {
       String defaultValue = String.format("%s.%s", SPropertyOperations.getString(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), CONCEPTS.EBEnum$37), PROPS.name$MnvL), SPropertyOperations.getString(ListSequence.fromList(SLinkOperations.getChildren(SNodeOperations.cast(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), CONCEPTS.EBEnum$37), LINKS.values$_zmn)).first(), PROPS.name$MnvL));
-      return String.format("        LEBitEnumField('%s', %s, %s, %s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue, SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL));
+      return String.format("    LEBitEnumField('%s', %s, %s, %s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), defaultValue, SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp), SPropertyOperations.getString(SLinkOperations.getTarget(_context.getNode(), LINKS.type$zO4N), PROPS.name$MnvL));
     }
 
-    return String.format("        LEBitField('%s', 0, %s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp));
+    return String.format("    LEBitField('%s', 0, %s),", SPropertyOperations.getString(_context.getNode(), PROPS.name$MnvL), SPropertyOperations.getInteger(_context.getNode(), PROPS.nbits$ElNp));
   }
   public static Object propertyMacro_GetValue_0_32(final PropertyMacroContext _context) {
     if (SPropertyOperations.getInteger(SNodeOperations.getNodeAncestor(_context.getNode(), CONCEPTS.EBProtocol$zC, false, false), PROPS.genType$AtJI) != 2) {

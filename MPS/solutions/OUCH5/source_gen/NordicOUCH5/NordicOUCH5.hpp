@@ -700,7 +700,7 @@ using FirmUpID = u32;
 
 #pragma pack(1)
 struct NewOrderAppendageEntry {
-    i8 length;
+    u8 length;
     AppendixKeyEnum tag{AppendixKeyEnum::ClearingAccount};
     auto value() {
         return OptionalByEnumRef<AppendixKeyEnum, TypeByEnum<ClearingAccount, AppendixKeyEnum, AppendixKeyEnum::ClearingAccount>,

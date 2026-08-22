@@ -6,8 +6,8 @@ namespace BOE2EU {
 using namespace EB::common;
 using EB::common::operator<<;
 
-using i8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8>;
-using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using i8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8, 0, true>;
+using u8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8, 0, true>;
 using i16 = LittleEndian<int16_t, std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max(), 0_i16>;
 using u16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0_u16>;
 using i32 = LittleEndian<int32_t, std::numeric_limits<int32_t>::min(), std::numeric_limits<int32_t>::max(), 0_i32>;

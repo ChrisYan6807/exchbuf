@@ -10,14 +10,14 @@ namespace ebtest {
 using namespace EB::common;
 using EB::common::operator<<;
 
-using U8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
+using U8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8, 0, true>;
 using U16 = LittleEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0_u16>;
 using str3 = FixedLengthString<3, '\0', false>;
 using str10 = FixedLengthString<10, '\0', false>;
 using v = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 8>;
 using v1 = LittleEndian<char, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8>;
 
-using v2 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8>;
+using v2 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8, 0, true>;
 
 using Price3 = LittleEndian<int64_t, 1LL, 2LL, 3LL, 8>;
 using Price4 = LittleEndian<int64_t, std::numeric_limits<int64_t>::min(), std::numeric_limits<int64_t>::max(), 0, 8>;

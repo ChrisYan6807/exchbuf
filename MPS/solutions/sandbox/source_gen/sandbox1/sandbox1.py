@@ -97,7 +97,7 @@ class NewOrder(Packet):
     U16("qty", 0),
     FieldLenField("sz", 0, fmt="<B", count_of="grp"),
         PacketListField("grp", None, RptGrp, count_from=lambda pkt:pkt.sz),
-        LEBitField('bitmem', 0, 28),
+    LEBitField('bitmem', 0, 28),
         StrLenField("sss", b"", length_from=lambda pkt:pkt.sz-2),
     U16("plen", 0),
         ConditionalField(PacketListField("appendage", [], Entry, length_from=lambda pkt:pkt.plen), lambda pkt:pkt.plen > 0),

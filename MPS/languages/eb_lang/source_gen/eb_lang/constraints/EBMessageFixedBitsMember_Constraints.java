@@ -58,7 +58,7 @@ public class EBMessageFixedBitsMember_Constraints extends BaseConstraintsDescrip
 
           Iterable<SNode> typeStatements = Sequence.fromIterable(SNodeOperations.ofConcept(SLinkOperations.getChildren(SNodeOperations.getNodeAncestor(_context.getContextNode(), CONCEPTS.EBProtocol$zC, true, false), LINKS.statements$_5KW), CONCEPTS.EBTypeStatement$o0)).where((it) -> SNodeOperations.getIndexInParent(it) < statementContextIndex);
           for (SNode n : typeStatements) {
-            if (SNodeOperations.isInstanceOf(n, CONCEPTS.EBEnum$37) || SNodeOperations.isInstanceOf(n, CONCEPTS.EBPrimitive$gU) && SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(n, CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej)) {
+            if (SNodeOperations.isInstanceOf(n, CONCEPTS.EBEnum$37) || (SNodeOperations.isInstanceOf(n, CONCEPTS.EBPrimitive$gU) && SNodeOperations.isInstanceOf(SLinkOperations.getTarget(SNodeOperations.cast(n, CONCEPTS.EBPrimitive$gU), LINKS.type$zVeR), CONCEPTS.EBIntType$ej))) {
               ListSequence.fromList(statements).addElement(n);
             }
           }
@@ -74,9 +74,9 @@ public class EBMessageFixedBitsMember_Constraints extends BaseConstraintsDescrip
     /*package*/ static final SConcept EBTypeStatement$o0 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf3L, "eb_lang.structure.EBTypeStatement");
     /*package*/ static final SConcept EBProtocol$zC = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3cf6L, "eb_lang.structure.EBProtocol");
     /*package*/ static final SConcept EBInclude$_h = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x5300c8f52845c9aaL, "eb_lang.structure.EBInclude");
+    /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
     /*package*/ static final SConcept EBPrimitive$gU = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e2416a06L, "eb_lang.structure.EBPrimitive");
     /*package*/ static final SConcept EBIntType$ej = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x78f986b06f13f864L, "eb_lang.structure.EBIntType");
-    /*package*/ static final SConcept EBEnum$37 = MetaAdapterFactory.getConcept(0x59242254602f42f3L, 0xab3adc203eb4cc03L, 0x726a4e86e23f3d0dL, "eb_lang.structure.EBEnum");
   }
 
   private static final class LINKS {

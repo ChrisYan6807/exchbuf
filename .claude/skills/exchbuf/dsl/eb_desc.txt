@@ -1,0 +1,162 @@
+A DSL language is used to describe exchange protocols designed as follows:
+1. literals:
+   1) number literals
+      binary vlaue: 	0b0101
+	  hex value:    	0xAD56
+	  decimal value: 	1234
+   2) char literal
+      single quote value like 'D' or '\0'
+
+2. cpp and python directive
+   @cpp ...
+   @python ...
+   while doing code generating, the content of @cpp and @python will be insert into generated code directly.
+
+3. @include directive
+   format example: 
+   @include other_dsl
+   
+   include other DSL(file name should be other_dsl.eb) into this DSL. then all the types defined by other DSL can be used in current DSL
+
+3. primitive type
+   1) Integer type, for singed/unsigned various bytes integers:
+   char_ebt
+   int8_ebt
+   int16_ebt
+   int32_ebt
+   int64_ebt
+   uint8_ebt
+   uint16_ebt
+   uint32_ebt
+   uint64_ebt
+   
+   Integer type has property list with format 
+   e.g. [ min=0, max=254, null=255, little_endian=true ]
+   min/max/null can have empty value, to indicate default value
+   little_endian property default value is true, to indicate the endian is little_endian or not.
+   format is:
+   uint8_ebt [ min=0, max=254, null=255, little_endian=true ]
+   int64_ebt [ min=, max=, null=, little_endian=true ]
+   
+   
+   2) FixedLengthString
+   FixedLengthString has this kind of format:
+   FixedLengthString [ length=3, padding='\0', right_padded=false ]
+   property length tells the total length of the string
+   padding is a char literal
+   right_padded flag tells user whether the padding sits on the right side
+   (true) or the left side (false). This is the name every real .eb file
+   and both generators (gen_cpp.py/gen_py.py) actually use; left_padding
+   is only accepted as a backward-compat alias -- when both are given,
+   right_padded wins, and when only left_padding is given, the generators
+   use its value as-is (not inverted), despite the name. Use right_padded
+   in new code.
+   
+   3) FloatDecimal
+   FloatDecimal has 
+   FloatDecimal [ min=, max=, null=, size=8, precision=8, signed=true, little_endian=true ]
+   min/max/null can have empty value, to indicate default value.
+   size range from 1 to 8
+   precision range from 1 to 8
+   signed, true or false
+   little_endian, tell us the endianess
+   
+   when introducing the primitive types into a DSL, we must use below garammer to make it valiable.
+   primitive $type_alias = Integer type/FixedLengthString/FloatDecimal
+   
+   after that defined $type_alias can be used later by DSL
+
+4. alias
+   format:
+   alias Price = Price3 [ if Pred else Price4 ]
+   or
+   alias MsgLen = U16 
+   
+   create a alias for a existing type.
+   The first format can create alias according to the value of Pred
+
+5. array
+   format:
+   array<type=Price, size=3> priceArray
+   
+   Fixed array type. In above example Price is type of array element, 3 is size of array, array name is priceArray 
+   
+6. enum 
+   format:
+   enum E1 : char_ebt {
+     F1 = 1
+     F2 = 'B'
+   }
+   E1 is enum name, char_ebt is the underlying type. The underlying type only can be Integer type.
+   lines inside { and } are enum member definations. left part is entry name, right part is value. value can be number literal or char literal.
+   
+7. bitfield
+   format:
+   bitfield BF1 : int16_ebt {
+     enum = E1, default = F1, length = 2
+     enum = E2, default = M2, length = 2
+   }
+   
+   BF1 is the name of bitfield, int16_ebt is underlying type of bitfield. The underlying type only can be Integer type.
+   lines inside { and } are bitfield member definations. 
+   enum = ..., to use a already defined enum to define the field
+   default = ..., the default value of this field, should be one enum entry name of corresponding enum
+   length = ..., to tell how many bits this member should occupy.
+
+8. message
+   message will use previously defined types to define a layout of a message.
+   there are two categories of a message member, fixed length member and variable length member.
+   1) Fixed length member
+      1>
+	  $type $name
+	  or 
+	  $type $name [ default = xxx ]
+	  
+	  $type is previously defined type
+	  $name is the name of this member
+	  default = xxx to define a default value of the member
+	  
+	  2> array with fixed length
+	  @array<type=$type, size=$size> $name
+	  $type is previously defined type
+	  
+	  3> fixed bits member 
+	  @fixed_bits<type=$type, nbits=$nbits> $name
+	  $type is a integer type, $nbits indicates how many bits of this member. $name is member name
+	  
+   2) Variable length member
+      there are few types of variable length members. they all starts with @
+	  1>
+	  @var_array<type=$type, counter=$size> $name
+	  $type is previously defined type before this message
+	  $size is a previously defined member name of this message, it should be a integer to tell us now many element of this var_array
+	  $name is the name of this member
+	  2>
+	  @var_str<size=$size, offset=$offset> $name
+	  $size is a previously defined member name of this message, it should be a integer to tell us size of this var_str.
+	  $offset is a integer, to tell us skip how many bytes of $size
+	  $name is the name of this member
+	  3>
+	  @optional_by_bit<type=@type, presence_value=$presence_value, enum=$enum, mask=$enum_name> $name
+      @type is the type of this member
+	  $enum_name is a enum value of $enum, to compare with $presence_value, to determine this member should exist or not
+
+	  4>
+	  @optional_by_enum $name with_presence_value $presence_value {
+         type: $type1, enum_value: $enum_name1
+         type: $type2, enum_value: $enum_name2
+         type: $type3, enum_value: $enum_name3
+      }
+	  there are several types defined in @optional_by_enum, in above case $type1, $type2 and $type3
+	  @optional_by_enum will be compared with $enum_name1, $enum_name2, $enum_name3 to determine if this member should exist in the message
+	  
+	  
+	  5>
+	  @optional_by_len<type=$type, presence_length=$presence_length> $name
+      $type is a var length type, normally has @optional_by_enum as a member.
+	  @presence_length to determine how many $type objects in this member.
+
+	  6>
+	  @optional_by_value<type=$type, presence_value=$presence_value, expr: $expr> $name
+      apply $expr to $presence_value, to determin if this member of $type should exist or not
+

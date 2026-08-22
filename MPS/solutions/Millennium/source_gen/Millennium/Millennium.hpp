@@ -10,8 +10,8 @@ using namespace EB::common;
 using EB::common::operator<<;
 
 using Alpha = LittleEndian<char, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8>;
-using UInt8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8>;
-using Int8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8>;
+using UInt8 = LittleEndian<uint8_t, std::numeric_limits<uint8_t>::min(), std::numeric_limits<uint8_t>::max(), 0_u8, 0, true>;
+using Int8 = LittleEndian<int8_t, std::numeric_limits<int8_t>::min(), std::numeric_limits<int8_t>::max(), 0_i8, 0, true>;
 using UInt16 = BigEndian<uint16_t, std::numeric_limits<uint16_t>::min(), std::numeric_limits<uint16_t>::max(), 0_u16>;
 using Int16 = BigEndian<int16_t, std::numeric_limits<int16_t>::min(), std::numeric_limits<int16_t>::max(), 0_i16>;
 using UInt32 = BigEndian<uint32_t, std::numeric_limits<uint32_t>::min(), std::numeric_limits<uint32_t>::max(), 0_u32>;
